@@ -1,0 +1,100 @@
+/* Pillar Color System */
+
+:root {
+  /* Psikotes - Biru (Profesional, Terpercaya) */
+  --ps-primary: #3B82F6;
+  --ps-primary-dark: #1D4ED8;
+  --ps-secondary: #64748B;
+  --ps-accent: #06B6D4;
+  --ps-muted: #E0F2FE;
+  --ps-muted-foreground: #1E40AF;
+  --ps-bg-hover: #EFF6FF;
+
+  /* Konseling - Hijau (Tenang, Healing) */
+  --ks-primary: #22C55E;
+  --ks-primary-dark: #16A34A;
+  --ks-secondary: #10B981;
+  --ks-accent: #14B8A6;
+  --ks-muted: #DCFCE7;
+  --ks-muted-foreground: #166534;
+  --ks-bg-hover: #F0FDF4;
+
+  /* Training - Orange (Energik, Motivasi) */
+  --tr-primary: #F97316;
+  --tr-primary-dark: #EA580C;
+  --tr-secondary: #F59E0B;
+  --tr-accent: #EAB308;
+  --tr-muted: #FEF3C7;
+  --tr-muted-foreground: #92400E;
+  --tr-bg-hover: #FFF7ED;
+}
+
+.dark {
+  /* Psikotes Dark */
+  --ps-primary: #60A5FA;
+  --ps-primary-dark: #3B82F6;
+  --ps-secondary: #94A3B8;
+  --ps-accent: #22D3EE;
+  --ps-muted: #1E3A5F;
+  --ps-muted-foreground: #93C5FD;
+  --ps-bg-hover: #1E3A5F;
+
+  /* Konseling Dark */
+  --ks-primary: #4ADE80;
+  --ks-primary-dark: #22C55E;
+  --ks-secondary: #34D399;
+  --ks-accent: #2DD4BF;
+  --ks-muted: #14532D;
+  --ks-muted-foreground: #86EFAC;
+  --ks-bg-hover: #14532D;
+
+  /* Training Dark */
+  --tr-primary: #FB923C;
+  --tr-primary-dark: #F97316;
+  --tr-secondary: #FBBF24;
+  --tr-accent: #FACC15;
+  --tr-muted: #451A03;
+  --tr-muted-foreground: #FED7AA;
+  --tr-bg-hover: #451A03;
+}
+
+/* Utility Classes - Psikotes */
+.bg-ps-primary { background-color: var(--ps-primary); }
+.bg-ps-primary-dark { background-color: var(--ps-primary-dark); }
+.bg-ps-secondary { background-color: var(--ps-secondary); }
+.bg-ps-accent { background-color: var(--ps-accent); }
+.bg-ps-muted { background-color: var(--ps-muted); }
+.bg-ps-hover { background-color: var(--ps-bg-hover); }
+.text-ps-primary { color: var(--ps-primary); }
+.text-ps-muted-foreground { color: var(--ps-muted-foreground); }
+.border-ps-primary { border-color: var(--ps-primary); }
+.shadow-ps { box-shadow: 0 10px 40px -10px var(--ps-primary); }
+
+/* Utility Classes - Konseling */
+.bg-ks-primary { background-color: var(--ks-primary); }
+.bg-ks-primary-dark { background-color: var(--ks-primary-dark); }
+.bg-ks-secondary { background-color: var(--ks-secondary); }
+.bg-ks-accent { background-color: var(--ks-accent); }
+.bg-ks-muted { background-color: var(--ks-muted); }
+.bg-ks-hover { background-color: var(--ks-bg-hover); }
+.text-ks-primary { color: var(--ks-primary); }
+.text-ks-muted-foreground { color: var(--ks-muted-foreground); }
+.border-ks-primary { border-color: var(--ks-primary); }
+.shadow-ks { box-shadow: 0 10px 40px -10px var(--ks-primary); }
+
+/* Utility Classes - Training */
+.bg-tr-primary { background-color: var(--tr-primary); }
+.bg-tr-primary-dark { background-color: var(--tr-primary-dark); }
+.bg-tr-secondary { background-color: var(--tr-secondary); }
+.bg-tr-accent { background-color: var(--tr-accent); }
+.bg-tr-muted { background-color: var(--tr-muted); }
+.bg-tr-hover { background-color: var(--tr-bg-hover); }
+.text-tr-primary { color: var(--tr-primary); }
+.text-tr-muted-foreground { color: var(--tr-muted-foreground); }
+.border-tr-primary { border-color: var(--tr-primary); }
+.shadow-tr { box-shadow: 0 10px 40px -10px var(--tr-primary); }
+
+/* Gradient utilities */
+.gradient-ps { background: linear-gradient(135deg, var(--ps-primary), var(--ps-primary-dark)); }
+.gradient-ks { background: linear-gradient(135deg, var(--ks-primary), var(--ks-primary-dark)); }
+.gradient-tr { background: linear-gradient(135deg, var(--tr-primary), var(--tr-primary-dark)); }

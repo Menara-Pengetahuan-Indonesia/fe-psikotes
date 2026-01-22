@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "../styles/pillars.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -44,6 +45,36 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Psikotes Colors - Biru (Profesional, Terpercaya) */
+  --color-ps-primary: var(--ps-primary);
+  --color-ps-primary-foreground: var(--ps-primary-foreground);
+  --color-ps-secondary: var(--ps-secondary);
+  --color-ps-secondary-foreground: var(--ps-secondary-foreground);
+  --color-ps-accent: var(--ps-accent);
+  --color-ps-accent-foreground: var(--ps-accent-foreground);
+  --color-ps-muted: var(--ps-muted);
+  --color-ps-muted-foreground: var(--ps-muted-foreground);
+
+  /* Konseling Colors - Hijau (Tenang, Healing) */
+  --color-ks-primary: var(--ks-primary);
+  --color-ks-primary-foreground: var(--ks-primary-foreground);
+  --color-ks-secondary: var(--ks-secondary);
+  --color-ks-secondary-foreground: var(--ks-secondary-foreground);
+  --color-ks-accent: var(--ks-accent);
+  --color-ks-accent-foreground: var(--ks-accent-foreground);
+  --color-ks-muted: var(--ks-muted);
+  --color-ks-muted-foreground: var(--ks-muted-foreground);
+
+  /* Training Colors - Orange (Energik, Motivasi) */
+  --color-tr-primary: var(--tr-primary);
+  --color-tr-primary-foreground: var(--tr-primary-foreground);
+  --color-tr-secondary: var(--tr-secondary);
+  --color-tr-secondary-foreground: var(--tr-secondary-foreground);
+  --color-tr-accent: var(--tr-accent);
+  --color-tr-accent-foreground: var(--tr-accent-foreground);
+  --color-tr-muted: var(--tr-muted);
+  --color-tr-muted-foreground: var(--tr-muted-foreground);
 }
 
 :root {
@@ -79,6 +110,36 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+
+  /* Psikotes - Biru Muda */
+  --ps-primary: #3B82F6;
+  --ps-primary-foreground: #FFFFFF;
+  --ps-secondary: #64748B;
+  --ps-secondary-foreground: #FFFFFF;
+  --ps-accent: #06B6D4;
+  --ps-accent-foreground: #FFFFFF;
+  --ps-muted: #E0F2FE;
+  --ps-muted-foreground: #1E40AF;
+
+  /* Konseling - Hijau Sage */
+  --ks-primary: #22C55E;
+  --ks-primary-foreground: #FFFFFF;
+  --ks-secondary: #10B981;
+  --ks-secondary-foreground: #FFFFFF;
+  --ks-accent: #14B8A6;
+  --ks-accent-foreground: #FFFFFF;
+  --ks-muted: #DCFCE7;
+  --ks-muted-foreground: #166534;
+
+  /* Training - Orange */
+  --tr-primary: #F97316;
+  --tr-primary-foreground: #FFFFFF;
+  --tr-secondary: #F59E0B;
+  --tr-secondary-foreground: #FFFFFF;
+  --tr-accent: #EAB308;
+  --tr-accent-foreground: #422006;
+  --tr-muted: #FEF3C7;
+  --tr-muted-foreground: #92400E;
 }
 
 .dark {
@@ -113,6 +174,36 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+
+  /* Psikotes Dark */
+  --ps-primary: #60A5FA;
+  --ps-primary-foreground: #1E3A5F;
+  --ps-secondary: #94A3B8;
+  --ps-secondary-foreground: #1E293B;
+  --ps-accent: #22D3EE;
+  --ps-accent-foreground: #164E63;
+  --ps-muted: #1E3A5F;
+  --ps-muted-foreground: #93C5FD;
+
+  /* Konseling Dark */
+  --ks-primary: #4ADE80;
+  --ks-primary-foreground: #14532D;
+  --ks-secondary: #34D399;
+  --ks-secondary-foreground: #064E3B;
+  --ks-accent: #2DD4BF;
+  --ks-accent-foreground: #134E4A;
+  --ks-muted: #14532D;
+  --ks-muted-foreground: #86EFAC;
+
+  /* Training Dark */
+  --tr-primary: #FB923C;
+  --tr-primary-foreground: #431407;
+  --tr-secondary: #FBBF24;
+  --tr-secondary-foreground: #451A03;
+  --tr-accent: #FACC15;
+  --tr-accent-foreground: #422006;
+  --tr-muted: #451A03;
+  --tr-muted-foreground: #FED7AA;
 }
 
 @layer base {
