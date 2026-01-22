@@ -14,9 +14,9 @@ export function DashboardSidebar() {
   const sidebarOpen = useUIStore((s) => s.sidebarOpen)
 
   const navItems = [
-    { href: '/user', label: 'Dashboard', roles: ['user', 'company', 'admin'] },
-    { href: '/user/tests', label: 'Tes Saya', roles: ['user'] },
-    { href: '/company', label: 'Company', roles: ['company', 'admin'] },
+    { href: '/pengguna', label: 'Dasbor', roles: ['user', 'company', 'admin'] },
+    { href: '/pengguna/tes', label: 'Tes Saya', roles: ['user'] },
+    { href: '/perusahaan', label: 'Perusahaan', roles: ['company', 'admin'] },
     { href: '/admin', label: 'Admin', roles: ['admin'] },
   ]
 
@@ -37,7 +37,7 @@ export function DashboardSidebar() {
             </Link>
           ))}
         </nav>
-        <Button variant="outline" onClick={logout} className="w-full">Logout</Button>
+        <Button variant="outline" onClick={logout} className="w-full">Keluar</Button>
       </div>
     </aside>
   )

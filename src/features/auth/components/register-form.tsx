@@ -34,21 +34,21 @@ export function RegisterForm() {
             {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">Kata Sandi</Label>
             <Input id="password" type="password" {...register('password')} />
             {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="confirmPassword">Konfirmasi Password</Label>
+            <Label htmlFor="confirmPassword">Konfirmasi Kata Sandi</Label>
             <Input id="confirmPassword" type="password" {...register('confirmPassword')} />
             {errors.confirmPassword && <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>}
           </div>
           {error && <p className="text-sm text-red-500">Registrasi gagal. Coba lagi.</p>}
           <Button type="submit" className="w-full" disabled={isPending}>
-            {isPending ? 'Loading...' : 'Daftar'}
+            {isPending ? 'Memproses...' : 'Daftar'}
           </Button>
           <p className="text-center text-sm">
-            Sudah punya akun? <Link href="/login" className="text-blue-600 hover:underline">Login</Link>
+            Sudah punya akun? <Link href="/masuk" className="text-blue-600 hover:underline">Masuk</Link>
           </p>
         </form>
       </CardContent>

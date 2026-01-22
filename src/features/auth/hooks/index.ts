@@ -14,7 +14,7 @@ export function useLogin() {
     mutationFn: (data: LoginInput) => authService.login(data),
     onSuccess: (res) => {
       setAuth(res.user, res.token)
-      router.push(`/${res.user.role}`)
+      router.push(`/${res.user.role === 'user' ? 'pengguna' : res.user.role === 'company' ? 'perusahaan' : 'admin'}`)
     },
   })
 }
@@ -27,7 +27,7 @@ export function useRegister() {
     mutationFn: (data: RegisterInput) => authService.register(data),
     onSuccess: (res) => {
       setAuth(res.user, res.token)
-      router.push('/user')
+      router.push('/pengguna')
     },
   })
 }
@@ -40,7 +40,7 @@ export function useLogout() {
     mutationFn: () => authService.logout(),
     onSuccess: () => {
       logout()
-      router.push('/login')
+      router.push('/masuk')
     },
   })
 }
