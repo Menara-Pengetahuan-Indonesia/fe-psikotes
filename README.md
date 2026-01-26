@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# fe-psikotes
 
-## Getting Started
+Aplikasi tes psikologi (psikotes) online berbasis web dengan tiga pilar layanan: **Psikotes**, **Konseling**, dan **Training**.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework**: Next.js 16 (App Router)
+- **UI**: React 19, Tailwind CSS 4, Radix UI
+- **State**: Zustand, TanStack React Query
+- **Form**: React Hook Form + Zod
+- **Animation**: Framer Motion
+- **Icons**: Lucide React
+- **Language**: TypeScript (strict mode)
+
+## Prerequisites
+
+- **Node.js**: >= 18.x
+- **npm**: >= 9.x (atau pnpm/yarn)
+
+## Installation
+
+1. **Clone repository**
+   ```bash
+   git clone <repository-url>
+   cd fe-psikotes
+   ```
+
+2. **Setup environment variables**
+   ```bash
+   cp .env.example .env.local
+   ```
+
+   Edit `.env.local` sesuai kebutuhan:
+   ```env
+   NEXT_PUBLIC_API_URL=http://localhost:8000/api
+   NEXT_PUBLIC_APP_ENV=development
+   ```
+
+3. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+4. **Run development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Buka browser**
+
+   Akses [http://localhost:3000](http://localhost:3000)
+
+## Scripts
+
+| Script | Deskripsi |
+|--------|-----------|
+| `npm run dev` | Jalankan development server |
+| `npm run build` | Build untuk production |
+| `npm run start` | Jalankan production server |
+| `npm run lint` | Cek kode dengan ESLint |
+| `npm run test` | Jalankan unit tests (Vitest) |
+| `npm run test:ui` | Jalankan tests dengan UI |
+| `npm run test:coverage` | Jalankan tests dengan coverage report |
+| `npm run type-check` | Cek TypeScript errors |
+
+## Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── (autentikasi)/      # Login, Register
+│   ├── (public)/           # Psikotes, Konseling, Training
+│   └── (dasbor)/           # Dashboard (User, Company, Admin)
+├── components/ui/          # Reusable UI components
+├── features/               # Feature modules
+│   ├── auth/               # Authentication
+│   ├── psikotes/           # Psikotes feature
+│   ├── konseling/          # Konseling feature
+│   ├── training/           # Training feature
+│   └── dashboard/          # Dashboard feature
+├── shared/                 # Shared components & types
+├── store/                  # Zustand stores
+├── lib/                    # Utilities (axios, utils, env)
+└── styles/                 # Global styles & pillar colors
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Pillar Color System
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Aplikasi menggunakan sistem warna berbasis 3 pilar:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Pilar | Warna | CSS Prefix | Kesan |
+|-------|-------|------------|-------|
+| Psikotes | Biru | `ps-` | Profesional, Terpercaya |
+| Konseling | Hijau | `ks-` | Tenang, Healing |
+| Training | Orange | `tr-` | Energik, Motivasi |
 
-## Learn More
+Contoh penggunaan:
+```tsx
+<div className="bg-ps-primary text-white">Psikotes</div>
+<div className="bg-ks-primary text-white">Konseling</div>
+<div className="bg-tr-primary text-white">Training</div>
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Before Commit
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Pastikan semua check pass:
 
-## Deploy on Vercel
+```bash
+npm run type-check  # TypeScript check
+npm run lint        # ESLint check
+npm run test        # Unit tests
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Branch Naming
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+feat/nama-fitur     # Fitur baru
+fix/nama-bug        # Bug fix
+refactor/nama       # Refactoring
+```
+
+### Commit Message
+
+```
+feat: add login form
+fix: resolve auth redirect issue
+refactor: extract test card component
+```
+
+## Documentation
+
+- [Coding Guidelines](./CODING_GUIDELINES.md) - Panduan penulisan kode
+
+## License
+
+Private - All rights reserved

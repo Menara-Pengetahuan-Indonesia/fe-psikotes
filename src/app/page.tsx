@@ -17,7 +17,7 @@ export default function HomePage() {
       <div className="absolute -bottom-8 left-20 h-72 w-72 rounded-full bg-tr-primary opacity-10 blur-3xl"></div>
 
       {/* Background Grid */}
-      <div className="absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+      <div className="absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-size-[24px_24px]"></div>
 
       {/* Header */}
       <header className="relative z-10 flex w-full max-w-5xl items-center justify-center py-8">
