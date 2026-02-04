@@ -5,7 +5,7 @@ export interface Service {
   price: string
   tag: string
   description: string
-  icon?: LucideIcon
+  icon: LucideIcon
 }
 
 export interface PhilosophyItem {
