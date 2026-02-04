@@ -37,7 +37,6 @@ export function RegisterForm({ onSuccess, className }: RegisterFormProps) {
     setIsLoading(true)
     try {
       // TODO: Implement actual register logic
-      console.log('Register attempt:', data)
       await new Promise((resolve) => setTimeout(resolve, 1000)) // Simulate API call
       onSuccess?.()
     } catch (error) {
@@ -48,7 +47,6 @@ export function RegisterForm({ onSuccess, className }: RegisterFormProps) {
   }
 
   const handleGoogleSignup = () => {
-    console.log('Google signup clicked')
     // TODO: Implement Google OAuth
   }
 
