@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest'
-import { loginSchema, registerSchema } from '@/features/auth/types'
+import { loginSchema, registerSchema } from '@/features/auth/schemas'
 
 describe('Auth Schemas', () => {
   describe('loginSchema', () => {
     it('validates correct input', () => {
-      const result = loginSchema.safeParse({ email: 'test@example.com', password: '123456' })
+      const result = loginSchema.safeParse({ email: 'test@example.com', password: 'Abcdefg1' })
       expect(result.success).toBe(true)
     })
 
@@ -24,8 +24,8 @@ describe('Auth Schemas', () => {
       const result = registerSchema.safeParse({
         name: 'John',
         email: 'test@example.com',
-        password: '123456',
-        confirmPassword: '123456',
+        password: 'Abcdefg1',
+        confirmPassword: 'Abcdefg1',
       })
       expect(result.success).toBe(true)
     })

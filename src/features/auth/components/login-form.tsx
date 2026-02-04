@@ -36,7 +36,6 @@ export function LoginForm({ onSuccess, className }: LoginFormProps) {
     setIsLoading(true)
     try {
       // TODO: Implement actual login logic
-      console.log('Login attempt:', data)
       await new Promise((resolve) => setTimeout(resolve, 1000)) // Simulate API call
       onSuccess?.()
     } catch (error) {
@@ -47,7 +46,6 @@ export function LoginForm({ onSuccess, className }: LoginFormProps) {
   }
 
   const handleGoogleLogin = () => {
-    console.log('Google login clicked')
     // TODO: Implement Google OAuth
   }
 
