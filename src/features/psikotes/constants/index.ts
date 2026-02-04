@@ -1,0 +1,7 @@
+export {
+  MAHASISWA_TESTS,
+  PERUSAHAAN_TESTS,
+  KESEHATAN_MENTAL_TESTS,
+  GRATIS_TESTS,
+  PREMIUM_TESTS,
+} from './tests.constants'
