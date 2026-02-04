@@ -1,10 +1,11 @@
 // Layout components
-export { Container } from './layout/container'
-export { PageHeader } from './layout/page-header'
-export { Section } from './layout/section'
+export { Section, Container, PageHeader } from './layout'
 
-// Service components
+// Card components
 export { ServiceCard } from './service-card'
 
-// Animation components
+// Typography components
 export { TypingText } from './typing-text'
+
+// Feedback components
+export { LoadingSpinner, ErrorMessage, EmptyState } from './feedback'
