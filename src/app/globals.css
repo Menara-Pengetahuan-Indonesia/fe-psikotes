@@ -79,67 +79,76 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
 
-  /* Psikotes - Biru Muda */
-  --ps-primary: #3B82F6;
+  /* Base colors using new palette */
+  --background: #FFFFFF;
+  --foreground: #143D60; /* Navy for text */
+  --card: #FFFFFF;
+  --card-foreground: #143D60;
+  --popover: #FFFFFF;
+  --popover-foreground: #143D60;
+
+  /* Brand colors from palette */
+  --primary: #A0C878; /* Medium Green */
+  --primary-foreground: #FFFFFF;
+  --secondary: #143D60; /* Dark Navy */
+  --secondary-foreground: #FFFFFF;
+  --accent: #EB5B00; /* Orange */
+  --accent-foreground: #FFFFFF;
+  --muted: #DDEB9D; /* Light Green */
+  --muted-foreground: #143D60;
+
+  --destructive: #EF4444;
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: #A0C878; /* Primary green for focus */
+
+  /* Chart colors using palette */
+  --chart-1: #A0C878; /* Primary Green */
+  --chart-2: #143D60; /* Navy */
+  --chart-3: #EB5B00; /* Orange */
+  --chart-4: #DDEB9D; /* Light Green */
+  --chart-5: #6FA04E; /* Darker Green */
+
+  /* Sidebar */
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #143D60;
+  --sidebar-primary: #A0C878;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #DDEB9D;
+  --sidebar-accent-foreground: #143D60;
+  --sidebar-border: #E5E7EB;
+  --sidebar-ring: #A0C878;
+
+  /* Psikotes - Using green palette */
+  --ps-primary: #A0C878; /* Primary Green */
   --ps-primary-foreground: #FFFFFF;
-  --ps-secondary: #64748B;
+  --ps-secondary: #143D60; /* Navy */
   --ps-secondary-foreground: #FFFFFF;
-  --ps-accent: #06B6D4;
+  --ps-accent: #EB5B00; /* Orange */
   --ps-accent-foreground: #FFFFFF;
-  --ps-muted: #E0F2FE;
-  --ps-muted-foreground: #1E40AF;
+  --ps-muted: #DDEB9D; /* Light Green */
+  --ps-muted-foreground: #143D60;
 
-  /* Konseling - Hijau Sage */
-  --ks-primary: #22C55E;
+  /* Konseling - Calmer green variation */
+  --ks-primary: #8AB965; /* Slightly darker green */
   --ks-primary-foreground: #FFFFFF;
-  --ks-secondary: #10B981;
+  --ks-secondary: #476F9F; /* Lighter Navy */
   --ks-secondary-foreground: #FFFFFF;
-  --ks-accent: #14B8A6;
+  --ks-accent: #6FA04E; /* Dark Green */
   --ks-accent-foreground: #FFFFFF;
-  --ks-muted: #DCFCE7;
-  --ks-muted-foreground: #166534;
+  --ks-muted: #E6F1D9; /* Very Light Green */
+  --ks-muted-foreground: #143D60;
 
-  /* Training - Orange */
-  --tr-primary: #F97316;
+  /* Training - Orange emphasis */
+  --tr-primary: #EB5B00; /* Orange */
   --tr-primary-foreground: #FFFFFF;
-  --tr-secondary: #F59E0B;
+  --tr-secondary: #143D60; /* Navy */
   --tr-secondary-foreground: #FFFFFF;
-  --tr-accent: #EAB308;
-  --tr-accent-foreground: #422006;
-  --tr-muted: #FEF3C7;
-  --tr-muted-foreground: #92400E;
+  --tr-accent: #A0C878; /* Green */
+  --tr-accent-foreground: #FFFFFF;
+  --tr-muted: #FEF3E6; /* Light Orange */
+  --tr-muted-foreground: #143D60;
 }
 
 .dark {

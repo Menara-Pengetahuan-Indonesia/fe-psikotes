@@ -52,7 +52,7 @@ export function PelatihanPrograms() {
                 </div>
 
                 <h3 className="text-xl font-black text-gray-900 mb-3">{program.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed flex-grow mb-6">{program.description}</p>
+                <p className="text-sm text-gray-500 leading-relaxed grow mb-6">{program.description}</p>
 
                 <div className="border-t border-gray-100 pt-6 space-y-3">
                   <div className="flex justify-between items-center">
