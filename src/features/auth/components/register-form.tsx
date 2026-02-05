@@ -33,7 +33,7 @@ export function RegisterForm({ onSuccess, className }: RegisterFormProps) {
     mode: 'onBlur'
   })
 
-  const onSubmit = async (data: RegisterFormData) => {
+  const onSubmit = async () => {
     setIsLoading(true)
     try {
       // TODO: Implement actual register logic

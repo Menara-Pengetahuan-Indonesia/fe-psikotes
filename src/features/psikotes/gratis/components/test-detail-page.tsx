@@ -65,7 +65,7 @@ export function TestDetailPage({ slug }: TestDetailPageProps) {
 
           <div className="flex justify-center gap-4">
             <Link
-              href={`./exam`}
+              href={`/platform/psikotes/gratis/${slug}/exam`}
               className="px-10 py-4 bg-black text-white rounded-full font-bold text-sm uppercase tracking-widest hover:bg-slate-800 hover:scale-105 transition-all shadow-xl shadow-slate-200 flex items-center gap-2"
             >
               <Play className="w-4 h-4 fill-current" /> Mulai Tes
