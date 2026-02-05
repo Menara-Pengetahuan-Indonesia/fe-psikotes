@@ -24,30 +24,30 @@ export const CURRICULUM_LEVELS: CurriculumLevel[] = [
     level: 1,
     label: 'Self Mastery',
     width: 'w-[30%]',
-    background: 'bg-black text-white shadow-xl'
+    background: 'bg-primary-900 text-white shadow-xl shadow-primary-900/20'
   },
   {
     level: 2,
     label: 'Core Stability',
     width: 'w-[45%]',
-    background: 'bg-slate-800 text-white'
+    background: 'bg-primary-700 text-white shadow-lg shadow-primary-700/20'
   },
   {
     level: 3,
     label: 'Action & Habits',
     width: 'w-[60%]',
-    background: 'bg-slate-600 text-white'
+    background: 'bg-primary-500 text-white shadow-lg shadow-primary-500/20'
   },
   {
     level: 4,
     label: 'Social Intelligence',
     width: 'w-[75%]',
-    background: 'bg-slate-400 text-white'
+    background: 'bg-primary-300 text-primary-900'
   },
   {
     level: 5,
     label: 'Legacy & Impact',
     width: 'w-[90%]',
-    background: 'bg-slate-200 text-slate-700'
+    background: 'bg-primary-100 text-primary-900'
   }
 ]
