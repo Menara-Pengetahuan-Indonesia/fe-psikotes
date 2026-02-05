@@ -37,7 +37,7 @@ export function MahasiswaOverview() {
               key={test.id}
               test={test}
               number={index + 1}
-              href={`/platform/psikotes/mahasiswa/${test.slug}`}
+              href={`/psikotes/mahasiswa/${test.slug}`}
             />
           ))}
         </div>

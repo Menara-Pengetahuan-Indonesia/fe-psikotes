@@ -37,7 +37,7 @@ export function PerusahaanOverview() {
               <TestCategoryCard
                 test={test}
                 number={index + 1}
-                href={`/platform/psikotes/perusahaan/${test.slug}`}
+                href={`/psikotes/perusahaan/${test.slug}`}
               />
 
               {/* Feature tags row rendered below the card */}

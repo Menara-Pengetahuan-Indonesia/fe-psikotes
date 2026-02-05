@@ -15,7 +15,7 @@ interface TestListingCardProps {
 
 export function TestListingCard({ test }: TestListingCardProps) {
   const Icon = test.icon
-  const detailHref = `/platform/psikotes/${test.category}/${test.slug}`
+  const detailHref = `/psikotes/${test.category}/${test.slug}`
 
   return (
     <Card className="group flex flex-col p-0 border-slate-100 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-100 transition-all duration-300 rounded-3xl">

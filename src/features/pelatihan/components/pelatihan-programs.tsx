@@ -27,7 +27,7 @@ const TRAINING_PROGRAMS = [
   },
 ]
 
-export function TrainingPrograms() {
+export function PelatihanPrograms() {
   return (
     <section id="programs" className="py-20 px-6">
       <div className="max-w-7xl mx-auto">

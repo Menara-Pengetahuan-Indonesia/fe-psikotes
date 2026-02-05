@@ -54,7 +54,7 @@ export function PaymentMethodSelector({ selectedPayment, onSelect }: PaymentMeth
             {/* Expandable method list */}
             <div
               className={`transition-all duration-300 ease-in-out ${
-                isExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                isExpanded ? 'max-h-125 opacity-100' : 'max-h-0 opacity-0'
               }`}
             >
               <div className="p-6 pt-0 border-t border-slate-50">

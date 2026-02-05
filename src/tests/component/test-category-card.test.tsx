@@ -36,8 +36,8 @@ describe('TestCategoryCard', () => {
   })
 
   it('renders CTA link', () => {
-    render(<TestCategoryCard test={mockTest} number={1} href="/platform/psikotes/mahasiswa/minat-bakat" />)
+    render(<TestCategoryCard test={mockTest} number={1} href="/psikotes/mahasiswa/minat-bakat" />)
     const link = screen.getByText('Lihat Detail')
-    expect(link.closest('a')).toHaveAttribute('href', '/platform/psikotes/mahasiswa/minat-bakat')
+    expect(link.closest('a')).toHaveAttribute('href', '/psikotes/mahasiswa/minat-bakat')
   })
 })

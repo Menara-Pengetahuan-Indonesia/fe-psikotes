@@ -115,7 +115,7 @@ export function PaymentStatus({ method, nextUrl, orderId, productName, price }: 
 
             <div className="pt-6 border-t border-slate-100 mt-6">
               <Link
-                href="/platform/pembayaran"
+                href="/psikotes/pembayaran"
                 className="block w-full py-3 bg-yellow-400 text-black font-bold text-center text-xs uppercase tracking-wider rounded-xl hover:bg-yellow-500 transition-colors"
               >
                 Ganti Metode Lain
@@ -136,15 +136,15 @@ export function PaymentStatus({ method, nextUrl, orderId, productName, price }: 
               <p className="text-sm text-slate-500">Selesaikan pembayaran sebelum waktu habis.</p>
             </div>
             <div className="flex gap-2 font-mono font-black text-2xl text-slate-900">
-              <div className="bg-slate-100 rounded-lg p-3 min-w-[60px] text-center">
+              <div className="bg-slate-100 rounded-lg p-3 min-w-15 text-center">
                 {timeLeft.h.toString().padStart(2, '0')}
               </div>
               <span className="self-center">:</span>
-              <div className="bg-slate-100 rounded-lg p-3 min-w-[60px] text-center">
+              <div className="bg-slate-100 rounded-lg p-3 min-w-15 text-center">
                 {timeLeft.m.toString().padStart(2, '0')}
               </div>
               <span className="self-center">:</span>
-              <div className="bg-yellow-100 text-yellow-700 rounded-lg p-3 min-w-[60px] text-center">
+              <div className="bg-yellow-100 text-yellow-700 rounded-lg p-3 min-w-15 text-center">
                 {timeLeft.s.toString().padStart(2, '0')}
               </div>
             </div>
@@ -195,7 +195,7 @@ export function PaymentStatus({ method, nextUrl, orderId, productName, price }: 
               <div className="space-y-4">
                 {instructions.steps.map((step, idx) => (
                   <div key={idx} className="flex gap-4">
-                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center">
+                    <span className="shrink-0 w-6 h-6 rounded-full bg-slate-100 text-slate-600 font-bold text-xs flex items-center justify-center">
                       {idx + 1}
                     </span>
                     <p className="text-sm text-slate-600 leading-relaxed font-medium">{step}</p>

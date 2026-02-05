@@ -3,30 +3,30 @@ import { BookOpen, MessageSquare, GraduationCap, ArrowRight } from 'lucide-react
 
 const DESTINATION_CARDS = [
   {
-    title: 'TITIK MULA.',
-    subtitle: 'Indonesian Life School',
+    title: 'PSIKOTES',
+    subtitle: 'Tes Psikologi',
     description:
-      'Akses Blog, Tes Psikologi, Karir, dan Informasi Kerja Sama dalam satu platform terpadu.',
+      'Kenali potensi diri melalui tes psikologi profesional untuk mahasiswa, perusahaan, dan kesehatan mental.',
     icon: BookOpen,
-    href: '/platform',
-    ctaLabel: 'Kunjungi Platform',
+    href: '/psikotes',
+    ctaLabel: 'Mulai Tes',
   },
   {
-    title: 'LIFE CONSULTATION',
-    subtitle: 'Indonesia',
+    title: 'KONSELING',
+    subtitle: 'Life Consultation',
     description:
-      'Layanan profesional untuk Life Coaching dan Konseling bersama pakar berpengalaman.',
+      'Layanan profesional untuk life coaching dan konseling bersama psikolog berpengalaman.',
     icon: MessageSquare,
     href: '/konseling',
     ctaLabel: 'Mulai Konsultasi',
   },
   {
-    title: 'LIFESKILLS',
-    subtitle: 'Program',
+    title: 'PELATIHAN',
+    subtitle: 'Lifeskills Program',
     description:
-      'Tingkatkan potensi diri melalui Webinar eksklusif dan Kelas Online terstruktur.',
+      'Tingkatkan potensi diri melalui webinar eksklusif, kelas online, dan mentoring terstruktur.',
     icon: GraduationCap,
-    href: '/training',
+    href: '/pelatihan',
     ctaLabel: 'Lihat Program',
   },
 ]
