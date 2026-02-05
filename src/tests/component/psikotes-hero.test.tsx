@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
-import { PlatformHero } from '@/features/psikotes/components/platform-hero'
+import { PsikotesHero } from '@/features/psikotes/components'
 
-describe('PlatformHero', () => {
+describe('PsikotesHero', () => {
   it('renders all 4 benefits', () => {
-    render(<PlatformHero />)
+    render(<PsikotesHero />)
     expect(screen.getByText('Analisis Mendalam')).toBeInTheDocument()
     expect(screen.getByText('Rekomendasi Personal')).toBeInTheDocument()
     expect(screen.getByText('Akses Mudah')).toBeInTheDocument()
@@ -12,12 +12,12 @@ describe('PlatformHero', () => {
   })
 
   it('renders starting price', () => {
-    render(<PlatformHero />)
+    render(<PsikotesHero />)
     expect(screen.getByText('Rp25.000')).toBeInTheDocument()
   })
 
   it('renders CTA link to premium', () => {
-    render(<PlatformHero />)
+    render(<PsikotesHero />)
     const link = screen.getByText('Lihat Psikotes Premium')
     expect(link.closest('a')).toHaveAttribute('href', '/psikotes/premium')
   })
