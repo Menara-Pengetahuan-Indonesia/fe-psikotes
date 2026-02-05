@@ -5,7 +5,7 @@ import { SERVICES } from '../constants'
 
 const TAB_FILTERS: Record<string, string[]> = {
   semua: [],
-  psikotes: ['Terpopuler', 'Karir'],
+  psikotes: ['Terpopuler', 'Karir', 'Edukasi', 'Premium'],
   konseling: ['Klinis', 'Personal'],
 }
 

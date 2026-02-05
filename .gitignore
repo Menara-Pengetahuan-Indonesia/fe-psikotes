@@ -44,3 +44,6 @@ ccswitch.sh
 
 # git worktrees
 .worktrees/
+
+# local reference copy — do not ship
+psikotest-ipsi/
