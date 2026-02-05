@@ -1,136 +1,170 @@
 import Link from 'next/link'
 import { BookOpen, MessageSquare, GraduationCap, ArrowRight, Sparkles } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 const DESTINATION_CARDS = [
   {
     title: 'PSIKOTES',
-    subtitle: 'KENALI POTENSI',
-    description: 'Asesmen psikologi profesional untuk karir & pendidikan.',
+    subtitle: 'Discover Yourself',
+    description: 'Tes potensi diri & asesmen karir profesional.',
     icon: BookOpen,
     href: '/psikotes',
     ctaLabel: 'Mulai Tes',
-    // Green theme
-    bgGradient: 'from-primary-100 to-primary-200',
-    iconBg: 'bg-primary-500',
-    iconColor: 'text-surface-50',
-    titleColor: 'text-secondary',
-    descColor: 'text-secondary-700',
-    borderColor: 'border-primary-400',
-    hoverBg: 'hover:from-primary-200 hover:to-primary-300',
+    theme: 'emerald',
   },
   {
     title: 'KONSELING',
-    subtitle: 'TEMAN CERITA',
-    description: 'Ruang aman konsultasi privat dengan psikolog ahli.',
+    subtitle: 'Heal & Grow',
+    description: 'Konsultasi privat dengan psikolog klinis.',
     icon: MessageSquare,
     href: '/konseling',
     ctaLabel: 'Konsultasi',
-    // Navy theme
-    bgGradient: 'from-secondary-100 to-secondary-200',
-    iconBg: 'bg-secondary-600',
-    iconColor: 'text-primary-50',
-    titleColor: 'text-secondary',
-    descColor: 'text-secondary-700',
-    borderColor: 'border-secondary-400',
-    hoverBg: 'hover:from-secondary-200 hover:to-secondary-300',
+    theme: 'indigo',
   },
   {
     title: 'PELATIHAN',
-    subtitle: 'LEVEL UP',
-    description: 'Webinar & mentoring eksklusif pengembangan diri.',
+    subtitle: 'Unlock Skills',
+    description: 'Webinar & mentoring skill masa depan.',
     icon: GraduationCap,
     href: '/pelatihan',
-    ctaLabel: 'Ikut Program',
-    // Orange theme
-    bgGradient: 'from-accent-100 to-accent-200',
-    iconBg: 'bg-accent-500',
-    iconColor: 'text-accent-50',
-    titleColor: 'text-secondary',
-    descColor: 'text-secondary-700',
-    borderColor: 'border-accent-400',
-    hoverBg: 'hover:from-accent-200 hover:to-accent-300',
+    ctaLabel: 'Lihat Program',
+    theme: 'orange',
   },
-]
+] as const
 
 export function HomepageHero() {
   return (
-    <section className="min-h-screen w-full overflow-hidden bg-gradient-to-br from-surface via-primary-50 to-surface py-20 lg:py-32 px-4 lg:px-8 relative">
-      {/* Decorative Blobs */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-200 rounded-full blur-[150px] opacity-40 -z-10" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary-200 rounded-full blur-[150px] opacity-30 -z-10" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-accent-200 rounded-full blur-[120px] opacity-20 -z-10" />
+    <section className="relative h-dvh w-full overflow-hidden bg-[#f8fafc] flex flex-col items-center justify-center p-4 lg:p-8">
+      
+      {/* --- BACKGROUND FX --- */}
+      <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-emerald-100/60 rounded-full blur-[100px] pointer-events-none animate-pulse duration-[5000ms] mix-blend-multiply" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-indigo-100/60 rounded-full blur-[100px] pointer-events-none mix-blend-multiply" />
+      <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.4] mix-blend-overlay pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto flex flex-col items-center gap-16 lg:gap-20">
-        {/* Header Section */}
-        <header className="flex flex-col items-center text-center space-y-6 max-w-4xl">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-200 border-2 border-primary-400 shadow-lg animate-in fade-in zoom-in duration-700">
-            <Sparkles className="w-4 h-4 text-accent-600 fill-accent-500" />
-            <span className="text-xs font-bold tracking-wider text-secondary uppercase">
-              Platform #1 Pengembangan Diri Indonesia
-            </span>
+
+      {/* --- CONTENT --- */}
+      <div className="relative z-10 w-full max-w-7xl flex flex-col h-full justify-center gap-8 lg:gap-16">
+        
+        {/* Header */}
+        <header className="flex flex-col items-center text-center space-y-6 mt-auto">
+           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm backdrop-blur-md">
+             <Sparkles className="w-3 h-3 text-amber-500 fill-amber-500" />
+             <span className="text-[10px] font-bold tracking-[0.3em] text-slate-500 uppercase">
+                Indonesia's Life School
+             </span>
           </div>
 
-          {/* Title */}
-          <div className="space-y-4">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-secondary tracking-tighter leading-[0.95]">
-              TITIK MULA<span className="text-primary-600">.</span>
+          <div className="space-y-4 max-w-4xl relative">
+             <h1 className="text-5xl md:text-7xl lg:text-9xl font-black text-slate-900 tracking-tighter leading-[0.9] drop-shadow-sm z-10 relative">
+              TITIK MULA<span className="text-emerald-500">.</span>
             </h1>
-            <p className="text-lg md:text-xl text-secondary-600 font-semibold max-w-2xl mx-auto leading-relaxed">
-              Temukan potensi terbaikmu melalui psikotes akurat, konseling profesional, dan
-              pelatihan terstruktur
+            {/* Text Decoration */}
+            <div className="absolute -top-10 -right-10 w-24 h-24 border-4 border-slate-200 rounded-full animate-spin-slow pointer-events-none" />
+            
+            <p className="text-slate-600 text-sm md:text-lg font-medium max-w-xl mx-auto leading-relaxed text-balance">
+              Platform pengembangan diri terintegrasi untuk kesehatan mental, karir, dan keahlianmu.
             </p>
           </div>
         </header>
 
-        {/* Destination Cards Grid */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-8 w-full h-full max-h-[420px] mb-auto">
           {DESTINATION_CARDS.map((card, idx) => {
             const Icon = card.icon
+            
+            // Theme Config
+            const styles = {
+              emerald: {
+                gradient: 'from-emerald-50 to-teal-50',
+                border: 'border-emerald-100 group-hover:border-emerald-300',
+                iconBg: 'bg-emerald-100',
+                iconColor: 'text-emerald-700',
+                text: 'text-emerald-900',
+                subText: 'text-emerald-600',
+                blob: 'bg-emerald-200',
+                wave: 'text-emerald-100',
+              },
+              indigo: {
+                gradient: 'from-indigo-50 to-purple-50',
+                border: 'border-indigo-100 group-hover:border-indigo-300',
+                iconBg: 'bg-indigo-100',
+                iconColor: 'text-indigo-700',
+                text: 'text-indigo-900',
+                subText: 'text-indigo-600',
+                blob: 'bg-indigo-200',
+                wave: 'text-indigo-100',
+              },
+              orange: {
+                gradient: 'from-orange-50 to-rose-50',
+                border: 'border-orange-100 group-hover:border-orange-300',
+                iconBg: 'bg-orange-100',
+                iconColor: 'text-orange-700',
+                text: 'text-orange-900',
+                subText: 'text-orange-600',
+                blob: 'bg-orange-200',
+                wave: 'text-orange-100',
+              },
+            }
+
+            const theme = styles[card.theme as keyof typeof styles]
 
             return (
               <Link
                 key={card.title}
                 href={card.href}
-                className={`group relative flex flex-col p-8 lg:p-10 rounded-3xl border-4 ${card.borderColor} overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl bg-gradient-to-br ${card.bgGradient} ${card.hoverBg}`}
+                className={cn(
+                  "group relative flex flex-col p-6 lg:p-8 rounded-[2.5rem] border bg-white shadow-sm overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50",
+                  theme.border
+                )}
                 style={{ animationDelay: `${idx * 150}ms` }}
               >
-                {/* Decorative Circle */}
-                <div
-                  className={`absolute -right-8 -top-8 w-32 h-32 rounded-full opacity-20 transition-all duration-500 group-hover:scale-125 ${card.iconBg}`}
-                />
+                 {/* --- ORNAMENTS --- */}
+                 
+                 {/* 1. Gradient Background Overlay */}
+                 <div className={cn("absolute inset-0 bg-gradient-to-br opacity-50 group-hover:opacity-100 transition-opacity duration-700", theme.gradient)} />
+                 
+                 {/* 2. Dynamic Wave SVG */}
+                 <div className="absolute bottom-0 left-0 right-0 h-32 opacity-100 transition-opacity duration-500 pointer-events-none">
+                    <svg viewBox="0 0 1440 320" className="w-full h-full" preserveAspectRatio="none">
+                        <path fill="currentColor" className={theme.wave} fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    </svg>
+                 </div>
 
-                {/* Card Content */}
-                <div className="relative z-10 flex flex-col gap-6 h-full">
-                  {/* Icon + Arrow */}
-                  <div className="flex justify-between items-start">
-                    <div
-                      className={`w-16 h-16 flex items-center justify-center rounded-2xl ${card.iconBg} shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6`}
-                    >
-                      <Icon className={`w-8 h-8 stroke-[2.5] ${card.iconColor}`} />
+                 {/* 3. Glowing Blob Top Right */}
+                 <div className={cn("absolute -top-10 -right-10 w-32 h-32 rounded-full blur-[60px] opacity-40 group-hover:opacity-60 transition-all duration-500", theme.blob)} />
+
+                {/* --- CONTENT --- */}
+                <div className="relative z-10 flex flex-col h-full">
+                    {/* Icon & Arrow Row */}
+                    <div className="flex justify-between items-start mb-8">
+                        <div className={cn("w-16 h-16 flex items-center justify-center rounded-2xl shadow-sm border border-white/50 group-hover:scale-110 transition-transform duration-500", theme.iconBg)}>
+                            <Icon className={cn("w-8 h-8 stroke-[2]", theme.iconColor)} />
+                        </div>
+                        
+                        <div className={cn("px-3 py-1 rounded-full border border-slate-200 bg-white/50 backdrop-blur-sm")}>
+                            <span className={cn("text-[10px] font-bold uppercase tracking-widest", theme.subText)}>
+                                {card.ctaLabel}
+                            </span>
+                        </div>
                     </div>
-                    <div className="w-10 h-10 rounded-full bg-primary-300 border-2 border-primary-500 flex items-center justify-center group-hover:bg-accent group-hover:border-accent-600 transition-all duration-300">
-                      <ArrowRight className="w-5 h-5 text-secondary group-hover:text-accent-50 group-hover:translate-x-0.5 transition-all" />
+
+                    {/* Text */}
+                    <div className="mt-auto space-y-2">
+                        <p className={cn("text-xs font-bold tracking-[0.2em] uppercase opacity-80", theme.subText)}>
+                            {card.subtitle}
+                        </p>
+                        <h3 className={cn("text-3xl font-black tracking-tight", theme.text)}>
+                            {card.title}
+                        </h3>
+                         <p className="text-sm text-slate-500 font-medium leading-relaxed pt-2 line-clamp-2">
+                            {card.description}
+                        </p>
                     </div>
-                  </div>
 
-                  {/* Text Content */}
-                  <div className="space-y-3 mt-auto">
-                    <p className="text-xs font-bold tracking-[0.2em] uppercase text-secondary-600">
-                      {card.subtitle}
-                    </p>
-                    <h3 className={`text-3xl lg:text-4xl font-black ${card.titleColor} tracking-tight leading-tight`}>
-                      {card.title}
-                    </h3>
-                    <p className={`text-sm font-medium leading-relaxed ${card.descColor}`}>
-                      {card.description}
-                    </p>
-                  </div>
-
-                  {/* CTA Badge */}
-                  <div className="mt-4 inline-flex self-start px-5 py-2.5 rounded-full bg-accent text-accent-50 font-bold text-sm shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                    {card.ctaLabel}
-                  </div>
+                    {/* Hover Indicator */}
+                    <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-4 group-hover:translate-x-0">
+                        <ArrowRight className={cn("w-6 h-6", theme.subText)} />
+                    </div>
                 </div>
               </Link>
             )
@@ -140,4 +174,3 @@ export function HomepageHero() {
     </section>
   )
 }
-
