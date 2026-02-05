@@ -7,10 +7,16 @@ export const metadata: Metadata = {
   description: 'Kerjakan tes psikologi gratis Anda sekarang.',
 }
 
-export default function GratisExamPage() {
+export default async function GratisExamPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+
   return (
     <main>
-      <ExamInterface />
+      <ExamInterface slug={slug} />
     </main>
   )
 }

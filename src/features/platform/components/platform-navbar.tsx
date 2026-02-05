@@ -50,19 +50,21 @@ export function PlatformNavbar() {
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-6">
             {NAV_ITEMS.map((item) => (
-              <div key={item.label} className="relative"
+              <div key={item.label} className="relative group"
                 onMouseEnter={() => setActiveDropdown(item.label)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <button className="flex items-center gap-1 text-sm font-medium text-slate-700 hover:text-slate-900">
+                <button className="flex items-center gap-1 text-sm font-medium text-slate-700 hover:text-slate-900 py-2">
                   {item.label}
                   {item.children.length > 0 && <ChevronDown className={`h-3 w-3 transition-transform ${activeDropdown === item.label ? 'rotate-180' : ''}`} />}
                 </button>
                 {item.children.length > 0 && activeDropdown === item.label && (
-                  <div className="absolute top-full left-0 mt-1 w-52 bg-white border border-slate-200 rounded-xl shadow-lg py-2 z-50">
-                    {item.children.map((child) => (
-                      <Link key={child.label} href={child.href} className="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900">{child.label}</Link>
-                    ))}
+                  <div className="absolute top-full left-0 pt-1 w-52">
+                    <div className="bg-white border border-slate-200 rounded-xl shadow-lg py-2">
+                      {item.children.map((child) => (
+                        <Link key={child.label} href={child.href} className="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900">{child.label}</Link>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
