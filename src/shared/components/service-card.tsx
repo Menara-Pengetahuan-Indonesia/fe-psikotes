@@ -28,17 +28,17 @@ export function ServiceCard({
   return (
     <Card
       className={cn(
-        'group transition-all duration-300 hover:shadow-soft-lg hover:-translate-y-1',
+        'group transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-surface-100/50 border-primary-200/50',
         className
       )}
     >
       <CardHeader className="relative">
         <div className="flex items-start justify-between gap-4">
-          <div className="rounded-lg bg-muted p-3 transition-colors duration-300 group-hover:bg-primary">
-            <Icon className="size-6 transition-colors duration-300 group-hover:text-primary-foreground" />
+          <div className="rounded-lg bg-primary-100 p-3 transition-colors duration-300 group-hover:bg-primary-600">
+            <Icon className="size-6 text-primary-700 transition-colors duration-300 group-hover:text-white" />
           </div>
           {tag && (
-            <Badge variant="secondary" className="shrink-0">
+            <Badge variant="secondary" className="shrink-0 bg-secondary-100 text-secondary-800 hover:bg-secondary-200">
               {tag}
             </Badge>
           )}
@@ -46,14 +46,14 @@ export function ServiceCard({
       </CardHeader>
 
       <CardContent className="space-y-2">
-        <h3 className="text-lg font-semibold">{title}</h3>
-        <p className="text-sm text-muted-foreground">{description}</p>
+        <h3 className="text-lg font-bold text-secondary-900 group-hover:text-primary-700 transition-colors">{title}</h3>
+        <p className="text-sm text-secondary-600 leading-relaxed">{description}</p>
       </CardContent>
 
       {(price || actionLabel) && (
         <CardFooter className="justify-between gap-4">
           {price && (
-            <p className="text-lg font-semibold text-primary">{price}</p>
+            <p className="text-lg font-black text-accent-600">{price}</p>
           )}
           {actionLabel && onAction && (
             <Button onClick={onAction} className="ml-auto">
