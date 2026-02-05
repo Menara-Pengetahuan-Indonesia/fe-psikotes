@@ -26,7 +26,7 @@ export function PromoBanner() {
       <span>Diskon s/d 50% Psikotes Online Premium — </span>
       <span className="font-black">Berakhir dalam {pad(time.h)}:{pad(time.m)}:{pad(time.s)}</span>
       <span> — </span>
-      <Link href="/platform/psikotes/premium" className="underline hover:no-underline ml-1">Klaim Sekarang</Link>
+      <Link href="/psikotes/premium" className="underline hover:no-underline ml-1">Klaim Sekarang</Link>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
-import { PlatformHero } from '@/features/platform/components/platform-hero'
+import { PlatformHero } from '@/features/psikotes/components/platform-hero'
 
 describe('PlatformHero', () => {
   it('renders all 4 benefits', () => {
@@ -19,6 +19,6 @@ describe('PlatformHero', () => {
   it('renders CTA link to premium', () => {
     render(<PlatformHero />)
     const link = screen.getByText('Lihat Psikotes Premium')
-    expect(link.closest('a')).toHaveAttribute('href', '/platform/psikotes/premium')
+    expect(link.closest('a')).toHaveAttribute('href', '/psikotes/premium')
   })
 })

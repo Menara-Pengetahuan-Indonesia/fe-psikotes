@@ -1,9 +1,9 @@
 import { GraduationCap, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
-export function TrainingHero() {
+export function PelatihanHero() {
   return (
-    <header className="pt-20 pb-16 px-6 bg-gradient-to-b from-gray-50 to-white">
+    <header className="pt-20 pb-16 px-6 bg-linear-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto space-y-6">
         <Link
           href="/"

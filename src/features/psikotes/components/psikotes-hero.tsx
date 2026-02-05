@@ -9,7 +9,7 @@ const HERO_BENEFITS = [
   { label: 'Laporan Detail', desc: 'Insight lengkap yang mudah dipahami' },
 ]
 
-export function PlatformHero() {
+export function PsikotesHero() {
   return (
     <section className="bg-slate-900 text-white py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
@@ -35,7 +35,7 @@ export function PlatformHero() {
               <p className="text-3xl font-black">Rp25.000</p>
             </div>
             <Button asChild className="w-full sm:w-auto">
-              <Link href="/platform/psikotes/premium">Lihat Psikotes Premium</Link>
+              <Link href="/psikotes/premium">Lihat Psikotes Premium</Link>
             </Button>
           </div>
           {/* Illustration placeholder */}

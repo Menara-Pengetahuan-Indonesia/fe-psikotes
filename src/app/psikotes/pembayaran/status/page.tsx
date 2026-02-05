@@ -14,7 +14,7 @@ const PLACEHOLDER_METHOD = 'gopay'
 const PLACEHOLDER_ORDER_ID = 'ORD-2026-000001'
 const PLACEHOLDER_PRODUCT = 'Psikotes Premium'
 const PLACEHOLDER_PRICE = 25000
-const PLACEHOLDER_NEXT_URL = '/platform/psikotes/premium'
+const PLACEHOLDER_NEXT_URL = '/psikotes/premium'
 
 export default function PaymentStatusPage() {
   return (

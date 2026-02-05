@@ -37,7 +37,7 @@ export function MentalHealthOverview() {
               key={test.id}
               test={test}
               number={index + 1}
-              href={`/platform/psikotes/kesehatan-mental/${test.slug}`}
+              href={`/psikotes/kesehatan-mental/${test.slug}`}
             />
           ))}
         </div>

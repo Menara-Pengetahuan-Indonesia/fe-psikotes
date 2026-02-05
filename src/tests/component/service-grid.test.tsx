@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
-import { ServiceGrid } from '@/features/platform/components/service-grid'
+import { ServiceGrid } from '@/features/psikotes/components/service-grid'
 
 describe('ServiceGrid', () => {
   it('renders all 6 services in default tab', () => {

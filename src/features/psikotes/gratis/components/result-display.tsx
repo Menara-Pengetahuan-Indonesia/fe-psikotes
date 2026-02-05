@@ -164,7 +164,7 @@ export function ResultDisplay() {
           <div className="flex items-center justify-between mb-8">
             <h3 className="text-xl font-black text-slate-900">Eksplorasi Tes Lainnya</h3>
             <Link
-              href="/platform/psikotes/gratis"
+              href="/psikotes/gratis"
               className="text-xs font-bold text-slate-400 hover:text-black uppercase tracking-wider flex items-center gap-2"
             >
               Lihat Semua <ArrowRight className="w-4 h-4" />
@@ -176,7 +176,7 @@ export function ResultDisplay() {
               return (
                 <Link
                   key={test.id}
-                  href={`/platform/psikotes/gratis/${test.slug}`}
+                  href={`/psikotes/gratis/${test.slug}`}
                   className="bg-slate-50 p-6 rounded-2xl flex flex-col items-center text-center gap-4 hover:bg-slate-100 transition-colors cursor-pointer border border-transparent hover:border-slate-200 group"
                 >
                   <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center border border-slate-200 group-hover:scale-110 transition-transform">

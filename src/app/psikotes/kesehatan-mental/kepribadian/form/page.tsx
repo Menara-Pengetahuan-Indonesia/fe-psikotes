@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function KepribadianFormPage() {
   return (
     <main>
-      <ExamInterface />
+      <ExamInterface slug="kepribadian" />
     </main>
   )
 }

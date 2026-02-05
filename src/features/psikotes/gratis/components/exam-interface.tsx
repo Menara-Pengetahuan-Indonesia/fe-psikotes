@@ -35,11 +35,11 @@ const MOCK_QUESTIONS = [
 ]
 
 interface ExamInterfaceProps {
-  slug: string
+  slug?: string
   totalQuestions?: number
 }
 
-export function ExamInterface({ slug, totalQuestions = 3 }: ExamInterfaceProps) {
+export function ExamInterface({ slug = '', totalQuestions = 3 }: ExamInterfaceProps) {
   const questions = MOCK_QUESTIONS.slice(0, totalQuestions)
 
   const [currentIdx, setCurrentIdx] = useState(0)
@@ -79,7 +79,7 @@ export function ExamInterface({ slug, totalQuestions = 3 }: ExamInterfaceProps) 
   const handleConfirmSubmit = () => {
     setShowSubmitModal(false)
     // Navigate to result page (placeholder — real submission would hit the backend first)
-    window.location.href = `/platform/psikotes/gratis/${slug}/result`
+    window.location.href = `/psikotes/gratis/${slug}/result`
   }
 
   return (
@@ -87,7 +87,7 @@ export function ExamInterface({ slug, totalQuestions = 3 }: ExamInterfaceProps) 
       {/* Minimalist Exam Header */}
       <header className="pt-32 pb-8 px-6 border-b border-slate-100">
         <div className="max-w-3xl mx-auto flex items-center justify-between">
-          <Link href={`/platform/psikotes/gratis/${slug}`} className="flex items-center gap-2 text-slate-400 hover:text-black transition-colors text-sm font-bold">
+          <Link href={`/psikotes/gratis/${slug}`} className="flex items-center gap-2 text-slate-400 hover:text-black transition-colors text-sm font-bold">
             <ArrowLeft className="w-4 h-4" /> Back to Detail
           </Link>
           <div className="text-xs font-bold text-slate-400 uppercase tracking-widest">
