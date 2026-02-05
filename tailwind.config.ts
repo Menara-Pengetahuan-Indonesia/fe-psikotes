@@ -70,11 +70,11 @@ export default {
           950: '#4D5A1A',
         },
 
-        // shadcn/ui system colors (keeping for component library)
+        // shadcn/ui system colors (NO WHITE - using light greens)
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: '#A0C878', // Use primary green for focus rings
-        background: '#FFFFFF',
+        background: '#F3F8EC', // primary-50 light green
         foreground: '#143D60', // Use secondary navy for text
         muted: {
           DEFAULT: '#DDEB9D', // Use surface color
@@ -82,14 +82,14 @@ export default {
         },
         destructive: {
           DEFAULT: '#EF4444',
-          foreground: '#FFFFFF',
+          foreground: '#F3F8EC', // primary-50 instead of white
         },
         popover: {
-          DEFAULT: '#FFFFFF',
+          DEFAULT: '#E6F1D9', // primary-100
           foreground: '#143D60',
         },
         card: {
-          DEFAULT: '#FFFFFF',
+          DEFAULT: '#E6F1D9', // primary-100
           foreground: '#143D60',
         },
       },
