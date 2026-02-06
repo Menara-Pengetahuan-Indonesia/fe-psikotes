@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { PelatihanHero, PelatihanPrograms } from '@/features/pelatihan/components'
 
 export const metadata: Metadata = {
-  title: 'Pelatihan — TITIK MULA',
+  title: 'Pelatihan — BERMOELA',
   description: 'Tingkatkan keterampilan dan pengetahuan Anda melalui program pelatihan, webinar, dan mentoring berkualitas.',
 }
 

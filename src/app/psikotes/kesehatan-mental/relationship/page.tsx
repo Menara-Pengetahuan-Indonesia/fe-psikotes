@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { TestDetail } from '@/features/psikotes/mahasiswa/components'
 
 export const metadata: Metadata = {
-  title: 'Tes Hubungan — TITIK MULA',
+  title: 'Tes Hubungan — BERMOELA',
   description: 'Pahami pola dan dinamika hubungan Anda melalui tes yang komprehensif dan mendalam.',
 }
 

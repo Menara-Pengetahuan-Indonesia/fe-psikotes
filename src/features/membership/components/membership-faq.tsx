@@ -30,7 +30,7 @@ export function MembershipFaq() {
       <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-16 space-y-4">
           <h2 className="text-3xl font-black tracking-tight text-slate-900">FAQ Membership</h2>
-          <p className="text-slate-500">Pertanyaan umum seputar keanggotaan komunitas Titik Mula.</p>
+          <p className="text-slate-500">Pertanyaan umum seputar keanggotaan komunitas Bermoela.</p>
         </div>
 
         <div className="space-y-4">

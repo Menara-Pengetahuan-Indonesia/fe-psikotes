@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { PaymentStatus } from '@/features/payment/components'
 
 export const metadata: Metadata = {
-  title: 'Status Pembayaran — TITIK MULA',
+  title: 'Status Pembayaran — BERMOELA',
   description: 'Pantau status pembayaran Anda secara real-time.',
 }
 

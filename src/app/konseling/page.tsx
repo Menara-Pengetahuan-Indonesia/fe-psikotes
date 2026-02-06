@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { KonselingHero, KonselingServices } from '@/features/konseling/components'
 
 export const metadata: Metadata = {
-  title: 'Konseling — TITIK MULA',
+  title: 'Konseling — BERMOELA',
   description: 'Dapatkan dukungan profesional dari psikolog berpengalaman melalui sesi konseling individu dan pasangan.',
 }
 

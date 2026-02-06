@@ -8,7 +8,7 @@ import {
 } from '@/features/psikotes/components'
 
 export const metadata: Metadata = {
-  title: 'Psikotes — TITIK MULA',
+  title: 'Psikotes — BERMOELA',
   description: 'Temukan potensi terbaikmu melalui psikotes profesional berbasis riset psikologi.',
 }
 

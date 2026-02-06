@@ -3,8 +3,8 @@ import type { Metadata } from 'next'
 import { LoginForm } from '@/features/auth/components'
 
 export const metadata: Metadata = {
-  title: 'Masuk — TITIK MULA',
-  description: 'Masuk ke akun Anda untuk mengakses layanan TITIK MULA.',
+  title: 'Masuk — BERMOELA',
+  description: 'Masuk ke akun Anda untuk mengakses layanan BERMOELA.',
 }
 
 export default function LoginPage() {

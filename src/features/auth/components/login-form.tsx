@@ -60,7 +60,7 @@ export function LoginForm({ onSuccess, className }: LoginFormProps) {
       <div className="text-center mb-10 space-y-3">
         <Link href="/" className="inline-block">
           <h1 className="text-2xl font-black text-gray-900 tracking-tighter">
-            TITIK MULA<span className="text-primary">.</span>
+            BERMOELA<span className="text-primary">.</span>
           </h1>
         </Link>
         <p className="text-xs font-bold tracking-[0.2em] text-gray-400 uppercase">

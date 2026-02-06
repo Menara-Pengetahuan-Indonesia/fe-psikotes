@@ -65,6 +65,9 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Hide Navbar on Homepage
+  if (pathname === '/') return null
+
   return (
     <>
       <header
@@ -84,10 +87,10 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group mr-8">
             <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center text-white font-black text-xs shadow-md group-hover:rotate-12 transition-transform duration-300">
-              TM
+              B
             </div>
             <span className={cn("font-bold text-lg tracking-tight transition-colors duration-500", isScrolled ? "text-slate-800" : "text-white")}>
-              TITIK<span className={isScrolled ? "text-emerald-600" : "text-emerald-400"}>MULA</span>
+              BER<span className={isScrolled ? "text-emerald-600" : "text-emerald-400"}>MOELA</span>
             </span>
           </Link>
 

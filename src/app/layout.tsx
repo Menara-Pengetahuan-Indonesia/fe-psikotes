@@ -20,6 +20,8 @@ export const metadata: Metadata = {
   description: "Platform Psikotes, Konseling & Coaching, Training & Program",
 }
 
+import { MainContainer } from "@/shared/components/layout/main-container"
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,9 +32,9 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <QueryProvider>
           <Navbar />
-          <main className="relative z-10 bg-[#F3F8EC] rounded-b-[80px] lg:rounded-b-[120px] overflow-hidden min-h-[150vh] mb-[400px]">
+          <MainContainer>
             {children}
-          </main>
+          </MainContainer>
           <Footer />
         </QueryProvider>
       </body>
