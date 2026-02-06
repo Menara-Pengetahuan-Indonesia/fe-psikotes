@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { TestDetail } from '@/features/psikotes/mahasiswa/components'
 
 export const metadata: Metadata = {
-  title: 'Tes Kenaikan Jabatan — TITIK MULA',
+  title: 'Tes Kenaikan Jabatan — BERMOELA',
   description: 'Tes komprehensif untuk mengevaluasi kesiapan karyawan dalam promosi jabatan.',
 }
 

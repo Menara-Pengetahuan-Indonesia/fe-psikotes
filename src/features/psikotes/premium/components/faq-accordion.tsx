@@ -10,7 +10,7 @@ const FAQS = [
   },
   {
     q: 'Apakah tes ini valid untuk keperluan lamaran kerja?',
-    a: 'Tentu. Alat tes yang kami gunakan (IST, CFIT, MMPI, DISC) adalah standar industri yang digunakan oleh HRD perusahaan nasional maupun multinasional. Laporan kami dilengkapi kop resmi Titik Mula.',
+    a: 'Tentu. Alat tes yang kami gunakan (IST, CFIT, MMPI, DISC) adalah standar industri yang digunakan oleh HRD perusahaan nasional maupun multinasional. Laporan kami dilengkapi kop resmi Bermoela.',
   },
   {
     q: 'Bagaimana jika koneksi internet terputus saat tes?',

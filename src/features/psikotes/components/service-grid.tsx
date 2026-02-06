@@ -3,7 +3,7 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { ServiceCard } from '@/shared/components'
 import { SERVICES } from '../constants'
-import { Grid, Plus } from 'lucide-react'
+import { Grid, Plus, Hexagon, Diamond } from 'lucide-react'
 
 const TAB_FILTERS: Record<string, string[]> = {
   semua: [],
@@ -17,9 +17,25 @@ export function ServiceGrid() {
 
   return (
     <section className="py-24 md:py-36 bg-[#fefce8] relative overflow-hidden">
-      {/* --- BACKGROUND ORNAMENTS --- */}
-      <Plus className="absolute top-20 right-10 text-emerald-600/10 w-12 h-12" />
-      <Plus className="absolute bottom-20 left-10 text-amber-600/10 w-8 h-8 rotate-45" />
+      
+      {/* --- RICH BACKGROUND ORNAMENTS (Matching Hero) --- */}
+      {/* 1. Subtle Topographic Line Pattern */}
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-multiply" 
+           style={{
+             backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 C 20 80, 40 120, 60 100 S 100 80, 120 100 S 160 120, 200 100' stroke='%2315803d' fill='transparent' stroke-width='1'/%3E%3C/svg%3E")`,
+             backgroundSize: '400px 400px'
+           }}
+      />
+
+      {/* 2. Technical Ornaments */}
+      <Plus className="absolute top-[10%] left-[10%] text-emerald-600/20 w-8 h-8 animate-pulse" />
+      <Plus className="absolute bottom-[10%] right-[15%] text-stone-400/20 w-10 h-10 rotate-45" />
+      <Hexagon className="absolute top-[25%] right-[5%] text-emerald-600/10 w-24 h-24 rotate-12 animate-float-slow" />
+      <Diamond className="absolute bottom-[20%] left-[5%] text-amber-600/10 w-16 h-16 -rotate-12 animate-float-medium" />
+
+      {/* 3. Ambient Glows */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[radial-gradient(circle_at_30%_30%,#d1fae5_0%,#a7f3d0_100%)] opacity-30 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-125 h-125 bg-[radial-gradient(circle_at_30%_30%,#ffedd5_0%,#fed7aa_100%)] opacity-20 rounded-full blur-[120px] -translate-x-1/4 translate-y-1/4 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section Header */}

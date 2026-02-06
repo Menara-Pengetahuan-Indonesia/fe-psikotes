@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { ExamInterface } from '@/features/psikotes/gratis/components'
 
 export const metadata: Metadata = {
-  title: 'Kerjakan Tes — TITIK MULA',
+  title: 'Kerjakan Tes — BERMOELA',
   description: 'Kerjakan tes psikologi gratis Anda sekarang.',
 }
 

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { TestDetail } from '@/features/psikotes/mahasiswa/components'
 
 export const metadata: Metadata = {
-  title: 'Tes Minat & Bakat — TITIK MULA',
+  title: 'Tes Minat & Bakat — BERMOELA',
   description: 'Kenali minat dan bakat alami Anda melalui tes psikologi yang tervalidasi secara ilmiah.',
 }
 

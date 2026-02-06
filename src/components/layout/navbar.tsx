@@ -29,7 +29,7 @@ export function Navbar({ navItems }: NavbarProps) {
               T
             </span>
             <span className="font-black text-slate-900 text-lg tracking-tighter">
-              TITIK MULA<span className="text-indigo-600">.</span>
+              BERMOELA<span className="text-indigo-600">.</span>
             </span>
           </Link>
 

@@ -9,8 +9,8 @@ import {
 } from '@/features/membership/components'
 
 export const metadata: Metadata = {
-  title: 'Membership — TITIK MULA',
-  description: 'Bergabung dengan komunitas TITIK MULA dan nikmati berbagai keuntungan eksklusif sebagai anggota.',
+  title: 'Membership — BERMOELA',
+  description: 'Bergabung dengan komunitas BERMOELA dan nikmati berbagai keuntungan eksklusif sebagai anggota.',
 }
 
 export default function MembershipBenefitPage() {

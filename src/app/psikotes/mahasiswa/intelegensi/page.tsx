@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { TestDetail } from '@/features/psikotes/mahasiswa/components'
 
 export const metadata: Metadata = {
-  title: 'Tes Intelegensi — TITIK MULA',
+  title: 'Tes Intelegensi — BERMOELA',
   description: 'Ukur kemampuan intelektual Anda melalui tes intelegensi yang komprehensif dan tervalidasi.',
 }
 

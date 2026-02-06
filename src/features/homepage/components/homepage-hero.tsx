@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { BookOpen, MessageSquare, GraduationCap, ArrowRight, Sparkles } from 'lucide-react'
+import { BookOpen, MessageSquare, GraduationCap, ArrowRight, Sparkles, Plus, Hexagon, Diamond } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const DESTINATION_CARDS = [
@@ -34,38 +34,54 @@ const DESTINATION_CARDS = [
 
 export function HomepageHero() {
   return (
-    <section className="relative h-dvh w-full overflow-hidden bg-[#fafafa] flex flex-col items-center justify-center p-4 lg:p-8">
+    <section className="relative h-dvh w-full overflow-hidden bg-[#fafafa] flex flex-col items-center justify-center p-4 md:p-8 lg:p-12">
 
-      {/* --- CLEAN SOLID BACKGROUND (No Ornaments) --- */}
+      {/* --- RICH BACKGROUND ORNAMENTS --- */}
+      {/* 1. Subtle Topographic Line Pattern */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-multiply" 
+           style={{
+             backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 C 20 80, 40 120, 60 100 S 100 80, 120 100 S 160 120, 200 100' stroke='%2310b981' fill='transparent' stroke-width='1'/%3E%3C/svg%3E")`,
+             backgroundSize: '400px 400px'
+           }}
+      />
+      
+      {/* 2. Technical Ornaments */}
+      <Plus className="absolute top-[15%] left-[10%] text-emerald-600/20 w-8 h-8 animate-pulse" />
+      <Plus className="absolute bottom-[20%] left-[5%] text-slate-400/20 w-6 h-6 rotate-45" />
+      <Plus className="absolute top-[40%] right-[8%] text-amber-500/20 w-10 h-10 animate-spin-slow" />
+      
+      <Hexagon className="absolute top-[20%] right-[25%] text-emerald-600/10 w-32 h-32 -rotate-12 animate-float-medium" />
+      <Diamond className="absolute bottom-[15%] right-[30%] text-indigo-600/10 w-20 h-20 rotate-12 animate-float-slow" />
+
+      {/* 3. Ambient Glows (Subtle for light theme) */}
+      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-emerald-100/30 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-indigo-100/30 rounded-full blur-[120px] pointer-events-none" />
 
 
       {/* --- CONTENT --- */}
-      <div className="relative z-10 w-full max-w-7xl flex flex-col h-full justify-center gap-8 lg:gap-16">
+      <div className="relative z-10 w-full max-w-7xl flex flex-col h-full items-center justify-center gap-6 md:gap-12">
 
         {/* Header */}
-        <header className="flex flex-col items-center text-center space-y-6 mt-auto">
-           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-100 border border-primary-300 shadow-sm backdrop-blur-md">
-             <Sparkles className="w-3 h-3 text-amber-500 fill-amber-500" />
+        <header className="flex flex-col items-center text-center space-y-4 md:space-y-6">
+           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm">
+             <Sparkles className="w-3 h-3 text-emerald-500 fill-emerald-500" />
              <span className="text-[10px] font-bold tracking-[0.3em] text-slate-500 uppercase">
-                Indonesia's Life School
+                Indonesia&apos;s Life School
              </span>
           </div>
 
-          <div className="space-y-4 max-w-4xl relative">
-             <h1 className="text-5xl md:text-7xl lg:text-9xl font-black text-slate-900 tracking-tighter leading-[0.9] drop-shadow-sm z-10 relative">
-              TITIK MULA<span className="text-emerald-500">.</span>
+          <div className="space-y-2 md:space-y-4 max-w-4xl relative">
+             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 tracking-tighter leading-[0.9] drop-shadow-sm">
+              BERMOELA<span className="text-emerald-500">.</span>
             </h1>
-            {/* Text Decoration */}
-            <div className="absolute -top-10 -right-10 w-24 h-24 border-4 border-slate-200 rounded-full animate-spin-slow pointer-events-none" />
-            
-            <p className="text-slate-600 text-sm md:text-lg font-medium max-w-xl mx-auto leading-relaxed text-balance">
+            <p className="text-slate-500 text-sm md:text-lg font-medium max-w-xl mx-auto leading-relaxed text-balance">
               Platform pengembangan diri terintegrasi untuk kesehatan mental, karir, dan keahlianmu.
             </p>
           </div>
         </header>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-8 w-full h-full max-h-[420px] mb-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8 w-full">
           {DESTINATION_CARDS.map((card, idx) => {
             const Icon = card.icon
             
@@ -118,7 +134,7 @@ export function HomepageHero() {
                  {/* --- ORNAMENTS --- */}
                  
                  {/* 1. Gradient Background Overlay */}
-                 <div className={cn("absolute inset-0 bg-gradient-to-br opacity-50 group-hover:opacity-100 transition-opacity duration-700", theme.gradient)} />
+                 <div className={cn("absolute inset-0 bg-linear-to-br opacity-50 group-hover:opacity-100 transition-opacity duration-700", theme.gradient)} />
                  
                  {/* 2. Dynamic Wave SVG */}
                  <div className="absolute bottom-0 left-0 right-0 h-32 opacity-100 transition-opacity duration-500 pointer-events-none">
@@ -135,7 +151,7 @@ export function HomepageHero() {
                     {/* Icon & Arrow Row */}
                     <div className="flex justify-between items-start mb-8">
                         <div className={cn("w-16 h-16 flex items-center justify-center rounded-2xl shadow-sm border border-white/50 group-hover:scale-110 transition-transform duration-500", theme.iconBg)}>
-                            <Icon className={cn("w-8 h-8 stroke-[2]", theme.iconColor)} />
+                            <Icon className={cn("w-8 h-8 stroke-2", theme.iconColor)} />
                         </div>
                         
                         <div className={cn("px-3 py-1 rounded-full border border-slate-200 bg-white/50 backdrop-blur-sm")}>

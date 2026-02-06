@@ -41,7 +41,7 @@ export function Footer() {
   if (pathname === '/') return null
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 h-[400px] bg-slate-900 overflow-hidden z-0">
+    <footer className="fixed bottom-0 left-0 right-0 h-100 bg-slate-900 overflow-hidden z-0">
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 h-full flex flex-col justify-center py-10 gap-10">
         {/* Top Section */}
@@ -54,7 +54,7 @@ export function Footer() {
                   <Sparkles className="w-5 h-5 text-white fill-white" />
                </div>
                <span className="font-black text-2xl tracking-tight text-white">
-                TITIK<span className="text-emerald-400">MULA</span>
+                BER<span className="text-emerald-400">MOELA</span>
               </span>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed">
@@ -97,7 +97,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-5 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-slate-500 text-xs font-medium">
-            © {new Date().getFullYear()} Titik Mula Indonesia. All rights reserved.
+            © {new Date().getFullYear()} Bermoela Indonesia. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
              <div className="flex items-center gap-2 opacity-30 grayscale hover:grayscale-0 transition-all">

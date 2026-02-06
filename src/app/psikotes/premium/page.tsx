@@ -8,7 +8,7 @@ import {
 } from '@/features/psikotes/premium/components'
 
 export const metadata: Metadata = {
-  title: 'Psikotes Premium — TITIK MULA',
+  title: 'Psikotes Premium — BERMOELA',
   description: 'Akses tes psikologi premium dengan laporan mendalam dan rekomendasi karir yang dipersonalisasi.',
 }
 

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { TestDetail } from '@/features/psikotes/mahasiswa/components'
 
 export const metadata: Metadata = {
-  title: 'Try Out CPNS & Akademik — TITIK MULA',
+  title: 'Try Out CPNS & Akademik — BERMOELA',
   description: 'Latih kemampuan Anda dengan try out yang menyimulasikan tes seleksi nyata.',
 }
 

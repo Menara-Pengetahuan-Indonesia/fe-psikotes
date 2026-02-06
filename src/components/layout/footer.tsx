@@ -39,7 +39,7 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <h3 className="text-xl font-black tracking-tighter">
-              TITIK MULA<span className="text-indigo-400">.</span>
+              BERMOELA<span className="text-indigo-400">.</span>
             </h3>
             <p className="text-slate-400 text-sm leading-relaxed">
               Platform pengembangan diri terpadu berbasis riset psikologi profesional.
@@ -65,7 +65,7 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-16 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-slate-500 text-sm">© 2026 TITIK MULA. All rights reserved.</p>
+          <p className="text-slate-500 text-sm">© 2026 BERMOELA. All rights reserved.</p>
           <div className="flex gap-4">
             <Link href="#" className="text-slate-500 hover:text-white">
               <Instagram className="h-5 w-5" />

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { PembayaranLayout } from './pembayaran-layout'
 
 export const metadata: Metadata = {
-  title: 'Pembayaran — TITIK MULA',
+  title: 'Pembayaran — BERMOELA',
   description: 'Selesaikan pembayaran untuk layanan pilihan Anda.',
 }
 

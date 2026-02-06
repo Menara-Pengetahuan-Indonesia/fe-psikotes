@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Users, Clock, CreditCard } from 'lucide-react'
+import { ArrowRight, Users, Clock, CreditCard, Sparkles } from 'lucide-react'
 
 import {
   Card,
@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/card'
 
 import type { PsikotesTest } from '../types'
+import { cn } from '@/lib/utils'
 
 interface TestCategoryCardProps {
   test: PsikotesTest
@@ -20,62 +21,65 @@ export function TestCategoryCard({ test, number, href }: TestCategoryCardProps) 
   const badge = String(number).padStart(2, '0')
 
   return (
-    <Card className="group flex flex-col min-h-105 p-0 border-slate-100 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-100 transition-all duration-300 rounded-3xl">
+    <Card className={cn(
+      "group relative flex flex-col p-2 transition-all duration-500 overflow-hidden",
+      "bg-white border-2 border-slate-100 border-b-[8px] border-b-emerald-100 hover:border-emerald-500 hover:border-b-emerald-600 hover:-translate-y-2 shadow-xl hover:shadow-2xl",
+      "rounded-[2.5rem]"
+    )}>
+      {/* Decorative Background Aura */}
+      <div className="absolute -right-8 -top-8 w-32 h-32 bg-emerald-50 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
       {/* Body */}
-      <CardContent className="flex-1 flex flex-col px-8 pt-8 pb-0">
+      <CardContent className="relative z-10 flex-1 flex flex-col px-6 pt-6 pb-0">
         {/* Icon row + number badge */}
         <div className="flex justify-between items-start mb-6">
-          <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-900 group-hover:bg-black group-hover:text-white transition-colors">
-            <Icon className="w-6 h-6 stroke-[1.5]" />
+          <div className="relative">
+            <div className="absolute inset-0 bg-emerald-400 blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
+            <div className="relative w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-500">
+              <Icon className="w-7 h-7 stroke-[2]" />
+            </div>
           </div>
-          <div className="flex flex-col items-end gap-2">
-            <span className="text-4xl font-black text-slate-300 group-hover:text-slate-400 transition-colors">
+          <div className="flex flex-col items-end gap-1">
+            <span className="text-3xl font-black text-stone-200 group-hover:text-emerald-100 transition-colors">
               {badge}
             </span>
-            <span className="px-3 py-1 bg-slate-50 text-[10px] font-bold uppercase tracking-wider text-slate-400 rounded-lg">
+            <span className="px-3 py-1 bg-stone-50 text-[9px] font-black uppercase tracking-wider text-stone-400 rounded-full border border-stone-100">
               {test.tag}
             </span>
           </div>
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-black text-slate-900 mb-4 leading-tight group-hover:underline decoration-2 underline-offset-4">
+        <h3 className="text-xl font-black text-stone-800 mb-3 leading-tight group-hover:text-emerald-700 transition-colors">
           {test.title}
         </h3>
 
-        {/* Animated divider */}
-        <div className="w-12 h-px bg-slate-200 mb-6 group-hover:w-full group-hover:bg-black transition-all duration-500" />
-
         {/* Description */}
-        <p className="text-sm text-slate-500 leading-relaxed">
+        <p className="text-sm font-medium text-stone-500 leading-relaxed line-clamp-3 mb-6">
           {test.description}
         </p>
       </CardContent>
 
       {/* Stats + CTA */}
-      <CardFooter className="flex-col gap-3 border-t border-slate-50 px-8 pt-6 pb-8">
-        <div className="w-full flex flex-col gap-3 text-[11px] font-bold text-slate-400">
-          <div className="flex items-center justify-between">
-            <span className="flex items-center gap-1.5">
-              <Users className="w-3.5 h-3.5" /> {test.users}
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> {test.duration}
-            </span>
+      <CardFooter className="relative z-10 flex-col gap-4 px-6 pt-4 pb-6">
+        <div className="w-full grid grid-cols-2 gap-2">
+          <div className="flex items-center gap-2 p-2 rounded-xl bg-stone-50 border border-stone-100 text-[10px] font-bold text-stone-500">
+            <Users className="w-3.5 h-3.5 text-emerald-500" /> <span>{test.users} Peserta</span>
           </div>
-          <div className="flex items-center gap-1.5 text-slate-900">
-            <CreditCard className="w-3.5 h-3.5" />{' '}
-            {test.price ?? 'Gratis'}
+          <div className="flex items-center gap-2 p-2 rounded-xl bg-stone-50 border border-stone-100 text-[10px] font-bold text-stone-500">
+            <Clock className="w-3.5 h-3.5 text-sky-500" /> <span>{test.duration}</span>
           </div>
         </div>
 
         <Link
           href={href}
-          className="mt-2 w-full py-3 bg-slate-50 text-slate-900 rounded-xl text-xs font-bold uppercase tracking-wider group-hover:bg-black group-hover:text-white transition-all flex items-center justify-center gap-2"
+          className="group/btn w-full py-3.5 bg-slate-900 hover:bg-emerald-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-all shadow-lg hover:shadow-emerald-200 flex items-center justify-center gap-2"
         >
-          Lihat Detail <ArrowRight className="w-3.5 h-3.5" />
+          Lihat Detail 
+          <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
         </Link>
       </CardFooter>
     </Card>
   )
 }
+

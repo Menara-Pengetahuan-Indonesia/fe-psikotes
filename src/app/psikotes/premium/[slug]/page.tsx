@@ -5,7 +5,7 @@ import { Clock, Users, Play, Share2, Info, AlertCircle } from 'lucide-react'
 import { PREMIUM_TESTS } from '@/features/psikotes/constants'
 
 export const metadata: Metadata = {
-  title: 'Detail Tes Premium — TITIK MULA',
+  title: 'Detail Tes Premium — BERMOELA',
   description: 'Lihat detail lengkap tes psikologi premium sebelum memulai.',
 }
 

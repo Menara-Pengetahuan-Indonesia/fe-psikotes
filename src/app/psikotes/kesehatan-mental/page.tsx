@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { MentalHealthOverview } from '@/features/psikotes/kesehatan-mental/components'
 
 export const metadata: Metadata = {
-  title: 'Kesehatan Mental — TITIK MULA',
+  title: 'Kesehatan Mental — BERMOELA',
   description: 'Kenali kondisi kesehatan mental Anda melalui tes yang dirancang oleh profesional psikologi.',
 }
 
