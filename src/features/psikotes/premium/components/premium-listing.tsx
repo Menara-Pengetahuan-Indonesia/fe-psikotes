@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { Search, Star, Sparkles, Plus, Hexagon, Diamond, Grid, BookOpen } from 'lucide-react'
+import { Search, Star, Plus, Hexagon, Diamond, Grid } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 import { TestListingCard } from '@/features/psikotes/components'
