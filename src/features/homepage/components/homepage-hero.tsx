@@ -34,20 +34,17 @@ const DESTINATION_CARDS = [
 
 export function HomepageHero() {
   return (
-    <section className="relative h-dvh w-full overflow-hidden bg-[#f8fafc] flex flex-col items-center justify-center p-4 lg:p-8">
-      
-      {/* --- BACKGROUND FX --- */}
-      <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-emerald-100/60 rounded-full blur-[100px] pointer-events-none animate-pulse duration-[5000ms] mix-blend-multiply" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-indigo-100/60 rounded-full blur-[100px] pointer-events-none mix-blend-multiply" />
-      <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.4] mix-blend-overlay pointer-events-none" />
+    <section className="relative h-dvh w-full overflow-hidden bg-[#fafafa] flex flex-col items-center justify-center p-4 lg:p-8">
+
+      {/* --- CLEAN SOLID BACKGROUND (No Ornaments) --- */}
 
 
       {/* --- CONTENT --- */}
       <div className="relative z-10 w-full max-w-7xl flex flex-col h-full justify-center gap-8 lg:gap-16">
-        
+
         {/* Header */}
         <header className="flex flex-col items-center text-center space-y-6 mt-auto">
-           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm backdrop-blur-md">
+           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-100 border border-primary-300 shadow-sm backdrop-blur-md">
              <Sparkles className="w-3 h-3 text-amber-500 fill-amber-500" />
              <span className="text-[10px] font-bold tracking-[0.3em] text-slate-500 uppercase">
                 Indonesia's Life School
@@ -113,7 +110,7 @@ export function HomepageHero() {
                 key={card.title}
                 href={card.href}
                 className={cn(
-                  "group relative flex flex-col p-6 lg:p-8 rounded-[2.5rem] border bg-white shadow-sm overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50",
+                  "group relative flex flex-col p-6 lg:p-8 rounded-[2.5rem] border bg-primary-50 shadow-sm overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary-300/50",
                   theme.border
                 )}
                 style={{ animationDelay: `${idx * 150}ms` }}

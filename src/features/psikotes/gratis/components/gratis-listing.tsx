@@ -26,15 +26,15 @@ export function GratisListing() {
   return (
     <>
       {/* Header / Hero */}
-      <header className="pt-32 pb-20 px-6 bg-slate-50 border-b border-slate-100">
+      <header className="pt-32 pb-20 px-6 bg-[#F3F8EC] border-b border-primary-200">
         <div className="max-w-7xl mx-auto text-center space-y-6">
-          <span className="inline-block py-1 px-3 rounded-full bg-black text-white text-[10px] font-bold tracking-widest uppercase">
+          <span className="inline-block py-1 px-3 rounded-full bg-secondary-900 text-primary-50 text-[10px] font-bold tracking-widest uppercase">
             Free Access
           </span>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight text-slate-900">
-            Kumpulan Tes <span className="text-slate-400">Psikologi Gratis</span>
+          <h1 className="text-4xl md:text-6xl font-black tracking-tight text-secondary-900">
+            Kumpulan Tes <span className="text-primary-600">Psikologi Gratis</span>
           </h1>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-secondary-700 max-w-2xl mx-auto leading-relaxed">
             Mulai perjalanan mengenal diri dengan berbagai alat tes psikologi berbasis riset yang dapat diakses secara cuma-cuma.
           </p>
 
@@ -45,7 +45,7 @@ export function GratisListing() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Cari tes psikologi..."
-              className="w-full pl-12 pr-4 py-4 bg-white border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-black/5 transition-all shadow-sm text-sm font-medium"
+              className="w-full pl-12 pr-4 py-4 bg-primary-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-black/5 transition-all shadow-sm text-sm font-medium"
             />
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
           </div>
@@ -53,7 +53,7 @@ export function GratisListing() {
       </header>
 
       {/* Test Grid */}
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 bg-[#F3F8EC]">
         <div className="max-w-7xl mx-auto">
           {/* Filter Tabs */}
           <div className="flex flex-wrap gap-2 justify-center mb-16">
@@ -63,8 +63,8 @@ export function GratisListing() {
                 onClick={() => setActiveTab(tab)}
                 className={`px-6 py-2.5 rounded-full text-xs font-bold transition-all border ${
                   activeTab === tab
-                    ? 'bg-black text-white border-black'
-                    : 'bg-white text-slate-500 border-slate-200 hover:border-black hover:text-black'
+                    ? 'bg-secondary-900 text-primary-50 border-black'
+                    : 'bg-primary-50 text-slate-500 border-slate-200 hover:border-black hover:text-black'
                 }`}
               >
                 {tab}
@@ -76,7 +76,7 @@ export function GratisListing() {
           <div className="mb-16">
             <div className="flex items-center gap-4 mb-8">
               <h2 className="text-2xl font-black text-slate-900 tracking-tight">Tes Terpopuler</h2>
-              <div className="h-px bg-slate-200 flex-grow" />
+              <div className="h-px bg-slate-200 grow" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {popular.map((test) => (
@@ -90,7 +90,7 @@ export function GratisListing() {
             <div>
               <div className="flex items-center gap-4 mb-8">
                 <h2 className="text-2xl font-black text-slate-900 tracking-tight">Tes Lainnya</h2>
-                <div className="h-px bg-slate-200 flex-grow" />
+                <div className="h-px bg-slate-200 grow" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {others.map((test) => (
