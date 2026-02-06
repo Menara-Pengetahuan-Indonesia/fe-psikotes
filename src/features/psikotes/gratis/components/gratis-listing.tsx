@@ -29,7 +29,7 @@ export function GratisListing() {
       {/* ── Vibrant Hero ───────────────────────────────────────── */}
       <header className="relative overflow-hidden bg-linear-to-b from-purple-950 via-purple-900 to-purple-800 text-white pt-32 pb-20 md:pt-40 md:pb-32">
         {/* --- RICH BACKGROUND ORNAMENTS --- */}
-        <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay" 
+        <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay"
              style={{
                backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 C 20 80, 40 120, 60 100 S 100 80, 120 100 S 160 120, 200 100' stroke='white' fill='transparent' stroke-width='1'/%3E%3C/svg%3E")`,
                backgroundSize: '400px 400px'
@@ -39,7 +39,7 @@ export function GratisListing() {
         {/* Ambient Glows (Subtle Transition) */}
         <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
         <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
-        
+
         <Plus className="absolute top-[15%] left-[10%] text-purple-400/20 w-8 h-8 animate-pulse" />
         <Hexagon className="absolute top-[40%] right-[10%] text-white/5 w-24 h-24 -rotate-12 animate-float-slow" />
         <Diamond className="absolute bottom-[10%] left-[20%] text-amber-400/20 w-16 h-16 rotate-12 animate-float-medium" />
