@@ -15,6 +15,7 @@ export interface TestDetailProps {
   aspects: { heading: string; items: { title: string; desc: string }[] }[]
   price: string
   originalPrice: string
+  formHref: string
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -28,6 +29,7 @@ export function TestDetail({
   aspects,
   price,
   originalPrice,
+  formHref,
 }: TestDetailProps) {
   return (
     <div className="min-h-screen bg-[#fefce8]">
@@ -122,7 +124,7 @@ export function TestDetail({
                         {section.items.map((item) => (
                           <div
                             key={item.title}
-                            className="p-6 bg-white rounded-[2rem] border-2 border-stone-100 border-b-[6px] border-b-emerald-100 hover:border-emerald-500 hover:border-b-emerald-600 transition-all duration-300 shadow-xl shadow-stone-200/50"
+                            className="p-6 bg-white rounded-[2rem] border border-slate-100 hover:border-emerald-500 transition-all duration-300 shadow-xl shadow-stone-200/50 hover:-translate-y-1"
                           >
                             <p className="text-lg font-black text-stone-800 mb-2">
                               {item.title}
@@ -156,7 +158,7 @@ export function TestDetail({
                 ].map((question) => (
                   <button
                     key={question}
-                    className="w-full text-left flex items-center justify-between p-5 bg-white rounded-2xl border-2 border-stone-100 border-b-[4px] border-b-stone-200 hover:border-emerald-500 hover:border-b-emerald-600 transition-all group"
+                    className="w-full text-left flex items-center justify-between p-5 bg-white rounded-2xl border border-slate-100 hover:border-emerald-500 transition-all group"
                   >
                     <span className="text-sm font-bold text-stone-700 group-hover:text-stone-900">
                       {question}
@@ -170,9 +172,9 @@ export function TestDetail({
 
           {/* ── Right Column ─── Sticky Pricing Card ──────── */}
           <div className="lg:col-span-1">
-            <div className="sticky top-28 rounded-[2.5rem] border-2 border-slate-900 bg-white shadow-[10px_10px_0_0_#0f172a] overflow-hidden">
+            <div className="sticky top-28 rounded-[2.5rem] border border-slate-200 bg-white shadow-2xl shadow-slate-900/10 overflow-hidden">
               {/* Card Header */}
-              <div className="bg-secondary-900 text-white px-8 py-8 relative">
+              <div className="bg-slate-950 text-white px-8 py-8 relative">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl" />
                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-400 mb-2">
                   Investasi Masa Depan
@@ -203,7 +205,7 @@ export function TestDetail({
                         key={item}
                         className="flex items-start gap-3 text-sm text-slate-600 font-bold"
                       >
-                        <div className="mt-0.5 w-5 h-5 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-200 shadow-inner">
+                        <div className="mt-0.5 w-5 h-5 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-200 shadow-inner">
                           <Check className="w-3.5 h-3.5 stroke-[3]" />
                         </div>
                         {item}
@@ -216,11 +218,11 @@ export function TestDetail({
                 <div className="space-y-4 pt-4">
                   <Button
                     asChild
-                    className="w-full rounded-2xl h-16 text-base font-black uppercase tracking-widest bg-amber-500 hover:bg-amber-600 text-white shadow-[0_6px_0_#b45309] hover:shadow-[0_3px_0_#b45309] hover:translate-y-[3px] transition-all border-none"
+                    className="w-full rounded-2xl h-16 text-base font-black uppercase tracking-widest bg-slate-900 hover:bg-emerald-600 text-white shadow-lg shadow-slate-900/10 hover:shadow-emerald-600/20 transition-all border-none"
                   >
-                    <Link href="#" className="flex items-center gap-2">
+                    <Link href={formHref} className="flex items-center gap-2">
                       Mulai Tes Sekarang
-                      <ArrowRight className="w-5 h-5" />
+                      <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
 

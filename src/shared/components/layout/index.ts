@@ -1,3 +1,7 @@
 export { Section } from './section'
 export { Container } from './container'
 export { PageHeader } from './page-header'
+export { Navbar } from './navbar'
+export { Footer } from './footer'
+export { MainContainer } from './main-container'
+export type { NavItem } from './navbar'

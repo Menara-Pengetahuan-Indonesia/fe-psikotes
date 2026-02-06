@@ -1,4 +1,4 @@
-import type { NavItem } from '@/components/layout'
+import type { NavItem } from '@/shared/components/layout'
 
 export const psikotesNavItems: NavItem[] = [
   {

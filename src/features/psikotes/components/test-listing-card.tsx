@@ -8,70 +8,119 @@ import {
 } from '@/components/ui/card'
 
 import type { PsikotesTest } from '../types'
+import { cn } from '@/lib/utils'
 
 interface TestListingCardProps {
   test: PsikotesTest
+  variant?: 'emerald' | 'amber' | 'indigo'
 }
 
-export function TestListingCard({ test }: TestListingCardProps) {
+export function TestListingCard({ test, variant = 'emerald' }: TestListingCardProps) {
   const Icon = test.icon
   const detailHref = `/psikotes/${test.category}/${test.slug}`
 
+  const themes = {
+    emerald: {
+      border: 'hover:border-emerald-500',
+      shadow: 'hover:shadow-emerald-900/10',
+      iconBg: 'bg-emerald-50',
+      iconColor: 'text-emerald-600',
+      iconHover: 'group-hover:bg-emerald-600',
+      titleHover: 'group-hover:text-emerald-700',
+      userIcon: 'text-emerald-500',
+      btnBg: 'hover:bg-emerald-600',
+      btnShadow: 'hover:shadow-emerald-600/20',
+    },
+    amber: {
+      border: 'hover:border-amber-500',
+      shadow: 'hover:shadow-amber-900/10',
+      iconBg: 'bg-amber-50',
+      iconColor: 'text-amber-600',
+      iconHover: 'group-hover:bg-amber-600',
+      titleHover: 'group-hover:text-amber-700',
+      userIcon: 'text-amber-500',
+      btnBg: 'hover:bg-amber-600',
+      btnShadow: 'hover:shadow-slate-900/20',
+    },
+    indigo: {
+      border: 'hover:border-indigo-500',
+      shadow: 'hover:shadow-indigo-900/10',
+      iconBg: 'bg-indigo-50',
+      iconColor: 'text-indigo-600',
+      iconHover: 'group-hover:bg-indigo-600',
+      titleHover: 'group-hover:text-indigo-700',
+      userIcon: 'text-indigo-500',
+      btnBg: 'hover:bg-indigo-600',
+      btnShadow: 'hover:shadow-indigo-600/20',
+    }
+  }
+
+  const theme = themes[variant]
+
   return (
-    <Card className="group flex flex-col p-0 border-slate-100 hover:border-slate-300 hover:shadow-xl hover:shadow-slate-100 transition-all duration-300 rounded-3xl">
+    <Card className={cn(
+      "group relative flex flex-col p-1 transition-all duration-500 overflow-hidden",
+      "bg-white border border-slate-200 hover:shadow-2xl hover:-translate-y-1.5",
+      "rounded-[2.5rem] shadow-sm",
+      theme.border,
+      theme.shadow
+    )}>
       {/* Body */}
-      <CardContent className="flex-1 flex flex-col px-6 pt-6 pb-0">
+      <CardContent className="relative z-10 flex-1 flex flex-col px-6 pt-7 pb-0">
         {/* Icon + category tag */}
         <div className="flex justify-between items-start mb-6">
-          <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-900 group-hover:bg-black group-hover:text-white transition-colors">
-            <Icon className="w-5 h-5 stroke-[1.5]" />
+          <div className={cn(
+            "w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-500",
+            theme.iconBg,
+            theme.iconColor,
+            theme.iconHover,
+            "group-hover:text-white"
+          )}>
+            <Icon className="w-6 h-6 stroke-2" />
           </div>
           {test.subCategory && (
-            <span className="px-3 py-1 bg-slate-50 text-[10px] font-bold uppercase tracking-wider text-slate-400 rounded-lg">
+            <span className="px-3 py-1 bg-stone-50 text-[9px] font-black uppercase tracking-wider text-stone-400 rounded-full border border-stone-100">
               {test.subCategory}
             </span>
           )}
         </div>
 
         {/* Title */}
-        <h3 className="text-lg font-black text-slate-900 mb-3 leading-tight group-hover:underline decoration-2 underline-offset-4">
+        <h3 className={cn("text-lg font-black text-slate-800 mb-3 leading-tight transition-colors", theme.titleHover)}>
           {test.title}
         </h3>
 
-        {/* Price badge (premium only) */}
-        {test.price && (
-          <div className="flex items-baseline gap-1 mb-4">
-            <span className="text-xl font-black text-slate-900">{test.price}</span>
-            <span className="text-[10px] text-slate-400 font-medium">/ akses</span>
-          </div>
-        )}
-
         {/* Description */}
-        <p className="text-xs text-slate-500 leading-relaxed flex-grow">
+        <p className="text-xs font-medium text-stone-500 leading-relaxed line-clamp-3 mb-6">
           {test.description}
         </p>
       </CardContent>
 
       {/* Footer: stats + CTA */}
-      <CardFooter className="flex-col gap-4 px-6 pt-6 pb-6">
+      <CardFooter className="relative z-10 flex-col gap-4 px-6 pt-4 pb-7">
         {/* Users + Duration row */}
-        <div className="w-full flex items-center justify-between text-[11px] font-bold text-slate-400">
+        <div className="w-full flex items-center justify-between text-[10px] font-bold text-stone-400 uppercase tracking-widest">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5">
-              <Users className="w-3.5 h-3.5" /> {test.users}
+              <Users className={cn("w-3.5 h-3.5", theme.userIcon)} /> {test.users}
             </span>
             <span className="flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5" /> {test.duration}
+              <Clock className="w-3.5 h-3.5 text-sky-500" /> {test.duration}
             </span>
           </div>
         </div>
 
-        {/* CTA */}
+        {/* CTA Button */}
         <Link
           href={detailHref}
-          className="w-full py-3 bg-slate-50 text-slate-900 rounded-xl text-xs font-bold uppercase tracking-wider group-hover:bg-black group-hover:text-white transition-all flex items-center justify-center gap-2"
+          className={cn(
+            "w-full py-3.5 bg-slate-900 text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-900/10",
+            theme.btnBg,
+            theme.btnShadow
+          )}
         >
-          Mulai Tes <ArrowRight className="w-3.5 h-3.5" />
+          Mulai Tes 
+          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
         </Link>
       </CardFooter>
     </Card>

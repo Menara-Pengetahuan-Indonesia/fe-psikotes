@@ -35,6 +35,7 @@ export default function RelationshipPage() {
         ]}
         price="Rp 25.000"
         originalPrice="Rp 50.000"
+        formHref="/psikotes/kesehatan-mental/relationship/form"
       />
     </main>
   )

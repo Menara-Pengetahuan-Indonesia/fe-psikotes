@@ -35,6 +35,7 @@ export default function KenaikanJabatanPage() {
         ]}
         price="Rp 55.000"
         originalPrice="Rp 110.000"
+        formHref="/psikotes/perusahaan/kenaikan-jabatan/asesmen"
       />
     </main>
   )

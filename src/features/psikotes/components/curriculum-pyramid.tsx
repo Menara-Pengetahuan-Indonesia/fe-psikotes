@@ -42,22 +42,23 @@ export function CurriculumPyramid() {
                const Icon = LEVEL_ICONS[level.level - 1]
                
                const blockStyles = [
-                 'bg-emerald-50 text-emerald-900 border-b-8 border-emerald-200 z-50', 
-                 'bg-emerald-100 text-emerald-900 border-b-8 border-emerald-200 z-40', 
-                 'bg-emerald-200 text-emerald-900 border-b-8 border-emerald-300 z-30', 
-                 'bg-emerald-300 text-emerald-900 border-b-8 border-emerald-400 z-20', 
-                 'bg-emerald-400 text-white border-b-8 border-emerald-600 z-10',       
+                 'bg-emerald-50 text-emerald-900 border-emerald-200 z-50 shadow-2xl shadow-emerald-900/10', 
+                 'bg-emerald-100 text-emerald-900 border-emerald-200 z-40 shadow-xl shadow-emerald-900/5', 
+                 'bg-emerald-200 text-emerald-900 border-emerald-300 z-30 shadow-lg shadow-emerald-900/5', 
+                 'bg-emerald-300 text-emerald-900 border-emerald-400 z-20 shadow-md shadow-emerald-900/5', 
+                 'bg-emerald-400 text-white border-emerald-600 z-10 shadow-sm',       
                ]
 
                return (
                  <div 
                    key={level.level} 
                    className={cn(
-                     "relative flex items-center justify-between px-8 py-5 rounded-2xl shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1 w-full",
+                     "relative flex items-center justify-between px-8 py-6 rounded-3xl border transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 w-full",
                      level.width,
                      blockStyles[5 - level.level]
                    )}
                  >
+
                    <div className="flex items-center gap-4">
                      <div className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center backdrop-blur-sm">
                         <span className="font-black text-sm opacity-80">0{level.level}</span>

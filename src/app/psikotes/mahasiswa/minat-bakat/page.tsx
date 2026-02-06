@@ -35,6 +35,7 @@ export default function MinatBakatPage() {
         ]}
         price="Rp 25.000"
         originalPrice="Rp 50.000"
+        formHref="/psikotes/mahasiswa/minat-bakat/form"
       />
     </main>
   )

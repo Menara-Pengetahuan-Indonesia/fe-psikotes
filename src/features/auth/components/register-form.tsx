@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ArrowRight, Mail, Lock, Eye, EyeOff, User } from 'lucide-react'
+import { ArrowRight, Mail, Lock, Eye, EyeOff, User, Sparkles } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -53,91 +53,101 @@ export function RegisterForm({ onSuccess, className }: RegisterFormProps) {
   return (
     <div
       className={cn(
-        'w-full max-w-md bg-white border border-gray-200 rounded-3xl p-8 md:p-10 shadow-lg',
+        'w-full max-w-md bg-white border border-slate-100 rounded-[2.5rem] p-10 md:p-12 shadow-2xl shadow-indigo-900/5 relative overflow-hidden',
         className
       )}
     >
+      {/* Decorative Ornaments */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-full blur-3xl opacity-50" />
+      <div className="absolute bottom-0 left-0 w-32 h-32 bg-indigo-50 rounded-full blur-3xl opacity-50" />
+
       {/* Header */}
-      <div className="text-center mb-10 space-y-3">
-        <Link href="/" className="inline-block">
-          <h1 className="text-2xl font-black text-gray-900 tracking-tighter">
-            BERMOELA<span className="text-primary">.</span>
-          </h1>
+      <div className="text-center mb-12 space-y-4 relative z-10">
+        <Link href="/" className="inline-flex items-center gap-2 group">
+           <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white shadow-lg group-hover:rotate-12 transition-transform duration-300">
+              <Sparkles className="w-5 h-5 fill-white" />
+           </div>
+           <span className="text-2xl font-black text-slate-900 tracking-tighter">
+            BERMOELA<span className="text-emerald-500">.</span>
+          </span>
         </Link>
-        <p className="text-xs font-bold tracking-[0.2em] text-gray-400 uppercase">
-          Create Account
-        </p>
+        <div className="space-y-1">
+          <h2 className="text-xl font-black text-slate-900 tracking-tight">Buat Akun Baru</h2>
+          <p className="text-xs font-bold tracking-[0.1em] text-slate-400 uppercase">
+            Mulai perjalanan Anda hari ini
+          </p>
+        </div>
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 relative z-10">
         {/* Name Input */}
         <div className="space-y-2">
-          <Label htmlFor="name" className="text-xs font-bold text-gray-600 uppercase tracking-wider">
-            Name
+          <Label htmlFor="name" className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">
+            Nama Lengkap
           </Label>
           <div className="relative group">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-              <User className="h-5 w-5 text-gray-400 group-focus-within:text-gray-900 transition-colors" />
+              <User className="h-5 w-5 text-slate-300 group-focus-within:text-emerald-500 transition-colors" />
             </div>
             <Input
               id="name"
               type="text"
               placeholder="John Doe"
-              className="pl-11"
+              className="pl-11 h-14 rounded-2xl border-slate-100 bg-slate-50/50 focus:bg-white transition-all font-medium"
               {...register('name')}
               aria-invalid={errors.name ? 'true' : 'false'}
             />
           </div>
           {errors.name && (
-            <p className="text-xs text-destructive">{errors.name.message}</p>
+            <p className="text-[10px] font-bold text-red-500 uppercase tracking-tight ml-1">{errors.name.message}</p>
           )}
         </div>
 
         {/* Email Input */}
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-xs font-bold text-gray-600 uppercase tracking-wider">
-            Email
+          <Label htmlFor="email" className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">
+            Email Address
           </Label>
           <div className="relative group">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-              <Mail className="h-5 w-5 text-gray-400 group-focus-within:text-gray-900 transition-colors" />
+              <Mail className="h-5 w-5 text-slate-300 group-focus-within:text-emerald-500 transition-colors" />
             </div>
             <Input
               id="email"
               type="email"
-              placeholder="name@example.com"
-              className="pl-11"
+              placeholder="nama@email.com"
+              className="pl-11 h-14 rounded-2xl border-slate-100 bg-slate-50/50 focus:bg-white transition-all font-medium"
               {...register('email')}
               aria-invalid={errors.email ? 'true' : 'false'}
             />
           </div>
           {errors.email && (
-            <p className="text-xs text-destructive">{errors.email.message}</p>
+            <p className="text-[10px] font-bold text-red-500 uppercase tracking-tight ml-1">{errors.email.message}</p>
           )}
         </div>
 
         {/* Password Input */}
         <div className="space-y-2">
-          <Label htmlFor="password" className="text-xs font-bold text-gray-600 uppercase tracking-wider">
+          <Label htmlFor="password" className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">
             Password
           </Label>
           <div className="relative group">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-              <Lock className="h-5 w-5 text-gray-400 group-focus-within:text-gray-900 transition-colors" />
+              <Lock className="h-5 w-5 text-slate-300 group-focus-within:text-emerald-500 transition-colors" />
             </div>
             <Input
               id="password"
               type={showPassword ? 'text' : 'password'}
               placeholder="••••••••"
-              className="pl-11 pr-12"
+              className="pl-11 pr-12 h-14 rounded-2xl border-slate-100 bg-slate-50/50 focus:bg-white transition-all font-medium"
               {...register('password')}
               aria-invalid={errors.password ? 'true' : 'false'}
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+              className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-300 hover:text-slate-500 transition-colors"
               aria-label="Toggle password visibility"
             >
               {showPassword ? (
@@ -148,31 +158,31 @@ export function RegisterForm({ onSuccess, className }: RegisterFormProps) {
             </button>
           </div>
           {errors.password && (
-            <p className="text-xs text-destructive">{errors.password.message}</p>
+            <p className="text-[10px] font-bold text-red-500 uppercase tracking-tight ml-1">{errors.password.message}</p>
           )}
         </div>
 
         {/* Confirm Password Input */}
         <div className="space-y-2">
-          <Label htmlFor="confirmPassword" className="text-xs font-bold text-gray-600 uppercase tracking-wider">
-            Confirm Password
+          <Label htmlFor="confirmPassword" className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">
+            Konfirmasi Password
           </Label>
           <div className="relative group">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-              <Lock className="h-5 w-5 text-gray-400 group-focus-within:text-gray-900 transition-colors" />
+              <Lock className="h-5 w-5 text-slate-300 group-focus-within:text-emerald-500 transition-colors" />
             </div>
             <Input
               id="confirmPassword"
               type={showConfirmPassword ? 'text' : 'password'}
               placeholder="••••••••"
-              className="pl-11 pr-12"
+              className="pl-11 pr-12 h-14 rounded-2xl border-slate-100 bg-slate-50/50 focus:bg-white transition-all font-medium"
               {...register('confirmPassword')}
               aria-invalid={errors.confirmPassword ? 'true' : 'false'}
             />
             <button
               type="button"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+              className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-300 hover:text-slate-500 transition-colors"
               aria-label="Toggle confirmation visibility"
             >
               {showConfirmPassword ? (
@@ -183,36 +193,35 @@ export function RegisterForm({ onSuccess, className }: RegisterFormProps) {
             </button>
           </div>
           {errors.confirmPassword && (
-            <p className="text-xs text-destructive">{errors.confirmPassword.message}</p>
+            <p className="text-[10px] font-bold text-red-500 uppercase tracking-tight ml-1">{errors.confirmPassword.message}</p>
           )}
         </div>
 
         {/* Submit Button */}
         <Button
           type="submit"
-          className="w-full"
+          className="w-full h-14 rounded-2xl bg-slate-950 text-white font-black text-xs uppercase tracking-widest hover:bg-emerald-600 transition-all shadow-xl shadow-slate-950/10 hover:shadow-emerald-600/20 mt-4"
           disabled={isLoading}
         >
-          {isLoading ? 'Creating account...' : 'Sign Up'}
-          {!isLoading && <ArrowRight className="ml-2 h-4 w-4" />}
+          {isLoading ? 'Mendaftarkan...' : 'Daftar Sekarang'}
+          {!isLoading && <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />}
         </Button>
       </form>
 
       {/* Divider */}
-      <div className="my-8 flex items-center gap-4">
-        <Separator className="flex-1" />
-        <span className="text-xs text-gray-400 font-medium uppercase tracking-wider">Or</span>
-        <Separator className="flex-1" />
+      <div className="my-8 flex items-center gap-4 relative z-10">
+        <Separator className="flex-1 bg-slate-100" />
+        <span className="text-[10px] text-slate-300 font-black uppercase tracking-widest">Atau</span>
+        <Separator className="flex-1 bg-slate-100" />
       </div>
 
       {/* Social Signup */}
-      <Button
+      <button
         type="button"
-        variant="outline"
-        className="w-full mb-8"
+        className="w-full h-14 flex items-center justify-center gap-3 border-2 border-slate-100 rounded-2xl hover:bg-slate-50 transition-all text-xs font-black uppercase tracking-widest text-slate-600 relative z-10"
         onClick={handleGoogleSignup}
       >
-        <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
+        <svg className="w-5 h-5" viewBox="0 0 24 24">
           <path
             d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
             fill="#4285F4"
@@ -230,15 +239,15 @@ export function RegisterForm({ onSuccess, className }: RegisterFormProps) {
             fill="#EA4335"
           />
         </svg>
-        Continue with Google
-      </Button>
+        Daftar dengan Google
+      </button>
 
       {/* Login Link */}
-      <div className="text-center">
-        <p className="text-sm text-gray-600">
+      <div className="mt-10 text-center relative z-10">
+        <p className="text-xs font-bold text-slate-400 uppercase tracking-wide">
           Sudah punya akun?{' '}
-          <Link href="/login" className="font-bold text-gray-900 hover:text-black hover:underline transition-all">
-            Sign in
+          <Link href="/masuk" className="text-emerald-600 font-bold hover:text-emerald-700 transition-colors">
+            Masuk Sekarang
           </Link>
         </p>
       </div>

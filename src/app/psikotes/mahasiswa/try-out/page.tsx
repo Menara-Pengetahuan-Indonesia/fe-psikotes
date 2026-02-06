@@ -35,6 +35,7 @@ export default function TryOutPage() {
         ]}
         price="Rp 30.000"
         originalPrice="Rp 60.000"
+        formHref="/psikotes/mahasiswa/try-out/form"
       />
     </main>
   )

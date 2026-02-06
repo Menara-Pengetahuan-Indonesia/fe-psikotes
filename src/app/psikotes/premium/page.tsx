@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 import {
   PremiumListing,
-  GuaranteeSection,
+  // GuaranteeSection,
   Testimonials,
   FaqAccordion,
 } from '@/features/psikotes/premium/components'
@@ -16,7 +16,7 @@ export default function PremiumPage() {
   return (
     <main>
       <PremiumListing />
-      <GuaranteeSection />
+      {/* <GuaranteeSection /> */}
       <Testimonials />
       <FaqAccordion />
     </main>

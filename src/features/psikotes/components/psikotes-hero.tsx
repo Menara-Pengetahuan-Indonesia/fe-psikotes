@@ -12,7 +12,7 @@ const HERO_BENEFITS = [
 
 export function PsikotesHero() {
   return (
-    <section className="relative overflow-hidden bg-emerald-600 py-20 md:py-36">
+    <section className="relative overflow-hidden bg-linear-to-b from-emerald-800 via-emerald-700 to-emerald-500 py-20 md:py-36">
       
       {/* --- RICH BACKGROUND ORNAMENTS --- */}
       {/* 1. Subtle Topographic Line Pattern */}
@@ -22,20 +22,24 @@ export function PsikotesHero() {
              backgroundSize: '400px 400px'
            }}
       />
+
+      {/* 2. Ambient Glows (Smooth Transition) */}
+      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-emerald-900/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-emerald-300/20 rounded-full blur-[120px] pointer-events-none" />
       
-      {/* 2. Technical Ornaments (Non-Wave) */}
+      {/* 3. Technical Ornaments (Non-Wave) */}
       {/* Plus Signs */}
-      <Plus className="absolute top-[10%] left-[15%] text-emerald-400/40 w-8 h-8 animate-pulse" />
+      <Plus className="absolute top-[10%] left-[15%] text-emerald-300/30 w-8 h-8 animate-pulse" />
       <Plus className="absolute bottom-[15%] left-[5%] text-white/20 w-6 h-6 rotate-45" />
-      <Plus className="absolute top-[40%] right-[10%] text-amber-400/30 w-10 h-10 animate-spin-slow" />
+      <Plus className="absolute top-[40%] right-[10%] text-amber-300/20 w-10 h-10 animate-spin-slow" />
       
       {/* Floating Outlines */}
       <Hexagon className="absolute top-[20%] right-[30%] text-white/10 w-24 h-24 -rotate-12 animate-float-medium" />
       <Diamond className="absolute bottom-[20%] right-[40%] text-amber-200/10 w-16 h-16 rotate-12 animate-float-slow" />
 
-      {/* 3. Floating 3D-like Spheres & Polygons */}
-      <div className="absolute top-10 left-[10%] w-32 h-32 bg-linear-to-br from-emerald-400 to-emerald-700 rounded-full blur-2xl opacity-40 animate-float-slow" />
-      <div className="absolute bottom-20 right-[5%] w-48 h-48 bg-linear-to-tr from-amber-300 to-amber-600 rounded-full blur-3xl opacity-20 animate-float-medium" />
+      {/* 4. Floating 3D-like Spheres & Polygons */}
+      <div className="absolute top-10 left-[10%] w-32 h-32 bg-linear-to-br from-emerald-500/20 to-emerald-800/20 rounded-full blur-2xl opacity-40 animate-float-slow" />
+      <div className="absolute bottom-20 right-[5%] w-48 h-48 bg-linear-to-tr from-amber-300/10 to-amber-600/10 rounded-full blur-3xl opacity-20 animate-float-medium" />
       
       {/* Glass Polygon shard */}
       <div className="absolute top-[15%] left-[45%] w-20 h-20 bg-white/10 backdrop-blur-sm rounded-tr-[3rem] rounded-bl-[2rem] rotate-30 border border-white/20" />
