@@ -24,8 +24,8 @@ export function PsikotesHero() {
       />
 
       {/* 2. Ambient Glows (Smooth Transition) */}
-      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-emerald-900/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-emerald-300/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-[-10%] left-[-10%] w-150 h-150 bg-emerald-900/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-5%] w-125 h-125 bg-emerald-300/20 rounded-full blur-[120px] pointer-events-none" />
       
       {/* 3. Technical Ornaments (Non-Wave) */}
       {/* Plus Signs */}

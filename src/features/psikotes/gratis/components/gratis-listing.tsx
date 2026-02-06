@@ -37,8 +37,8 @@ export function GratisListing() {
         />
 
         {/* Ambient Glows (Subtle Transition) */}
-        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-[-10%] left-[-10%] w-150 h-150 bg-purple-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-125 h-125 bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
 
         <Plus className="absolute top-[15%] left-[10%] text-purple-400/20 w-8 h-8 animate-pulse" />
         <Hexagon className="absolute top-[40%] right-[10%] text-white/5 w-24 h-24 -rotate-12 animate-float-slow" />

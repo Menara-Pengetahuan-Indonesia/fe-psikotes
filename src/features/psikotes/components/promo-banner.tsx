@@ -41,11 +41,11 @@ export function PromoBanner() {
         <div className="flex items-center gap-2">
           <span className="text-xs md:text-sm font-medium">Hemat s/d 50% Berakhir dalam:</span>
           <div className="flex items-center gap-1.5">
-             <div className="bg-slate-950 text-white px-2 py-1 rounded-lg font-black text-xs min-w-[2.5rem]">{pad(time.h)}h</div>
+             <div className="bg-slate-950 text-white px-2 py-1 rounded-lg font-black text-xs min-w-10">{pad(time.h)}h</div>
              <span className="font-black">:</span>
-             <div className="bg-slate-950 text-white px-2 py-1 rounded-lg font-black text-xs min-w-[2.5rem]">{pad(time.m)}m</div>
+             <div className="bg-slate-950 text-white px-2 py-1 rounded-lg font-black text-xs min-w-10">{pad(time.m)}m</div>
              <span className="font-black">:</span>
-             <div className="bg-slate-950 text-white px-2 py-1 rounded-lg font-black text-xs min-w-[2.5rem]">{pad(time.s)}s</div>
+             <div className="bg-slate-950 text-white px-2 py-1 rounded-lg font-black text-xs min-w-10">{pad(time.s)}s</div>
           </div>
         </div>
 

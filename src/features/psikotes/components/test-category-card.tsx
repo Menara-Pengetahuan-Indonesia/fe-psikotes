@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Users, Clock, CreditCard, Sparkles } from 'lucide-react'
+import { ArrowRight, Users, Clock } from 'lucide-react'
 
 import {
   Card,
