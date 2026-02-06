@@ -28,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="id">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang="id" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#fefce8] min-h-screen`}>
         <QueryProvider>
           <Navbar />
           <MainContainer>

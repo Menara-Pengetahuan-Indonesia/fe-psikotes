@@ -103,7 +103,7 @@ export function Navbar() {
                   <DropdownMenu key={idx}>
                     <DropdownMenuTrigger className={cn(
                       "flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium outline-none transition-all",
-                      isScrolled ? "text-slate-600 hover:bg-slate-100 hover:text-slate-900" : "text-white/90 hover:bg-white/10 hover:text-white"
+                      isScrolled ? "text-slate-600 hover:bg-slate-50 hover:text-slate-900" : "text-white/90 hover:bg-white/10 hover:text-white"
                     )}>
                       {item.label} <ChevronDown className="w-3 h-3 opacity-50" />
                     </DropdownMenuTrigger>
@@ -129,8 +129,8 @@ export function Navbar() {
                   className={cn(
                     'px-4 py-2 rounded-full text-sm font-medium transition-all duration-300',
                     isActive
-                      ? (isScrolled ? 'bg-emerald-100 text-emerald-700 shadow-sm' : 'bg-white/20 text-white shadow-sm')
-                      : (isScrolled ? 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' : 'text-white/80 hover:bg-white/10 hover:text-white')
+                      ? (isScrolled ? 'bg-emerald-50 text-emerald-700 shadow-sm' : 'bg-white/20 text-white shadow-sm')
+                      : (isScrolled ? 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' : 'text-white/80 hover:bg-white/10 hover:text-white')
                   )}
                 >
                   {item.label}
@@ -155,13 +155,15 @@ export function Navbar() {
             <div className="hidden md:flex items-center gap-2">
               <Button variant="ghost" size="sm" className={cn(
                 "rounded-full transition-all",
-                isScrolled ? "text-slate-600 hover:text-slate-900 hover:bg-slate-100/50" : "text-white hover:text-white hover:bg-white/10"
+                isScrolled ? "text-slate-600 hover:text-slate-900 hover:bg-slate-50" : "text-white hover:text-white hover:bg-white/10"
               )} asChild>
                 <Link href="/masuk">Masuk</Link>
               </Button>
               <Button size="sm" className={cn(
                 "rounded-full font-bold shadow-md hover:shadow-lg transition-all",
-                isScrolled ? "bg-slate-900 hover:bg-slate-800 text-white" : "bg-white hover:bg-emerald-50 text-emerald-700"
+                isScrolled 
+                  ? "bg-secondary hover:bg-secondary/90 text-white" 
+                  : "bg-white hover:bg-emerald-50 text-emerald-700"
               )} asChild>
                 <Link href="/daftar">Daftar</Link>
               </Button>
@@ -169,7 +171,7 @@ export function Navbar() {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-2 rounded-full hover:bg-slate-100/50 text-slate-700"
+              className="md:hidden p-2 rounded-full hover:bg-slate-50 text-slate-700"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -212,7 +214,7 @@ export function Navbar() {
               </div>
             ))}
             <div className="flex flex-col gap-3 mt-6 pb-10">
-              <Button variant="outline" className="w-full rounded-full" asChild>
+              <Button variant="outline" className="w-full rounded-full border-slate-200" asChild>
                 <Link href="/masuk">Masuk</Link>
               </Button>
               <Button className="w-full rounded-full bg-emerald-600 hover:bg-emerald-700" asChild>

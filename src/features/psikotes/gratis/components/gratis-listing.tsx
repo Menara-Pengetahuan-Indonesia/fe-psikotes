@@ -26,7 +26,7 @@ export function GratisListing() {
   return (
     <>
       {/* Header / Hero */}
-      <header className="pt-32 pb-20 px-6 bg-[#F3F8EC] border-b border-primary-200">
+      <header className="pt-32 pb-20 px-6 bg-[#fefce8] border-b border-primary-200">
         <div className="max-w-7xl mx-auto text-center space-y-6">
           <span className="inline-block py-1 px-3 rounded-full bg-secondary-900 text-primary-50 text-[10px] font-bold tracking-widest uppercase">
             Free Access
@@ -53,7 +53,7 @@ export function GratisListing() {
       </header>
 
       {/* Test Grid */}
-      <section className="py-20 px-6 bg-[#F3F8EC]">
+      <section className="py-20 px-6 bg-[#fefce8]">
         <div className="max-w-7xl mx-auto">
           {/* Filter Tabs */}
           <div className="flex flex-wrap gap-2 justify-center mb-16">
