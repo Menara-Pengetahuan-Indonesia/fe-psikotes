@@ -35,6 +35,7 @@ export default function CpnsPage() {
         ]}
         price="Rp 35.000"
         originalPrice="Rp 70.000"
+        formHref="/psikotes/mahasiswa/cpns/form"
       />
     </main>
   )

@@ -1,7 +1,7 @@
 'use client'
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
-import { ServiceCard } from '@/shared/components'
+import { ServiceCard } from './service-card'
 import { SERVICES } from '../constants'
 import { Grid, Plus, Hexagon, Diamond } from 'lucide-react'
 

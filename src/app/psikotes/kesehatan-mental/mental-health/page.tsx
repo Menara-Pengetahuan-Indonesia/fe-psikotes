@@ -35,6 +35,7 @@ export default function MentalHealthDetailPage() {
         ]}
         price="Rp 20.000"
         originalPrice="Rp 40.000"
+        formHref="/psikotes/kesehatan-mental/mental-health/form"
       />
     </main>
   )

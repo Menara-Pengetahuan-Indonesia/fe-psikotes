@@ -15,7 +15,7 @@ import {
 import { psikotesNavItems, konselingNavItems, pelatihanNavItems } from '@/config/navigation'
 
 // Define types locally if not exported from config
-type NavItem = {
+export type NavItem = {
   label: string
   href?: string
   children?: { label: string; href: string }[]
@@ -48,13 +48,17 @@ const DEFAULT_NAV_ITEMS: NavItem[] = [
   },
 ]
 
-export function Navbar() {
+interface NavbarProps {
+  navItems?: NavItem[]
+}
+
+export function Navbar({ navItems: customNavItems }: NavbarProps = {}) {
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
   const pathname = usePathname()
 
-  // Always use DEFAULT_NAV_ITEMS with new structure
-  const navItems = DEFAULT_NAV_ITEMS
+  // Use custom navItems if provided, otherwise use DEFAULT_NAV_ITEMS
+  const navItems = customNavItems || DEFAULT_NAV_ITEMS
 
   // Handle Scroll Effect
   React.useEffect(() => {

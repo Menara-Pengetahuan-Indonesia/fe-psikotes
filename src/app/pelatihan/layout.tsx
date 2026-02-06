@@ -1,4 +1,4 @@
-import { Navbar, Footer } from '@/components/layout'
+import { Navbar, Footer } from '@/shared/components/layout'
 import { pelatihanNavItems } from '@/config/navigation'
 
 export default function PelatihanLayout({

@@ -1,8 +1,8 @@
 import { PHILOSOPHY_ITEMS } from '../constants'
-import { Leaf, Target, Zap, Heart, Plus, Hexagon, Diamond } from 'lucide-react'
+import { Sparkles, Target, Zap, Heart, Plus, Hexagon, Diamond } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const ICONS = [Leaf, Target, Zap, Heart]
+const ICONS = [Sparkles, Target, Zap, Heart]
 
 export function PhilosophySection() {
   return (
@@ -34,7 +34,7 @@ export function PhilosophySection() {
           <div className="space-y-10">
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-stone-200 text-emerald-600 text-xs font-bold uppercase tracking-wide shadow-sm">
-                <Leaf className="h-3 w-3" />
+                <Sparkles className="h-3 w-3" />
                 Filosofi Kami
               </div>
               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-stone-800 leading-[1.1]">
@@ -46,7 +46,7 @@ export function PhilosophySection() {
               </p>
             </div>
 
-            {/* 3D Tiles Grid */}
+            {/* Clean Tiles Grid */}
             <div className="grid sm:grid-cols-2 gap-4">
               {PHILOSOPHY_ITEMS.map((item, idx) => {
                 const Icon = ICONS[idx % ICONS.length]
@@ -55,36 +55,36 @@ export function PhilosophySection() {
                   <div 
                     key={item.title} 
                     className={cn(
-                      "p-5 rounded-2xl border-2 border-b-[6px] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl",
-                      "border-stone-100 border-b-emerald-500"
+                      "p-6 rounded-[2.5rem] border border-slate-100 bg-white transition-all duration-500 hover:-translate-y-1.5",
+                      "shadow-xl shadow-stone-200/50 hover:shadow-2xl hover:shadow-emerald-900/5 hover:border-emerald-500"
                     )}
                   >
-                    <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center mb-3 shadow-inner", "bg-emerald-50 text-emerald-700")}>
-                      <Icon className="h-5 w-5" />
+                    <div className={cn("w-12 h-12 rounded-2xl flex items-center justify-center mb-4 shadow-inner", "bg-emerald-50 text-emerald-700")}>
+                      <Icon className="h-6 w-6" />
                     </div>
-                    <h3 className="font-bold text-lg text-stone-800 mb-1">{item.title}</h3>
-                    <p className="text-stone-500 text-xs leading-relaxed font-medium">{item.description}</p>
+                    <h3 className="font-black text-lg text-slate-900 mb-2 leading-tight">{item.title}</h3>
+                    <p className="text-slate-500 text-xs leading-relaxed font-medium">{item.description}</p>
                   </div>
                 )
               })}
             </div>
           </div>
           
-          {/* Right: 3D Block Illustration */}
+          {/* Right: Refined Illustration */}
           <div className="hidden lg:block relative perspective-1000">
              <div className="aspect-square relative max-w-md mx-auto transform-style-3d animate-float-medium">
                 {/* Back Plate */}
-                <div className="absolute inset-0 bg-white rounded-[3rem] border-2 border-stone-100 shadow-2xl transform rotate-6 z-0"></div>
+                <div className="absolute inset-0 bg-white rounded-[3rem] border border-slate-100 shadow-2xl transform rotate-6 z-0"></div>
                 
                 {/* Front Plate */}
-                <div className="absolute inset-4 bg-white rounded-[2.5rem] border-2 border-stone-100 shadow-2xl flex items-center justify-center overflow-hidden z-10">
+                <div className="absolute inset-4 bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl flex items-center justify-center overflow-hidden z-10">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#fefce8_0%,transparent_40%)]" />
                     
-                    {/* Stacked 3D Blocks */}
+                    {/* Clean Stacked Blocks */}
                     <div className="relative flex flex-col items-center gap-4 transform translate-y-8">
-                       <div className="w-32 h-32 bg-emerald-500 rounded-3xl shadow-[0_10px_0_#059669] transform -rotate-12 z-30 flex items-center justify-center text-4xl border-2 border-emerald-400 text-white font-bold">🌱</div>
-                       <div className="w-40 h-16 bg-amber-400 rounded-2xl shadow-[0_8px_0_#d97706] transform rotate-3 z-20 border-2 border-amber-300"></div>
-                       <div className="w-48 h-16 bg-secondary-900 rounded-2xl shadow-[0_8px_0_#020617] transform -rotate-2 z-10 border-2 border-secondary-800"></div>
+                       <div className="w-32 h-32 bg-emerald-500 rounded-3xl shadow-2xl shadow-emerald-900/20 transform -rotate-12 z-30 flex items-center justify-center text-4xl border-4 border-white text-white font-bold">🧠</div>
+                       <div className="w-40 h-16 bg-amber-400 rounded-2xl shadow-xl shadow-amber-900/10 transform rotate-3 z-20 border-4 border-white"></div>
+                       <div className="w-48 h-16 bg-slate-900 rounded-2xl shadow-xl shadow-slate-900/10 transform -rotate-2 z-10 border-4 border-white"></div>
                     </div>
                 </div>
 

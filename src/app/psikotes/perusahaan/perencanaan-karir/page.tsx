@@ -35,6 +35,7 @@ export default function PerencanaanKarirPage() {
         ]}
         price="Rp 40.000"
         originalPrice="Rp 80.000"
+        formHref="/psikotes/perusahaan/perencanaan-karir/asesmen"
       />
     </main>
   )

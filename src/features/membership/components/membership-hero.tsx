@@ -1,54 +1,91 @@
-import { Users, Video, MessageSquare, ArrowRight } from 'lucide-react'
+import { Users, Video, MessageSquare, ArrowRight, Sparkles, Plus, Hexagon, Diamond } from 'lucide-react'
+import Link from 'next/link'
+import { cn } from '@/lib/utils'
 
 export function MembershipHero() {
   return (
-    <header className="pt-32 pb-20 px-6 bg-slate-50 border-b border-slate-200">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        {/* Left: Copy */}
-        <div className="space-y-8">
-          <span className="inline-block py-1 px-3 rounded-full bg-black text-white text-[10px] font-bold tracking-widest uppercase">
-            Exclusive Access
-          </span>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-900 leading-[1.1]">
-            The Good Life <br />
-            <span className="text-slate-400">Community.</span>
-          </h1>
-          <p className="text-lg text-slate-500 max-w-lg leading-relaxed">
-            Bergabung dengan ekosistem pertumbuhan diri terbesar di Indonesia. Akses materi premium, webinar eksklusif, dan komunitas yang suportif.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <button className="px-8 py-4 bg-black text-white rounded-xl font-bold text-sm tracking-wide hover:bg-slate-800 transition-all flex items-center gap-2">
-              Gabung Sekarang <ArrowRight className="w-4 h-4" />
-            </button>
-            <button className="px-8 py-4 bg-white border border-slate-200 text-slate-900 rounded-xl font-bold text-sm tracking-wide hover:border-black transition-all">
-              Lihat Detail Benefit
-            </button>
-          </div>
-        </div>
+    <header className="relative overflow-hidden bg-indigo-600 text-white pt-32 pb-20 md:pt-40 md:pb-32">
+      {/* --- RICH BACKGROUND ORNAMENTS --- */}
+      <div className="absolute inset-0 opacity-[0.07] pointer-events-none mix-blend-overlay" 
+           style={{
+             backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 C 20 80, 40 120, 60 100 S 100 80, 120 100 S 160 120, 200 100' stroke='white' fill='transparent' stroke-width='1'/%3E%3C/svg%3E")`,
+             backgroundSize: '400px 400px'
+           }}
+      />
+      
+      <Plus className="absolute top-[15%] left-[10%] text-indigo-400/40 w-8 h-8 animate-pulse" />
+      <Hexagon className="absolute top-[40%] right-[10%] text-white/10 w-24 h-24 -rotate-12 animate-float-slow" />
+      <Diamond className="absolute bottom-[10%] left-[20%] text-amber-400/30 w-16 h-16 rotate-12 animate-float-medium" />
 
-        {/* Right: Visual card mockup */}
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-tr from-slate-200 to-transparent rounded-[40px] blur-3xl opacity-50" />
-          <div className="relative bg-white border border-slate-200 rounded-[32px] p-6 shadow-2xl space-y-4 transform rotate-2 hover:rotate-0 transition-transform duration-500">
-            <div className="flex items-center gap-4 border-b border-slate-100 pb-4">
-              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white">
-                <Users className="w-6 h-6" />
-              </div>
-              <div>
-                <p className="font-black text-lg">Community Hub</p>
-                <p className="text-xs text-slate-400">12.5k+ Members Online</p>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left: Copy */}
+          <div className="space-y-10 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-700/50 border border-indigo-400 shadow-lg backdrop-blur-md mb-2 mx-auto lg:mx-0">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+              <span className="text-[10px] font-black tracking-[0.2em] text-indigo-50 uppercase">
+                Exclusive Growth Community
+              </span>
+            </div>
+
+            <div className="space-y-6">
+              <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-[1.1] drop-shadow-lg">
+                The Good Life <br />
+                <span className="text-amber-300 relative inline-block">
+                  Community
+                  <svg className="absolute -bottom-2 left-0 w-full h-3 text-amber-400/40" viewBox="0 0 100 10" preserveAspectRatio="none">
+                    <path d="M0 5 Q 25 0, 50 5 T 100 5" fill="none" stroke="currentColor" strokeWidth="4" />
+                  </svg>
+                </span>.
+              </h1>
+              <p className="text-lg md:text-xl text-indigo-50 max-w-lg leading-relaxed font-medium mx-auto lg:mx-0 opacity-90">
+                Bergabung dengan ekosistem pertumbuhan diri terbesar di Indonesia. Akses materi premium, webinar eksklusif, dan komunitas yang suportif.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center gap-6 pt-4 justify-center lg:justify-start">
+              <Link
+                href="#pricing"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 bg-slate-950 text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-indigo-700 transition-all shadow-xl shadow-slate-950/20"
+              >
+                Gabung Sekarang <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <div className="flex items-center gap-4">
+                <div className="h-12 w-px bg-indigo-500/50 hidden sm:block" />
+                <div className="flex flex-col text-left">
+                  <span className="text-[10px] text-indigo-200 font-black uppercase tracking-widest leading-none">Lifetime</span>
+                  <span className="text-sm font-black text-white tracking-tight">Standard Professional</span>
+                </div>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                <Video className="w-8 h-8 mb-3 text-slate-900" />
-                <p className="font-bold text-sm">Weekly Webinar</p>
-                <p className="text-[10px] text-slate-400">Live with Experts</p>
-              </div>
-              <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                <MessageSquare className="w-8 h-8 mb-3 text-slate-900" />
-                <p className="font-bold text-sm">Group Discussion</p>
-                <p className="text-[10px] text-slate-400">Supportive Peers</p>
+          </div>
+
+          {/* Right: Visual card mockup */}
+          <div className="hidden lg:block relative perspective-2000">
+            <div className="absolute inset-0 bg-indigo-400/20 blur-3xl opacity-50 rounded-full" />
+            <div className="relative animate-float-slow transform-style-3d">
+              <div className="bg-white border border-slate-100 rounded-[3rem] p-10 shadow-2xl shadow-indigo-950/20 space-y-8 transform rotate-3 hover:rotate-0 transition-all duration-700">
+                <div className="flex items-center gap-6 border-b border-slate-50 pb-8">
+                  <div className="w-16 h-16 bg-indigo-600 rounded-3xl flex items-center justify-center text-white shadow-lg border-4 border-indigo-50">
+                    <Users className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <p className="font-black text-2xl text-slate-900 leading-tight">Community Hub</p>
+                    <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">12.5k+ Active Members</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="bg-slate-50 p-6 rounded-[2rem] border border-slate-100 shadow-inner group/item hover:bg-white hover:shadow-xl transition-all duration-500">
+                    <Video className="w-10 h-10 mb-4 text-indigo-600 transition-transform group-hover/item:scale-110" />
+                    <p className="font-black text-slate-900 text-base leading-tight">Weekly Webinar</p>
+                    <p className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-tight">Live Experts</p>
+                  </div>
+                  <div className="bg-amber-50 p-6 rounded-[2rem] border border-amber-100 shadow-inner group/item hover:bg-white hover:shadow-xl transition-all duration-500">
+                    <MessageSquare className="w-10 h-10 mb-4 text-amber-500 transition-transform group-hover/item:scale-110" />
+                    <p className="font-black text-slate-900 text-base leading-tight">Privat Group</p>
+                    <p className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-tight">Supportive Peers</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

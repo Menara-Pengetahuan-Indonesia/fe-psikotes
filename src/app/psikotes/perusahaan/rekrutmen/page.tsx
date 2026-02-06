@@ -35,6 +35,7 @@ export default function RekrutmenPage() {
         ]}
         price="Rp 45.000"
         originalPrice="Rp 90.000"
+        formHref="/psikotes/perusahaan/rekrutmen/asesmen"
       />
     </main>
   )
