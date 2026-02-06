@@ -22,10 +22,30 @@ type NavItem = {
 }
 
 const DEFAULT_NAV_ITEMS: NavItem[] = [
-  { label: 'Beranda', href: '/' },
-  { label: 'Psikotes', href: '/psikotes' },
-  { label: 'Konseling', href: '/konseling' },
-  { label: 'Pelatihan', href: '/pelatihan' },
+  { label: 'Beranda', href: '/psikotes' },
+  {
+    label: 'Layanan',
+    children: [
+      { label: 'Psikotes', href: '/psikotes' },
+      { label: 'Konseling', href: '/konseling' },
+      { label: 'Pelatihan', href: '/pelatihan' },
+    ]
+  },
+  {
+    label: 'Kategori',
+    children: [
+      { label: 'Mahasiswa', href: '/psikotes/mahasiswa' },
+      { label: 'Perusahaan', href: '/psikotes/perusahaan' },
+      { label: 'Kesehatan Mental', href: '/psikotes/kesehatan-mental' },
+    ]
+  },
+  {
+    label: 'Jenis Tes',
+    children: [
+      { label: 'Gratis', href: '/psikotes/gratis' },
+      { label: 'Premium', href: '/psikotes/premium' },
+    ]
+  },
 ]
 
 export function Navbar() {
@@ -33,13 +53,8 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
   const pathname = usePathname()
 
-  // Determine active navigation based on path
-  const navItems = React.useMemo(() => {
-    if (pathname?.startsWith('/psikotes')) return psikotesNavItems
-    if (pathname?.startsWith('/konseling')) return konselingNavItems
-    if (pathname?.startsWith('/pelatihan')) return pelatihanNavItems
-    return DEFAULT_NAV_ITEMS
-  }, [pathname])
+  // Always use DEFAULT_NAV_ITEMS with new structure
+  const navItems = DEFAULT_NAV_ITEMS
 
   // Handle Scroll Effect
   React.useEffect(() => {
@@ -49,9 +64,6 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  // Hide Navbar on Homepage - AFTER all hooks
-  if (pathname === '/') return null
 
   return (
     <>
@@ -64,11 +76,9 @@ export function Navbar() {
         <nav
           className={cn(
             'w-full max-w-6xl flex items-center justify-between px-6 py-3 transition-all duration-500',
-            // Glassmorphism Styles
-            'backdrop-blur-md border border-white/20 shadow-sm',
             isScrolled
-              ? 'bg-white/90 rounded-full shadow-lg border-white/40' // Floating Capsule on Scroll
-              : 'bg-white/60 rounded-full border-transparent' // Transparent on Top
+              ? 'bg-white/90 backdrop-blur-md rounded-full shadow-lg border border-white/40' // Floating Capsule on Scroll
+              : 'bg-transparent rounded-full border-transparent' // Truly Transparent on Top
           )}
         >
           {/* Logo */}
@@ -76,8 +86,8 @@ export function Navbar() {
             <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center text-white font-black text-xs shadow-md group-hover:rotate-12 transition-transform duration-300">
               TM
             </div>
-            <span className={cn("font-bold text-lg tracking-tight", isScrolled ? "text-slate-800" : "text-slate-900")}>
-              TITIK<span className="text-emerald-600">MULA</span>
+            <span className={cn("font-bold text-lg tracking-tight transition-colors duration-500", isScrolled ? "text-slate-800" : "text-white")}>
+              TITIK<span className={isScrolled ? "text-emerald-600" : "text-emerald-400"}>MULA</span>
             </span>
           </Link>
 
@@ -88,7 +98,10 @@ export function Navbar() {
               if (item.children) {
                 return (
                   <DropdownMenu key={idx}>
-                    <DropdownMenuTrigger className="flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium text-slate-600 hover:bg-white/50 hover:text-slate-900 outline-none transition-all">
+                    <DropdownMenuTrigger className={cn(
+                      "flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium outline-none transition-all",
+                      isScrolled ? "text-slate-600 hover:bg-slate-100 hover:text-slate-900" : "text-white/90 hover:bg-white/10 hover:text-white"
+                    )}>
                       {item.label} <ChevronDown className="w-3 h-3 opacity-50" />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="start" className="w-48 bg-white/95 backdrop-blur-xl border-slate-100 shadow-xl rounded-xl p-2">
@@ -113,23 +126,40 @@ export function Navbar() {
                   className={cn(
                     'px-4 py-2 rounded-full text-sm font-medium transition-all duration-300',
                     isActive
-                      ? 'bg-emerald-100 text-emerald-700 shadow-sm'
-                      : 'text-slate-600 hover:bg-white/50 hover:text-slate-900'
+                      ? (isScrolled ? 'bg-emerald-100 text-emerald-700 shadow-sm' : 'bg-white/20 text-white shadow-sm')
+                      : (isScrolled ? 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' : 'text-white/80 hover:bg-white/10 hover:text-white')
                   )}
                 >
                   {item.label}
                 </Link>
               )
             })}
+
+            {/* Paid Member Button */}
+            <Link
+              href="/membership"
+              className={cn(
+                'px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 ml-2',
+                'bg-orange-500 hover:bg-orange-600 text-white shadow-md hover:shadow-lg'
+              )}
+            >
+              Paid Member
+            </Link>
           </div>
 
           {/* CTA & Mobile Toggle */}
           <div className="flex items-center gap-3 ml-auto">
             <div className="hidden md:flex items-center gap-2">
-              <Button variant="ghost" size="sm" className="rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100/50" asChild>
+              <Button variant="ghost" size="sm" className={cn(
+                "rounded-full transition-all",
+                isScrolled ? "text-slate-600 hover:text-slate-900 hover:bg-slate-100/50" : "text-white hover:text-white hover:bg-white/10"
+              )} asChild>
                 <Link href="/masuk">Masuk</Link>
               </Button>
-              <Button size="sm" className="rounded-full bg-slate-900 hover:bg-slate-800 text-white shadow-md hover:shadow-lg transition-all" asChild>
+              <Button size="sm" className={cn(
+                "rounded-full font-bold shadow-md hover:shadow-lg transition-all",
+                isScrolled ? "bg-slate-900 hover:bg-slate-800 text-white" : "bg-white hover:bg-emerald-50 text-emerald-700"
+              )} asChild>
                 <Link href="/daftar">Daftar</Link>
               </Button>
             </div>
