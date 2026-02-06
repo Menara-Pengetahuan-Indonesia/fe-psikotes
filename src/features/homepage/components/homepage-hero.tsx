@@ -34,7 +34,7 @@ const DESTINATION_CARDS = [
 
 export function HomepageHero() {
   return (
-    <section className="relative h-dvh w-full overflow-hidden bg-[#fafafa] flex flex-col items-center justify-center p-4 md:p-8 lg:p-12">
+    <section className="relative h-dvh w-full overflow-hidden bg-[#fefce8] flex flex-col items-center justify-center p-4 md:p-8 lg:p-12">
 
       {/* --- RICH BACKGROUND ORNAMENTS --- */}
       {/* 1. Subtle Topographic Line Pattern */}
@@ -71,7 +71,7 @@ export function HomepageHero() {
           </div>
 
           <div className="space-y-2 md:space-y-4 max-w-4xl relative">
-             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 tracking-tighter leading-[0.9] drop-shadow-sm">
+             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-slate-900 tracking-tighter leading-[0.9] drop-shadow-sm">
               BERMOELA<span className="text-emerald-500">.</span>
             </h1>
             <p className="text-slate-500 text-sm md:text-lg font-medium max-w-xl mx-auto leading-relaxed text-balance">
