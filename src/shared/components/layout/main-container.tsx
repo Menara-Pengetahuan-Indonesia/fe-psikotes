@@ -12,11 +12,11 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
   return (
     <main 
       className={cn(
-        "relative z-10 shadow-2xl transition-all duration-500",
+        "relative z-10 transition-all duration-500",
         "bg-[#faf5e4]", // Force solid cream background
         isHomepage 
           ? "h-dvh overflow-hidden mb-0 rounded-none" 
-          : "rounded-b-[80px] md:rounded-b-[120px] overflow-hidden mb-[400px] min-h-screen"
+          : "rounded-b-[80px] md:rounded-b-[120px] overflow-clip mb-[400px] min-h-screen"
       )}
     >
       <div className="min-h-full w-full bg-[#faf5e4]">

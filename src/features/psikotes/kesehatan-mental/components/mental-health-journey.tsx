@@ -16,7 +16,7 @@ export function MentalHealthJourney() {
         className={cn(
           'py-16 md:py-20 relative',
           'overflow-hidden bg-emerald-950',
-          'text-white shadow-2xl',
+          'text-white',
           'rounded-t-[40px]',
           'md:rounded-t-[80px]',
           'rounded-b-[40px]',

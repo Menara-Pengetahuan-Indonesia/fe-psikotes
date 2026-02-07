@@ -164,7 +164,7 @@ export function CurriculumPyramid() {
         className={cn(
           'py-24 md:py-36 relative',
           'overflow-hidden bg-emerald-950',
-          'text-white shadow-2xl',
+          'text-white',
           'rounded-t-[60px]',
           'md:rounded-t-[120px]',
           'rounded-b-[60px]',
