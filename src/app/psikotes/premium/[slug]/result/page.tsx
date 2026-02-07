@@ -3,13 +3,13 @@ import type { Metadata } from 'next'
 import { ResultDisplay } from '@/features/psikotes/gratis/components'
 
 export const metadata: Metadata = {
-  title: 'Hasil Tes — BERMOELA',
+  title: 'Hasil Tes Premium — BERMOELA',
   description:
-    'Lihat hasil tes psikologi Anda'
+    'Lihat hasil tes psikologi premium Anda'
     + ' dan rekomendasi yang dipersonalisasi.',
 }
 
-export default async function GratisResultPage({
+export default async function PremiumResultPage({
   params,
 }: {
   params: Promise<{ slug: string }>
@@ -20,9 +20,9 @@ export default async function GratisResultPage({
     <main>
       <ResultDisplay
         slug={slug}
-        backHref={`/psikotes/gratis/${slug}`}
-        tesLainnyaHref="/psikotes/gratis"
-        category="gratis"
+        backHref={`/psikotes/premium/${slug}`}
+        tesLainnyaHref="/psikotes/premium"
+        category="premium"
       />
     </main>
   )
