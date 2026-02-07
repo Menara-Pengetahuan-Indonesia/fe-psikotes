@@ -8,6 +8,16 @@ export interface User {
   email: string
   name: string
   role: UserRole
+  age?: number
+  gender?: 'male' | 'female'
+  address?: string
+  isProfileComplete?: boolean
+}
+
+interface ProfileData {
+  age: number
+  gender: 'male' | 'female'
+  address: string
 }
 
 interface AuthState {
@@ -15,6 +25,7 @@ interface AuthState {
   token: string | null
   isAuthenticated: boolean
   setAuth: (user: User, token: string) => void
+  updateProfile: (data: ProfileData) => void
   logout: () => void
 }
 
@@ -27,6 +38,13 @@ export const useAuthStore = create<AuthState>()(
       setAuth: (user, token) => {
         localStorage.setItem('token', token)
         set({ user, token, isAuthenticated: true })
+      },
+      updateProfile: (data) => {
+        set((state) => ({
+          user: state.user
+            ? { ...state.user, ...data, isProfileComplete: true }
+            : null,
+        }))
       },
       logout: () => {
         localStorage.removeItem('token')

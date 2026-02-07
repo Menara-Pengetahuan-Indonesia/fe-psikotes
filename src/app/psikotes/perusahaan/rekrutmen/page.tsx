@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import { TestDetail } from '@/features/psikotes/mahasiswa/components'
+import { AuthGuard } from '@/features/auth/components'
 
 export const metadata: Metadata = {
   title: 'Tes Rekrutmen — BERMOELA',
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 export default function RekrutmenPage() {
   return (
     <main>
+      <AuthGuard>
       <TestDetail
         title="Tes Rekrutmen"
         badge="Perusahaan"
@@ -37,6 +39,7 @@ export default function RekrutmenPage() {
         originalPrice="Rp 90.000"
         formHref="/psikotes/perusahaan/rekrutmen/asesmen"
       />
+      </AuthGuard>
     </main>
   )
 }

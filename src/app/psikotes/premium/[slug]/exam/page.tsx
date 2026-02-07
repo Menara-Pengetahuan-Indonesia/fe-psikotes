@@ -4,11 +4,12 @@ import { ExamInterface } from '@/features/psikotes/gratis/components'
 import { QUESTIONS_MAP } from '@/features/psikotes/constants'
 
 export const metadata: Metadata = {
-  title: 'Kerjakan Tes — BERMOELA',
-  description: 'Kerjakan tes psikologi gratis Anda sekarang.',
+  title: 'Kerjakan Tes Premium — BERMOELA',
+  description:
+    'Kerjakan tes psikologi premium Anda sekarang.',
 }
 
-export default async function GratisExamPage({
+export default async function PremiumExamPage({
   params,
 }: {
   params: Promise<{ slug: string }>
@@ -20,6 +21,8 @@ export default async function GratisExamPage({
       <ExamInterface
         slug={slug}
         questions={QUESTIONS_MAP[slug]}
+        backHref={`/psikotes/premium/${slug}`}
+        resultHref={`/psikotes/premium/${slug}/result`}
       />
     </main>
   )
