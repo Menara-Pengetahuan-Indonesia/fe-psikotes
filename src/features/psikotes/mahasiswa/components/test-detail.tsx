@@ -24,12 +24,12 @@ export interface TestDetailProps {
   description: string
   duration: string
   participants: string
-  aspects: {
+  aspects?: {
     heading: string
     items: { title: string; desc: string }[]
   }[]
   price: string
-  originalPrice: string
+  originalPrice?: string
   formHref: string
 }
 
@@ -322,7 +322,7 @@ function DetailBody({
       >
         {/* Left Column */}
         <div className="lg:col-span-2 space-y-14">
-          {aspects.length > 0 && (
+          {aspects && aspects.length > 0 && (
             <AspectsSection aspects={aspects} />
           )}
           <FaqSection />
@@ -346,7 +346,7 @@ function DetailBody({
 function AspectsSection({
   aspects,
 }: {
-  aspects: TestDetailProps['aspects']
+  aspects: NonNullable<TestDetailProps['aspects']>
 }) {
   return (
     <div className="space-y-8">
@@ -580,7 +580,7 @@ function PricingCard({
   formHref,
 }: {
   price: string
-  originalPrice: string
+  originalPrice?: string
   formHref: string
 }) {
   return (
@@ -631,15 +631,17 @@ function PricingCard({
           >
             {price}
           </span>
-          <span
-            className={cn(
-              'text-emerald-400/50',
-              'line-through text-sm',
-              'font-bold',
-            )}
-          >
-            {originalPrice}
-          </span>
+          {originalPrice && (
+            <span
+              className={cn(
+                'text-emerald-400/50',
+                'line-through text-sm',
+                'font-bold',
+              )}
+            >
+              {originalPrice}
+            </span>
+          )}
         </div>
       </div>
 

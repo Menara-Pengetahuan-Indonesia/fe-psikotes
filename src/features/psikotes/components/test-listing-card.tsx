@@ -119,7 +119,7 @@ export function TestListingCard({ test, variant = 'emerald' }: TestListingCardPr
             theme.btnShadow
           )}
         >
-          Mulai Tes 
+          Lihat Detail
           <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
         </Link>
       </CardFooter>
