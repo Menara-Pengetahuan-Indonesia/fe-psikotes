@@ -1,16 +1,37 @@
 import type { Metadata } from 'next'
 
-import { PerusahaanOverview } from '@/features/psikotes/perusahaan/components'
+import {
+  PerusahaanOverview,
+  PerusahaanStats,
+  PerusahaanProcess,
+} from '@/features/psikotes/perusahaan/components'
+import {
+  CategoryFaqSection,
+  CtaBannerSection,
+} from '@/features/psikotes/shared/components'
+import {
+  PERUSAHAAN_FAQ,
+  PERUSAHAAN_CTA,
+} from '@/features/psikotes/constants'
 
 export const metadata: Metadata = {
   title: 'Psikotes Perusahaan — BERMOELA',
-  description: 'Solusi psikotes korporat untuk rekrutmen, kenaikan jabatan, dan perencanaan karir yang efektif.',
+  description:
+    'Solusi psikotes korporat untuk'
+    + ' rekrutmen, kenaikan jabatan, dan'
+    + ' perencanaan karir yang efektif.',
 }
 
 export default function PerusahaanPage() {
   return (
     <main>
       <PerusahaanOverview />
+      <PerusahaanStats />
+      <PerusahaanProcess />
+      <CategoryFaqSection
+        faqs={PERUSAHAAN_FAQ}
+      />
+      <CtaBannerSection data={PERUSAHAAN_CTA} />
     </main>
   )
 }

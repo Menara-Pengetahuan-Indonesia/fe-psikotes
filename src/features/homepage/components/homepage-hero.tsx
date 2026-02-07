@@ -34,7 +34,7 @@ const DESTINATION_CARDS = [
 
 export function HomepageHero() {
   return (
-    <section className="relative h-dvh w-full overflow-hidden bg-[#fefce8] flex flex-col items-center justify-center p-4 md:p-8 lg:p-12">
+    <section className="relative h-dvh w-full overflow-hidden bg-[#faf5e4] flex flex-col items-center justify-center p-4 md:p-8 lg:p-12">
 
       {/* --- RICH BACKGROUND ORNAMENTS --- */}
       {/* 1. Subtle Topographic Line Pattern */}

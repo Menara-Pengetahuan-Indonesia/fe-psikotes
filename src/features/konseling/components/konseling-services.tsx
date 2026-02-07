@@ -33,7 +33,7 @@ const KONSELING_SERVICES = [
 
 export function KonselingServices() {
   return (
-    <section id="services" className="py-24 md:py-36 bg-[#fefce8] relative overflow-hidden">
+    <section id="services" className="py-24 md:py-36 bg-[#faf5e4] relative overflow-hidden">
       {/* Ornaments */}
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-50 translate-x-1/2 translate-y-1/2" />
 

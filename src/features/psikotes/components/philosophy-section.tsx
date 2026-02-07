@@ -7,7 +7,7 @@ const ICONS = [Sparkles, Target, Zap, Heart]
 
 export function PhilosophySection() {
   return (
-    <section className="relative z-10 py-24 md:py-36 bg-[#fefce8] overflow-hidden text-stone-800">
+    <section className="relative z-10 py-24 md:py-36 bg-[#faf5e4] overflow-hidden text-stone-800">
       
       {/* --- RICH BACKGROUND ORNAMENTS (Matching Hero) --- */}
       {/* 1. Subtle Topographic Line Pattern */}
@@ -79,7 +79,7 @@ export function PhilosophySection() {
                 
                 {/* Front Plate */}
                 <div className="absolute inset-4 bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl flex items-center justify-center overflow-hidden z-10">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#fefce8_0%,transparent_40%)]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#faf5e4_0%,transparent_40%)]" />
                     
                     {/* Clean Stacked Blocks */}
                     <div className="relative flex flex-col items-center gap-4 transform translate-y-8">
