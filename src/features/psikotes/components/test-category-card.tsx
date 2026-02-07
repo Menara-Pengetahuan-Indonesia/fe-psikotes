@@ -79,31 +79,66 @@ export function TestCategoryCard({ test, number, href, variant = 'emerald' }: Te
       {/* Body */}
       <CardContent className="relative z-10 flex-1 flex flex-col px-6 pt-7 pb-0">
         {/* Icon row + number badge */}
-        <div className="flex justify-between items-start mb-6">
-          <div className="relative">
-            <div className={cn("absolute inset-0 blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500", theme.glow)} />
-            <div className={cn(
-              "relative w-14 h-14 rounded-2xl border flex items-center justify-center transition-all duration-500 shadow-inner",
-              theme.iconBg,
-              theme.iconColor,
-              "group-hover:bg-indigo-600", // Default hover bg for icon
-              variant === 'emerald' && "group-hover:bg-emerald-600",
-              variant === 'amber' && "group-hover:bg-amber-600",
-              "group-hover:text-white group-hover:border-transparent",
-              variant === 'emerald' ? "border-emerald-100" : (variant === 'amber' ? "border-amber-100" : "border-indigo-100")
-            )}>
-              <Icon className="w-7 h-7 stroke-2" />
-            </div>
-          </div>
-          <div className="flex flex-col items-end gap-1">
-            <span className={cn("text-3xl font-black text-stone-200 transition-colors", 
-              variant === 'emerald' ? "group-hover:text-emerald-100" : (variant === 'amber' ? "group-hover:text-amber-100" : "group-hover:text-indigo-100")
-            )}>
+        <div
+          className={cn(
+            'flex justify-between',
+            'items-start mb-6',
+          )}
+        >
+          <div className="flex flex-col gap-1">
+            <span
+              className={cn(
+                'text-3xl font-black',
+                'text-slate-900',
+              )}
+            >
               {badge}
             </span>
-            <span className="px-3 py-1 bg-stone-50 text-[9px] font-black uppercase tracking-wider text-stone-400 rounded-full border border-stone-100">
+            <span
+              className={cn(
+                'px-3 py-1 bg-stone-50',
+                'text-[9px] font-black',
+                'uppercase tracking-wider',
+                'text-stone-400 rounded-full',
+                'border border-stone-100',
+              )}
+            >
               {test.tag}
             </span>
+          </div>
+          <div className="relative">
+            <div
+              className={cn(
+                'absolute inset-0 blur-xl',
+                'opacity-0',
+                'group-hover:opacity-40',
+                'transition-opacity',
+                'duration-500',
+                theme.glow,
+              )}
+            />
+            <div
+              className={cn(
+                'relative w-14 h-14',
+                'rounded-2xl border',
+                'flex items-center',
+                'justify-center',
+                'transition-all duration-500',
+                'shadow-inner',
+                theme.iconBg,
+                theme.iconColor,
+                theme.iconHover,
+                'group-hover:text-white',
+                'group-hover:border-transparent',
+                variant === 'emerald'
+                  ? 'border-emerald-100'
+                  : variant === 'amber'
+                    ? 'border-amber-100'
+                    : 'border-indigo-100',
+              )}
+            >
+              <Icon className="w-7 h-7 stroke-2" />
+            </div>
           </div>
         </div>
 

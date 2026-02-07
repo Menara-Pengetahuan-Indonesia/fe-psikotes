@@ -14,13 +14,13 @@ export function MentalHealthJourney() {
     <div className="bg-[#faf5e4]">
       <section
         className={cn(
-          'py-24 md:py-36 relative',
-          'overflow-hidden bg-emerald-600',
+          'py-16 md:py-20 relative',
+          'overflow-hidden bg-emerald-950',
           'text-white shadow-2xl',
-          'rounded-t-[60px]',
-          'md:rounded-t-[120px]',
-          'rounded-b-[60px]',
-          'md:rounded-b-[120px]',
+          'rounded-t-[40px]',
+          'md:rounded-t-[80px]',
+          'rounded-b-[40px]',
+          'md:rounded-b-[80px]',
         )}
       >
         {/* Topographic Pattern */}
@@ -70,7 +70,7 @@ export function MentalHealthJourney() {
         <div
           className={cn(
             'absolute top-0 left-0',
-            'w-96 h-96 bg-emerald-500/30',
+            'w-96 h-96 bg-emerald-800/30',
             'rounded-full blur-[100px]',
             '-translate-x-1/2 -translate-y-1/2',
             'pointer-events-none',
@@ -94,7 +94,7 @@ export function MentalHealthJourney() {
         >
           {/* Header */}
           <div
-            className="text-center mb-16 space-y-4"
+            className="text-center mb-10 space-y-3"
           >
             <div
               className={cn(
@@ -130,8 +130,24 @@ export function MentalHealthJourney() {
               )}
             >
               Perjalanan Menuju{' '}
-              <span className="text-amber-300">
+              <span className="text-amber-300 relative">
                 Kesejahteraan
+                <svg
+                  className={cn(
+                    'absolute -bottom-2 left-0',
+                    'w-full h-3',
+                    'text-amber-400/40',
+                  )}
+                  viewBox="0 0 100 10"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M0 5 Q 25 0, 50 5 T 100 5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                </svg>
               </span>
             </h2>
 
