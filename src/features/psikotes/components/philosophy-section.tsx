@@ -1,6 +1,7 @@
-import { PHILOSOPHY_ITEMS } from '../constants'
 import { Sparkles, Target, Zap, Heart, Plus, Hexagon, Diamond } from 'lucide-react'
+
 import { cn } from '@/lib/utils'
+import { PHILOSOPHY_ITEMS } from '../constants'
 
 const ICONS = [Sparkles, Target, Zap, Heart]
 

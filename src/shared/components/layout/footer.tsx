@@ -63,8 +63,19 @@ export function Footer() {
 
             {/* Socials */}
             <div className="flex gap-2.5">
-              {[Instagram, Linkedin, Twitter, Facebook].map((Icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-emerald-600 hover:text-white transition-colors border border-slate-700">
+              {[
+                { Icon: Instagram, href: 'https://instagram.com/bermoela' },
+                { Icon: Linkedin, href: 'https://linkedin.com/company/bermoela' },
+                { Icon: Twitter, href: 'https://x.com/bermoela' },
+                { Icon: Facebook, href: 'https://facebook.com/bermoela' },
+              ].map(({ Icon, href }) => (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-emerald-600 hover:text-white transition-colors border border-slate-700"
+                >
                   <Icon className="w-4.5 h-4.5" />
                 </a>
               ))}

@@ -1,5 +1,4 @@
 import { CheckCircle2, Sparkles, Star, Zap } from 'lucide-react'
-import { cn } from '@/lib/utils'
 
 const LITE_BENEFITS = [
   'Akses Komunitas Telegram',

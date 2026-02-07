@@ -1,6 +1,5 @@
 import { Users, Video, MessageSquare, ArrowRight, Sparkles, Plus, Hexagon, Diamond } from 'lucide-react'
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
 
 export function MembershipHero() {
   return (

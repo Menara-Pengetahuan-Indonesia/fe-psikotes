@@ -54,8 +54,8 @@ export function HomepageHero() {
       <Diamond className="absolute bottom-[15%] right-[30%] text-indigo-600/10 w-20 h-20 rotate-12 animate-float-slow" />
 
       {/* 3. Ambient Glows (Subtle for light theme) */}
-      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-emerald-100/30 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-indigo-100/30 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-[-10%] left-[-10%] w-150 h-150 bg-emerald-100/30 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-5%] w-125 h-125 bg-indigo-100/30 rounded-full blur-[120px] pointer-events-none" />
 
 
       {/* --- CONTENT --- */}

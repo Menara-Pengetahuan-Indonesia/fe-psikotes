@@ -78,7 +78,7 @@ export function MembershipFaq() {
                   </div>
                   <span
                     className={cn(
-                      "ml-4 flex-shrink-0 rounded-full p-2 transition-all",
+                      "ml-4 shrink-0 rounded-full p-2 transition-all",
                       isOpen ? "bg-indigo-50 text-indigo-600" : "bg-slate-50 text-slate-300"
                     )}
                   >

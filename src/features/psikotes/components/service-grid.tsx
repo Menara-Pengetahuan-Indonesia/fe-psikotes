@@ -1,9 +1,11 @@
 'use client'
 
+import { Grid, Plus, Hexagon, Diamond } from 'lucide-react'
+
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
+
 import { ServiceCard } from './service-card'
 import { SERVICES } from '../constants'
-import { Grid, Plus, Hexagon, Diamond } from 'lucide-react'
 
 const TAB_FILTERS: Record<string, string[]> = {
   semua: [],

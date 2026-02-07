@@ -1,6 +1,7 @@
-import { CURRICULUM_LEVELS } from '../constants'
 import { Trophy, Shield, Zap, Heart, User, Plus, Circle, Triangle, Sparkles } from 'lucide-react'
+
 import { cn } from '@/lib/utils'
+import { CURRICULUM_LEVELS } from '../constants'
 
 const LEVEL_ICONS = [User, Shield, Zap, Heart, Trophy] // Level 1 to 5
 

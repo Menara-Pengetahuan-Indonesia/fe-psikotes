@@ -147,7 +147,7 @@ export function Navbar({ navItems: customNavItems }: NavbarProps = {}) {
               href="/membership"
               className={cn(
                 'px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 ml-2',
-                'bg-orange-500 hover:bg-orange-600 text-white shadow-md hover:shadow-lg'
+                'bg-purple-900 hover:bg-purple-800 text-white shadow-md hover:shadow-lg'
               )}
             >
               Paid Member

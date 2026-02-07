@@ -35,7 +35,7 @@ export function GatheringSection() {
           </div>
           
           {/* Floating Avatar Card */}
-          <div className="absolute -bottom-10 -right-10 bg-white p-4 rounded-3xl shadow-2xl border border-slate-50 flex items-center gap-3 animate-float-medium hidden lg:flex">
+          <div className="absolute -bottom-10 -right-10 bg-white p-4 rounded-3xl shadow-2xl border border-slate-50 items-center gap-3 animate-float-medium hidden lg:flex">
              <div className="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center text-xl">👤</div>
              <div>
                 <p className="font-black text-sm text-slate-900">Andi Pratama</p>
@@ -61,7 +61,7 @@ export function GatheringSection() {
             {GATHERING_POINTS.map((item) => (
               <li key={item} className="flex items-start gap-4 text-slate-700 font-bold text-base">
                 <div className="w-6 h-6 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100 shadow-inner mt-0.5">
-                  <CheckCircle2 className="w-4 h-4 stroke-[3]" />
+                  <CheckCircle2 className="w-4 h-4 stroke-3" />
                 </div>
                 {item}
               </li>
