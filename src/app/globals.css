@@ -81,11 +81,11 @@
   --radius: 0.625rem;
 
   /* Base colors using new palette - CREAM THEME */
-  --background: #fefce8; /* Solid Cream */
+  --background: #faf5e4; /* Solid Cream */
   --foreground: #143D60; /* Navy for text */
-  --card: #fefce8; 
+  --card: #faf5e4; 
   --card-foreground: #143D60;
-  --popover: #fefce8; 
+  --popover: #faf5e4; 
   --popover-foreground: #143D60;
 
   /* Brand colors from palette */
@@ -111,11 +111,11 @@
   --chart-5: #6FA04E; /* Darker Green */
 
   /* Sidebar */
-  --sidebar: #fefce8; 
+  --sidebar: #faf5e4; 
   --sidebar-foreground: #143D60;
   --sidebar-primary: #A0C878;
-  --sidebar-primary-foreground: #fefce8; 
-  --sidebar-accent: #fefce8;
+  --sidebar-primary-foreground: #faf5e4; 
+  --sidebar-accent: #faf5e4;
   --sidebar-accent-foreground: #143D60;
   --sidebar-border: #A0C878;
   --sidebar-ring: #A0C878;
@@ -127,7 +127,7 @@
   --ps-secondary-foreground: #FFFFFF;
   --ps-accent: #EB5B00; 
   --ps-accent-foreground: #FFFFFF;
-  --ps-muted: #fefce8; 
+  --ps-muted: #faf5e4; 
   --ps-muted-foreground: #143D60;
 
   /* Konseling - Cream variation */
@@ -137,7 +137,7 @@
   --ks-secondary-foreground: #FFFFFF;
   --ks-accent: #6FA04E; 
   --ks-accent-foreground: #FFFFFF;
-  --ks-muted: #fefce8; 
+  --ks-muted: #faf5e4; 
   --ks-muted-foreground: #143D60;
 
   /* Training - Cream emphasis */
@@ -147,7 +147,7 @@
   --tr-secondary-foreground: #FFFFFF;
   --tr-accent: #A0C878; 
   --tr-accent-foreground: #FFFFFF;
-  --tr-muted: #fefce8; 
+  --tr-muted: #faf5e4; 
   --tr-muted-foreground: #143D60;
 }
 
@@ -220,10 +220,10 @@
     @apply border-border outline-ring/50;
   }
   html {
-    background-color: #fefce8; /* Hardcoded fallback to prevent flicker */
+    background-color: #faf5e4; /* Hardcoded fallback to prevent flicker */
   }
   body {
     @apply bg-background text-foreground antialiased min-h-screen;
-    background-color: #fefce8;
+    background-color: #faf5e4;
   }
 }

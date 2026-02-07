@@ -21,3 +21,16 @@ export interface TestFeature {
 export interface CorporateTest extends PsikotesTest {
   features: TestFeature[]
 }
+
+export interface FaqItem {
+  q: string
+  a: string
+}
+
+export interface CtaBannerData {
+  title: string
+  titleAccent: string
+  description: string
+  buttonText: string
+  href: string
+}

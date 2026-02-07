@@ -2,23 +2,26 @@ import type { Metadata } from 'next'
 
 import {
   PsikotesHero,
-  PhilosophySection,
+  CategoryShowcase,
   CurriculumPyramid,
-  ServiceGrid,
+  PsikotesFaq,
 } from '@/features/psikotes/components'
 
 export const metadata: Metadata = {
   title: 'Psikotes — BERMOELA',
-  description: 'Temukan potensi terbaikmu melalui psikotes profesional berbasis riset psikologi.',
+  description:
+    'Temukan potensi terbaikmu melalui'
+    + ' psikotes profesional berbasis'
+    + ' riset psikologi.',
 }
 
 export default function PsikotesPage() {
   return (
     <main>
       <PsikotesHero />
-      <PhilosophySection />
+      <CategoryShowcase />
       <CurriculumPyramid />
-      <ServiceGrid />
+      <PsikotesFaq />
     </main>
   )
 }

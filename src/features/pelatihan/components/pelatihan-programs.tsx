@@ -33,7 +33,7 @@ const TRAINING_PROGRAMS = [
 
 export function PelatihanPrograms() {
   return (
-    <section id="programs" className="py-24 md:py-36 bg-[#fefce8] relative overflow-hidden">
+    <section id="programs" className="py-24 md:py-36 bg-[#faf5e4] relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-orange-100/30 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
 

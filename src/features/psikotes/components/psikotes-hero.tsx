@@ -1,13 +1,43 @@
 import { Button } from '@/components/ui/button'
-import { Check, ArrowRight, Sparkles, Brain, Target, ShieldCheck, Plus, Hexagon, Diamond } from 'lucide-react'
+import {
+  ArrowRight,
+  Sparkles,
+  Brain,
+  Target,
+  Zap,
+  ShieldCheck,
+  Plus,
+  Hexagon,
+  Diamond,
+} from 'lucide-react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
 const HERO_BENEFITS = [
-  { label: 'Analisis Mendalam', desc: 'Tes berbasis riset psikologi profesional', icon: Brain },
-  { label: 'Rekomendasi Personal', desc: 'Langkah praktis sesuai hasil tesmu', icon: Target },
-  { label: 'Akses Mudah', desc: 'Online, kapan saja dan di mana saja', icon: ShieldCheck },
-  { label: 'Laporan Detail', desc: 'Insight lengkap yang mudah dipahami', icon: Check },
+  {
+    label: 'Self-Awareness',
+    desc: 'Kenali kekuatan dan kelemahan'
+      + ' diri secara objektif.',
+    icon: Brain,
+  },
+  {
+    label: 'Good Pragmatism',
+    desc: 'Fokus pada langkah yang benar-'
+      + 'benar berhasil dalam hidup.',
+    icon: Target,
+  },
+  {
+    label: 'Continuous Growth',
+    desc: 'Tumbuh satu persen lebih baik'
+      + ' setiap harinya.',
+    icon: Zap,
+  },
+  {
+    label: 'Mental Resilience',
+    desc: 'Bangun ketahanan mental'
+      + ' menghadapi tantangan.',
+    icon: ShieldCheck,
+  },
 ]
 
 export function PsikotesHero() {

@@ -42,7 +42,7 @@ const ECOSYSTEM_ITEMS = [
 
 export function EcosystemSection() {
   return (
-    <section className="py-24 md:py-36 bg-[#fefce8] relative overflow-hidden">
+    <section className="py-24 md:py-36 bg-[#faf5e4] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-20 space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm mb-2">

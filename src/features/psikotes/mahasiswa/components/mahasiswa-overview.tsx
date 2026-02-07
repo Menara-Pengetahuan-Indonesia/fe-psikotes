@@ -11,7 +11,7 @@ import { MAHASISWA_TESTS } from '../../constants'
 
 export function MahasiswaOverview() {
   return (
-    <div className="bg-[#fefce8]">
+    <div className="bg-[#faf5e4]">
       {/* ── Rich Hero ──────────────────────────────────────── */}
       <header
         className={

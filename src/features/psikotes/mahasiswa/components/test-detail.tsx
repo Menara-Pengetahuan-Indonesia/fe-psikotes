@@ -32,7 +32,7 @@ export function TestDetail({
   formHref,
 }: TestDetailProps) {
   return (
-    <div className="min-h-screen bg-[#fefce8]">
+    <div className="min-h-screen bg-[#faf5e4]">
       {/* ── Vibrant Hero ───────────────────────────────────────── */}
       <div className="relative overflow-hidden bg-emerald-600 text-white pt-24 pb-20 md:pt-36 md:pb-28">
         {/* --- RICH BACKGROUND ORNAMENTS --- */}
