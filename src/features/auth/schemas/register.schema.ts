@@ -1,25 +1,37 @@
 import { z } from 'zod'
 
-export const registerSchema = z.object({
-  name: z
+const PHONE_REGEX = /^(\+62|62|08)\d{8,13}$/
+
+const baseSchema = z.object({
+  firstName: z
     .string()
-    .min(2, 'Nama minimal 2 karakter')
-    .max(100, 'Nama terlalu panjang'),
+    .min(2, 'Nama depan minimal 2 karakter')
+    .max(50, 'Nama depan maksimal 50 karakter'),
+  lastName: z
+    .string()
+    .min(2, 'Nama belakang minimal 2 karakter')
+    .max(50, 'Nama belakang maksimal 50 karakter'),
   email: z
     .string()
     .min(1, 'Email wajib diisi')
     .email('Format email tidak valid'),
+  phone: z
+    .string()
+    .min(1, 'Nomor HP wajib diisi')
+    .regex(PHONE_REGEX, 'Format nomor HP tidak valid'),
   password: z
     .string()
     .min(8, 'Password minimal 8 karakter')
     .max(100, 'Password terlalu panjang')
-    .regex(/[A-Z]/, 'Password harus mengandung huruf besar')
-    .regex(/[a-z]/, 'Password harus mengandung huruf kecil')
-    .regex(/[0-9]/, 'Password harus mengandung angka'),
-  confirmPassword: z.string()
-}).refine((data) => data.password === data.confirmPassword, {
-  message: 'Password tidak cocok',
-  path: ['confirmPassword']
+    .regex(/[A-Z]/, 'Harus mengandung huruf besar')
+    .regex(/[a-z]/, 'Harus mengandung huruf kecil')
+    .regex(/[0-9]/, 'Harus mengandung angka'),
+  confirmPassword: z.string(),
 })
 
-export type RegisterFormData = z.infer<typeof registerSchema>
+export const registerSchema = baseSchema.refine(
+  (data) => data.password === data.confirmPassword,
+  { message: 'Password tidak cocok', path: ['confirmPassword'] },
+)
+
+export type RegisterFormData = z.infer<typeof baseSchema>
