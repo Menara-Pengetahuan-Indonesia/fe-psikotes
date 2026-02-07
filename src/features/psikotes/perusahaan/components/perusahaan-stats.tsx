@@ -12,11 +12,11 @@ export function PerusahaanStats() {
     <div className="bg-[#faf5e4]">
       <section
         className={cn(
-          'py-24 md:py-36 relative',
-          'overflow-hidden bg-emerald-600',
+          'py-16 md:py-20 relative',
+          'overflow-hidden bg-emerald-950',
           'text-white shadow-2xl',
-          'rounded-t-[60px] md:rounded-t-[120px]',
-          'rounded-b-[60px] md:rounded-b-[120px]',
+          'rounded-t-[40px] md:rounded-t-[80px]',
+          'rounded-b-[40px] md:rounded-b-[80px]',
         )}
       >
         {/* Topographic Pattern */}
@@ -49,7 +49,7 @@ export function PerusahaanStats() {
         <Plus
           className={cn(
             'absolute top-[15%] left-[5%]',
-            'text-emerald-400/40 w-8 h-8',
+            'text-emerald-400/20 w-8 h-8',
             'animate-pulse',
           )}
         />
@@ -65,7 +65,7 @@ export function PerusahaanStats() {
         <div
           className={cn(
             'absolute top-0 left-0',
-            'w-96 h-96 bg-emerald-500/30',
+            'w-96 h-96 bg-emerald-800/30',
             'rounded-full blur-[100px]',
             '-translate-x-1/2 -translate-y-1/2',
             'pointer-events-none',
@@ -90,7 +90,7 @@ export function PerusahaanStats() {
           {/* Header */}
           <div
             className={cn(
-              'text-center mb-16 space-y-4',
+              'text-center mb-10 space-y-3',
             )}
           >
             <div
@@ -127,10 +127,35 @@ export function PerusahaanStats() {
               )}
             >
               Dipercaya oleh{' '}
-              <span className="text-amber-300">
+              <span className="text-amber-300 relative">
                 Ratusan Perusahaan
+                <svg
+                  className={cn(
+                    'absolute -bottom-2 left-0',
+                    'w-full h-3',
+                    'text-amber-400/40',
+                  )}
+                  viewBox="0 0 100 10"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M0 5 Q 25 0, 50 5 T 100 5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                </svg>
               </span>
             </h2>
+            <p
+              className={cn(
+                'text-emerald-100 font-medium',
+                'max-w-xl mx-auto',
+              )}
+            >
+              Data nyata dari klien korporat
+              yang telah menggunakan layanan kami.
+            </p>
           </div>
 
           {/* Stats Grid */}
@@ -144,7 +169,7 @@ export function PerusahaanStats() {
               <div
                 key={stat.label}
                 className={cn(
-                  'text-center p-10',
+                  'text-center p-8',
                   'bg-white/5 backdrop-blur-md',
                   'rounded-[2.5rem]',
                   'border border-white/10',
@@ -156,16 +181,16 @@ export function PerusahaanStats() {
               >
                 <p
                   className={cn(
-                    'text-6xl md:text-7xl',
+                    'text-4xl md:text-5xl',
                     'font-black text-amber-300',
-                    'mb-4 tracking-tight',
+                    'mb-3 tracking-tight',
                   )}
                 >
                   {stat.value}
                 </p>
                 <h3
                   className={cn(
-                    'text-xl font-black',
+                    'text-lg font-black',
                     'text-white mb-2',
                     'tracking-tight',
                   )}
@@ -175,7 +200,7 @@ export function PerusahaanStats() {
                 <p
                   className={cn(
                     'text-emerald-200/70',
-                    'font-medium',
+                    'font-medium text-sm',
                   )}
                 >
                   {stat.description}

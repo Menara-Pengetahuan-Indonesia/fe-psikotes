@@ -18,7 +18,7 @@ export function MentalHealthOverview() {
           'relative overflow-hidden text-white'
           + ' bg-linear-to-b from-emerald-800'
           + ' via-emerald-700 to-emerald-500'
-          + ' pt-32 pb-20 md:pt-40 md:pb-28'
+          + ' pt-28 pb-14 md:pt-36 md:pb-20'
         }
       >
         {/* Topographic SVG overlay */}
@@ -142,7 +142,7 @@ export function MentalHealthOverview() {
       </header>
 
       {/* ── Content Section ────────────────────────────────── */}
-      <section className="py-20 px-6 relative z-10">
+      <section className="py-14 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Section Label */}
           <div
@@ -170,8 +170,36 @@ export function MentalHealthOverview() {
                   + ' text-slate-900 tracking-tight'
                 }
               >
-                Pilihan Tes Kesehatan Mental
+                Pilihan Tes{' '}
+                <span className="text-emerald-600 relative">
+                  Kesehatan Mental
+                  <svg
+                    className={
+                      'absolute -bottom-2 left-0'
+                      + ' w-full h-3'
+                      + ' text-emerald-300/50'
+                    }
+                    viewBox="0 0 100 10"
+                    preserveAspectRatio="none"
+                  >
+                    <path
+                      d="M0 5 Q 25 0, 50 5 T 100 5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    />
+                  </svg>
+                </span>
               </h2>
+              <p
+                className={
+                  'text-slate-500 font-medium'
+                  + ' text-sm max-w-md'
+                }
+              >
+                Asesmen klinis untuk memahami
+                kondisi psikologis Anda lebih dalam.
+              </p>
             </div>
             <div
               className={

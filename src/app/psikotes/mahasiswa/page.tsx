@@ -7,11 +7,9 @@ import {
 } from '@/features/psikotes/mahasiswa/components'
 import {
   CategoryFaqSection,
-  CtaBannerSection,
 } from '@/features/psikotes/shared/components'
 import {
   MAHASISWA_FAQ,
-  MAHASISWA_CTA,
 } from '@/features/psikotes/constants'
 
 export const metadata: Metadata = {
@@ -31,7 +29,6 @@ export default function MahasiswaPage() {
       <CategoryFaqSection
         faqs={MAHASISWA_FAQ}
       />
-      <CtaBannerSection data={MAHASISWA_CTA} />
     </main>
   )
 }

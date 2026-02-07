@@ -5,6 +5,8 @@ import {
   ChevronDown,
   HelpCircle,
   Sparkles,
+  Plus,
+  Hexagon,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -22,12 +24,91 @@ export function CategoryFaqSection({
   >(0)
 
   return (
-    <section className="py-24 md:py-36 bg-[#faf5e4]">
-      <div className="max-w-4xl mx-auto px-6">
+    <section
+      className={cn(
+        'py-16 md:py-20 bg-[#faf5e4]',
+        'relative overflow-hidden',
+      )}
+    >
+      {/* Topographic Pattern */}
+      <div
+        className={cn(
+          'absolute inset-0',
+          'opacity-[0.03]',
+          'pointer-events-none',
+          'mix-blend-multiply',
+        )}
+        style={{
+          backgroundImage:
+            'url("data:image/svg+xml,'
+            + '%3Csvg width=\'200\''
+            + ' height=\'200\''
+            + ' viewBox=\'0 0 200 200\''
+            + ' xmlns=\'http://www.w3.org/'
+            + '2000/svg\'%3E%3Cpath'
+            + ' d=\'M0 100 C 20 80, 40 120,'
+            + ' 60 100 S 100 80, 120 100'
+            + ' S 160 120, 200 100\''
+            + ' stroke=\'%23059669\''
+            + ' fill=\'transparent\''
+            + ' stroke-width=\'1\'/%3E'
+            + '%3C/svg%3E")',
+          backgroundSize: '400px 400px',
+        }}
+      />
+
+      {/* Ornaments */}
+      <Plus
+        className={cn(
+          'absolute top-[12%] left-[5%]',
+          'text-emerald-600/15 w-8 h-8',
+          'pointer-events-none',
+        )}
+      />
+      <Plus
+        className={cn(
+          'absolute bottom-[15%] right-[6%]',
+          'text-slate-400/15 w-6 h-6',
+          'rotate-45 pointer-events-none',
+        )}
+      />
+      <Hexagon
+        className={cn(
+          'absolute top-[35%] right-[8%]',
+          'text-emerald-600/[0.07]',
+          'w-20 h-20 -rotate-12',
+          'pointer-events-none',
+        )}
+      />
+
+      {/* Ambient Glows */}
+      <div
+        className={cn(
+          'absolute -top-16 -right-16',
+          'w-72 h-72 bg-emerald-100/30',
+          'rounded-full blur-[100px]',
+          'pointer-events-none',
+        )}
+      />
+      <div
+        className={cn(
+          'absolute -bottom-20 -left-20',
+          'w-64 h-64 bg-amber-100/20',
+          'rounded-full blur-[80px]',
+          'pointer-events-none',
+        )}
+      />
+
+      <div
+        className={cn(
+          'max-w-4xl mx-auto px-6',
+          'relative z-10',
+        )}
+      >
         {/* Header */}
         <div
           className={cn(
-            'text-center mb-20 space-y-4',
+            'text-center mb-12 space-y-3',
           )}
         >
           <div
@@ -64,8 +145,24 @@ export function CategoryFaqSection({
             )}
           >
             Pertanyaan{' '}
-            <span className="text-emerald-600">
+            <span className="text-emerald-600 relative">
               Umum
+              <svg
+                className={cn(
+                  'absolute -bottom-2 left-0',
+                  'w-full h-3',
+                  'text-emerald-300/50',
+                )}
+                viewBox="0 0 100 10"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M0 5 Q 25 0, 50 5 T 100 5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+              </svg>
             </span>
           </h2>
 
