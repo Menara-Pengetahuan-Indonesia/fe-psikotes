@@ -155,6 +155,9 @@ export function Navbar({ navItems: customNavItems }: NavbarProps = {}) {
     || pathname === '/masuk'
     || pathname === '/daftar'
     || pathname === '/forgot-password'
+    || pathname.startsWith('/pengguna')
+    || pathname.startsWith('/admin')
+    || pathname.startsWith('/perusahaan')
   if (hidden) return null
 
   return (
@@ -289,7 +292,7 @@ export function Navbar({ navItems: customNavItems }: NavbarProps = {}) {
 
             {/* Paid Member Button */}
             <Link
-              href="/membership"
+              href="/pengguna"
               className={cn(
                 'px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 ml-2 cursor-pointer',
                 'bg-purple-900 hover:bg-purple-800 text-white shadow-md hover:shadow-lg'

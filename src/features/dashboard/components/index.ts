@@ -1,1 +1,5 @@
 export { DashboardSidebar } from './sidebar'
+export { DashboardOverview } from './dashboard-overview'
+export { MyTests } from './my-tests'
+export { TestResults } from './test-results'
+export { UserProfile } from './user-profile'

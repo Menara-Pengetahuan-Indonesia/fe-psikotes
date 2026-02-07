@@ -10,6 +10,9 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
   const isAuthPage = pathname === '/masuk'
     || pathname === '/daftar'
     || pathname === '/forgot-password'
+  const isDashboard = pathname.startsWith('/pengguna')
+    || pathname.startsWith('/admin')
+    || pathname.startsWith('/perusahaan')
 
   return (
     <main
@@ -19,7 +22,9 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
           ? "bg-slate-50 h-dvh overflow-hidden mb-0 rounded-none"
           : isAuthPage
             ? "bg-white min-h-dvh mb-0 rounded-none"
-            : "bg-[#faf5e4] rounded-b-[80px] md:rounded-b-[120px] overflow-clip mb-[400px] min-h-screen"
+            : isDashboard
+              ? "bg-slate-50 min-h-dvh mb-0 rounded-none"
+              : "bg-[#faf5e4] rounded-b-[80px] md:rounded-b-[120px] overflow-clip mb-[400px] min-h-screen"
       )}
     >
       <div className={cn(
@@ -28,7 +33,9 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
           ? "bg-slate-50"
           : isAuthPage
             ? "bg-white"
-            : "bg-[#faf5e4]"
+            : isDashboard
+              ? "bg-slate-50"
+              : "bg-[#faf5e4]"
       )}>
         {children}
       </div>
