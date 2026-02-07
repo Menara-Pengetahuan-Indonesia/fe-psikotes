@@ -5,7 +5,26 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Brain,
+  Heart,
+  GraduationCap,
+  BookOpen,
+  Building2,
+  HeartPulse,
+  Gift,
+  Crown,
+  Users,
+  HeartHandshake,
+  Presentation,
+  Video,
+  Monitor,
+  Compass,
+  type LucideIcon,
+} from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,11 +33,34 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { psikotesNavItems, konselingNavItems, pelatihanNavItems } from '@/config/navigation'
 
-// Define types locally if not exported from config
+export type NavChildItem = {
+  label: string
+  href: string
+  icon?: string
+  desc?: string
+}
+
 export type NavItem = {
   label: string
   href?: string
-  children?: { label: string; href: string }[]
+  children?: NavChildItem[]
+}
+
+const ICON_MAP: Record<string, LucideIcon> = {
+  Brain,
+  Heart,
+  GraduationCap,
+  BookOpen,
+  Building2,
+  HeartPulse,
+  Gift,
+  Crown,
+  Users,
+  HeartHandshake,
+  Presentation,
+  Video,
+  Monitor,
+  Compass,
 }
 
 const DEFAULT_NAV_ITEMS: NavItem[] = [
@@ -26,25 +68,65 @@ const DEFAULT_NAV_ITEMS: NavItem[] = [
   {
     label: 'Layanan',
     children: [
-      { label: 'Psikotes', href: '/psikotes' },
-      { label: 'Konseling', href: '/konseling' },
-      { label: 'Pelatihan', href: '/pelatihan' },
-    ]
+      {
+        label: 'Psikotes',
+        href: '/psikotes',
+        icon: 'Brain',
+        desc: 'Tes psikologi terstandar',
+      },
+      {
+        label: 'Konseling',
+        href: '/konseling',
+        icon: 'Heart',
+        desc: 'Konsultasi dengan psikolog',
+      },
+      {
+        label: 'Pelatihan',
+        href: '/pelatihan',
+        icon: 'GraduationCap',
+        desc: 'Kembangkan potensi diri',
+      },
+    ],
   },
   {
     label: 'Kategori',
     children: [
-      { label: 'Mahasiswa', href: '/psikotes/mahasiswa' },
-      { label: 'Perusahaan', href: '/psikotes/perusahaan' },
-      { label: 'Kesehatan Mental', href: '/psikotes/kesehatan-mental' },
-    ]
+      {
+        label: 'Mahasiswa',
+        href: '/psikotes/mahasiswa',
+        icon: 'BookOpen',
+        desc: 'Tes minat bakat & jurusan',
+      },
+      {
+        label: 'Perusahaan',
+        href: '/psikotes/perusahaan',
+        icon: 'Building2',
+        desc: 'Rekrutmen & asesmen karyawan',
+      },
+      {
+        label: 'Kesehatan Mental',
+        href: '/psikotes/kesehatan-mental',
+        icon: 'HeartPulse',
+        desc: 'Deteksi dini kesehatan jiwa',
+      },
+    ],
   },
   {
     label: 'Jenis Tes',
     children: [
-      { label: 'Gratis', href: '/psikotes/gratis' },
-      { label: 'Premium', href: '/psikotes/premium' },
-    ]
+      {
+        label: 'Gratis',
+        href: '/psikotes/gratis',
+        icon: 'Gift',
+        desc: 'Coba tes tanpa biaya',
+      },
+      {
+        label: 'Premium',
+        href: '/psikotes/premium',
+        icon: 'Crown',
+        desc: 'Analisis mendalam & sertifikat',
+      },
+    ],
   },
 ]
 
@@ -104,21 +186,81 @@ export function Navbar({ navItems: customNavItems }: NavbarProps = {}) {
               // If item has children (Dropdown)
               if (item.children) {
                 return (
-                  <DropdownMenu key={idx}>
+                  <DropdownMenu key={idx} modal={false}>
                     <DropdownMenuTrigger className={cn(
-                      "flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium outline-none transition-all",
+                      "flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium outline-none transition-all cursor-pointer",
                       isScrolled ? "text-slate-600 hover:bg-slate-50 hover:text-slate-900" : "text-white/90 hover:bg-white/10 hover:text-white"
                     )}>
                       {item.label} <ChevronDown className="w-3 h-3 opacity-50" />
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="start" className="w-48 bg-white/95 backdrop-blur-xl border-slate-100 shadow-xl rounded-xl p-2">
-                      {item.children.map((child) => (
-                        <DropdownMenuItem key={child.href} asChild>
-                          <Link href={child.href} className="cursor-pointer font-medium text-slate-600 focus:text-emerald-600 focus:bg-emerald-50 rounded-lg">
-                            {child.label}
-                          </Link>
-                        </DropdownMenuItem>
-                      ))}
+                    <DropdownMenuContent
+                      align="start"
+                      className={cn(
+                        'w-72 rounded-2xl p-2',
+                        'bg-white/95 backdrop-blur-xl',
+                        'border border-slate-100 shadow-xl'
+                      )}
+                    >
+                      <div className="space-y-1">
+                        {item.children.map((child) => {
+                          const Icon = child.icon
+                            ? ICON_MAP[child.icon]
+                            : undefined
+                          return (
+                            <DropdownMenuItem
+                              key={child.href}
+                              asChild
+                            >
+                              <Link
+                                href={child.href}
+                                className={cn(
+                                  'flex items-center gap-3',
+                                  'cursor-pointer rounded-xl p-2.5',
+                                  'transition-colors duration-150',
+                                  'focus:bg-emerald-50',
+                                  'hover:bg-emerald-50 group'
+                                )}
+                              >
+                                {Icon && (
+                                  <div className={cn(
+                                    'flex h-10 w-10 shrink-0',
+                                    'items-center justify-center',
+                                    'rounded-xl bg-slate-100',
+                                    'transition-colors duration-150',
+                                    'group-hover:bg-emerald-100',
+                                    'group-focus:bg-emerald-100'
+                                  )}>
+                                    <Icon className={cn(
+                                      'h-5 w-5 text-slate-500',
+                                      'transition-colors duration-150',
+                                      'group-hover:text-emerald-600',
+                                      'group-focus:text-emerald-600'
+                                    )} />
+                                  </div>
+                                )}
+                                <div className="flex flex-col">
+                                  <span className={cn(
+                                    'text-sm font-semibold',
+                                    'text-slate-700',
+                                    'group-hover:text-emerald-700',
+                                    'group-focus:text-emerald-700'
+                                  )}>
+                                    {child.label}
+                                  </span>
+                                  {child.desc && (
+                                    <span className={cn(
+                                      'text-xs text-slate-400',
+                                      'leading-snug'
+                                    )}>
+                                      {child.desc}
+                                    </span>
+                                  )}
+                                </div>
+                              </Link>
+                            </DropdownMenuItem>
+                          )
+                        })}
+                      </div>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 )
@@ -131,7 +273,7 @@ export function Navbar({ navItems: customNavItems }: NavbarProps = {}) {
                   key={item.href || idx}
                   href={item.href || '#'}
                   className={cn(
-                    'px-4 py-2 rounded-full text-sm font-medium transition-all duration-300',
+                    'px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer',
                     isActive
                       ? (isScrolled ? 'bg-emerald-50 text-emerald-700 shadow-sm' : 'bg-white/20 text-white shadow-sm')
                       : (isScrolled ? 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' : 'text-white/80 hover:bg-white/10 hover:text-white')
@@ -146,7 +288,7 @@ export function Navbar({ navItems: customNavItems }: NavbarProps = {}) {
             <Link
               href="/membership"
               className={cn(
-                'px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 ml-2',
+                'px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 ml-2 cursor-pointer',
                 'bg-purple-900 hover:bg-purple-800 text-white shadow-md hover:shadow-lg'
               )}
             >
@@ -158,13 +300,13 @@ export function Navbar({ navItems: customNavItems }: NavbarProps = {}) {
           <div className="flex items-center gap-3 ml-auto">
             <div className="hidden md:flex items-center gap-2">
               <Button variant="ghost" size="sm" className={cn(
-                "rounded-full transition-all",
+                "rounded-full transition-all cursor-pointer",
                 isScrolled ? "text-slate-600 hover:text-slate-900 hover:bg-slate-50" : "text-white hover:text-white hover:bg-white/10"
               )} asChild>
                 <Link href="/masuk">Masuk</Link>
               </Button>
               <Button size="sm" className={cn(
-                "rounded-full font-bold shadow-md hover:shadow-lg transition-all",
+                "rounded-full font-bold shadow-md hover:shadow-lg transition-all cursor-pointer",
                 isScrolled 
                   ? "bg-secondary hover:bg-secondary/90 text-white" 
                   : "bg-white hover:bg-emerald-50 text-emerald-700"
@@ -175,7 +317,7 @@ export function Navbar({ navItems: customNavItems }: NavbarProps = {}) {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-2 rounded-full hover:bg-slate-50 text-slate-700"
+              className="md:hidden p-2 rounded-full hover:bg-slate-50 text-slate-700 cursor-pointer"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -193,24 +335,65 @@ export function Navbar({ navItems: customNavItems }: NavbarProps = {}) {
                 {item.children ? (
                   <>
                     <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 mt-2">{item.label}</p>
-                    <div className="flex flex-col gap-2 pl-4">
-                      {item.children.map((child) => (
-                        <Link 
-                          key={child.href} 
-                          href={child.href}
-                          onClick={() => setIsMobileMenuOpen(false)}
-                          className="text-base font-semibold text-slate-700 py-1"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
+                    <div className="flex flex-col gap-1 pl-1">
+                      {item.children.map((child) => {
+                        const Icon = child.icon
+                          ? ICON_MAP[child.icon]
+                          : undefined
+                        return (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className={cn(
+                              'flex items-center gap-3',
+                              'rounded-xl p-2.5 cursor-pointer',
+                              'hover:bg-emerald-50 group',
+                              'transition-colors'
+                            )}
+                          >
+                            {Icon && (
+                              <div className={cn(
+                                'flex h-9 w-9 shrink-0',
+                                'items-center justify-center',
+                                'rounded-xl bg-slate-100',
+                                'group-hover:bg-emerald-100',
+                                'transition-colors'
+                              )}>
+                                <Icon className={cn(
+                                  'h-4 w-4 text-slate-500',
+                                  'group-hover:text-emerald-600',
+                                  'transition-colors'
+                                )} />
+                              </div>
+                            )}
+                            <div className="flex flex-col">
+                              <span className={cn(
+                                'text-sm font-semibold',
+                                'text-slate-700',
+                                'group-hover:text-emerald-700'
+                              )}>
+                                {child.label}
+                              </span>
+                              {child.desc && (
+                                <span className={cn(
+                                  'text-xs text-slate-400',
+                                  'leading-snug'
+                                )}>
+                                  {child.desc}
+                                </span>
+                              )}
+                            </div>
+                          </Link>
+                        )
+                      })}
                     </div>
                   </>
                 ) : (
                   <Link
                     href={item.href || '#'}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-lg font-semibold text-slate-800 py-2"
+                    className="block text-lg font-semibold text-slate-800 py-2 cursor-pointer"
                   >
                     {item.label}
                   </Link>
@@ -218,10 +401,10 @@ export function Navbar({ navItems: customNavItems }: NavbarProps = {}) {
               </div>
             ))}
             <div className="flex flex-col gap-3 mt-6 pb-10">
-              <Button variant="outline" className="w-full rounded-full border-slate-200" asChild>
+              <Button variant="outline" className="w-full rounded-full border-slate-200 cursor-pointer" asChild>
                 <Link href="/masuk">Masuk</Link>
               </Button>
-              <Button className="w-full rounded-full bg-emerald-600 hover:bg-emerald-700" asChild>
+              <Button className="w-full rounded-full bg-emerald-600 hover:bg-emerald-700 cursor-pointer" asChild>
                 <Link href="/daftar">Daftar Sekarang</Link>
               </Button>
             </div>
