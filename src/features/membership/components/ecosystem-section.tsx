@@ -60,7 +60,7 @@ export function EcosystemSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {ECOSYSTEM_ITEMS.map((item, idx) => {
+          {ECOSYSTEM_ITEMS.map((item) => {
             const Icon = item.icon
             
             const themes = {
