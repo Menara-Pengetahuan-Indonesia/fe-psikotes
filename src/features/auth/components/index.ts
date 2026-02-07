@@ -1,3 +1,6 @@
+export { AuthBrandingPanel } from './auth-branding-panel'
+export { ForgotPasswordForm } from './forgot-password-form'
 export { GoogleAuthButton } from './google-auth-button'
 export { LoginForm } from './login-form'
+export { RegisterFields } from './register-fields'
 export { RegisterForm } from './register-form'

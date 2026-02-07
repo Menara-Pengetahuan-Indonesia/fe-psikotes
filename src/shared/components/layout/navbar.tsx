@@ -151,8 +151,11 @@ export function Navbar({ navItems: customNavItems }: NavbarProps = {}) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Hide Navbar on Homepage
-  if (pathname === '/') return null
+  const hidden = pathname === '/'
+    || pathname === '/masuk'
+    || pathname === '/daftar'
+    || pathname === '/forgot-password'
+  if (hidden) return null
 
   return (
     <>

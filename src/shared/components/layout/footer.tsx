@@ -70,7 +70,11 @@ const TOPO_PATTERN_SVG =
 export function Footer() {
   const pathname = usePathname()
 
-  if (pathname === '/') return null
+  const hidden = pathname === '/'
+    || pathname === '/masuk'
+    || pathname === '/daftar'
+    || pathname === '/forgot-password'
+  if (hidden) return null
 
   return (
     <footer
