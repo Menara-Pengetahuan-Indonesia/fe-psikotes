@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
@@ -16,6 +17,7 @@ import { Separator } from '@/components/ui/separator'
 import { AuthBrandingPanel } from './auth-branding-panel'
 import { GoogleAuthButton } from './google-auth-button'
 import { loginSchema, type LoginFormData } from '../schemas'
+import { useLogin } from '../hooks'
 import { cn } from '@/lib/utils'
 
 const LABEL_CLS = cn(
@@ -53,10 +55,17 @@ export function LoginForm({
   className,
 }: LoginFormProps) {
   const [showPassword, setShowPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
   const [loginMethod, setLoginMethod] = useState<
     'email' | 'phone'
   >('email')
+
+  const searchParams = useSearchParams()
+  const redirect = searchParams.get('redirect')
+  const registerHref = redirect
+    ? `/daftar?redirect=${encodeURIComponent(redirect)}`
+    : '/daftar'
+
+  const loginMutation = useLogin()
 
   const {
     register,
@@ -75,19 +84,14 @@ export function LoginForm({
     setValue('method', method)
     setValue('identifier', '')
     clearErrors('identifier')
+    loginMutation.reset()
   }
 
-  const onSubmit = async () => {
-    setIsLoading(true)
-    try {
-      await new Promise((r) => setTimeout(r, 1000))
-      onSuccess?.()
-    } catch (error) {
-      console.error('Login error:', error)
-    } finally {
-      setIsLoading(false)
-    }
+  const onSubmit = (data: LoginFormData) => {
+    loginMutation.mutate(data, { onSuccess })
   }
+
+  const isLoading = loginMutation.isPending
 
   const handleGoogleLogin = () => {
     // TODO: Implement Google OAuth
@@ -288,6 +292,16 @@ export function LoginForm({
               )}
             </div>
 
+            {/* Auth Error */}
+            {loginMutation.isError && (
+              <p className={cn(
+                'text-xs font-bold text-red-500',
+                'text-center',
+              )}>
+                {loginMutation.error.message}
+              </p>
+            )}
+
             {/* Submit */}
             <Button
               type="submit"
@@ -337,7 +351,7 @@ export function LoginForm({
             )}>
               Belum punya akun?{' '}
               <Link
-                href="/daftar"
+                href={registerHref}
                 className={cn(
                   'text-emerald-600',
                   'hover:text-emerald-700',

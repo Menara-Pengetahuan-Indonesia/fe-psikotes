@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   description: "Platform Psikotes, Konseling & Coaching, Training & Program",
 }
 
+import { Toaster } from "@/components/ui/sonner"
 import { MainContainer } from "@/shared/components/layout/main-container"
 
 export default function RootLayout({
@@ -36,6 +37,7 @@ export default function RootLayout({
             {children}
           </MainContainer>
           <Footer />
+          <Toaster />
         </QueryProvider>
       </body>
     </html>

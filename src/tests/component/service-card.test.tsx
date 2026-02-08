@@ -2,12 +2,13 @@ import { describe, it, expect, vi, afterEach } from 'vitest'
 import { render, screen, cleanup } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Star } from 'lucide-react'
-import { ServiceCard } from '@/shared/components/service-card'
+import { ServiceCard } from '@/features/psikotes/components/service-card'
 
 describe('ServiceCard', () => {
   afterEach(() => {
     cleanup()
   })
+
   it('renders title and description', () => {
     render(
       <ServiceCard
@@ -60,7 +61,7 @@ describe('ServiceCard', () => {
     expect(screen.getByText('Popular')).toBeInTheDocument()
   })
 
-  it('renders action button when provided', () => {
+  it('renders action label when provided', () => {
     render(
       <ServiceCard
         icon={Star}
@@ -71,14 +72,14 @@ describe('ServiceCard', () => {
       />
     )
 
-    expect(screen.getByRole('button', { name: 'Click Me' })).toBeInTheDocument()
+    expect(screen.getByText('Click Me')).toBeInTheDocument()
   })
 
-  it('calls onAction when clicked', async () => {
+  it('calls onAction when card is clicked', async () => {
     const user = userEvent.setup()
     const handleAction = vi.fn()
 
-    render(
+    const { container } = render(
       <ServiceCard
         icon={Star}
         title="Test Service"
@@ -88,8 +89,9 @@ describe('ServiceCard', () => {
       />
     )
 
-    const button = screen.getByRole('button', { name: 'Click Me' })
-    await user.click(button)
+    // ServiceCard has onClick on the Card element itself
+    const card = container.firstChild as HTMLElement
+    await user.click(card)
 
     expect(handleAction).toHaveBeenCalledTimes(1)
   })

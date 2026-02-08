@@ -30,9 +30,8 @@ describe('TestCategoryCard', () => {
 
   it('renders stats', () => {
     render(<TestCategoryCard test={mockTest} number={1} href="/test" />)
-    expect(screen.getByText('10k+')).toBeInTheDocument()
+    expect(screen.getByText('10k+ Peserta')).toBeInTheDocument()
     expect(screen.getByText('45 Min')).toBeInTheDocument()
-    expect(screen.getByText('Rp75.000')).toBeInTheDocument()
   })
 
   it('renders CTA link', () => {

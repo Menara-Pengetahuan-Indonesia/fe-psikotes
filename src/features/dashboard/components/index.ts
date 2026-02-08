@@ -1,4 +1,4 @@
-export { DashboardSidebar } from './sidebar'
+export { AppSidebar } from './sidebar-nav'
 export { DashboardOverview } from './dashboard-overview'
 export { MyTests } from './my-tests'
 export { TestResults } from './test-results'
