@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ArrowRight, Sparkles } from 'lucide-react'
@@ -16,6 +17,7 @@ import {
   registerSchema,
   type RegisterFormData,
 } from '../schemas'
+import { useRegister } from '../hooks'
 import { cn } from '@/lib/utils'
 
 interface RegisterFormProps {
@@ -29,7 +31,14 @@ export function RegisterForm({
 }: RegisterFormProps) {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+
+  const searchParams = useSearchParams()
+  const redirect = searchParams.get('redirect')
+  const loginHref = redirect
+    ? `/masuk?redirect=${encodeURIComponent(redirect)}`
+    : '/masuk'
+
+  const registerMutation = useRegister()
 
   const {
     register,
@@ -40,17 +49,11 @@ export function RegisterForm({
     mode: 'onBlur',
   })
 
-  const onSubmit = async () => {
-    setIsLoading(true)
-    try {
-      await new Promise((r) => setTimeout(r, 1000))
-      onSuccess?.()
-    } catch (error) {
-      console.error('Register error:', error)
-    } finally {
-      setIsLoading(false)
-    }
+  const onSubmit = (data: RegisterFormData) => {
+    registerMutation.mutate(data, { onSuccess })
   }
+
+  const isLoading = registerMutation.isPending
 
   const handleGoogleSignup = () => {
     // TODO: Implement Google OAuth
@@ -181,7 +184,7 @@ export function RegisterForm({
             )}>
               Sudah punya akun?{' '}
               <Link
-                href="/masuk"
+                href={loginHref}
                 className={cn(
                   'text-emerald-600',
                   'hover:text-emerald-700',

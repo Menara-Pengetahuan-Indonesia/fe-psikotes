@@ -16,7 +16,7 @@ describe('PricingSection', () => {
 
   it('renders correct prices', () => {
     render(<PricingSection />)
-    expect(screen.getByText('Rp49.000')).toBeInTheDocument()
-    expect(screen.getByText('Rp99.000')).toBeInTheDocument()
+    expect(screen.getByText('Rp49k')).toBeInTheDocument()
+    expect(screen.getByText('Rp99k')).toBeInTheDocument()
   })
 })
