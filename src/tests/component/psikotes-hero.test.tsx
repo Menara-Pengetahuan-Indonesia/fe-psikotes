@@ -5,10 +5,10 @@ import { PsikotesHero } from '@/features/psikotes/components'
 describe('PsikotesHero', () => {
   it('renders all 4 benefits', () => {
     render(<PsikotesHero />)
-    expect(screen.getByText('Analisis Mendalam')).toBeInTheDocument()
-    expect(screen.getByText('Rekomendasi Personal')).toBeInTheDocument()
-    expect(screen.getByText('Akses Mudah')).toBeInTheDocument()
-    expect(screen.getByText('Laporan Detail')).toBeInTheDocument()
+    expect(screen.getByText('Self-Awareness')).toBeInTheDocument()
+    expect(screen.getByText('Good Pragmatism')).toBeInTheDocument()
+    expect(screen.getByText('Continuous Growth')).toBeInTheDocument()
+    expect(screen.getByText('Mental Resilience')).toBeInTheDocument()
   })
 
   it('renders starting price', () => {
@@ -18,7 +18,7 @@ describe('PsikotesHero', () => {
 
   it('renders CTA link to premium', () => {
     render(<PsikotesHero />)
-    const link = screen.getByText('Lihat Psikotes Premium')
+    const link = screen.getByText(/mulai tes/i)
     expect(link.closest('a')).toHaveAttribute('href', '/psikotes/premium')
   })
 })
