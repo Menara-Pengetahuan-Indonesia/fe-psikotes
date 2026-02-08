@@ -110,15 +110,15 @@
   --chart-4: #DDEB9D; /* Light Green */
   --chart-5: #6FA04E; /* Darker Green */
 
-  /* Sidebar */
-  --sidebar: #faf5e4; 
-  --sidebar-foreground: #143D60;
-  --sidebar-primary: #A0C878;
-  --sidebar-primary-foreground: #faf5e4; 
-  --sidebar-accent: #faf5e4;
-  --sidebar-accent-foreground: #143D60;
-  --sidebar-border: #A0C878;
-  --sidebar-ring: #A0C878;
+  /* Sidebar - Dark Navy */
+  --sidebar: #0f172a;
+  --sidebar-foreground: #94a3b8;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1e293b;
+  --sidebar-accent-foreground: #f1f5f9;
+  --sidebar-border: #1e293b;
+  --sidebar-ring: #3b82f6;
 
   /* Psikotes - Using cream palette */
   --ps-primary: #A0C878; 
@@ -227,3 +227,4 @@
     background-color: #faf5e4;
   }
 }
+
