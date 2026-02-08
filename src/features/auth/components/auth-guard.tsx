@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { ArrowRight } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -22,7 +23,11 @@ interface AuthGuardProps {
 
 export function AuthGuard({ children }: AuthGuardProps) {
   const { isAuthenticated, user } = useAuthStore()
+  const pathname = usePathname()
 
+  const redirectParam = `?redirect=${
+    encodeURIComponent(pathname)
+  }`
   const needsLogin = !isAuthenticated
   const needsProfile =
     isAuthenticated && !user?.isProfileComplete
@@ -74,7 +79,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
               'shadow-xl shadow-slate-950/10',
               'hover:shadow-emerald-600/20',
             )}>
-              <Link href="/daftar">
+              <Link href={`/daftar${redirectParam}`}>
                 Daftar Sekarang
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -86,7 +91,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
             )}>
               Sudah punya akun?{' '}
               <Link
-                href="/masuk"
+                href={`/masuk${redirectParam}`}
                 className={cn(
                   'text-emerald-600',
                   'hover:text-emerald-700',
