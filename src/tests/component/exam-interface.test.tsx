@@ -6,17 +6,17 @@ import { ExamInterface } from '@/features/psikotes/gratis/components/exam-interf
 describe('ExamInterface', () => {
   it('renders first question', () => {
     render(<ExamInterface />)
-    expect(screen.getByText(/Question 1 of/i)).toBeInTheDocument()
+    expect(screen.getByText(/soal 1 dari/i)).toBeInTheDocument()
   })
 
   it('progress bar starts at first step', () => {
     render(<ExamInterface />)
-    expect(screen.getByText('Question 1 of 3')).toBeInTheDocument()
+    expect(screen.getByText(/soal 1 dari 3/i)).toBeInTheDocument()
   })
 
   it('next button is disabled without selecting answer', () => {
     render(<ExamInterface />)
-    const nextBtn = screen.getByRole('button', { name: /next/i })
+    const nextBtn = screen.getByRole('button', { name: /selanjutnya/i })
     expect(nextBtn).toBeDisabled()
   })
 
@@ -25,18 +25,20 @@ describe('ExamInterface', () => {
     render(<ExamInterface />)
 
     // Click first answer option (the button containing label "A")
-    const options = screen.getAllByRole('button').filter((btn) => btn.textContent?.includes('A'))
+    const options = screen.getAllByRole('button').filter(
+      (btn) => btn.textContent?.includes('A'),
+    )
     if (options.length > 0) await user.click(options[0])
 
     await waitFor(() => {
-      const nextBtn = screen.getByRole('button', { name: /next/i })
+      const nextBtn = screen.getByRole('button', { name: /selanjutnya/i })
       expect(nextBtn).not.toBeDisabled()
     })
   })
 
   it('previous button is disabled on first question', () => {
     render(<ExamInterface />)
-    const prevBtn = screen.getByRole('button', { name: /previous/i })
+    const prevBtn = screen.getByRole('button', { name: /sebelumnya/i })
     expect(prevBtn).toBeDisabled()
   })
 })

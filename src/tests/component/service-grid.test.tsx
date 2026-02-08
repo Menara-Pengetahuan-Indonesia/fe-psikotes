@@ -15,8 +15,8 @@ describe('ServiceGrid', () => {
 
   it('renders tab buttons', () => {
     render(<ServiceGrid />)
-    expect(screen.getByText('Semua')).toBeInTheDocument()
-    expect(screen.getByText('Psikotes')).toBeInTheDocument()
-    expect(screen.getByText('Konseling')).toBeInTheDocument()
+    expect(screen.getByText('semua')).toBeInTheDocument()
+    expect(screen.getByText('psikotes')).toBeInTheDocument()
+    expect(screen.getByText('konseling')).toBeInTheDocument()
   })
 })

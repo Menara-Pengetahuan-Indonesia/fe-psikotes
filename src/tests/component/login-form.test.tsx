@@ -1,7 +1,28 @@
 import { render, screen, waitFor, cleanup } from '@testing-library/react'
 import { describe, it, expect, vi, afterEach } from 'vitest'
 import userEvent from '@testing-library/user-event'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { LoginForm } from '@/features/auth/components/login-form'
+
+vi.mock('@/features/auth/services', () => ({
+  authService: {
+    login: vi.fn().mockResolvedValue({
+      user: { id: '1', email: 'test@example.com', name: 'Test', role: 'user' },
+      token: 'mock-token',
+    }),
+  },
+}))
+
+function renderWithProviders(ui: React.ReactElement) {
+  const queryClient = new QueryClient({
+    defaultOptions: { mutations: { retry: false } },
+  })
+  return render(
+    <QueryClientProvider client={queryClient}>
+      {ui}
+    </QueryClientProvider>,
+  )
+}
 
 describe('LoginForm', () => {
   afterEach(() => {
@@ -9,16 +30,16 @@ describe('LoginForm', () => {
   })
 
   it('renders login form with all fields', () => {
-    render(<LoginForm />)
+    renderWithProviders(<LoginForm />)
 
     expect(screen.getByLabelText(/email address/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/^password$/i)).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /^sign in$/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /masuk sekarang/i })).toBeInTheDocument()
   })
 
   it('shows validation error for invalid email', async () => {
     const user = userEvent.setup()
-    render(<LoginForm />)
+    renderWithProviders(<LoginForm />)
 
     const emailInput = screen.getByLabelText(/email address/i)
     await user.type(emailInput, 'invalid-email')
@@ -31,7 +52,7 @@ describe('LoginForm', () => {
 
   it('shows validation error for short password', async () => {
     const user = userEvent.setup()
-    render(<LoginForm />)
+    renderWithProviders(<LoginForm />)
 
     const passwordInput = screen.getByLabelText(/^password$/i)
     await user.type(passwordInput, '123')
@@ -44,7 +65,7 @@ describe('LoginForm', () => {
 
   it('toggles password visibility', async () => {
     const user = userEvent.setup()
-    render(<LoginForm />)
+    renderWithProviders(<LoginForm />)
 
     const passwordInput = screen.getByLabelText(/^password$/i) as HTMLInputElement
     const toggleButton = screen.getByRole('button', { name: /toggle password visibility/i })
@@ -61,11 +82,11 @@ describe('LoginForm', () => {
   it('calls onSuccess callback on valid submission', async () => {
     const user = userEvent.setup()
     const onSuccess = vi.fn()
-    render(<LoginForm onSuccess={onSuccess} />)
+    renderWithProviders(<LoginForm onSuccess={onSuccess} />)
 
     await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
     await user.type(screen.getByLabelText(/^password$/i), 'password123')
-    await user.click(screen.getByRole('button', { name: /^sign in$/i }))
+    await user.click(screen.getByRole('button', { name: /masuk sekarang/i }))
 
     await waitFor(() => {
       expect(onSuccess).toHaveBeenCalled()
@@ -73,14 +94,14 @@ describe('LoginForm', () => {
   })
 
   it('renders Google login button', () => {
-    render(<LoginForm />)
+    renderWithProviders(<LoginForm />)
 
-    expect(screen.getByRole('button', { name: /sign in with google/i })).toBeInTheDocument()
+    expect(screen.getByText(/masuk dengan google/i)).toBeInTheDocument()
   })
 
   it('renders register link', () => {
-    render(<LoginForm />)
+    renderWithProviders(<LoginForm />)
 
-    expect(screen.getByText(/sign up now/i)).toBeInTheDocument()
+    expect(screen.getByText(/daftar sekarang/i)).toBeInTheDocument()
   })
 })
