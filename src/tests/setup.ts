@@ -1,3 +1,4 @@
+import React from 'react'
 import '@testing-library/jest-dom/vitest'
 import { cleanup } from '@testing-library/react'
 import { afterEach, vi } from 'vitest'
@@ -25,8 +26,7 @@ vi.mock('next/link', () => ({
     href: string
     [key: string]: unknown
   }) => {
-    const { createElement } = require('react')
-    return createElement('a', { href, ...props }, children)
+    return React.createElement('a', { href, ...props }, children)
   },
 }))
 
