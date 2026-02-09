@@ -10,9 +10,9 @@ import {
   Diamond,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { PSIKOTES_FAQS } from '../constants'
+import { PELATIHAN_FAQS } from '../constants'
 
-export function PsikotesFaq() {
+export function PelatihanFaq() {
   const [openIndex, setOpenIndex] = useState<
     number | null
   >(0)
@@ -28,7 +28,7 @@ export function PsikotesFaq() {
       <Plus
         className={cn(
           'absolute top-[8%] left-[6%]',
-          'text-emerald-800/20 w-10 h-10',
+          'text-orange-800/20 w-10 h-10',
           'rotate-45 pointer-events-none',
         )}
       />
@@ -42,7 +42,7 @@ export function PsikotesFaq() {
       <Diamond
         className={cn(
           'absolute bottom-[10%] left-[10%]',
-          'text-emerald-600/20 w-8 h-8',
+          'text-orange-600/20 w-8 h-8',
           'rotate-12 pointer-events-none',
         )}
       />
@@ -50,7 +50,7 @@ export function PsikotesFaq() {
         className={cn(
           'absolute bottom-[20%] right-[5%]',
           'w-20 h-20 rounded-full',
-          'border-2 border-emerald-800/15',
+          'border-2 border-orange-800/15',
           'pointer-events-none',
         )}
       />
@@ -73,8 +73,8 @@ export function PsikotesFaq() {
           >
             <Sparkles
               className={cn(
-                'w-3.5 h-3.5 text-emerald-600',
-                'fill-emerald-600',
+                'w-3.5 h-3.5 text-orange-600',
+                'fill-orange-600',
               )}
             />
             <span
@@ -97,14 +97,14 @@ export function PsikotesFaq() {
           >
             Pertanyaan{' '}
             <span
-              className="text-emerald-600 relative"
+              className="text-orange-600 relative"
             >
               Umum
               <svg
                 className={cn(
                   'absolute -bottom-2 left-0',
                   'w-full h-3',
-                  'text-emerald-500/30',
+                  'text-orange-500/30',
                 )}
                 viewBox="0 0 100 10"
                 preserveAspectRatio="none"
@@ -122,7 +122,7 @@ export function PsikotesFaq() {
 
         {/* Accordion */}
         <div className="space-y-4">
-          {PSIKOTES_FAQS.map((faq, i) => {
+          {PELATIHAN_FAQS.map((faq, i) => {
             const isOpen = openIndex === i
 
             return (
@@ -133,11 +133,11 @@ export function PsikotesFaq() {
                   'border transition-all',
                   'duration-500 overflow-hidden',
                   isOpen
-                    ? 'border-emerald-500'
+                    ? 'border-orange-500'
                       + ' shadow-xl'
-                      + ' shadow-emerald-900/5'
+                      + ' shadow-orange-900/5'
                       + ' ring-1'
-                      + ' ring-emerald-500/10'
+                      + ' ring-orange-500/10'
                     : 'border-slate-100'
                       + ' shadow-lg'
                       + ' shadow-stone-200/50'
@@ -156,9 +156,7 @@ export function PsikotesFaq() {
                     'p-6 md:p-8 text-left',
                   )}
                 >
-                  <div
-                    className="flex items-center gap-4"
-                  >
+                  <div className="flex items-center gap-4">
                     <div
                       className={cn(
                         'w-10 h-10 rounded-xl',
@@ -166,7 +164,7 @@ export function PsikotesFaq() {
                         'justify-center',
                         'transition-colors',
                         isOpen
-                          ? 'bg-emerald-600'
+                          ? 'bg-orange-600'
                             + ' text-white'
                           : 'bg-slate-50'
                             + ' text-slate-400',
@@ -194,8 +192,8 @@ export function PsikotesFaq() {
                       'rounded-full p-2',
                       'transition-all',
                       isOpen
-                        ? 'bg-emerald-50'
-                          + ' text-emerald-600'
+                        ? 'bg-orange-50'
+                          + ' text-orange-600'
                         : 'bg-slate-50'
                           + ' text-slate-300',
                     )}

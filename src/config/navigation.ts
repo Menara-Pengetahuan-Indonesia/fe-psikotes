@@ -1,6 +1,30 @@
 import type { NavItem } from '@/shared/components/layout'
 
 export const psikotesNavItems: NavItem[] = [
+  { label: 'Beranda', href: '/psikotes' },
+  {
+    label: 'Layanan',
+    children: [
+      {
+        label: 'Psikotes Online',
+        href: '/psikotes',
+        icon: 'Brain',
+        desc: 'Tes psikologi terstandar',
+      },
+      {
+        label: 'Konseling',
+        href: '/konseling',
+        icon: 'Heart',
+        desc: 'Konsultasi dengan psikolog',
+      },
+      {
+        label: 'Pelatihan',
+        href: '/pelatihan',
+        icon: 'GraduationCap',
+        desc: 'Kembangkan potensi diri',
+      },
+    ],
+  },
   {
     label: 'Kategori',
     children: [
@@ -45,88 +69,112 @@ export const psikotesNavItems: NavItem[] = [
     label: 'Membership',
     href: '/psikotes/membership/benefit',
   },
-  {
-    label: 'Konseling',
-    href: '/konseling',
-  },
-  {
-    label: 'Pelatihan',
-    href: '/pelatihan',
-  },
 ]
 
 export const konselingNavItems: NavItem[] = [
-  {
-    label: 'Psikotes',
-    href: '/psikotes',
-  },
+  { label: 'Beranda', href: '/konseling' },
   {
     label: 'Layanan',
     children: [
       {
+        label: 'Psikotes Online',
+        href: '/psikotes',
+        icon: 'Brain',
+        desc: 'Tes psikologi terstandar',
+      },
+      {
+        label: 'Konseling',
+        href: '/konseling',
+        icon: 'Heart',
+        desc: 'Konsultasi dengan psikolog',
+      },
+      {
+        label: 'Pelatihan',
+        href: '/pelatihan',
+        icon: 'GraduationCap',
+        desc: 'Kembangkan potensi diri',
+      },
+    ],
+  },
+  {
+    label: 'Jenis Konseling',
+    children: [
+      {
         label: 'Konseling Individu',
-        href: '/konseling#individu',
+        href: '/konseling#services',
         icon: 'Users',
         desc: 'Sesi privat satu-satu',
       },
       {
         label: 'Konseling Pasangan',
-        href: '/konseling#pasangan',
+        href: '/konseling#services',
         icon: 'HeartHandshake',
         desc: 'Harmoni hubungan Anda',
       },
       {
         label: 'Konseling Kelompok',
-        href: '/konseling#kelompok',
+        href: '/konseling#services',
         icon: 'Presentation',
         desc: 'Diskusi & dukungan bersama',
       },
     ],
   },
   {
-    label: 'Pelatihan',
-    href: '/pelatihan',
-  },
-  {
     label: 'Tentang Kami',
-    href: '/',
+    href: '/about',
   },
 ]
 
 export const pelatihanNavItems: NavItem[] = [
+  { label: 'Beranda', href: '/pelatihan' },
   {
-    label: 'Psikotes',
-    href: '/psikotes',
+    label: 'Layanan',
+    children: [
+      {
+        label: 'Psikotes Online',
+        href: '/psikotes',
+        icon: 'Brain',
+        desc: 'Tes psikologi terstandar',
+      },
+      {
+        label: 'Konseling',
+        href: '/konseling',
+        icon: 'Heart',
+        desc: 'Konsultasi dengan psikolog',
+      },
+      {
+        label: 'Pelatihan',
+        href: '/pelatihan',
+        icon: 'GraduationCap',
+        desc: 'Kembangkan potensi diri',
+      },
+    ],
   },
   {
     label: 'Program',
     children: [
       {
         label: 'Webinar',
-        href: '/pelatihan#webinar',
+        href: '/pelatihan#programs',
         icon: 'Video',
         desc: 'Seminar online interaktif',
       },
       {
         label: 'Kelas Online',
-        href: '/pelatihan#kelas',
+        href: '/pelatihan#programs',
         icon: 'Monitor',
         desc: 'Belajar fleksibel kapan saja',
       },
       {
-        label: 'Mentoring',
-        href: '/pelatihan#mentoring',
+        label: 'Mentoring Eksklusif',
+        href: '/pelatihan#programs',
         icon: 'Compass',
         desc: 'Bimbingan personal ahli',
       },
     ],
   },
   {
-    label: 'Konseling',
-    href: '/konseling',
-  },
-  {
     label: 'Tentang Kami',
-    href: '/',
+    href: '/about',
   },
 ]
