@@ -31,7 +31,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { psikotesNavItems, konselingNavItems, pelatihanNavItems } from '@/config/navigation'
+import {
+  psikotesNavItems,
+  konselingNavItems,
+  pelatihanNavItems,
+} from '@/config/navigation'
 
 export type NavChildItem = {
   label: string
@@ -63,72 +67,6 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Compass,
 }
 
-const DEFAULT_NAV_ITEMS: NavItem[] = [
-  { label: 'Beranda', href: '/psikotes' },
-  {
-    label: 'Layanan',
-    children: [
-      {
-        label: 'Psikotes',
-        href: '/psikotes',
-        icon: 'Brain',
-        desc: 'Tes psikologi terstandar',
-      },
-      {
-        label: 'Konseling',
-        href: '/konseling',
-        icon: 'Heart',
-        desc: 'Konsultasi dengan psikolog',
-      },
-      {
-        label: 'Pelatihan',
-        href: '/pelatihan',
-        icon: 'GraduationCap',
-        desc: 'Kembangkan potensi diri',
-      },
-    ],
-  },
-  {
-    label: 'Kategori',
-    children: [
-      {
-        label: 'Mahasiswa',
-        href: '/psikotes/mahasiswa',
-        icon: 'BookOpen',
-        desc: 'Tes minat bakat & jurusan',
-      },
-      {
-        label: 'Perusahaan',
-        href: '/psikotes/perusahaan',
-        icon: 'Building2',
-        desc: 'Rekrutmen & asesmen karyawan',
-      },
-      {
-        label: 'Kesehatan Mental',
-        href: '/psikotes/kesehatan-mental',
-        icon: 'HeartPulse',
-        desc: 'Deteksi dini kesehatan jiwa',
-      },
-    ],
-  },
-  {
-    label: 'Jenis Tes',
-    children: [
-      {
-        label: 'Gratis',
-        href: '/psikotes/gratis',
-        icon: 'Gift',
-        desc: 'Coba tes tanpa biaya',
-      },
-      {
-        label: 'Premium',
-        href: '/psikotes/premium',
-        icon: 'Crown',
-        desc: 'Analisis mendalam & sertifikat',
-      },
-    ],
-  },
-]
 
 interface NavbarProps {
   navItems?: NavItem[]
@@ -139,8 +77,15 @@ export function Navbar({ navItems: customNavItems }: NavbarProps = {}) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
   const pathname = usePathname()
 
-  // Use custom navItems if provided, otherwise use DEFAULT_NAV_ITEMS
-  const navItems = customNavItems || DEFAULT_NAV_ITEMS
+  // Auto-detect navItems based on route
+  const navItems = React.useMemo(() => {
+    if (customNavItems) return customNavItems
+    if (pathname.startsWith('/konseling'))
+      return konselingNavItems
+    if (pathname.startsWith('/pelatihan'))
+      return pelatihanNavItems
+    return psikotesNavItems
+  }, [customNavItems, pathname])
 
   // Handle Scroll Effect
   React.useEffect(() => {
@@ -214,7 +159,7 @@ export function Navbar({ navItems: customNavItems }: NavbarProps = {}) {
                             : undefined
                           return (
                             <DropdownMenuItem
-                              key={child.href}
+                              key={child.label}
                               asChild
                             >
                               <Link
@@ -348,7 +293,7 @@ export function Navbar({ navItems: customNavItems }: NavbarProps = {}) {
                           : undefined
                         return (
                           <Link
-                            key={child.href}
+                            key={child.label}
                             href={child.href}
                             onClick={() => setIsMobileMenuOpen(false)}
                             className={cn(

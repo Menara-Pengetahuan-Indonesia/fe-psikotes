@@ -1,3 +1,4 @@
+export { PSIKOTES_FAQS } from './faq.constants'
 export { SERVICES } from './services.constants'
 export {
   PHILOSOPHY_ITEMS,
