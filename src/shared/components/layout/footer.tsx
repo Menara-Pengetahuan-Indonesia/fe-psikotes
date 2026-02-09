@@ -1,74 +1,28 @@
 'use client'
 
-import * as React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
   Sparkles,
-  Instagram,
-  Linkedin,
-  Twitter,
-  Facebook,
   Plus,
   Star,
   Circle,
   ArrowRight,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
-const FOOTER_LINKS = [
-  {
-    title: 'Layanan',
-    links: [
-      { label: 'Psikotes Online', href: '/psikotes' },
-      { label: 'Konseling & Mentoring', href: '/konseling' },
-      { label: 'Pelatihan Skill', href: '/pelatihan' },
-      { label: 'Untuk Perusahaan', href: '/perusahaan' },
-    ],
-  },
-  {
-    title: 'Tentang Kami',
-    links: [
-      { label: 'Filosofi', href: '/about' },
-      { label: 'Karir', href: '/careers' },
-      { label: 'Blog', href: '/blog' },
-      { label: 'Hubungi Kami', href: '/contact' },
-    ],
-  },
-  {
-    title: 'Legal',
-    links: [
-      { label: 'Syarat & Ketentuan', href: '/terms' },
-      { label: 'Kebijakan Privasi', href: '/privacy' },
-      { label: 'FAQ', href: '/faq' },
-    ],
-  },
-]
-
-const SOCIAL_LINKS = [
-  { Icon: Instagram, href: 'https://instagram.com/bermoela' },
-  { Icon: Linkedin, href: 'https://linkedin.com/company/bermoela' },
-  { Icon: Twitter, href: 'https://x.com/bermoela' },
-  { Icon: Facebook, href: 'https://facebook.com/bermoela' },
-]
-
-const TOPO_PATTERN_SVG =
-  'url("data:image/svg+xml,'
-  + '%3Csvg width=\'200\''
-  + ' height=\'200\''
-  + ' viewBox=\'0 0 200 200\''
-  + ' xmlns=\'http://www.w3.org/'
-  + '2000/svg\'%3E%3Cpath'
-  + ' d=\'M0 100 C 20 80, 40 120,'
-  + ' 60 100 S 100 80, 120 100'
-  + ' S 160 120, 200 100\''
-  + ' stroke=\'white\''
-  + ' fill=\'transparent\''
-  + ' stroke-width=\'1\'/%3E'
-  + '%3C/svg%3E")'
+import {
+  getFooterTheme,
+  getFooterLinks,
+  getFooterCta,
+  SOCIAL_LINKS,
+  TOPO_PATTERN_SVG,
+} from '@/config/footer'
 
 export function Footer() {
   const pathname = usePathname()
+  const theme = getFooterTheme(pathname)
+  const links = getFooterLinks(pathname)
+  const cta = getFooterCta(pathname)
 
   const hidden = pathname === '/'
     || pathname === '/masuk'
@@ -80,7 +34,8 @@ export function Footer() {
     <footer
       className={cn(
         'fixed bottom-0 left-0 right-0 z-0',
-        'h-100 bg-emerald-950 overflow-hidden',
+        'h-100 overflow-hidden',
+        theme.bg,
       )}
     >
       {/* Topographic Pattern Overlay */}
@@ -99,17 +54,17 @@ export function Footer() {
       <div
         className={cn(
           'absolute -top-32 -right-32',
-          'w-96 h-96 rounded-full',
-          'bg-emerald-800/30 blur-[120px]',
+          'w-96 h-96 rounded-full blur-[120px]',
           'pointer-events-none',
+          theme.glowTop,
         )}
       />
       <div
         className={cn(
           'absolute -bottom-24 -left-24',
-          'w-72 h-72 rounded-full',
-          'bg-amber-500/10 blur-[100px]',
+          'w-72 h-72 rounded-full blur-[100px]',
           'pointer-events-none',
+          theme.glowBottom,
         )}
       />
 
@@ -117,15 +72,15 @@ export function Footer() {
       <Plus
         className={cn(
           'absolute top-12 right-[15%]',
-          'text-emerald-400/10 w-10 h-10',
-          'pointer-events-none',
+          'w-10 h-10 pointer-events-none',
+          theme.ornamentPlus,
         )}
       />
       <Star
         className={cn(
           'absolute bottom-16 left-[10%]',
-          'text-amber-400/10 w-8 h-8',
-          'pointer-events-none',
+          'w-8 h-8 pointer-events-none',
+          theme.ornamentStar,
         )}
       />
       <Circle
@@ -161,23 +116,23 @@ export function Footer() {
                 'text-white',
               )}
             >
-              Siap Mengenali Potensimu?
+              {cta.title}
             </h3>
-            <p className="text-emerald-200/60 text-sm mt-1">
-              Mulai perjalanan pengembangan dirimu sekarang
+            <p className={cn('text-sm mt-1', theme.textMuted)}>
+              {cta.desc}
             </p>
           </div>
           <Link
-            href="/psikotes"
+            href={cta.href}
             className={cn(
               'inline-flex items-center gap-2',
               'px-6 py-3 rounded-full',
-              'bg-amber-500 hover:bg-amber-400',
-              'text-emerald-950 font-bold text-sm',
+              'font-bold text-sm',
               'transition-colors shrink-0',
+              theme.ctaButton,
             )}
           >
-            Mulai Sekarang
+            {cta.label}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -192,10 +147,11 @@ export function Footer() {
             >
               <div
                 className={cn(
-                  'w-10 h-10 bg-emerald-500 rounded-lg',
+                  'w-10 h-10 rounded-lg',
                   'flex items-center justify-center',
                   'shadow-lg group-hover:rotate-12',
                   'transition-transform duration-300',
+                  theme.logoBg,
                 )}
               >
                 <Sparkles
@@ -209,13 +165,15 @@ export function Footer() {
                 )}
               >
                 BER
-                <span className="text-emerald-400">MOELA</span>
+                <span className={theme.brandAccent}>
+                  MOELA
+                </span>
               </span>
             </Link>
             <p
               className={cn(
-                'text-emerald-200/60 text-sm',
-                'leading-relaxed',
+                'text-sm leading-relaxed',
+                theme.textMuted,
               )}
             >
               Platform pengembangan diri #1 di Indonesia.
@@ -233,10 +191,8 @@ export function Footer() {
                     'w-9 h-9 rounded-full',
                     'bg-white/10 border border-white/10',
                     'flex items-center justify-center',
-                    'text-emerald-200/60',
-                    'hover:bg-emerald-500 hover:text-white',
-                    'hover:border-emerald-500',
                     'transition-colors',
+                    theme.socialIcon,
                   )}
                 >
                   <Icon className="w-4 h-4" />
@@ -252,7 +208,7 @@ export function Footer() {
               'grid grid-cols-2 sm:grid-cols-3 gap-8',
             )}
           >
-            {FOOTER_LINKS.map((section) => (
+            {links.map((section) => (
               <div key={section.title} className="space-y-3">
                 <h4
                   className={cn(
@@ -268,18 +224,17 @@ export function Footer() {
                       <Link
                         href={link.href}
                         className={cn(
-                          'text-emerald-200/70 text-sm',
+                          'text-sm font-medium',
+                          'flex items-center gap-2 group',
                           'hover:text-white transition-colors',
-                          'font-medium flex items-center',
-                          'gap-2 group',
+                          theme.linkText,
                         )}
                       >
                         <span
                           className={cn(
                             'w-1.5 h-1.5 rounded-full',
-                            'bg-emerald-700',
-                            'group-hover:bg-amber-400',
                             'transition-colors',
+                            theme.bullet,
                           )}
                         />
                         {link.label}
@@ -300,11 +255,11 @@ export function Footer() {
             'justify-between items-center gap-2',
           )}
         >
-          <p className="text-emerald-200/40 text-xs font-medium">
+          <p className={cn('text-xs font-medium', theme.copyright)}>
             &copy; {new Date().getFullYear()} Bermoela Indonesia.
             All rights reserved.
           </p>
-          <p className="text-emerald-200/30 text-xs">
+          <p className={cn('text-xs', theme.madeWith)}>
             Dibuat dengan ❤️ di Indonesia
           </p>
         </div>

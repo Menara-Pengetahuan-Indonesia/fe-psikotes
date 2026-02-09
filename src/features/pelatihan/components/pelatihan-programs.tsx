@@ -1,106 +1,219 @@
-import { Video, Monitor, Users, ArrowRight, Grid, Sparkles } from 'lucide-react'
+'use client'
+
+import { Grid, Plus, Hexagon, Diamond } from 'lucide-react'
+
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from '@/components/ui/tabs'
+
+import { ServiceCard } from '@/features/psikotes/components/service-card'
+
+import { PELATIHAN_PROGRAMS } from '../constants'
 import { cn } from '@/lib/utils'
 
-const TRAINING_PROGRAMS = [
-  {
-    icon: Video,
-    title: 'Program Webinar',
-    description:
-      'Ikuti webinar live interaktif bersama para ahli psikologi dan pengembangan diri setiap minggu dengan topik yang relevan dan praktis.',
-    schedule: 'Setiap Minggu',
-    price: 'Mulai Rp 99.000',
-    theme: 'orange'
-  },
-  {
-    icon: Monitor,
-    title: 'Kelas Online',
-    description:
-      'Akses kelas online terstruktur yang bisa diikuti kapan saja dan di mana saja. Materi kurikulum dirancang secara sistematis untuk hasil maksimal.',
-    schedule: 'Akses Seumur Hidup',
-    price: 'Mulai Rp 199.000',
-    theme: 'emerald'
-  },
-  {
-    icon: Users,
-    title: 'Mentoring Eksklusif',
-    description:
-      'Sesi mentoring one-on-one dengan mentor berpengalaman untuk mendapatkan bimbingan personal sesuai tujuan pengembangan diri Anda.',
-    schedule: 'Fleksibel',
-    price: 'Mulai Rp 499.000',
-    theme: 'indigo'
-  },
-]
+const TAB_FILTERS: Record<string, string[]> = {
+  semua: [],
+  webinar: ['Webinar'],
+  kelas: ['Kelas'],
+  mentoring: ['Mentoring'],
+}
+
+const TOPOGRAPHIC_BG = `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 C 20 80, 40 120, 60 100 S 100 80, 120 100 S 160 120, 200 100' stroke='%23c2410c' fill='transparent' stroke-width='1'/%3E%3C/svg%3E")`
 
 export function PelatihanPrograms() {
+  const filtered = (tab: string) =>
+    TAB_FILTERS[tab]?.length === 0
+      ? PELATIHAN_PROGRAMS
+      : PELATIHAN_PROGRAMS.filter(
+          (s) => TAB_FILTERS[tab]?.includes(s.tag)
+        )
+
   return (
-    <section id="programs" className="py-24 md:py-36 bg-[#faf5e4] relative overflow-hidden">
-      {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-orange-100/30 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
+    <section
+      id="programs"
+      className={cn(
+        'py-24 md:py-36 bg-[#faf5e4]',
+        'relative overflow-hidden'
+      )}
+    >
+      {/* --- RICH BACKGROUND ORNAMENTS --- */}
+      {/* 1. Subtle Topographic Line Pattern */}
+      <div
+        className={cn(
+          'absolute inset-0 opacity-[0.04]',
+          'pointer-events-none mix-blend-multiply'
+        )}
+        style={{
+          backgroundImage: TOPOGRAPHIC_BG,
+          backgroundSize: '400px 400px',
+        }}
+      />
+
+      {/* 2. Technical Ornaments */}
+      <Plus
+        className={cn(
+          'absolute top-[10%] left-[10%]',
+          'text-orange-600/20 w-8 h-8 animate-pulse'
+        )}
+      />
+      <Plus
+        className={cn(
+          'absolute bottom-[10%] right-[15%]',
+          'text-stone-400/20 w-10 h-10 rotate-45'
+        )}
+      />
+      <Hexagon
+        className={cn(
+          'absolute top-[25%] right-[5%]',
+          'text-orange-600/10 w-24 h-24',
+          'rotate-12 animate-float-slow'
+        )}
+      />
+      <Diamond
+        className={cn(
+          'absolute bottom-[20%] left-[5%]',
+          'text-amber-600/10 w-16 h-16',
+          '-rotate-12 animate-float-medium'
+        )}
+      />
+
+      {/* 3. Ambient Glows */}
+      <div
+        className={cn(
+          'absolute top-0 right-0 w-96 h-96',
+          'bg-[radial-gradient(circle_at_30%_30%,#ffedd5_0%,#fed7aa_100%)]',
+          'opacity-30 rounded-full blur-[100px]',
+          'translate-x-1/3 -translate-y-1/3',
+          'pointer-events-none'
+        )}
+      />
+      <div
+        className={cn(
+          'absolute bottom-0 left-0 w-125 h-125',
+          'bg-[radial-gradient(circle_at_30%_30%,#ffedd5_0%,#fed7aa_100%)]',
+          'opacity-20 rounded-full blur-[120px]',
+          '-translate-x-1/4 translate-y-1/4',
+          'pointer-events-none'
+        )}
+      />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-20 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-stone-600 text-[10px] font-black uppercase tracking-[0.2em] shadow-sm">
-             <Grid className="w-3 h-3 text-orange-600" />
-             Featured Programs
+        {/* Section Header */}
+        <div className="text-center mb-16 space-y-4">
+          <div
+            className={cn(
+              'inline-flex items-center gap-2 px-4 py-2',
+              'rounded-full bg-white border border-stone-200',
+              'text-stone-600 text-[10px] font-black',
+              'uppercase tracking-[0.2em] shadow-sm'
+            )}
+          >
+            <Grid className="w-3 h-3 text-orange-600" />
+            Featured Programs
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">Program Tersedia</h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto font-medium">
-            Pilih program yang paling sesuai dengan gaya belajar dan tujuan pengembangan diri Anda.
+          <h2
+            className={cn(
+              'text-4xl md:text-5xl font-black',
+              'tracking-tight text-stone-800 leading-[1.1]'
+            )}
+          >
+            Program{' '}
+            <span
+              className={cn(
+                'text-orange-600 relative inline-block'
+              )}
+            >
+              Tersedia
+              <svg
+                className={cn(
+                  'absolute -bottom-2 left-0',
+                  'w-full h-2 text-orange-400/30'
+                )}
+                viewBox="0 0 100 10"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M0 5 Q 50 10 100 5"
+                  stroke="currentColor"
+                  strokeWidth="6"
+                  fill="none"
+                />
+              </svg>
+            </span>
+          </h2>
+          <p
+            className={cn(
+              'text-stone-500 text-lg max-w-2xl',
+              'mx-auto font-medium leading-relaxed'
+            )}
+          >
+            Pilih program pengembangan diri yang sesuai
+            dengan minat dan tujuanmu.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {TRAINING_PROGRAMS.map((program, idx) => {
-            const Icon = program.icon
-            
-            const themes = {
-              orange: 'border-orange-100 hover:border-orange-500 hover:shadow-orange-900/5 bg-orange-50/30',
-              emerald: 'border-emerald-100 hover:border-emerald-500 hover:shadow-emerald-900/5 bg-emerald-50/30',
-              indigo: 'border-indigo-100 hover:border-indigo-500 hover:shadow-indigo-900/5 bg-indigo-50/30'
-            }
-
-            const themeClasses = themes[program.theme as keyof typeof themes]
-
-            return (
-              <div
-                key={program.title}
+        {/* Tabs & Content */}
+        <Tabs defaultValue="semua" className="w-full">
+          <TabsList
+            className={cn(
+              'mx-auto flex justify-center w-fit mb-16',
+              'bg-white border-2 border-stone-200',
+              'p-1.5 rounded-full shadow-xl',
+              'shadow-stone-200/50 backdrop-blur-sm'
+            )}
+          >
+            {Object.keys(TAB_FILTERS).map((tab) => (
+              <TabsTrigger
+                key={tab}
+                value={tab}
                 className={cn(
-                  "group relative flex flex-col p-10 rounded-[2.5rem] border bg-white transition-all duration-500 hover:-translate-y-2",
-                  "shadow-xl shadow-stone-200/50 hover:shadow-2xl",
-                  themeClasses
+                  'capitalize rounded-full px-8 py-3',
+                  'font-black text-stone-500',
+                  'data-[state=active]:bg-orange-600',
+                  'data-[state=active]:text-white',
+                  'data-[state=active]:shadow-lg',
+                  'transition-all duration-300',
+                  'hover:text-orange-700'
                 )}
               >
-                <div className="flex justify-between items-start mb-8">
-                   <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg border border-slate-100 group-hover:scale-110 transition-transform duration-500">
-                      <Icon className="w-8 h-8 text-slate-900" />
-                   </div>
-                   <div className="px-3 py-1 bg-white/50 backdrop-blur-sm border border-slate-100 rounded-full flex items-center gap-1.5">
-                      <Sparkles className="w-3 h-3 text-orange-500 fill-orange-500" />
-                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Limited</span>
-                   </div>
-                </div>
+                {tab}
+              </TabsTrigger>
+            ))}
+          </TabsList>
 
-                <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight">{program.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed font-medium flex-grow mb-10">{program.description}</p>
-
-                <div className="space-y-4 pt-8 border-t border-slate-100">
-                  <div className="flex justify-between items-center">
-                    <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest">Jadwal</span>
-                    <span className="text-sm font-bold text-slate-600">{program.schedule}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest">Harga</span>
-                    <span className="text-lg font-black text-slate-900">{program.price}</span>
-                  </div>
-                </div>
-
-                <button className="mt-8 w-full py-4 bg-slate-950 text-white rounded-2xl text-xs font-black uppercase tracking-widest group-hover:bg-orange-600 transition-all flex items-center justify-center gap-2 shadow-xl shadow-slate-950/10 hover:shadow-orange-200">
-                  Daftar Sekarang <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </button>
+          {Object.keys(TAB_FILTERS).map((tab) => (
+            <TabsContent
+              key={tab}
+              value={tab}
+              className="mt-0 outline-none"
+            >
+              <div
+                className={cn(
+                  'grid sm:grid-cols-2 lg:grid-cols-3',
+                  'gap-8 animate-in fade-in',
+                  'slide-in-from-bottom-8 duration-700'
+                )}
+              >
+                {filtered(tab).map((program) => (
+                  <ServiceCard
+                    key={program.title}
+                    title={program.title}
+                    description={program.description}
+                    price={program.price}
+                    tag={program.tag}
+                    icon={program.icon}
+                    actionLabel="Daftar Sekarang"
+                    onAction={() => {}}
+                    className="h-full"
+                  />
+                ))}
               </div>
-            )
-          })}
-        </div>
+            </TabsContent>
+          ))}
+        </Tabs>
       </div>
     </section>
   )

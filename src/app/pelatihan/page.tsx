@@ -1,6 +1,11 @@
 import type { Metadata } from 'next'
 
-import { PelatihanHero, PelatihanPrograms } from '@/features/pelatihan/components'
+import {
+  PelatihanHero,
+  PelatihanPrograms,
+  PelatihanProcess,
+  PelatihanFaq,
+} from '@/features/pelatihan/components'
 
 export const metadata: Metadata = {
   title: 'Pelatihan — BERMOELA',
@@ -12,6 +17,8 @@ export default function PelatihanPage() {
     <main>
       <PelatihanHero />
       <PelatihanPrograms />
+      <PelatihanProcess />
+      <PelatihanFaq />
     </main>
   )
 }

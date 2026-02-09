@@ -1,6 +1,11 @@
 import type { Metadata } from 'next'
 
-import { KonselingHero, KonselingServices } from '@/features/konseling/components'
+import {
+  KonselingHero,
+  KonselingServices,
+  KonselingProcess,
+  KonselingFaq,
+} from '@/features/konseling/components'
 
 export const metadata: Metadata = {
   title: 'Konseling — BERMOELA',
@@ -12,6 +17,8 @@ export default function KonselingPage() {
     <main>
       <KonselingHero />
       <KonselingServices />
+      <KonselingProcess />
+      <KonselingFaq />
     </main>
   )
 }
