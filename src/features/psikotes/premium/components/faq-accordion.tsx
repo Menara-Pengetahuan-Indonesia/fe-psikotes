@@ -27,7 +27,7 @@ export function FaqAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section className="py-24 md:py-36 bg-[#faf5e4]">
+    <section className="py-24 md:py-36 bg-background">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-20 space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm mb-2">

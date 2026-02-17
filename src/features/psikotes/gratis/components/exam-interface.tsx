@@ -114,7 +114,7 @@ export function ExamInterface({
   return (
     <div
       className={cn(
-        'min-h-screen bg-[#faf5e4]',
+        'min-h-screen bg-background',
         'flex flex-col',
       )}
     >
@@ -485,7 +485,7 @@ export function ExamInterface({
       {/* ── Disclaimer ───────────────────── */}
       <div
         className={cn(
-          'bg-[#faf5e4] py-12 px-6 mt-auto',
+          'bg-background py-12 px-6 mt-auto',
         )}
       >
         <div className="max-w-3xl mx-auto">

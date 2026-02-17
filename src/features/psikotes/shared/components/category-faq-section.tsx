@@ -26,7 +26,7 @@ export function CategoryFaqSection({
   return (
     <section
       className={cn(
-        'py-16 md:py-20 bg-[#faf5e4]',
+        'py-16 md:py-20 bg-background',
         'relative overflow-hidden',
       )}
     >

@@ -2,7 +2,7 @@ import { ShieldCheck, Sparkles } from 'lucide-react'
 
 export function GuaranteeSection() {
   return (
-    <section className="py-24 px-6 bg-[#faf5e4]">
+    <section className="py-24 px-6 bg-background">
       <div className="max-w-5xl mx-auto">
         <div className="relative group p-10 md:p-16 bg-white rounded-[3rem] border border-slate-100 text-center space-y-8 transition-all duration-500 hover:shadow-2xl hover:shadow-emerald-900/5 hover:-translate-y-1 shadow-xl shadow-stone-200/50 overflow-hidden">
           {/* Decorative Corner Ornaments */}

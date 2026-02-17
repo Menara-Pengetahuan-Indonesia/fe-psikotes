@@ -15,9 +15,9 @@ export function GoogleAuthButton({
       className={cn(
         'w-full h-12 rounded-xl',
         'flex items-center justify-center gap-3',
-        'border border-slate-200 bg-white',
-        'hover:bg-slate-50 transition-all',
-        'text-sm font-medium text-slate-600',
+        'border border-input bg-card',
+        'hover:bg-muted transition-all',
+        'text-sm font-medium text-foreground',
       )}
       onClick={onClick}
     >

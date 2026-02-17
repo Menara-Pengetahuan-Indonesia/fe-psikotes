@@ -21,21 +21,21 @@ import { useLogin } from '../hooks'
 import { cn } from '@/lib/utils'
 
 const LABEL_CLS = cn(
-  'text-sm font-semibold text-slate-700',
+  'text-sm font-semibold text-foreground',
 )
 const ICON_CLS = cn(
-  'h-4 w-4 text-slate-400',
-  'group-focus-within:text-emerald-500 transition-colors',
+  'h-4 w-4 text-muted-foreground',
+  'group-focus-within:text-primary transition-colors',
 )
 const INPUT_CLS = cn(
-  'pl-10 h-11 rounded-xl border-slate-200',
-  'bg-white focus:bg-white transition-all',
+  'pl-10 h-11 rounded-xl border-input',
+  'bg-card focus:bg-card transition-all',
 )
 const INPUT_PW_CLS = cn(
-  'pl-10 pr-11 h-11 rounded-xl border-slate-200',
-  'bg-white focus:bg-white transition-all',
+  'pl-10 pr-11 h-11 rounded-xl border-input',
+  'bg-card focus:bg-card transition-all',
 )
-const ERROR_CLS = 'text-xs text-red-500 mt-1'
+const ERROR_CLS = 'text-xs text-destructive mt-1'
 
 interface LoginFormProps {
   onSuccess?: () => void
@@ -84,7 +84,7 @@ export function LoginForm({
 
       <div className={cn(
         'flex flex-col items-center justify-center',
-        'bg-stone-50 px-6 py-12 sm:px-12',
+        'bg-background px-6 py-12 sm:px-12',
       )}>
         <div className="w-full max-w-md space-y-8">
           {/* Mobile Logo */}
@@ -94,7 +94,7 @@ export function LoginForm({
               className="inline-flex items-center gap-2 group"
             >
               <div className={cn(
-                'w-10 h-10 bg-emerald-500 rounded-xl',
+                'w-10 h-10 bg-primary rounded-xl',
                 'flex items-center justify-center',
                 'text-white shadow-lg',
                 'group-hover:rotate-12',
@@ -104,10 +104,10 @@ export function LoginForm({
               </div>
               <span className={cn(
                 'text-2xl font-bold',
-                'text-slate-900 tracking-tight',
+                'text-foreground tracking-tight',
               )}>
                 Bermoela
-                <span className="text-emerald-500">.</span>
+                <span className="text-primary">.</span>
               </span>
             </Link>
           </div>
@@ -116,11 +116,11 @@ export function LoginForm({
           <div className="space-y-2">
             <h2 className={cn(
               'text-2xl font-bold',
-              'text-slate-900',
+              'text-foreground',
             )}>
               Selamat Datang Kembali
             </h2>
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-muted-foreground">
               Silakan masuk ke akun Anda
             </p>
           </div>
@@ -174,8 +174,8 @@ export function LoginForm({
                   href="/forgot-password"
                   className={cn(
                     'text-sm font-medium',
-                    'text-emerald-600',
-                    'hover:text-emerald-700',
+                    'text-primary-600',
+                    'hover:text-primary-700',
                     'transition-colors',
                   )}
                 >
@@ -204,8 +204,8 @@ export function LoginForm({
                   onClick={() => setShowPassword(!showPassword)}
                   className={cn(
                     'absolute inset-y-0 right-0 pr-3.5',
-                    'flex items-center text-slate-400',
-                    'hover:text-slate-600',
+                    'flex items-center text-muted-foreground',
+                    'hover:text-foreground',
                     'transition-colors',
                   )}
                   aria-label="Toggle password visibility"
@@ -225,8 +225,8 @@ export function LoginForm({
             {/* Auth Error */}
             {loginMutation.isError && (
               <p className={cn(
-                'text-sm text-red-500 text-center',
-                'bg-red-50 rounded-lg py-2.5 px-4',
+                'text-sm text-destructive text-center',
+                'bg-destructive/10 rounded-lg py-2.5 px-4',
               )}>
                 {loginMutation.error.message}
               </p>
@@ -237,10 +237,10 @@ export function LoginForm({
               type="submit"
               className={cn(
                 'w-full h-12 rounded-xl',
-                'bg-emerald-600 text-white',
+                'bg-primary text-primary-foreground',
                 'font-semibold text-sm',
-                'hover:bg-emerald-700 transition-all',
-                'shadow-lg shadow-emerald-600/20',
+                'hover:bg-primary-700 transition-all',
+                'shadow-lg shadow-primary/20',
               )}
               disabled={isLoading}
             >
@@ -255,11 +255,11 @@ export function LoginForm({
 
           {/* Divider */}
           <div className="flex items-center gap-4">
-            <Separator className="flex-1 bg-slate-200" />
-            <span className="text-xs text-slate-400">
+            <Separator className="flex-1 bg-border" />
+            <span className="text-xs text-muted-foreground">
               atau
             </span>
-            <Separator className="flex-1 bg-slate-200" />
+            <Separator className="flex-1 bg-border" />
           </div>
 
           {/* Google */}
@@ -270,13 +270,13 @@ export function LoginForm({
 
           {/* Register Link */}
           <div className="text-center">
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-muted-foreground">
               Belum punya akun?{' '}
               <Link
                 href={registerHref}
                 className={cn(
-                  'font-semibold text-emerald-600',
-                  'hover:text-emerald-700',
+                  'font-semibold text-primary-600',
+                  'hover:text-primary-700',
                   'transition-colors',
                 )}
               >

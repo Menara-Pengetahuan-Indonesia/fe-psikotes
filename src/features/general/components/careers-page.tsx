@@ -79,8 +79,8 @@ export function CareersPage() {
       <section
         className={cn(
           'relative overflow-hidden py-20 md:py-36',
-          'bg-linear-to-b from-[#0a1f33]',
-          'via-[#143D60] to-[#1d5a8a]',
+          'bg-linear-to-b from-secondary-900',
+          'via-secondary to-secondary-300',
         )}
       >
         <div
@@ -96,7 +96,7 @@ export function CareersPage() {
         <div
           className={cn(
             'absolute top-[-10%] left-[-10%]',
-            'w-150 h-150 bg-[#0a1f33]/30',
+            'w-150 h-150 bg-secondary-900/30',
             'rounded-full blur-[120px]',
             'pointer-events-none',
           )}
@@ -141,7 +141,7 @@ export function CareersPage() {
             className={cn(
               'inline-flex items-center gap-2',
               'px-4 py-2 rounded-full',
-              'bg-[#143D60]/60 border',
+              'bg-secondary/60 border',
               'border-sky-400/40 shadow-lg',
               'backdrop-blur-md mb-8',
             )}
@@ -219,7 +219,7 @@ export function CareersPage() {
                 <div
                   className={cn(
                     'w-12 h-12 rounded-xl mx-auto',
-                    'bg-[#143D60]/10',
+                    'bg-secondary/10',
                     'flex items-center',
                     'justify-center mb-4',
                   )}
@@ -227,7 +227,7 @@ export function CareersPage() {
                   <b.icon
                     className={cn(
                       'w-6 h-6',
-                      'text-[#143D60]',
+                      'text-secondary',
                     )}
                   />
                 </div>
@@ -255,7 +255,7 @@ export function CareersPage() {
 
       {/* Open Positions */}
       <section
-        className="bg-[#faf5e4] py-16 md:py-24"
+        className="bg-background py-16 md:py-24"
       >
         <div className="max-w-4xl mx-auto px-6">
           <h2
@@ -275,7 +275,7 @@ export function CareersPage() {
                   'block p-6 rounded-2xl',
                   'bg-white border',
                   'border-slate-200',
-                  'hover:border-[#143D60]/30',
+                  'hover:border-secondary/30',
                   'hover:shadow-lg transition-all',
                   'duration-300 group',
                 )}
@@ -292,7 +292,7 @@ export function CareersPage() {
                       className={cn(
                         'font-bold text-lg',
                         'text-slate-900',
-                        'group-hover:text-[#143D60]',
+                        'group-hover:text-secondary',
                         'transition-colors',
                       )}
                     >
@@ -329,7 +329,7 @@ export function CareersPage() {
                   <ArrowRight
                     className={cn(
                       'w-5 h-5 text-slate-300',
-                      'group-hover:text-[#143D60]',
+                      'group-hover:text-secondary',
                       'group-hover:translate-x-1',
                       'transition-all shrink-0',
                     )}

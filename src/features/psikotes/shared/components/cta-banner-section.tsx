@@ -12,7 +12,7 @@ export function CtaBannerSection({
   data,
 }: CtaBannerSectionProps) {
   return (
-    <section className="py-24 px-6 bg-[#faf5e4]">
+    <section className="py-24 px-6 bg-background">
       <div className="max-w-5xl mx-auto">
         <div
           className={cn(

@@ -159,7 +159,7 @@ export function CurriculumPyramid() {
   >(null)
 
   return (
-    <div className="bg-[#faf5e4]">
+    <div className="bg-background">
       <section
         className={cn(
           'py-24 md:py-36 relative',

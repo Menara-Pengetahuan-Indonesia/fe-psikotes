@@ -45,7 +45,7 @@ export function TestDetail({
   formHref,
 }: TestDetailProps) {
   return (
-    <div className="min-h-screen bg-[#faf5e4]">
+    <div className="min-h-screen bg-background">
       <DetailHero
         title={title}
         badge={badge}

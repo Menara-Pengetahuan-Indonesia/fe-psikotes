@@ -30,7 +30,7 @@ export function PremiumListing() {
   const others = filtered.slice(4)
 
   return (
-    <div className="bg-[#faf5e4]">
+    <div className="bg-background">
       {/* ── Exclusive Hero ───────────────────────────────────────── */}
       <header className="relative overflow-hidden bg-linear-to-b from-emerald-800 via-emerald-700 to-emerald-500 text-white pt-32 pb-20 md:pt-40 md:pb-32">
 

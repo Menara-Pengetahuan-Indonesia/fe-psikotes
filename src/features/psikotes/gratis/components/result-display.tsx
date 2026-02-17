@@ -95,7 +95,7 @@ export function ResultDisplay({
   const suggestedTests = getSuggestedTests(category)
 
   return (
-    <div className="min-h-screen bg-[#faf5e4] pb-24">
+    <div className="min-h-screen bg-background pb-24">
       {/* ── Hero Header ───────────────── */}
       <header
         className={cn(
