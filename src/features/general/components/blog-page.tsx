@@ -73,8 +73,8 @@ export function BlogPage() {
       <section
         className={cn(
           'relative overflow-hidden py-20 md:py-36',
-          'bg-linear-to-b from-[#0a1f33]',
-          'via-[#143D60] to-[#1d5a8a]',
+          'bg-linear-to-b from-secondary-900',
+          'via-secondary to-secondary-300',
         )}
       >
         <div
@@ -90,7 +90,7 @@ export function BlogPage() {
         <div
           className={cn(
             'absolute top-[-10%] left-[-10%]',
-            'w-150 h-150 bg-[#0a1f33]/30',
+            'w-150 h-150 bg-secondary-900/30',
             'rounded-full blur-[120px]',
             'pointer-events-none',
           )}
@@ -135,7 +135,7 @@ export function BlogPage() {
             className={cn(
               'inline-flex items-center gap-2',
               'px-4 py-2 rounded-full',
-              'bg-[#143D60]/60 border',
+              'bg-secondary/60 border',
               'border-sky-400/40 shadow-lg',
               'backdrop-blur-md mb-8',
             )}
@@ -228,9 +228,9 @@ export function BlogPage() {
                   <Badge
                     variant="secondary"
                     className={cn(
-                      'bg-[#143D60]/10',
-                      'text-[#143D60]',
-                      'hover:bg-[#143D60]/15',
+                      'bg-secondary/10',
+                      'text-secondary',
+                      'hover:bg-secondary/15',
                       'font-bold',
                     )}
                   >
@@ -240,7 +240,7 @@ export function BlogPage() {
                     className={cn(
                       'font-black text-lg',
                       'text-slate-900',
-                      'group-hover:text-[#143D60]',
+                      'group-hover:text-secondary',
                       'transition-colors',
                       'line-clamp-2',
                     )}

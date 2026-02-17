@@ -5,7 +5,7 @@ import { MAHASISWA_PROCESS } from '../../constants'
 
 export function MahasiswaProcess() {
   return (
-    <div className="bg-[#faf5e4]">
+    <div className="bg-background">
       <section
         className={cn(
           'py-16 md:py-20 relative',

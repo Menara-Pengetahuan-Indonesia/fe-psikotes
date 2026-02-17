@@ -7,7 +7,7 @@ const ICONS = [Sparkles, Target, Zap, Heart]
 
 export function PhilosophySection() {
   return (
-    <section className="relative z-10 py-24 md:py-36 bg-[#faf5e4] overflow-hidden text-stone-800">
+    <section className="relative z-10 py-24 md:py-36 bg-background overflow-hidden text-stone-800">
       
       {/* --- RICH BACKGROUND ORNAMENTS (Matching Hero) --- */}
       {/* 1. Subtle Topographic Line Pattern */}

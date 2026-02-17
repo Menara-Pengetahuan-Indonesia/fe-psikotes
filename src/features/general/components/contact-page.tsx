@@ -57,8 +57,8 @@ export function ContactPage() {
       <section
         className={cn(
           'relative overflow-hidden py-20 md:py-36',
-          'bg-linear-to-b from-[#0a1f33]',
-          'via-[#143D60] to-[#1d5a8a]',
+          'bg-linear-to-b from-secondary-900',
+          'via-secondary to-secondary-300',
         )}
       >
         <div
@@ -74,7 +74,7 @@ export function ContactPage() {
         <div
           className={cn(
             'absolute top-[-10%] left-[-10%]',
-            'w-150 h-150 bg-[#0a1f33]/30',
+            'w-150 h-150 bg-secondary-900/30',
             'rounded-full blur-[120px]',
             'pointer-events-none',
           )}
@@ -119,7 +119,7 @@ export function ContactPage() {
             className={cn(
               'inline-flex items-center gap-2',
               'px-4 py-2 rounded-full',
-              'bg-[#143D60]/60 border',
+              'bg-secondary/60 border',
               'border-sky-400/40 shadow-lg',
               'backdrop-blur-md mb-8',
             )}
@@ -181,7 +181,7 @@ export function ContactPage() {
                 href={c.href}
                 className={cn(
                   'bg-white rounded-3xl p-5',
-                  'shadow-xl shadow-[#143D60]/5',
+                  'shadow-xl shadow-secondary/5',
                   'border border-slate-100',
                   'hover:-translate-y-1',
                   'hover:shadow-2xl',
@@ -192,17 +192,17 @@ export function ContactPage() {
                 <div
                   className={cn(
                     'w-12 h-12 rounded-2xl',
-                    'bg-[#143D60]/10 mx-auto',
+                    'bg-secondary/10 mx-auto',
                     'flex items-center',
                     'justify-center mb-3',
-                    'group-hover:bg-[#143D60]',
+                    'group-hover:bg-secondary',
                     'transition-colors',
                     'duration-300',
                   )}
                 >
                   <c.icon
                     className={cn(
-                      'w-5 h-5 text-[#143D60]',
+                      'w-5 h-5 text-secondary',
                       'group-hover:text-white',
                       'transition-colors',
                       'duration-300',
@@ -219,7 +219,7 @@ export function ContactPage() {
                 </p>
                 <p
                   className={cn(
-                    'text-xs text-[#143D60]',
+                    'text-xs text-secondary',
                     'font-semibold mb-1',
                   )}
                 >
@@ -248,7 +248,7 @@ export function ContactPage() {
         <Plus
           className={cn(
             'absolute top-[20%] right-[8%]',
-            'text-[#143D60]/5 w-14 h-14',
+            'text-secondary/5 w-14 h-14',
             'rotate-45 pointer-events-none',
           )}
         />
@@ -274,8 +274,8 @@ export function ContactPage() {
                 >
                   <Sparkles
                     className={cn(
-                      'w-3.5 h-3.5 text-[#143D60]',
-                      'fill-[#143D60]',
+                      'w-3.5 h-3.5 text-secondary',
+                      'fill-secondary',
                     )}
                   />
                   <span
@@ -291,7 +291,7 @@ export function ContactPage() {
                 <h2
                   className={cn(
                     'text-4xl md:text-5xl',
-                    'font-black text-[#143D60]',
+                    'font-black text-secondary',
                     'tracking-tight',
                   )}
                 >
@@ -314,7 +314,7 @@ export function ContactPage() {
 
               <div
                 className={cn(
-                  'p-6 rounded-3xl bg-[#143D60]',
+                  'p-6 rounded-3xl bg-secondary',
                   'relative overflow-hidden',
                 )}
               >
@@ -377,7 +377,7 @@ export function ContactPage() {
               className={cn(
                 'p-8 rounded-3xl border',
                 'border-slate-100 bg-white',
-                'shadow-xl shadow-[#143D60]/5',
+                'shadow-xl shadow-secondary/5',
               )}
             >
               <div className="space-y-5">
@@ -429,8 +429,8 @@ export function ContactPage() {
                 <Button
                   className={cn(
                     'w-full h-12 rounded-xl',
-                    'bg-[#143D60]',
-                    'hover:bg-[#0f2e4a]',
+                    'bg-secondary',
+                    'hover:bg-secondary-700',
                     'text-white font-bold',
                     'transition-all group',
                   )}
@@ -454,14 +454,14 @@ export function ContactPage() {
       {/* Map */}
       <section
         className={cn(
-          'bg-[#faf5e4] py-16 md:py-20',
+          'bg-background py-16 md:py-20',
           'relative overflow-hidden',
         )}
       >
         <Plus
           className={cn(
             'absolute top-[10%] left-[8%]',
-            'text-[#143D60]/10 w-8 h-8',
+            'text-secondary/10 w-8 h-8',
             'rotate-45 pointer-events-none',
           )}
         />
@@ -477,7 +477,7 @@ export function ContactPage() {
             <h2
               className={cn(
                 'text-3xl md:text-4xl font-black',
-                'text-[#143D60] tracking-tight',
+                'text-secondary tracking-tight',
               )}
             >
               Lokasi{' '}
@@ -507,7 +507,7 @@ export function ContactPage() {
               <div
                 className={cn(
                   'w-14 h-14 rounded-2xl',
-                  'bg-[#143D60]/10 mx-auto',
+                  'bg-secondary/10 mx-auto',
                   'flex items-center',
                   'justify-center mb-3',
                 )}
@@ -515,7 +515,7 @@ export function ContactPage() {
                 <MapPin
                   className={cn(
                     'w-7 h-7',
-                    'text-[#143D60]',
+                    'text-secondary',
                   )}
                 />
               </div>

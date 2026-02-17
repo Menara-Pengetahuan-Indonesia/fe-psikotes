@@ -225,7 +225,7 @@ export function SectionFaqPage({
       {/* FAQ Accordion */}
       <section
         className={cn(
-          'py-24 md:py-36 bg-[#faf5e4]',
+          'py-24 md:py-36 bg-background',
           'relative overflow-hidden',
         )}
       >

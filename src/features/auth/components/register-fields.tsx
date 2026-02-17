@@ -12,25 +12,25 @@ import { Label } from '@/components/ui/label'
 import type { RegisterFormData } from '../schemas'
 import { cn } from '@/lib/utils'
 
-const LABEL_CLS = 'text-sm font-semibold text-slate-700'
+const LABEL_CLS = 'text-sm font-semibold text-foreground'
 const ICON_CLS = cn(
-  'h-4 w-4 text-slate-400',
-  'group-focus-within:text-emerald-500 transition-colors',
+  'h-4 w-4 text-muted-foreground',
+  'group-focus-within:text-primary transition-colors',
 )
 const INPUT_CLS = cn(
-  'pl-10 h-11 rounded-xl border-slate-200',
-  'bg-white focus:bg-white transition-all',
+  'pl-10 h-11 rounded-xl border-input',
+  'bg-card focus:bg-card transition-all',
 )
 const INPUT_PW_CLS = cn(
-  'pl-10 pr-11 h-11 rounded-xl border-slate-200',
-  'bg-white focus:bg-white transition-all',
+  'pl-10 pr-11 h-11 rounded-xl border-input',
+  'bg-card focus:bg-card transition-all',
 )
 const TOGGLE_CLS = cn(
   'absolute inset-y-0 right-0 pr-3.5',
   'flex items-center',
-  'text-slate-400 hover:text-slate-600 transition-colors',
+  'text-muted-foreground hover:text-foreground transition-colors',
 )
-const ERROR_CLS = 'text-xs text-red-500 mt-1'
+const ERROR_CLS = 'text-xs text-destructive mt-1'
 
 interface RegisterFieldsProps {
   register: UseFormRegister<RegisterFormData>

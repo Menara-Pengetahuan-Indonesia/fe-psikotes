@@ -11,7 +11,7 @@ import { KESEHATAN_MENTAL_TESTS } from '../../constants'
 
 export function MentalHealthOverview() {
   return (
-    <div className="bg-[#faf5e4]">
+    <div className="bg-background">
       {/* ── Rich Hero ──────────────────────────────────────── */}
       <header
         className={

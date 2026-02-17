@@ -9,7 +9,7 @@ import { PERUSAHAAN_STATS } from '../../constants'
 
 export function PerusahaanStats() {
   return (
-    <div className="bg-[#faf5e4]">
+    <div className="bg-background">
       <section
         className={cn(
           'py-16 md:py-20 relative',

@@ -25,7 +25,7 @@ export function GratisListing() {
   const others = filtered.slice(4)
 
   return (
-    <div className="min-h-screen bg-[#faf5e4]">
+    <div className="min-h-screen bg-background">
       {/* ── Vibrant Hero ───────────────────────────────────────── */}
       <header className="relative overflow-hidden bg-linear-to-b from-emerald-800 via-emerald-700 to-emerald-500 text-white pt-32 pb-20 md:pt-40 md:pb-32">
         {/* --- RICH BACKGROUND ORNAMENTS --- */}

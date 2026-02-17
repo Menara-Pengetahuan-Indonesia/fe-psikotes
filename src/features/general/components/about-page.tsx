@@ -102,8 +102,8 @@ export function AboutPage() {
       <section
         className={cn(
           'relative overflow-hidden py-20 md:py-36',
-          'bg-linear-to-b from-[#0a1f33]',
-          'via-[#143D60] to-[#1d5a8a]',
+          'bg-linear-to-b from-secondary-900',
+          'via-secondary to-secondary-300',
         )}
       >
         <div
@@ -119,7 +119,7 @@ export function AboutPage() {
         <div
           className={cn(
             'absolute top-[-10%] left-[-10%]',
-            'w-150 h-150 bg-[#0a1f33]/30',
+            'w-150 h-150 bg-secondary-900/30',
             'rounded-full blur-[120px]',
             'pointer-events-none',
           )}
@@ -164,7 +164,7 @@ export function AboutPage() {
             className={cn(
               'inline-flex items-center gap-2',
               'px-4 py-2 rounded-full',
-              'bg-[#143D60]/60 border',
+              'bg-secondary/60 border',
               'border-sky-400/40 shadow-lg',
               'backdrop-blur-md mb-8',
             )}
@@ -228,14 +228,14 @@ export function AboutPage() {
                 className={cn(
                   'bg-white rounded-3xl p-6',
                   'text-center shadow-xl',
-                  'shadow-[#143D60]/5 border',
+                  'shadow-secondary/5 border',
                   'border-slate-100',
                 )}
               >
                 <p
                   className={cn(
                     'text-3xl md:text-4xl',
-                    'font-black text-[#143D60]',
+                    'font-black text-secondary',
                     'mb-1',
                   )}
                 >
@@ -265,7 +265,7 @@ export function AboutPage() {
         <Plus
           className={cn(
             'absolute top-[15%] right-[8%]',
-            'text-[#143D60]/5 w-16 h-16',
+            'text-secondary/5 w-16 h-16',
             'rotate-45 pointer-events-none',
           )}
         />
@@ -292,8 +292,8 @@ export function AboutPage() {
             >
               <Sparkles
                 className={cn(
-                  'w-3.5 h-3.5 text-[#143D60]',
-                  'fill-[#143D60]',
+                  'w-3.5 h-3.5 text-secondary',
+                  'fill-secondary',
                 )}
               />
               <span
@@ -309,7 +309,7 @@ export function AboutPage() {
             <h2
               className={cn(
                 'text-4xl md:text-5xl font-black',
-                'text-[#143D60] tracking-tight',
+                'text-secondary tracking-tight',
               )}
             >
               Misi &{' '}
@@ -322,7 +322,7 @@ export function AboutPage() {
             <div
               className={cn(
                 'p-8 md:p-10 rounded-3xl',
-                'bg-[#143D60] relative',
+                'bg-secondary relative',
                 'overflow-hidden group',
               )}
             >
@@ -427,14 +427,14 @@ export function AboutPage() {
       {/* Services Overview */}
       <section
         className={cn(
-          'bg-[#faf5e4] py-20 md:py-28',
+          'bg-background py-20 md:py-28',
           'relative overflow-hidden',
         )}
       >
         <Plus
           className={cn(
             'absolute top-[8%] left-[6%]',
-            'text-[#143D60]/10 w-10 h-10',
+            'text-secondary/10 w-10 h-10',
             'rotate-45 pointer-events-none',
           )}
         />
@@ -448,7 +448,7 @@ export function AboutPage() {
         <Circle
           className={cn(
             'absolute top-[20%] right-[12%]',
-            'text-[#143D60]/5 w-14 h-14',
+            'text-secondary/5 w-14 h-14',
             'pointer-events-none',
           )}
         />
@@ -481,7 +481,7 @@ export function AboutPage() {
             <h2
               className={cn(
                 'text-4xl md:text-5xl font-black',
-                'text-[#143D60] tracking-tight',
+                'text-secondary tracking-tight',
               )}
             >
               Tiga Pilar{' '}
@@ -560,7 +560,7 @@ export function AboutPage() {
         <Hexagon
           className={cn(
             'absolute top-[10%] left-[5%]',
-            'text-[#143D60]/5 w-20 h-20',
+            'text-secondary/5 w-20 h-20',
             '-rotate-12 pointer-events-none',
           )}
         />
@@ -583,8 +583,8 @@ export function AboutPage() {
             >
               <Sparkles
                 className={cn(
-                  'w-3.5 h-3.5 text-[#143D60]',
-                  'fill-[#143D60]',
+                  'w-3.5 h-3.5 text-secondary',
+                  'fill-secondary',
                 )}
               />
               <span
@@ -600,7 +600,7 @@ export function AboutPage() {
             <h2
               className={cn(
                 'text-4xl md:text-5xl font-black',
-                'text-[#143D60] tracking-tight',
+                'text-secondary tracking-tight',
               )}
             >
               Nilai-Nilai{' '}
@@ -639,16 +639,16 @@ export function AboutPage() {
                 <div
                   className={cn(
                     'w-12 h-12 rounded-2xl',
-                    'bg-[#143D60]/10',
+                    'bg-secondary/10',
                     'flex items-center',
                     'justify-center mb-5',
-                    'group-hover:bg-[#143D60]',
+                    'group-hover:bg-secondary',
                     'transition-colors duration-300',
                   )}
                 >
                   <v.icon
                     className={cn(
-                      'w-6 h-6 text-[#143D60]',
+                      'w-6 h-6 text-secondary',
                       'group-hover:text-white',
                       'transition-colors duration-300',
                     )}
@@ -681,7 +681,7 @@ export function AboutPage() {
         className={cn(
           'relative overflow-hidden',
           'py-20 md:py-28',
-          'bg-[#143D60]',
+          'bg-secondary',
         )}
       >
         <div
@@ -763,7 +763,7 @@ export function AboutPage() {
             className={cn(
               'h-14 px-10 text-base rounded-2xl',
               'bg-amber-400 hover:bg-amber-300',
-              'text-[#143D60] font-bold shadow-lg',
+              'text-secondary font-bold shadow-lg',
               'shadow-amber-400/20',
               'transition-all group',
             )}

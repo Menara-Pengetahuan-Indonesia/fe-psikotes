@@ -70,7 +70,7 @@ export function RegisterForm({
       {/* Right — Form Panel */}
       <div className={cn(
         'flex flex-col items-center justify-center',
-        'bg-stone-50 px-6 py-12 sm:px-12',
+        'bg-background px-6 py-12 sm:px-12',
       )}>
         <div className="w-full max-w-md space-y-8">
           {/* Mobile Logo */}
@@ -83,7 +83,7 @@ export function RegisterForm({
               )}
             >
               <div className={cn(
-                'w-10 h-10 bg-emerald-500 rounded-xl',
+                'w-10 h-10 bg-primary rounded-xl',
                 'flex items-center justify-center',
                 'text-white shadow-lg',
                 'group-hover:rotate-12',
@@ -93,10 +93,10 @@ export function RegisterForm({
               </div>
               <span className={cn(
                 'text-2xl font-bold',
-                'text-slate-900 tracking-tight',
+                'text-foreground tracking-tight',
               )}>
                 Bermoela
-                <span className="text-emerald-500">.</span>
+                <span className="text-primary">.</span>
               </span>
             </Link>
           </div>
@@ -105,11 +105,11 @@ export function RegisterForm({
           <div className="space-y-2">
             <h2 className={cn(
               'text-2xl font-bold',
-              'text-slate-900',
+              'text-foreground',
             )}>
               Buat Akun Baru
             </h2>
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-muted-foreground">
               Mulai perjalanan Anda hari ini
             </p>
           </div>
@@ -135,8 +135,8 @@ export function RegisterForm({
             {/* Auth Error */}
             {registerMutation.isError && (
               <p className={cn(
-                'text-sm text-red-500 text-center',
-                'bg-red-50 rounded-lg py-2.5 px-4',
+                'text-sm text-destructive text-center',
+                'bg-destructive/10 rounded-lg py-2.5 px-4',
               )}>
                 {registerMutation.error.message}
               </p>
@@ -147,10 +147,10 @@ export function RegisterForm({
               type="submit"
               className={cn(
                 'w-full h-12 rounded-xl',
-                'bg-emerald-600 text-white',
+                'bg-primary text-primary-foreground',
                 'font-semibold text-sm',
-                'hover:bg-emerald-700 transition-all',
-                'shadow-lg shadow-emerald-600/20',
+                'hover:bg-primary-700 transition-all',
+                'shadow-lg shadow-primary/20',
               )}
               disabled={isLoading}
             >
@@ -165,11 +165,11 @@ export function RegisterForm({
 
           {/* Divider */}
           <div className="flex items-center gap-4">
-            <Separator className="flex-1 bg-slate-200" />
-            <span className="text-xs text-slate-400">
+            <Separator className="flex-1 bg-border" />
+            <span className="text-xs text-muted-foreground">
               atau
             </span>
-            <Separator className="flex-1 bg-slate-200" />
+            <Separator className="flex-1 bg-border" />
           </div>
 
           {/* Google */}
@@ -180,13 +180,13 @@ export function RegisterForm({
 
           {/* Login Link */}
           <div className="text-center">
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-muted-foreground">
               Sudah punya akun?{' '}
               <Link
                 href={loginHref}
                 className={cn(
-                  'font-semibold text-emerald-600',
-                  'hover:text-emerald-700',
+                  'font-semibold text-primary-600',
+                  'hover:text-primary-700',
                   'transition-colors',
                 )}
               >

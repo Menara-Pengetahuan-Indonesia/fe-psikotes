@@ -18,7 +18,7 @@ export function ServiceGrid() {
     TAB_FILTERS[tab]?.length === 0 ? SERVICES : SERVICES.filter((s) => TAB_FILTERS[tab]?.includes(s.tag))
 
   return (
-    <section className="py-24 md:py-36 bg-[#faf5e4] relative overflow-hidden">
+    <section className="py-24 md:py-36 bg-background relative overflow-hidden">
       
       {/* --- RICH BACKGROUND ORNAMENTS (Matching Hero) --- */}
       {/* 1. Subtle Topographic Line Pattern */}

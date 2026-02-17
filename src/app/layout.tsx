@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#faf5e4] min-h-screen`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background min-h-screen`}>
         <QueryProvider>
           <Navbar />
           <MainContainer>

@@ -31,8 +31,8 @@ export function AuthBrandingPanel({
       className={cn(
         'hidden lg:flex relative flex-col',
         'items-center justify-center',
-        'bg-gradient-to-br from-emerald-950',
-        'to-emerald-900 overflow-hidden',
+        'bg-gradient-to-br from-secondary-900',
+        'to-secondary overflow-hidden',
       )}
     >
       {/* Topographic Pattern Overlay */}
@@ -52,7 +52,7 @@ export function AuthBrandingPanel({
         className={cn(
           'absolute -top-32 -right-32',
           'w-96 h-96 rounded-full',
-          'bg-emerald-800/30 blur-[120px]',
+          'bg-secondary-800/30 blur-[120px]',
           'pointer-events-none',
         )}
       />
@@ -60,7 +60,7 @@ export function AuthBrandingPanel({
         className={cn(
           'absolute -bottom-24 -left-24',
           'w-72 h-72 rounded-full',
-          'bg-emerald-600/20 blur-[100px]',
+          'bg-primary/20 blur-[100px]',
           'pointer-events-none',
         )}
       />
@@ -69,14 +69,14 @@ export function AuthBrandingPanel({
       <Plus
         className={cn(
           'absolute top-16 right-[15%]',
-          'text-emerald-400/10 w-10 h-10',
+          'text-primary/10 w-10 h-10',
           'pointer-events-none',
         )}
       />
       <Hexagon
         className={cn(
           'absolute bottom-20 left-[10%]',
-          'text-emerald-400/10 w-12 h-12',
+          'text-primary/10 w-12 h-12',
           'pointer-events-none',
         )}
       />
@@ -101,7 +101,7 @@ export function AuthBrandingPanel({
         >
           <div
             className={cn(
-              'w-12 h-12 bg-emerald-500 rounded-xl',
+              'w-12 h-12 bg-primary rounded-xl',
               'flex items-center justify-center',
               'text-white shadow-lg',
               'group-hover:rotate-12',
@@ -117,12 +117,12 @@ export function AuthBrandingPanel({
             )}
           >
             Bermoela
-            <span className="text-emerald-400">.</span>
+            <span className="text-primary-400">.</span>
           </span>
         </Link>
         <p
           className={cn(
-            'text-emerald-200/60 text-sm',
+            'text-primary-200/60 text-sm',
             'font-medium max-w-xs mx-auto',
           )}
         >

@@ -11,7 +11,7 @@ import { PERUSAHAAN_TESTS } from '../../constants'
 
 export function PerusahaanOverview() {
   return (
-    <div className="bg-[#faf5e4]">
+    <div className="bg-background">
       {/* ── Rich Hero ──────────────────────────────────────── */}
       <header
         className={
