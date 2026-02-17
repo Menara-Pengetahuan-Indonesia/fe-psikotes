@@ -8,9 +8,11 @@ vi.mock('@/features/auth/services', () => ({
   authService: {
     login: vi.fn().mockResolvedValue({
       user: { id: '1', email: 'test@example.com', name: 'Test', role: 'user' },
-      token: 'mock-token',
+      accessToken: 'mock-access-token',
+      refreshToken: 'mock-refresh-token',
     }),
   },
+  extractErrorMessage: vi.fn((e: Error) => e.message),
 }))
 
 function renderWithProviders(ui: React.ReactElement) {
@@ -32,16 +34,16 @@ describe('LoginForm', () => {
   it('renders login form with all fields', () => {
     renderWithProviders(<LoginForm />)
 
-    expect(screen.getByLabelText(/email address/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/alamat email/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/^password$/i)).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /masuk sekarang/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /^masuk$/i })).toBeInTheDocument()
   })
 
   it('shows validation error for invalid email', async () => {
     const user = userEvent.setup()
     renderWithProviders(<LoginForm />)
 
-    const emailInput = screen.getByLabelText(/email address/i)
+    const emailInput = screen.getByLabelText(/alamat email/i)
     await user.type(emailInput, 'invalid-email')
     await user.tab()
 
@@ -84,9 +86,9 @@ describe('LoginForm', () => {
     const onSuccess = vi.fn()
     renderWithProviders(<LoginForm onSuccess={onSuccess} />)
 
-    await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
+    await user.type(screen.getByLabelText(/alamat email/i), 'test@example.com')
     await user.type(screen.getByLabelText(/^password$/i), 'password123')
-    await user.click(screen.getByRole('button', { name: /masuk sekarang/i }))
+    await user.click(screen.getByRole('button', { name: /^masuk$/i }))
 
     await waitFor(() => {
       expect(onSuccess).toHaveBeenCalled()

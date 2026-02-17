@@ -12,30 +12,25 @@ import { Label } from '@/components/ui/label'
 import type { RegisterFormData } from '../schemas'
 import { cn } from '@/lib/utils'
 
-const LABEL_CLS = cn(
-  'text-[10px] font-black text-slate-500',
-  'uppercase tracking-widest ml-1',
-)
+const LABEL_CLS = 'text-sm font-semibold text-slate-700'
 const ICON_CLS = cn(
-  'h-4 w-4 text-slate-300',
+  'h-4 w-4 text-slate-400',
   'group-focus-within:text-emerald-500 transition-colors',
 )
 const INPUT_CLS = cn(
   'pl-10 h-11 rounded-xl border-slate-200',
-  'bg-white focus:bg-white transition-all font-medium',
+  'bg-white focus:bg-white transition-all',
 )
 const INPUT_PW_CLS = cn(
   'pl-10 pr-11 h-11 rounded-xl border-slate-200',
-  'bg-white focus:bg-white transition-all font-medium',
+  'bg-white focus:bg-white transition-all',
 )
 const TOGGLE_CLS = cn(
-  'absolute inset-y-0 right-0 pr-4 flex items-center',
-  'text-slate-300 hover:text-slate-500 transition-colors',
+  'absolute inset-y-0 right-0 pr-3.5',
+  'flex items-center',
+  'text-slate-400 hover:text-slate-600 transition-colors',
 )
-const ERROR_CLS = cn(
-  'text-[10px] font-bold text-red-500',
-  'uppercase tracking-tight ml-1',
-)
+const ERROR_CLS = 'text-xs text-red-500 mt-1'
 
 interface RegisterFieldsProps {
   register: UseFormRegister<RegisterFormData>
@@ -65,7 +60,7 @@ export function RegisterFields({
           </Label>
           <div className="relative group">
             <div className={cn(
-              'absolute inset-y-0 left-0 pl-4',
+              'absolute inset-y-0 left-0 pl-3.5',
               'flex items-center pointer-events-none',
             )}>
               <User className={ICON_CLS} />
@@ -93,7 +88,7 @@ export function RegisterFields({
           </Label>
           <div className="relative group">
             <div className={cn(
-              'absolute inset-y-0 left-0 pl-4',
+              'absolute inset-y-0 left-0 pl-3.5',
               'flex items-center pointer-events-none',
             )}>
               <User className={ICON_CLS} />
@@ -118,11 +113,11 @@ export function RegisterFields({
       {/* Email */}
       <div className="space-y-2">
         <Label htmlFor="email" className={LABEL_CLS}>
-          Email Address
+          Alamat Email
         </Label>
         <div className="relative group">
           <div className={cn(
-            'absolute inset-y-0 left-0 pl-4',
+            'absolute inset-y-0 left-0 pl-3.5',
             'flex items-center pointer-events-none',
           )}>
             <Mail className={ICON_CLS} />
@@ -145,28 +140,28 @@ export function RegisterFields({
 
       {/* Phone */}
       <div className="space-y-2">
-        <Label htmlFor="phone" className={LABEL_CLS}>
+        <Label htmlFor="telp" className={LABEL_CLS}>
           Nomor HP
         </Label>
         <div className="relative group">
           <div className={cn(
-            'absolute inset-y-0 left-0 pl-4',
+            'absolute inset-y-0 left-0 pl-3.5',
             'flex items-center pointer-events-none',
           )}>
             <Phone className={ICON_CLS} />
           </div>
           <Input
-            id="phone"
+            id="telp"
             type="tel"
             placeholder="08xxxxxxxxxx"
             className={INPUT_CLS}
-            {...reg('phone')}
-            aria-invalid={!!errors.phone}
+            {...reg('telp')}
+            aria-invalid={!!errors.telp}
           />
         </div>
-        {errors.phone && (
+        {errors.telp && (
           <p className={ERROR_CLS}>
-            {errors.phone.message}
+            {errors.telp.message}
           </p>
         )}
       </div>
@@ -178,7 +173,7 @@ export function RegisterFields({
         </Label>
         <div className="relative group">
           <div className={cn(
-            'absolute inset-y-0 left-0 pl-4',
+            'absolute inset-y-0 left-0 pl-3.5',
             'flex items-center pointer-events-none',
           )}>
             <Lock className={ICON_CLS} />
@@ -186,7 +181,7 @@ export function RegisterFields({
           <Input
             id="password"
             type={showPassword ? 'text' : 'password'}
-            placeholder="••••••••"
+            placeholder="Masukkan password"
             className={INPUT_PW_CLS}
             {...reg('password')}
             aria-invalid={!!errors.password}
@@ -198,8 +193,8 @@ export function RegisterFields({
             aria-label="Toggle password visibility"
           >
             {showPassword
-              ? <EyeOff className="h-5 w-5" />
-              : <Eye className="h-5 w-5" />}
+              ? <EyeOff className="h-4 w-4" />
+              : <Eye className="h-4 w-4" />}
           </button>
         </div>
         {errors.password && (
@@ -219,7 +214,7 @@ export function RegisterFields({
         </Label>
         <div className="relative group">
           <div className={cn(
-            'absolute inset-y-0 left-0 pl-4',
+            'absolute inset-y-0 left-0 pl-3.5',
             'flex items-center pointer-events-none',
           )}>
             <Lock className={ICON_CLS} />
@@ -227,7 +222,7 @@ export function RegisterFields({
           <Input
             id="confirmPassword"
             type={showConfirm ? 'text' : 'password'}
-            placeholder="••••••••"
+            placeholder="Ulangi password"
             className={INPUT_PW_CLS}
             {...reg('confirmPassword')}
             aria-invalid={!!errors.confirmPassword}
@@ -239,8 +234,8 @@ export function RegisterFields({
             aria-label="Toggle confirmation visibility"
           >
             {showConfirm
-              ? <EyeOff className="h-5 w-5" />
-              : <Eye className="h-5 w-5" />}
+              ? <EyeOff className="h-4 w-4" />
+              : <Eye className="h-4 w-4" />}
           </button>
         </div>
         {errors.confirmPassword && (

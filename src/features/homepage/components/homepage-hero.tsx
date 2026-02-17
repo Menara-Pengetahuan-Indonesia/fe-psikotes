@@ -123,19 +123,19 @@ function BackgroundLayer() {
       {/* Ambient glows — each theme */}
       <div className={cn(
         "absolute -top-[15%] -left-[10%]",
-        "w-[600px] h-[600px]",
+        "w-150 h-150",
         "bg-emerald-200/40 rounded-full blur-[150px]",
         "pointer-events-none"
       )} />
       <div className={cn(
         "absolute top-[10%] -right-[10%]",
-        "w-[500px] h-[500px]",
+        "w-125 h-125",
         "bg-indigo-200/30 rounded-full blur-[150px]",
         "pointer-events-none"
       )} />
       <div className={cn(
         "absolute -bottom-[15%] left-[20%]",
-        "w-[500px] h-[500px]",
+        "w-125 h-125",
         "bg-orange-200/30 rounded-full blur-[150px]",
         "pointer-events-none"
       )} />
@@ -169,14 +169,14 @@ function BackgroundLayer() {
         "absolute top-[12%] left-[40%]",
         "w-16 h-16 bg-white/60 backdrop-blur-sm",
         "rounded-tr-[2rem] rounded-bl-[1.5rem]",
-        "rotate-[25deg] border border-white/80",
+        "rotate-25 border border-white/80",
         "shadow-lg pointer-events-none"
       )} />
       <div className={cn(
         "absolute bottom-[18%] right-[12%]",
         "w-12 h-12 bg-white/50 backdrop-blur-sm",
-        "rounded-tl-[1.5rem] rounded-br-[1rem]",
-        "-rotate-[15deg] border border-white/70",
+        "rounded-tl-[1.5rem] rounded-br-3xl",
+        "-rotate-15 border border-white/70",
         "shadow-md pointer-events-none"
       )} />
 

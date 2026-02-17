@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
-  ArrowRight, Mail, Lock, Eye, EyeOff, Phone, Sparkles,
+  ArrowRight, Mail, Lock, Eye, EyeOff, Sparkles,
 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -21,29 +21,21 @@ import { useLogin } from '../hooks'
 import { cn } from '@/lib/utils'
 
 const LABEL_CLS = cn(
-  'text-[10px] font-black text-slate-500',
-  'uppercase tracking-widest ml-1',
+  'text-sm font-semibold text-slate-700',
 )
 const ICON_CLS = cn(
-  'h-4 w-4 text-slate-300',
+  'h-4 w-4 text-slate-400',
   'group-focus-within:text-emerald-500 transition-colors',
 )
 const INPUT_CLS = cn(
   'pl-10 h-11 rounded-xl border-slate-200',
-  'bg-white focus:bg-white transition-all font-medium',
+  'bg-white focus:bg-white transition-all',
 )
 const INPUT_PW_CLS = cn(
   'pl-10 pr-11 h-11 rounded-xl border-slate-200',
-  'bg-white focus:bg-white transition-all font-medium',
+  'bg-white focus:bg-white transition-all',
 )
-const ERROR_CLS = cn(
-  'text-[10px] font-bold text-red-500',
-  'uppercase tracking-tight ml-1',
-)
-const PILL_BASE = cn(
-  'flex-1 py-2.5 text-[10px] font-black uppercase',
-  'tracking-widest rounded-xl transition-all',
-)
+const ERROR_CLS = 'text-xs text-red-500 mt-1'
 
 interface LoginFormProps {
   onSuccess?: () => void
@@ -55,9 +47,6 @@ export function LoginForm({
   className,
 }: LoginFormProps) {
   const [showPassword, setShowPassword] = useState(false)
-  const [loginMethod, setLoginMethod] = useState<
-    'email' | 'phone'
-  >('email')
 
   const searchParams = useSearchParams()
   const redirect = searchParams.get('redirect')
@@ -70,22 +59,11 @@ export function LoginForm({
   const {
     register,
     handleSubmit,
-    setValue,
-    clearErrors,
     formState: { errors },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     mode: 'onBlur',
-    defaultValues: { method: 'email', identifier: '' },
   })
-
-  const switchMethod = (method: 'email' | 'phone') => {
-    setLoginMethod(method)
-    setValue('method', method)
-    setValue('identifier', '')
-    clearErrors('identifier')
-    loginMutation.reset()
-  }
 
   const onSubmit = (data: LoginFormData) => {
     loginMutation.mutate(data, { onSuccess })
@@ -97,22 +75,18 @@ export function LoginForm({
     // TODO: Implement Google OAuth
   }
 
-  const isEmail = loginMethod === 'email'
-
   return (
     <div className={cn(
       'grid lg:grid-cols-2 min-h-dvh',
       className,
     )}>
-      {/* Left — Branding Panel */}
       <AuthBrandingPanel subtitle="Platform pengembangan diri #1 di Indonesia. Kenali potensimu, raih masa depan." />
 
-      {/* Right — Form Panel */}
       <div className={cn(
         'flex flex-col items-center justify-center',
         'bg-stone-50 px-6 py-12 sm:px-12',
       )}>
-        <div className="w-full max-w-md space-y-10">
+        <div className="w-full max-w-md space-y-8">
           {/* Mobile Logo */}
           <div className="lg:hidden text-center">
             <Link
@@ -129,27 +103,24 @@ export function LoginForm({
                 <Sparkles className="w-5 h-5 fill-white" />
               </div>
               <span className={cn(
-                'text-2xl font-black',
-                'text-slate-900 tracking-tighter',
+                'text-2xl font-bold',
+                'text-slate-900 tracking-tight',
               )}>
-                BERMOELA
+                Bermoela
                 <span className="text-emerald-500">.</span>
               </span>
             </Link>
           </div>
 
           {/* Heading */}
-          <div className="space-y-1">
+          <div className="space-y-2">
             <h2 className={cn(
-              'text-xl font-black',
-              'text-slate-900 tracking-tight',
+              'text-2xl font-bold',
+              'text-slate-900',
             )}>
               Selamat Datang Kembali
             </h2>
-            <p className={cn(
-              'text-xs font-bold tracking-widest',
-              'text-slate-400 uppercase',
-            )}>
+            <p className="text-sm text-slate-500">
               Silakan masuk ke akun Anda
             </p>
           </div>
@@ -157,96 +128,55 @@ export function LoginForm({
           {/* Form */}
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="space-y-6"
+            className="space-y-5"
           >
-            {/* Method Toggle */}
-            <div className={cn(
-              'flex gap-1 p-1 rounded-2xl',
-              'bg-slate-100/80',
-            )}>
-              <button
-                type="button"
-                onClick={() => switchMethod('email')}
-                className={cn(
-                  PILL_BASE,
-                  isEmail
-                    ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-400 hover:text-slate-600',
-                )}
-              >
-                Email
-              </button>
-              <button
-                type="button"
-                onClick={() => switchMethod('phone')}
-                className={cn(
-                  PILL_BASE,
-                  !isEmail
-                    ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-400 hover:text-slate-600',
-                )}
-              >
-                No. HP
-              </button>
-            </div>
-
-            {/* Identifier (Email / Phone) */}
-            <div className="space-y-2.5">
+            {/* Email */}
+            <div className="space-y-2">
               <Label
-                htmlFor="identifier"
+                htmlFor="email"
                 className={LABEL_CLS}
               >
-                {isEmail ? 'Email Address' : 'Nomor HP'}
+                Alamat Email
               </Label>
               <div className="relative group">
                 <div className={cn(
-                  'absolute inset-y-0 left-0 pl-4',
+                  'absolute inset-y-0 left-0 pl-3.5',
                   'flex items-center pointer-events-none',
                 )}>
-                  {isEmail
-                    ? <Mail className={ICON_CLS} />
-                    : <Phone className={ICON_CLS} />}
+                  <Mail className={ICON_CLS} />
                 </div>
                 <Input
-                  id="identifier"
-                  type={isEmail ? 'email' : 'tel'}
-                  placeholder={
-                    isEmail
-                      ? 'nama@email.com'
-                      : '08xxxxxxxxxx'
-                  }
+                  id="email"
+                  type="email"
+                  placeholder="nama@email.com"
                   className={INPUT_CLS}
-                  {...register('identifier')}
-                  aria-invalid={!!errors.identifier}
+                  {...register('email')}
+                  aria-invalid={!!errors.email}
                 />
               </div>
-              {errors.identifier && (
+              {errors.email && (
                 <p className={ERROR_CLS}>
-                  {errors.identifier.message}
+                  {errors.email.message}
                 </p>
               )}
             </div>
 
             {/* Password */}
-            <div className="space-y-2.5">
-              <div className={cn(
-                'flex items-center',
-                'justify-between ml-1',
-              )}>
-                <Label htmlFor="password" className={cn(
-                  'text-[10px] font-black text-slate-500',
-                  'uppercase tracking-widest',
-                )}>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label
+                  htmlFor="password"
+                  className={LABEL_CLS}
+                >
                   Password
                 </Label>
                 <Link
                   href="/forgot-password"
                   className={cn(
-                    'text-[10px] font-bold',
+                    'text-sm font-medium',
                     'text-emerald-600',
                     'hover:text-emerald-700',
                     'transition-colors',
-                    'uppercase tracking-widest',
                   )}
                 >
                   Lupa password?
@@ -254,7 +184,7 @@ export function LoginForm({
               </div>
               <div className="relative group">
                 <div className={cn(
-                  'absolute inset-y-0 left-0 pl-4',
+                  'absolute inset-y-0 left-0 pl-3.5',
                   'flex items-center pointer-events-none',
                 )}>
                   <Lock className={ICON_CLS} />
@@ -264,7 +194,7 @@ export function LoginForm({
                   type={
                     showPassword ? 'text' : 'password'
                   }
-                  placeholder="••••••••"
+                  placeholder="Masukkan password"
                   className={INPUT_PW_CLS}
                   {...register('password')}
                   aria-invalid={!!errors.password}
@@ -273,16 +203,16 @@ export function LoginForm({
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className={cn(
-                    'absolute inset-y-0 right-0 pr-4',
-                    'flex items-center text-slate-300',
-                    'hover:text-slate-500',
+                    'absolute inset-y-0 right-0 pr-3.5',
+                    'flex items-center text-slate-400',
+                    'hover:text-slate-600',
                     'transition-colors',
                   )}
                   aria-label="Toggle password visibility"
                 >
                   {showPassword
-                    ? <EyeOff className="h-5 w-5" />
-                    : <Eye className="h-5 w-5" />}
+                    ? <EyeOff className="h-4 w-4" />
+                    : <Eye className="h-4 w-4" />}
                 </button>
               </div>
               {errors.password && (
@@ -295,8 +225,8 @@ export function LoginForm({
             {/* Auth Error */}
             {loginMutation.isError && (
               <p className={cn(
-                'text-xs font-bold text-red-500',
-                'text-center',
+                'text-sm text-red-500 text-center',
+                'bg-red-50 rounded-lg py-2.5 px-4',
               )}>
                 {loginMutation.error.message}
               </p>
@@ -307,18 +237,16 @@ export function LoginForm({
               type="submit"
               className={cn(
                 'w-full h-12 rounded-xl',
-                'bg-slate-950 text-white',
-                'font-black text-xs uppercase',
-                'tracking-widest',
-                'hover:bg-emerald-600 transition-all',
-                'shadow-xl shadow-slate-950/10',
-                'hover:shadow-emerald-600/20 mt-4',
+                'bg-emerald-600 text-white',
+                'font-semibold text-sm',
+                'hover:bg-emerald-700 transition-all',
+                'shadow-lg shadow-emerald-600/20',
               )}
               disabled={isLoading}
             >
               {isLoading
                 ? 'Memproses...'
-                : 'Masuk Sekarang'}
+                : 'Masuk'}
               {!isLoading && (
                 <ArrowRight className="ml-2 h-4 w-4" />
               )}
@@ -327,14 +255,11 @@ export function LoginForm({
 
           {/* Divider */}
           <div className="flex items-center gap-4">
-            <Separator className="flex-1 bg-slate-100" />
-            <span className={cn(
-              'text-[10px] text-slate-300',
-              'font-black uppercase tracking-widest',
-            )}>
-              Atau
+            <Separator className="flex-1 bg-slate-200" />
+            <span className="text-xs text-slate-400">
+              atau
             </span>
-            <Separator className="flex-1 bg-slate-100" />
+            <Separator className="flex-1 bg-slate-200" />
           </div>
 
           {/* Google */}
@@ -345,15 +270,12 @@ export function LoginForm({
 
           {/* Register Link */}
           <div className="text-center">
-            <p className={cn(
-              'text-xs font-bold text-slate-400',
-              'uppercase tracking-wide',
-            )}>
+            <p className="text-sm text-slate-500">
               Belum punya akun?{' '}
               <Link
                 href={registerHref}
                 className={cn(
-                  'text-emerald-600',
+                  'font-semibold text-emerald-600',
                   'hover:text-emerald-700',
                   'transition-colors',
                 )}

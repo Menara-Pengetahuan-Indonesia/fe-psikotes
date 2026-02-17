@@ -4,7 +4,3 @@ export {
   forgotPasswordSchema,
   type ForgotPasswordFormData,
 } from './forgot-password.schema'
-export {
-  completeProfileSchema,
-  type CompleteProfileFormData,
-} from './complete-profile.schema'

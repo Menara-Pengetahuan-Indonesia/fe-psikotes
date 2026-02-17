@@ -1,6 +1,5 @@
 export { AuthBrandingPanel } from './auth-branding-panel'
 export { AuthGuard } from './auth-guard'
-export { CompleteProfileDialog } from './complete-profile-dialog'
 export { ForgotPasswordForm } from './forgot-password-form'
 export { GoogleAuthButton } from './google-auth-button'
 export { LoginForm } from './login-form'

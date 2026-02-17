@@ -8,24 +8,22 @@ export interface User {
   email: string
   name: string
   role: UserRole
-  age?: number
-  gender?: 'male' | 'female'
-  address?: string
-  isProfileComplete?: boolean
-}
-
-interface ProfileData {
-  age: number
-  gender: 'male' | 'female'
-  address: string
 }
 
 interface AuthState {
   user: User | null
-  token: string | null
+  accessToken: string | null
+  refreshToken: string | null
   isAuthenticated: boolean
-  setAuth: (user: User, token: string) => void
-  updateProfile: (data: ProfileData) => void
+  setAuth: (
+    user: User,
+    accessToken: string,
+    refreshToken: string,
+  ) => void
+  setTokens: (
+    accessToken: string,
+    refreshToken: string,
+  ) => void
   logout: () => void
 }
 
@@ -33,24 +31,29 @@ export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
       user: null,
-      token: null,
+      accessToken: null,
+      refreshToken: null,
       isAuthenticated: false,
-      setAuth: (user, token) => {
-        localStorage.setItem('token', token)
-        set({ user, token, isAuthenticated: true })
+      setAuth: (user, accessToken, refreshToken) => {
+        set({
+          user,
+          accessToken,
+          refreshToken,
+          isAuthenticated: true,
+        })
       },
-      updateProfile: (data) => {
-        set((state) => ({
-          user: state.user
-            ? { ...state.user, ...data, isProfileComplete: true }
-            : null,
-        }))
+      setTokens: (accessToken, refreshToken) => {
+        set({ accessToken, refreshToken })
       },
       logout: () => {
-        localStorage.removeItem('token')
-        set({ user: null, token: null, isAuthenticated: false })
+        set({
+          user: null,
+          accessToken: null,
+          refreshToken: null,
+          isAuthenticated: false,
+        })
       },
     }),
-    { name: 'auth-storage' }
-  )
+    { name: 'auth-storage' },
+  ),
 )

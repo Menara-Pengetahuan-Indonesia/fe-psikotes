@@ -5,8 +5,7 @@ describe('Auth Schemas', () => {
   describe('loginSchema', () => {
     it('validates correct input', () => {
       const result = loginSchema.safeParse({
-        method: 'email',
-        identifier: 'test@example.com',
+        email: 'test@example.com',
         password: 'Abcdefg1',
       })
       expect(result.success).toBe(true)
@@ -14,8 +13,7 @@ describe('Auth Schemas', () => {
 
     it('rejects invalid email', () => {
       const result = loginSchema.safeParse({
-        method: 'email',
-        identifier: 'invalid',
+        email: 'invalid',
         password: '12345678',
       })
       expect(result.success).toBe(false)
@@ -23,8 +21,7 @@ describe('Auth Schemas', () => {
 
     it('rejects short password', () => {
       const result = loginSchema.safeParse({
-        method: 'email',
-        identifier: 'test@example.com',
+        email: 'test@example.com',
         password: '123',
       })
       expect(result.success).toBe(false)
@@ -37,9 +34,9 @@ describe('Auth Schemas', () => {
         firstName: 'John',
         lastName: 'Doe',
         email: 'test@example.com',
-        phone: '081234567890',
-        password: 'Abcdefg1',
-        confirmPassword: 'Abcdefg1',
+        telp: '081234567890',
+        password: 'Abcdefg1!',
+        confirmPassword: 'Abcdefg1!',
       })
       expect(result.success).toBe(true)
     })
@@ -49,9 +46,9 @@ describe('Auth Schemas', () => {
         firstName: 'John',
         lastName: 'Doe',
         email: 'test@example.com',
-        phone: '081234567890',
-        password: 'Abcdefg1',
-        confirmPassword: 'Different1',
+        telp: '081234567890',
+        password: 'Abcdefg1!',
+        confirmPassword: 'Different1!',
       })
       expect(result.success).toBe(false)
     })
