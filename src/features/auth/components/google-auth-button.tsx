@@ -1,3 +1,5 @@
+import { cn } from '@/lib/utils'
+
 interface GoogleAuthButtonProps {
   label: string
   onClick: () => void
@@ -10,13 +12,13 @@ export function GoogleAuthButton({
   return (
     <button
       type="button"
-      className={
-        'w-full h-14 flex items-center justify-center gap-3'
-        + ' border-2 border-slate-100 rounded-2xl'
-        + ' hover:bg-slate-50 transition-all text-xs'
-        + ' font-black uppercase tracking-widest'
-        + ' text-slate-600 relative z-10'
-      }
+      className={cn(
+        'w-full h-12 rounded-xl',
+        'flex items-center justify-center gap-3',
+        'border border-slate-200 bg-white',
+        'hover:bg-slate-50 transition-all',
+        'text-sm font-medium text-slate-600',
+      )}
       onClick={onClick}
     >
       <svg className="w-5 h-5" viewBox="0 0 24 24">

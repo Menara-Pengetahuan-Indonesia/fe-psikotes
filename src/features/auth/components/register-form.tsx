@@ -92,27 +92,24 @@ export function RegisterForm({
                 <Sparkles className="w-5 h-5 fill-white" />
               </div>
               <span className={cn(
-                'text-2xl font-black',
-                'text-slate-900 tracking-tighter',
+                'text-2xl font-bold',
+                'text-slate-900 tracking-tight',
               )}>
-                BERMOELA
+                Bermoela
                 <span className="text-emerald-500">.</span>
               </span>
             </Link>
           </div>
 
           {/* Heading */}
-          <div className="space-y-1">
+          <div className="space-y-2">
             <h2 className={cn(
-              'text-xl font-black',
-              'text-slate-900 tracking-tight',
+              'text-2xl font-bold',
+              'text-slate-900',
             )}>
               Buat Akun Baru
             </h2>
-            <p className={cn(
-              'text-xs font-bold tracking-widest',
-              'text-slate-400 uppercase',
-            )}>
+            <p className="text-sm text-slate-500">
               Mulai perjalanan Anda hari ini
             </p>
           </div>
@@ -135,17 +132,25 @@ export function RegisterForm({
               )}
             />
 
+            {/* Auth Error */}
+            {registerMutation.isError && (
+              <p className={cn(
+                'text-sm text-red-500 text-center',
+                'bg-red-50 rounded-lg py-2.5 px-4',
+              )}>
+                {registerMutation.error.message}
+              </p>
+            )}
+
             {/* Submit */}
             <Button
               type="submit"
               className={cn(
                 'w-full h-12 rounded-xl',
-                'bg-slate-950 text-white',
-                'font-black text-xs uppercase',
-                'tracking-widest',
-                'hover:bg-emerald-600 transition-all',
-                'shadow-xl shadow-slate-950/10',
-                'hover:shadow-emerald-600/20 mt-4',
+                'bg-emerald-600 text-white',
+                'font-semibold text-sm',
+                'hover:bg-emerald-700 transition-all',
+                'shadow-lg shadow-emerald-600/20',
               )}
               disabled={isLoading}
             >
@@ -160,14 +165,11 @@ export function RegisterForm({
 
           {/* Divider */}
           <div className="flex items-center gap-4">
-            <Separator className="flex-1 bg-slate-100" />
-            <span className={cn(
-              'text-[10px] text-slate-300',
-              'font-black uppercase tracking-widest',
-            )}>
-              Atau
+            <Separator className="flex-1 bg-slate-200" />
+            <span className="text-xs text-slate-400">
+              atau
             </span>
-            <Separator className="flex-1 bg-slate-100" />
+            <Separator className="flex-1 bg-slate-200" />
           </div>
 
           {/* Google */}
@@ -178,15 +180,12 @@ export function RegisterForm({
 
           {/* Login Link */}
           <div className="text-center">
-            <p className={cn(
-              'text-xs font-bold text-slate-400',
-              'uppercase tracking-wide',
-            )}>
+            <p className="text-sm text-slate-500">
               Sudah punya akun?{' '}
               <Link
                 href={loginHref}
                 className={cn(
-                  'text-emerald-600',
+                  'font-semibold text-emerald-600',
                   'hover:text-emerald-700',
                   'transition-colors',
                 )}

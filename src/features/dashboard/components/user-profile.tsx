@@ -4,7 +4,6 @@ import {
   User,
   Mail,
   Shield,
-  MapPin,
   Crown,
 } from 'lucide-react'
 
@@ -56,11 +55,6 @@ export function UserProfile() {
       value: user?.role
         ? ROLE_LABELS[user.role] || user.role
         : '-',
-    },
-    {
-      icon: MapPin,
-      label: 'Alamat',
-      value: user?.address || 'Belum diisi',
     },
   ]
 

@@ -112,11 +112,11 @@ export function AuthBrandingPanel({
           </div>
           <span
             className={cn(
-              'text-4xl font-black text-white',
-              'tracking-tighter',
+              'text-4xl font-bold text-white',
+              'tracking-tight',
             )}
           >
-            BERMOELA
+            Bermoela
             <span className="text-emerald-400">.</span>
           </span>
         </Link>

@@ -13,7 +13,6 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 
-import { CompleteProfileDialog } from './complete-profile-dialog'
 import { useAuthStore } from '@/store/auth.store'
 import { cn } from '@/lib/utils'
 
@@ -22,23 +21,20 @@ interface AuthGuardProps {
 }
 
 export function AuthGuard({ children }: AuthGuardProps) {
-  const { isAuthenticated, user } = useAuthStore()
+  const { isAuthenticated } = useAuthStore()
   const pathname = usePathname()
 
   const redirectParam = `?redirect=${
     encodeURIComponent(pathname)
   }`
   const needsLogin = !isAuthenticated
-  const needsProfile =
-    isAuthenticated && !user?.isProfileComplete
-  const showBlur = needsLogin || needsProfile
 
   return (
     <div className="relative">
       <div
         className={cn(
-          showBlur && 'pointer-events-none select-none',
-          showBlur && 'blur-sm opacity-60',
+          needsLogin && 'pointer-events-none select-none',
+          needsLogin && 'blur-sm opacity-60',
           'transition-all duration-300',
         )}
       >
@@ -104,9 +100,6 @@ export function AuthGuard({ children }: AuthGuardProps) {
           </div>
         </DialogContent>
       </Dialog>
-
-      {/* Profile incomplete dialog */}
-      <CompleteProfileDialog open={needsProfile} />
     </div>
   )
 }
