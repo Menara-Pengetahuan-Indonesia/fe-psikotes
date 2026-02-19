@@ -10,22 +10,22 @@
   --ps-muted-foreground: #1E40AF;
   --ps-bg-hover: #EFF6FF;
 
-  /* Konseling - Hijau (Tenang, Healing) */
-  --ks-primary: #22C55E;
-  --ks-primary-dark: #16A34A;
-  --ks-secondary: #10B981;
-  --ks-accent: #14B8A6;
-  --ks-muted: #DCFCE7;
-  --ks-muted-foreground: #166534;
-  --ks-bg-hover: #F0FDF4;
+  /* Konseling - Indigo (Wisdom, Trust) */
+  --ks-primary: #6366F1;
+  --ks-primary-dark: #4338CA;
+  --ks-secondary: #818CF8;
+  --ks-accent: #4F46E5;
+  --ks-muted: #EEF2FF;
+  --ks-muted-foreground: #312E81;
+  --ks-bg-hover: #EEF2FF;
 
   /* Training - Orange (Energik, Motivasi) */
   --tr-primary: #F97316;
   --tr-primary-dark: #EA580C;
-  --tr-secondary: #F59E0B;
-  --tr-accent: #EAB308;
-  --tr-muted: #FEF3C7;
-  --tr-muted-foreground: #92400E;
+  --tr-secondary: #FB923C;
+  --tr-accent: #EA580C;
+  --tr-muted: #FFF7ED;
+  --tr-muted-foreground: #7C2D12;
   --tr-bg-hover: #FFF7ED;
 }
 
@@ -39,23 +39,23 @@
   --ps-muted-foreground: #93C5FD;
   --ps-bg-hover: #1E3A5F;
 
-  /* Konseling Dark */
-  --ks-primary: #4ADE80;
-  --ks-primary-dark: #22C55E;
-  --ks-secondary: #34D399;
-  --ks-accent: #2DD4BF;
-  --ks-muted: #14532D;
-  --ks-muted-foreground: #86EFAC;
-  --ks-bg-hover: #14532D;
+  /* Konseling Dark - Indigo */
+  --ks-primary: #818CF8;
+  --ks-primary-dark: #6366F1;
+  --ks-secondary: #A5B4FC;
+  --ks-accent: #6366F1;
+  --ks-muted: #312E81;
+  --ks-muted-foreground: #C7D2FE;
+  --ks-bg-hover: #312E81;
 
-  /* Training Dark */
+  /* Training Dark - Orange */
   --tr-primary: #FB923C;
   --tr-primary-dark: #F97316;
-  --tr-secondary: #FBBF24;
-  --tr-accent: #FACC15;
-  --tr-muted: #451A03;
+  --tr-secondary: #FDBA74;
+  --tr-accent: #F97316;
+  --tr-muted: #7C2D12;
   --tr-muted-foreground: #FED7AA;
-  --tr-bg-hover: #451A03;
+  --tr-bg-hover: #7C2D12;
 }
 
 /* Utility Classes - Psikotes */

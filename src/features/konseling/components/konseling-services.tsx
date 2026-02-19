@@ -32,7 +32,7 @@ export function KonselingServices() {
     <section
       id="services"
       className={cn(
-        'py-24 md:py-36 bg-[#faf5e4]',
+        'py-24 md:py-36 bg-background',
         'relative overflow-hidden'
       )}
     >
@@ -53,7 +53,7 @@ export function KonselingServices() {
       <Plus
         className={cn(
           'absolute top-[10%] left-[10%]',
-          'text-indigo-600/20 w-8 h-8 animate-pulse'
+          'text-konseling-600/20 w-8 h-8 animate-pulse'
         )}
       />
       <Plus
@@ -65,14 +65,14 @@ export function KonselingServices() {
       <Hexagon
         className={cn(
           'absolute top-[25%] right-[5%]',
-          'text-indigo-600/10 w-24 h-24',
+          'text-konseling-600/10 w-24 h-24',
           'rotate-12 animate-float-slow'
         )}
       />
       <Diamond
         className={cn(
           'absolute bottom-[20%] left-[5%]',
-          'text-amber-600/10 w-16 h-16',
+          'text-accent-600/10 w-16 h-16',
           '-rotate-12 animate-float-medium'
         )}
       />
@@ -90,7 +90,7 @@ export function KonselingServices() {
       <div
         className={cn(
           'absolute bottom-0 left-0 w-125 h-125',
-          'bg-[radial-gradient(circle_at_30%_30%,#ffedd5_0%,#fed7aa_100%)]',
+          'bg-[radial-gradient(circle_at_30%_30%,#FEF3C7_0%,#FDE68A_100%)]',
           'opacity-20 rounded-full blur-[120px]',
           '-translate-x-1/4 translate-y-1/4',
           'pointer-events-none'
@@ -108,7 +108,7 @@ export function KonselingServices() {
               'uppercase tracking-[0.2em] shadow-sm'
             )}
           >
-            <Grid className="w-3 h-3 text-indigo-600" />
+            <Grid className="w-3 h-3 text-konseling-600" />
             Specialized Sessions
           </div>
           <h2
@@ -118,12 +118,12 @@ export function KonselingServices() {
             )}
           >
             Layanan{' '}
-            <span className="text-indigo-600 relative inline-block">
+            <span className="text-konseling-600 relative inline-block">
               Konseling
               <svg
                 className={cn(
                   'absolute -bottom-2 left-0',
-                  'w-full h-2 text-indigo-400/30'
+                  'w-full h-2 text-konseling-400/30'
                 )}
                 viewBox="0 0 100 10"
                 preserveAspectRatio="none"
@@ -165,11 +165,11 @@ export function KonselingServices() {
                 className={cn(
                   'capitalize rounded-full px-8 py-3',
                   'font-black text-stone-500',
-                  'data-[state=active]:bg-indigo-600',
+                  'data-[state=active]:bg-konseling-600',
                   'data-[state=active]:text-white',
                   'data-[state=active]:shadow-lg',
                   'transition-all duration-300',
-                  'hover:text-indigo-700'
+                  'hover:text-konseling-700'
                 )}
               >
                 {tab}

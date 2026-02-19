@@ -35,7 +35,7 @@ export function PelatihanPrograms() {
     <section
       id="programs"
       className={cn(
-        'py-24 md:py-36 bg-[#faf5e4]',
+        'py-24 md:py-36 bg-background',
         'relative overflow-hidden'
       )}
     >
@@ -56,7 +56,7 @@ export function PelatihanPrograms() {
       <Plus
         className={cn(
           'absolute top-[10%] left-[10%]',
-          'text-orange-600/20 w-8 h-8 animate-pulse'
+          'text-pelatihan-600/20 w-8 h-8 animate-pulse'
         )}
       />
       <Plus
@@ -68,14 +68,14 @@ export function PelatihanPrograms() {
       <Hexagon
         className={cn(
           'absolute top-[25%] right-[5%]',
-          'text-orange-600/10 w-24 h-24',
+          'text-pelatihan-600/10 w-24 h-24',
           'rotate-12 animate-float-slow'
         )}
       />
       <Diamond
         className={cn(
           'absolute bottom-[20%] left-[5%]',
-          'text-amber-600/10 w-16 h-16',
+          'text-accent-600/10 w-16 h-16',
           '-rotate-12 animate-float-medium'
         )}
       />
@@ -84,7 +84,7 @@ export function PelatihanPrograms() {
       <div
         className={cn(
           'absolute top-0 right-0 w-96 h-96',
-          'bg-[radial-gradient(circle_at_30%_30%,#ffedd5_0%,#fed7aa_100%)]',
+          'bg-[radial-gradient(circle_at_30%_30%,#FEF3C7_0%,#FDE68A_100%)]',
           'opacity-30 rounded-full blur-[100px]',
           'translate-x-1/3 -translate-y-1/3',
           'pointer-events-none'
@@ -93,7 +93,7 @@ export function PelatihanPrograms() {
       <div
         className={cn(
           'absolute bottom-0 left-0 w-125 h-125',
-          'bg-[radial-gradient(circle_at_30%_30%,#ffedd5_0%,#fed7aa_100%)]',
+          'bg-[radial-gradient(circle_at_30%_30%,#FEF3C7_0%,#FDE68A_100%)]',
           'opacity-20 rounded-full blur-[120px]',
           '-translate-x-1/4 translate-y-1/4',
           'pointer-events-none'
@@ -111,7 +111,7 @@ export function PelatihanPrograms() {
               'uppercase tracking-[0.2em] shadow-sm'
             )}
           >
-            <Grid className="w-3 h-3 text-orange-600" />
+            <Grid className="w-3 h-3 text-pelatihan-600" />
             Featured Programs
           </div>
           <h2
@@ -123,14 +123,14 @@ export function PelatihanPrograms() {
             Program{' '}
             <span
               className={cn(
-                'text-orange-600 relative inline-block'
+                'text-pelatihan-600 relative inline-block'
               )}
             >
               Tersedia
               <svg
                 className={cn(
                   'absolute -bottom-2 left-0',
-                  'w-full h-2 text-orange-400/30'
+                  'w-full h-2 text-pelatihan-400/30'
                 )}
                 viewBox="0 0 100 10"
                 preserveAspectRatio="none"
@@ -172,11 +172,11 @@ export function PelatihanPrograms() {
                 className={cn(
                   'capitalize rounded-full px-8 py-3',
                   'font-black text-stone-500',
-                  'data-[state=active]:bg-orange-600',
+                  'data-[state=active]:bg-pelatihan-600',
                   'data-[state=active]:text-white',
                   'data-[state=active]:shadow-lg',
                   'transition-all duration-300',
-                  'hover:text-orange-700'
+                  'hover:text-pelatihan-700'
                 )}
               >
                 {tab}

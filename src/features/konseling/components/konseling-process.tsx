@@ -16,14 +16,14 @@ export function KonselingProcess() {
       <Plus
         className={cn(
           'absolute top-[12%] right-[8%]',
-          'w-10 h-10 text-indigo-600/20',
+          'w-10 h-10 text-konseling-600/20',
           'rotate-12 animate-pulse'
         )}
       />
       <Diamond
         className={cn(
           'absolute bottom-[10%] left-[6%]',
-          'w-14 h-14 text-amber-500/20',
+          'w-14 h-14 text-accent-500/20',
           '-rotate-6 animate-float-medium'
         )}
       />
@@ -44,7 +44,7 @@ export function KonselingProcess() {
             <Sparkles
               className={cn(
                 'w-3.5 h-3.5',
-                'text-indigo-600 fill-indigo-600'
+                'text-konseling-600 fill-konseling-600'
               )}
             />
             How It Works
@@ -58,13 +58,13 @@ export function KonselingProcess() {
           >
             Alur{' '}
             <span className="relative inline-block">
-              <span className="text-indigo-600">
+              <span className="text-konseling-600">
                 Konseling
               </span>
               <svg
                 className={cn(
                   'absolute -bottom-2 left-0',
-                  'w-full h-3 text-indigo-500/30'
+                  'w-full h-3 text-konseling-500/30'
                 )}
                 viewBox="0 0 100 10"
                 preserveAspectRatio="none"
@@ -105,7 +105,7 @@ export function KonselingProcess() {
               '-translate-y-1/2 z-0',
               'mx-[16.67%]',
               'border-t-2 border-dashed',
-              'border-indigo-200'
+              'border-konseling-200'
             )}
             aria-hidden="true"
           />
@@ -128,7 +128,7 @@ export function KonselingProcess() {
                 <span
                   className={cn(
                     'text-5xl font-black',
-                    'text-indigo-600/20',
+                    'text-konseling-600/20',
                     'leading-none mb-4'
                   )}
                 >
@@ -139,8 +139,8 @@ export function KonselingProcess() {
                 <div
                   className={cn(
                     'w-16 h-16 rounded-2xl',
-                    'bg-indigo-50 text-indigo-600',
-                    'border border-indigo-100',
+                    'bg-konseling-50 text-konseling-600',
+                    'border border-konseling-100',
                     'flex items-center justify-center',
                     'mb-6'
                   )}

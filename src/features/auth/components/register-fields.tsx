@@ -2,9 +2,7 @@ import type {
   FieldErrors,
   UseFormRegister,
 } from 'react-hook-form'
-import {
-  User, Mail, Phone, Lock, Eye, EyeOff,
-} from 'lucide-react'
+import { Eye, EyeOff } from 'lucide-react'
 
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -12,30 +10,22 @@ import { Label } from '@/components/ui/label'
 import type { RegisterFormData } from '../schemas'
 import { cn } from '@/lib/utils'
 
-const LABEL_CLS = cn(
-  'text-[10px] font-black text-slate-500',
-  'uppercase tracking-widest ml-1',
-)
-const ICON_CLS = cn(
-  'h-4 w-4 text-slate-300',
-  'group-focus-within:text-emerald-500 transition-colors',
-)
+const LABEL_CLS = 'text-sm font-semibold text-secondary-900/60'
 const INPUT_CLS = cn(
-  'pl-10 h-11 rounded-xl border-slate-200',
-  'bg-white focus:bg-white transition-all font-medium',
+  'h-12 rounded-xl border-secondary-100 bg-white/50',
+  'px-4 placeholder:text-secondary-900/20 text-secondary-900',
+  'focus:border-primary-500/50 focus:bg-white',
+  'focus:ring-4 focus:ring-primary-500/5',
+  'transition-all duration-200',
 )
-const INPUT_PW_CLS = cn(
-  'pl-10 pr-11 h-11 rounded-xl border-slate-200',
-  'bg-white focus:bg-white transition-all font-medium',
-)
+const INPUT_PW_CLS = cn(INPUT_CLS, 'pr-12')
 const TOGGLE_CLS = cn(
-  'absolute inset-y-0 right-0 pr-4 flex items-center',
-  'text-slate-300 hover:text-slate-500 transition-colors',
+  'absolute inset-y-0 right-0 pr-4',
+  'flex items-center',
+  'text-secondary-900/20 hover:text-secondary-900/50',
+  'transition-colors',
 )
-const ERROR_CLS = cn(
-  'text-[10px] font-bold text-red-500',
-  'uppercase tracking-tight ml-1',
-)
+const ERROR_CLS = 'text-xs text-red-500 mt-1.5 ml-1 font-medium'
 
 interface RegisterFieldsProps {
   register: UseFormRegister<RegisterFormData>
@@ -58,27 +48,23 @@ export function RegisterFields({
     <>
       {/* Name Row */}
       <div className="grid grid-cols-2 gap-3">
-        {/* First Name */}
-        <div className="space-y-2">
-          <Label htmlFor="firstName" className={LABEL_CLS}>
+        <div className="space-y-1.5">
+          <Label
+            htmlFor="firstName"
+            className={LABEL_CLS}
+          >
             Nama Depan
           </Label>
-          <div className="relative group">
-            <div className={cn(
-              'absolute inset-y-0 left-0 pl-4',
-              'flex items-center pointer-events-none',
-            )}>
-              <User className={ICON_CLS} />
-            </div>
-            <Input
-              id="firstName"
-              type="text"
-              placeholder="John"
-              className={INPUT_CLS}
-              {...reg('firstName')}
-              aria-invalid={!!errors.firstName}
-            />
-          </div>
+          <Input
+            id="firstName"
+            type="text"
+            placeholder="John"
+            className={INPUT_CLS}
+            autoFocus
+            tabIndex={1}
+            {...reg('firstName')}
+            aria-invalid={!!errors.firstName}
+          />
           {errors.firstName && (
             <p className={ERROR_CLS}>
               {errors.firstName.message}
@@ -86,27 +72,22 @@ export function RegisterFields({
           )}
         </div>
 
-        {/* Last Name */}
-        <div className="space-y-2">
-          <Label htmlFor="lastName" className={LABEL_CLS}>
+        <div className="space-y-1.5">
+          <Label
+            htmlFor="lastName"
+            className={LABEL_CLS}
+          >
             Nama Belakang
           </Label>
-          <div className="relative group">
-            <div className={cn(
-              'absolute inset-y-0 left-0 pl-4',
-              'flex items-center pointer-events-none',
-            )}>
-              <User className={ICON_CLS} />
-            </div>
-            <Input
-              id="lastName"
-              type="text"
-              placeholder="Doe"
-              className={INPUT_CLS}
-              {...reg('lastName')}
-              aria-invalid={!!errors.lastName}
-            />
-          </div>
+          <Input
+            id="lastName"
+            type="text"
+            placeholder="Doe"
+            className={INPUT_CLS}
+            tabIndex={2}
+            {...reg('lastName')}
+            aria-invalid={!!errors.lastName}
+          />
           {errors.lastName && (
             <p className={ERROR_CLS}>
               {errors.lastName.message}
@@ -116,26 +97,19 @@ export function RegisterFields({
       </div>
 
       {/* Email */}
-      <div className="space-y-2">
+      <div className="space-y-1.5">
         <Label htmlFor="email" className={LABEL_CLS}>
-          Email Address
+          Alamat Email
         </Label>
-        <div className="relative group">
-          <div className={cn(
-            'absolute inset-y-0 left-0 pl-4',
-            'flex items-center pointer-events-none',
-          )}>
-            <Mail className={ICON_CLS} />
-          </div>
-          <Input
-            id="email"
-            type="email"
-            placeholder="nama@email.com"
-            className={INPUT_CLS}
-            {...reg('email')}
-            aria-invalid={!!errors.email}
-          />
-        </div>
+        <Input
+          id="email"
+          type="email"
+          placeholder="nama@email.com"
+          className={INPUT_CLS}
+          tabIndex={3}
+          {...reg('email')}
+          aria-invalid={!!errors.email}
+        />
         {errors.email && (
           <p className={ERROR_CLS}>
             {errors.email.message}
@@ -144,50 +118,38 @@ export function RegisterFields({
       </div>
 
       {/* Phone */}
-      <div className="space-y-2">
-        <Label htmlFor="phone" className={LABEL_CLS}>
+      <div className="space-y-1.5">
+        <Label htmlFor="telp" className={LABEL_CLS}>
           Nomor HP
         </Label>
-        <div className="relative group">
-          <div className={cn(
-            'absolute inset-y-0 left-0 pl-4',
-            'flex items-center pointer-events-none',
-          )}>
-            <Phone className={ICON_CLS} />
-          </div>
-          <Input
-            id="phone"
-            type="tel"
-            placeholder="08xxxxxxxxxx"
-            className={INPUT_CLS}
-            {...reg('phone')}
-            aria-invalid={!!errors.phone}
-          />
-        </div>
-        {errors.phone && (
+        <Input
+          id="telp"
+          type="tel"
+          placeholder="08xxxxxxxxxx"
+          className={INPUT_CLS}
+          tabIndex={4}
+          {...reg('telp')}
+          aria-invalid={!!errors.telp}
+        />
+        {errors.telp && (
           <p className={ERROR_CLS}>
-            {errors.phone.message}
+            {errors.telp.message}
           </p>
         )}
       </div>
 
       {/* Password */}
-      <div className="space-y-2">
+      <div className="space-y-1.5">
         <Label htmlFor="password" className={LABEL_CLS}>
           Password
         </Label>
-        <div className="relative group">
-          <div className={cn(
-            'absolute inset-y-0 left-0 pl-4',
-            'flex items-center pointer-events-none',
-          )}>
-            <Lock className={ICON_CLS} />
-          </div>
+        <div className="relative">
           <Input
             id="password"
             type={showPassword ? 'text' : 'password'}
-            placeholder="••••••••"
+            placeholder="Masukkan password"
             className={INPUT_PW_CLS}
+            tabIndex={5}
             {...reg('password')}
             aria-invalid={!!errors.password}
           />
@@ -195,11 +157,12 @@ export function RegisterFields({
             type="button"
             onClick={onTogglePassword}
             className={TOGGLE_CLS}
+            tabIndex={-1}
             aria-label="Toggle password visibility"
           >
             {showPassword
-              ? <EyeOff className="h-5 w-5" />
-              : <Eye className="h-5 w-5" />}
+              ? <EyeOff className="h-4 w-4" />
+              : <Eye className="h-4 w-4" />}
           </button>
         </div>
         {errors.password && (
@@ -210,25 +173,20 @@ export function RegisterFields({
       </div>
 
       {/* Confirm Password */}
-      <div className="space-y-2">
+      <div className="space-y-1.5">
         <Label
           htmlFor="confirmPassword"
           className={LABEL_CLS}
         >
           Konfirmasi Password
         </Label>
-        <div className="relative group">
-          <div className={cn(
-            'absolute inset-y-0 left-0 pl-4',
-            'flex items-center pointer-events-none',
-          )}>
-            <Lock className={ICON_CLS} />
-          </div>
+        <div className="relative">
           <Input
             id="confirmPassword"
             type={showConfirm ? 'text' : 'password'}
-            placeholder="••••••••"
+            placeholder="Ulangi password"
             className={INPUT_PW_CLS}
+            tabIndex={6}
             {...reg('confirmPassword')}
             aria-invalid={!!errors.confirmPassword}
           />
@@ -236,11 +194,12 @@ export function RegisterFields({
             type="button"
             onClick={onToggleConfirm}
             className={TOGGLE_CLS}
+            tabIndex={-1}
             aria-label="Toggle confirmation visibility"
           >
             {showConfirm
-              ? <EyeOff className="h-5 w-5" />
-              : <Eye className="h-5 w-5" />}
+              ? <EyeOff className="h-4 w-4" />
+              : <Eye className="h-4 w-4" />}
           </button>
         </div>
         {errors.confirmPassword && (

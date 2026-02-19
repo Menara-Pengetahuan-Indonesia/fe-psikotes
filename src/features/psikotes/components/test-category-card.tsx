@@ -14,39 +14,39 @@ interface TestCategoryCardProps {
   test: PsikotesTest
   number: number
   href: string
-  variant?: 'emerald' | 'amber' | 'indigo'
+  variant?: 'teal' | 'amber' | 'indigo'
 }
 
-export function TestCategoryCard({ test, number, href, variant = 'emerald' }: TestCategoryCardProps) {
+export function TestCategoryCard({ test, number, href, variant = 'teal' }: TestCategoryCardProps) {
   const Icon = test.icon
   const badge = String(number).padStart(2, '0')
 
   const themes = {
-    emerald: {
-      border: 'hover:border-emerald-500',
-      shadow: 'hover:shadow-emerald-900/10',
-      iconBg: 'bg-emerald-50',
-      iconColor: 'text-emerald-600',
-      iconHover: 'group-hover:bg-emerald-600',
-      titleHover: 'group-hover:text-emerald-700',
-      userIcon: 'text-emerald-500',
-      btnBg: 'hover:bg-emerald-600',
-      btnShadow: 'hover:shadow-emerald-600/20',
-      aura: 'bg-emerald-50',
-      glow: 'bg-emerald-400'
+    teal: {
+      border: 'hover:border-primary-500',
+      shadow: 'hover:shadow-primary-900/10',
+      iconBg: 'bg-primary-50',
+      iconColor: 'text-primary-600',
+      iconHover: 'group-hover:bg-primary-600',
+      titleHover: 'group-hover:text-primary-700',
+      userIcon: 'text-primary-500',
+      btnBg: 'hover:bg-primary-600',
+      btnShadow: 'hover:shadow-primary-600/20',
+      aura: 'bg-primary-50',
+      glow: 'bg-primary-400'
     },
     amber: {
-      border: 'hover:border-amber-500',
-      shadow: 'hover:shadow-amber-900/10',
-      iconBg: 'bg-amber-50',
-      iconColor: 'text-amber-600',
-      iconHover: 'group-hover:bg-amber-600',
-      titleHover: 'group-hover:text-amber-700',
-      userIcon: 'text-amber-500',
-      btnBg: 'hover:bg-amber-600',
-      btnShadow: 'hover:shadow-amber-600/20',
-      aura: 'bg-amber-50',
-      glow: 'bg-amber-400'
+      border: 'hover:border-accent-500',
+      shadow: 'hover:shadow-accent-900/10',
+      iconBg: 'bg-accent-50',
+      iconColor: 'text-accent-600',
+      iconHover: 'group-hover:bg-accent-600',
+      titleHover: 'group-hover:text-accent-700',
+      userIcon: 'text-accent-500',
+      btnBg: 'hover:bg-accent-600',
+      btnShadow: 'hover:shadow-accent-600/20',
+      aura: 'bg-accent-50',
+      glow: 'bg-accent-400'
     },
     indigo: {
       border: 'hover:border-indigo-500',
@@ -130,10 +130,10 @@ export function TestCategoryCard({ test, number, href, variant = 'emerald' }: Te
                 theme.iconHover,
                 'group-hover:text-white',
                 'group-hover:border-transparent',
-                variant === 'emerald'
-                  ? 'border-emerald-100'
+                variant === 'teal'
+                  ? 'border-primary-100'
                   : variant === 'amber'
-                    ? 'border-amber-100'
+                    ? 'border-accent-100'
                     : 'border-indigo-100',
               )}
             >

@@ -4,6 +4,16 @@ import userEvent from '@testing-library/user-event'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RegisterForm } from '@/features/auth/components/register-form'
 
+vi.mock('@/features/auth/services', () => ({
+  authService: {
+    register: vi.fn().mockResolvedValue({
+      user: { id: '1', email: 'john@example.com', name: 'John Doe', role: 'USER' },
+      message: 'User registered successfully',
+    }),
+  },
+  extractErrorMessage: vi.fn((e: Error) => e.message),
+}))
+
 function renderWithProviders(ui: React.ReactElement) {
   const queryClient = new QueryClient({
     defaultOptions: { mutations: { retry: false } },
@@ -45,9 +55,13 @@ describe('RegisterForm', () => {
     const user = userEvent.setup()
     renderWithProviders(<RegisterForm />)
 
-    await user.type(screen.getByLabelText(/^password$/i), 'Password123')
-    await user.type(screen.getByLabelText(/konfirmasi password/i), 'Different123')
-    await user.tab()
+    await user.type(screen.getByLabelText(/nama depan/i), 'John')
+    await user.type(screen.getByLabelText(/nama belakang/i), 'Doe')
+    await user.type(screen.getByLabelText(/email/i), 'john@example.com')
+    await user.type(screen.getByLabelText(/nomor hp/i), '081234567890')
+    await user.type(screen.getByLabelText(/^password$/i), 'Password123!')
+    await user.type(screen.getByLabelText(/konfirmasi password/i), 'Different123!')
+    await user.click(screen.getByRole('button', { name: /daftar sekarang/i }))
 
     await waitFor(() => {
       expect(screen.getByText(/password tidak cocok/i)).toBeInTheDocument()
@@ -63,8 +77,8 @@ describe('RegisterForm', () => {
     await user.type(screen.getByLabelText(/nama belakang/i), 'Doe')
     await user.type(screen.getByLabelText(/email/i), 'john@example.com')
     await user.type(screen.getByLabelText(/nomor hp/i), '081234567890')
-    await user.type(screen.getByLabelText(/^password$/i), 'Password123')
-    await user.type(screen.getByLabelText(/konfirmasi password/i), 'Password123')
+    await user.type(screen.getByLabelText(/^password$/i), 'Password123!')
+    await user.type(screen.getByLabelText(/konfirmasi password/i), 'Password123!')
     await user.click(screen.getByRole('button', { name: /daftar sekarang/i }))
 
     await waitFor(() => {
@@ -75,6 +89,6 @@ describe('RegisterForm', () => {
   it('renders login link', () => {
     renderWithProviders(<RegisterForm />)
 
-    expect(screen.getByText(/masuk sekarang/i)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /masuk/i })).toBeInTheDocument()
   })
 })

@@ -7,7 +7,6 @@ import {
   Plus,
   Star,
   Circle,
-  ArrowRight,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import {
@@ -17,6 +16,7 @@ import {
   SOCIAL_LINKS,
   TOPO_PATTERN_SVG,
 } from '@/config/footer'
+import { FooterCtaBanner } from './footer-cta-banner'
 
 export function Footer() {
   const pathname = usePathname()
@@ -100,42 +100,7 @@ export function Footer() {
         )}
       >
         {/* CTA Banner */}
-        <div
-          className={cn(
-            'rounded-2xl md:rounded-3xl p-6 md:p-8',
-            'bg-white/5 backdrop-blur-sm',
-            'border border-white/10',
-            'flex flex-col sm:flex-row items-center',
-            'justify-between gap-4',
-          )}
-        >
-          <div>
-            <h3
-              className={cn(
-                'text-lg md:text-xl font-bold',
-                'text-white',
-              )}
-            >
-              {cta.title}
-            </h3>
-            <p className={cn('text-sm mt-1', theme.textMuted)}>
-              {cta.desc}
-            </p>
-          </div>
-          <Link
-            href={cta.href}
-            className={cn(
-              'inline-flex items-center gap-2',
-              'px-6 py-3 rounded-full',
-              'font-bold text-sm',
-              'transition-colors shrink-0',
-              theme.ctaButton,
-            )}
-          >
-            {cta.label}
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
+        <FooterCtaBanner cta={cta} theme={theme} />
 
         {/* Brand + Links Grid */}
         <div className="grid md:grid-cols-4 gap-8">

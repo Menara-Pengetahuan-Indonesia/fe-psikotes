@@ -20,7 +20,7 @@ export function PelatihanFaq() {
   return (
     <section
       className={cn(
-        'py-24 md:py-36 bg-[#faf5e4]',
+        'py-24 md:py-36 bg-background',
         'relative overflow-hidden',
       )}
     >
@@ -28,21 +28,21 @@ export function PelatihanFaq() {
       <Plus
         className={cn(
           'absolute top-[8%] left-[6%]',
-          'text-orange-800/20 w-10 h-10',
+          'text-pelatihan-800/20 w-10 h-10',
           'rotate-45 pointer-events-none',
         )}
       />
       <Circle
         className={cn(
           'absolute top-[15%] right-[8%]',
-          'text-amber-500/20 w-14 h-14',
+          'text-accent-500/20 w-14 h-14',
           'pointer-events-none',
         )}
       />
       <Diamond
         className={cn(
           'absolute bottom-[10%] left-[10%]',
-          'text-orange-600/20 w-8 h-8',
+          'text-pelatihan-600/20 w-8 h-8',
           'rotate-12 pointer-events-none',
         )}
       />
@@ -50,7 +50,7 @@ export function PelatihanFaq() {
         className={cn(
           'absolute bottom-[20%] right-[5%]',
           'w-20 h-20 rounded-full',
-          'border-2 border-orange-800/15',
+          'border-2 border-pelatihan-800/15',
           'pointer-events-none',
         )}
       />
@@ -73,8 +73,8 @@ export function PelatihanFaq() {
           >
             <Sparkles
               className={cn(
-                'w-3.5 h-3.5 text-orange-600',
-                'fill-orange-600',
+                'w-3.5 h-3.5 text-pelatihan-600',
+                'fill-pelatihan-600',
               )}
             />
             <span
@@ -97,14 +97,14 @@ export function PelatihanFaq() {
           >
             Pertanyaan{' '}
             <span
-              className="text-orange-600 relative"
+              className="text-pelatihan-600 relative"
             >
               Umum
               <svg
                 className={cn(
                   'absolute -bottom-2 left-0',
                   'w-full h-3',
-                  'text-orange-500/30',
+                  'text-pelatihan-500/30',
                 )}
                 viewBox="0 0 100 10"
                 preserveAspectRatio="none"
@@ -133,11 +133,11 @@ export function PelatihanFaq() {
                   'border transition-all',
                   'duration-500 overflow-hidden',
                   isOpen
-                    ? 'border-orange-500'
+                    ? 'border-pelatihan-500'
                       + ' shadow-xl'
-                      + ' shadow-orange-900/5'
+                      + ' shadow-pelatihan-900/5'
                       + ' ring-1'
-                      + ' ring-orange-500/10'
+                      + ' ring-pelatihan-500/10'
                     : 'border-slate-100'
                       + ' shadow-lg'
                       + ' shadow-stone-200/50'
@@ -164,7 +164,7 @@ export function PelatihanFaq() {
                         'justify-center',
                         'transition-colors',
                         isOpen
-                          ? 'bg-orange-600'
+                          ? 'bg-pelatihan-600'
                             + ' text-white'
                           : 'bg-slate-50'
                             + ' text-slate-400',
@@ -192,8 +192,8 @@ export function PelatihanFaq() {
                       'rounded-full p-2',
                       'transition-all',
                       isOpen
-                        ? 'bg-orange-50'
-                          + ' text-orange-600'
+                        ? 'bg-pelatihan-50'
+                          + ' text-pelatihan-600'
                         : 'bg-slate-50'
                           + ' text-slate-300',
                     )}
