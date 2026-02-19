@@ -1,26 +1,12 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import {
-  ChevronLeft,
-  ChevronRight,
-  Sparkles,
-  Plus,
-  Hexagon,
-} from 'lucide-react'
+import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-import {
-  MAHASISWA_BENEFITS,
-} from '../../constants'
-
-const THEME_BG: Record<string, string> = {
-  emerald: 'bg-emerald-600',
-  amber: 'bg-amber-500',
-  sky: 'bg-sky-500',
-  indigo: 'bg-indigo-500',
-  rose: 'bg-rose-500',
-}
+import { MAHASISWA_BENEFITS } from '../../constants'
+import { BenefitCard } from './benefit-card'
+import { CarouselBackdrop } from './carousel-backdrop'
 
 const TOTAL = MAHASISWA_BENEFITS.length
 
@@ -53,74 +39,7 @@ export function MahasiswaBenefitsCarousel() {
         'relative overflow-hidden',
       )}
     >
-      {/* Topographic Pattern */}
-      <div
-        className={cn(
-          'absolute inset-0',
-          'opacity-[0.03]',
-          'pointer-events-none',
-          'mix-blend-multiply',
-        )}
-        style={{
-          backgroundImage:
-            'url("data:image/svg+xml,'
-            + '%3Csvg width=\'200\''
-            + ' height=\'200\''
-            + ' viewBox=\'0 0 200 200\''
-            + ' xmlns=\'http://www.w3.org/'
-            + '2000/svg\'%3E%3Cpath'
-            + ' d=\'M0 100 C 20 80, 40 120,'
-            + ' 60 100 S 100 80, 120 100'
-            + ' S 160 120, 200 100\''
-            + ' stroke=\'%23059669\''
-            + ' fill=\'transparent\''
-            + ' stroke-width=\'1\'/%3E'
-            + '%3C/svg%3E")',
-          backgroundSize: '400px 400px',
-        }}
-      />
-
-      {/* Ornaments */}
-      <Plus
-        className={cn(
-          'absolute top-[10%] right-[6%]',
-          'text-emerald-600/15 w-8 h-8',
-          'pointer-events-none',
-        )}
-      />
-      <Plus
-        className={cn(
-          'absolute bottom-[15%] left-[4%]',
-          'text-slate-400/15 w-6 h-6',
-          'rotate-45 pointer-events-none',
-        )}
-      />
-      <Hexagon
-        className={cn(
-          'absolute bottom-[25%] right-[12%]',
-          'text-emerald-600/[0.07]',
-          'w-20 h-20 rotate-12',
-          'pointer-events-none',
-        )}
-      />
-
-      {/* Ambient Glows */}
-      <div
-        className={cn(
-          'absolute -top-16 -right-16',
-          'w-72 h-72 bg-emerald-100/30',
-          'rounded-full blur-[100px]',
-          'pointer-events-none',
-        )}
-      />
-      <div
-        className={cn(
-          'absolute -bottom-20 -left-20',
-          'w-64 h-64 bg-amber-100/20',
-          'rounded-full blur-[80px]',
-          'pointer-events-none',
-        )}
-      />
+      <CarouselBackdrop />
 
       <div
         className={cn(
@@ -148,8 +67,8 @@ export function MahasiswaBenefitsCarousel() {
               <Sparkles
                 className={cn(
                   'w-3.5 h-3.5',
-                  'text-emerald-600',
-                  'fill-emerald-600',
+                  'text-primary-600',
+                  'fill-primary-600',
                 )}
               />
               <span
@@ -172,14 +91,14 @@ export function MahasiswaBenefitsCarousel() {
             >
               Kenapa Harus{' '}
               <span
-                className="text-emerald-600 relative"
+                className="text-primary-600 relative"
               >
                 Bermoela?
                 <svg
                   className={cn(
                     'absolute -bottom-2 left-0',
                     'w-full h-3',
-                    'text-emerald-300/50',
+                    'text-primary-300/50',
                   )}
                   viewBox="0 0 100 10"
                   preserveAspectRatio="none"
@@ -293,7 +212,7 @@ export function MahasiswaBenefitsCarousel() {
                 'transition-all duration-500',
                 'cursor-pointer',
                 i === active
-                  ? 'w-8 bg-emerald-600'
+                  ? 'w-8 bg-primary-600'
                   : 'w-2 bg-slate-300',
               )}
             />
@@ -301,94 +220,5 @@ export function MahasiswaBenefitsCarousel() {
         </div>
       </div>
     </section>
-  )
-}
-
-function BenefitCard({
-  item,
-  offset,
-}: {
-  item: (typeof MAHASISWA_BENEFITS)[number]
-  offset: number
-}) {
-  const Icon = item.icon
-  const bg = THEME_BG[item.theme] ?? 'bg-emerald-600'
-  const isCenter = offset === 0
-  const isVisible = Math.abs(offset) <= 1
-
-  return (
-    <div
-      className={cn(
-        'absolute rounded-3xl overflow-hidden',
-        bg,
-      )}
-      style={{
-        width: isCenter
-          ? 'clamp(280px, 40vw, 340px)'
-          : 'clamp(220px, 32vw, 280px)',
-        height: isCenter
-          ? 'clamp(300px, 42vw, 360px)'
-          : 'clamp(240px, 34vw, 290px)',
-        transform: `translateX(${
-          offset * 240
-        }px) scale(${isCenter ? 1 : 0.92})`,
-        opacity: isVisible ? (isCenter ? 1 : 0.8) : 0,
-        zIndex: isCenter ? 20 : 10 - Math.abs(offset),
-        pointerEvents: isVisible ? 'auto' : 'none',
-        transition:
-          'transform 600ms cubic-bezier(.4,0,.2,1),'
-          + ' opacity 600ms cubic-bezier(.4,0,.2,1),'
-          + ' width 600ms cubic-bezier(.4,0,.2,1),'
-          + ' height 600ms cubic-bezier(.4,0,.2,1)',
-        boxShadow: isCenter
-          ? '0 25px 50px -12px rgba(0,0,0,.25)'
-          : '0 10px 25px -5px rgba(0,0,0,.1)',
-      }}
-    >
-      <div
-        className={cn(
-          'h-full flex flex-col',
-          'justify-end p-6 md:p-8',
-          'relative',
-        )}
-      >
-        {/* Icon */}
-        <div
-          className={cn(
-            'absolute top-5 right-5',
-            'w-12 h-12 rounded-2xl',
-            'bg-white/20 backdrop-blur-sm',
-            'flex items-center justify-center',
-          )}
-        >
-          <Icon className="w-6 h-6 text-white" />
-        </div>
-
-        {/* Title */}
-        <h3
-          className={cn(
-            'font-black text-white',
-            'tracking-tight leading-tight',
-            isCenter
-              ? 'text-2xl md:text-3xl mb-3'
-              : 'text-lg md:text-xl mb-2',
-          )}
-        >
-          {item.title}
-        </h3>
-
-        {/* Description */}
-        <p
-          className={cn(
-            'text-white/80 text-sm',
-            'leading-relaxed font-medium',
-            'transition-opacity duration-500',
-          )}
-          style={{ opacity: isCenter ? 1 : 0 }}
-        >
-          {item.description}
-        </p>
-      </div>
-    </div>
   )
 }

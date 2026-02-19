@@ -1,85 +1,13 @@
 import type { CSSProperties } from 'react'
-import {
-  Sparkles,
-  Leaf,
-  Plus,
-  Star,
-} from 'lucide-react'
+import { Sparkles, Plus, Star } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
-type Pill = {
-  label: string
-  color: 'dark' | 'green' | 'amber'
-}
-
-const PILL_COLORS: Record<
-  Pill['color'],
-  string
-> = {
-  dark: 'bg-emerald-900 text-white',
-  green: 'bg-emerald-500 text-white',
-  amber: 'bg-amber-400 text-amber-900',
-}
-
-const pill = (
-  label: string,
-  color: Pill['color'],
-): Pill => ({ label, color })
-
-const ROWS: Pill[][] = [
-  [
-    pill('Kenali Dirimu', 'dark'),
-    pill('Tumbuh Setiap Hari', 'green'),
-    pill('Berani Berubah', 'amber'),
-    pill('Percaya Proses', 'dark'),
-    pill('Jadi Versi Terbaik', 'green'),
-    pill('Mulai Dari Sekarang', 'amber'),
-  ],
-  [
-    pill('Potensi Tanpa Batas', 'green'),
-    pill('Langkah Kecil Bermakna', 'amber'),
-    pill('Mental Kuat', 'dark'),
-    pill('Fokus & Konsisten', 'green'),
-    pill('Bangkit Lebih Kuat', 'amber'),
-    pill('Hidup Penuh Tujuan', 'dark'),
-  ],
-  [
-    pill('Investasi Diri', 'amber'),
-    pill('Kenal Potensi', 'dark'),
-    pill('Masa Depan Cerah', 'green'),
-    pill('Berani Bermimpi', 'amber'),
-    pill('Jiwa Tangguh', 'dark'),
-    pill('Semangat Bertumbuh', 'green'),
-  ],
-]
-
-const MARQUEE_CSS = `
-@keyframes marquee-left {
-  from { transform: translateX(0) }
-  to { transform: translateX(-50%) }
-}
-@keyframes marquee-right {
-  from { transform: translateX(-50%) }
-  to { transform: translateX(0) }
-}
-.marquee-track {
-  animation-duration: var(--duration, 30s);
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-.marquee-left { animation-name: marquee-left }
-.marquee-right { animation-name: marquee-right }
-.marquee-row:hover .marquee-track,
-.marquee-row:focus-within .marquee-track {
-  animation-play-state: paused;
-}
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation-play-state: paused;
-  }
-}`
-
-const SEP_ICONS = [Leaf, Sparkles]
+import type { Pill } from './category-showcase-constants'
+import {
+  PILL_COLORS,
+  ROWS,
+  MARQUEE_CSS,
+  SEP_ICONS,
+} from './category-showcase-constants'
 
 function MarqueeRow({
   items,
@@ -133,7 +61,7 @@ function MarqueeRow({
               <Icon
                 className={cn(
                   'w-6 h-6',
-                  'text-emerald-600',
+                  'text-primary-600',
                 )}
               />
             </div>,
@@ -162,15 +90,15 @@ export function CategoryShowcase() {
       <Plus
         className={cn(
           'absolute top-[10%] right-[7%]',
-          'text-emerald-800/20 w-10 h-10',
+          'text-primary-800/20 w-10 h-10',
           'rotate-12 pointer-events-none',
         )}
       />
       <Star
         className={cn(
           'absolute bottom-[18%] left-[4%]',
-          'text-amber-500/25 w-8 h-8',
-          'fill-amber-500/25 -rotate-12',
+          'text-accent-500/25 w-8 h-8',
+          'fill-accent-500/25 -rotate-12',
           'pointer-events-none',
         )}
       />
@@ -178,7 +106,7 @@ export function CategoryShowcase() {
         className={cn(
           'absolute top-[30%] left-[12%]',
           'w-16 h-16 rounded-full',
-          'border-2 border-emerald-800/15',
+          'border-2 border-primary-800/15',
           'pointer-events-none',
         )}
       />
@@ -203,8 +131,8 @@ export function CategoryShowcase() {
             <Sparkles
               className={cn(
                 'w-3.5 h-3.5',
-                'text-emerald-600',
-                'fill-emerald-600',
+                'text-primary-600',
+                'fill-primary-600',
               )}
             />
             <span
@@ -227,14 +155,14 @@ export function CategoryShowcase() {
           >
             Tumbuh Bersama{' '}
             <span
-              className="text-emerald-600 relative"
+              className="text-primary-600 relative"
             >
               BERMOELA
               <svg
                 className={cn(
                   'absolute -bottom-2 left-0',
                   'w-full h-3',
-                  'text-emerald-500/30',
+                  'text-primary-500/30',
                 )}
                 viewBox="0 0 100 10"
                 preserveAspectRatio="none"

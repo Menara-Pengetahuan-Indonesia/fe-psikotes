@@ -18,7 +18,7 @@ const ECOSYSTEM_ITEMS = [
     icon: Users,
     title: 'Networking Session',
     description: 'Perluas jejaringmu dengan ribuan individu yang memiliki mindset bertumbuh.',
-    theme: 'emerald'
+    theme: 'teal'
   },
   {
     icon: PlayCircle,
@@ -46,13 +46,13 @@ export function EcosystemSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-20 space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm mb-2">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-600 fill-indigo-600" />
+            <Sparkles className="w-3.5 h-3.5 text-konseling-600 fill-konseling-600" />
             <span className="text-[10px] font-black tracking-[0.2em] text-slate-500 uppercase">
               Holistic Growth
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-            Bukan Sekadar <span className="text-indigo-600">Komunitas</span>
+            Bukan Sekadar <span className="text-konseling-600">Komunitas</span>
           </h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto font-medium leading-relaxed">
             Ini adalah ekosistem lengkap untuk membantumu tumbuh 1% setiap harinya melalui berbagai metode pembelajaran yang teruji.
@@ -64,9 +64,9 @@ export function EcosystemSection() {
             const Icon = item.icon
             
             const themes = {
-              indigo: 'bg-indigo-50/30 border-indigo-100 hover:border-indigo-500 hover:shadow-indigo-900/5',
-              amber: 'bg-amber-50/30 border-amber-100 hover:border-amber-500 hover:shadow-amber-900/5',
-              emerald: 'bg-emerald-50/30 border-emerald-100 hover:border-emerald-500 hover:shadow-emerald-900/5',
+              indigo: 'bg-konseling-50/30 border-konseling-100 hover:border-konseling-500 hover:shadow-konseling-900/5',
+              amber: 'bg-accent-50/30 border-accent-100 hover:border-accent-500 hover:shadow-accent-900/5',
+              teal: 'bg-primary-50/30 border-primary-100 hover:border-primary-500 hover:shadow-primary-900/5',
               sky: 'bg-sky-50/30 border-sky-100 hover:border-sky-500 hover:shadow-sky-900/5',
               rose: 'bg-rose-50/30 border-rose-100 hover:border-rose-500 hover:shadow-rose-900/5'
             }

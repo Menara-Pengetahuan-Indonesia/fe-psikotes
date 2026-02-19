@@ -15,7 +15,7 @@ export function MentalHealthJourney() {
       <section
         className={cn(
           'py-16 md:py-20 relative',
-          'overflow-hidden bg-emerald-950',
+          'overflow-hidden bg-primary-950',
           'text-white',
           'rounded-t-[40px]',
           'md:rounded-t-[80px]',
@@ -54,14 +54,14 @@ export function MentalHealthJourney() {
         <Plus
           className={cn(
             'absolute top-[15%] right-[8%]',
-            'text-emerald-300/30 w-8 h-8',
+            'text-primary-300/30 w-8 h-8',
             'animate-pulse',
           )}
         />
         <Heart
           className={cn(
             'absolute bottom-[15%] left-[5%]',
-            'text-amber-400/20 w-12 h-12',
+            'text-accent-400/20 w-12 h-12',
             'animate-float-slow',
           )}
         />
@@ -70,7 +70,7 @@ export function MentalHealthJourney() {
         <div
           className={cn(
             'absolute top-0 left-0',
-            'w-96 h-96 bg-emerald-800/30',
+            'w-96 h-96 bg-primary-800/30',
             'rounded-full blur-[100px]',
             '-translate-x-1/2 -translate-y-1/2',
             'pointer-events-none',
@@ -79,7 +79,7 @@ export function MentalHealthJourney() {
         <div
           className={cn(
             'absolute bottom-0 right-0',
-            'w-125 h-125 bg-amber-500/10',
+            'w-125 h-125 bg-accent-500/10',
             'rounded-full blur-[120px]',
             'translate-x-1/4 translate-y-1/4',
             'pointer-events-none',
@@ -108,14 +108,14 @@ export function MentalHealthJourney() {
               <Sparkles
                 className={cn(
                   'w-3.5 h-3.5',
-                  'text-amber-300 fill-amber-300',
+                  'text-accent-300 fill-accent-300',
                 )}
               />
               <span
                 className={cn(
                   'text-[10px] font-black',
                   'tracking-[0.2em]',
-                  'text-emerald-100 uppercase',
+                  'text-primary-100 uppercase',
                 )}
               >
                 Your Journey
@@ -130,13 +130,13 @@ export function MentalHealthJourney() {
               )}
             >
               Perjalanan Menuju{' '}
-              <span className="text-amber-300 relative">
+              <span className="text-accent-300 relative">
                 Kesejahteraan
                 <svg
                   className={cn(
                     'absolute -bottom-2 left-0',
                     'w-full h-3',
-                    'text-amber-400/40',
+                    'text-accent-400/40',
                   )}
                   viewBox="0 0 100 10"
                   preserveAspectRatio="none"
@@ -153,7 +153,7 @@ export function MentalHealthJourney() {
 
             <p
               className={cn(
-                'text-lg text-emerald-100',
+                'text-lg text-primary-100',
                 'max-w-2xl mx-auto',
                 'font-medium leading-relaxed',
               )}
@@ -181,7 +181,7 @@ export function MentalHealthJourney() {
                   'transition-all duration-500',
                   'hover:-translate-y-1',
                   'hover:shadow-2xl',
-                  'hover:shadow-emerald-900/40',
+                  'hover:shadow-primary-900/40',
                 )}
               >
                 <div
@@ -193,7 +193,7 @@ export function MentalHealthJourney() {
                   <div
                     className={cn(
                       'w-12 h-12',
-                      'bg-amber-400 rounded-xl',
+                      'bg-accent-400 rounded-xl',
                       'flex items-center',
                       'justify-center',
                       'text-slate-950',
@@ -215,7 +215,7 @@ export function MentalHealthJourney() {
                 </div>
                 <p
                   className={cn(
-                    'text-emerald-200/70',
+                    'text-primary-200/70',
                     'leading-relaxed font-medium',
                     'ml-16',
                   )}

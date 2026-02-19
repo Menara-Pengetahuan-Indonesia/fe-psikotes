@@ -34,66 +34,66 @@ type FooterCta = {
 // ─── Theme per section ──────────────────────────────────
 
 const EMERALD_THEME: FooterTheme = {
-  bg: 'bg-emerald-950',
-  glowTop: 'bg-emerald-800/30',
+  bg: 'bg-primary-950',
+  glowTop: 'bg-primary-800/30',
   glowBottom: 'bg-amber-500/10',
-  ornamentPlus: 'text-emerald-400/10',
+  ornamentPlus: 'text-primary-400/10',
   ornamentStar: 'text-amber-400/10',
-  textMuted: 'text-emerald-200/60',
+  textMuted: 'text-primary-200/60',
   ctaButton:
-    'bg-amber-500 hover:bg-amber-400 text-emerald-950',
-  logoBg: 'bg-emerald-500',
-  brandAccent: 'text-emerald-400',
+    'bg-amber-500 hover:bg-amber-400 text-primary-950',
+  logoBg: 'bg-primary-500',
+  brandAccent: 'text-primary-400',
   socialIcon:
-    'text-emerald-200/60 hover:bg-emerald-500'
-    + ' hover:text-white hover:border-emerald-500',
-  linkText: 'text-emerald-200/70',
+    'text-primary-200/60 hover:bg-primary-500'
+    + ' hover:text-white hover:border-primary-500',
+  linkText: 'text-primary-200/70',
   bullet:
-    'bg-emerald-700 group-hover:bg-amber-400',
-  copyright: 'text-emerald-200/40',
-  madeWith: 'text-emerald-200/30',
+    'bg-primary-700 group-hover:bg-amber-400',
+  copyright: 'text-primary-200/40',
+  madeWith: 'text-primary-200/30',
 }
 
 const INDIGO_THEME: FooterTheme = {
-  bg: 'bg-indigo-950',
-  glowTop: 'bg-indigo-800/30',
+  bg: 'bg-konseling-950',
+  glowTop: 'bg-konseling-800/30',
   glowBottom: 'bg-violet-500/10',
-  ornamentPlus: 'text-indigo-400/10',
+  ornamentPlus: 'text-konseling-400/10',
   ornamentStar: 'text-violet-400/10',
-  textMuted: 'text-indigo-200/60',
+  textMuted: 'text-konseling-200/60',
   ctaButton:
-    'bg-violet-500 hover:bg-violet-400 text-indigo-950',
-  logoBg: 'bg-indigo-500',
-  brandAccent: 'text-indigo-400',
+    'bg-violet-500 hover:bg-violet-400 text-konseling-950',
+  logoBg: 'bg-konseling-500',
+  brandAccent: 'text-konseling-400',
   socialIcon:
-    'text-indigo-200/60 hover:bg-indigo-500'
-    + ' hover:text-white hover:border-indigo-500',
-  linkText: 'text-indigo-200/70',
+    'text-konseling-200/60 hover:bg-konseling-500'
+    + ' hover:text-white hover:border-konseling-500',
+  linkText: 'text-konseling-200/70',
   bullet:
-    'bg-indigo-700 group-hover:bg-violet-400',
-  copyright: 'text-indigo-200/40',
-  madeWith: 'text-indigo-200/30',
+    'bg-konseling-700 group-hover:bg-violet-400',
+  copyright: 'text-konseling-200/40',
+  madeWith: 'text-konseling-200/30',
 }
 
 const ORANGE_THEME: FooterTheme = {
-  bg: 'bg-orange-950',
-  glowTop: 'bg-orange-800/30',
+  bg: 'bg-pelatihan-950',
+  glowTop: 'bg-pelatihan-800/30',
   glowBottom: 'bg-amber-500/10',
-  ornamentPlus: 'text-orange-400/10',
+  ornamentPlus: 'text-pelatihan-400/10',
   ornamentStar: 'text-amber-400/10',
-  textMuted: 'text-orange-200/60',
+  textMuted: 'text-pelatihan-200/60',
   ctaButton:
-    'bg-amber-500 hover:bg-amber-400 text-orange-950',
-  logoBg: 'bg-orange-500',
-  brandAccent: 'text-orange-400',
+    'bg-amber-500 hover:bg-amber-400 text-pelatihan-950',
+  logoBg: 'bg-pelatihan-500',
+  brandAccent: 'text-pelatihan-400',
   socialIcon:
-    'text-orange-200/60 hover:bg-orange-500'
-    + ' hover:text-white hover:border-orange-500',
-  linkText: 'text-orange-200/70',
+    'text-pelatihan-200/60 hover:bg-pelatihan-500'
+    + ' hover:text-white hover:border-pelatihan-500',
+  linkText: 'text-pelatihan-200/70',
   bullet:
-    'bg-orange-700 group-hover:bg-amber-400',
-  copyright: 'text-orange-200/40',
-  madeWith: 'text-orange-200/30',
+    'bg-pelatihan-700 group-hover:bg-amber-400',
+  copyright: 'text-pelatihan-200/40',
+  madeWith: 'text-pelatihan-200/30',
 }
 
 export function getFooterTheme(pathname: string) {

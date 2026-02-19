@@ -22,7 +22,7 @@ export function CtaBannerSection({
             'text-center space-y-8',
             'transition-all duration-500',
             'hover:shadow-2xl',
-            'hover:shadow-emerald-900/5',
+            'hover:shadow-primary-900/5',
             'hover:-translate-y-1',
             'shadow-xl shadow-stone-200/50',
             'overflow-hidden',
@@ -32,7 +32,7 @@ export function CtaBannerSection({
           <div
             className={cn(
               'absolute -top-10 -right-10',
-              'w-40 h-40 bg-emerald-50',
+              'w-40 h-40 bg-primary-50',
               'rounded-full blur-3xl',
               'opacity-50',
               'group-hover:opacity-100',
@@ -42,7 +42,7 @@ export function CtaBannerSection({
           <div
             className={cn(
               'absolute -bottom-10 -left-10',
-              'w-40 h-40 bg-amber-50',
+              'w-40 h-40 bg-accent-50',
               'rounded-full blur-3xl',
               'opacity-50',
               'group-hover:opacity-100',
@@ -60,8 +60,8 @@ export function CtaBannerSection({
               className={cn(
                 'inline-flex items-center gap-2',
                 'px-4 py-1.5 rounded-full',
-                'bg-emerald-50 text-emerald-600',
-                'border border-emerald-100',
+                'bg-primary-50 text-primary-600',
+                'border border-primary-100',
                 'text-[10px] font-black',
                 'uppercase tracking-widest',
               )}
@@ -79,7 +79,7 @@ export function CtaBannerSection({
               )}
             >
               {data.title}{' '}
-              <span className="text-emerald-600">
+              <span className="text-primary-600">
                 {data.titleAccent}
               </span>
             </h3>
@@ -102,13 +102,13 @@ export function CtaBannerSection({
                 className={cn(
                   'inline-flex items-center',
                   'gap-3 px-10 py-4',
-                  'bg-emerald-700 text-white',
+                  'bg-primary-700 text-white',
                   'rounded-2xl text-xs',
                   'font-black uppercase',
                   'tracking-widest',
-                  'hover:bg-emerald-600',
+                  'hover:bg-primary-600',
                   'transition-all shadow-lg',
-                  'hover:shadow-emerald-200',
+                  'hover:shadow-primary-200',
                 )}
               >
                 {data.buttonText}

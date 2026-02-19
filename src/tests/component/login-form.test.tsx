@@ -34,16 +34,16 @@ describe('LoginForm', () => {
   it('renders login form with all fields', () => {
     renderWithProviders(<LoginForm />)
 
-    expect(screen.getByLabelText(/alamat email/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/^email$/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/^password$/i)).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /^masuk$/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /masuk sekarang/i })).toBeInTheDocument()
   })
 
   it('shows validation error for invalid email', async () => {
     const user = userEvent.setup()
     renderWithProviders(<LoginForm />)
 
-    const emailInput = screen.getByLabelText(/alamat email/i)
+    const emailInput = screen.getByLabelText(/^email$/i)
     await user.type(emailInput, 'invalid-email')
     await user.tab()
 
@@ -86,9 +86,9 @@ describe('LoginForm', () => {
     const onSuccess = vi.fn()
     renderWithProviders(<LoginForm onSuccess={onSuccess} />)
 
-    await user.type(screen.getByLabelText(/alamat email/i), 'test@example.com')
+    await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
     await user.type(screen.getByLabelText(/^password$/i), 'password123')
-    await user.click(screen.getByRole('button', { name: /^masuk$/i }))
+    await user.click(screen.getByRole('button', { name: /masuk sekarang/i }))
 
     await waitFor(() => {
       expect(onSuccess).toHaveBeenCalled()
@@ -98,12 +98,12 @@ describe('LoginForm', () => {
   it('renders Google login button', () => {
     renderWithProviders(<LoginForm />)
 
-    expect(screen.getByText(/masuk dengan google/i)).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /google/i })).toBeInTheDocument()
   })
 
   it('renders register link', () => {
     renderWithProviders(<LoginForm />)
 
-    expect(screen.getByText(/daftar sekarang/i)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /daftar/i })).toBeInTheDocument()
   })
 })

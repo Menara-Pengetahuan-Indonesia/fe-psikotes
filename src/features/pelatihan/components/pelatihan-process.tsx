@@ -16,14 +16,14 @@ export function PelatihanProcess() {
       <Plus
         className={cn(
           'absolute top-[12%] left-[8%]',
-          'w-10 h-10 text-orange-600/20',
+          'w-10 h-10 text-pelatihan-600/20',
           'rotate-12 animate-pulse'
         )}
       />
       <Diamond
         className={cn(
           'absolute bottom-[15%] right-[10%]',
-          'w-14 h-14 text-amber-500/20',
+          'w-14 h-14 text-accent-500/20',
           '-rotate-6 animate-float-medium'
         )}
       />
@@ -44,7 +44,7 @@ export function PelatihanProcess() {
             <Sparkles
               className={cn(
                 'w-3 h-3',
-                'text-orange-600 fill-orange-600'
+                'text-pelatihan-600 fill-pelatihan-600'
               )}
             />
             How It Works
@@ -58,13 +58,13 @@ export function PelatihanProcess() {
           >
             Alur{' '}
             <span className="relative inline-block">
-              <span className="text-orange-600">
+              <span className="text-pelatihan-600">
                 Pelatihan
               </span>
               <svg
                 className={cn(
                   'absolute -bottom-2 left-0',
-                  'w-full h-3 text-orange-500/30'
+                  'w-full h-3 text-pelatihan-500/30'
                 )}
                 viewBox="0 0 100 10"
                 preserveAspectRatio="none"
@@ -110,7 +110,7 @@ export function PelatihanProcess() {
               className={cn(
                 'mx-[16.67%]',
                 'border-t-2 border-dashed',
-                'border-orange-200'
+                'border-pelatihan-200'
               )}
             />
           </div>
@@ -133,7 +133,7 @@ export function PelatihanProcess() {
                 <span
                   className={cn(
                     'text-5xl font-black',
-                    'text-orange-600/20',
+                    'text-pelatihan-600/20',
                     'leading-none'
                   )}
                 >
@@ -144,8 +144,8 @@ export function PelatihanProcess() {
                 <div
                   className={cn(
                     'w-16 h-16 rounded-2xl',
-                    'bg-orange-50 text-orange-600',
-                    'border border-orange-100',
+                    'bg-pelatihan-50 text-pelatihan-600',
+                    'border border-pelatihan-100',
                     'flex items-center justify-center'
                   )}
                 >

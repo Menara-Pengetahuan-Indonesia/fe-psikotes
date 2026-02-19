@@ -38,7 +38,7 @@ const HERO_BENEFITS = [
 
 export function KonselingHero() {
   return (
-    <section className="relative overflow-hidden bg-linear-to-b from-indigo-800 via-indigo-700 to-indigo-500 py-20 md:py-36">
+    <section className="relative overflow-hidden bg-linear-to-b from-konseling-800 via-konseling-700 to-konseling-500 py-20 md:py-36">
 
       {/* --- RICH BACKGROUND ORNAMENTS --- */}
       {/* 1. Subtle Topographic Line Pattern */}
@@ -50,22 +50,22 @@ export function KonselingHero() {
       />
 
       {/* 2. Ambient Glows (Smooth Transition) */}
-      <div className="absolute top-[-10%] left-[-10%] w-150 h-150 bg-indigo-900/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-5%] w-125 h-125 bg-indigo-300/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-[-10%] left-[-10%] w-150 h-150 bg-konseling-900/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-5%] w-125 h-125 bg-konseling-300/20 rounded-full blur-[120px] pointer-events-none" />
 
       {/* 3. Technical Ornaments (Non-Wave) */}
       {/* Plus Signs */}
-      <Plus className="absolute top-[10%] left-[15%] text-indigo-300/30 w-8 h-8 animate-pulse" />
+      <Plus className="absolute top-[10%] left-[15%] text-konseling-300/30 w-8 h-8 animate-pulse" />
       <Plus className="absolute bottom-[15%] left-[5%] text-white/20 w-6 h-6 rotate-45" />
-      <Plus className="absolute top-[40%] right-[10%] text-amber-300/20 w-10 h-10 animate-spin-slow" />
+      <Plus className="absolute top-[40%] right-[10%] text-accent-300/20 w-10 h-10 animate-spin-slow" />
 
       {/* Floating Outlines */}
       <Hexagon className="absolute top-[20%] right-[30%] text-white/10 w-24 h-24 -rotate-12 animate-float-medium" />
-      <Diamond className="absolute bottom-[20%] right-[40%] text-amber-200/10 w-16 h-16 rotate-12 animate-float-slow" />
+      <Diamond className="absolute bottom-[20%] right-[40%] text-accent-200/10 w-16 h-16 rotate-12 animate-float-slow" />
 
       {/* 4. Floating 3D-like Spheres & Polygons */}
-      <div className="absolute top-10 left-[10%] w-32 h-32 bg-linear-to-br from-indigo-500/20 to-indigo-800/20 rounded-full blur-2xl opacity-40 animate-float-slow" />
-      <div className="absolute bottom-20 right-[5%] w-48 h-48 bg-linear-to-tr from-amber-300/10 to-amber-600/10 rounded-full blur-3xl opacity-20 animate-float-medium" />
+      <div className="absolute top-10 left-[10%] w-32 h-32 bg-linear-to-br from-konseling-500/20 to-konseling-800/20 rounded-full blur-2xl opacity-40 animate-float-slow" />
+      <div className="absolute bottom-20 right-[5%] w-48 h-48 bg-linear-to-tr from-accent-300/10 to-accent-600/10 rounded-full blur-3xl opacity-20 animate-float-medium" />
 
       {/* Glass Polygon shard */}
       <div className="absolute top-[15%] left-[45%] w-20 h-20 bg-white/10 backdrop-blur-sm rounded-tr-[3rem] rounded-bl-[2rem] rotate-30 border border-white/20" />
@@ -77,9 +77,9 @@ export function KonselingHero() {
           {/* Left Content */}
           <div className="space-y-10">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-700/50 border border-indigo-400 shadow-lg backdrop-blur-md animate-in fade-in slide-in-from-bottom-4 duration-700">
-              <Sparkles className="w-4 h-4 text-amber-400 fill-amber-400" />
-              <span className="text-[11px] font-black tracking-[0.2em] text-indigo-50 uppercase">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-konseling-700/50 border border-konseling-400 shadow-lg backdrop-blur-md animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <Sparkles className="w-4 h-4 text-accent-400 fill-accent-400" />
+              <span className="text-[11px] font-black tracking-[0.2em] text-konseling-50 uppercase">
                 Heal & Grow Together
               </span>
             </div>
@@ -88,14 +88,14 @@ export function KonselingHero() {
             <div className="space-y-6">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter leading-none drop-shadow-lg">
                 Konsultasi Profesional,<br />
-                <span className="text-amber-300 relative">
+                <span className="text-accent-300 relative">
                   Hidupmu
-                  <svg className="absolute -bottom-2 left-0 w-full h-3 text-amber-400/40" viewBox="0 0 100 10" preserveAspectRatio="none">
+                  <svg className="absolute -bottom-2 left-0 w-full h-3 text-accent-400/40" viewBox="0 0 100 10" preserveAspectRatio="none">
                     <path d="M0 5 Q 25 0, 50 5 T 100 5" fill="none" stroke="currentColor" strokeWidth="4" />
                   </svg>
                 </span> Lebih Baik.
               </h1>
-              <p className="text-xl text-indigo-50 max-w-lg leading-relaxed font-medium opacity-90 text-pretty">
+              <p className="text-xl text-konseling-50 max-w-lg leading-relaxed font-medium opacity-90 text-pretty">
                 Konsultasi profesional bersama psikolog berpengalaman untuk kehidupan yang lebih sehat dan bermakna.
               </p>
             </div>
@@ -106,16 +106,16 @@ export function KonselingHero() {
                 <div key={b.label}
                      className={cn(
                        "flex items-start gap-4 p-5 rounded-3xl border transition-all duration-500 hover:-translate-y-1",
-                       "bg-indigo-700/40 border-indigo-500/30 backdrop-blur-md hover:bg-indigo-700/60 hover:shadow-2xl hover:shadow-indigo-900/20"
+                       "bg-konseling-700/40 border-konseling-500/30 backdrop-blur-md hover:bg-konseling-700/60 hover:shadow-2xl hover:shadow-konseling-900/20"
                      )}
                      style={{ transitionDelay: `${idx * 100}ms` }}
                 >
-                  <div className="bg-white/10 p-2.5 rounded-2xl shrink-0 text-amber-300 border border-white/10 shadow-inner">
+                  <div className="bg-white/10 p-2.5 rounded-2xl shrink-0 text-accent-300 border border-white/10 shadow-inner">
                     <b.icon className="h-5 w-5 stroke-[2.5]" />
                   </div>
                   <div>
                     <p className="font-black text-white text-sm mb-1 uppercase tracking-wide">{b.label}</p>
-                    <p className="text-indigo-100/70 text-xs leading-relaxed font-medium">{b.desc}</p>
+                    <p className="text-konseling-100/70 text-xs leading-relaxed font-medium">{b.desc}</p>
                   </div>
                 </div>
               ))}
@@ -123,15 +123,15 @@ export function KonselingHero() {
 
             {/* CTA Area */}
             <div className="flex flex-col sm:flex-row items-center gap-8 pt-4">
-              <Button asChild size="lg" className="w-full sm:w-auto h-16 px-10 text-lg rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-black shadow-[0_8px_0_#b45309] hover:shadow-[0_4px_0_#b45309] hover:translate-y-1 active:shadow-none active:translate-y-2 transition-all border-none group">
+              <Button asChild size="lg" className="w-full sm:w-auto h-16 px-10 text-lg rounded-2xl bg-accent-500 hover:bg-accent-600 text-white font-black shadow-[0_8px_0_#b45309] hover:shadow-[0_4px_0_#b45309] hover:translate-y-1 active:shadow-none active:translate-y-2 transition-all border-none group">
                 <Link href="#services" className="flex items-center gap-2">
                   Mulai Konseling <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
               <div className="flex items-center gap-4">
-                <div className="h-12 w-px bg-indigo-500/50 hidden sm:block" />
+                <div className="h-12 w-px bg-konseling-500/50 hidden sm:block" />
                 <div className="flex flex-col">
-                  <span className="text-[10px] text-indigo-200 font-black uppercase tracking-widest">Harga Mulai</span>
+                  <span className="text-[10px] text-konseling-200 font-black uppercase tracking-widest">Harga Mulai</span>
                   <span className="text-3xl font-black text-white tracking-tight">Rp150.000</span>
                 </div>
               </div>
@@ -147,11 +147,11 @@ export function KonselingHero() {
             <div className="relative w-full aspect-square max-w-137.5 mx-auto transform-style-3d animate-float-slow">
 
               {/* Main "Dashboard" Card */}
-              <div className="absolute inset-10 bg-white rounded-[3rem] shadow-[0_30px_60px_-12px_rgba(0,0,0,0.3)] border-[6px] border-indigo-500/20 flex flex-col overflow-hidden z-20 transform-style-3d">
-                 <div className="h-32 bg-indigo-50 p-8 flex justify-between items-center">
+              <div className="absolute inset-10 bg-white rounded-[3rem] shadow-[0_30px_60px_-12px_rgba(0,0,0,0.3)] border-[6px] border-konseling-500/20 flex flex-col overflow-hidden z-20 transform-style-3d">
+                 <div className="h-32 bg-konseling-50 p-8 flex justify-between items-center">
                     <div className="space-y-2">
-                        <div className="w-20 h-3 bg-indigo-200 rounded-full animate-pulse" />
-                        <div className="w-32 h-5 bg-indigo-600 rounded-full" />
+                        <div className="w-20 h-3 bg-konseling-200 rounded-full animate-pulse" />
+                        <div className="w-32 h-5 bg-konseling-600 rounded-full" />
                     </div>
                     <div className="w-16 h-16 bg-white rounded-2xl shadow-sm flex items-center justify-center text-3xl">📊</div>
                  </div>
@@ -160,33 +160,33 @@ export function KonselingHero() {
                     <div className="grid grid-cols-2 gap-4">
                         <div className="h-24 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200 flex items-center justify-center">
                             <div className="text-center">
-                                <p className="text-2xl font-black text-indigo-600">98%</p>
+                                <p className="text-2xl font-black text-konseling-600">98%</p>
                                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Akurasi</p>
                             </div>
                         </div>
-                        <div className="h-24 bg-amber-50 rounded-3xl border-2 border-dashed border-amber-200 flex items-center justify-center">
+                        <div className="h-24 bg-accent-50 rounded-3xl border-2 border-dashed border-accent-200 flex items-center justify-center">
                              <div className="text-center">
-                                <p className="text-2xl font-black text-amber-600">24/7</p>
+                                <p className="text-2xl font-black text-accent-600">24/7</p>
                                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Support</p>
                             </div>
                         </div>
                     </div>
                     <div className="space-y-3">
                         <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
-                            <div className="w-3/4 h-full bg-indigo-500 animate-in slide-in-from-left duration-1000" />
+                            <div className="w-3/4 h-full bg-konseling-500 animate-in slide-in-from-left duration-1000" />
                         </div>
                         <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
-                            <div className="w-1/2 h-full bg-amber-400 animate-in slide-in-from-left duration-1000 delay-300" />
+                            <div className="w-1/2 h-full bg-accent-400 animate-in slide-in-from-left duration-1000 delay-300" />
                         </div>
                     </div>
                  </div>
               </div>
 
               {/* Floating Assets */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-400 rounded-[2rem] rotate-12 z-30 animate-float-medium shadow-2xl border-4 border-white flex items-center justify-center text-4xl">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-konseling-400 rounded-[2rem] rotate-12 z-30 animate-float-medium shadow-2xl border-4 border-white flex items-center justify-center text-4xl">
                   💬
               </div>
-              <div className="absolute bottom-4 left-0 w-28 h-28 bg-amber-400 rounded-full z-30 animate-float-fast shadow-2xl border-4 border-white flex items-center justify-center text-4xl">
+              <div className="absolute bottom-4 left-0 w-28 h-28 bg-accent-400 rounded-full z-30 animate-float-fast shadow-2xl border-4 border-white flex items-center justify-center text-4xl">
                   🤝
               </div>
               <div className="absolute top-1/2 -right-4 w-20 h-20 bg-sky-400 rounded-2xl -rotate-12 z-10 animate-float-slow shadow-xl border-4 border-white flex items-center justify-center text-3xl">

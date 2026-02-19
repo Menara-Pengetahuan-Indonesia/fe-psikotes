@@ -89,6 +89,6 @@ describe('RegisterForm', () => {
   it('renders login link', () => {
     renderWithProviders(<RegisterForm />)
 
-    expect(screen.getByText(/masuk sekarang/i)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /masuk/i })).toBeInTheDocument()
   })
 })

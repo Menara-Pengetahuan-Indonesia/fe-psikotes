@@ -2,8 +2,6 @@
 
 import { useState } from 'react'
 import {
-  ChevronDown,
-  HelpCircle,
   Sparkles,
   Plus,
   Circle,
@@ -11,6 +9,7 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { PSIKOTES_FAQS } from '../constants'
+import { PsikotesFaqItem } from './psikotes-faq-item'
 
 export function PsikotesFaq() {
   const [openIndex, setOpenIndex] = useState<
@@ -28,21 +27,21 @@ export function PsikotesFaq() {
       <Plus
         className={cn(
           'absolute top-[8%] left-[6%]',
-          'text-emerald-800/20 w-10 h-10',
+          'text-primary-800/20 w-10 h-10',
           'rotate-45 pointer-events-none',
         )}
       />
       <Circle
         className={cn(
           'absolute top-[15%] right-[8%]',
-          'text-amber-500/20 w-14 h-14',
+          'text-accent-500/20 w-14 h-14',
           'pointer-events-none',
         )}
       />
       <Diamond
         className={cn(
           'absolute bottom-[10%] left-[10%]',
-          'text-emerald-600/20 w-8 h-8',
+          'text-primary-600/20 w-8 h-8',
           'rotate-12 pointer-events-none',
         )}
       />
@@ -50,7 +49,7 @@ export function PsikotesFaq() {
         className={cn(
           'absolute bottom-[20%] right-[5%]',
           'w-20 h-20 rounded-full',
-          'border-2 border-emerald-800/15',
+          'border-2 border-primary-800/15',
           'pointer-events-none',
         )}
       />
@@ -73,8 +72,8 @@ export function PsikotesFaq() {
           >
             <Sparkles
               className={cn(
-                'w-3.5 h-3.5 text-emerald-600',
-                'fill-emerald-600',
+                'w-3.5 h-3.5 text-primary-600',
+                'fill-primary-600',
               )}
             />
             <span
@@ -97,14 +96,14 @@ export function PsikotesFaq() {
           >
             Pertanyaan{' '}
             <span
-              className="text-emerald-600 relative"
+              className="text-primary-600 relative"
             >
               Umum
               <svg
                 className={cn(
                   'absolute -bottom-2 left-0',
                   'w-full h-3',
-                  'text-emerald-500/30',
+                  'text-primary-500/30',
                 )}
                 viewBox="0 0 100 10"
                 preserveAspectRatio="none"
@@ -122,128 +121,19 @@ export function PsikotesFaq() {
 
         {/* Accordion */}
         <div className="space-y-4">
-          {PSIKOTES_FAQS.map((faq, i) => {
-            const isOpen = openIndex === i
-
-            return (
-              <div
-                key={i}
-                className={cn(
-                  'bg-white rounded-3xl',
-                  'border transition-all',
-                  'duration-500 overflow-hidden',
-                  isOpen
-                    ? 'border-emerald-500'
-                      + ' shadow-xl'
-                      + ' shadow-emerald-900/5'
-                      + ' ring-1'
-                      + ' ring-emerald-500/10'
-                    : 'border-slate-100'
-                      + ' shadow-lg'
-                      + ' shadow-stone-200/50'
-                      + ' hover:border-slate-200',
-                )}
-              >
-                <button
-                  onClick={() =>
-                    setOpenIndex(
-                      isOpen ? null : i,
-                    )
-                  }
-                  className={cn(
-                    'w-full flex cursor-pointer',
-                    'items-center justify-between',
-                    'p-6 md:p-8 text-left',
-                  )}
-                >
-                  <div
-                    className="flex items-center gap-4"
-                  >
-                    <div
-                      className={cn(
-                        'w-10 h-10 rounded-xl',
-                        'flex items-center',
-                        'justify-center',
-                        'transition-colors',
-                        isOpen
-                          ? 'bg-emerald-600'
-                            + ' text-white'
-                          : 'bg-slate-50'
-                            + ' text-slate-400',
-                      )}
-                    >
-                      <HelpCircle
-                        className="h-5 w-5"
-                      />
-                    </div>
-                    <h3
-                      className={cn(
-                        'font-black text-lg',
-                        'transition-colors',
-                        isOpen
-                          ? 'text-slate-900'
-                          : 'text-slate-700',
-                      )}
-                    >
-                      {faq.q}
-                    </h3>
-                  </div>
-                  <span
-                    className={cn(
-                      'ml-4 shrink-0',
-                      'rounded-full p-2',
-                      'transition-all',
-                      isOpen
-                        ? 'bg-emerald-50'
-                          + ' text-emerald-600'
-                        : 'bg-slate-50'
-                          + ' text-slate-300',
-                    )}
-                  >
-                    <ChevronDown
-                      className={cn(
-                        'h-5 w-5',
-                        'transition-transform',
-                        'duration-500',
-                        isOpen && 'rotate-180',
-                      )}
-                    />
-                  </span>
-                </button>
-
-                <div
-                  className={cn(
-                    'grid transition-all',
-                    'duration-500 ease-in-out',
-                    isOpen
-                      ? 'grid-rows-[1fr]'
-                        + ' opacity-100'
-                      : 'grid-rows-[0fr]'
-                        + ' opacity-0',
-                  )}
-                >
-                  <div className="overflow-hidden">
-                    <div
-                      className={cn(
-                        'px-6 md:px-8',
-                        'pb-8 pt-0 ml-14',
-                      )}
-                    >
-                      <p
-                        className={cn(
-                          'text-slate-500',
-                          'leading-relaxed',
-                          'font-medium text-base',
-                        )}
-                      >
-                        {faq.a}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
+          {PSIKOTES_FAQS.map((faq, i) => (
+            <PsikotesFaqItem
+              key={i}
+              question={faq.q}
+              answer={faq.a}
+              isOpen={openIndex === i}
+              onToggle={() =>
+                setOpenIndex(
+                  openIndex === i ? null : i,
+                )
+              }
+            />
+          ))}
         </div>
       </div>
     </section>
