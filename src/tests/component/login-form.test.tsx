@@ -8,9 +8,11 @@ vi.mock('@/features/auth/services', () => ({
   authService: {
     login: vi.fn().mockResolvedValue({
       user: { id: '1', email: 'test@example.com', name: 'Test', role: 'user' },
-      token: 'mock-token',
+      accessToken: 'mock-access-token',
+      refreshToken: 'mock-refresh-token',
     }),
   },
+  extractErrorMessage: vi.fn((e: Error) => e.message),
 }))
 
 function renderWithProviders(ui: React.ReactElement) {
@@ -32,7 +34,7 @@ describe('LoginForm', () => {
   it('renders login form with all fields', () => {
     renderWithProviders(<LoginForm />)
 
-    expect(screen.getByLabelText(/email address/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/^email$/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/^password$/i)).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /masuk sekarang/i })).toBeInTheDocument()
   })
@@ -41,7 +43,7 @@ describe('LoginForm', () => {
     const user = userEvent.setup()
     renderWithProviders(<LoginForm />)
 
-    const emailInput = screen.getByLabelText(/email address/i)
+    const emailInput = screen.getByLabelText(/^email$/i)
     await user.type(emailInput, 'invalid-email')
     await user.tab()
 
@@ -84,7 +86,7 @@ describe('LoginForm', () => {
     const onSuccess = vi.fn()
     renderWithProviders(<LoginForm onSuccess={onSuccess} />)
 
-    await user.type(screen.getByLabelText(/email address/i), 'test@example.com')
+    await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
     await user.type(screen.getByLabelText(/^password$/i), 'password123')
     await user.click(screen.getByRole('button', { name: /masuk sekarang/i }))
 
@@ -96,12 +98,12 @@ describe('LoginForm', () => {
   it('renders Google login button', () => {
     renderWithProviders(<LoginForm />)
 
-    expect(screen.getByText(/masuk dengan google/i)).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /google/i })).toBeInTheDocument()
   })
 
   it('renders register link', () => {
     renderWithProviders(<LoginForm />)
 
-    expect(screen.getByText(/daftar sekarang/i)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /daftar/i })).toBeInTheDocument()
   })
 })

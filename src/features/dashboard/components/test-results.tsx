@@ -15,7 +15,7 @@ import {
 const CATEGORY_VARIANT: Record<
   TestCategory, string
 > = {
-  gratis: 'bg-emerald-50 text-emerald-700',
+  gratis: 'bg-primary-50 text-primary-700',
   premium: 'bg-violet-50 text-violet-700',
   mahasiswa: 'bg-sky-50 text-sky-700',
   perusahaan: 'bg-orange-50 text-orange-700',

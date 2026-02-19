@@ -20,28 +20,28 @@ export function KonselingFaq() {
   return (
     <section
       className={cn(
-        'py-24 md:py-36 bg-[#faf5e4]',
+        'py-24 md:py-36 bg-background',
         'relative overflow-hidden',
       )}
     >
       <Plus
         className={cn(
           'absolute top-[8%] left-[6%]',
-          'text-indigo-800/20 w-10 h-10',
+          'text-konseling-800/20 w-10 h-10',
           'rotate-45 pointer-events-none',
         )}
       />
       <Circle
         className={cn(
           'absolute top-[15%] right-[8%]',
-          'text-amber-500/20 w-14 h-14',
+          'text-accent-500/20 w-14 h-14',
           'pointer-events-none',
         )}
       />
       <Diamond
         className={cn(
           'absolute bottom-[10%] left-[10%]',
-          'text-indigo-600/20 w-8 h-8',
+          'text-konseling-600/20 w-8 h-8',
           'rotate-12 pointer-events-none',
         )}
       />
@@ -49,7 +49,7 @@ export function KonselingFaq() {
         className={cn(
           'absolute bottom-[20%] right-[5%]',
           'w-20 h-20 rounded-full',
-          'border-2 border-indigo-800/15',
+          'border-2 border-konseling-800/15',
           'pointer-events-none',
         )}
       />
@@ -72,8 +72,8 @@ export function KonselingFaq() {
           >
             <Sparkles
               className={cn(
-                'w-3.5 h-3.5 text-indigo-600',
-                'fill-indigo-600',
+                'w-3.5 h-3.5 text-konseling-600',
+                'fill-konseling-600',
               )}
             />
             <span
@@ -96,14 +96,14 @@ export function KonselingFaq() {
           >
             Pertanyaan{' '}
             <span
-              className="text-indigo-600 relative"
+              className="text-konseling-600 relative"
             >
               Umum
               <svg
                 className={cn(
                   'absolute -bottom-2 left-0',
                   'w-full h-3',
-                  'text-indigo-500/30',
+                  'text-konseling-500/30',
                 )}
                 viewBox="0 0 100 10"
                 preserveAspectRatio="none"
@@ -132,11 +132,11 @@ export function KonselingFaq() {
                   'border transition-all',
                   'duration-500 overflow-hidden',
                   isOpen
-                    ? 'border-indigo-500'
+                    ? 'border-konseling-500'
                       + ' shadow-xl'
-                      + ' shadow-indigo-900/5'
+                      + ' shadow-konseling-900/5'
                       + ' ring-1'
-                      + ' ring-indigo-500/10'
+                      + ' ring-konseling-500/10'
                     : 'border-slate-100'
                       + ' shadow-lg'
                       + ' shadow-stone-200/50'
@@ -165,7 +165,7 @@ export function KonselingFaq() {
                         'justify-center',
                         'transition-colors',
                         isOpen
-                          ? 'bg-indigo-600'
+                          ? 'bg-konseling-600'
                             + ' text-white'
                           : 'bg-slate-50'
                             + ' text-slate-400',
@@ -193,8 +193,8 @@ export function KonselingFaq() {
                       'rounded-full p-2',
                       'transition-all',
                       isOpen
-                        ? 'bg-indigo-50'
-                          + ' text-indigo-600'
+                        ? 'bg-konseling-50'
+                          + ' text-konseling-600'
                         : 'bg-slate-50'
                           + ' text-slate-300',
                     )}

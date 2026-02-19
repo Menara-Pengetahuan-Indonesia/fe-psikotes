@@ -18,37 +18,37 @@ export function ServiceGrid() {
     TAB_FILTERS[tab]?.length === 0 ? SERVICES : SERVICES.filter((s) => TAB_FILTERS[tab]?.includes(s.tag))
 
   return (
-    <section className="py-24 md:py-36 bg-[#faf5e4] relative overflow-hidden">
+    <section className="py-24 md:py-36 bg-background relative overflow-hidden">
       
       {/* --- RICH BACKGROUND ORNAMENTS (Matching Hero) --- */}
       {/* 1. Subtle Topographic Line Pattern */}
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-multiply" 
            style={{
-             backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 C 20 80, 40 120, 60 100 S 100 80, 120 100 S 160 120, 200 100' stroke='%2315803d' fill='transparent' stroke-width='1'/%3E%3C/svg%3E")`,
+             backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 C 20 80, 40 120, 60 100 S 100 80, 120 100 S 160 120, 200 100' stroke='%230F766E' fill='transparent' stroke-width='1'/%3E%3C/svg%3E")`, /* primary-700 */
              backgroundSize: '400px 400px'
            }}
       />
 
       {/* 2. Technical Ornaments */}
-      <Plus className="absolute top-[10%] left-[10%] text-emerald-600/20 w-8 h-8 animate-pulse" />
+      <Plus className="absolute top-[10%] left-[10%] text-primary-600/20 w-8 h-8 animate-pulse" />
       <Plus className="absolute bottom-[10%] right-[15%] text-stone-400/20 w-10 h-10 rotate-45" />
-      <Hexagon className="absolute top-[25%] right-[5%] text-emerald-600/10 w-24 h-24 rotate-12 animate-float-slow" />
-      <Diamond className="absolute bottom-[20%] left-[5%] text-amber-600/10 w-16 h-16 -rotate-12 animate-float-medium" />
+      <Hexagon className="absolute top-[25%] right-[5%] text-primary-600/10 w-24 h-24 rotate-12 animate-float-slow" />
+      <Diamond className="absolute bottom-[20%] left-[5%] text-accent-600/10 w-16 h-16 -rotate-12 animate-float-medium" />
 
       {/* 3. Ambient Glows */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[radial-gradient(circle_at_30%_30%,#d1fae5_0%,#a7f3d0_100%)] opacity-30 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-125 h-125 bg-[radial-gradient(circle_at_30%_30%,#ffedd5_0%,#fed7aa_100%)] opacity-20 rounded-full blur-[120px] -translate-x-1/4 translate-y-1/4 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[radial-gradient(circle_at_30%_30%,#CCFBF1_0%,#99F6E4_100%)] opacity-30 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-125 h-125 bg-[radial-gradient(circle_at_30%_30%,#FEF3C7_0%,#FDE68A_100%)] opacity-20 rounded-full blur-[120px] -translate-x-1/4 translate-y-1/4 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-stone-200 text-stone-600 text-[10px] font-black uppercase tracking-[0.2em] shadow-sm">
-             <Grid className="w-3 h-3 text-emerald-600" />
+             <Grid className="w-3 h-3 text-primary-600" />
              Explore Services
           </div>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight text-stone-800 leading-[1.1]">
-            Layanan <span className="text-emerald-600 relative inline-block">Profesional
-              <svg className="absolute -bottom-2 left-0 w-full h-2 text-emerald-400/30" viewBox="0 0 100 10" preserveAspectRatio="none">
+            Layanan <span className="text-primary-600 relative inline-block">Profesional
+              <svg className="absolute -bottom-2 left-0 w-full h-2 text-primary-400/30" viewBox="0 0 100 10" preserveAspectRatio="none">
                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="6" fill="none" />
               </svg>
             </span>
@@ -65,7 +65,7 @@ export function ServiceGrid() {
               <TabsTrigger 
                 key={tab}
                 value={tab} 
-                className="capitalize rounded-full px-8 py-3 font-black text-stone-500 data-[state=active]:bg-emerald-600 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300 hover:text-emerald-700"
+                className="capitalize rounded-full px-8 py-3 font-black text-stone-500 data-[state=active]:bg-primary-600 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300 hover:text-primary-700"
               >
                 {tab}
               </TabsTrigger>

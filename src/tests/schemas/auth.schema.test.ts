@@ -5,8 +5,7 @@ describe('Auth Schemas', () => {
   describe('loginSchema', () => {
     it('validates correct email and password', () => {
       const result = loginSchema.safeParse({
-        method: 'email',
-        identifier: 'test@example.com',
+        email: 'test@example.com',
         password: 'password123'
       })
       expect(result.success).toBe(true)
@@ -14,8 +13,7 @@ describe('Auth Schemas', () => {
 
     it('rejects invalid email', () => {
       const result = loginSchema.safeParse({
-        method: 'email',
-        identifier: 'invalid-email',
+        email: 'invalid-email',
         password: 'password123'
       })
       expect(result.success).toBe(false)
@@ -27,27 +25,8 @@ describe('Auth Schemas', () => {
 
     it('rejects short password', () => {
       const result = loginSchema.safeParse({
-        method: 'email',
-        identifier: 'test@example.com',
+        email: 'test@example.com',
         password: '123'
-      })
-      expect(result.success).toBe(false)
-    })
-
-    it('validates correct phone and password', () => {
-      const result = loginSchema.safeParse({
-        method: 'phone',
-        identifier: '081234567890',
-        password: 'password123'
-      })
-      expect(result.success).toBe(true)
-    })
-
-    it('rejects invalid phone number', () => {
-      const result = loginSchema.safeParse({
-        method: 'phone',
-        identifier: '12345',
-        password: 'password123'
       })
       expect(result.success).toBe(false)
     })
@@ -59,9 +38,9 @@ describe('Auth Schemas', () => {
         firstName: 'John',
         lastName: 'Doe',
         email: 'john@example.com',
-        phone: '081234567890',
-        password: 'Password123',
-        confirmPassword: 'Password123'
+        telp: '081234567890',
+        password: 'Password123!',
+        confirmPassword: 'Password123!'
       })
       expect(result.success).toBe(true)
     })
@@ -71,21 +50,33 @@ describe('Auth Schemas', () => {
         firstName: 'John',
         lastName: 'Doe',
         email: 'john@example.com',
-        phone: '081234567890',
-        password: 'Password123',
-        confirmPassword: 'DifferentPassword'
+        telp: '081234567890',
+        password: 'Password123!',
+        confirmPassword: 'DifferentPassword!'
       })
       expect(result.success).toBe(false)
     })
 
-    it('requires uppercase in password', () => {
+    it('rejects short first name', () => {
+      const result = registerSchema.safeParse({
+        firstName: 'J',
+        lastName: 'Doe',
+        email: 'john@example.com',
+        telp: '081234567890',
+        password: 'Password123!',
+        confirmPassword: 'Password123!'
+      })
+      expect(result.success).toBe(false)
+    })
+
+    it('rejects password without special char', () => {
       const result = registerSchema.safeParse({
         firstName: 'John',
         lastName: 'Doe',
         email: 'john@example.com',
-        phone: '081234567890',
-        password: 'password123',
-        confirmPassword: 'password123'
+        telp: '081234567890',
+        password: 'Password123',
+        confirmPassword: 'Password123'
       })
       expect(result.success).toBe(false)
     })

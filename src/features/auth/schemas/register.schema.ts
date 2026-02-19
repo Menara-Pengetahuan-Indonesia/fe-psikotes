@@ -15,7 +15,7 @@ const baseSchema = z.object({
     .string()
     .min(1, 'Email wajib diisi')
     .email('Format email tidak valid'),
-  phone: z
+  telp: z
     .string()
     .min(1, 'Nomor HP wajib diisi')
     .regex(PHONE_REGEX, 'Format nomor HP tidak valid'),
@@ -24,8 +24,10 @@ const baseSchema = z.object({
     .min(8, 'Password minimal 8 karakter')
     .max(100, 'Password terlalu panjang')
     .regex(/[A-Z]/, 'Harus mengandung huruf besar')
-    .regex(/[a-z]/, 'Harus mengandung huruf kecil')
-    .regex(/[0-9]/, 'Harus mengandung angka'),
+    .regex(
+      /[^A-Za-z0-9]/,
+      'Harus mengandung karakter spesial',
+    ),
   confirmPassword: z.string(),
 })
 

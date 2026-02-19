@@ -24,7 +24,7 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
             ? "bg-white min-h-dvh mb-0 rounded-none"
             : isDashboard
               ? "bg-slate-50 min-h-dvh mb-0 rounded-none"
-              : "bg-[#faf5e4] rounded-b-[80px] md:rounded-b-[120px] overflow-clip mb-[400px] min-h-screen"
+              : "bg-background rounded-b-[80px] md:rounded-b-[120px] overflow-clip mb-[400px] min-h-screen"
       )}
     >
       <div className={cn(
@@ -35,7 +35,7 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
             ? "bg-white"
             : isDashboard
               ? "bg-slate-50"
-              : "bg-[#faf5e4]"
+              : "bg-background"
       )}>
         {children}
       </div>
