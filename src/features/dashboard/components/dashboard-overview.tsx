@@ -52,13 +52,13 @@ const STATS = [
     label: 'Tes Bulan Ini',
     value: thisMonthTests.length,
     icon: CalendarDays,
-    iconBg: 'bg-emerald-100 text-emerald-600',
+    iconBg: 'bg-primary-100 text-primary-600',
   },
   {
     label: 'Rata-rata Skor',
     value: avgScore,
     icon: TrendingUp,
-    iconBg: 'bg-amber-100 text-amber-600',
+    iconBg: 'bg-accent-100 text-accent-600',
   },
 ]
 

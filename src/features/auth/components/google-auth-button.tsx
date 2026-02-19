@@ -3,21 +3,27 @@ import { cn } from '@/lib/utils'
 interface GoogleAuthButtonProps {
   label: string
   onClick: () => void
+  className?: string
+  tabIndex?: number
 }
 
 export function GoogleAuthButton({
   label,
   onClick,
+  className,
+  tabIndex,
 }: GoogleAuthButtonProps) {
   return (
     <button
       type="button"
+      tabIndex={tabIndex}
       className={cn(
-        'w-full h-12 rounded-xl',
-        'flex items-center justify-center gap-3',
-        'border border-input bg-card',
-        'hover:bg-muted transition-all',
-        'text-sm font-medium text-foreground',
+        'w-full h-12 flex items-center justify-center gap-3',
+        'bg-white border border-secondary-100 rounded-xl',
+        'text-sm font-bold text-secondary-900/70',
+        'hover:bg-primary-50 hover:border-primary-100 transition-all active:scale-[0.98]',
+        'shadow-sm shadow-primary-900/5',
+        className,
       )}
       onClick={onClick}
     >
@@ -31,7 +37,7 @@ export function GoogleAuthButton({
           fill="#34A853"
         />
         <path
-          d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.84z"
+          d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
           fill="#FBBC05"
         />
         <path

@@ -35,7 +35,7 @@ const FILTER_TABS: {
 const CATEGORY_VARIANT: Record<
   TestCategory, string
 > = {
-  gratis: 'bg-emerald-50 text-emerald-700',
+  gratis: 'bg-primary-50 text-primary-700',
   premium: 'bg-violet-50 text-violet-700',
   mahasiswa: 'bg-sky-50 text-sky-700',
   perusahaan: 'bg-orange-50 text-orange-700',
@@ -161,7 +161,7 @@ export function MyTests() {
                     {test.score}
                   </span>
                 ) : (
-                  <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-amber-50 text-amber-700">
+                  <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-accent-50 text-accent-700">
                     Berlangsung
                   </span>
                 )}

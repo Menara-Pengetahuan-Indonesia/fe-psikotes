@@ -178,7 +178,7 @@ export function PaymentStatus({ method, nextUrl, orderId, productName, price }: 
                 <button
                   onClick={handleCheckStatus}
                   disabled={isChecking}
-                  className="w-full py-4 bg-emerald-600 text-white rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-200 flex items-center justify-center gap-2"
+                  className="w-full py-4 bg-primary-600 text-white rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-primary-700 transition-all shadow-lg shadow-primary-200 flex items-center justify-center gap-2"
                 >
                   {isChecking ? 'Memeriksa...' : 'Saya Sudah Membayar'}
                 </button>

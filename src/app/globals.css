@@ -28,12 +28,45 @@
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
+  --color-accent-50: #FFFBEB;
+  --color-accent-100: #FEF3C7;
+  --color-accent-200: #FDE68A;
+  --color-accent-300: #FCD34D;
+  --color-accent-400: #FBBF24;
+  --color-accent-500: #F59E0B;
+  --color-accent-600: #D97706;
+  --color-accent-700: #B45309;
+  --color-accent-800: #92400E;
+  --color-accent-900: #78350F;
+  --color-accent-950: #451A03;
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
+  --color-secondary-50: #E6F5F4;
+  --color-secondary-100: #CDEBE9;
+  --color-secondary-200: #9BD7D3;
+  --color-secondary-300: #69C3BD;
+  --color-secondary-400: #37AFA7;
+  --color-secondary-500: #134E4A;
+  --color-secondary-600: #104240;
+  --color-secondary-700: #0D3633;
+  --color-secondary-800: #0A2A27;
+  --color-secondary-900: #071E1C;
+  --color-secondary-950: #041210;
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-primary-50: #F0FDFA;
+  --color-primary-100: #CCFBF1;
+  --color-primary-200: #99F6E4;
+  --color-primary-300: #5EEAD4;
+  --color-primary-400: #2DD4BF;
+  --color-primary-500: #14B8A6;
+  --color-primary-600: #0D9488;
+  --color-primary-700: #0F766E;
+  --color-primary-800: #115E59;
+  --color-primary-900: #134E4A;
+  --color-primary-950: #042F2E;
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -56,7 +89,7 @@
   --color-ps-muted: var(--ps-muted);
   --color-ps-muted-foreground: var(--ps-muted-foreground);
 
-  /* Konseling Colors - Hijau (Tenang, Healing) */
+  /* Konseling Colors - Indigo (Wisdom, Trust) */
   --color-ks-primary: var(--ks-primary);
   --color-ks-primary-foreground: var(--ks-primary-foreground);
   --color-ks-secondary: var(--ks-secondary);
@@ -65,6 +98,19 @@
   --color-ks-accent-foreground: var(--ks-accent-foreground);
   --color-ks-muted: var(--ks-muted);
   --color-ks-muted-foreground: var(--ks-muted-foreground);
+
+  /* Konseling palette (indigo) */
+  --color-konseling-50: #EEF2FF;
+  --color-konseling-100: #E0E7FF;
+  --color-konseling-200: #C7D2FE;
+  --color-konseling-300: #A5B4FC;
+  --color-konseling-400: #818CF8;
+  --color-konseling-500: #6366F1;
+  --color-konseling-600: #4F46E5;
+  --color-konseling-700: #4338CA;
+  --color-konseling-800: #3730A3;
+  --color-konseling-900: #312E81;
+  --color-konseling-950: #1E1B4B;
 
   /* Training Colors - Orange (Energik, Motivasi) */
   --color-tr-primary: var(--tr-primary);
@@ -75,80 +121,93 @@
   --color-tr-accent-foreground: var(--tr-accent-foreground);
   --color-tr-muted: var(--tr-muted);
   --color-tr-muted-foreground: var(--tr-muted-foreground);
+
+  /* Pelatihan palette (orange) */
+  --color-pelatihan-50: #FFF7ED;
+  --color-pelatihan-100: #FFEDD5;
+  --color-pelatihan-200: #FED7AA;
+  --color-pelatihan-300: #FDBA74;
+  --color-pelatihan-400: #FB923C;
+  --color-pelatihan-500: #F97316;
+  --color-pelatihan-600: #EA580C;
+  --color-pelatihan-700: #C2410C;
+  --color-pelatihan-800: #9A3412;
+  --color-pelatihan-900: #7C2D12;
+  --color-pelatihan-950: #431407;
 }
 
 :root {
   --radius: 0.625rem;
 
-  /* Base colors using new palette - CREAM THEME */
-  --background: #faf5e4; /* Solid Cream */
-  --foreground: #143D60; /* Navy for text */
-  --card: #faf5e4; 
-  --card-foreground: #143D60;
-  --popover: #faf5e4; 
-  --popover-foreground: #143D60;
+  /* Base colors - TEAL THEME */
+  --background: #F0FDFA; /* primary-50 light teal */
+  --foreground: #134E4A; /* Dark teal for text */
+  --card: #F0FDFA;
+  --card-foreground: #134E4A;
+  --popover: #F0FDFA;
+  --popover-foreground: #134E4A;
 
   /* Brand colors from palette */
-  --primary: #A0C878; /* Medium Green */
+  --primary: #14B8A6; /* Teal */
   --primary-foreground: #FFFFFF;
-  --secondary: #143D60; /* Dark Navy */
+  --secondary: #134E4A; /* Dark Teal */
   --secondary-foreground: #FFFFFF;
-  --accent: #EB5B00; /* Orange */
+  --accent: #F59E0B; /* Amber */
   --accent-foreground: #FFFFFF;
-  --muted: #DDEB9D; /* Light Green */
-  --muted-foreground: #143D60;
+  --muted: #CCFBF1; /* Light Teal */
+  --muted-foreground: #134E4A;
 
   --destructive: #EF4444;
   --border: #E5E7EB;
   --input: #E5E7EB;
-  --ring: #A0C878; /* Primary green for focus */
+  --ring: #14B8A6; /* Primary teal for focus */
 
   /* Chart colors using palette */
-  --chart-1: #A0C878; /* Primary Green */
-  --chart-2: #143D60; /* Navy */
-  --chart-3: #EB5B00; /* Orange */
-  --chart-4: #DDEB9D; /* Light Green */
-  --chart-5: #6FA04E; /* Darker Green */
+  --chart-1: #14B8A6; /* Teal */
+  --chart-2: #134E4A; /* Dark Teal */
+  --chart-3: #F59E0B; /* Amber */
+  --chart-4: #CCFBF1; /* Light Teal */
+  --chart-5: #0D9488; /* Teal-600 */
 
-  /* Sidebar - Dark Navy */
-  --sidebar: #0f172a;
-  --sidebar-foreground: #94a3b8;
-  --sidebar-primary: #3b82f6;
+  /* Sidebar - Dark Teal */
+  --sidebar: #042F2E;
+  --sidebar-foreground: #99F6E4;
+  --sidebar-primary: #14B8A6;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #1e293b;
-  --sidebar-accent-foreground: #f1f5f9;
-  --sidebar-border: #1e293b;
-  --sidebar-ring: #3b82f6;
+  --sidebar-accent: #0A2A27;
+  --sidebar-accent-foreground: #CCFBF1;
+  --sidebar-border: #0A2A27;
+  --sidebar-ring: #14B8A6;
 
-  /* Psikotes - Using cream palette */
-  --ps-primary: #A0C878; 
+  /* Psikotes - Teal palette */
+  --ps-primary: #14B8A6;
   --ps-primary-foreground: #FFFFFF;
-  --ps-secondary: #143D60; 
+  --ps-secondary: #134E4A;
   --ps-secondary-foreground: #FFFFFF;
-  --ps-accent: #EB5B00; 
+  --ps-accent: #F59E0B;
   --ps-accent-foreground: #FFFFFF;
-  --ps-muted: #faf5e4; 
-  --ps-muted-foreground: #143D60;
+  --ps-muted: #F0FDFA;
+  --ps-muted-foreground: #134E4A;
 
-  /* Konseling - Cream variation */
-  --ks-primary: #8AB965; 
+  /* Konseling - Indigo palette */
+  --ks-primary: #6366F1;
   --ks-primary-foreground: #FFFFFF;
-  --ks-secondary: #476F9F; 
+  --ks-secondary: #818CF8;
   --ks-secondary-foreground: #FFFFFF;
-  --ks-accent: #6FA04E; 
+  --ks-accent: #4338CA;
   --ks-accent-foreground: #FFFFFF;
-  --ks-muted: #faf5e4; 
-  --ks-muted-foreground: #143D60;
+  --ks-muted: #EEF2FF;
+  --ks-muted-foreground: #312E81;
 
-  /* Training - Cream emphasis */
-  --tr-primary: #EB5B00; 
+  /* Training - Orange palette */
+  --tr-primary: #F97316;
   --tr-primary-foreground: #FFFFFF;
-  --tr-secondary: #143D60; 
+  --tr-secondary: #FB923C;
   --tr-secondary-foreground: #FFFFFF;
-  --tr-accent: #A0C878; 
+  --tr-accent: #EA580C;
   --tr-accent-foreground: #FFFFFF;
-  --tr-muted: #faf5e4; 
-  --tr-muted-foreground: #143D60;
+  --tr-muted: #FFF7ED;
+  --tr-muted-foreground: #7C2D12;
 }
 
 .dark {
@@ -194,25 +253,48 @@
   --ps-muted: #1E3A5F;
   --ps-muted-foreground: #93C5FD;
 
-  /* Konseling Dark */
-  --ks-primary: #4ADE80;
-  --ks-primary-foreground: #14532D;
-  --ks-secondary: #34D399;
-  --ks-secondary-foreground: #064E3B;
-  --ks-accent: #2DD4BF;
-  --ks-accent-foreground: #134E4A;
-  --ks-muted: #14532D;
-  --ks-muted-foreground: #86EFAC;
+  /* Konseling Dark - Indigo */
+  --ks-primary: #818CF8;
+  --ks-primary-foreground: #1E1B4B;
+  --ks-secondary: #A5B4FC;
+  --ks-secondary-foreground: #312E81;
+  --ks-accent: #6366F1;
+  --ks-accent-foreground: #EEF2FF;
+  --ks-muted: #312E81;
+  --ks-muted-foreground: #C7D2FE;
 
-  /* Training Dark */
+  /* Training Dark - Orange */
   --tr-primary: #FB923C;
   --tr-primary-foreground: #431407;
-  --tr-secondary: #FBBF24;
-  --tr-secondary-foreground: #451A03;
-  --tr-accent: #FACC15;
-  --tr-accent-foreground: #422006;
-  --tr-muted: #451A03;
+  --tr-secondary: #FDBA74;
+  --tr-secondary-foreground: #7C2D12;
+  --tr-accent: #F97316;
+  --tr-accent-foreground: #FFF7ED;
+  --tr-muted: #7C2D12;
   --tr-muted-foreground: #FED7AA;
+}
+
+/* Auth page animations */
+@keyframes auth-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes auth-glow-pulse {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.1);
+  }
 }
 
 @layer base {
@@ -220,11 +302,10 @@
     @apply border-border outline-ring/50;
   }
   html {
-    background-color: #faf5e4; /* Hardcoded fallback to prevent flicker */
+    background-color: var(--background);
   }
   body {
     @apply bg-background text-foreground antialiased min-h-screen;
-    background-color: #faf5e4;
   }
 }
 

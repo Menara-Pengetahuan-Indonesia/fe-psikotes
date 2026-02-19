@@ -16,8 +16,8 @@ export function MentalHealthOverview() {
       <header
         className={
           'relative overflow-hidden text-white'
-          + ' bg-linear-to-b from-emerald-800'
-          + ' via-emerald-700 to-emerald-500'
+          + ' bg-linear-to-b from-primary-800'
+          + ' via-primary-700 to-primary-500'
           + ' pt-28 pb-14 md:pt-36 md:pb-20'
         }
       >
@@ -45,7 +45,7 @@ export function MentalHealthOverview() {
         <div
           className={
             'absolute top-[-10%] left-[-10%]'
-            + ' w-150 h-150 bg-emerald-900/20'
+            + ' w-150 h-150 bg-primary-900/20'
             + ' rounded-full blur-[120px]'
             + ' pointer-events-none animate-pulse'
           }
@@ -53,7 +53,7 @@ export function MentalHealthOverview() {
         <div
           className={
             'absolute bottom-[-10%] right-[-5%]'
-            + ' w-125 h-125 bg-emerald-300/20'
+            + ' w-125 h-125 bg-primary-300/20'
             + ' rounded-full blur-[120px]'
             + ' pointer-events-none'
           }
@@ -63,7 +63,7 @@ export function MentalHealthOverview() {
         <Plus
           className={
             'absolute top-[15%] left-[10%]'
-            + ' text-emerald-300/30 w-8 h-8'
+            + ' text-primary-300/30 w-8 h-8'
             + ' animate-pulse'
           }
         />
@@ -77,7 +77,7 @@ export function MentalHealthOverview() {
         <Diamond
           className={
             'absolute bottom-[10%] left-[20%]'
-            + ' text-amber-400/20 w-16 h-16'
+            + ' text-accent-400/20 w-16 h-16'
             + ' rotate-12 animate-float-medium'
           }
         />
@@ -93,20 +93,20 @@ export function MentalHealthOverview() {
             className={
               'inline-flex items-center gap-2'
               + ' px-4 py-1.5 rounded-full'
-              + ' bg-emerald-700/50'
-              + ' border border-emerald-400/30'
+              + ' bg-primary-700/50'
+              + ' border border-primary-400/30'
               + ' shadow-lg backdrop-blur-md'
               + ' mb-8 mx-auto'
             }
           >
             <Heart
-              className="w-3.5 h-3.5 text-amber-400"
+              className="w-3.5 h-3.5 text-accent-400"
             />
             <span
               className={
                 'text-[10px] font-black'
                 + ' tracking-[0.2em]'
-                + ' text-emerald-50 uppercase'
+                + ' text-primary-50 uppercase'
               }
             >
               Mental Wellness
@@ -121,7 +121,7 @@ export function MentalHealthOverview() {
             }
           >
             Asesmen untuk<br />
-            <span className="text-amber-300">
+            <span className="text-accent-300">
               Kesehatan Mental
             </span>
           </h1>
@@ -129,7 +129,7 @@ export function MentalHealthOverview() {
           <p
             className={
               'text-lg md:text-xl'
-              + ' text-emerald-50/80'
+              + ' text-primary-50/80'
               + ' max-w-2xl mx-auto font-medium'
               + ' leading-relaxed'
             }
@@ -156,7 +156,7 @@ export function MentalHealthOverview() {
               <div
                 className={
                   'inline-flex items-center gap-2'
-                  + ' text-emerald-600 font-black'
+                  + ' text-primary-600 font-black'
                   + ' text-[10px] uppercase'
                   + ' tracking-[0.3em]'
                 }
@@ -171,13 +171,13 @@ export function MentalHealthOverview() {
                 }
               >
                 Pilihan Tes{' '}
-                <span className="text-emerald-600 relative">
+                <span className="text-primary-600 relative">
                   Kesehatan Mental
                   <svg
                     className={
                       'absolute -bottom-2 left-0'
                       + ' w-full h-3'
-                      + ' text-emerald-300/50'
+                      + ' text-primary-300/50'
                     }
                     viewBox="0 0 100 10"
                     preserveAspectRatio="none"

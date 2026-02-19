@@ -13,7 +13,7 @@ export function PerusahaanStats() {
       <section
         className={cn(
           'py-16 md:py-20 relative',
-          'overflow-hidden bg-emerald-950',
+          'overflow-hidden bg-primary-950',
           'text-white',
           'rounded-t-[40px] md:rounded-t-[80px]',
           'rounded-b-[40px] md:rounded-b-[80px]',
@@ -49,14 +49,14 @@ export function PerusahaanStats() {
         <Plus
           className={cn(
             'absolute top-[15%] left-[5%]',
-            'text-emerald-400/20 w-8 h-8',
+            'text-primary-400/20 w-8 h-8',
             'animate-pulse',
           )}
         />
         <Circle
           className={cn(
             'absolute top-[40%] right-[8%]',
-            'text-amber-400/20 w-16 h-16',
+            'text-accent-400/20 w-16 h-16',
             'animate-float-slow',
           )}
         />
@@ -65,7 +65,7 @@ export function PerusahaanStats() {
         <div
           className={cn(
             'absolute top-0 left-0',
-            'w-96 h-96 bg-emerald-800/30',
+            'w-96 h-96 bg-primary-800/30',
             'rounded-full blur-[100px]',
             '-translate-x-1/2 -translate-y-1/2',
             'pointer-events-none',
@@ -74,7 +74,7 @@ export function PerusahaanStats() {
         <div
           className={cn(
             'absolute bottom-0 right-0',
-            'w-125 h-125 bg-amber-500/10',
+            'w-125 h-125 bg-accent-500/10',
             'rounded-full blur-[120px]',
             'translate-x-1/4 translate-y-1/4',
             'pointer-events-none',
@@ -105,14 +105,14 @@ export function PerusahaanStats() {
               <Sparkles
                 className={cn(
                   'w-3.5 h-3.5',
-                  'text-amber-300 fill-amber-300',
+                  'text-accent-300 fill-accent-300',
                 )}
               />
               <span
                 className={cn(
                   'text-[10px] font-black',
                   'tracking-[0.2em]',
-                  'text-emerald-100 uppercase',
+                  'text-primary-100 uppercase',
                 )}
               >
                 Proven Results
@@ -127,13 +127,13 @@ export function PerusahaanStats() {
               )}
             >
               Dipercaya oleh{' '}
-              <span className="text-amber-300 relative">
+              <span className="text-accent-300 relative">
                 Ratusan Perusahaan
                 <svg
                   className={cn(
                     'absolute -bottom-2 left-0',
                     'w-full h-3',
-                    'text-amber-400/40',
+                    'text-accent-400/40',
                   )}
                   viewBox="0 0 100 10"
                   preserveAspectRatio="none"
@@ -149,7 +149,7 @@ export function PerusahaanStats() {
             </h2>
             <p
               className={cn(
-                'text-emerald-100 font-medium',
+                'text-primary-100 font-medium',
                 'max-w-xl mx-auto',
               )}
             >
@@ -176,13 +176,13 @@ export function PerusahaanStats() {
                   'transition-all duration-500',
                   'hover:-translate-y-2',
                   'hover:shadow-2xl',
-                  'hover:shadow-emerald-900/40',
+                  'hover:shadow-primary-900/40',
                 )}
               >
                 <p
                   className={cn(
                     'text-4xl md:text-5xl',
-                    'font-black text-amber-300',
+                    'font-black text-accent-300',
                     'mb-3 tracking-tight',
                   )}
                 >
@@ -199,7 +199,7 @@ export function PerusahaanStats() {
                 </h3>
                 <p
                   className={cn(
-                    'text-emerald-200/70',
+                    'text-primary-200/70',
                     'font-medium text-sm',
                   )}
                 >

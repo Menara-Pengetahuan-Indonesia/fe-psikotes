@@ -12,85 +12,116 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Brand Color System - Psikotes Palette
+        // Brand Color System - Teal & Amber Palette
         primary: {
-          DEFAULT: '#A0C878', // Medium Green - Main brand color
-          50: '#F3F8EC',
-          100: '#E6F1D9',
-          200: '#D0E4B8',
-          300: '#BAD797',
-          400: '#A0C878', // Base
-          500: '#8AB965',
-          600: '#6FA04E',
-          700: '#57803E',
-          800: '#3F602F',
-          900: '#27401F',
-          950: '#1A2B15',
+          DEFAULT: '#14B8A6', // Teal - Main brand color
+          50: '#F0FDFA',
+          100: '#CCFBF1',
+          200: '#99F6E4',
+          300: '#5EEAD4',
+          400: '#2DD4BF',
+          500: '#14B8A6', // Base
+          600: '#0D9488',
+          700: '#0F766E',
+          800: '#115E59',
+          900: '#134E4A',
+          950: '#042F2E',
         },
         secondary: {
-          DEFAULT: '#143D60', // Dark Navy - Professional, trustworthy
-          50: '#E8EDF3',
-          100: '#D1DBE7',
-          200: '#A3B7CF',
-          300: '#7593B7',
-          400: '#476F9F',
-          500: '#143D60', // Base
-          600: '#103454',
-          700: '#0C2B48',
-          800: '#08223C',
-          900: '#041930',
-          950: '#021224',
+          DEFAULT: '#134E4A', // Dark Teal - Professional
+          50: '#E6F5F4',
+          100: '#CDEBE9',
+          200: '#9BD7D3',
+          300: '#69C3BD',
+          400: '#37AFA7',
+          500: '#134E4A', // Base
+          600: '#104240',
+          700: '#0D3633',
+          800: '#0A2A27',
+          900: '#071E1C',
+          950: '#041210',
         },
         accent: {
-          DEFAULT: '#EB5B00', // Orange - CTAs, highlights
-          50: '#FEF3E6',
-          100: '#FDE7CC',
-          200: '#FBCF99',
-          300: '#F9B766',
-          400: '#F79F33',
-          500: '#EB5B00', // Base
-          600: '#C24C00',
-          700: '#993D00',
-          800: '#702E00',
-          900: '#471F00',
-          950: '#331600',
+          DEFAULT: '#F59E0B', // Amber - CTAs, highlights
+          50: '#FFFBEB',
+          100: '#FEF3C7',
+          200: '#FDE68A',
+          300: '#FCD34D',
+          400: '#FBBF24',
+          500: '#F59E0B', // Base
+          600: '#D97706',
+          700: '#B45309',
+          800: '#92400E',
+          900: '#78350F',
+          950: '#451A03',
         },
         surface: {
-          DEFAULT: '#DDEB9D', // Light Yellow-Green - Backgrounds, cards
-          50: '#FDFEF7',
-          100: '#FBFDEF',
-          200: '#F5FADB',
-          300: '#EFF7C7',
-          400: '#E9F4B3',
-          500: '#DDEB9D', // Base
-          600: '#C8DD6E',
-          700: '#B3CF3F',
-          800: '#8FA630',
-          900: '#6B7D24',
-          950: '#4D5A1A',
+          DEFAULT: '#CCFBF1', // Light Teal - Backgrounds, cards
+          50: '#F0FDFA',
+          100: '#E6FBF5',
+          200: '#D9F9F0',
+          300: '#CCFBF1',
+          400: '#B2F5EA',
+          500: '#CCFBF1', // Base
+          600: '#81EDDD',
+          700: '#5EEAD4',
+          800: '#2DD4BF',
+          900: '#14B8A6',
+          950: '#0F766E',
         },
 
-        // shadcn/ui system colors (NO WHITE - using light greens)
+        // Pillar: Konseling - Indigo palette
+        konseling: {
+          DEFAULT: '#6366F1',
+          50: '#EEF2FF',
+          100: '#E0E7FF',
+          200: '#C7D2FE',
+          300: '#A5B4FC',
+          400: '#818CF8',
+          500: '#6366F1',
+          600: '#4F46E5',
+          700: '#4338CA',
+          800: '#3730A3',
+          900: '#312E81',
+          950: '#1E1B4B',
+        },
+        // Pillar: Pelatihan - Orange palette
+        pelatihan: {
+          DEFAULT: '#F97316',
+          50: '#FFF7ED',
+          100: '#FFEDD5',
+          200: '#FED7AA',
+          300: '#FDBA74',
+          400: '#FB923C',
+          500: '#F97316',
+          600: '#EA580C',
+          700: '#C2410C',
+          800: '#9A3412',
+          900: '#7C2D12',
+          950: '#431407',
+        },
+
+        // shadcn/ui system colors
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
-        ring: '#A0C878', // Use primary green for focus rings
-        background: '#F3F8EC', // primary-50 light green
-        foreground: '#143D60', // Use secondary navy for text
+        ring: '#14B8A6', // Primary teal for focus rings
+        background: '#F0FDFA', // primary-50 light teal
+        foreground: '#134E4A', // Secondary dark teal for text
         muted: {
-          DEFAULT: '#DDEB9D', // Use surface color
-          foreground: '#143D60',
+          DEFAULT: '#CCFBF1', // Surface color
+          foreground: '#134E4A',
         },
         destructive: {
           DEFAULT: '#EF4444',
-          foreground: '#F3F8EC', // primary-50 instead of white
+          foreground: '#F0FDFA',
         },
         popover: {
-          DEFAULT: '#E6F1D9', // primary-100
-          foreground: '#143D60',
+          DEFAULT: '#CCFBF1', // primary-100
+          foreground: '#134E4A',
         },
         card: {
-          DEFAULT: '#E6F1D9', // primary-100
-          foreground: '#143D60',
+          DEFAULT: '#CCFBF1', // primary-100
+          foreground: '#134E4A',
         },
       },
       borderRadius: {

@@ -9,7 +9,7 @@ export function MahasiswaProcess() {
       <section
         className={cn(
           'py-16 md:py-20 relative',
-          'overflow-hidden bg-emerald-950',
+          'overflow-hidden bg-primary-950',
           'text-white',
           'rounded-t-[40px]',
           'md:rounded-t-[80px]',
@@ -48,7 +48,7 @@ export function MahasiswaProcess() {
         <Plus
           className={cn(
             'absolute top-[15%] left-[5%]',
-            'text-emerald-400/20 w-8 h-8',
+            'text-primary-400/20 w-8 h-8',
             'animate-pulse',
           )}
         />
@@ -56,7 +56,7 @@ export function MahasiswaProcess() {
           className={cn(
             'absolute bottom-[20%]',
             'right-[8%]',
-            'text-amber-400/20 w-16 h-16',
+            'text-accent-400/20 w-16 h-16',
             'animate-float-slow',
           )}
         />
@@ -65,7 +65,7 @@ export function MahasiswaProcess() {
         <div
           className={cn(
             'absolute top-0 right-0',
-            'w-96 h-96 bg-emerald-600/20',
+            'w-96 h-96 bg-primary-600/20',
             'rounded-full blur-[100px]',
             'translate-x-1/2 -translate-y-1/2',
           )}
@@ -73,7 +73,7 @@ export function MahasiswaProcess() {
         <div
           className={cn(
             'absolute bottom-0 left-0',
-            'w-96 h-96 bg-emerald-300/10',
+            'w-96 h-96 bg-primary-300/10',
             'rounded-full blur-[100px]',
             '-translate-x-1/2 translate-y-1/2',
           )}
@@ -101,14 +101,14 @@ export function MahasiswaProcess() {
               <Sparkles
                 className={cn(
                   'w-3.5 h-3.5',
-                  'text-amber-400 fill-amber-400',
+                  'text-accent-400 fill-accent-400',
                 )}
               />
               <span
                 className={cn(
                   'text-[10px] font-black',
                   'tracking-[0.2em]',
-                  'text-emerald-100 uppercase',
+                  'text-primary-100 uppercase',
                 )}
               >
                 How It Works
@@ -123,13 +123,13 @@ export function MahasiswaProcess() {
               )}
             >
               Langkah{' '}
-              <span className="text-amber-300 relative">
+              <span className="text-accent-300 relative">
                 Mudah
                 <svg
                   className={cn(
                     'absolute -bottom-2 left-0',
                     'w-full h-3',
-                    'text-amber-400/40',
+                    'text-accent-400/40',
                   )}
                   viewBox="0 0 100 10"
                   preserveAspectRatio="none"
@@ -146,7 +146,7 @@ export function MahasiswaProcess() {
             </h2>
             <p
               className={cn(
-                'text-emerald-200/70 font-medium',
+                'text-primary-200/70 font-medium',
                 'max-w-lg mx-auto',
               )}
             >
@@ -168,14 +168,14 @@ export function MahasiswaProcess() {
                   'transition-all duration-500',
                   'hover:-translate-y-1',
                   'hover:shadow-2xl',
-                  'hover:shadow-emerald-900/40',
+                  'hover:shadow-primary-900/40',
                 )}
               >
                 {/* Step Number */}
                 <div
                   className={cn(
                     'w-16 h-16 shrink-0',
-                    'bg-amber-400 rounded-2xl',
+                    'bg-accent-400 rounded-2xl',
                     'flex items-center',
                     'justify-center',
                     'text-slate-950',
@@ -198,7 +198,7 @@ export function MahasiswaProcess() {
                   </h3>
                   <p
                     className={cn(
-                      'text-emerald-200/70',
+                      'text-primary-200/70',
                       'font-medium',
                     )}
                   >
