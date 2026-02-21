@@ -239,17 +239,4 @@ export const SOCIAL_LINKS = [
   { Icon: Facebook, href: 'https://facebook.com/bermoela' },
 ]
 
-export const TOPO_PATTERN_SVG =
-  'url("data:image/svg+xml,'
-  + '%3Csvg width=\'200\''
-  + ' height=\'200\''
-  + ' viewBox=\'0 0 200 200\''
-  + ' xmlns=\'http://www.w3.org/'
-  + '2000/svg\'%3E%3Cpath'
-  + ' d=\'M0 100 C 20 80, 40 120,'
-  + ' 60 100 S 100 80, 120 100'
-  + ' S 160 120, 200 100\''
-  + ' stroke=\'white\''
-  + ' fill=\'transparent\''
-  + ' stroke-width=\'1\'/%3E'
-  + '%3C/svg%3E")'
+export { TOPO_WHITE as TOPO_PATTERN_SVG } from '@/shared/constants/bg-patterns.constants'

@@ -1,12 +1,19 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from '@/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
-import { AppSidebar } from '@/features/dashboard'
+import { cn } from '@/lib/utils'
+
+const AppSidebar = dynamic(
+  () => import('@/features/dashboard/components/sidebar-nav')
+    .then((mod) => mod.AppSidebar),
+  { ssr: false }
+)
 
 export default function DashboardLayout({
   children,
@@ -30,7 +37,13 @@ export default function DashboardLayout({
     >
       <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b border-gray-200 bg-white px-4">
+        <header
+          className={cn(
+            'flex h-16 shrink-0 items-center',
+            'gap-2 border-b border-gray-200',
+            'bg-white px-4',
+          )}
+        >
           <SidebarTrigger className="-ml-1 cursor-pointer" />
           <Separator
             orientation="vertical"

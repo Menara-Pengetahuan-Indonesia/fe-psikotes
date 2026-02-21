@@ -7,6 +7,7 @@ import {
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
+import { TOPO_WHITE, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 
 interface ExamHeaderProps {
   currentIdx: number
@@ -39,21 +40,8 @@ export function ExamHeader({
           'pointer-events-none mix-blend-overlay',
         )}
         style={{
-          backgroundImage:
-            'url("data:image/svg+xml,'
-            + '%3Csvg width=\'200\''
-            + ' height=\'200\''
-            + ' viewBox=\'0 0 200 200\''
-            + ' xmlns=\'http://www.w3.org/'
-            + '2000/svg\'%3E%3Cpath'
-            + ' d=\'M0 100 C 20 80, 40 120,'
-            + ' 60 100 S 100 80, 120 100'
-            + ' S 160 120, 200 100\''
-            + ' stroke=\'white\''
-            + ' fill=\'transparent\''
-            + ' stroke-width=\'1\'/%3E'
-            + '%3C/svg%3E")',
-          backgroundSize: '400px 400px',
+          backgroundImage: TOPO_WHITE,
+          backgroundSize: TOPO_BG_SIZE,
         }}
       />
 
@@ -78,7 +66,7 @@ export function ExamHeader({
         className={cn(
           'absolute top-0 left-0',
           'w-96 h-96 bg-primary-500/20',
-          'rounded-full blur-[120px]',
+          'rounded-full blur-[80px]',
           '-translate-x-1/2 -translate-y-1/2',
           'pointer-events-none',
         )}
