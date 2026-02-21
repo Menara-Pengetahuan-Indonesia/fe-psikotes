@@ -33,7 +33,7 @@ export function LegalHeroSection({
         className={cn(
           'absolute top-[-10%] left-[-10%]',
           'w-150 h-150 rounded-full',
-          'blur-[120px] pointer-events-none',
+          'blur-[80px] pointer-events-none',
           theme.glowTop,
         )}
       />
@@ -41,7 +41,7 @@ export function LegalHeroSection({
         className={cn(
           'absolute bottom-[-10%] right-[-5%]',
           'w-125 h-125 rounded-full',
-          'blur-[120px] pointer-events-none',
+          'blur-[80px] pointer-events-none',
           theme.glowBottom,
         )}
       />

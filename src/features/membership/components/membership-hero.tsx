@@ -1,14 +1,15 @@
 import { Users, Video, MessageSquare, ArrowRight, Sparkles, Plus, Hexagon, Diamond } from 'lucide-react'
 import Link from 'next/link'
+import { TOPO_WHITE, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 
 export function MembershipHero() {
   return (
     <header className="relative overflow-hidden bg-konseling-600 text-white pt-32 pb-20 md:pt-40 md:pb-32">
       {/* --- RICH BACKGROUND ORNAMENTS --- */}
-      <div className="absolute inset-0 opacity-[0.07] pointer-events-none mix-blend-overlay" 
+      <div className="absolute inset-0 opacity-[0.07] pointer-events-none mix-blend-overlay"
            style={{
-             backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 C 20 80, 40 120, 60 100 S 100 80, 120 100 S 160 120, 200 100' stroke='white' fill='transparent' stroke-width='1'/%3E%3C/svg%3E")`,
-             backgroundSize: '400px 400px'
+             backgroundImage: TOPO_WHITE,
+             backgroundSize: TOPO_BG_SIZE,
            }}
       />
       

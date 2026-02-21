@@ -33,7 +33,7 @@ export function ResultCardSection({
           className={cn(
             'absolute top-0 right-0',
             'w-80 h-80 bg-primary-600',
-            'rounded-full blur-[120px]',
+            'rounded-full blur-[80px]',
             'opacity-40 -translate-y-1/2',
             'translate-x-1/2',
           )}
@@ -42,7 +42,7 @@ export function ResultCardSection({
           className={cn(
             'absolute bottom-0 left-0',
             'w-80 h-80 bg-primary-500',
-            'rounded-full blur-[120px]',
+            'rounded-full blur-[80px]',
             'opacity-20 translate-y-1/2',
             '-translate-x-1/2',
           )}

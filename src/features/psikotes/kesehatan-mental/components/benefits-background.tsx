@@ -1,21 +1,7 @@
 import { Plus, Diamond } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-
-const TOPO_SVG =
-  'url("data:image/svg+xml,'
-  + '%3Csvg width=\'200\''
-  + ' height=\'200\''
-  + ' viewBox=\'0 0 200 200\''
-  + ' xmlns=\'http://www.w3.org/'
-  + '2000/svg\'%3E%3Cpath'
-  + ' d=\'M0 100 C 20 80, 40 120,'
-  + ' 60 100 S 100 80, 120 100'
-  + ' S 160 120, 200 100\''
-  + ' stroke=\'%23059669\''
-  + ' fill=\'transparent\''
-  + ' stroke-width=\'1\'/%3E'
-  + '%3C/svg%3E")'
+import { TOPO_WHITE, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 
 export function BenefitsBackground() {
   return (
@@ -29,8 +15,8 @@ export function BenefitsBackground() {
           'mix-blend-multiply',
         )}
         style={{
-          backgroundImage: TOPO_SVG,
-          backgroundSize: '400px 400px',
+          backgroundImage: TOPO_WHITE,
+          backgroundSize: TOPO_BG_SIZE,
         }}
       />
 

@@ -11,6 +11,7 @@ import {
 
 import { ServiceCard } from '@/features/psikotes/components/service-card'
 import { cn } from '@/lib/utils'
+import { TOPO_KONSELING, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 import { KONSELING_SERVICES } from '../constants'
 
 const TAB_FILTERS: Record<string, string[]> = {
@@ -44,8 +45,8 @@ export function KonselingServices() {
           'pointer-events-none mix-blend-multiply'
         )}
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 C 20 80, 40 120, 60 100 S 100 80, 120 100 S 160 120, 200 100' stroke='%234338ca' fill='transparent' stroke-width='1'/%3E%3C/svg%3E")`,
-          backgroundSize: '400px 400px',
+          backgroundImage: TOPO_KONSELING,
+          backgroundSize: TOPO_BG_SIZE,
         }}
       />
 
@@ -91,7 +92,7 @@ export function KonselingServices() {
         className={cn(
           'absolute bottom-0 left-0 w-125 h-125',
           'bg-[radial-gradient(circle_at_30%_30%,#FEF3C7_0%,#FDE68A_100%)]',
-          'opacity-20 rounded-full blur-[120px]',
+          'opacity-20 rounded-full blur-[80px]',
           '-translate-x-1/4 translate-y-1/4',
           'pointer-events-none'
         )}

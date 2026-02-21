@@ -80,7 +80,7 @@ export function CurriculumPyramid() {
           className={cn(
             'absolute bottom-0 right-0',
             'w-96 h-96 bg-primary-700/20',
-            'rounded-full blur-[120px]',
+            'rounded-full blur-[80px]',
             'translate-x-1/4',
             'translate-y-1/4',
             'pointer-events-none',

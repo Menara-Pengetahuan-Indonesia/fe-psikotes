@@ -1,3 +1,7 @@
-export * from './types'
-export * from './hooks'
-export * from './services'
+export type {
+  KonselingService,
+  ProcessStep,
+  FaqItem,
+} from './types'
+export {} from './hooks'
+export {} from './services'
