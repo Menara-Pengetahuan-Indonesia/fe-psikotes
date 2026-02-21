@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { TOPO_WHITE, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 
 const HERO_BENEFITS = [
   {
@@ -44,14 +45,14 @@ export function KonselingHero() {
       {/* 1. Subtle Topographic Line Pattern */}
       <div className="absolute inset-0 opacity-[0.07] pointer-events-none mix-blend-overlay"
            style={{
-             backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 C 20 80, 40 120, 60 100 S 100 80, 120 100 S 160 120, 200 100' stroke='white' fill='transparent' stroke-width='1'/%3E%3C/svg%3E")`,
-             backgroundSize: '400px 400px'
+             backgroundImage: TOPO_WHITE,
+             backgroundSize: TOPO_BG_SIZE,
            }}
       />
 
       {/* 2. Ambient Glows (Smooth Transition) */}
-      <div className="absolute top-[-10%] left-[-10%] w-150 h-150 bg-konseling-900/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-5%] w-125 h-125 bg-konseling-300/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-[-10%] left-[-10%] w-150 h-150 bg-konseling-900/20 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-5%] w-125 h-125 bg-konseling-300/20 rounded-full blur-[80px] pointer-events-none" />
 
       {/* 3. Technical Ornaments (Non-Wave) */}
       {/* Plus Signs */}
@@ -141,8 +142,8 @@ export function KonselingHero() {
           {/* Right Illustration (Advanced 3D Graphic) */}
           <div className="hidden lg:block relative perspective-2000">
             {/* Radar/Ripple Effect behind illustration */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-white/20 rounded-full animate-ping duration-3000" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-white/10 rounded-full animate-ping duration-4000" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-white/20 rounded-full animate-ripple" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-white/10 rounded-full animate-ripple-slow" />
 
             <div className="relative w-full aspect-square max-w-137.5 mx-auto transform-style-3d animate-float-slow">
 

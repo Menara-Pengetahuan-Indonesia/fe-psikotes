@@ -4,6 +4,7 @@ import {
   Diamond,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { TOPO_SLATE, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 
 export function HeroBackground() {
   return (
@@ -35,8 +36,8 @@ export function HeroBackground() {
           "pointer-events-none mix-blend-multiply"
         )}
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 C 20 80, 40 120, 60 100 S 100 80, 120 100 S 160 120, 200 100' stroke='%23334155' fill='transparent' stroke-width='1'/%3E%3C/svg%3E")`,
-          backgroundSize: '400px 400px',
+          backgroundImage: TOPO_SLATE,
+          backgroundSize: TOPO_BG_SIZE,
         }}
       />
 
@@ -44,19 +45,19 @@ export function HeroBackground() {
       <div className={cn(
         "absolute -top-[15%] -left-[10%]",
         "w-150 h-150",
-        "bg-primary-200/40 rounded-full blur-[150px]",
+        "bg-primary-200/40 rounded-full blur-[80px]",
         "pointer-events-none"
       )} />
       <div className={cn(
         "absolute top-[10%] -right-[10%]",
         "w-125 h-125",
-        "bg-konseling-200/30 rounded-full blur-[150px]",
+        "bg-konseling-200/30 rounded-full blur-[80px]",
         "pointer-events-none"
       )} />
       <div className={cn(
         "absolute -bottom-[15%] left-[20%]",
         "w-125 h-125",
-        "bg-pelatihan-200/30 rounded-full blur-[150px]",
+        "bg-pelatihan-200/30 rounded-full blur-[80px]",
         "pointer-events-none"
       )} />
 
