@@ -1,6 +1,7 @@
 import { Sparkles, Target, Zap, Heart, Plus, Hexagon, Diamond } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
+import { TOPO_PRIMARY, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 import { PHILOSOPHY_ITEMS } from '../constants'
 
 const ICONS = [Sparkles, Target, Zap, Heart]
@@ -11,10 +12,10 @@ export function PhilosophySection() {
       
       {/* --- RICH BACKGROUND ORNAMENTS (Matching Hero) --- */}
       {/* 1. Subtle Topographic Line Pattern */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-multiply" 
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-multiply"
            style={{
-             backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 C 20 80, 40 120, 60 100 S 100 80, 120 100 S 160 120, 200 100' stroke='%230F766E' fill='transparent' stroke-width='1'/%3E%3C/svg%3E")`, /* primary-700 */
-             backgroundSize: '400px 400px'
+             backgroundImage: TOPO_PRIMARY,
+             backgroundSize: TOPO_BG_SIZE,
            }}
       />
 

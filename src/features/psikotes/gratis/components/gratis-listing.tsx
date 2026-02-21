@@ -6,6 +6,7 @@ import { Search, Sparkles, Plus, Hexagon, Diamond, Grid, BookOpen } from 'lucide
 import { TestListingCard } from '@features/psikotes/components'
 import { GRATIS_TESTS } from '@features/psikotes/constants'
 import { cn } from '@/lib/utils'
+import { TOPO_WHITE, TOPO_BG_SIZE, PLUS_CROSS_PATTERN } from '@/shared/constants/bg-patterns.constants'
 
 const FILTER_TABS = ['Semua', 'Kepribadian', 'Karir', 'Hubungan', 'Edukasi', 'Kesehatan Mental']
 
@@ -31,14 +32,14 @@ export function GratisListing() {
         {/* --- RICH BACKGROUND ORNAMENTS --- */}
         <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay"
              style={{
-               backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 C 20 80, 40 120, 60 100 S 100 80, 120 100 S 160 120, 200 100' stroke='white' fill='transparent' stroke-width='1'/%3E%3C/svg%3E")`,
-               backgroundSize: '400px 400px'
+               backgroundImage: TOPO_WHITE,
+               backgroundSize: TOPO_BG_SIZE,
              }}
         />
 
         {/* Ambient Glows (Subtle Transition) */}
-        <div className="absolute top-[-10%] left-[-10%] w-150 h-150 bg-primary-900/20 rounded-full blur-[120px] pointer-events-none animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-125 h-125 bg-primary-300/20 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-[-10%] left-[-10%] w-150 h-150 bg-primary-900/20 rounded-full blur-[80px] pointer-events-none animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-125 h-125 bg-primary-300/20 rounded-full blur-[80px] pointer-events-none" />
 
         <Plus className="absolute top-[15%] left-[10%] text-primary-300/30 w-8 h-8 animate-pulse" />
         <Hexagon className="absolute top-[40%] right-[10%] text-white/5 w-24 h-24 -rotate-12 animate-float-slow" />
@@ -128,7 +129,7 @@ export function GratisListing() {
           <div className="my-32 p-12 md:p-20 rounded-[3.5rem] relative overflow-hidden text-center text-white"
                style={{ background: 'linear-gradient(135deg, #134E4A 0%, #0F766E 100%)' }}>
              <div className="absolute inset-0 opacity-10 pointer-events-none"
-                  style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='white' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
+                  style={{ backgroundImage: PLUS_CROSS_PATTERN }} />
              <div className="relative z-10 space-y-6">
                 <Sparkles className="w-12 h-12 text-accent-300 mx-auto mb-4 animate-pulse" />
                 <h2 className="text-3xl md:text-5xl font-black tracking-tight">Buka Potensi Tak Terbatas</h2>

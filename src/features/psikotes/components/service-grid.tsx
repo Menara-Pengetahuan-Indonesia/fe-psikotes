@@ -3,6 +3,7 @@
 import { Grid, Plus, Hexagon, Diamond } from 'lucide-react'
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
+import { TOPO_PRIMARY, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 
 import { ServiceCard } from './service-card'
 import { SERVICES } from '../constants'
@@ -22,10 +23,10 @@ export function ServiceGrid() {
       
       {/* --- RICH BACKGROUND ORNAMENTS (Matching Hero) --- */}
       {/* 1. Subtle Topographic Line Pattern */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-multiply" 
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-multiply"
            style={{
-             backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 100 C 20 80, 40 120, 60 100 S 100 80, 120 100 S 160 120, 200 100' stroke='%230F766E' fill='transparent' stroke-width='1'/%3E%3C/svg%3E")`, /* primary-700 */
-             backgroundSize: '400px 400px'
+             backgroundImage: TOPO_PRIMARY,
+             backgroundSize: TOPO_BG_SIZE,
            }}
       />
 
@@ -37,7 +38,7 @@ export function ServiceGrid() {
 
       {/* 3. Ambient Glows */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[radial-gradient(circle_at_30%_30%,#CCFBF1_0%,#99F6E4_100%)] opacity-30 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-125 h-125 bg-[radial-gradient(circle_at_30%_30%,#FEF3C7_0%,#FDE68A_100%)] opacity-20 rounded-full blur-[120px] -translate-x-1/4 translate-y-1/4 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-125 h-125 bg-[radial-gradient(circle_at_30%_30%,#FEF3C7_0%,#FDE68A_100%)] opacity-20 rounded-full blur-[80px] -translate-x-1/4 translate-y-1/4 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section Header */}

@@ -163,6 +163,10 @@ export default {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' },
         },
+        ripple: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -171,6 +175,8 @@ export default {
         'float-medium': 'float-medium 5s ease-in-out infinite',
         'float-fast': 'float-fast 3s ease-in-out infinite',
         'spin-slow': 'spin-slow 12s linear infinite',
+        ripple: 'ripple 3s ease-in-out infinite',
+        'ripple-slow': 'ripple 4s ease-in-out infinite',
       },
     },
   },

@@ -54,7 +54,7 @@ export function Footer() {
       <div
         className={cn(
           'absolute -top-32 -right-32',
-          'w-96 h-96 rounded-full blur-[120px]',
+          'w-96 h-96 rounded-full blur-[80px]',
           'pointer-events-none',
           theme.glowTop,
         )}
