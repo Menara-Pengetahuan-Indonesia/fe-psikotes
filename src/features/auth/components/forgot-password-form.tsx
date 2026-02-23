@@ -50,8 +50,6 @@ export function ForgotPasswordForm() {
     try {
       await new Promise((r) => setTimeout(r, 1000))
       setIsSubmitted(true)
-    } catch (error) {
-      console.error('Forgot password error:', error)
     } finally {
       setIsLoading(false)
     }
