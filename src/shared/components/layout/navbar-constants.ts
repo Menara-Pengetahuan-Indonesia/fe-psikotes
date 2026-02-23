@@ -51,10 +51,12 @@ export const HIDDEN_ROUTES = [
   '/masuk',
   '/daftar',
   '/forgot-password',
+  '/psikotes/mahasiswa/try-out/form',
 ] as const
 
 export const HIDDEN_ROUTE_PREFIXES = [
   '/pengguna',
   '/admin',
   '/perusahaan',
+  '/psikotes/mahasiswa/try-out/form',
 ] as const
