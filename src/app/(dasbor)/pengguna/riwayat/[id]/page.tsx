@@ -3,20 +3,17 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { 
-  Award, 
-  Calendar, 
-  ChevronRight, 
-  FileText, 
-  Printer, 
-  Share2, 
-  Star, 
-  TrendingUp, 
+import {
+  Award,
+  Calendar,
+  Printer,
+  Share2,
+  Star,
+  TrendingUp,
   Zap,
   Target,
   Brain,
   MessageCircle,
-  Clock,
   Activity
 } from 'lucide-react'
 
