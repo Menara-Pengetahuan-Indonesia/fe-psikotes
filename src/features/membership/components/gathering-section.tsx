@@ -1,5 +1,4 @@
 import { CheckCircle2, Video, Sparkles } from 'lucide-react'
-import { cn } from '@/lib/utils'
 
 const GATHERING_POINTS = [
   'Dipandu oleh Community Manager berpengalaman',

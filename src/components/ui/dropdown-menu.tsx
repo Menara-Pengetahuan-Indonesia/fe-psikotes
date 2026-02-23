@@ -40,7 +40,7 @@ function DropdownMenuContent({
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.Content
         onWheel={(e) => e.stopPropagation()}
-        onPointerDownOutside={(e) => {
+        onPointerDownOutside={() => {
           // Allow scrolling while open if needed, though usually handled by disableOutsidePointerEvents
         }}
         data-slot="dropdown-menu-content"

@@ -2,7 +2,7 @@
 
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
 
 export type UserRole = 'user' | 'company' | 'admin'
 
@@ -74,12 +74,13 @@ export const useAuthStore = create<AuthState>()(
  * preventing hydration mismatches.
  */
 export function useAuthStoreHydrated() {
-  const [hydrated, setHydrated] = useState(false)
-  const store = useAuthStore()
+  const hydrated = useSyncExternalStore(
+    useAuthStore.subscribe,
+    () => useAuthStore.getState()._hasHydrated,
+    () => false,
+  )
 
-  useEffect(() => {
-    setHydrated(true)
-  }, [])
+  const store = useAuthStore()
 
   if (!hydrated) {
     return {

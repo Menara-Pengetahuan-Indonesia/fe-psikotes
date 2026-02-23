@@ -1,7 +1,6 @@
 'use client'
 
 import * as React from 'react'
-import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import {
   Printer,
@@ -9,7 +8,6 @@ import {
   Award,
   ShieldCheck,
   Sparkles,
-  ChevronLeft,
   Share2,
   Brain
 } from 'lucide-react'
@@ -18,7 +16,6 @@ import { Button } from '@/components/ui/button'
 import { Breadcrumb } from '@/shared/components/layout/breadcrumb'
 import { DUMMY_TEST_HISTORY } from '@/features/dashboard/constants'
 import { useAuthStoreHydrated } from '@/store/auth.store'
-import { cn } from '@/lib/utils'
 
 export default function CertificatePage() {
   const params = useParams()
