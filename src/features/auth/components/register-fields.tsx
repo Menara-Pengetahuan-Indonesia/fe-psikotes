@@ -2,30 +2,29 @@ import type {
   FieldErrors,
   UseFormRegister,
 } from 'react-hook-form'
-import { Eye, EyeOff } from 'lucide-react'
+import {
+  Eye,
+  EyeOff,
+  User,
+  Mail,
+  Phone,
+  Lock,
+} from 'lucide-react'
 
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 
 import type { RegisterFormData } from '../schemas'
 import { cn } from '@/lib/utils'
 
-const LABEL_CLS = 'text-sm font-semibold text-secondary-900/60'
 const INPUT_CLS = cn(
-  'h-12 rounded-xl border-secondary-100 bg-white/50',
-  'px-4 placeholder:text-secondary-900/20 text-secondary-900',
-  'focus:border-primary-500/50 focus:bg-white',
-  'focus:ring-4 focus:ring-primary-500/5',
+  'h-12 rounded-xl bg-slate-50/50 border-slate-200/60',
+  'pl-11 pr-4 text-slate-900 text-sm font-medium',
+  'placeholder:text-slate-400 placeholder:font-normal',
+  'focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10',
   'transition-all duration-200',
 )
 const INPUT_PW_CLS = cn(INPUT_CLS, 'pr-12')
-const TOGGLE_CLS = cn(
-  'absolute inset-y-0 right-0 pr-4',
-  'flex items-center',
-  'text-secondary-900/20 hover:text-secondary-900/50',
-  'transition-colors',
-)
-const ERROR_CLS = 'text-xs text-red-500 mt-1.5 ml-1 font-medium'
+const ERROR_CLS = 'text-[11px] text-red-500 ml-3 font-medium flex items-center gap-1'
 
 interface RegisterFieldsProps {
   register: UseFormRegister<RegisterFormData>
@@ -45,26 +44,25 @@ export function RegisterFields({
   onToggleConfirm,
 }: RegisterFieldsProps) {
   return (
-    <>
+    <div className="space-y-4">
       {/* Name Row */}
-      <div className="grid grid-cols-2 gap-3">
-        <div className="space-y-1.5">
-          <Label
-            htmlFor="firstName"
-            className={LABEL_CLS}
-          >
-            Nama Depan
-          </Label>
-          <Input
-            id="firstName"
-            type="text"
-            placeholder="John"
-            className={INPUT_CLS}
-            autoFocus
-            tabIndex={1}
-            {...reg('firstName')}
-            aria-invalid={!!errors.firstName}
-          />
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-1.5 group">
+          <div className="relative">
+            <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
+              <User className="w-4 h-4 text-slate-400 group-focus-within:text-primary-500 transition-colors" />
+            </div>
+            <Input
+              id="firstName"
+              type="text"
+              placeholder="Nama depan"
+              className={INPUT_CLS}
+              autoFocus
+              tabIndex={1}
+              {...reg('firstName')}
+              aria-invalid={!!errors.firstName}
+            />
+          </div>
           {errors.firstName && (
             <p className={ERROR_CLS}>
               {errors.firstName.message}
@@ -72,22 +70,21 @@ export function RegisterFields({
           )}
         </div>
 
-        <div className="space-y-1.5">
-          <Label
-            htmlFor="lastName"
-            className={LABEL_CLS}
-          >
-            Nama Belakang
-          </Label>
-          <Input
-            id="lastName"
-            type="text"
-            placeholder="Doe"
-            className={INPUT_CLS}
-            tabIndex={2}
-            {...reg('lastName')}
-            aria-invalid={!!errors.lastName}
-          />
+        <div className="space-y-1.5 group">
+          <div className="relative">
+            <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
+              <User className="w-4 h-4 text-slate-400 group-focus-within:text-primary-500 transition-colors" />
+            </div>
+            <Input
+              id="lastName"
+              type="text"
+              placeholder="Nama belakang"
+              className={INPUT_CLS}
+              tabIndex={2}
+              {...reg('lastName')}
+              aria-invalid={!!errors.lastName}
+            />
+          </div>
           {errors.lastName && (
             <p className={ERROR_CLS}>
               {errors.lastName.message}
@@ -97,19 +94,21 @@ export function RegisterFields({
       </div>
 
       {/* Email */}
-      <div className="space-y-1.5">
-        <Label htmlFor="email" className={LABEL_CLS}>
-          Alamat Email
-        </Label>
-        <Input
-          id="email"
-          type="email"
-          placeholder="nama@email.com"
-          className={INPUT_CLS}
-          tabIndex={3}
-          {...reg('email')}
-          aria-invalid={!!errors.email}
-        />
+      <div className="space-y-1.5 group">
+        <div className="relative">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
+            <Mail className="w-4 h-4 text-slate-400 group-focus-within:text-primary-500 transition-colors" />
+          </div>
+          <Input
+            id="email"
+            type="email"
+            placeholder="Email"
+            className={INPUT_CLS}
+            tabIndex={3}
+            {...reg('email')}
+            aria-invalid={!!errors.email}
+          />
+        </div>
         {errors.email && (
           <p className={ERROR_CLS}>
             {errors.email.message}
@@ -118,19 +117,21 @@ export function RegisterFields({
       </div>
 
       {/* Phone */}
-      <div className="space-y-1.5">
-        <Label htmlFor="telp" className={LABEL_CLS}>
-          Nomor HP
-        </Label>
-        <Input
-          id="telp"
-          type="tel"
-          placeholder="08xxxxxxxxxx"
-          className={INPUT_CLS}
-          tabIndex={4}
-          {...reg('telp')}
-          aria-invalid={!!errors.telp}
-        />
+      <div className="space-y-1.5 group">
+        <div className="relative">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
+            <Phone className="w-4 h-4 text-slate-400 group-focus-within:text-primary-500 transition-colors" />
+          </div>
+          <Input
+            id="telp"
+            type="tel"
+            placeholder="Nomor hp"
+            className={INPUT_CLS}
+            tabIndex={4}
+            {...reg('telp')}
+            aria-invalid={!!errors.telp}
+          />
+        </div>
         {errors.telp && (
           <p className={ERROR_CLS}>
             {errors.telp.message}
@@ -139,15 +140,15 @@ export function RegisterFields({
       </div>
 
       {/* Password */}
-      <div className="space-y-1.5">
-        <Label htmlFor="password" className={LABEL_CLS}>
-          Password
-        </Label>
+      <div className="space-y-1.5 group">
         <div className="relative">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
+            <Lock className="w-4 h-4 text-slate-400 group-focus-within:text-primary-500 transition-colors" />
+          </div>
           <Input
             id="password"
             type={showPassword ? 'text' : 'password'}
-            placeholder="Masukkan password"
+            placeholder="Password"
             className={INPUT_PW_CLS}
             tabIndex={5}
             {...reg('password')}
@@ -156,12 +157,12 @@ export function RegisterFields({
           <button
             type="button"
             onClick={onTogglePassword}
-            className={TOGGLE_CLS}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary-600 transition-colors p-1"
             tabIndex={-1}
-            aria-label="Toggle password visibility"
+            aria-label="Tampilkan sandi"
           >
             {showPassword
-              ? <EyeOff className="h-4 w-4" />
+              ? <EyeOff className="w-4 h-4" />
               : <Eye className="h-4 w-4" />}
           </button>
         </div>
@@ -173,18 +174,15 @@ export function RegisterFields({
       </div>
 
       {/* Confirm Password */}
-      <div className="space-y-1.5">
-        <Label
-          htmlFor="confirmPassword"
-          className={LABEL_CLS}
-        >
-          Konfirmasi Password
-        </Label>
+      <div className="space-y-1.5 group">
         <div className="relative">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
+            <Lock className="w-4 h-4 text-slate-400 group-focus-within:text-primary-500 transition-colors" />
+          </div>
           <Input
             id="confirmPassword"
             type={showConfirm ? 'text' : 'password'}
-            placeholder="Ulangi password"
+            placeholder="Konfirmasi password"
             className={INPUT_PW_CLS}
             tabIndex={6}
             {...reg('confirmPassword')}
@@ -193,12 +191,12 @@ export function RegisterFields({
           <button
             type="button"
             onClick={onToggleConfirm}
-            className={TOGGLE_CLS}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary-600 transition-colors p-1"
             tabIndex={-1}
-            aria-label="Toggle confirmation visibility"
+            aria-label="Tampilkan konfirmasi sandi"
           >
             {showConfirm
-              ? <EyeOff className="h-4 w-4" />
+              ? <EyeOff className="w-4 h-4" />
               : <Eye className="h-4 w-4" />}
           </button>
         </div>
@@ -208,6 +206,6 @@ export function RegisterFields({
           </p>
         )}
       </div>
-    </>
+    </div>
   )
 }
