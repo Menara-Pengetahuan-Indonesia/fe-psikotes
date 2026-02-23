@@ -56,7 +56,7 @@ export function LoginForm({
     formState: { errors },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
-    mode: 'onBlur',
+    mode: 'onSubmit',
   })
 
   const onSubmit = (data: LoginFormData) => {
@@ -97,8 +97,6 @@ export function LoginForm({
                 type="email"
                 placeholder="Alamat email"
                 className={INPUT_CLS}
-                autoFocus
-                tabIndex={1}
                 {...register('email')}
                 aria-invalid={!!errors.email}
               />
@@ -121,7 +119,6 @@ export function LoginForm({
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Kata sandi"
                 className={cn(INPUT_CLS, 'pr-12')}
-                tabIndex={2}
                 {...register('password')}
                 aria-invalid={!!errors.password}
               />
@@ -146,7 +143,6 @@ export function LoginForm({
           <div className="flex justify-end px-1">
             <Link
               href="/forgot-password"
-              tabIndex={4}
               className="text-xs font-medium text-primary-600 hover:text-primary-700 transition-colors"
             >
               Lupa password?
@@ -165,7 +161,6 @@ export function LoginForm({
           {/* Submit */}
           <Button
             type="submit"
-            tabIndex={3}
             className={cn(
               'w-full h-12 rounded-xl mt-4',
               'bg-slate-900 text-white',
@@ -193,7 +188,6 @@ export function LoginForm({
           <GoogleAuthButton
             label="Lanjutkan dengan Google"
             onClick={() => {}}
-            tabIndex={5}
             className="h-12 rounded-xl border-slate-200 shadow-none hover:bg-slate-50 text-xs"
           />
         </div>
