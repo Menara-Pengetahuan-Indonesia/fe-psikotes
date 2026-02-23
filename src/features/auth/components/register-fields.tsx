@@ -57,8 +57,6 @@ export function RegisterFields({
               type="text"
               placeholder="Nama depan"
               className={INPUT_CLS}
-              autoFocus
-              tabIndex={1}
               {...reg('firstName')}
               aria-invalid={!!errors.firstName}
             />
@@ -80,7 +78,6 @@ export function RegisterFields({
               type="text"
               placeholder="Nama belakang"
               className={INPUT_CLS}
-              tabIndex={2}
               {...reg('lastName')}
               aria-invalid={!!errors.lastName}
             />
@@ -104,7 +101,6 @@ export function RegisterFields({
             type="email"
             placeholder="Email"
             className={INPUT_CLS}
-            tabIndex={3}
             {...reg('email')}
             aria-invalid={!!errors.email}
           />
@@ -127,7 +123,6 @@ export function RegisterFields({
             type="tel"
             placeholder="Nomor hp"
             className={INPUT_CLS}
-            tabIndex={4}
             {...reg('telp')}
             aria-invalid={!!errors.telp}
           />
@@ -150,7 +145,6 @@ export function RegisterFields({
             type={showPassword ? 'text' : 'password'}
             placeholder="Password"
             className={INPUT_PW_CLS}
-            tabIndex={5}
             {...reg('password')}
             aria-invalid={!!errors.password}
           />
@@ -184,7 +178,6 @@ export function RegisterFields({
             type={showConfirm ? 'text' : 'password'}
             placeholder="Konfirmasi password"
             className={INPUT_PW_CLS}
-            tabIndex={6}
             {...reg('confirmPassword')}
             aria-invalid={!!errors.confirmPassword}
           />

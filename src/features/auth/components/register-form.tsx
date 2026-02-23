@@ -45,7 +45,7 @@ export function RegisterForm({
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
-    mode: 'onBlur',
+    mode: 'onSubmit',
   })
 
   const onSubmit = (data: RegisterFormData) => {
@@ -100,7 +100,6 @@ export function RegisterForm({
           {/* Submit */}
           <Button
             type="submit"
-            tabIndex={7}
             className={cn(
               'w-full h-12 rounded-xl mt-2',
               'bg-slate-900 text-white',
@@ -130,7 +129,6 @@ export function RegisterForm({
           <GoogleAuthButton
             label="Daftar dengan Google"
             onClick={() => {}}
-            tabIndex={8}
             className="h-12 rounded-xl border-slate-200 shadow-none hover:bg-slate-50 text-xs"
           />
         </div>

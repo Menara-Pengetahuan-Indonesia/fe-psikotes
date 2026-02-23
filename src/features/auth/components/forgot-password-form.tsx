@@ -41,7 +41,7 @@ export function ForgotPasswordForm() {
     formState: { errors },
   } = useForm<ForgotPasswordFormData>({
     resolver: zodResolver(forgotPasswordSchema),
-    mode: 'onBlur',
+    mode: 'onSubmit',
     defaultValues: { email: '' },
   })
 
@@ -149,8 +149,6 @@ function FormView({
               type="email"
               placeholder="Email"
               className={INPUT_CLS}
-              autoFocus
-              tabIndex={1}
               {...register('email')}
               aria-invalid={!!errors.email}
             />
@@ -164,7 +162,6 @@ function FormView({
 
         <Button
           type="submit"
-          tabIndex={2}
           className={cn(
             'w-full h-12 rounded-xl',
             'bg-slate-900 text-white',
@@ -240,7 +237,6 @@ function BackToLogin() {
     <div className="text-center">
       <Link
         href="/masuk"
-        tabIndex={3}
         className={cn(
           'inline-flex items-center gap-2',
           'text-sm font-semibold text-slate-700',
