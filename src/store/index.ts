@@ -1,3 +1,3 @@
-export { useAuthStore } from './auth.store'
+export { useAuthStore, useAuthStoreHydrated } from './auth.store'
 export { useUIStore } from './ui.store'
 export { useContextStore } from './context.store'
