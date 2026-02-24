@@ -68,7 +68,8 @@ export function Navbar({
     ) ||
     HIDDEN_ROUTE_PREFIXES.some((p) =>
       pathname.startsWith(p)
-    )
+    ) ||
+    pathname.startsWith('/psikotes/mahasiswa/try-out/form')
   if (isHiddenRoute) return null
 
   return (

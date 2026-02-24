@@ -10,6 +10,7 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
   const isAuthPage = pathname === '/masuk'
     || pathname === '/daftar'
     || pathname === '/forgot-password'
+    || pathname.startsWith('/psikotes/mahasiswa/try-out/form')
   const isDashboard = pathname.startsWith('/pengguna')
     || pathname.startsWith('/admin')
     || pathname.startsWith('/perusahaan')
@@ -20,6 +21,8 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
         "relative z-10 transition-all duration-500",
         isHomepage
           ? "bg-slate-50 h-dvh overflow-hidden mb-0 rounded-none"
+          : pathname.startsWith('/psikotes/mahasiswa/try-out/form')
+            ? "bg-[#F2F2F7] min-h-dvh mb-0 rounded-none"
           : isAuthPage
             ? "bg-white min-h-dvh mb-0 rounded-none"
             : isDashboard
@@ -31,11 +34,13 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
         "min-h-full w-full",
         isHomepage
           ? "bg-slate-50"
-          : isAuthPage
-            ? "bg-white"
-            : isDashboard
-              ? "bg-slate-50"
-              : "bg-background"
+          : pathname.startsWith('/psikotes/mahasiswa/try-out/form')
+            ? "bg-[#F2F2F7]"
+            : isAuthPage
+              ? "bg-white"
+              : isDashboard
+                ? "bg-slate-50"
+                : "bg-background"
       )}>
         {children}
       </div>

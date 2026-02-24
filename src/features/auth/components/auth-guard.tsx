@@ -13,7 +13,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 
-import { useAuthStore } from '@/store/auth.store'
+import { useAuthStoreHydrated } from '@/store/auth.store'
 import { cn } from '@/lib/utils'
 
 interface AuthGuardProps {
@@ -21,7 +21,7 @@ interface AuthGuardProps {
 }
 
 export function AuthGuard({ children }: AuthGuardProps) {
-  const { isAuthenticated } = useAuthStore()
+  const { isAuthenticated } = useAuthStoreHydrated()
   const pathname = usePathname()
 
   const redirectParam = `?redirect=${

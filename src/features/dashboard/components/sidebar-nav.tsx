@@ -20,7 +20,6 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -38,8 +37,9 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from '@/components/ui/sidebar'
-import { useAuthStore } from '@/store/auth.store'
+import { useAuthStoreHydrated } from '@/store/auth.store'
 import { useLogout } from '@/features/auth/hooks'
+import { cn } from '@/lib/utils'
 
 interface NavItem {
   href: string
@@ -83,34 +83,29 @@ export function AppSidebar(
   props: React.ComponentProps<typeof Sidebar>,
 ) {
   const pathname = usePathname()
-  const user = useAuthStore((s) => s.user)
+  const { user } = useAuthStoreHydrated()
   const logoutMutation = useLogout()
 
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
+      <SidebarHeader className="p-6 border-b border-white/5">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
               size="lg"
               asChild
-              className="cursor-pointer"
+              className="hover:bg-transparent"
             >
               <Link href="/">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-blue-500 text-white">
-                  <span className="text-sm font-black">
-                    B
-                  </span>
+                <div className="flex aspect-square size-11 items-center justify-center rounded-2xl bg-gradient-to-tr from-primary-500 to-primary-600 shadow-xl shadow-primary-500/20 text-white transform transition-transform group-hover:scale-105">
+                  <span className="text-xl font-black italic">B</span>
                 </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-bold tracking-tight text-white">
-                    BER
-                    <span className="text-blue-400">
-                      MOELA
-                    </span>
+                <div className="grid flex-1 text-left text-sm leading-tight ml-3">
+                  <span className="truncate font-black tracking-tight text-white text-xl">
+                    BER<span className="text-primary-400">MOELA</span>
                   </span>
-                  <span className="truncate text-xs text-slate-400">
-                    Indonesian Life School
+                  <span className="truncate text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">
+                    Life School
                   </span>
                 </div>
               </Link>
@@ -119,10 +114,12 @@ export function AppSidebar(
         </SidebarMenu>
       </SidebarHeader>
 
-      <SidebarContent>
+      <SidebarContent className="p-4 pt-8">
         <SidebarGroup>
-          <SidebarGroupLabel>Menu</SidebarGroupLabel>
-          <SidebarMenu>
+          <SidebarGroupLabel className="px-4 mb-4 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500">
+            Navigation
+          </SidebarGroupLabel>
+          <SidebarMenu className="gap-2">
             {NAV_ITEMS.map((item) => {
               const isActive = pathname === item.href
               return (
@@ -131,11 +128,19 @@ export function AppSidebar(
                     asChild
                     isActive={isActive}
                     tooltip={item.label}
-                    className="cursor-pointer"
+                    className={cn(
+                      "transition-all duration-300 py-6 px-5 rounded-2xl group/btn overflow-hidden relative",
+                      isActive 
+                        ? "bg-primary-500 text-white shadow-lg shadow-primary-500/20" 
+                        : "text-slate-400 hover:bg-white/5 hover:text-white"
+                    )}
                   >
-                    <Link href={item.href}>
-                      <item.icon />
-                      <span>{item.label}</span>
+                    <Link href={item.href} className="flex items-center gap-4 z-10">
+                      <item.icon className={cn("size-5 transition-transform group-hover/btn:scale-110", isActive ? "text-white" : "text-slate-500 group-hover:text-primary-400")} />
+                      <span className="font-bold tracking-tight">{item.label}</span>
+                      {isActive && (
+                        <div className="absolute right-0 top-0 h-full w-1 bg-white/20 blur-[1px]" />
+                      )}
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -145,92 +150,91 @@ export function AppSidebar(
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter>
+      <SidebarFooter className="p-6 border-t border-white/5 bg-slate-900/40 backdrop-blur-sm">
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton
                   size="lg"
-                  className="cursor-pointer"
+                  className="rounded-2xl hover:bg-white/5 group transition-all p-4 h-16"
                 >
-                  <Avatar className="size-8 rounded-lg">
-                    <AvatarFallback className="rounded-lg bg-blue-600 text-white">
+                  <Avatar className="size-10 rounded-xl border-2 border-white/10 shadow-lg shadow-black/20">
+                    <AvatarFallback className="rounded-xl bg-gradient-to-br from-primary-600 to-primary-700 text-white font-black text-sm">
                       {user?.name
                         ? getInitials(user.name)
                         : 'U'}
                     </AvatarFallback>
                   </Avatar>
-                  <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-semibold">
+                  <div className="grid flex-1 text-left text-sm leading-tight ml-3">
+                    <span className="truncate font-bold text-white tracking-tight">
                       {user?.name || 'Pengguna'}
                     </span>
-                    <span className="truncate text-xs">
-                      {user?.email || ''}
+                    <span className="truncate text-[10px] font-medium text-slate-500 uppercase tracking-wider">
+                      Basic Member
                     </span>
                   </div>
-                  <ChevronsUpDown className="ml-auto size-4" />
+                  <ChevronsUpDown className="ml-auto size-4 text-slate-600 transition-colors group-hover:text-primary-400" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent
-                className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg bg-white text-slate-900"
-                side="bottom"
+                className="w-64 rounded-3xl bg-slate-900 border-white/5 text-white shadow-2xl p-2 mb-4 animate-in slide-in-from-bottom-2 duration-300"
+                side="top"
                 align="end"
-                sideOffset={4}
+                sideOffset={12}
               >
-                <DropdownMenuLabel className="p-0 font-normal">
-                  <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                    <Avatar className="size-8 rounded-lg">
-                      <AvatarFallback className="rounded-lg bg-blue-600 text-white">
-                        {user?.name
-                          ? getInitials(user.name)
-                          : 'U'}
-                      </AvatarFallback>
-                    </Avatar>
+                <DropdownMenuLabel className="p-4 font-normal">
+                  <div className="flex items-center gap-4">
+                    <div className="size-10 rounded-xl bg-primary-600/20 flex items-center justify-center border border-primary-500/30">
+                      <span className="text-primary-400 font-black text-xs">{user?.name ? getInitials(user.name) : 'U'}</span>
+                    </div>
                     <div className="grid flex-1 text-left text-sm leading-tight">
-                      <span className="truncate font-semibold">
+                      <span className="truncate font-bold text-white tracking-tight leading-none">
                         {user?.name || 'Pengguna'}
                       </span>
-                      <span className="truncate text-xs">
+                      <span className="truncate text-[10px] text-slate-500 mt-1 uppercase tracking-[0.1em]">
                         {user?.email || ''}
                       </span>
                     </div>
                   </div>
                 </DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
+                <DropdownMenuSeparator className="bg-white/5" />
+                <div className="p-1 space-y-1">
                   <DropdownMenuItem
-                    className="cursor-pointer"
+                    className="cursor-pointer rounded-2xl hover:bg-white/5 focus:bg-white/5 focus:text-primary-400 py-3.5 px-4 transition-all"
                     asChild
                   >
-                    <Link href="/pengguna/profil">
-                      <UserCircle />
-                      Profil
+                    <Link href="/pengguna/profil" className="flex items-center gap-3">
+                      <div className="size-8 rounded-lg bg-slate-800 flex items-center justify-center">
+                        <UserCircle className="size-4" />
+                      </div>
+                      <span className="font-bold text-sm tracking-tight">Pengaturan Profil</span>
                     </Link>
                   </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
                   <DropdownMenuItem
-                    className="cursor-pointer"
+                    className="cursor-pointer rounded-2xl hover:bg-white/5 focus:bg-white/5 focus:text-primary-400 py-3.5 px-4 transition-all"
                     asChild
                   >
-                    <Link href="/psikotes">
-                      <Home />
-                      Beranda
+                    <Link href="/" className="flex items-center gap-3">
+                      <div className="size-8 rounded-lg bg-slate-800 flex items-center justify-center">
+                        <Home className="size-4" />
+                      </div>
+                      <span className="font-bold text-sm tracking-tight">Kembali ke Beranda</span>
                     </Link>
                   </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
+                </div>
+                <DropdownMenuSeparator className="bg-white/5" />
                 <DropdownMenuItem
-                  className="cursor-pointer"
+                  className="cursor-pointer rounded-2xl text-red-400 hover:bg-red-500/10 focus:bg-red-500/10 focus:text-red-400 py-3.5 px-4 mt-1 transition-all"
                   onClick={() =>
                     logoutMutation.mutate()
                   }
                   disabled={logoutMutation.isPending}
                 >
-                  <LogOut />
-                  Keluar
+                  <div className="size-8 rounded-lg bg-red-500/10 flex items-center justify-center mr-3">
+                    <LogOut className="size-4" />
+                  </div>
+                  <span className="font-black text-sm uppercase tracking-wider">Logout</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

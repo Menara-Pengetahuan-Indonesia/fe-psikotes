@@ -28,6 +28,8 @@ export function Footer() {
     || pathname === '/masuk'
     || pathname === '/daftar'
     || pathname === '/forgot-password'
+    || pathname.startsWith('/psikotes/mahasiswa/try-out/form')
+    || pathname.startsWith('/pengguna')
   if (hidden) return null
 
   return (

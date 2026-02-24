@@ -29,38 +29,42 @@ describe('RegisterForm', () => {
   it('renders all fields', () => {
     renderWithProviders(<RegisterForm />)
 
-    expect(screen.getByLabelText(/nama depan/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/nama belakang/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/email/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/nomor hp/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/^password$/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/konfirmasi password/i)).toBeInTheDocument()
+    expect(screen.getByPlaceholderText(/nama depan/i)).toBeInTheDocument()
+    expect(screen.getByPlaceholderText(/nama belakang/i)).toBeInTheDocument()
+    expect(screen.getByPlaceholderText(/^email$/i)).toBeInTheDocument()
+    expect(screen.getByPlaceholderText(/nomor hp/i)).toBeInTheDocument()
+    expect(screen.getByPlaceholderText(/^password$/i)).toBeInTheDocument()
+    expect(screen.getByPlaceholderText(/konfirmasi password/i)).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /daftar sekarang/i })).toBeInTheDocument()
   })
 
-  it('validates password requirements', async () => {
+  it('validates password requirements on submit', async () => {
     const user = userEvent.setup()
     renderWithProviders(<RegisterForm />)
 
-    const passwordInput = screen.getByLabelText(/^password$/i)
-    await user.type(passwordInput, 'weak')
-    await user.tab()
+    await user.type(screen.getByPlaceholderText(/nama depan/i), 'John')
+    await user.type(screen.getByPlaceholderText(/nama belakang/i), 'Doe')
+    await user.type(screen.getByPlaceholderText(/^email$/i), 'john@example.com')
+    await user.type(screen.getByPlaceholderText(/nomor hp/i), '081234567890')
+    await user.type(screen.getByPlaceholderText(/^password$/i), 'weak')
+    await user.type(screen.getByPlaceholderText(/konfirmasi password/i), 'weak')
+    await user.click(screen.getByRole('button', { name: /daftar sekarang/i }))
 
     await waitFor(() => {
       expect(screen.getByText(/password minimal 8 karakter/i)).toBeInTheDocument()
     })
   })
 
-  it('validates password mismatch', async () => {
+  it('validates password mismatch on submit', async () => {
     const user = userEvent.setup()
     renderWithProviders(<RegisterForm />)
 
-    await user.type(screen.getByLabelText(/nama depan/i), 'John')
-    await user.type(screen.getByLabelText(/nama belakang/i), 'Doe')
-    await user.type(screen.getByLabelText(/email/i), 'john@example.com')
-    await user.type(screen.getByLabelText(/nomor hp/i), '081234567890')
-    await user.type(screen.getByLabelText(/^password$/i), 'Password123!')
-    await user.type(screen.getByLabelText(/konfirmasi password/i), 'Different123!')
+    await user.type(screen.getByPlaceholderText(/nama depan/i), 'John')
+    await user.type(screen.getByPlaceholderText(/nama belakang/i), 'Doe')
+    await user.type(screen.getByPlaceholderText(/^email$/i), 'john@example.com')
+    await user.type(screen.getByPlaceholderText(/nomor hp/i), '081234567890')
+    await user.type(screen.getByPlaceholderText(/^password$/i), 'Password123!')
+    await user.type(screen.getByPlaceholderText(/konfirmasi password/i), 'Different123!')
     await user.click(screen.getByRole('button', { name: /daftar sekarang/i }))
 
     await waitFor(() => {
@@ -73,12 +77,12 @@ describe('RegisterForm', () => {
     const onSuccess = vi.fn()
     renderWithProviders(<RegisterForm onSuccess={onSuccess} />)
 
-    await user.type(screen.getByLabelText(/nama depan/i), 'John')
-    await user.type(screen.getByLabelText(/nama belakang/i), 'Doe')
-    await user.type(screen.getByLabelText(/email/i), 'john@example.com')
-    await user.type(screen.getByLabelText(/nomor hp/i), '081234567890')
-    await user.type(screen.getByLabelText(/^password$/i), 'Password123!')
-    await user.type(screen.getByLabelText(/konfirmasi password/i), 'Password123!')
+    await user.type(screen.getByPlaceholderText(/nama depan/i), 'John')
+    await user.type(screen.getByPlaceholderText(/nama belakang/i), 'Doe')
+    await user.type(screen.getByPlaceholderText(/^email$/i), 'john@example.com')
+    await user.type(screen.getByPlaceholderText(/nomor hp/i), '081234567890')
+    await user.type(screen.getByPlaceholderText(/^password$/i), 'Password123!')
+    await user.type(screen.getByPlaceholderText(/konfirmasi password/i), 'Password123!')
     await user.click(screen.getByRole('button', { name: /daftar sekarang/i }))
 
     await waitFor(() => {

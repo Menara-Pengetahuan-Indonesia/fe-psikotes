@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { UserPlus } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 
@@ -35,9 +36,6 @@ export function RegisterForm({
   const loginHref = redirect
     ? `/masuk?redirect=${encodeURIComponent(redirect)}`
     : '/masuk'
-  const registerHref = redirect
-    ? `/daftar?redirect=${encodeURIComponent(redirect)}`
-    : '/daftar'
 
   const registerMutation = useRegister()
 
@@ -47,7 +45,7 @@ export function RegisterForm({
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
-    mode: 'onBlur',
+    mode: 'onSubmit',
   })
 
   const onSubmit = (data: RegisterFormData) => {
@@ -59,36 +57,23 @@ export function RegisterForm({
   return (
     <AuthLayout>
       <div className={cn('space-y-8', className)}>
-        {/* Tab Toggle */}
-        <div className="flex p-1 bg-primary-50/50 rounded-2xl border border-primary-100/50">
-          <Link
-            href={loginHref}
-            className="flex-1 py-2.5 text-sm font-bold text-center rounded-xl text-secondary-900/30 hover:text-secondary-900/60 transition-colors"
-          >
-            Masuk
-          </Link>
-          <Link
-            href={registerHref}
-            className="flex-1 py-2.5 text-sm font-bold text-center rounded-xl bg-white text-primary-600 shadow-sm border border-primary-100/20"
-          >
-            Daftar
-          </Link>
-        </div>
-
-        {/* Heading */}
-        <div className="text-center space-y-1.5">
-          <h2 className="text-2xl font-bold text-secondary-900 tracking-tight">
-            Buat Akun Baru
+        {/* Header Section */}
+        <div className="text-center space-y-2">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-primary-50 text-primary-600 mb-2">
+            <UserPlus className="w-6 h-6" />
+          </div>
+          <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
+            Buat akun baru
           </h2>
-          <p className="text-sm text-secondary-900/40">
-            Bergabunglah dan mulai perjalananmu hari ini.
+          <p className="text-sm text-slate-500 font-medium max-w-[280px] mx-auto leading-relaxed">
+            Bergabunglah dan mulai perjalanan pengembangan diri Anda hari ini.
           </p>
         </div>
 
-        {/* Form */}
+        {/* Form Section */}
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="space-y-5"
+          className="space-y-6"
         >
           <RegisterFields
             register={register}
@@ -105,7 +90,7 @@ export function RegisterForm({
 
           {/* Error Message */}
           {registerMutation.isError && (
-            <div className="bg-red-50 border border-red-100 rounded-xl p-3">
+            <div className="bg-red-50 border border-red-100 rounded-xl p-3 animate-in fade-in slide-in-from-top-1">
               <p className="text-xs text-red-500 text-center font-medium">
                 {registerMutation.error.message}
               </p>
@@ -115,35 +100,49 @@ export function RegisterForm({
           {/* Submit */}
           <Button
             type="submit"
-            tabIndex={7}
             className={cn(
               'w-full h-12 rounded-xl mt-2',
-              'bg-primary-600 text-white',
-              'font-bold text-base',
-              'hover:bg-primary-700 active:scale-[0.98]',
-              'transition-all duration-200 shadow-lg shadow-primary-500/20',
+              'bg-slate-900 text-white',
+              'font-bold text-sm',
+              'hover:bg-slate-800 active:scale-[0.98]',
+              'transition-all duration-200 shadow-xl shadow-slate-900/20',
             )}
             disabled={isLoading}
           >
             {isLoading
               ? 'Mendaftarkan...'
-              : 'Daftar Sekarang'}
+              : 'Daftar sekarang'}
           </Button>
         </form>
 
         {/* Divider */}
-        <div className="relative flex items-center gap-4 px-4">
-          <div className="h-px flex-1 bg-secondary-900/5" />
-          <span className="text-[10px] font-bold text-secondary-900/20 uppercase tracking-widest">Atau daftar dengan</span>
-          <div className="h-px flex-1 bg-secondary-900/5" />
+        <div className="relative flex items-center gap-4 px-2">
+          <div className="h-px flex-1 bg-slate-200" />
+          <span className="text-[10px] font-medium text-slate-400">
+            atau daftar dengan
+          </span>
+          <div className="h-px flex-1 bg-slate-200" />
         </div>
 
-        {/* Google */}
-        <GoogleAuthButton
-          label="Google"
-          onClick={() => {}}
-          tabIndex={8}
-        />
+        {/* Social buttons */}
+        <div className="px-1">
+          <GoogleAuthButton
+            label="Daftar dengan Google"
+            onClick={() => {}}
+            className="h-12 rounded-xl border-slate-200 shadow-none hover:bg-slate-50 text-xs"
+          />
+        </div>
+
+        {/* Login link */}
+        <p className="text-center text-xs font-medium text-slate-400">
+          Sudah punya akun?{' '}
+          <Link
+            href={loginHref}
+            className="text-primary-600 hover:text-primary-700 transition-colors underline underline-offset-4 decoration-primary-500/30 font-bold"
+          >
+            Masuk sekarang
+          </Link>
+        </p>
       </div>
     </AuthLayout>
   )

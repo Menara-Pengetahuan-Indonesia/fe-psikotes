@@ -19,10 +19,10 @@ export function GoogleAuthButton({
       tabIndex={tabIndex}
       className={cn(
         'w-full h-12 flex items-center justify-center gap-3',
-        'bg-white border border-secondary-100 rounded-xl',
-        'text-sm font-bold text-secondary-900/70',
-        'hover:bg-primary-50 hover:border-primary-100 transition-all active:scale-[0.98]',
-        'shadow-sm shadow-primary-900/5',
+        'bg-white border border-slate-200 rounded-xl',
+        'text-sm font-bold text-slate-700',
+        'hover:bg-slate-50 hover:border-slate-300 transition-all active:scale-[0.98]',
+        'shadow-sm shadow-black/5',
         className,
       )}
       onClick={onClick}

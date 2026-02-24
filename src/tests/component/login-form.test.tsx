@@ -34,31 +34,30 @@ describe('LoginForm', () => {
   it('renders login form with all fields', () => {
     renderWithProviders(<LoginForm />)
 
-    expect(screen.getByLabelText(/^email$/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/^password$/i)).toBeInTheDocument()
+    expect(screen.getByPlaceholderText(/alamat email/i)).toBeInTheDocument()
+    expect(screen.getByPlaceholderText(/kata sandi/i)).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /masuk sekarang/i })).toBeInTheDocument()
   })
 
-  it('shows validation error for invalid email', async () => {
+  it('shows validation error for empty email on submit', async () => {
     const user = userEvent.setup()
     renderWithProviders(<LoginForm />)
 
-    const emailInput = screen.getByLabelText(/^email$/i)
-    await user.type(emailInput, 'invalid-email')
-    await user.tab()
+    await user.type(screen.getByPlaceholderText(/kata sandi/i), 'password123')
+    await user.click(screen.getByRole('button', { name: /masuk sekarang/i }))
 
     await waitFor(() => {
-      expect(screen.getByText(/format email tidak valid/i)).toBeInTheDocument()
+      expect(screen.getByText(/email wajib diisi/i)).toBeInTheDocument()
     })
   })
 
-  it('shows validation error for short password', async () => {
+  it('shows validation error for short password on submit', async () => {
     const user = userEvent.setup()
     renderWithProviders(<LoginForm />)
 
-    const passwordInput = screen.getByLabelText(/^password$/i)
-    await user.type(passwordInput, '123')
-    await user.tab()
+    await user.type(screen.getByPlaceholderText(/alamat email/i), 'test@example.com')
+    await user.type(screen.getByPlaceholderText(/kata sandi/i), '123')
+    await user.click(screen.getByRole('button', { name: /masuk sekarang/i }))
 
     await waitFor(() => {
       expect(screen.getByText(/password minimal 8 karakter/i)).toBeInTheDocument()
@@ -69,8 +68,8 @@ describe('LoginForm', () => {
     const user = userEvent.setup()
     renderWithProviders(<LoginForm />)
 
-    const passwordInput = screen.getByLabelText(/^password$/i) as HTMLInputElement
-    const toggleButton = screen.getByRole('button', { name: /toggle password visibility/i })
+    const passwordInput = screen.getByPlaceholderText(/kata sandi/i) as HTMLInputElement
+    const toggleButton = screen.getByRole('button', { name: /tampilkan sandi/i })
 
     expect(passwordInput.type).toBe('password')
 
@@ -86,8 +85,8 @@ describe('LoginForm', () => {
     const onSuccess = vi.fn()
     renderWithProviders(<LoginForm onSuccess={onSuccess} />)
 
-    await user.type(screen.getByLabelText(/^email$/i), 'test@example.com')
-    await user.type(screen.getByLabelText(/^password$/i), 'password123')
+    await user.type(screen.getByPlaceholderText(/alamat email/i), 'test@example.com')
+    await user.type(screen.getByPlaceholderText(/kata sandi/i), 'password123')
     await user.click(screen.getByRole('button', { name: /masuk sekarang/i }))
 
     await waitFor(() => {

@@ -17,7 +17,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { useAuthStore } from '@/store/auth.store'
+import { useAuthStoreHydrated } from '@/store/auth.store'
 import { cn } from '@/lib/utils'
 
 const ROLE_LABELS: Record<string, string> = {
@@ -36,7 +36,7 @@ function getInitials(name: string) {
 }
 
 export function UserProfile() {
-  const user = useAuthStore((s) => s.user)
+  const { user } = useAuthStoreHydrated()
 
   const infoItems = [
     {
