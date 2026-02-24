@@ -1,5 +1,8 @@
+'use client'
+
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { useSyncExternalStore } from 'react'
 
 export type UserRole = 'user' | 'company' | 'admin'
 
@@ -15,6 +18,7 @@ interface AuthState {
   accessToken: string | null
   refreshToken: string | null
   isAuthenticated: boolean
+  _hasHydrated: boolean
   setAuth: (
     user: User,
     accessToken: string,
@@ -34,6 +38,7 @@ export const useAuthStore = create<AuthState>()(
       accessToken: null,
       refreshToken: null,
       isAuthenticated: false,
+      _hasHydrated: false,
       setAuth: (user, accessToken, refreshToken) => {
         set({
           user,
@@ -54,6 +59,38 @@ export const useAuthStore = create<AuthState>()(
         })
       },
     }),
-    { name: 'auth-storage' },
+    {
+      name: 'auth-storage',
+      onRehydrateStorage: () => () => {
+        useAuthStore.setState({ _hasHydrated: true })
+      },
+    },
   ),
 )
+
+/**
+ * SSR-safe hook — returns default (server) values
+ * until Zustand has rehydrated from localStorage,
+ * preventing hydration mismatches.
+ */
+export function useAuthStoreHydrated() {
+  const hydrated = useSyncExternalStore(
+    useAuthStore.subscribe,
+    () => useAuthStore.getState()._hasHydrated,
+    () => false,
+  )
+
+  const store = useAuthStore()
+
+  if (!hydrated) {
+    return {
+      ...store,
+      user: null,
+      accessToken: null,
+      refreshToken: null,
+      isAuthenticated: false,
+    }
+  }
+
+  return store
+}
