@@ -36,10 +36,16 @@ export function useLogin() {
         res.refreshToken,
       )
       toast.success('Berhasil masuk!')
+
+      // Get redirect from URL params
       const redirect = searchParams.get('redirect')
-      router.push(
-        redirect || getRoleDefaultPath(res.user.role),
-      )
+
+      // If redirect exists and is valid, use it; otherwise use role default
+      if (redirect && redirect.startsWith('/')) {
+        router.push(redirect)
+      } else {
+        router.push(getRoleDefaultPath(res.user.role))
+      }
     },
     onError: (error) => {
       toast.error(extractErrorMessage(error))

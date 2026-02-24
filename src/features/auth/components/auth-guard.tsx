@@ -21,13 +21,15 @@ interface AuthGuardProps {
 }
 
 export function AuthGuard({ children }: AuthGuardProps) {
-  const { isAuthenticated } = useAuthStoreHydrated()
+  const { isAuthenticated, _hasHydrated } = useAuthStoreHydrated()
   const pathname = usePathname()
 
   const redirectParam = `?redirect=${
     encodeURIComponent(pathname)
   }`
-  const needsLogin = !isAuthenticated
+
+  // Only show login dialog if store has hydrated AND user is not authenticated
+  const needsLogin = _hasHydrated && !isAuthenticated
 
   return (
     <div className="relative">
