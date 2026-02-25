@@ -17,3 +17,8 @@ export {
   CategoryShowcase,
 } from './category-showcase'
 export { PsikotesFaq } from './psikotes-faq'
+export { ExamInterface } from './ExamInterface'
+export { QuestionRenderer } from './QuestionRenderer'
+export { ResultDisplay } from './ResultDisplay'
+export { ActivityLog } from './ActivityLog'
+export { CameraProctoring } from './CameraProctoring'

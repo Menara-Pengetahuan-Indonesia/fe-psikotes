@@ -1,0 +1,6 @@
+export * from './test.schema'
+export * from './indicator.schema'
+export * from './section.schema'
+export * from './question.schema'
+export * from './option.schema'
+export * from './scoring-rule.schema'
