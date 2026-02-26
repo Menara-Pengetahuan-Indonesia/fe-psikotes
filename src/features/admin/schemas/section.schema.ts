@@ -8,10 +8,17 @@ export const createSectionSchema = z.object({
   description: z
     .string()
     .max(1000, 'Deskripsi terlalu panjang')
-    .optional(),
+    .optional()
+    .or(z.literal('')),
   order: z
-    .number()
+    .number({ message: 'Urutan harus berupa angka' })
     .min(0, 'Urutan tidak boleh negatif'),
+  duration: z
+    .number({ message: 'Durasi harus berupa angka' })
+    .min(1, 'Minimal 1 menit')
+    .max(480, 'Maksimal 480 menit')
+    .optional()
+    .nullable(),
 })
 
 export const updateSectionSchema = createSectionSchema.partial()

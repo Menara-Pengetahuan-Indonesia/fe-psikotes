@@ -2,110 +2,134 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Plus, Edit2, Trash2, Eye } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { Plus, Clock, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useTests, useDeleteTest } from '../../hooks'
 import { ConfirmDialog } from '../Common/ConfirmDialog'
-import { TestForm } from './TestForm'
 
 export function TestList() {
+  const router = useRouter()
   const { data: tests, isLoading } = useTests()
   const deleteTest = useDeleteTest()
-  const [showForm, setShowForm] = useState(false)
   const [deleteId, setDeleteId] = useState<string | null>(null)
 
   const handleDelete = () => {
-    if (deleteId) {
-      deleteTest.mutate(deleteId)
-      setDeleteId(null)
-    }
+    if (!deleteId) return
+    deleteTest.mutate(deleteId, {
+      onSuccess: () => setDeleteId(null),
+    })
   }
 
   if (isLoading) {
     return (
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {[...Array(3)].map((_, i) => (
-          <Skeleton key={i} className="h-48" />
-        ))}
+      <div>
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-2xl font-bold">Kelola Tes</h1>
+          <Skeleton className="h-10 w-36" />
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <Skeleton key={i} className="h-48 rounded-lg" />
+          ))}
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Manajemen Tes</h1>
-        <Button onClick={() => setShowForm(true)}>
-          <Plus className="w-4 h-4 mr-2" />
-          Buat Tes Baru
+    <div>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-bold">Kelola Tes</h1>
+        <Button asChild>
+          <Link href="/admin/tests/buat">
+            <Plus className="w-4 h-4 mr-2" />
+            Buat Tes Baru
+          </Link>
         </Button>
       </div>
 
-      {tests && tests.length === 0 ? (
-        <Card className="p-8 text-center">
-          <p className="text-muted-foreground">Belum ada tes. Buat tes baru untuk memulai.</p>
+      {!tests || tests.length === 0 ? (
+        <Card className="p-12 text-center">
+          <p className="text-muted-foreground text-lg mb-4">
+            Belum ada tes yang dibuat
+          </p>
+          <Button asChild>
+            <Link href="/admin/tests/buat">
+              <Plus className="w-4 h-4 mr-2" />
+              Buat Tes Pertama
+            </Link>
+          </Button>
         </Card>
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {tests?.map((test) => (
-            <Card key={test.id} className="p-4 hover:shadow-lg transition-shadow">
-              <div className="space-y-3">
-                <div className="flex justify-between items-start gap-2">
-                  <h3 className="font-semibold line-clamp-2">{test.name}</h3>
-                  <Badge
-                    variant={test.isPublished ? 'default' : 'secondary'}
-                  >
-                    {test.isPublished ? 'Dipublikasikan' : 'Draft'}
-                  </Badge>
-                </div>
-
-                {test.description && (
-                  <p className="text-sm text-muted-foreground line-clamp-2">
-                    {test.description}
-                  </p>
-                )}
-
-                <div className="text-sm text-muted-foreground">
-                  Durasi: {test.duration} menit
-                </div>
-
-                <div className="flex gap-2 pt-2">
-                  <Link href={`/admin/tests/${test.id}`} className="flex-1">
-                    <Button variant="outline" size="sm" className="w-full">
-                      <Eye className="w-4 h-4 mr-2" />
-                      Lihat
-                    </Button>
-                  </Link>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setShowForm(true)}
-                  >
-                    <Edit2 className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setDeleteId(test.id)}
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
-                </div>
+          {tests.map((test) => (
+            <Card
+              key={test.id}
+              className="p-5 cursor-pointer hover:shadow-md transition-shadow relative group"
+              onClick={() => router.push(`/admin/tests/${test.id}`)}
+            >
+              <div className="flex items-start justify-between mb-3">
+                <h3 className="font-semibold text-lg line-clamp-1 pr-2">
+                  {test.name}
+                </h3>
+                <Badge variant={test.isPublished ? 'default' : 'secondary'}>
+                  {test.isPublished ? 'Dipublikasikan' : 'Draft'}
+                </Badge>
               </div>
+
+              {test.description && (
+                <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                  {test.description}
+                </p>
+              )}
+
+              <div className="flex items-center gap-4 text-sm text-muted-foreground mt-auto">
+                <div className="flex items-center gap-1">
+                  <Clock className="w-4 h-4" />
+                  <span>{test.duration} menit</span>
+                </div>
+                {test.timePerQuestion && (
+                  <span>{test.timePerQuestion} dtk/soal</span>
+                )}
+              </div>
+
+              <div className="flex items-center gap-2 mt-3">
+                {test.shuffleQuestions && (
+                  <Badge variant="outline" className="text-xs">
+                    Acak Soal
+                  </Badge>
+                )}
+                {test.shuffleOptions && (
+                  <Badge variant="outline" className="text-xs">
+                    Acak Opsi
+                  </Badge>
+                )}
+              </div>
+
+              <Button
+                size="sm"
+                variant="destructive"
+                className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setDeleteId(test.id)
+                }}
+              >
+                <Trash2 className="w-4 h-4" />
+              </Button>
             </Card>
           ))}
         </div>
       )}
 
-      <TestForm open={showForm} onOpenChange={setShowForm} />
-
       <ConfirmDialog
         open={!!deleteId}
         title="Hapus Tes"
-        description="Apakah Anda yakin ingin menghapus tes ini? Tindakan ini tidak dapat dibatalkan."
+        description="Apakah Anda yakin ingin menghapus tes ini? Semua data terkait (indikator, seksi, pertanyaan, aturan skor) akan ikut terhapus. Tindakan ini tidak dapat dibatalkan."
         onConfirm={handleDelete}
         onCancel={() => setDeleteId(null)}
         isPending={deleteTest.isPending}

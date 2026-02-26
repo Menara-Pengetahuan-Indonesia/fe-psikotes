@@ -10,6 +10,7 @@ import {
   optionService,
   indicatorMappingService,
   scoringRuleService,
+  uploadService,
 } from '../services'
 import type {
   CreateTestDto,
@@ -400,15 +401,13 @@ export function useUpdateOption() {
   return useMutation({
     mutationFn: ({
       testId,
-      questionId,
       optionId,
       dto,
     }: {
       testId: string
-      questionId: string
       optionId: string
       dto: UpdateQuestionOptionDto
-    }) => optionService.update(testId, questionId, optionId, dto),
+    }) => optionService.update(testId, optionId, dto),
     onSuccess: (_, { testId }) => {
       queryClient.invalidateQueries({
         queryKey: adminKeys.questions(testId),
@@ -427,13 +426,11 @@ export function useDeleteOption() {
   return useMutation({
     mutationFn: ({
       testId,
-      questionId,
       optionId,
     }: {
       testId: string
-      questionId: string
       optionId: string
-    }) => optionService.delete(testId, questionId, optionId),
+    }) => optionService.delete(testId, optionId),
     onSuccess: (_, { testId }) => {
       queryClient.invalidateQueries({
         queryKey: adminKeys.questions(testId),
@@ -456,15 +453,13 @@ export function useCreateIndicatorMapping() {
   return useMutation({
     mutationFn: ({
       testId,
-      questionId,
       optionId,
       dto,
     }: {
       testId: string
-      questionId: string
       optionId: string
       dto: CreateOptionIndicatorMappingDto
-    }) => indicatorMappingService.create(testId, questionId, optionId, dto),
+    }) => indicatorMappingService.create(testId, optionId, dto),
     onSuccess: (_, { testId }) => {
       queryClient.invalidateQueries({
         queryKey: adminKeys.questions(testId),
@@ -483,15 +478,11 @@ export function useDeleteIndicatorMapping() {
   return useMutation({
     mutationFn: ({
       testId,
-      questionId,
-      optionId,
       mappingId,
     }: {
       testId: string
-      questionId: string
-      optionId: string
       mappingId: string
-    }) => indicatorMappingService.delete(testId, questionId, optionId, mappingId),
+    }) => indicatorMappingService.delete(testId, mappingId),
     onSuccess: (_, { testId }) => {
       queryClient.invalidateQueries({
         queryKey: adminKeys.questions(testId),
@@ -500,6 +491,22 @@ export function useDeleteIndicatorMapping() {
     },
     onError: () => {
       toast.error('Gagal menghapus pemetaan indikator')
+    },
+  })
+}
+
+// ============================================================
+// UPLOAD HOOKS
+// ============================================================
+
+export function useUploadImage() {
+  return useMutation({
+    mutationFn: (file: File) => uploadService.uploadImage(file),
+    onSuccess: () => {
+      toast.success('Gambar berhasil diunggah')
+    },
+    onError: () => {
+      toast.error('Gagal mengunggah gambar')
     },
   })
 }

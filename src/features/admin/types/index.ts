@@ -8,6 +8,9 @@ export interface Test {
   description?: string
   duration: number // in minutes
   isPublished: boolean
+  timePerQuestion?: number | null // waktu per soal (detik)
+  shuffleQuestions: boolean
+  shuffleOptions: boolean
   createdAt: string
   updatedAt: string
 }
@@ -28,6 +31,7 @@ export interface Section {
   name: string
   description?: string
   order: number
+  duration?: number | null // waktu per section (menit)
   createdAt: string
   updatedAt: string
 }
@@ -39,6 +43,7 @@ export interface Question {
   text: string
   type: 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'RATING_SCALE' | 'ESSAY'
   order: number
+  imageUrl?: string | null
   createdAt: string
   updatedAt: string
   options?: QuestionOption[]
@@ -82,12 +87,18 @@ export interface CreateTestDto {
   name: string
   description?: string
   duration: number
+  timePerQuestion?: number
+  shuffleQuestions?: boolean
+  shuffleOptions?: boolean
 }
 
 export interface UpdateTestDto {
   name?: string
   description?: string
   duration?: number
+  timePerQuestion?: number | null
+  shuffleQuestions?: boolean
+  shuffleOptions?: boolean
 }
 
 export interface CreateIndicatorDto {
@@ -108,12 +119,14 @@ export interface CreateSectionDto {
   name: string
   description?: string
   order: number
+  duration?: number | null
 }
 
 export interface UpdateSectionDto {
   name?: string
   description?: string
   order?: number
+  duration?: number | null
 }
 
 export interface CreateQuestionDto {
@@ -122,6 +135,7 @@ export interface CreateQuestionDto {
   text: string
   type: 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'RATING_SCALE' | 'ESSAY'
   order: number
+  imageUrl?: string | null
 }
 
 export interface UpdateQuestionDto {
@@ -129,6 +143,7 @@ export interface UpdateQuestionDto {
   type?: 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'RATING_SCALE' | 'ESSAY'
   sectionId?: string
   order?: number
+  imageUrl?: string | null
 }
 
 export interface CreateQuestionOptionDto {
@@ -143,7 +158,6 @@ export interface UpdateQuestionOptionDto {
 }
 
 export interface CreateOptionIndicatorMappingDto {
-  optionId: string
   indicatorId: string
   scoreValue: number
 }
@@ -164,4 +178,13 @@ export interface UpdateScoringRuleDto {
   minScore?: number
   maxScore?: number
   resultType?: string
+}
+
+// ============================================================
+// UPLOAD TYPES
+// ============================================================
+
+export interface UploadResponse {
+  url: string
+  filename: string
 }

@@ -42,10 +42,8 @@ export function OptionMapper({
     const scoreValue = scoreValues[indicatorId] || 0
     createMapping.mutate({
       testId,
-      questionId,
       optionId: option.id,
       dto: {
-        optionId: option.id,
         indicatorId,
         scoreValue,
       },
@@ -55,8 +53,6 @@ export function OptionMapper({
   const handleDeleteMapping = (mappingId: string) => {
     deleteMapping.mutate({
       testId,
-      questionId,
-      optionId: option.id,
       mappingId,
     })
   }

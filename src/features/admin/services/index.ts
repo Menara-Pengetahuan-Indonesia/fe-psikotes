@@ -195,12 +195,11 @@ export const optionService = {
 
   update: async (
     testId: string,
-    questionId: string,
     optionId: string,
     dto: UpdateQuestionOptionDto,
   ): Promise<QuestionOption> => {
     const { data } = await api.patch<QuestionOption>(
-      `${BASE_PATH}/${testId}/questions/${questionId}/options/${optionId}`,
+      `${BASE_PATH}/${testId}/questions/options/${optionId}`,
       dto,
     )
     return data
@@ -208,11 +207,10 @@ export const optionService = {
 
   delete: async (
     testId: string,
-    questionId: string,
     optionId: string,
   ): Promise<void> => {
     await api.delete(
-      `${BASE_PATH}/${testId}/questions/${questionId}/options/${optionId}`,
+      `${BASE_PATH}/${testId}/questions/options/${optionId}`,
     )
   },
 }
@@ -224,12 +222,11 @@ export const optionService = {
 export const indicatorMappingService = {
   create: async (
     testId: string,
-    questionId: string,
     optionId: string,
     dto: CreateOptionIndicatorMappingDto,
   ): Promise<OptionIndicatorMapping> => {
     const { data } = await api.post<OptionIndicatorMapping>(
-      `${BASE_PATH}/${testId}/questions/${questionId}/options/${optionId}/mappings`,
+      `${BASE_PATH}/${testId}/questions/options/${optionId}/indicator-mapping`,
       dto,
     )
     return data
@@ -237,12 +234,10 @@ export const indicatorMappingService = {
 
   delete: async (
     testId: string,
-    questionId: string,
-    optionId: string,
     mappingId: string,
   ): Promise<void> => {
     await api.delete(
-      `${BASE_PATH}/${testId}/questions/${questionId}/options/${optionId}/mappings/${mappingId}`,
+      `${BASE_PATH}/${testId}/questions/indicator-mapping/${mappingId}`,
     )
   },
 }
@@ -281,5 +276,22 @@ export const scoringRuleService = {
 
   delete: async (testId: string, ruleId: string): Promise<void> => {
     await api.delete(`${BASE_PATH}/${testId}/scoring-rules/${ruleId}`)
+  },
+}
+
+// ============================================================
+// UPLOAD SERVICE
+// ============================================================
+
+export const uploadService = {
+  uploadImage: async (file: File): Promise<{ url: string; filename: string }> => {
+    const formData = new FormData()
+    formData.append('file', file)
+    const { data } = await api.post<{ url: string; filename: string }>(
+      '/admin/upload/image',
+      formData,
+      { headers: { 'Content-Type': 'multipart/form-data' } },
+    )
+    return data
   },
 }

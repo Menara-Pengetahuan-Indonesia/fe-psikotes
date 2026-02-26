@@ -12,6 +12,7 @@ import {
 } from '../../hooks'
 import { ConfirmDialog } from '../Common/ConfirmDialog'
 import { ScoringRuleForm } from './ScoringRuleForm'
+import type { ScoringRule } from '../../types'
 
 interface ScoringRuleListProps {
   testId: string
@@ -22,23 +23,34 @@ export function ScoringRuleList({ testId }: ScoringRuleListProps) {
   const { data: indicators } = useIndicators(testId)
   const deleteRule = useDeleteScoringRule()
   const [showForm, setShowForm] = useState(false)
+  const [editingRule, setEditingRule] = useState<ScoringRule | undefined>()
   const [deleteId, setDeleteId] = useState<string | null>(null)
 
-  const handleDelete = () => {
-    if (deleteId) {
-      deleteRule.mutate({ testId, ruleId: deleteId })
-      setDeleteId(null)
+  const handleEdit = (rule: ScoringRule) => {
+    setEditingRule(rule)
+    setShowForm(true)
+  }
+
+  const handleCloseForm = (open: boolean) => {
+    setShowForm(open)
+    if (!open) {
+      setEditingRule(undefined)
     }
   }
 
-  const getIndicatorName = (indicatorId: string) => {
-    return indicators?.find((i) => i.id === indicatorId)?.name || 'Unknown'
+  const handleDelete = () => {
+    if (deleteId) {
+      deleteRule.mutate(
+        { testId, ruleId: deleteId },
+        { onSuccess: () => setDeleteId(null) },
+      )
+    }
   }
 
   if (isLoading) {
     return (
       <div className="space-y-2">
-        {[...Array(3)].map((_, i) => (
+        {Array.from({ length: 3 }).map((_, i) => (
           <Skeleton key={i} className="h-16" />
         ))}
       </div>
@@ -66,8 +78,11 @@ export function ScoringRuleList({ testId }: ScoringRuleListProps) {
       </div>
 
       {rules && rules.length === 0 ? (
-        <Card className="p-4 text-center text-muted-foreground">
-          Belum ada aturan skor
+        <Card className="p-8 text-center">
+          <p className="text-muted-foreground mb-3">Belum ada aturan skor</p>
+          <p className="text-sm text-muted-foreground">
+            Aturan skor menentukan interpretasi hasil berdasarkan rentang skor per indikator.
+          </p>
         </Card>
       ) : (
         <div className="space-y-4">
@@ -94,7 +109,7 @@ export function ScoringRuleList({ testId }: ScoringRuleListProps) {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => setShowForm(true)}
+                          onClick={() => handleEdit(rule)}
                         >
                           <Edit2 className="w-4 h-4" />
                         </Button>
@@ -115,7 +130,12 @@ export function ScoringRuleList({ testId }: ScoringRuleListProps) {
         </div>
       )}
 
-      <ScoringRuleForm open={showForm} onOpenChange={setShowForm} testId={testId} />
+      <ScoringRuleForm
+        open={showForm}
+        onOpenChange={handleCloseForm}
+        testId={testId}
+        initialData={editingRule}
+      />
 
       <ConfirmDialog
         open={!!deleteId}

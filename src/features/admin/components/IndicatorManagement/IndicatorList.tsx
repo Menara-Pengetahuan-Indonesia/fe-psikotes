@@ -5,12 +5,10 @@ import { Plus, Edit2, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
-import {
-  useIndicators,
-  useDeleteIndicator,
-} from '../../hooks'
+import { useIndicators, useDeleteIndicator } from '../../hooks'
 import { ConfirmDialog } from '../Common/ConfirmDialog'
 import { IndicatorForm } from './IndicatorForm'
+import type { Indicator } from '../../types'
 
 interface IndicatorListProps {
   testId: string
@@ -20,20 +18,34 @@ export function IndicatorList({ testId }: IndicatorListProps) {
   const { data: indicators, isLoading } = useIndicators(testId)
   const deleteIndicator = useDeleteIndicator()
   const [showForm, setShowForm] = useState(false)
+  const [editingIndicator, setEditingIndicator] = useState<Indicator | undefined>()
   const [deleteId, setDeleteId] = useState<string | null>(null)
 
-  const handleDelete = () => {
-    if (deleteId) {
-      deleteIndicator.mutate({ testId, indicatorId: deleteId })
-      setDeleteId(null)
+  const handleEdit = (indicator: Indicator) => {
+    setEditingIndicator(indicator)
+    setShowForm(true)
+  }
+
+  const handleCloseForm = (open: boolean) => {
+    setShowForm(open)
+    if (!open) {
+      setEditingIndicator(undefined)
     }
+  }
+
+  const handleDelete = () => {
+    if (!deleteId) return
+    deleteIndicator.mutate(
+      { testId, indicatorId: deleteId },
+      { onSuccess: () => setDeleteId(null) },
+    )
   }
 
   if (isLoading) {
     return (
       <div className="space-y-2">
-        {[...Array(3)].map((_, i) => (
-          <Skeleton key={i} className="h-16" />
+        {Array.from({ length: 3 }).map((_, i) => (
+          <Skeleton key={i} className="h-20" />
         ))}
       </div>
     )
@@ -49,52 +61,67 @@ export function IndicatorList({ testId }: IndicatorListProps) {
         </Button>
       </div>
 
-      {indicators && indicators.length === 0 ? (
-        <Card className="p-4 text-center text-muted-foreground">
-          Belum ada indikator
+      {!indicators || indicators.length === 0 ? (
+        <Card className="p-8 text-center">
+          <p className="text-muted-foreground mb-3">Belum ada indikator</p>
+          <p className="text-sm text-muted-foreground">
+            Indikator digunakan untuk mengukur aspek-aspek psikologis dari peserta tes.
+          </p>
         </Card>
       ) : (
         <div className="space-y-2">
-          {indicators?.map((indicator) => (
-            <Card key={indicator.id} className="p-4 flex justify-between items-start">
-              <div className="flex-1">
-                <h3 className="font-semibold">{indicator.name}</h3>
-                {indicator.description && (
-                  <p className="text-sm text-muted-foreground">
-                    {indicator.description}
-                  </p>
-                )}
-                <p className="text-xs text-muted-foreground mt-1">
-                  Urutan: {indicator.order}
-                </p>
-              </div>
-              <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowForm(true)}
-                >
-                  <Edit2 className="w-4 h-4" />
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setDeleteId(indicator.id)}
-                >
-                  <Trash2 className="w-4 h-4" />
-                </Button>
-              </div>
-            </Card>
-          ))}
+          {indicators
+            .sort((a, b) => a.order - b.order)
+            .map((indicator) => (
+              <Card
+                key={indicator.id}
+                className="p-4 flex justify-between items-start"
+              >
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-mono text-muted-foreground bg-muted px-2 py-0.5 rounded">
+                      #{indicator.order}
+                    </span>
+                    <h3 className="font-semibold">{indicator.name}</h3>
+                  </div>
+                  {indicator.description && (
+                    <p className="text-sm text-muted-foreground mt-1">
+                      {indicator.description}
+                    </p>
+                  )}
+                </div>
+                <div className="flex gap-2 ml-4">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => handleEdit(indicator)}
+                  >
+                    <Edit2 className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setDeleteId(indicator.id)}
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </Button>
+                </div>
+              </Card>
+            ))}
         </div>
       )}
 
-      <IndicatorForm open={showForm} onOpenChange={setShowForm} testId={testId} />
+      <IndicatorForm
+        testId={testId}
+        open={showForm}
+        onOpenChange={handleCloseForm}
+        initialData={editingIndicator}
+      />
 
       <ConfirmDialog
         open={!!deleteId}
         title="Hapus Indikator"
-        description="Apakah Anda yakin ingin menghapus indikator ini?"
+        description="Apakah Anda yakin ingin menghapus indikator ini? Pemetaan skor yang terkait juga akan dihapus."
         onConfirm={handleDelete}
         onCancel={() => setDeleteId(null)}
         isPending={deleteIndicator.isPending}

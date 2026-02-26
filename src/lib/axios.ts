@@ -9,9 +9,15 @@ const AUTH_ENDPOINTS = [
 ]
 
 export const api = axios.create({
-  baseURL: env.NEXT_PUBLIC_API_URL,
+  baseURL: `${env.NEXT_PUBLIC_API_URL}/api`,
   headers: { 'Content-Type': 'application/json' },
 })
+
+// For development, if frontend is on different port, adjust API URL
+if (typeof window !== 'undefined' && window.location.port !== '3000') {
+  // Frontend is on different port, API should still be on 5001
+  // This is already handled by NEXT_PUBLIC_API_URL env var
+}
 
 api.interceptors.request.use((config) => {
   const { accessToken } = useAuthStore.getState()
@@ -84,7 +90,7 @@ api.interceptors.response.use(
 
     try {
       const { data } = await axios.post(
-        `${env.NEXT_PUBLIC_API_URL}/auth/refresh`,
+        `${env.NEXT_PUBLIC_API_URL}/api/auth/refresh`,
         { refreshToken },
       )
 

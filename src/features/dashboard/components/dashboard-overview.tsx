@@ -129,7 +129,7 @@ export function DashboardOverview() {
                     <History className="size-5 text-primary-600" />
                     <h3 className="text-xl font-black text-slate-900 tracking-tight">Riwayat</h3>
                  </div>
-                 <Link href="/pengguna/riwayat" className="size-8 rounded-lg bg-slate-50 flex items-center justify-center hover:bg-primary-50 transition-colors group">
+                 <Link href="/dashboard/riwayat" className="size-8 rounded-lg bg-slate-50 flex items-center justify-center hover:bg-primary-50 transition-colors group">
                     <ChevronRight className="size-4 text-slate-400 group-hover:text-primary-600" />
                  </Link>
               </div>
@@ -153,7 +153,7 @@ export function DashboardOverview() {
 
               <div className="mt-8 pt-6 border-t border-slate-50">
                  <Button variant="outline" className="w-full h-12 rounded-xl border-slate-200 font-black text-xs uppercase tracking-widest hover:bg-slate-50" asChild>
-                    <Link href="/pengguna/riwayat">Lihat Semua Hasil</Link>
+                    <Link href="/dashboard/riwayat">Lihat Semua Hasil</Link>
                  </Button>
               </div>
            </div>

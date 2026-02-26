@@ -172,7 +172,7 @@ export function MyTests() {
                         className="bg-primary-500 hover:bg-primary-600 text-white rounded-xl h-12 px-6 font-bold shadow-lg shadow-primary-500/20 transition-all active:scale-95"
                         asChild
                       >
-                        <Link href="/pengguna/riwayat">
+                        <Link href="/dashboard/riwayat">
                           Hasil Detail
                           <ChevronRight className="ml-2 size-4" />
                         </Link>

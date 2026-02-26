@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
@@ -19,33 +20,50 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Plus, Trash2 } from 'lucide-react'
+import { Plus, Trash2, Upload, X } from 'lucide-react'
 import {
   useCreateQuestion,
+  useUpdateQuestion,
   useCreateOption,
-  useSections,
+  useUploadImage,
 } from '../../hooks'
 import { createQuestionSchema, type CreateQuestionFormData } from '../../schemas'
 import { FormField } from '../Common/FormField'
+import type { Question, Section } from '../../types'
 
 interface QuestionFormProps {
+  testId: string
   open: boolean
   onOpenChange: (open: boolean) => void
-  testId: string
+  initialData?: Question
+  sections: Section[]
 }
 
 interface QuestionFormValues extends CreateQuestionFormData {
   options?: Array<{ text: string; order: number }>
 }
 
+const QUESTION_TYPE_LABELS: Record<string, string> = {
+  MULTIPLE_CHOICE: 'Pilihan Ganda',
+  TRUE_FALSE: 'Benar/Salah',
+  RATING_SCALE: 'Skala Rating',
+  ESSAY: 'Essay',
+}
+
 export function QuestionForm({
+  testId,
   open,
   onOpenChange,
-  testId,
+  initialData,
+  sections,
 }: QuestionFormProps) {
   const createQuestion = useCreateQuestion()
+  const updateQuestion = useUpdateQuestion()
   const createOption = useCreateOption()
-  const { data: sections } = useSections(testId)
+  const uploadImage = useUploadImage()
+  const isEditing = !!initialData
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
 
   const {
     register,
@@ -54,11 +72,15 @@ export function QuestionForm({
     reset,
     watch,
     control,
+    setValue,
   } = useForm<QuestionFormValues>({
     resolver: zodResolver(createQuestionSchema),
     defaultValues: {
-      order: 0,
-      type: 'MULTIPLE_CHOICE',
+      text: initialData?.text ?? '',
+      type: initialData?.type ?? 'MULTIPLE_CHOICE',
+      sectionId: initialData?.sectionId ?? '',
+      order: initialData?.order ?? 0,
+      imageUrl: initialData?.imageUrl ?? undefined,
       options: [
         { text: '', order: 0 },
         { text: '', order: 1 },
@@ -71,54 +93,118 @@ export function QuestionForm({
     name: 'options',
   })
 
+  useEffect(() => {
+    if (open) {
+      const defaults: QuestionFormValues = {
+        text: initialData?.text ?? '',
+        type: initialData?.type ?? 'MULTIPLE_CHOICE',
+        sectionId: initialData?.sectionId ?? '',
+        order: initialData?.order ?? 0,
+        imageUrl: initialData?.imageUrl ?? undefined,
+        options: isEditing
+          ? []
+          : [
+              { text: '', order: 0 },
+              { text: '', order: 1 },
+            ],
+      }
+      reset(defaults)
+      setImagePreview(initialData?.imageUrl ?? null)
+    }
+  }, [open, initialData, isEditing, reset])
+
   const questionType = watch('type')
+  const currentImageUrl = watch('imageUrl')
   const showOptions =
-    questionType === 'MULTIPLE_CHOICE' || questionType === 'TRUE_FALSE'
+    !isEditing &&
+    (questionType === 'MULTIPLE_CHOICE' || questionType === 'TRUE_FALSE')
 
-  const onSubmit = async (data: QuestionFormValues) => {
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
     try {
-      // Create question first
-      const questionData = {
-        testId,
-        text: data.text,
-        type: data.type,
-        sectionId: data.sectionId,
-        order: data.order,
-      }
+      const result = await uploadImage.mutateAsync(file)
+      setValue('imageUrl', result.url)
+      setImagePreview(result.url)
+    } catch {
+      // Error handled by hook
+    }
 
-      const question = await createQuestion.mutateAsync(questionData)
-
-      // Create options if applicable
-      if (showOptions && data.options && data.options.length > 0) {
-        for (const option of data.options) {
-          if (option.text.trim()) {
-            await createOption.mutateAsync({
-              testId,
-              questionId: question.id,
-              dto: {
-                questionId: question.id,
-                text: option.text,
-                order: option.order,
-              },
-            })
-          }
-        }
-      }
-
-      reset()
-      onOpenChange(false)
-    } catch (error) {
-      console.error('Error creating question:', error)
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
     }
   }
 
+  const handleRemoveImage = () => {
+    setValue('imageUrl', null)
+    setImagePreview(null)
+  }
+
+  const onSubmit = async (data: QuestionFormValues) => {
+    try {
+      const questionPayload = {
+        text: data.text,
+        type: data.type,
+        sectionId: data.sectionId || undefined,
+        order: data.order,
+        imageUrl: data.imageUrl || null,
+      }
+
+      if (isEditing && initialData) {
+        await updateQuestion.mutateAsync({
+          testId,
+          questionId: initialData.id,
+          dto: questionPayload,
+        })
+        onOpenChange(false)
+      } else {
+        const question = await createQuestion.mutateAsync({
+          ...questionPayload,
+          testId,
+        })
+
+        if (showOptions && data.options && data.options.length > 0) {
+          for (const option of data.options) {
+            if (option.text.trim()) {
+              await createOption.mutateAsync({
+                testId,
+                questionId: question.id,
+                dto: {
+                  questionId: question.id,
+                  text: option.text,
+                  order: option.order,
+                },
+              })
+            }
+          }
+        }
+
+        reset()
+        onOpenChange(false)
+      }
+    } catch {
+      // Errors handled by hooks
+    }
+  }
+
+  const isPending =
+    createQuestion.isPending ||
+    updateQuestion.isPending ||
+    createOption.isPending ||
+    uploadImage.isPending
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Tambah Pertanyaan</DialogTitle>
+          <DialogTitle>
+            {isEditing ? 'Edit Pertanyaan' : 'Tambah Pertanyaan'}
+          </DialogTitle>
           <DialogDescription>
-            Isi informasi pertanyaan untuk tes ini
+            {isEditing
+              ? 'Ubah informasi pertanyaan'
+              : 'Isi informasi pertanyaan untuk tes ini'}
           </DialogDescription>
         </DialogHeader>
 
@@ -126,60 +212,120 @@ export function QuestionForm({
           <FormField label="Teks Pertanyaan" error={errors.text} required>
             <Textarea
               placeholder="Masukkan teks pertanyaan..."
+              rows={3}
               {...register('text')}
             />
           </FormField>
 
-          <FormField label="Tipe Pertanyaan" error={errors.type} required>
-            <Select defaultValue="MULTIPLE_CHOICE">
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="MULTIPLE_CHOICE">Pilihan Ganda</SelectItem>
-                <SelectItem value="TRUE_FALSE">Benar/Salah</SelectItem>
-                <SelectItem value="RATING_SCALE">Skala Rating</SelectItem>
-                <SelectItem value="ESSAY">Essay</SelectItem>
-              </SelectContent>
-            </Select>
-          </FormField>
+          <div className="grid grid-cols-2 gap-4">
+            <FormField label="Tipe Pertanyaan" error={errors.type} required>
+              <Select
+                value={questionType}
+                onValueChange={(value) =>
+                  setValue(
+                    'type',
+                    value as QuestionFormValues['type'],
+                  )
+                }
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {Object.entries(QUESTION_TYPE_LABELS).map(([value, label]) => (
+                    <SelectItem key={value} value={value}>
+                      {label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </FormField>
 
-          <FormField label="Seksi (Opsional)" error={errors.sectionId}>
-            <Select>
-              <SelectTrigger>
-                <SelectValue placeholder="Pilih seksi..." />
-              </SelectTrigger>
-              <SelectContent>
-                {sections?.map((section) => (
-                  <SelectItem key={section.id} value={section.id}>
-                    {section.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </FormField>
+            <FormField label="Seksi" error={errors.sectionId}>
+              <Select
+                value={watch('sectionId') || '_none'}
+                onValueChange={(value) =>
+                  setValue('sectionId', value === '_none' ? '' : value)
+                }
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Pilih seksi..." />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="_none">Tanpa Seksi</SelectItem>
+                  {sections.map((section) => (
+                    <SelectItem key={section.id} value={section.id}>
+                      {section.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </FormField>
+          </div>
 
           <FormField label="Urutan" error={errors.order} required>
             <Input
               type="number"
               placeholder="0"
+              className="w-32"
               {...register('order', { valueAsNumber: true })}
             />
           </FormField>
 
+          {/* Image Upload */}
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Gambar (Opsional)</label>
+            {imagePreview ? (
+              <div className="relative inline-block">
+                <img
+                  src={imagePreview}
+                  alt="Preview"
+                  className="max-h-48 rounded-md border"
+                />
+                <Button
+                  type="button"
+                  variant="destructive"
+                  size="sm"
+                  className="absolute top-2 right-2"
+                  onClick={handleRemoveImage}
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+            ) : (
+              <div>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="hidden"
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={uploadImage.isPending}
+                >
+                  <Upload className="w-4 h-4 mr-2" />
+                  {uploadImage.isPending ? 'Mengunggah...' : 'Unggah Gambar'}
+                </Button>
+              </div>
+            )}
+          </div>
+
+          {/* Dynamic Options for MC/TF in create mode */}
           {showOptions && (
             <div className="space-y-3 border-t pt-4">
               <div className="flex justify-between items-center">
-                <label className="font-semibold">Opsi</label>
+                <label className="font-semibold text-sm">Opsi Jawaban</label>
                 <Button
                   type="button"
                   size="sm"
                   variant="outline"
                   onClick={() =>
-                    append({
-                      text: '',
-                      order: fields.length,
-                    })
+                    append({ text: '', order: fields.length })
                   }
                 >
                   <Plus className="w-4 h-4 mr-2" />
@@ -193,6 +339,7 @@ export function QuestionForm({
                     <Input
                       placeholder={`Opsi ${index + 1}`}
                       {...register(`options.${index}.text`)}
+                      className="flex-1"
                     />
                     <Input
                       type="number"
@@ -217,22 +364,29 @@ export function QuestionForm({
             </div>
           )}
 
+          {isEditing && (
+            <p className="text-xs text-muted-foreground border-t pt-3">
+              Opsi jawaban dapat dikelola melalui pemetaan indikator di daftar pertanyaan.
+            </p>
+          )}
+
           <div className="flex justify-end gap-2 pt-4 border-t">
             <Button
               type="button"
               variant="outline"
               onClick={() => onOpenChange(false)}
-              disabled={createQuestion.isPending || createOption.isPending}
+              disabled={isPending}
             >
               Batal
             </Button>
-            <Button
-              type="submit"
-              disabled={createQuestion.isPending || createOption.isPending}
-            >
-              {createQuestion.isPending || createOption.isPending
-                ? 'Menambah...'
-                : 'Tambah'}
+            <Button type="submit" disabled={isPending}>
+              {isPending
+                ? isEditing
+                  ? 'Menyimpan...'
+                  : 'Menambah...'
+                : isEditing
+                  ? 'Simpan'
+                  : 'Tambah'}
             </Button>
           </div>
         </form>

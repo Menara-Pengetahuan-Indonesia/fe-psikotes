@@ -8,11 +8,20 @@ export const createTestSchema = z.object({
   description: z
     .string()
     .max(1000, 'Deskripsi terlalu panjang')
-    .optional(),
+    .optional()
+    .or(z.literal('')),
   duration: z
-    .number()
+    .number({ message: 'Durasi harus berupa angka' })
     .min(1, 'Durasi minimal 1 menit')
     .max(480, 'Durasi maksimal 480 menit'),
+  timePerQuestion: z
+    .number({ message: 'Waktu per soal harus berupa angka' })
+    .min(1, 'Minimal 1 detik')
+    .max(3600, 'Maksimal 3600 detik')
+    .optional()
+    .nullable(),
+  shuffleQuestions: z.boolean().optional(),
+  shuffleOptions: z.boolean().optional(),
 })
 
 export const updateTestSchema = createTestSchema.partial()

@@ -13,10 +13,11 @@ export const createQuestionSchema = z.object({
     .min(1, 'Teks pertanyaan wajib diisi')
     .max(2000, 'Teks pertanyaan terlalu panjang'),
   type: questionTypeEnum,
-  sectionId: z.string().optional(),
+  sectionId: z.string().optional().or(z.literal('')),
   order: z
-    .number()
+    .number({ message: 'Urutan harus berupa angka' })
     .min(0, 'Urutan tidak boleh negatif'),
+  imageUrl: z.string().optional().nullable(),
 })
 
 export const updateQuestionSchema = createQuestionSchema.partial()

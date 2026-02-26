@@ -7,7 +7,7 @@ const MOCK_USER: User = {
   id: '1',
   email: 'test@example.com',
   name: 'Test User',
-  role: 'user',
+  role: 'USER',
 }
 
 // Mock localStorage for persist middleware

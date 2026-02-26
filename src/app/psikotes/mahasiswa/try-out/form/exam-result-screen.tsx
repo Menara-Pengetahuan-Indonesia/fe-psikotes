@@ -56,7 +56,7 @@ export function ExamResultScreen({
             className="w-full max-w-md bg-slate-900 hover:bg-primary-600 text-white h-16 rounded-2xl font-black gap-3 transition-all"
             asChild
           >
-            <Link href="/pengguna">
+            <Link href="/dashboard">
               <LayoutDashboard className="size-5" />
               KEMBALI KE DASHBOARD
             </Link>

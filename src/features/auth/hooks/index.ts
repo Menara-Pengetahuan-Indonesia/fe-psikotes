@@ -14,11 +14,10 @@ import type {
 } from '../schemas'
 
 function getRoleDefaultPath(
-  role: 'user' | 'company' | 'admin',
+  role: 'USER' | 'ADMIN' | 'SUPERADMIN',
 ) {
-  if (role === 'company') return '/perusahaan'
-  if (role === 'admin') return '/admin'
-  return '/pengguna'
+  // Semua role redirect ke /dashboard
+  return '/dashboard'
 }
 
 export function useLogin() {
@@ -80,7 +79,7 @@ export function useLogout() {
     onSettled: () => {
       logout()
       toast.success('Berhasil keluar dari akun.')
-      router.push('/psikotes')
+      router.push('/masuk')
     },
   })
 }
