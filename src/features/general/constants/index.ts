@@ -6,3 +6,5 @@ export {
   PELATIHAN_TERMS,
   PELATIHAN_PRIVACY,
 } from './legal-content'
+
+export { BENEFITS, POSITIONS } from './careers.constants'
