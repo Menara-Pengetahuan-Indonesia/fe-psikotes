@@ -3,25 +3,7 @@
 import { useState } from 'react'
 import { ChevronDown, HelpCircle, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
-const MEMBERSHIP_FAQS = [
-  {
-    q: 'Apakah membership bisa dibatalkan kapan saja?',
-    a: 'Ya, membership bersifat fleksibel. Anda dapat membatalkan perpanjangan otomatis kapan saja melalui dashboard member area tanpa denda.',
-  },
-  {
-    q: 'Bagaimana cara mengakses webinar mingguan?',
-    a: 'Link webinar akan dikirimkan melalui email dan grup komunitas H-1 sebelum acara dimulai. Anda juga bisa mengakses rekaman di member area.',
-  },
-  {
-    q: 'Apakah ada grup diskusi khusus?',
-    a: 'Tentu! Member Pro akan mendapatkan akses ke Circle Group eksklusif berdasarkan minat (Karir, Relationship, Self-Development) yang dipandu mentor.',
-  },
-  {
-    q: 'Apa bedanya Lite dan Pro?',
-    a: 'Lite cocok untuk pemula dengan akses dasar webinar bulanan. Pro memberikan akses penuh ke seluruh ekosistem, termasuk tes premium gratis dan webinar mingguan.',
-  },
-]
+import { MEMBERSHIP_FAQS } from '../constants'
 
 export function MembershipFaq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)

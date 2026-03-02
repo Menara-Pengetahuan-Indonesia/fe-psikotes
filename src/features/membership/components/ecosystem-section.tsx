@@ -1,44 +1,6 @@
-import { Star, Video, Users, PlayCircle, Shield, Zap, Sparkles } from 'lucide-react'
+import { Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
-const ECOSYSTEM_ITEMS = [
-  {
-    icon: Star,
-    title: 'Akses Psikotes Premium',
-    description: 'Nikmati akses gratis ke berbagai tes psikologi berbayar setiap bulannya.',
-    theme: 'indigo'
-  },
-  {
-    icon: Video,
-    title: 'Webinar Eksklusif',
-    description: 'Belajar langsung dari pakar psikologi dan pengembangan diri setiap minggu.',
-    theme: 'amber'
-  },
-  {
-    icon: Users,
-    title: 'Networking Session',
-    description: 'Perluas jejaringmu dengan ribuan individu yang memiliki mindset bertumbuh.',
-    theme: 'teal'
-  },
-  {
-    icon: PlayCircle,
-    title: 'Library Materi',
-    description: 'Akses ribuan video, e-book, dan worksheet pengembangan diri.',
-    theme: 'sky'
-  },
-  {
-    icon: Shield,
-    title: 'Konseling Diskon',
-    description: 'Potongan harga khusus untuk sesi konseling dengan psikolog profesional.',
-    theme: 'rose'
-  },
-  {
-    icon: Zap,
-    title: 'Challenge Bulanan',
-    description: 'Ikuti tantangan pengembangan diri untuk membangun kebiasaan positif.',
-    theme: 'indigo'
-  },
-]
+import { ECOSYSTEM_ITEMS } from '../constants'
 
 export function EcosystemSection() {
   return (
