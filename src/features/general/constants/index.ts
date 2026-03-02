@@ -10,3 +10,6 @@ export {
 export { BENEFITS, POSITIONS } from './careers.constants'
 
 export { BLOG_POSTS, type BlogPost } from './blog.constants'
+
+export { VALUES, SERVICES_OVERVIEW, STATS } from './about.constants'
+export { CONTACT_INFO } from './contact.constants'

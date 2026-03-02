@@ -1,11 +1,5 @@
 import { cn } from '@/lib/utils'
-
-const STATS = [
-  { value: '50K+', label: 'Pengguna Aktif' },
-  { value: '200+', label: 'Tes Tersedia' },
-  { value: '50+', label: 'Psikolog Berlisensi' },
-  { value: '98%', label: 'Tingkat Kepuasan' },
-] as const
+import { STATS } from '../constants'
 
 export function AboutStatsSection() {
   return (
