@@ -11,23 +11,16 @@ import {
 
 import { ServiceCard } from '@/features/psikotes/components/service-card'
 
-import { PELATIHAN_PROGRAMS } from '../constants'
+import { PELATIHAN_PROGRAMS, PELATIHAN_PELATIHAN_TAB_FILTERS } from '../constants'
 import { cn } from '@/lib/utils'
 import { TOPO_PELATIHAN, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 
-const TAB_FILTERS: Record<string, string[]> = {
-  semua: [],
-  webinar: ['Webinar'],
-  kelas: ['Kelas'],
-  mentoring: ['Mentoring'],
-}
-
 export function PelatihanPrograms() {
   const filtered = (tab: string) =>
-    TAB_FILTERS[tab]?.length === 0
+    PELATIHAN_TAB_FILTERS[tab]?.length === 0
       ? PELATIHAN_PROGRAMS
       : PELATIHAN_PROGRAMS.filter(
-          (s) => TAB_FILTERS[tab]?.includes(s.tag)
+          (s) => PELATIHAN_TAB_FILTERS[tab]?.includes(s.tag)
         )
 
   return (
@@ -164,7 +157,7 @@ export function PelatihanPrograms() {
               'shadow-stone-200/50 backdrop-blur-sm'
             )}
           >
-            {Object.keys(TAB_FILTERS).map((tab) => (
+            {Object.keys(PELATIHAN_TAB_FILTERS).map((tab) => (
               <TabsTrigger
                 key={tab}
                 value={tab}
@@ -183,7 +176,7 @@ export function PelatihanPrograms() {
             ))}
           </TabsList>
 
-          {Object.keys(TAB_FILTERS).map((tab) => (
+          {Object.keys(PELATIHAN_TAB_FILTERS).map((tab) => (
             <TabsContent
               key={tab}
               value={tab}
