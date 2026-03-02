@@ -11,6 +11,9 @@ export { SectionForm } from './SectionManagement/SectionForm'
 
 export { QuestionList } from './QuestionManagement/QuestionList'
 export { QuestionForm } from './QuestionManagement/QuestionForm'
+export { QuestionFormWizard } from './QuestionManagement/QuestionFormWizard'
+export { QuestionStepContent } from './QuestionManagement/QuestionStepContent'
+export { BulkImportCSV } from './QuestionManagement/BulkImportCSV'
 export { OptionMapper } from './QuestionManagement/OptionMapper'
 
 export { ScoringRuleList } from './ScoringRuleManagement/ScoringRuleList'

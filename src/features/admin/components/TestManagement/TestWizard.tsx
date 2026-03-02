@@ -12,7 +12,7 @@ import { useTest, useIndicators, useQuestions, useScoringRules } from '../../hoo
 import { TestForm } from './TestForm'
 import { IndicatorList } from '../IndicatorManagement/IndicatorList'
 import { SectionList } from '../SectionManagement/SectionList'
-import { QuestionList } from '../QuestionManagement/QuestionList'
+import { QuestionStepContent } from '../QuestionManagement/QuestionStepContent'
 import { ScoringRuleList } from '../ScoringRuleManagement/ScoringRuleList'
 import { PublishTab } from './PublishTab'
 
@@ -83,7 +83,7 @@ export function TestWizard({ testId }: TestWizardProps) {
       case 2:
         return <SectionList testId={testId} />
       case 3:
-        return <QuestionList testId={testId} />
+        return <QuestionStepContent testId={testId} />
       case 4:
         return <ScoringRuleList testId={testId} />
       case 5:

@@ -5,6 +5,7 @@ export {
   TestListingCard,
 } from './test-listing-card'
 export { PsikotesHero } from './psikotes-hero'
+export { PsikotesDiagnostic } from './psikotes-diagnostic'
 export {
   PhilosophySection,
 } from './philosophy-section'

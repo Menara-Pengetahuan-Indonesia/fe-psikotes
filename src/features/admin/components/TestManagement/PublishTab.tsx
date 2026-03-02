@@ -1,8 +1,16 @@
 'use client'
 
-import { CheckCircle2, AlertTriangle, Circle } from 'lucide-react'
+import { CheckCircle2, AlertTriangle, XCircle, Circle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
 import {
   useTest,
   useIndicators,
@@ -20,6 +28,7 @@ interface CheckItem {
   label: string
   passed: boolean
   warning?: string
+  severity: 'blocker' | 'warning'
 }
 
 export function PublishTab({ testId }: PublishTabProps) {
@@ -42,12 +51,6 @@ export function PublishTab({ testId }: PublishTabProps) {
     (q) => (q.options?.length ?? 0) > 0,
   )
 
-  const allOptionsHaveMappings = questionsWithOptions.every((q) =>
-    q.options?.every(
-      (opt) => (opt.mappings?.length ?? 0) > 0,
-    ),
-  )
-
   const indicatorIds = new Set(indicators?.map((i) => i.id) ?? [])
   const indicatorsWithRules = new Set(
     scoringRules?.map((r) => r.indicatorId) ?? [],
@@ -55,39 +58,92 @@ export function PublishTab({ testId }: PublishTabProps) {
   const allIndicatorsHaveRules =
     hasIndicators && [...indicatorIds].every((id) => indicatorsWithRules.has(id))
 
+  // Indicator statistics computation
+  const indicatorStats = (indicators ?? []).map((indicator) => {
+    let questionCount = 0
+    let minTotal = 0
+    let maxTotal = 0
+
+    ;(questions ?? []).forEach((q) => {
+      const optionScores = q.options
+        ?.flatMap(
+          (o) =>
+            o.mappings?.filter((m) => m.indicatorId === indicator.id) ?? [],
+        )
+        .map((m) => m.scoreValue) ?? []
+
+      if (optionScores.length > 0) {
+        questionCount++
+        minTotal += Math.min(...optionScores)
+        maxTotal += Math.max(...optionScores)
+      }
+    })
+
+    const ruleCount = (scoringRules ?? []).filter(
+      (r) => r.indicatorId === indicator.id,
+    ).length
+
+    return {
+      name: indicator.name,
+      questionCount,
+      minTotal,
+      maxTotal,
+      ruleCount,
+    }
+  })
+
+  // Unused indicators (0 linked questions)
+  const unusedIndicators = indicatorStats.filter((s) => s.questionCount === 0)
+
+  // Questions without sections
+  const questionsWithoutSections = (questions ?? []).filter((q) => !q.sectionId)
+
   const checks: CheckItem[] = [
     {
       label: 'Tes memiliki durasi',
       passed: hasDuration,
       warning: 'Durasi tes belum diatur',
+      severity: 'blocker',
     },
     {
       label: 'Tes memiliki pertanyaan',
       passed: hasQuestions,
       warning: 'Tambahkan minimal 1 pertanyaan',
+      severity: 'blocker',
     },
     {
       label: 'Tes memiliki indikator',
       passed: hasIndicators,
       warning: 'Tambahkan minimal 1 indikator',
+      severity: 'blocker',
     },
     {
       label: 'Semua pertanyaan (PG/B-S) memiliki opsi',
       passed: questionsWithOptions.length === 0 || allQuestionsHaveOptions,
       warning: 'Beberapa pertanyaan belum memiliki opsi jawaban',
-    },
-    {
-      label: 'Semua opsi memiliki pemetaan indikator',
-      passed: questionsWithOptions.length === 0 || allOptionsHaveMappings,
-      warning: 'Beberapa opsi belum dipetakan ke indikator',
+      severity: 'blocker',
     },
     {
       label: 'Semua indikator memiliki aturan skor',
       passed: !hasIndicators || allIndicatorsHaveRules,
       warning: 'Beberapa indikator belum memiliki aturan skor',
+      severity: 'blocker',
+    },
+    {
+      label: 'Semua pertanyaan memiliki seksi',
+      passed: questionsWithoutSections.length === 0,
+      warning: `${questionsWithoutSections.length} pertanyaan belum memiliki seksi`,
+      severity: 'warning',
+    },
+    {
+      label: 'Semua indikator digunakan di pertanyaan',
+      passed: unusedIndicators.length === 0,
+      warning: `${unusedIndicators.length} indikator belum terhubung ke pertanyaan: ${unusedIndicators.map((i) => i.name).join(', ')}`,
+      severity: 'warning',
     },
   ]
 
+  const hasBlockers = checks.some((c) => !c.passed && c.severity === 'blocker')
   const allChecksPassed = checks.every((c) => c.passed)
 
   const handlePublish = () => {
@@ -143,6 +199,8 @@ export function PublishTab({ testId }: PublishTabProps) {
             <div key={index} className="flex items-start gap-3">
               {check.passed ? (
                 <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+              ) : check.severity === 'blocker' ? (
+                <XCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
               ) : (
                 <AlertTriangle className="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" />
               )}
@@ -151,13 +209,21 @@ export function PublishTab({ testId }: PublishTabProps) {
                   className={
                     check.passed
                       ? 'text-sm font-medium'
-                      : 'text-sm font-medium text-yellow-700'
+                      : check.severity === 'blocker'
+                        ? 'text-sm font-medium text-red-700'
+                        : 'text-sm font-medium text-yellow-700'
                   }
                 >
                   {check.label}
                 </p>
                 {!check.passed && check.warning && (
-                  <p className="text-xs text-yellow-600 mt-0.5">
+                  <p
+                    className={
+                      check.severity === 'blocker'
+                        ? 'text-xs text-red-600 mt-0.5'
+                        : 'text-xs text-yellow-600 mt-0.5'
+                    }
+                  >
                     {check.warning}
                   </p>
                 )}
@@ -166,6 +232,51 @@ export function PublishTab({ testId }: PublishTabProps) {
           ))}
         </div>
       </Card>
+
+      {/* Indicator Statistics Table */}
+      {hasIndicators && (
+        <Card className="p-6">
+          <h3 className="text-lg font-semibold mb-4">Statistik Indikator</h3>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Indikator</TableHead>
+                <TableHead className="text-center">Soal Terkait</TableHead>
+                <TableHead className="text-center">Range Skor</TableHead>
+                <TableHead className="text-center">Aturan Skor</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {indicatorStats.map((stat) => (
+                <TableRow key={stat.name}>
+                  <TableCell className="font-medium">{stat.name}</TableCell>
+                  <TableCell className="text-center">
+                    {stat.questionCount === 0 ? (
+                      <span className="text-muted-foreground">0</span>
+                    ) : (
+                      stat.questionCount
+                    )}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {stat.questionCount === 0 ? (
+                      <span className="text-muted-foreground">-</span>
+                    ) : (
+                      `${stat.minTotal} — ${stat.maxTotal}`
+                    )}
+                  </TableCell>
+                  <TableCell className="text-center">
+                    {stat.ruleCount === 0 ? (
+                      <span className="text-red-500">0</span>
+                    ) : (
+                      stat.ruleCount
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Card>
+      )}
 
       <div className="flex gap-3">
         {test?.isPublished ? (
@@ -181,7 +292,7 @@ export function PublishTab({ testId }: PublishTabProps) {
         ) : (
           <Button
             onClick={handlePublish}
-            disabled={!allChecksPassed || publishTest.isPending}
+            disabled={hasBlockers || publishTest.isPending}
           >
             {publishTest.isPending
               ? 'Mempublikasikan...'
@@ -190,9 +301,15 @@ export function PublishTab({ testId }: PublishTabProps) {
         )}
       </div>
 
-      {!test?.isPublished && !allChecksPassed && (
-        <p className="text-sm text-muted-foreground">
-          Selesaikan semua pengecekan di atas sebelum mempublikasikan tes.
+      {!test?.isPublished && hasBlockers && (
+        <p className="text-sm text-red-600">
+          Selesaikan semua pengecekan wajib (❌) sebelum mempublikasikan tes.
+        </p>
+      )}
+
+      {!test?.isPublished && !hasBlockers && !allChecksPassed && (
+        <p className="text-sm text-yellow-600">
+          Ada peringatan (⚠️) yang sebaiknya diselesaikan, tapi tidak menghalangi publikasi.
         </p>
       )}
     </div>
