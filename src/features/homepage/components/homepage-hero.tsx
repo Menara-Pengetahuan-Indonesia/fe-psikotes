@@ -1,7 +1,7 @@
 import { Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-import { DESTINATION_CARDS } from './hero-constants'
+import { DESTINATION_CARDS } from '../constants'
 import { HeroBackground } from './hero-background'
 import { DestinationCard } from './destination-card'
 

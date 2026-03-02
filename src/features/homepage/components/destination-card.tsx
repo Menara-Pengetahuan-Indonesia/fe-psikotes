@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import {
   THEME_STYLES,
   type DestinationCard as CardType,
-} from './hero-constants'
+} from '../constants'
 
 export function DestinationCard({
   card,
