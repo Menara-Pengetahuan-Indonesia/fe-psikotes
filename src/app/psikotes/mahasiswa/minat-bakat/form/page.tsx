@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function MinatBakatFormPage() {
   // Get test ID from URL params or use default RIASEC test ID
-  const testId = 'riasec-test' // TODO: Get from URL params
+  const testId = 'riasec-test' // Hardcoded: this page is the minat-bakat exam route
 
   return (
     <main>
