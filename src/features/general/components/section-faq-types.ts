@@ -1,4 +1,6 @@
-export type FaqItem = { q: string; a: string }
+import type { FaqItem } from '@shared/types'
+
+export type { FaqItem }
 
 export type FaqTheme = {
   heroBg: string
