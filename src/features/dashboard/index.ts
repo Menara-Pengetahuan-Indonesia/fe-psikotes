@@ -1,6 +1,4 @@
-export {} from './types'
-export {} from './hooks'
-export {} from './services'
+// Explicit named exports — no `export *`, no `export {}`
 export {
   UserDashboard,
   AdminDashboard,
