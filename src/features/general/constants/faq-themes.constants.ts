@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 
-import type { FaqTheme } from './section-faq-types'
+import type { FaqTheme } from '../types'
 
 export const EMERALD_FAQ: FaqTheme = {
   heroBg: cn(

@@ -6,7 +6,7 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-import { LegalSection, LegalTheme } from './legal-types'
+import type { LegalSection, LegalTheme } from '../types'
 
 type LegalContentSectionProps = {
   sections: LegalSection[]

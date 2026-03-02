@@ -13,3 +13,6 @@ export { BLOG_POSTS, type BlogPost } from './blog.constants'
 
 export { VALUES, SERVICES_OVERVIEW, STATS } from './about.constants'
 export { CONTACT_INFO } from './contact.constants'
+
+export { EMERALD_LEGAL, INDIGO_LEGAL, ORANGE_LEGAL } from './legal.constants'
+export { EMERALD_FAQ, INDIGO_FAQ, ORANGE_FAQ } from './faq-themes.constants'

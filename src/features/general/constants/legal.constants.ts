@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 
-import { LegalTheme } from './legal-types'
+import type { LegalTheme } from '../types'
 
 export const EMERALD_LEGAL: LegalTheme = {
   heroBg: cn(

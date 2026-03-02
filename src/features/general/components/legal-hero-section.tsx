@@ -5,7 +5,7 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-import { LegalTheme } from './legal-types'
+import type { LegalTheme } from '../types'
 
 type LegalHeroSectionProps = {
   badge: string
