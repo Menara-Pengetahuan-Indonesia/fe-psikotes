@@ -11,7 +11,7 @@ import {
 
 import { ServiceCard } from '@/features/psikotes/components/service-card'
 
-import { PELATIHAN_PROGRAMS, PELATIHAN_PELATIHAN_TAB_FILTERS } from '../constants'
+import { PELATIHAN_PROGRAMS, PELATIHAN_TAB_FILTERS } from '../constants'
 import { cn } from '@/lib/utils'
 import { TOPO_PELATIHAN, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 
