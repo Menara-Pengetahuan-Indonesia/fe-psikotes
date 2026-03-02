@@ -28,6 +28,12 @@ const PILLARS = [
     icon: Search,
     color: 'bg-primary-100 text-primary-600',
     accentColor: 'text-primary-500',
+    theme: {
+      bg: 'bg-primary-600',
+      text: 'text-primary-100',
+      accent: 'bg-accent-400',
+      shadow: 'shadow-primary-900/20'
+    },
     detail: {
       problem: 'Merasa stuck, tidak tahu arah, atau bingung dengan potensi diri sendiri.',
       product: 'Asesmen & Psikotes Profesional (Bermula Assessment).',
@@ -41,8 +47,14 @@ const PILLARS = [
     subtitle: 'Pahami Harus Bagaimana',
     description: 'Konsultasikan hasil tes dengan ahlinya sehingga kamu paham langkah nyata yang harus diambil.',
     icon: MessageSquare,
-    color: 'bg-accent-100 text-accent-600',
-    accentColor: 'text-accent-500',
+    color: 'bg-indigo-100 text-indigo-600',
+    accentColor: 'text-indigo-500',
+    theme: {
+      bg: 'bg-indigo-900',
+      text: 'text-indigo-100',
+      accent: 'bg-rose-400',
+      shadow: 'shadow-indigo-900/20'
+    },
     detail: {
       problem: 'Sudah tahu masalahnya, tapi tidak tahu cara mengurainya secara tuntas.',
       product: 'Layanan Konseling & Konsultasi Ahli.',
@@ -56,8 +68,14 @@ const PILLARS = [
     subtitle: 'Tumbuh & Sukses',
     description: 'Tingkatkan kemampuanmu dalam bidang mental health. Bukan sekadar bertahan, tapi benar-benar berkembang.',
     icon: GraduationCap,
-    color: 'bg-primary-100 text-primary-600',
-    accentColor: 'text-primary-500',
+    color: 'bg-amber-100 text-amber-600',
+    accentColor: 'text-amber-500',
+    theme: {
+      bg: 'bg-amber-500',
+      text: 'text-amber-50',
+      accent: 'bg-white',
+      shadow: 'shadow-amber-900/20'
+    },
     detail: {
       problem: 'Kurangnya skill untuk menghadapi tekanan atau ingin mendalami bidang psikologi.',
       product: 'Pelatihan Mental Health & Sertifikasi Praktisi.',
@@ -71,8 +89,14 @@ const PILLARS = [
     subtitle: 'Berikan Solusi Bagi Lainnya',
     description: 'Bergabunglah menjadi bagian dari solusi. Jadilah mental health practitioner dan bantu sesama.',
     icon: Users,
-    color: 'bg-accent-100 text-accent-600',
-    accentColor: 'text-accent-500',
+    color: 'bg-primary-100 text-primary-600',
+    accentColor: 'text-primary-500',
+    theme: {
+      bg: 'bg-primary-800',
+      text: 'text-primary-100',
+      accent: 'bg-accent-400',
+      shadow: 'shadow-primary-950/30'
+    },
     detail: {
       problem: 'Ingin berkontribusi lebih luas namun tidak memiliki wadah atau komunitas.',
       product: 'Join BERMOELA sebagai Life Coach & Psikolog Tersertifikasi.',
@@ -245,8 +269,13 @@ export function PsikotesPillars() {
                       <span className="text-[11px] font-black uppercase tracking-widest">The New You Result</span>
                     </div>
                     
-                    {/* REDESIGNED CARD: Solid Brand Green */}
-                    <div className="bg-primary-600 p-8 md:p-10 rounded-[2.5rem] text-white shadow-2xl shadow-primary-900/20 relative overflow-hidden group w-full">
+                    {/* REDESIGNED CARD: Dynamic Brand Colors */}
+                    <div className={cn(
+                      "p-8 md:p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden group w-full transition-all duration-700",
+                      activeData.theme.bg,
+                      activeData.theme.text,
+                      activeData.theme.shadow
+                    )}>
                        {/* Subtle Textures */}
                        <div className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
                             style={{
@@ -257,15 +286,15 @@ export function PsikotesPillars() {
                        
                        <div className="relative z-10 space-y-4">
                           <div className="space-y-1">
-                             <p className="text-[10px] font-black text-primary-100/60 uppercase tracking-[0.2em]">Transformasi Akhir</p>
+                             <p className="text-[10px] font-black opacity-60 uppercase tracking-[0.2em]">Transformasi Akhir</p>
                              <p className="text-2xl md:text-3xl font-black tracking-tight leading-tight">
                                {activeData.detail.benefit}
                              </p>
                           </div>
                           
                           <div className="flex items-center gap-3 pt-2">
-                             <div className="h-1 w-12 bg-accent-400 rounded-full" />
-                             <p className="text-[10px] font-black uppercase tracking-widest text-primary-100/80 italic">Ready to Bloom</p>
+                             <div className={cn("h-1 w-12 rounded-full", activeData.theme.accent)} />
+                             <p className="text-[10px] font-black uppercase tracking-widest opacity-80 italic">Ready to Bloom</p>
                              <Sparkles className="w-3 h-3 text-accent-300 animate-pulse" />
                           </div>
                        </div>

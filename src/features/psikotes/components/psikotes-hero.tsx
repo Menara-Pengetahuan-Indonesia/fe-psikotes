@@ -2,7 +2,12 @@
 
 import {
   Sparkles,
-  ArrowDown
+  ArrowDown,
+  Plus,
+  Circle,
+  Hexagon,
+  Diamond,
+  Star
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { TOPO_WHITE, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
@@ -11,21 +16,35 @@ import { BermoelaText } from './bermoela-text'
 
 export function PsikotesHero() {
   return (
-    <section className="relative overflow-hidden bg-linear-to-b from-primary-800 via-primary-700 to-primary-600 pt-32 pb-16 md:pt-44 md:pb-24">
+    <section className="relative overflow-hidden bg-linear-to-b from-primary-900 via-primary-800 to-primary-600 pt-32 pb-16 md:pt-44 md:pb-24">
       
       {/* --- RICH BACKGROUND ORNAMENTS --- */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay"
+      {/* 1. Topographic Pattern */}
+      <div className="absolute inset-0 opacity-[0.07] pointer-events-none mix-blend-overlay"
            style={{
              backgroundImage: TOPO_WHITE,
              backgroundSize: TOPO_BG_SIZE,
            }}
       />
 
+      {/* 2. Large Ambient Glows */}
+      <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary-500/20 rounded-full blur-[120px] pointer-events-none animate-pulse" />
+      <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-accent-500/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-[20%] right-[10%] w-[300px] h-[300px] bg-indigo-500/10 rounded-full blur-[80px] pointer-events-none" />
+
+      {/* 3. Floating Geometric Icons */}
+      <Plus className="absolute top-[15%] left-[10%] text-white/10 w-8 h-8 animate-float-slow" />
+      <Circle className="absolute top-[40%] right-[5%] text-accent-400/10 w-12 h-12 animate-float-medium" />
+      <Hexagon className="absolute bottom-[20%] left-[5%] text-primary-300/10 w-20 h-20 -rotate-12 animate-float-slow" />
+      <Diamond className="absolute top-[60%] left-[15%] text-white/5 w-10 h-10 rotate-12 animate-float-medium" />
+      <Star className="absolute top-[25%] right-[25%] text-accent-300/20 w-4 h-4 fill-accent-300/20 animate-pulse" />
+      <Star className="absolute bottom-[35%] left-[30%] text-white/10 w-3 h-3 fill-white/10 animate-pulse delay-700" />
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center space-y-12">
           
           {/* Header Content */}
-          <div className="flex flex-col items-center space-y-6 max-w-3xl mx-auto">
+          <div className="flex flex-col items-center space-y-6 max-w-5xl mx-auto">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
               <Sparkles className="w-3 h-3 text-accent-400 fill-accent-400" />
@@ -37,10 +56,10 @@ export function PsikotesHero() {
             {/* Title */}
             <div className="space-y-4">
               <h1 className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-[1.1] drop-shadow-sm">
-                Mental Health untuk <span className="text-accent-300 italic">Tumbuh dan Sukses</span>
+                Mental Health untuk Tumbuh dan <br className="hidden md:block" /> Sukses di <span className="text-accent-300 italic">Era Penuh Tekanan</span>
               </h1>
               <p className="text-sm md:text-base text-primary-50/80 max-w-xl mx-auto leading-relaxed font-medium text-pretty">
-                Lepaskan kendala masa lalu untuk mendapatkan <span className="text-white font-bold italic">"The New You"</span>, dirimu yang baru, penuh potensi kuat menyambut masa depan yang indah.
+                Assessment berbasis riset psikologi untuk membantumu mendapatkan <span className="text-white font-bold italic">"The New You"</span>, dirimu yang baru menyambut masa depan yang indah.
               </p>
             </div>
           </div>

@@ -1,59 +1,96 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { ArrowRight, RotateCcw, Brain, MessageSquare, Send, Loader2, CheckCircle2, Sparkles, Search, User, Sunrise } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export function PsikotesDiagnostic() {
   const [phase, setPhase] = useState<'input' | 'thinking' | 'result'>('input')
   const [inputValue, setInputValue] = useState('')
-  const [lastQuestion, setLastQuestion] = useState('')
-  const [analysis, setAnalysis] = useState('')
+  const [messages, setMessages] = useState<Array<{ role: 'user' | 'assistant', content: string }>>([])
   const [isInputFocused, setIsInputFocused] = useState(false)
   
-  const inputRef = useRef<HTMLInputElement>(null)
+  const messagesContainerRef = useRef<HTMLDivElement>(null)
+
+  const scrollToBottom = () => {
+    if (messagesContainerRef.current) {
+      const { scrollHeight, clientHeight } = messagesContainerRef.current
+      messagesContainerRef.current.scrollTop = scrollHeight - clientHeight
+    }
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages, phase])
 
   const handleManualSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!inputValue.trim()) return
+    const query = inputValue.trim()
+    if (!query || phase === 'thinking') return
     
-    triggerAnalysis()
-  }
-
-  const triggerAnalysis = () => {
-    setLastQuestion(inputValue)
+    const newUserMessage = { role: 'user' as const, content: query }
+    setMessages(prev => [...prev, newUserMessage])
+    setInputValue('')
     setPhase('thinking')
     
-    // Simulating AI Analysis with "The New You" Philosophy
+    triggerAnalysis(query)
+  }
+
+  const triggerAnalysis = (query: string) => {
+    const userMessages = messages.filter(m => m.role === 'user')
+    const userMessageCount = userMessages.length + 1
+    const val = query.toLowerCase()
+    
     setTimeout(() => {
-      const val = inputValue.toLowerCase()
-      let resultText = "Bukan hanya sekadar bertahan, kamu punya potensi besar untuk tumbuh dan sukses. Mari kita petakan area mana yang bisa kita tingkatkan agar kamu benar-benar berkembang."
+      let resultText = ""
       
-      if (val.length > 50 || val.includes('parah') || val.includes('stres') || val.includes('depresi')) {
-        resultText = "Langkahmu untuk bersuara adalah awal kebebasanmu. Dari sekadar bertahan, mari bertumbuh menjadi penentu masa depanmu sendiri yang indah."
-      } else if (val.includes('bakat') || val.includes('bingung') || val.includes('karir')) {
-        resultText = "Kesadaran adalah kunci perubahan. Dengan memahami potensimu sekarang, kita bisa merancang masa depan yang sukses sesuai jati dirimu yang baru."
+      // LOGIKA DATA DUMMY BERTAHAP & VARIATIF
+      if (userMessageCount === 1) {
+        resultText = "Terima kasih sudah mau berbagi. Saya mendengarkan dengan seksama. Bisa ceritakan lebih lanjut bagaimana hal ini mempengaruhi keseharian atau perasaanmu saat ini?"
+      } else if (userMessageCount === 2) {
+        resultText = "Saya mulai menangkap polanya. Sepertinya ada beban yang cukup dalam di sana. Selain itu, adakah momen spesifik yang biasanya memicu perasaan ini muncul?"
+      } else if (userMessageCount === 3) {
+        resultText = "Catatan saya semakin lengkap. Kamu sudah sangat terbuka, dan itu langkah awal yang hebat. Dari semua yang kamu ceritakan, mana yang menurutmu paling mendesak untuk segera diselesaikan?"
+      } else if (userMessageCount === 4) {
+        resultText = "Saya mengerti. Analisis saya menunjukkan kamu sedang dalam fase transisi penting. Apakah kamu sudah merasa butuh panduan konkret (seperti tes atau sesi privat) untuk melangkah ke tahap selanjutnya?"
+      } else {
+        // TAHAP SOLUSI / RESPON LANJUTAN
+        const randomEndings = [
+          "Pemetaan ceritamu sudah sangat mendalam. Saya melihat potensi 'The New You' mulai terbentuk. Mari kita pilih solusi yang paling pas di bawah ini.",
+          "Setiap detail yang kamu berikan membantu saya merumuskan solusi yang lebih akurat. Berdasarkan progres ini, inilah rekomendasi terbaik untukmu.",
+          "Transformasi membutuhkan keberanian, dan kamu sudah menunjukkannya lewat ceritamu. Mari kita konkretkan perubahan ini dengan langkah berikut."
+        ]
+        
+        if (val.includes('stres') || val.includes('depresi') || val.includes('lelah')) {
+          resultText = "Berdasarkan ceritamu yang mendalam, kamu sedang berada di titik lelah emosional yang tinggi. Kamu membutuhkan panduan profesional agar bisa kembali bertumbuh tanpa beban masa lalu."
+        } else if (val.includes('karir') || val.includes('kerja') || val.includes('bakat')) {
+          resultText = "Potensimu sangat besar, namun saat ini terhalang oleh keraguan arah. Kita perlu memetakan kembali kekuatan dirimu agar langkah karirmu lebih presisi dan sukses."
+        } else {
+          resultText = randomEndings[userMessageCount % randomEndings.length]
+        }
       }
 
-      setAnalysis(resultText)
-      setInputValue('') 
-      
-      setTimeout(() => {
-        setPhase('result')
-      }, 1000)
-    }, 2000)
+      setMessages(prev => [...prev, { role: 'assistant' as const, content: resultText }])
+      setPhase('result')
+    }, 1500)
   }
 
   const reset = () => {
     setPhase('input')
     setInputValue('')
-    setLastQuestion('')
-    setAnalysis('')
+    setMessages([])
   }
 
   const getRecommendation = () => {
-    const val = lastQuestion.toLowerCase()
-    const isIntense = val.length > 50 || val.includes('parah') || val.includes('stres') || val.includes('depresi')
+    const userMessageCount = messages.filter(m => m.role === 'user').length
+    const lastUserMessage = [...messages].reverse().find(m => m.role === 'user')?.content.toLowerCase() || ''
+    
+    // Tombol hanya muncul jika sudah 3x chat atau minta solusi
+    const needsSolution = userMessageCount >= 3 || lastUserMessage.includes('solusi') || lastUserMessage.includes('bantu') || lastUserMessage.includes('gimana')
+    
+    if (!needsSolution) return null
+
+    const isIntense = lastUserMessage.length > 50 || lastUserMessage.includes('parah') || lastUserMessage.includes('stres') || lastUserMessage.includes('depresi')
     
     return isIntense ? {
       title: 'Konseling Profesional',
@@ -61,48 +98,72 @@ export function PsikotesDiagnostic() {
       href: '/konseling',
       icon: MessageSquare,
       theme: 'bg-indigo-600 text-white',
-      label: 'Rekomendasi Utama'
     } : {
       title: 'Psikotes & Asesmen',
       desc: 'Pemetaan diri untuk merancang masa depan yang indah.',
       href: '/psikotes/premium',
       icon: Brain,
       theme: 'bg-primary-600 text-white',
-      label: 'Saran Langkah Awal'
     }
   }
 
-  const rec = phase === 'result' ? getRecommendation() : null
+  const inputRef = useRef<HTMLTextAreaElement>(null)
+
+  // Auto-resize textarea
+  const adjustHeight = () => {
+    const textarea = inputRef.current
+    if (textarea) {
+      textarea.style.height = 'auto'
+      textarea.style.height = `${textarea.scrollHeight}px`
+    }
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInputValue(e.target.value)
+    adjustHeight()
+  }
+
+  const lastAssistantMessage = [...messages].reverse().find(m => m.role === 'assistant')?.content || ''
+  const rec = (phase === 'result' || phase === 'thinking') && messages.length > 0 ? getRecommendation() : null
 
   return (
     <div className="w-full">
       
       {/* 1. INITIAL INPUT PHASE (Big Search Bar) */}
       {phase === 'input' && (
-        <div className="max-w-xl mx-auto flex flex-col gap-4">
+        <div className={cn(
+          "mx-auto flex flex-col gap-4 transition-all duration-700 ease-in-out",
+          isInputFocused ? "max-w-4xl" : "max-w-xl"
+        )}>
           <form 
             onSubmit={handleManualSubmit}
             className={cn(
-              "relative flex items-center transition-all duration-500",
-              "bg-white rounded-3xl shadow-2xl overflow-hidden p-2",
-              isInputFocused ? "ring-4 ring-primary-500/20 translate-y-[-2px]" : ""
+              "relative flex items-start transition-all duration-500",
+              "bg-white rounded-[2.5rem] shadow-2xl overflow-hidden p-2.5",
+              isInputFocused ? "ring-8 ring-primary-500/10 -translate-y-1" : ""
             )}
           >
-            <div className="pl-4 pr-2 text-slate-400">
+            <div className="pl-4 pr-2 pt-4 text-slate-400">
               <Search className="w-5 h-5" />
             </div>
             
-            <input
+            <textarea
               ref={inputRef}
-              type="text"
+              rows={1}
               value={inputValue}
               onFocus={() => setIsInputFocused(true)}
               onBlur={() => setIsInputFocused(false)}
-              onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Ceritakan titik awal masalah atau kendala yang kamu rasakan..."
+              onChange={handleInputChange}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                  e.preventDefault()
+                  handleManualSubmit(e)
+                }
+              }}
+              placeholder="Ceritakan kendala yang kamu rasakan saat ini..."
               className={cn(
-                "flex-1 h-14 bg-transparent border-none focus:outline-none focus:ring-0",
-                "text-slate-700 font-medium placeholder:text-slate-300 placeholder:font-normal"
+                "flex-1 min-h-[56px] py-4 bg-transparent border-none focus:outline-none focus:ring-0",
+                "text-slate-700 font-medium placeholder:text-slate-300 placeholder:font-normal resize-none overflow-hidden leading-relaxed"
               )}
             />
             
@@ -110,9 +171,9 @@ export function PsikotesDiagnostic() {
               type="submit"
               disabled={!inputValue.trim()}
               className={cn(
-                "h-12 px-6 rounded-2xl font-black text-xs uppercase tracking-widest transition-all",
+                "mt-1.5 h-12 px-6 rounded-2xl font-black text-xs uppercase tracking-widest transition-all shrink-0",
                 inputValue.trim() 
-                  ? "bg-primary-600 text-white hover:bg-primary-700" 
+                  ? "bg-primary-600 text-white hover:bg-primary-700 shadow-lg shadow-primary-600/20" 
                   : "bg-slate-50 text-slate-300 cursor-not-allowed"
               )}
             >
@@ -135,7 +196,7 @@ export function PsikotesDiagnostic() {
       )}
 
       {/* 2. THINKING PHASE */}
-      {phase === 'thinking' && (
+      {phase === 'thinking' && messages.length === 1 && (
         <div className="max-w-xl mx-auto bg-white/10 backdrop-blur-md rounded-3xl p-10 border border-white/20 flex flex-col items-center text-center gap-4 animate-in fade-in zoom-in-95 duration-500">
           <Loader2 className="w-10 h-10 text-white animate-spin" />
           <div className="space-y-1">
@@ -145,43 +206,67 @@ export function PsikotesDiagnostic() {
         </div>
       )}
 
-      {/* 3. RESULT PHASE (2 Cards: Left - Baseline, Right - Future) */}
-      {phase === 'result' && rec && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch animate-in fade-in slide-in-from-bottom-4 duration-700">
+      {/* 3. RESULT/CHAT PHASE */}
+      {(phase === 'result' || (phase === 'thinking' && messages.length > 1)) && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch animate-in fade-in slide-in-from-bottom-4 duration-700 max-w-6xl mx-auto">
           
-          {/* LEFT CARD: BASELINE (MUASAL) */}
-          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 flex flex-col gap-6 text-left relative overflow-hidden group">
-            <div className="flex items-center gap-2">
+          {/* LEFT CARD: USER HISTORY (FIXED HEIGHT, HIDDEN SCROLLBAR) */}
+          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 flex flex-col gap-6 text-left relative overflow-hidden group h-[500px]">
+            <div className="flex items-center gap-2 mb-2">
               <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
                 <User className="w-4 h-4 text-white" />
               </div>
-              <span className="text-[10px] font-black text-white/60 uppercase tracking-widest">Titik Awal (Baseline)</span>
+              <span className="text-[10px] font-black text-white/60 uppercase tracking-widest">Riwayat Ceritamu</span>
             </div>
             
-            <div className="flex-1">
-              <p className="text-white font-bold text-lg leading-relaxed italic">
-                &quot;{lastQuestion}&quot;
-              </p>
+            <div 
+              ref={messagesContainerRef}
+              className="flex-1 space-y-4 overflow-y-auto pr-2 no-scrollbar scroll-smooth"
+            >
+              {messages.filter(m => m.role === 'user').map((msg, idx) => (
+                <div key={idx} className="flex flex-col gap-2 animate-in fade-in slide-in-from-left-2 duration-300">
+                  <div className="p-4 rounded-2xl text-sm font-medium leading-relaxed bg-primary-600 text-white rounded-tr-none shadow-lg shadow-primary-900/20">
+                    {msg.content}
+                  </div>
+                  <span className="text-[8px] font-black text-white/30 uppercase tracking-widest px-1">
+                    Input #{idx + 1}
+                  </span>
+                </div>
+              ))}
+              {phase === 'thinking' && (
+                <div className="flex items-center gap-2 text-white/40 italic text-[10px] animate-pulse pt-2">
+                  <Loader2 className="w-3 h-3 animate-spin" />
+                  Bermoela sedang menganalisis tambahan ceritamu...
+                </div>
+              )}
             </div>
 
             {/* Re-input Area */}
-            <div className="pt-4 border-t border-white/10 space-y-4">
-              <span className="text-[9px] font-black text-white/40 uppercase tracking-widest">Ada kendala lain?</span>
+            <div className="pt-6 border-t border-white/10 space-y-4">
+              <span className="text-[9px] font-black text-white/40 uppercase tracking-widest">Lanjutkan ceritamu...</span>
               <form 
                 onSubmit={handleManualSubmit}
-                className="relative flex items-center bg-white/10 rounded-2xl border border-white/20 p-1 focus-within:bg-white/20 transition-all"
+                className="relative flex items-end bg-white/10 rounded-2xl border border-white/20 p-1 focus-within:bg-white/20 transition-all"
               >
-                <input
-                  type="text"
+                <textarea
+                  ref={inputRef}
+                  rows={1}
                   value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Ketik di sini..."
-                  className="flex-1 h-10 bg-transparent border-none focus:outline-none focus:ring-0 text-white text-xs px-3 placeholder:text-white/30"
+                  disabled={phase === 'thinking'}
+                  onChange={handleInputChange}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault()
+                      handleManualSubmit(e)
+                    }
+                  }}
+                  placeholder="Ceritakan hal lain..."
+                  className="flex-1 min-h-[40px] max-h-32 bg-transparent border-none focus:outline-none focus:ring-0 text-white text-xs px-3 py-2.5 placeholder:text-white/30 resize-none overflow-hidden leading-relaxed disabled:opacity-50"
                 />
                 <button
                   type="submit"
-                  disabled={!inputValue.trim()}
-                  className="p-2 rounded-xl bg-white text-primary-600 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/90 transition-all"
+                  disabled={!inputValue.trim() || phase === 'thinking'}
+                  className="mb-1 p-2 rounded-xl bg-white text-primary-600 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/90 transition-all shrink-0"
                 >
                   <Send className="w-4 h-4" />
                 </button>
@@ -196,41 +281,69 @@ export function PsikotesDiagnostic() {
             </button>
           </div>
 
-          {/* RIGHT CARD: FUTURE (THE NEW YOU) */}
-          <div className="bg-white rounded-3xl p-8 shadow-2xl border border-slate-100 flex flex-col gap-6 text-left relative overflow-hidden">
-            <div className="flex items-center gap-2">
+          {/* RIGHT CARD: LATEST INSIGHT (DYNAMIC) */}
+          <div className="bg-white rounded-3xl p-8 shadow-2xl border border-slate-100 flex flex-col gap-6 text-left relative overflow-hidden h-[500px]">
+            <div className="flex items-center gap-2 shrink-0">
               <div className="w-8 h-8 rounded-lg bg-accent-100 flex items-center justify-center">
                 <Sunrise className="w-4 h-4 text-accent-600" />
               </div>
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">The New You (Masa Depan)</span>
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Analisis & Respon AI</span>
             </div>
             
-            <div className="flex-1">
-              <p className="text-slate-700 font-bold text-lg leading-relaxed">
-                {analysis}
-              </p>
-            </div>
-            
-            <div className="pt-4 flex flex-col gap-3">
-              <span className="text-[9px] font-black text-slate-300 uppercase tracking-widest">Langkah Menuju Perubahan:</span>
-              <a 
-                href={rec.href}
-                className={cn(
-                  "flex items-center justify-between p-5 rounded-2xl transition-all hover:scale-[1.02] shadow-sm",
-                  rec.theme
-                )}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                    <rec.icon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-black tracking-tight">{rec.title}</h4>
-                    <p className="text-[10px] opacity-80 font-medium">Bermula dari sini</p>
-                  </div>
+            <div className="flex-1 flex flex-col overflow-hidden">
+              <div className="flex-1 overflow-y-auto no-scrollbar pr-1">
+                <div key={lastAssistantMessage} className="p-6 bg-slate-50 rounded-2xl border border-slate-100 animate-in fade-in slide-in-from-right-4 duration-500 mb-4">
+                   <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-3">Tanggapan Bermoela:</span>
+                   <p className="text-slate-700 font-bold text-lg leading-relaxed">
+                     {lastAssistantMessage}
+                   </p>
                 </div>
-                <ArrowRight className="w-4 h-4" />
-              </a>
+              </div>
+              
+              <div className="shrink-0 pt-4 border-t border-slate-50 mt-auto">
+                {rec ? (
+                  <div key={rec.title} className="flex flex-col gap-3 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <span className="text-[9px] font-black text-slate-300 uppercase tracking-widest">Rekomendasi Solusi:</span>
+                    <a 
+                      href={rec.href}
+                      className={cn(
+                        "flex items-center justify-between p-5 rounded-2xl transition-all hover:scale-[1.02] shadow-sm",
+                        rec.theme
+                      )}
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                          <rec.icon className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-black tracking-tight">{rec.title}</h4>
+                          <p className="text-[10px] opacity-80 font-medium">{rec.desc}</p>
+                        </div>
+                      </div>
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                ) : (
+                  <div className="p-5 rounded-2xl border-2 border-dashed border-slate-100 flex items-center justify-center text-center">
+                     <p className="text-[10px] font-bold text-slate-300 uppercase tracking-widest leading-loose">
+                        AI sedang mendalami ceritamu.<br/>Lanjutkan untuk mendapatkan solusi.
+                     </p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-slate-50 flex items-center justify-between shrink-0">
+               <div className="flex items-center gap-2">
+                  <div className={cn(
+                    "w-2 h-2 rounded-full animate-pulse",
+                    phase === 'thinking' ? "bg-amber-400" : "bg-emerald-500"
+                  )} />
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tight">
+                    {phase === 'thinking' ? 'Menganalisis...' : 'Analisis Aktif'}
+                  </span>
+               </div>
+               <Sparkles className="w-4 h-4 text-accent-400 animate-pulse" />
             </div>
           </div>
 
