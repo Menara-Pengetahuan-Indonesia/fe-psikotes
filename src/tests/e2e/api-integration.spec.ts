@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('API Integration Tests', () => {
-  const API_BASE = 'http://localhost:5001/api'
+  const API_BASE = 'http://localhost:5000/api'
   const TEST_TOKEN = 'test-token' // For testing without auth
 
   test('should fetch test list from API', async ({ request }) => {

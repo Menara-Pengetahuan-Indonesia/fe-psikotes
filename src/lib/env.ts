@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 const envSchema = z.object({
-  NEXT_PUBLIC_API_URL: z.string().url().default('http://localhost:5001'),
+  NEXT_PUBLIC_API_URL: z.string().url().default('http://localhost:5000'),
   NEXT_PUBLIC_APP_ENV: z.enum(['development', 'staging', 'production']).default('development'),
 })
 

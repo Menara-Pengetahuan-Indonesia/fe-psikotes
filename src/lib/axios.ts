@@ -15,7 +15,7 @@ export const api = axios.create({
 
 // For development, if frontend is on different port, adjust API URL
 if (typeof window !== 'undefined' && window.location.port !== '3000') {
-  // Frontend is on different port, API should still be on 5001
+  // Frontend is on different port, API should still be on 5000
   // This is already handled by NEXT_PUBLIC_API_URL env var
 }
 

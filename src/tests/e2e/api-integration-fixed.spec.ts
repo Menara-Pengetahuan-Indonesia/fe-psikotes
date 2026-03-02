@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('API Integration Tests - Fixed', () => {
-  const API_BASE = 'http://localhost:5001/api'
+  const API_BASE = 'http://localhost:5000/api'
 
   test('should fetch public test config', async ({ request }) => {
     // Get a published test ID first

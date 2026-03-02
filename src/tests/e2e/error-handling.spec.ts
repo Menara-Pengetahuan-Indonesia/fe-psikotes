@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Error Handling & Edge Cases', () => {
-  const API_BASE = 'http://localhost:5001/api'
+  const API_BASE = 'http://localhost:5000/api'
 
   test('should handle invalid test ID gracefully', async ({ request }) => {
     const response = await request.get(`${API_BASE}/admin/tests/invalid-id-12345`)

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Performance Testing', () => {
-  const API_BASE = 'http://localhost:5001/api'
+  const API_BASE = 'http://localhost:5000/api'
 
   test('should load admin dashboard within acceptable time', async ({ page }) => {
     const startTime = Date.now()
