@@ -16,6 +16,10 @@ export { QUESTIONS_MAP } from './questions.constants'
 export type { ResultData } from './results.constants'
 export { RESULTS_MAP } from './results.constants'
 export {
+  LEVELS,
+  type Level,
+} from './curriculum-levels.constants'
+export {
   PERUSAHAAN_STATS,
   PERUSAHAAN_PROCESS,
   PERUSAHAAN_FAQ,
@@ -29,3 +33,10 @@ export {
   MENTAL_HEALTH_FAQ,
   MENTAL_HEALTH_CTA,
 } from './category-sections.constants'
+export {
+  PILL_COLORS,
+  ROWS,
+  MARQUEE_CSS,
+  SEP_ICONS,
+  type Pill,
+} from './category-showcase.constants'

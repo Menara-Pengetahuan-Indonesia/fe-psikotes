@@ -1,7 +1,7 @@
 import { ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-import { type Level } from './curriculum-levels'
+import { type Level } from '../constants'
 
 type PyramidLevelItemProps = {
   item: Level

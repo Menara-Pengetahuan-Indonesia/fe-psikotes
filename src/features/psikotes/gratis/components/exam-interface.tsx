@@ -8,7 +8,7 @@ import type { Question } from '@/features/psikotes/constants'
 import { ExamHeader } from './exam-header'
 import { ExamSubmitModal } from './exam-submit-modal'
 import { ExamDisclaimer } from './exam-disclaimer'
-import { MOCK_QUESTIONS } from './exam-constants'
+import { MOCK_QUESTIONS } from '../constants'
 
 interface ExamInterfaceProps {
   slug?: string
