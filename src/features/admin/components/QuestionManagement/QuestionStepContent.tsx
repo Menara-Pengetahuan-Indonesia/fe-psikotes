@@ -18,23 +18,10 @@ import { ConfirmDialog } from '../Common/ConfirmDialog'
 import { QuestionFormWizard } from './QuestionFormWizard'
 import { BulkImportCSV } from './BulkImportCSV'
 import type { Question } from '../../types'
+import { QUESTION_TYPE_SHORT_LABELS, QUESTION_TYPE_COLORS } from '@features/admin/constants'
 
 interface QuestionStepContentProps {
   testId: string
-}
-
-const TYPE_LABELS: Record<string, string> = {
-  MULTIPLE_CHOICE: 'PG',
-  TRUE_FALSE: 'B/S',
-  RATING_SCALE: 'Skala',
-  ESSAY: 'Essay',
-}
-
-const TYPE_COLORS: Record<string, string> = {
-  MULTIPLE_CHOICE: 'bg-blue-100 text-blue-800 border-blue-200',
-  TRUE_FALSE: 'bg-green-100 text-green-800 border-green-200',
-  RATING_SCALE: 'bg-purple-100 text-purple-800 border-purple-200',
-  ESSAY: 'bg-orange-100 text-orange-800 border-orange-200',
 }
 
 export function QuestionStepContent({ testId }: QuestionStepContentProps) {
@@ -267,9 +254,9 @@ function QuestionRow({
       </span>
 
       <span
-        className={`text-xs px-1.5 py-0.5 rounded border flex-shrink-0 ${TYPE_COLORS[question.type] || ''}`}
+        className={`text-xs px-1.5 py-0.5 rounded border flex-shrink-0 ${QUESTION_TYPE_COLORS[question.type] || ''}`}
       >
-        {TYPE_LABELS[question.type] || question.type}
+        {QUESTION_TYPE_SHORT_LABELS[question.type] || question.type}
       </span>
 
       <p className="text-sm flex-1 min-w-0 truncate">{question.text}</p>

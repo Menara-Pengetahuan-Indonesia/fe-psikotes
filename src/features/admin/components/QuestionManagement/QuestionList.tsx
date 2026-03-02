@@ -22,23 +22,10 @@ import { ConfirmDialog } from '../Common/ConfirmDialog'
 import { QuestionForm } from './QuestionForm'
 import { OptionMapper } from './OptionMapper'
 import type { Question } from '../../types'
+import { QUESTION_TYPE_LABELS, QUESTION_TYPE_COLORS } from '@features/admin/constants'
 
 interface QuestionListProps {
   testId: string
-}
-
-const TYPE_LABELS: Record<string, string> = {
-  MULTIPLE_CHOICE: 'Pilihan Ganda',
-  TRUE_FALSE: 'Benar/Salah',
-  RATING_SCALE: 'Skala Rating',
-  ESSAY: 'Essay',
-}
-
-const TYPE_COLORS: Record<string, string> = {
-  MULTIPLE_CHOICE: 'bg-blue-100 text-blue-800 border-blue-200',
-  TRUE_FALSE: 'bg-green-100 text-green-800 border-green-200',
-  RATING_SCALE: 'bg-purple-100 text-purple-800 border-purple-200',
-  ESSAY: 'bg-orange-100 text-orange-800 border-orange-200',
 }
 
 export function QuestionList({ testId }: QuestionListProps) {
@@ -126,9 +113,9 @@ export function QuestionList({ testId }: QuestionListProps) {
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
                 <span
-                  className={`text-xs px-2 py-0.5 rounded-full border ${TYPE_COLORS[question.type] || ''}`}
+                  className={`text-xs px-2 py-0.5 rounded-full border ${QUESTION_TYPE_COLORS[question.type] || ''}`}
                 >
-                  {TYPE_LABELS[question.type] || question.type}
+                  {QUESTION_TYPE_LABELS[question.type] || question.type}
                 </span>
                 <span className="text-xs text-muted-foreground font-mono">
                   #{question.order}
