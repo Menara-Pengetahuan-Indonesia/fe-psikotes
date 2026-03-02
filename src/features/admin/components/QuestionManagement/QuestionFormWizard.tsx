@@ -31,14 +31,8 @@ import {
   adminKeys,
 } from '../../hooks'
 import { FormField } from '../Common/FormField'
-import type { Question } from '../../types'
+import type { Question, QuestionType } from '../../types'
 import { QUESTION_TYPE_LABELS } from '@features/admin/constants'
-
-// ============================================================
-// CONSTANTS
-// ============================================================
-
-type QuestionType = 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'RATING_SCALE' | 'ESSAY'
 
 // ============================================================
 // SCHEMA

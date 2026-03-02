@@ -36,12 +36,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
-
-interface NavItem {
-  href: string
-  label: string
-  icon: React.ComponentType<{ className?: string }>
-}
+import type { NavItem } from '@/features/dashboard/types'
 
 const NAV_BY_ROLE: Record<UserRole, NavItem[]> = {
   USER: [

@@ -2,6 +2,8 @@
 // DOMAIN TYPES
 // ============================================================
 
+export type QuestionType = 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'RATING_SCALE' | 'ESSAY'
+
 export interface Test {
   id: string
   name: string

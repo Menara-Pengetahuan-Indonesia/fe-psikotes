@@ -24,7 +24,7 @@ import {
   useCreateIndicatorMapping,
   adminKeys,
 } from '../../hooks'
-import type { Indicator, Section } from '../../types'
+import type { Indicator, Section, QuestionType } from '../../types'
 import { QUESTION_TYPE_SHORT_LABELS } from '@features/admin/constants'
 
 // ---------------------------------------------------------------------------
@@ -46,14 +46,12 @@ interface ParsedRow {
   errors: string[]
 }
 
-const VALID_TYPES = [
+const VALID_TYPES: readonly QuestionType[] = [
   'MULTIPLE_CHOICE',
   'TRUE_FALSE',
   'RATING_SCALE',
   'ESSAY',
 ] as const
-
-type QuestionType = (typeof VALID_TYPES)[number]
 
 // ---------------------------------------------------------------------------
 // Component

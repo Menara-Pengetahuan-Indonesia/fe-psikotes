@@ -11,7 +11,6 @@ import {
   LogOut,
   ChevronsUpDown,
 } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
 
 import {
   Avatar,
@@ -40,12 +39,7 @@ import {
 import { useAuthStoreHydrated } from '@/store/auth.store'
 import { useLogout } from '@/features/auth/hooks'
 import { cn } from '@/lib/utils'
-
-interface NavItem {
-  href: string
-  label: string
-  icon: LucideIcon
-}
+import type { NavItem } from '../types'
 
 const NAV_ITEMS: NavItem[] = [
   {
