@@ -25,7 +25,7 @@ import {
   adminKeys,
 } from '../../hooks'
 import type { Indicator, Section, QuestionType } from '../../types'
-import { QUESTION_TYPE_SHORT_LABELS } from '@features/admin/constants'
+import { QUESTION_TYPE_SHORT_LABELS, VALID_QUESTION_TYPES } from '@features/admin/constants'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -45,13 +45,6 @@ interface ParsedRow {
   valid: boolean
   errors: string[]
 }
-
-const VALID_TYPES: readonly QuestionType[] = [
-  'MULTIPLE_CHOICE',
-  'TRUE_FALSE',
-  'RATING_SCALE',
-  'ESSAY',
-] as const
 
 // ---------------------------------------------------------------------------
 // Component
@@ -226,9 +219,9 @@ export function BulkImportCSV({ testId }: BulkImportCSVProps) {
       }
 
       // Validate type
-      if (!VALID_TYPES.includes(type as QuestionType)) {
+      if (!VALID_QUESTION_TYPES.includes(type as QuestionType)) {
         errors.push(
-          `Tipe "${type}" tidak valid. Gunakan: ${VALID_TYPES.join(', ')}`
+          `Tipe "${type}" tidak valid. Gunakan: ${VALID_QUESTION_TYPES.join(', ')}`
         )
       }
 
