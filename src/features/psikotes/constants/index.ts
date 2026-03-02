@@ -11,7 +11,7 @@ export {
   GRATIS_TESTS,
   PREMIUM_TESTS,
 } from './tests.constants'
-export type { Question } from './questions.constants'
+export type { MockQuestion } from './questions.constants'
 export { QUESTIONS_MAP } from './questions.constants'
 export type { ResultData } from './results.constants'
 export { RESULTS_MAP } from './results.constants'

@@ -8,7 +8,7 @@ export interface TestConfig {
   }
   indicators: Indicator[]
   sections: Section[]
-  questions: Question[]
+  questions: ExamQuestion[]
   features: {
     hasCamera: boolean
     hasSidebar: boolean
@@ -29,10 +29,10 @@ export interface Section {
   name: string
   description?: string
   order: number
-  questions: Question[]
+  questions: ExamQuestion[]
 }
 
-export interface Question {
+export interface ExamQuestion {
   id: string
   text: string
   type: 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'RATING_SCALE' | 'ESSAY'

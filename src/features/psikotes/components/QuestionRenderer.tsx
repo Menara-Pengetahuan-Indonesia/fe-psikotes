@@ -1,10 +1,10 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { Question } from '../types/exam.types'
+import { ExamQuestion } from '../types/exam.types'
 
 interface QuestionRendererProps {
-  question: Question
+  question: ExamQuestion
   selected?: string
   onChange: (optionId: string) => void
 }
