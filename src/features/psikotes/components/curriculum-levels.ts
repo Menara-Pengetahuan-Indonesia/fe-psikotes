@@ -28,15 +28,13 @@ export const LEVELS: Level[] = [
   {
     level: 1,
     label: 'Self Mastery',
-    tagline: 'Kenali diri secara mendalam',
+    tagline: 'Kenali titik mulamu',
     desc:
-      'Fondasi utama dalam perjalanan'
-      + ' pengembangan diri. Di level ini,'
+      'Fondasi utama untuk menjadi "The New You". Di level ini,'
       + ' kamu akan mengenali kekuatan,'
-      + ' kelemahan, pola pikir, dan'
-      + ' nilai-nilai yang membentuk'
-      + ' siapa dirimu. Melalui asesmen'
-      + ' mendalam, kamu mendapatkan peta'
+      + ' kelemahan, dan pola pikir yang'
+      + ' membentuk siapa dirimu. Melalui pemetaan'
+      + ' mendalam, kamu mendapatkan baseline'
       + ' diri yang jelas sebagai langkah'
       + ' awal transformasi.',
     icon: User,
@@ -56,14 +54,14 @@ export const LEVELS: Level[] = [
   {
     level: 2,
     label: 'Core Stability',
-    tagline: 'Fondasi mental yang kokoh',
+    tagline: 'Mental Health yang kokoh',
     desc:
-      'Membangun fondasi mental dan'
+      'Membangun daya juang mental dan'
       + ' emosional yang kokoh. Level ini'
       + ' fokus pada ketahanan diri,'
-      + ' manajemen stres, dan kemampuan'
+      + ' dan kemampuan'
       + ' menghadapi tekanan. Kamu akan'
-      + ' belajar menjaga keseimbangan'
+      + ' belajar melepaskan kendala masa lalu'
       + ' di tengah tantangan hidup.',
     icon: Shield,
     bg: 'bg-red-500',
@@ -83,15 +81,14 @@ export const LEVELS: Level[] = [
     level: 3,
     label: 'Action & Habits',
     tagline:
-      'Kebiasaan positif & konsisten',
+      'Tumbuh konsisten setiap hari',
     desc:
-      'Mengubah pemahaman diri menjadi'
+      'Mengubah kesadaran diri menjadi'
       + ' aksi nyata. Di level ini, kamu'
       + ' akan membangun kebiasaan positif'
-      + ' yang konsisten, menetapkan'
-      + ' tujuan terukur, dan'
-      + ' mengembangkan disiplin diri'
-      + ' untuk mencapai potensi maksimal.',
+      + ' untuk tumbuh satu persen lebih baik'
+      + ' setiap harinya, memastikan langkahmu'
+      + ' menuju masa depan yang indah.',
     icon: Zap,
     bg: 'bg-primary-500',
     glow: 'shadow-primary-500/40',
@@ -109,15 +106,14 @@ export const LEVELS: Level[] = [
   {
     level: 4,
     label: 'Social Intelligence',
-    tagline: 'Memimpin & mempengaruhi',
+    tagline: 'Mempengaruhi & Berdaya',
     desc:
       'Mengembangkan kemampuan'
       + ' interpersonal dan kepemimpinan.'
-      + ' Level ini membantu kamu memahami'
-      + ' dinamika sosial, membangun'
-      + ' relasi bermakna, serta'
-      + ' mempengaruhi dan menginspirasi'
-      + ' orang di sekitarmu.',
+      + ' Level ini membantu kamu menjadi'
+      + ' wanita independen yang mampu'
+      + ' memberikan solusi dan inspirasi'
+      + ' bagi orang di sekitarmu.',
     icon: Heart,
     bg: 'bg-purple-500',
     glow: 'shadow-purple-500/40',
@@ -136,16 +132,15 @@ export const LEVELS: Level[] = [
     level: 5,
     label: 'Legacy & Impact',
     tagline:
-      'Dampak bermakna bagi sekitar',
+      'Sukses & berdampak nyata',
     desc:
       'Puncak dari perjalanan'
-      + ' pengembangan diri. Di level ini,'
-      + ' kamu tidak hanya bertumbuh untuk'
-      + ' diri sendiri, tetapi menciptakan'
-      + ' dampak positif bagi lingkungan'
-      + ' dan masyarakat. Menjadi pemimpin'
-      + ' yang meninggalkan warisan'
-      + ' bermakna.',
+      + ' transformasi. Di level ini,'
+      + ' kamu tidak hanya sukses untuk'
+      + ' diri sendiri, tetapi menjadi'
+      + ' penentu masa depan yang cerah'
+      + ' bagi lingkungan sebagai praktisi'
+      + ' Mental Health yang diakui.',
     icon: Trophy,
     bg: 'bg-slate-700',
     glow: 'shadow-slate-700/40',

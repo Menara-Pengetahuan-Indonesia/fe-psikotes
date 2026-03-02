@@ -13,7 +13,7 @@ export function ResultDisplay({ result, config }: ResultDisplayProps) {
   const router = useRouter()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-12">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 py-12">
       <div className="max-w-3xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
@@ -69,7 +69,7 @@ export function ResultDisplay({ result, config }: ResultDisplayProps) {
                     </div>
                     <div className="h-3 bg-slate-200 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500"
+                        className="h-full bg-linear-to-r from-blue-500 to-blue-600 transition-all duration-500"
                         style={{ width: `${(score / maxScore) * 100}%` }}
                       />
                     </div>

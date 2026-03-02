@@ -57,7 +57,7 @@ export function PyramidLevelItem({
           <div
             className={cn(
               'absolute inset-0',
-              'bg-gradient-to-br',
+              'bg-linear-to-br',
               'from-white/20',
               'via-transparent',
               'to-black/10',

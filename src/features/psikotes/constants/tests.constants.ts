@@ -19,17 +19,17 @@ import {
 import type { PsikotesTest, CorporateTest } from '../types'
 
 // ---------------------------------------------------------------------------
-// Mahasiswa & Pelajar  (source: psikotest-ipsi/.../mahasiswa/page.tsx)
+// Mahasiswa & Pelajar
 // ---------------------------------------------------------------------------
 export const MAHASISWA_TESTS: PsikotesTest[] = [
   {
     id: 'mahasiswa-minat-bakat',
     slug: 'minat-bakat',
-    title: 'Minat Bakat',
+    title: 'Minat Bakat (Titik Mula)',
     tag: 'Career',
     icon: Compass,
     description:
-      'Temukan potensi terpendam dan arah jurusan atau karir yang paling sesuai dengan kepribadian Anda.',
+      'Temukan potensi terpendam dan arah karir yang membuatmu benar-benar tumbuh dan sukses.',
     users: '10k+ Peserta',
     duration: '45 Menit',
     price: 'Mulai Rp 75rb',
@@ -42,7 +42,7 @@ export const MAHASISWA_TESTS: PsikotesTest[] = [
     tag: 'IQ Test',
     icon: Brain,
     description:
-      'Ukur kapasitas kognitif dan kemampuan pemecahan masalah dengan standar alat tes psikologi terpercaya.',
+      'Ukur kapasitas kognitif sebagai baseline untuk merancang masa depan yang lebih cerah.',
     users: '15k+ Peserta',
     duration: '60 Menit',
     price: 'Mulai Rp 50rb',
@@ -55,7 +55,7 @@ export const MAHASISWA_TESTS: PsikotesTest[] = [
     tag: 'Education',
     icon: BookOpen,
     description:
-      'Persiapkan diri menembus universitas impian dengan simulasi ujian yang akurat dan pembahasan lengkap.',
+      'Persiapkan dirimu menembus universitas impian untuk menjadi penentu masa depanmu sendiri.',
     users: '50k+ Peserta',
     duration: '90 Menit',
     price: 'Mulai Rp 25rb',
@@ -68,7 +68,7 @@ export const MAHASISWA_TESTS: PsikotesTest[] = [
     tag: 'Government',
     icon: Building2,
     description:
-      'Latih kemampuan SKD (TWK, TIU, TKP) dengan soal-soal terupdate untuk persiapan seleksi ASN.',
+      'Latih kemampuanmu untuk meraih posisi di instansi pemerintahan dan berbakti bagi negeri.',
     users: '25k+ Peserta',
     duration: '100 Menit',
     price: 'Mulai Rp 40rb',
@@ -77,7 +77,7 @@ export const MAHASISWA_TESTS: PsikotesTest[] = [
 ]
 
 // ---------------------------------------------------------------------------
-// Perusahaan / Corporate  (source: psikotest-ipsi/.../perusahaan/page.tsx)
+// Perusahaan / Corporate
 // ---------------------------------------------------------------------------
 export const PERUSAHAAN_TESTS: CorporateTest[] = [
   {
@@ -87,7 +87,7 @@ export const PERUSAHAAN_TESTS: CorporateTest[] = [
     tag: 'Hiring',
     icon: UserPlus,
     description:
-      'Solusi psikotes komprehensif untuk menyeleksi kandidat terbaik yang sesuai dengan budaya dan kebutuhan perusahaan.',
+      'Temukan talenta yang tidak hanya sekadar bertahan, tapi mampu tumbuh dan sukses bersama perusahaan.',
     users: '500+ Perusahaan',
     duration: 'Fleksibel',
     price: 'Mulai Rp 150rb',
@@ -105,7 +105,7 @@ export const PERUSAHAAN_TESTS: CorporateTest[] = [
     tag: 'Promotion',
     icon: TrendingUp,
     description:
-      'Evaluasi potensi karyawan untuk posisi kepemimpinan dan tanggung jawab yang lebih besar.',
+      'Evaluasi potensi kepemimpinan untuk memastikan timmu berkembang dengan sehat dan berdaya juang.',
     users: '200+ Perusahaan',
     duration: '60 Menit',
     price: 'Mulai Rp 250rb',
@@ -123,7 +123,7 @@ export const PERUSAHAAN_TESTS: CorporateTest[] = [
     tag: 'Development',
     icon: Map,
     description:
-      'Bantu karyawan merancang jalur karir yang jelas dan selaras dengan tujuan jangka panjang perusahaan.',
+      'Bantu tim merancang jalur karir yang selaras dengan "The New You" dalam konteks profesional.',
     users: '150+ Perusahaan',
     duration: '45 Menit',
     price: 'Mulai Rp 200rb',
@@ -137,17 +137,17 @@ export const PERUSAHAAN_TESTS: CorporateTest[] = [
 ]
 
 // ---------------------------------------------------------------------------
-// Kesehatan Mental  (source: psikotest-ipsi/.../kesehatan-mental/page.tsx)
+// Mental Health
 // ---------------------------------------------------------------------------
 export const KESEHATAN_MENTAL_TESTS: PsikotesTest[] = [
   {
     id: 'kesehatan-mental-kepribadian',
     slug: 'kepribadian',
-    title: 'Kepribadian',
+    title: 'Kepribadian (The New You)',
     tag: 'Personality',
     icon: Smile,
     description:
-      'Kenali diri Anda lebih dalam melalui asesmen kepribadian yang komprehensif untuk pengembangan diri yang lebih baik.',
+      'Lepaskan diri dari kendala masa lalu dan kenali jati dirimu yang baru untuk hidup yang lebih indah.',
     users: '12k+ Peserta',
     duration: '30 Menit',
     price: 'Mulai Rp 50rb',
@@ -161,21 +161,21 @@ export const KESEHATAN_MENTAL_TESTS: PsikotesTest[] = [
     tag: 'Well-being',
     icon: Activity,
     description:
-      'Deteksi dini tingkat stres, kecemasan, dan depresi untuk menjaga kesehatan mental yang optimal.',
+      'Bukan hanya baik-baik saja, tapi benar-benar berkembang dan sukses di era penuh tekanan.',
     users: '8k+ Peserta',
     duration: '20 Menit',
     price: 'Mulai Rp 60rb',
     category: 'kesehatan-mental',
-    subCategory: 'Kesehatan Mental',
+    subCategory: 'Mental Health',
   },
   {
     id: 'kesehatan-mental-relationship',
     slug: 'relationship',
-    title: 'Relationship',
+    title: 'Relationship (Kenali Pasanganmu)',
     tag: 'Couples',
     icon: Heart,
     description:
-      'Pahami dinamika hubungan Anda dengan pasangan, gaya komunikasi, dan bahasa cinta untuk hubungan yang lebih harmonis.',
+      'Bangun hubungan yang indah dan masa depan yang sukses bersama pasangan pilihanmu.',
     users: '5k+ Pasangan',
     duration: '40 Menit',
     price: 'Mulai Rp 90rb',
@@ -185,7 +185,7 @@ export const KESEHATAN_MENTAL_TESTS: PsikotesTest[] = [
 ]
 
 // ---------------------------------------------------------------------------
-// Gratis  (source: psikotest-ipsi/.../gratis/page.tsx)
+// Gratis
 // ---------------------------------------------------------------------------
 export const GRATIS_TESTS: PsikotesTest[] = [
   {
@@ -195,7 +195,7 @@ export const GRATIS_TESTS: PsikotesTest[] = [
     tag: 'Kepribadian',
     icon: Users,
     description:
-      'Cari tahu tipe kepribadianmu dan bagaimana caramu berinteraksi dengan dunia.',
+      'Titik awal untuk mengenal bagaimana caramu berinteraksi dengan dunia.',
     users: '1.2jt+',
     duration: '15 Menit',
     price: null,
@@ -209,7 +209,7 @@ export const GRATIS_TESTS: PsikotesTest[] = [
     tag: 'Edukasi',
     icon: Brain,
     description:
-      'Optimalkan cara belajarmu dengan mengetahui metode belajar yang paling efektif.',
+      'Optimalkan cara belajarmu untuk tumbuh satu persen lebih baik setiap harinya.',
     users: '850rb+',
     duration: '10 Menit',
     price: null,
@@ -223,7 +223,7 @@ export const GRATIS_TESTS: PsikotesTest[] = [
     tag: 'Kepribadian',
     icon: Heart,
     description:
-      'Ukur seberapa baik kamu dalam mengenal dan mengelola emosi diri sendiri.',
+      'Ukur seberapa kuat daya juangmu dalam mengelola emosi diri sendiri.',
     users: '500rb+',
     duration: '20 Menit',
     price: null,
@@ -237,7 +237,7 @@ export const GRATIS_TESTS: PsikotesTest[] = [
     tag: 'Karir',
     icon: Briefcase,
     description:
-      'Temukan rekomendasi karir yang sesuai dengan minat dan potensimu.',
+      'Temukan rekomendasi karir yang sukses dan sesuai dengan minat potensimu.',
     users: '920rb+',
     duration: '25 Menit',
     price: null,
@@ -251,7 +251,7 @@ export const GRATIS_TESTS: PsikotesTest[] = [
     tag: 'Hubungan',
     icon: Heart,
     description:
-      'Kenali cara kamu memberi dan menerima kasih sayang dalam hubungan.',
+      'Kenali cara kamu memberi kasih sayang untuk masa depan hubungan yang indah.',
     users: '2.5jt+',
     duration: '10 Menit',
     price: null,
@@ -262,15 +262,15 @@ export const GRATIS_TESTS: PsikotesTest[] = [
     id: 'gratis-tes-stress-level',
     slug: 'tes-stress-level',
     title: 'Tes Stress Level',
-    tag: 'Kesehatan Mental',
+    tag: 'Mental Health',
     icon: Brain,
     description:
-      'Cek tingkat stresmu saat ini dan dapatkan tips untuk mengelolanya.',
+      'Cek tingkat stresmu dan temukan cara untuk tetap berdaya di era tekanan.',
     users: '450rb+',
     duration: '12 Menit',
     price: null,
     category: 'gratis',
-    subCategory: 'Kesehatan Mental',
+    subCategory: 'Mental Health',
   },
   {
     id: 'gratis-tes-burnout-kerja',
@@ -279,7 +279,7 @@ export const GRATIS_TESTS: PsikotesTest[] = [
     tag: 'Karir',
     icon: Briefcase,
     description:
-      'Apakah kamu mengalami kelelahan kerja? Cek kondisimu sekarang.',
+      'Apakah beban kerjamu menghambat pertumbuhanmu? Cek kondisimu sekarang.',
     users: '320rb+',
     duration: '15 Menit',
     price: null,
@@ -293,7 +293,7 @@ export const GRATIS_TESTS: PsikotesTest[] = [
     tag: 'Hubungan',
     icon: Users,
     description:
-      'Analisis kecocokan hubunganmu berdasarkan aspek psikologis.',
+      'Analisis baseline hubunganmu untuk berkembang kuat bersama pasangan.',
     users: '1.5jt+',
     duration: '20 Menit',
     price: null,
@@ -303,7 +303,7 @@ export const GRATIS_TESTS: PsikotesTest[] = [
 ]
 
 // ---------------------------------------------------------------------------
-// Premium  (source: psikotest-ipsi/.../premium/page.tsx)
+// Premium
 // ---------------------------------------------------------------------------
 export const PREMIUM_TESTS: PsikotesTest[] = [
   {
@@ -313,7 +313,7 @@ export const PREMIUM_TESTS: PsikotesTest[] = [
     tag: 'Intelligence',
     icon: Brain,
     description:
-      'Ukur tingkat kecerdasan intelektualmu dengan standar internasional (CFIT/IST).',
+      'Ukur kapasitas kognitifmu secara akurat sebagai penentu masa depanmu sendiri.',
     users: '15k+',
     duration: '45 Menit',
     price: 'Rp125.000',
@@ -323,11 +323,11 @@ export const PREMIUM_TESTS: PsikotesTest[] = [
   {
     id: 'premium-minat-bakat-komprehensif',
     slug: 'minat-bakat-komprehensif',
-    title: 'Minat Bakat Komprehensif',
+    title: 'Minat Bakat (Full Profile)',
     tag: 'Karir & Studi',
     icon: Briefcase,
     description:
-      'Laporan detail 30+ halaman tentang potensi karir dan jurusan kuliah yang paling cocok.',
+      'Laporan detail untuk merancang jalur sukses yang selaras dengan jati dirimu.',
     users: '8.5k+',
     duration: '60 Menit',
     price: 'Rp199.000',
@@ -337,11 +337,11 @@ export const PREMIUM_TESTS: PsikotesTest[] = [
   {
     id: 'premium-tes-kesehatan-mental-lengkap',
     slug: 'tes-kesehatan-mental-lengkap',
-    title: 'Tes Kesehatan Mental Lengkap',
+    title: 'Tes Mental Health Lengkap',
     tag: 'Klinis',
     icon: Zap,
     description:
-      'Screening mendalam untuk depresi, kecemasan, dan stress dengan validasi psikolog.',
+      'Screening mendalam untuk memastikanmu tumbuh kuat dan sukses di era tekanan.',
     users: '12k+',
     duration: '40 Menit',
     price: 'Rp150.000',
@@ -355,7 +355,7 @@ export const PREMIUM_TESTS: PsikotesTest[] = [
     tag: 'Kepribadian',
     icon: Users,
     description:
-      'Tes kepribadian standar klinis yang digunakan untuk seleksi kerja dan diagnosis.',
+      'Asesmen standar klinis untuk melepaskan diri dari kendala mental terdahulu.',
     users: '5k+',
     duration: '90 Menit',
     price: 'Rp250.000',
@@ -369,7 +369,7 @@ export const PREMIUM_TESTS: PsikotesTest[] = [
     tag: 'Karir',
     icon: Star,
     description:
-      'Kenali gaya kepemimpinanmu untuk meningkatkan performa manajerial.',
+      'Kenali gaya kepemimpinanmu untuk menjadi penentu masa depan dalam bisnis.',
     users: '20k+',
     duration: '30 Menit',
     price: 'Rp99.000',
@@ -383,7 +383,7 @@ export const PREMIUM_TESTS: PsikotesTest[] = [
     tag: 'Hubungan',
     icon: Gem,
     description:
-      'Evaluasi kesiapan mental dan emosional kamu dan pasangan sebelum menikah.',
+      'Evaluasi kesiapanmu untuk membangun masa depan hubungan yang indah dan bermakna.',
     users: '9k+',
     duration: '50 Menit',
     price: 'Rp175.000',
@@ -397,7 +397,7 @@ export const PREMIUM_TESTS: PsikotesTest[] = [
     tag: 'Edukasi',
     icon: Brain,
     description:
-      'Simulasi TPA untuk persiapan masuk perguruan tinggi atau CPNS.',
+      'Simulasi presisi untuk memastikan langkah suksesmu menuju universitas impian.',
     users: '45k+',
     duration: '60 Menit',
     price: 'Rp75.000',
@@ -411,7 +411,7 @@ export const PREMIUM_TESTS: PsikotesTest[] = [
     tag: 'Kepribadian',
     icon: Users,
     description:
-      'Analisis kepribadian Big Five secara mendalam untuk pengembangan diri.',
+      'Analisis mendalam untuk pengembangan diri menuju "The New You" yang utuh.',
     users: '30k+',
     duration: '40 Menit',
     price: 'Rp149.000',
