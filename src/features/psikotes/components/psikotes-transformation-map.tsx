@@ -1,45 +1,11 @@
 'use client'
 
-import { 
-  Search, 
-  MessageSquare, 
-  GraduationCap, 
-  Users, 
+import {
   ArrowRight,
   Sparkles
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
-const STEPS = [
-  {
-    id: 'pemetaan',
-    title: 'Pemetaan Diri',
-    description: 'Assessment & Psikotes Profesional sebagai baseline perubahanmu.',
-    icon: Search,
-    color: 'bg-primary-800 text-primary-50',
-  },
-  {
-    id: 'konsultasi',
-    title: 'Konsultasi & Layanan',
-    description: 'Pahami langkah nyata yang harus diambil bersama para ahli.',
-    icon: MessageSquare,
-    color: 'bg-accent-500 text-white',
-  },
-  {
-    id: 'masa-depan',
-    title: 'Masa Depan',
-    description: 'Pelatihan Mental Health & Sertifikasi Praktisi untuk tumbuh sukses.',
-    icon: GraduationCap,
-    color: 'bg-primary-600 text-white',
-  },
-  {
-    id: 'komunitas',
-    title: 'Bergabung Komunitas',
-    description: 'Join BERMOELA sebagai Life Coach & Psikolog tersertifikasi.',
-    icon: Users,
-    color: 'bg-accent-600 text-white',
-  }
-]
+import { TRANSFORMATION_STEPS } from '../constants'
 
 export function PsikotesTransformationMap() {
   const scrollToSection = (id: string) => {
@@ -96,7 +62,7 @@ export function PsikotesTransformationMap() {
 
             {/* Right: The Map (Kolam Kanan) */}
             <div className="lg:col-span-8 grid sm:grid-cols-2 gap-4">
-              {STEPS.map((step, idx) => (
+              {TRANSFORMATION_STEPS.map((step, idx) => (
                 <div 
                   key={step.id}
                   className="bg-white/5 backdrop-blur-sm border border-white/5 p-6 rounded-[2rem] hover:bg-white/10 transition-all duration-500 group/item relative overflow-hidden"

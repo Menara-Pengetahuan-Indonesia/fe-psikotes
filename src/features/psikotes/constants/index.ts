@@ -40,3 +40,6 @@ export {
   SEP_ICONS,
   type Pill,
 } from './category-showcase.constants'
+export { PILLARS } from './pillars.constants'
+export { TRANSFORMATION_STEPS } from './transformation.constants'
+export { NAV_CATEGORIES } from './category-nav.constants'
