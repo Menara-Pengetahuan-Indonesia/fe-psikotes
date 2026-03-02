@@ -25,6 +25,7 @@ import {
   adminKeys,
 } from '../../hooks'
 import type { Indicator, Section } from '../../types'
+import { QUESTION_TYPE_SHORT_LABELS } from '@features/admin/constants'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -53,13 +54,6 @@ const VALID_TYPES = [
 ] as const
 
 type QuestionType = (typeof VALID_TYPES)[number]
-
-const TYPE_LABELS: Record<string, string> = {
-  MULTIPLE_CHOICE: 'PG',
-  TRUE_FALSE: 'B/S',
-  RATING_SCALE: 'Skala',
-  ESSAY: 'Essay',
-}
 
 // ---------------------------------------------------------------------------
 // Component
@@ -255,7 +249,7 @@ export function BulkImportCSV({ testId }: BulkImportCSVProps) {
       ) {
         if (nonEmptyOptions.length < 2) {
           errors.push(
-            `Tipe ${TYPE_LABELS[type] ?? type} membutuhkan minimal 2 opsi`
+            `Tipe ${QUESTION_TYPE_SHORT_LABELS[type] ?? type} membutuhkan minimal 2 opsi`
           )
         }
       }
@@ -611,7 +605,7 @@ export function BulkImportCSV({ testId }: BulkImportCSVProps) {
                         variant={row.valid ? 'secondary' : 'outline'}
                         className="text-xs"
                       >
-                        {TYPE_LABELS[row.type] ?? row.type}
+                        {QUESTION_TYPE_SHORT_LABELS[row.type] ?? row.type}
                       </Badge>
                     </td>
                     <td className="px-3 py-2 text-muted-foreground truncate max-w-[120px]">
