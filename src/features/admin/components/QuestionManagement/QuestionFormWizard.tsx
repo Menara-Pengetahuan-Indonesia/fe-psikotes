@@ -32,17 +32,11 @@ import {
 } from '../../hooks'
 import { FormField } from '../Common/FormField'
 import type { Question } from '../../types'
+import { QUESTION_TYPE_LABELS } from '@features/admin/constants'
 
 // ============================================================
 // CONSTANTS
 // ============================================================
-
-const QUESTION_TYPE_LABELS: Record<string, string> = {
-  MULTIPLE_CHOICE: 'Pilihan Ganda',
-  TRUE_FALSE: 'Benar/Salah',
-  RATING_SCALE: 'Skala Rating',
-  ESSAY: 'Essay',
-}
 
 type QuestionType = 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'RATING_SCALE' | 'ESSAY'
 
