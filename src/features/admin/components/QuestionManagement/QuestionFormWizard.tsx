@@ -70,19 +70,7 @@ const questionFormWizardSchema = z.object({
 // TYPES
 // ============================================================
 
-interface FormValues {
-  text: string
-  type: QuestionType
-  sectionId: string
-  order: number
-  imageUrl?: string | null
-  options: {
-    id?: string
-    text: string
-    order: number
-    scores: Record<string, number | ''>
-  }[]
-}
+type FormValues = z.infer<typeof questionFormWizardSchema>
 
 interface QuestionFormWizardProps {
   testId: string
