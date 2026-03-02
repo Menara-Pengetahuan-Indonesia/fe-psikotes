@@ -8,3 +8,5 @@ export {
 } from './legal-content'
 
 export { BENEFITS, POSITIONS } from './careers.constants'
+
+export { BLOG_POSTS, type BlogPost } from './blog.constants'
