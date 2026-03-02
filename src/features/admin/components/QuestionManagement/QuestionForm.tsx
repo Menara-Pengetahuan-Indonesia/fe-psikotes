@@ -30,6 +30,7 @@ import {
 import { createQuestionSchema, type CreateQuestionFormData } from '../../schemas'
 import { FormField } from '../Common/FormField'
 import type { Question, Section } from '../../types'
+import { QUESTION_TYPE_LABELS } from '@features/admin/constants'
 
 interface QuestionFormProps {
   testId: string
@@ -41,13 +42,6 @@ interface QuestionFormProps {
 
 interface QuestionFormValues extends CreateQuestionFormData {
   options?: Array<{ text: string; order: number }>
-}
-
-const QUESTION_TYPE_LABELS: Record<string, string> = {
-  MULTIPLE_CHOICE: 'Pilihan Ganda',
-  TRUE_FALSE: 'Benar/Salah',
-  RATING_SCALE: 'Skala Rating',
-  ESSAY: 'Essay',
 }
 
 export function QuestionForm({
