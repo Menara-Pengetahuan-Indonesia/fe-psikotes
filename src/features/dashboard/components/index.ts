@@ -1,3 +1,3 @@
-export * from './user-dashboard';
-export * from './admin-dashboard';
-export * from './superadmin-dashboard';
+export { UserDashboard } from './user-dashboard'
+export { AdminDashboard } from './admin-dashboard'
+export { SuperAdminDashboard } from './superadmin-dashboard'
