@@ -2,14 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '@/lib/axios'
-import { TestConfig, ExamState, TestResult } from '../types/exam.types'
-
-export interface ActivityLogEntry {
-  timestamp: Date
-  action: string
-  questionIndex: number
-  details?: string
-}
+import { TestConfig, ExamState, TestResult, ActivityLogEntry } from '../types/exam.types'
 
 export function useExamState(testId: string) {
   const [config, setConfig] = useState<TestConfig | null>(null)

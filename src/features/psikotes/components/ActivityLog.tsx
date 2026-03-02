@@ -2,13 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Activity } from 'lucide-react'
-
-export interface ActivityLogEntry {
-  timestamp: Date
-  action: string
-  questionIndex: number
-  details?: string
-}
+import type { ActivityLogEntry } from '../types'
 
 interface ActivityLogProps {
   entries: ActivityLogEntry[]
