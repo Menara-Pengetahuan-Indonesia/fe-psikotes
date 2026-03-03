@@ -45,7 +45,7 @@ export function PsikotesTransformationMap() {
               </div>
               <h2 className="text-3xl font-black text-white tracking-tight leading-tight">
                 Peta Perjalanan <br />
-                <span className="text-accent-400 italic">"The New You"</span>
+                <span className="text-accent-400 italic">&quot;The New You&quot;</span>
               </h2>
               <p className="text-primary-100/60 text-sm font-medium leading-relaxed">
                 Empat langkah kunci untuk melepaskan kendala masa lalu dan meraih masa depan yang indah. Semua bermula dari sini.

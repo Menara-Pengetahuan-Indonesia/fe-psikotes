@@ -84,7 +84,7 @@ export function PsikotesJoinPractitioner() {
                    </div>
 
                    <div className="space-y-1">
-                      <h4 className="text-2xl font-black text-slate-900 tracking-tight leading-none italic">"The New You"</h4>
+                      <h4 className="text-2xl font-black text-slate-900 tracking-tight leading-none italic">&quot;The New You&quot;</h4>
                       <p className="text-[10px] font-black text-primary-600 uppercase tracking-widest">Certified Life Coach</p>
                    </div>
 

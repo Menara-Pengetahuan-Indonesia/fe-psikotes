@@ -77,7 +77,7 @@ export function PsikotesPillars() {
               Semua Bisa <BermoelaText className="text-accent-300" /> Dari Sini
             </h2>
             <p className="text-primary-100/60 font-medium max-w-2xl mx-auto text-sm md:text-base">
-              Empat pilar transformasi untuk membantumu melepaskan diri dari kendala masa lalu menuju "The New You".
+              Empat pilar transformasi untuk membantumu melepaskan diri dari kendala masa lalu menuju &quot;The New You&quot;.
             </p>
           </div>
 

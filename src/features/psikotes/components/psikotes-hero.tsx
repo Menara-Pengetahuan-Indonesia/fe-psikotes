@@ -59,7 +59,7 @@ export function PsikotesHero() {
                 Mental Health untuk Tumbuh dan <br className="hidden md:block" /> Sukses di <span className="text-accent-300 italic">Era Penuh Tekanan</span>
               </h1>
               <p className="text-sm md:text-base text-primary-50/80 max-w-xl mx-auto leading-relaxed font-medium text-pretty">
-                Assessment berbasis riset psikologi untuk membantumu mendapatkan <span className="text-white font-bold italic">"The New You"</span>, dirimu yang baru menyambut masa depan yang indah.
+                Assessment berbasis riset psikologi untuk membantumu mendapatkan <span className="text-white font-bold italic">&quot;The New You&quot;</span>, dirimu yang baru menyambut masa depan yang indah.
               </p>
             </div>
           </div>

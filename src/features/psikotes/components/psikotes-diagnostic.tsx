@@ -201,7 +201,7 @@ export function PsikotesDiagnostic() {
           <Loader2 className="w-10 h-10 text-white animate-spin" />
           <div className="space-y-1">
             <h3 className="text-white font-black uppercase text-xs tracking-widest">Merumuskan Solusi</h3>
-            <p className="text-white/60 text-xs font-medium">Asisten sedang memetakan potensi "The New You"...</p>
+            <p className="text-white/60 text-xs font-medium">Asisten sedang memetakan potensi &quot;The New You&quot;...</p>
           </div>
         </div>
       )}
