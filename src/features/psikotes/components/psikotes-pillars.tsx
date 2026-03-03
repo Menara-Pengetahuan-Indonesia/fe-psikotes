@@ -6,14 +6,13 @@ import {
   CheckCircle2,
   Target,
   Sparkles,
-  Flower2,
   Sunrise,
   Plus,
   Circle
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { BermoelaText } from './bermoela-text'
-import { TOPO_PRIMARY, TOPO_PRIMARY_LIGHT, TOPO_WHITE, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
+import { TOPO_PRIMARY, TOPO_WHITE, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 import { PILLARS } from '../constants'
 
 export function PsikotesPillars() {

@@ -28,7 +28,7 @@ export function useExamState(testId: string) {
           timeLeft: response.data.test.duration * 60, // convert to seconds
         }))
         addActivityLog('Test dimulai', 0)
-      } catch (err) {
+      } catch {
         setError('Failed to load test')
       } finally {
         setLoading(false)
@@ -36,7 +36,7 @@ export function useExamState(testId: string) {
     }
 
     fetchConfig()
-  }, [testId])
+  }, [testId, addActivityLog])
 
   // Timer
   useEffect(() => {
@@ -52,6 +52,7 @@ export function useExamState(testId: string) {
       // Auto-submit when time runs out
       handleSubmit()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- handleSubmit is intentionally excluded: adding it would reset the timer on every answer/index change
   }, [state.isFinished, state.timeLeft, config])
 
   const addActivityLog = useCallback((action: string, questionIndex: number, details?: string) => {

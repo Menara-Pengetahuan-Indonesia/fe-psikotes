@@ -20,8 +20,6 @@ import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 import { useAuthStoreHydrated } from '@/store/auth.store'
-import type { UserRole } from '@/store/auth.store'
-import { cn } from '@/lib/utils'
 
 export default function DashboardPage() {
   const { user, _hasHydrated } = useAuthStoreHydrated()

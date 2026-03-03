@@ -16,7 +16,6 @@ import {
   Users,
   BookOpen,
   Settings,
-  ShieldCheck,
 } from 'lucide-react'
 
 import { useAuthStoreHydrated } from '@/store/auth.store'

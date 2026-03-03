@@ -3,15 +3,12 @@
 import Link from 'next/link'
 import {
   CalendarDays,
-  BarChart3,
   Users,
   Zap,
-  Settings,
   FileText,
   Target,
   TrendingUp,
   Lock,
-  Database,
   AlertCircle,
 } from 'lucide-react'
 

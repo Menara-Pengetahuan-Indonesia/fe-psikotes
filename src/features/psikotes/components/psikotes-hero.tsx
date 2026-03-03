@@ -9,7 +9,6 @@ import {
   Diamond,
   Star
 } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import { TOPO_WHITE, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 import { PsikotesDiagnostic } from './psikotes-diagnostic'
 import { BermoelaText } from './bermoela-text'

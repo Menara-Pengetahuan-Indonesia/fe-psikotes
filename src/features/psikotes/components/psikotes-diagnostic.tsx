@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { ArrowRight, RotateCcw, Brain, MessageSquare, Send, Loader2, CheckCircle2, Sparkles, Search, User, Sunrise } from 'lucide-react'
+import { ArrowRight, RotateCcw, Brain, MessageSquare, Send, Loader2, Sparkles, Search, User, Sunrise } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export function PsikotesDiagnostic() {

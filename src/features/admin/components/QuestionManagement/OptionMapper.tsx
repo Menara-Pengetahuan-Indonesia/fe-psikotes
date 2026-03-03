@@ -21,7 +21,7 @@ interface OptionMapperProps {
 
 export function OptionMapper({
   testId,
-  questionId,
+  questionId: _questionId,
   option,
 }: OptionMapperProps) {
   const { data: indicators, isLoading } = useIndicators(testId)
@@ -34,9 +34,6 @@ export function OptionMapper({
   }
 
   const existingMappings = option.mappings || []
-  const mappedIndicatorIds = new Set(
-    existingMappings.map((m) => m.indicatorId),
-  )
 
   const handleAddMapping = (indicatorId: string) => {
     const scoreValue = scoreValues[indicatorId] || 0

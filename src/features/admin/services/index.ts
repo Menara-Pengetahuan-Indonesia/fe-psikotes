@@ -18,7 +18,6 @@ import type {
   CreateQuestionOptionDto,
   UpdateQuestionOptionDto,
   CreateOptionIndicatorMappingDto,
-  UpdateOptionIndicatorMappingDto,
   CreateScoringRuleDto,
   UpdateScoringRuleDto,
 } from '../types'

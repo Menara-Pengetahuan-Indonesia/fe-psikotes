@@ -447,7 +447,7 @@ export function BulkImportCSV({ testId }: BulkImportCSVProps) {
     testId,
     queryClient,
     resetState,
-    progress.current,
+    progress,
   ])
 
   const toggleErrorExpand = useCallback((index: number) => {

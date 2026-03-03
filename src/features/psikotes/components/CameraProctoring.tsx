@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Camera, CameraOff, AlertCircle } from 'lucide-react'
+import { CameraOff, AlertCircle } from 'lucide-react'
 
 interface CameraProctoringProps {
   isEnabled: boolean
@@ -16,6 +16,8 @@ export function CameraProctoring({ isEnabled, onToggle }: CameraProctoringProps)
   useEffect(() => {
     if (!isEnabled) return
 
+    const videoElement = videoRef.current
+
     const startCamera = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
@@ -23,12 +25,12 @@ export function CameraProctoring({ isEnabled, onToggle }: CameraProctoringProps)
           audio: false,
         })
 
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream
+        if (videoElement) {
+          videoElement.srcObject = stream
           setHasPermission(true)
           setError(null)
         }
-      } catch (err) {
+      } catch {
         setHasPermission(false)
         setError('Tidak dapat mengakses kamera. Periksa izin browser Anda.')
       }
@@ -37,8 +39,8 @@ export function CameraProctoring({ isEnabled, onToggle }: CameraProctoringProps)
     startCamera()
 
     return () => {
-      if (videoRef.current?.srcObject) {
-        const tracks = (videoRef.current.srcObject as MediaStream).getTracks()
+      if (videoElement?.srcObject) {
+        const tracks = (videoElement.srcObject as MediaStream).getTracks()
         tracks.forEach(track => track.stop())
       }
     }

@@ -6,11 +6,9 @@ import {
   BarChart3,
   Users,
   Zap,
-  Settings,
   FileText,
   Target,
   TrendingUp,
-  ChevronRight,
 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'

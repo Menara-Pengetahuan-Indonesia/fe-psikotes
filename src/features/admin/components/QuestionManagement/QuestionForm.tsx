@@ -108,7 +108,6 @@ export function QuestionForm({
   }, [open, initialData, isEditing, reset])
 
   const questionType = watch('type')
-  const currentImageUrl = watch('imageUrl')
   const showOptions =
     !isEditing &&
     (questionType === 'MULTIPLE_CHOICE' || questionType === 'TRUE_FALSE')

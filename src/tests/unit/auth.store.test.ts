@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 import { useAuthStore, useAuthStoreHydrated } from '@/store/auth.store'
 import type { User } from '@/store/auth.store'
