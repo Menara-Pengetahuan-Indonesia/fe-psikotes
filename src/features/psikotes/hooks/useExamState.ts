@@ -17,6 +17,18 @@ export function useExamState(testId: string) {
   const [error, setError] = useState<string | null>(null)
   const [activityLog, setActivityLog] = useState<ActivityLogEntry[]>([])
 
+  const addActivityLog = useCallback((action: string, questionIndex: number, details?: string) => {
+    setActivityLog(prev => [
+      ...prev,
+      {
+        timestamp: new Date(),
+        action,
+        questionIndex,
+        details,
+      },
+    ])
+  }, [])
+
   // Fetch test config
   useEffect(() => {
     const fetchConfig = async () => {
@@ -54,18 +66,6 @@ export function useExamState(testId: string) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps -- handleSubmit is intentionally excluded: adding it would reset the timer on every answer/index change
   }, [state.isFinished, state.timeLeft, config])
-
-  const addActivityLog = useCallback((action: string, questionIndex: number, details?: string) => {
-    setActivityLog(prev => [
-      ...prev,
-      {
-        timestamp: new Date(),
-        action,
-        questionIndex,
-        details,
-      },
-    ])
-  }, [])
 
   const handleAnswer = useCallback((optionId: string) => {
     if (!config) return
