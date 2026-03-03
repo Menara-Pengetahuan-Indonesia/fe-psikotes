@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -270,10 +271,13 @@ export function QuestionForm({
             <label className="text-sm font-medium">Gambar (Opsional)</label>
             {imagePreview ? (
               <div className="relative inline-block">
-                <img
+                <Image
                   src={imagePreview}
                   alt="Preview"
-                  className="max-h-48 rounded-md border"
+                  width={400}
+                  height={192}
+                  className="max-h-48 rounded-md border object-contain"
+                  unoptimized
                 />
                 <Button
                   type="button"
