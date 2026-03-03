@@ -2,8 +2,8 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 import {
-  Sparkles,
   Plus,
   Star,
   Circle,
@@ -115,30 +115,17 @@ export function Footer() {
               href="/"
               className="flex items-center gap-2.5 group"
             >
-              <div
+              <Image
+                src="/logo/logo_bermoela.png"
+                alt="Bermoela"
+                width={40}
+                height={40}
                 className={cn(
-                  'w-10 h-10 rounded-lg',
-                  'flex items-center justify-center',
-                  'shadow-lg group-hover:rotate-12',
+                  'w-10 h-10 object-contain',
+                  'group-hover:rotate-12',
                   'transition-transform duration-300',
-                  theme.logoBg,
                 )}
-              >
-                <Sparkles
-                  className="w-5 h-5 text-white fill-white"
-                />
-              </div>
-              <span
-                className={cn(
-                  'font-black text-2xl tracking-tight',
-                  'text-white',
-                )}
-              >
-                BER
-                <span className={theme.brandAccent}>
-                  MOELA
-                </span>
-              </span>
+              />
             </Link>
             <p
               className={cn(

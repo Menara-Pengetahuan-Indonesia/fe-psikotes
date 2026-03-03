@@ -20,7 +20,7 @@ export function PsikotesPillars() {
   const activeData = PILLARS.find(p => p.id === activePillar) || PILLARS[0]
 
   return (
-    <section id="konsultasi" className="bg-background py-16 md:py-24 relative overflow-hidden">
+    <section id="konsultasi" className="bg-background py-12 md:py-16 relative overflow-hidden">
       
       {/* Background Pattern for the whole section to avoid "too clean" look */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none"
@@ -75,7 +75,7 @@ export function PsikotesPillars() {
             <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">
               Semua Bisa <BermoelaText className="text-accent-300" /> Dari Sini
             </h2>
-            <p className="text-primary-100/60 font-medium max-w-2xl mx-auto text-sm md:text-base">
+            <p className="text-primary-100/60 font-medium max-w-3xl mx-auto text-sm md:text-base leading-relaxed">
               Empat pilar transformasi untuk membantumu melepaskan diri dari kendala masa lalu menuju &quot;The New You&quot;.
             </p>
           </div>
@@ -112,7 +112,7 @@ export function PsikotesPillars() {
                         {pillar.title}
                       </h3>
                       <p className={cn(
-                        "text-[10px] font-bold uppercase tracking-widest truncate",
+                        "text-xs font-bold uppercase tracking-widest truncate",
                         activePillar === pillar.id ? pillar.accentColor : "text-primary-300/60"
                       )}>
                         {pillar.subtitle}
@@ -128,7 +128,7 @@ export function PsikotesPillars() {
               <div className="bg-white rounded-[3rem] p-8 md:p-12 shadow-soft-xl border border-white/10 relative overflow-hidden min-h-[500px] flex flex-col animate-in fade-in duration-700 w-full">
                 
                 <div className="flex items-center gap-3 mb-10 w-full">
-                  <div className="px-4 py-1.5 rounded-full bg-primary-900 text-white text-[10px] font-black uppercase tracking-widest shrink-0">
+                  <div className="px-4 py-1.5 rounded-full bg-primary-900 text-white text-xs font-black uppercase tracking-widest shrink-0">
                     Detail Transformasi
                   </div>
                   <div className="h-px flex-1 bg-slate-100" />
@@ -140,7 +140,7 @@ export function PsikotesPillars() {
                   <div className="space-y-4 w-full">
                     <div className="flex items-center gap-2 text-rose-600 shrink-0">
                       <Target className="w-4 h-4" />
-                      <span className="text-[10px] font-black uppercase tracking-widest">Kendala / Masalah</span>
+                      <span className="text-xs font-black uppercase tracking-widest">Kendala / Masalah</span>
                     </div>
                     <p className="text-slate-900 text-2xl md:text-3xl font-black leading-tight italic break-words">
                       &quot;{activeData.detail.problem}&quot;
@@ -152,7 +152,7 @@ export function PsikotesPillars() {
                     <div className="flex-1 space-y-3 p-6 bg-slate-50 rounded-[2rem] border border-slate-100 w-full shadow-sm">
                       <div className="flex items-center gap-2 text-primary-600">
                         <div className="w-2 h-2 rounded-full bg-primary-600" />
-                        <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Produk</span>
+                        <span className="text-xs font-black uppercase tracking-widest text-slate-400">Produk</span>
                       </div>
                       <p className="text-slate-900 font-black text-sm md:text-base leading-tight">
                         {activeData.detail.product}
@@ -161,7 +161,7 @@ export function PsikotesPillars() {
                     <div className="flex-1 space-y-3 p-6 bg-slate-50 rounded-[2rem] border border-slate-100 w-full shadow-sm">
                       <div className="flex items-center gap-2 text-emerald-600">
                         <CheckCircle2 className="w-4 h-4" />
-                        <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Solusi</span>
+                        <span className="text-xs font-black uppercase tracking-widest text-slate-400">Solusi</span>
                       </div>
                       <p className="text-slate-800 font-bold text-xs md:text-sm leading-relaxed">
                         {activeData.detail.solution}
@@ -175,7 +175,7 @@ export function PsikotesPillars() {
                       <div className="w-5 h-5 rounded-full bg-accent-100 flex items-center justify-center">
                          <Sunrise className="w-3 h-3 text-accent-600" />
                       </div>
-                      <span className="text-[11px] font-black uppercase tracking-widest">The New You Result</span>
+                      <span className="text-xs font-black uppercase tracking-widest">The New You Result</span>
                     </div>
                     
                     {/* REDESIGNED CARD: Dynamic Brand Colors */}
@@ -195,7 +195,7 @@ export function PsikotesPillars() {
                        
                        <div className="relative z-10 space-y-4">
                           <div className="space-y-1">
-                             <p className="text-[10px] font-black opacity-60 uppercase tracking-[0.2em]">Transformasi Akhir</p>
+                             <p className="text-xs font-black opacity-60 uppercase tracking-[0.2em]">Transformasi Akhir</p>
                              <p className="text-2xl md:text-3xl font-black tracking-tight leading-tight">
                                {activeData.detail.benefit}
                              </p>
@@ -203,7 +203,7 @@ export function PsikotesPillars() {
                           
                           <div className="flex items-center gap-3 pt-2">
                              <div className={cn("h-1 w-12 rounded-full", activeData.theme.accent)} />
-                             <p className="text-[10px] font-black uppercase tracking-widest opacity-80 italic">Ready to Bloom</p>
+                             <p className="text-xs font-black uppercase tracking-widest opacity-80 italic">Ready to Bloom</p>
                              <Sparkles className="w-3 h-3 text-accent-300 animate-pulse" />
                           </div>
                        </div>

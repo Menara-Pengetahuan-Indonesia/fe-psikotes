@@ -8,29 +8,29 @@ import {
 export const TRANSFORMATION_STEPS = [
   {
     id: 'pemetaan',
-    title: 'Pemetaan Diri',
-    description: 'Assessment & Psikotes Profesional sebagai baseline perubahanmu.',
+    title: 'Bedah Akurat Dirimu',
+    description: 'Hentikan tebak-tebakan, gunakan baseline psikotes profesional untuk melihat siapa kamu sebenarnya.',
     icon: Search,
     color: 'bg-primary-800 text-primary-50',
   },
   {
     id: 'konsultasi',
-    title: 'Konsultasi & Layanan',
-    description: 'Pahami langkah nyata yang harus diambil bersama para ahli.',
+    title: 'Tuntaskan Akar Masalah',
+    description: 'Urai benang kusut masalahmu bersama ahli, temukan langkah nyata untuk berhenti merasa stuck.',
     icon: MessageSquare,
     color: 'bg-accent-500 text-white',
   },
   {
     id: 'masa-depan',
-    title: 'Masa Depan',
-    description: 'Pelatihan Mental Health & Sertifikasi Praktisi untuk tumbuh sukses.',
+    title: 'Kuasai Masa Depan',
+    description: 'Pelatihan Mental Health, & Sertifikasi Praktisi untuk memegang kendali penuh atas karir dan hidupmu.',
     icon: GraduationCap,
     color: 'bg-primary-600 text-white',
   },
   {
     id: 'komunitas',
-    title: 'Bergabung Komunitas',
-    description: 'Join BERMOELA sebagai Life Coach & Psikolog tersertifikasi.',
+    title: 'Jadilah Cahaya Solusi',
+    description: 'Berdampaklah bagi orang lain, bergabung sebagai Life Coach, & Psikolog profesional yang tersertifikasi.',
     icon: Users,
     color: 'bg-accent-600 text-white',
   }

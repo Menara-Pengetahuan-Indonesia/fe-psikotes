@@ -208,33 +208,45 @@ export function PsikotesDiagnostic() {
 
       {/* 3. RESULT/CHAT PHASE */}
       {(phase === 'result' || (phase === 'thinking' && messages.length > 1)) && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch animate-in fade-in slide-in-from-bottom-4 duration-700 max-w-6xl mx-auto">
-          
-          {/* LEFT CARD: USER HISTORY (FIXED HEIGHT, HIDDEN SCROLLBAR) */}
-          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 flex flex-col gap-6 text-left relative overflow-hidden group h-[500px]">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
-                <User className="w-4 h-4 text-white" />
-              </div>
-              <span className="text-[10px] font-black text-white/60 uppercase tracking-widest">Riwayat Ceritamu</span>
+        <div className="max-w-6xl mx-auto space-y-12">
+          {/* Subtle sub-caption above cards */}
+          <div className="text-center animate-in fade-in slide-in-from-top-4 duration-1000">
+             <p className="text-xs font-black text-white/40 uppercase tracking-[0.4em]">
+                Ceritakan masalahmu, AI Counsellor akan mendengarkanmu
+             </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-6 items-stretch animate-in fade-in slide-in-from-bottom-4 duration-700 w-full pt-4">
+            
+            {/* LEFT CARD: USER HISTORY (FIXED HEIGHT, HIDDEN SCROLLBAR) */}
+          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 flex flex-col gap-6 text-left relative h-[500px]">
+            
+            {/* FLOATING TOP LABEL (The "Cap") */}
+            <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20 w-full flex justify-center">
+               <div className="bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-2xl shadow-xl border border-white/20 flex items-center gap-3 animate-in slide-in-from-top-4 duration-1000">
+                  <div className="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center">
+                    <User className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-xs font-black text-white uppercase tracking-widest">Ceritakan Masalahmu</span>
+               </div>
             </div>
             
             <div 
               ref={messagesContainerRef}
-              className="flex-1 space-y-4 overflow-y-auto pr-2 no-scrollbar scroll-smooth"
+              className="flex-1 space-y-4 overflow-y-auto pr-2 no-scrollbar scroll-smooth mt-4"
             >
               {messages.filter(m => m.role === 'user').map((msg, idx) => (
                 <div key={idx} className="flex flex-col gap-2 animate-in fade-in slide-in-from-left-2 duration-300">
                   <div className="p-4 rounded-2xl text-sm font-medium leading-relaxed bg-primary-600 text-white rounded-tr-none shadow-lg shadow-primary-900/20">
                     {msg.content}
                   </div>
-                  <span className="text-[8px] font-black text-white/30 uppercase tracking-widest px-1">
-                    Input #{idx + 1}
+                  <span className="text-xs font-black text-white/30 uppercase tracking-widest px-1">
+                    Masalah #{idx + 1}
                   </span>
                 </div>
               ))}
               {phase === 'thinking' && (
-                <div className="flex items-center gap-2 text-white/40 italic text-[10px] animate-pulse pt-2">
+                <div className="flex items-center gap-2 text-white/40 italic text-xs animate-pulse pt-2">
                   <Loader2 className="w-3 h-3 animate-spin" />
                   Bermoela sedang menganalisis tambahan ceritamu...
                 </div>
@@ -243,7 +255,7 @@ export function PsikotesDiagnostic() {
 
             {/* Re-input Area */}
             <div className="pt-6 border-t border-white/10 space-y-4">
-              <span className="text-[9px] font-black text-white/40 uppercase tracking-widest">Lanjutkan ceritamu...</span>
+              <span className="text-xs font-black text-white/40 uppercase tracking-widest">Lanjutkan ceritamu...</span>
               <form 
                 onSubmit={handleManualSubmit}
                 className="relative flex items-end bg-white/10 rounded-2xl border border-white/20 p-1 focus-within:bg-white/20 transition-all"
@@ -275,25 +287,29 @@ export function PsikotesDiagnostic() {
             
             <button 
               onClick={reset}
-              className="text-[9px] font-black text-white/40 hover:text-white transition-colors uppercase tracking-widest flex items-center gap-2 self-start"
+              className="text-xs font-black text-white/40 hover:text-white transition-colors uppercase tracking-widest flex items-center gap-2 self-start"
             >
               <RotateCcw className="w-3 h-3" /> Mulai Dari Awal
             </button>
           </div>
 
           {/* RIGHT CARD: LATEST INSIGHT (DYNAMIC) */}
-          <div className="bg-white rounded-3xl p-8 shadow-2xl border border-slate-100 flex flex-col gap-6 text-left relative overflow-hidden h-[500px]">
-            <div className="flex items-center gap-2 shrink-0">
-              <div className="w-8 h-8 rounded-lg bg-accent-100 flex items-center justify-center">
-                <Sunrise className="w-4 h-4 text-accent-600" />
-              </div>
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Analisis & Respon AI</span>
-            </div>
+          <div className="bg-white rounded-3xl p-8 shadow-2xl border border-slate-100 flex flex-col gap-6 text-left relative h-[500px]">
             
-            <div className="flex-1 flex flex-col overflow-hidden">
+            {/* FLOATING TOP LABEL (The "Cap") */}
+            <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20 w-full flex justify-center">
+               <div className="bg-white px-5 py-2.5 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3 animate-in slide-in-from-top-4 duration-1000">
+                  <div className="w-7 h-7 rounded-lg bg-accent-500 flex items-center justify-center shadow-lg shadow-accent-500/20">
+                    <Sunrise className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-xs font-black text-slate-800 uppercase tracking-widest">Respon AI Counsellor</span>
+               </div>
+            </div>
+
+            <div className="flex-1 flex flex-col overflow-hidden mt-2">
               <div className="flex-1 overflow-y-auto no-scrollbar pr-1">
                 <div key={lastAssistantMessage} className="p-6 bg-slate-50 rounded-2xl border border-slate-100 animate-in fade-in slide-in-from-right-4 duration-500 mb-4">
-                   <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-3">Tanggapan Bermoela:</span>
+                   <span className="text-xs font-black text-slate-400 uppercase tracking-widest block mb-3">Tanggapan Bermoela:</span>
                    <p className="text-slate-700 font-bold text-lg leading-relaxed">
                      {lastAssistantMessage}
                    </p>
@@ -303,7 +319,7 @@ export function PsikotesDiagnostic() {
               <div className="shrink-0 pt-4 border-t border-slate-50 mt-auto">
                 {rec ? (
                   <div key={rec.title} className="flex flex-col gap-3 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                    <span className="text-[9px] font-black text-slate-300 uppercase tracking-widest">Rekomendasi Solusi:</span>
+                    <span className="text-xs font-black text-slate-300 uppercase tracking-widest">Rekomendasi Solusi:</span>
                     <a 
                       href={rec.href}
                       className={cn(
@@ -317,7 +333,7 @@ export function PsikotesDiagnostic() {
                         </div>
                         <div>
                           <h4 className="text-sm font-black tracking-tight">{rec.title}</h4>
-                          <p className="text-[10px] opacity-80 font-medium">{rec.desc}</p>
+                          <p className="text-xs opacity-80 font-medium">{rec.desc}</p>
                         </div>
                       </div>
                       <ArrowRight className="w-4 h-4" />
@@ -325,7 +341,7 @@ export function PsikotesDiagnostic() {
                   </div>
                 ) : (
                   <div className="p-5 rounded-2xl border-2 border-dashed border-slate-100 flex items-center justify-center text-center">
-                     <p className="text-[10px] font-bold text-slate-300 uppercase tracking-widest leading-loose">
+                     <p className="text-xs font-bold text-slate-300 uppercase tracking-widest leading-loose">
                         AI sedang mendalami ceritamu.<br/>Lanjutkan untuk mendapatkan solusi.
                      </p>
                   </div>
@@ -339,7 +355,7 @@ export function PsikotesDiagnostic() {
                     "w-2 h-2 rounded-full animate-pulse",
                     phase === 'thinking' ? "bg-amber-400" : "bg-emerald-500"
                   )} />
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tight">
+                  <span className="text-xs font-bold text-slate-400 uppercase tracking-tight">
                     {phase === 'thinking' ? 'Menganalisis...' : 'Analisis Aktif'}
                   </span>
                </div>
@@ -348,6 +364,7 @@ export function PsikotesDiagnostic() {
           </div>
 
         </div>
+      </div>
       )}
     </div>
   )

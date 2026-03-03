@@ -20,28 +20,27 @@ export function PsikotesProducts() {
   type FilterCategory = typeof filter
 
   const categories: { id: FilterCategory; label: string }[] = [
-    { id: 'all', label: 'Semua Produk' },
-    { id: 'Kepribadian', label: 'The New You' },
-    { id: 'Intelligence', label: 'Kapasitas Diri' },
-    { id: 'Karir & Studi', label: 'Jalur Sukses' },
-    { id: 'Hubungan', label: 'Masa Depan Indah' }
+    { id: 'Kepribadian', label: 'Diri Sendiri' },
+    { id: 'Hubungan', label: 'Relationship' },
+    { id: 'Karir & Studi', label: 'Karir' },
+    { id: 'all', label: 'Semua Produk' }
   ]
 
   return (
-    <section id="masa-depan" className="py-24 bg-background relative overflow-hidden">
+    <section id="masa-depan" className="py-12 md:py-16 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         <div className="space-y-12 mb-16">
           <div className="space-y-4 max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-100 border border-accent-200 shadow-sm animate-bounce-subtle">
                <Zap className="w-3 h-3 text-accent-600 fill-accent-600" />
-               <span className="text-[10px] font-black text-accent-700 uppercase tracking-widest">Premium Assessment</span>
+               <span className="text-xs font-black text-accent-700 uppercase tracking-widest">Premium Assessment</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-none">
-              Pilih Alat Bantu <span className="text-primary-600 italic">Transformasimu</span>
+              Ambil Senjata <span className="text-primary-600 italic">Transformasimu</span>
             </h2>
             <p className="text-slate-500 font-medium text-sm md:text-base">
-              Setiap alat tes dirancang untuk memberikan baseline yang akurat guna melepaskan kendala masa lalu dan meraih masa depan yang indah.
+              Setiap alat tes dirancang untuk membongkar kebenaran yang kamu butuhkan guna melepaskan belenggu masa lalu sekarang juga.
             </p>
           </div>
 
@@ -78,7 +77,7 @@ export function PsikotesProducts() {
                 )}>
                   <product.icon className="w-6 h-6" />
                 </div>
-                <div className="px-3 py-1 rounded-full bg-slate-50 text-[9px] font-black text-slate-400 uppercase tracking-widest">
+                <div className="px-3 py-1 rounded-full bg-slate-50 text-xs font-black text-slate-400 uppercase tracking-widest">
                   {product.tag}
                 </div>
               </div>
@@ -96,14 +95,14 @@ export function PsikotesProducts() {
                 <div className="flex items-center justify-between">
                    <div className="flex items-center gap-1.5 text-amber-500">
                       <Star className="w-3.5 h-3.5 fill-current" />
-                      <span className="text-[10px] font-bold text-slate-600">{product.users}</span>
+                      <span className="text-xs font-bold text-slate-600">{product.users}</span>
                    </div>
                    <span className="text-sm font-black text-slate-900">{product.price}</span>
                 </div>
                 
                 <a 
                   href={`/psikotes/pembayaran?id=${product.id}`}
-                  className="w-full h-12 rounded-xl bg-primary-600 text-white flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest hover:bg-primary-700 transition-all shadow-lg shadow-primary-100"
+                  className="w-full h-12 rounded-xl bg-primary-600 text-white flex items-center justify-center gap-2 text-xs font-black uppercase tracking-widest hover:bg-primary-700 transition-all shadow-lg shadow-primary-100"
                 >
                   Pilih Layanan <ArrowRight className="w-4 h-4" />
                 </a>

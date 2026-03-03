@@ -16,7 +16,7 @@ export function PsikotesTransformationMap() {
   }
 
   return (
-    <section className="py-16 md:py-24 bg-linear-to-b from-primary-600 to-background relative">
+    <section className="py-12 md:py-16 bg-linear-to-b from-primary-600 to-background relative">
       {/* Extension of the Topo Pattern from Hero to make the blend completely seamless */}
       <div className="absolute top-0 left-0 w-full h-1/2 opacity-[0.05] pointer-events-none mix-blend-overlay"
            style={{
@@ -41,14 +41,14 @@ export function PsikotesTransformationMap() {
             <div className="lg:col-span-4 space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10">
                 <Sparkles className="w-3 h-3 text-accent-400 fill-accent-400" />
-                <span className="text-[10px] font-black text-primary-100 uppercase tracking-widest">Transformation Journey</span>
+                <span className="text-xs font-black text-primary-100 uppercase tracking-widest">Transformation Journey</span>
               </div>
               <h2 className="text-3xl font-black text-white tracking-tight leading-tight">
-                Peta Perjalanan <br />
-                <span className="text-accent-400 italic">&quot;The New You&quot;</span>
+                Hancurkan Belenggu <br />
+                <span className="text-accent-400 italic">Masa Lalumu</span>
               </h2>
               <p className="text-primary-100/60 text-sm font-medium leading-relaxed">
-                Empat langkah kunci untuk melepaskan kendala masa lalu dan meraih masa depan yang indah. Semua bermula dari sini.
+                Empat langkah kunci untuk melepaskan diri dari kegagalan dan membangun masa depan yang indah. Semua harus bermula dari sini.
               </p>
               <div className="flex items-center gap-4 pt-4">
                  <div className="flex -space-x-2">
@@ -56,7 +56,7 @@ export function PsikotesTransformationMap() {
                       <div key={i} className="w-8 h-8 rounded-full border-2 border-primary-900 bg-primary-800" />
                     ))}
                  </div>
-                 <span className="text-[10px] font-black text-primary-300/60 uppercase tracking-widest">+10k Wanita Berdaya</span>
+                 <span className="text-xs font-black text-primary-300/60 uppercase tracking-widest">+10k Wanita Berdaya</span>
               </div>
             </div>
 
@@ -75,8 +75,8 @@ export function PsikotesTransformationMap() {
                       <step.icon className="w-6 h-6" />
                     </div>
                     <div className="space-y-1">
-                      <h4 className="font-black text-white text-sm tracking-tight">{step.title}</h4>
-                      <p className="text-[10px] text-primary-100/50 font-medium leading-relaxed">
+                      <h4 className="font-black text-white text-base tracking-tight">{step.title}</h4>
+                      <p className="text-sm text-primary-100/50 font-medium leading-relaxed">
                         {step.description}
                       </p>
                     </div>
@@ -89,7 +89,7 @@ export function PsikotesTransformationMap() {
 
                   <button 
                     onClick={() => scrollToSection(step.id)}
-                    className="mt-4 flex items-center gap-2 text-[9px] font-black text-accent-400 uppercase tracking-widest transition-all hover:text-accent-300 group/btn"
+                    className="mt-4 flex items-center gap-2 text-xs font-black text-accent-400 uppercase tracking-widest transition-all hover:text-accent-300 group/btn"
                   >
                     Eksplorasi <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
                   </button>

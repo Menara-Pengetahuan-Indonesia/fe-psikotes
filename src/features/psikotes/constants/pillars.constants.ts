@@ -8,9 +8,9 @@ import {
 export const PILLARS = [
   {
     id: 'pemetaan',
-    title: 'Kenali Dirimu (Pemetaan Diri)',
-    subtitle: 'Baseline & Titik Awal',
-    description: 'Tanpa kesadaran tidak mungkin ada perubahan. Pahami area yang kurang dan area yang sudah bagus.',
+    title: 'Hentikan Kebingungan (Pemetaan)',
+    subtitle: 'Wajah Asli Dirimu',
+    description: 'Berhenti meraba-raba kegelapan. Sadari area yang membuatmu gagal, dan perkuat apa yang sudah bagus.',
     icon: Search,
     color: 'bg-primary-100 text-primary-600',
     accentColor: 'text-primary-500',
@@ -21,17 +21,17 @@ export const PILLARS = [
       shadow: 'shadow-primary-900/20'
     },
     detail: {
-      problem: 'Merasa stuck, tidak tahu arah, atau bingung dengan potensi diri sendiri.',
-      product: 'Asesmen & Psikotes Profesional (Bermula Assessment).',
-      solution: 'Melakukan pemetaan diri secara akurat berdasarkan riset psikologi.',
-      benefit: 'Memiliki baseline yang jelas untuk merancang masa depan.'
+      problem: 'Stagnan tanpa arah, bingung dengan potensi diri, dan takut salah melangkah.',
+      product: 'Psikotes Profesional "Bermula Assessment".',
+      solution: 'Bedah tuntas kondisi mentalmu secara akurat, berbasis riset psikologi.',
+      benefit: 'Dapatkan kompas hidup yang presisi, untuk kuasai masa depanmu.'
     }
   },
   {
     id: 'konsultasi',
-    title: 'Kenali Hidupmu (Konsultasi)',
-    subtitle: 'Pahami Harus Bagaimana',
-    description: 'Konsultasikan hasil tes dengan ahlinya sehingga kamu paham langkah nyata yang harus diambil.',
+    title: 'Urai Benang Kusut (Konsultasi)',
+    subtitle: 'Tuntaskan Sekarang',
+    description: 'Bongkar hasil tesmu bersama ahlinya. Jangan biarkan masalah mengendap tanpa solusi nyata.',
     icon: MessageSquare,
     color: 'bg-indigo-100 text-indigo-600',
     accentColor: 'text-indigo-500',
@@ -42,17 +42,17 @@ export const PILLARS = [
       shadow: 'shadow-indigo-900/20'
     },
     detail: {
-      problem: 'Sudah tahu masalahnya, tapi tidak tahu cara mengurainya secara tuntas.',
-      product: 'Layanan Konseling & Konsultasi Ahli.',
-      solution: 'Sesi privat dengan psikolog profesional untuk mendapatkan panduan personal.',
-      benefit: 'Ketenangan pikiran dan strategi hidup yang lebih terarah.'
+      problem: 'Tahu masalahnya, tapi tidak tahu cara mencabut akarnya secara tuntas.',
+      product: 'Konseling Privat & Konsultasi Ahli.',
+      solution: 'Sesi khusus bersama psikolog, untuk merancang strategi hidup personalmu.',
+      benefit: 'Ketenangan batin, dan hilangnya keraguan dalam setiap keputusanmu.'
     }
   },
   {
     id: 'pelatihan',
-    title: 'Rancang Masa Depan (Pelatihan)',
-    subtitle: 'Tumbuh & Sukses',
-    description: 'Tingkatkan kemampuanmu dalam bidang mental health. Bukan sekadar bertahan, tapi benar-benar berkembang.',
+    title: 'Kuasai Skill (Pelatihan)',
+    subtitle: 'Tumbuh & Taklukkan',
+    description: 'Jangan cuma bertahan hidup. Kuasai skill mental health untuk tumbuh kuat di tengah tekanan.',
     icon: GraduationCap,
     color: 'bg-amber-100 text-amber-600',
     accentColor: 'text-amber-500',
@@ -63,17 +63,17 @@ export const PILLARS = [
       shadow: 'shadow-amber-900/20'
     },
     detail: {
-      problem: 'Kurangnya skill untuk menghadapi tekanan atau ingin mendalami bidang psikologi.',
-      product: 'Pelatihan Mental Health & Sertifikasi Praktisi.',
-      solution: 'Belajar metode praktis untuk tumbuh kuat dan sukses di era penuh tekanan.',
-      benefit: 'Menjadi pribadi yang berdaya dan memiliki sertifikasi kompetensi.'
+      problem: 'Lumpuh di bawah tekanan, atau ingin mendalami ilmu psikologi yang aplikatif.',
+      product: 'Pelatihan Mental Health, & Sertifikasi Praktisi.',
+      solution: 'Belajar metode praktis, untuk tumbuh tangguh, dan sukses di era penuh tekanan.',
+      benefit: 'Sertifikasi kompetensi, dan mental baja yang siap menghadapi apa pun.'
     }
   },
   {
     id: 'komunitas',
-    title: 'Kenali Masa Depanmu (Komunitas)',
-    subtitle: 'Berikan Solusi Bagi Lainnya',
-    description: 'Bergabunglah menjadi bagian dari solusi. Jadilah mental health practitioner dan bantu sesama.',
+    title: 'Jadilah Solusi (Komunitas)',
+    subtitle: 'Berdampak Bagi Sesama',
+    description: 'Jangan simpan perubahanmu sendiri. Bergabunglah dan jadilah penolong bagi orang lain.',
     icon: Users,
     color: 'bg-primary-100 text-primary-600',
     accentColor: 'text-primary-500',
@@ -84,10 +84,10 @@ export const PILLARS = [
       shadow: 'shadow-primary-950/30'
     },
     detail: {
-      problem: 'Ingin berkontribusi lebih luas namun tidak memiliki wadah atau komunitas.',
-      product: 'Join BERMOELA sebagai Life Coach & Psikolog Tersertifikasi.',
-      solution: 'Bergabung dalam ekosistem profesional untuk memberikan dampak positif.',
-      benefit: 'Masa depan yang indah dengan karir yang bermakna bagi orang lain.'
+      problem: 'Ingin memberi arti bagi hidup orang lain, namun bingung cara memulainya.',
+      product: 'Sertifikasi Life Coach, & Psikolog BERMOELA.',
+      solution: 'Masuk dalam ekosistem profesional, untuk memberikan dampak positif luas.',
+      benefit: 'Karir yang bermakna, dan kebanggaan menjadi pahlawan bagi sesama.'
     }
   }
 ]
