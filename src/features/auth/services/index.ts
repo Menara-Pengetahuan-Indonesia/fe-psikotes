@@ -1,4 +1,5 @@
 import { api } from '@/lib/axios'
+import axios from 'axios'
 import type { LoginFormData, RegisterFormData } from '../schemas'
 import type { User } from '@/store/auth.store'
 
@@ -17,12 +18,19 @@ function translateError(msg: string): string {
   return ERROR_MAP[msg] || msg
 }
 
+function extractAxiosErrorMessage(error: unknown): string | undefined {
+  if (axios.isAxiosError(error)) {
+    return error.response?.data?.message as string | undefined
+  }
+  return undefined
+}
+
 export function extractErrorMessage(error: unknown): string {
   if (error instanceof Error) {
     return translateError(error.message)
   }
   if (typeof error === 'object' && error !== null && 'message' in error) {
-    return translateError((error as any).message)
+    return translateError((error as { message: string }).message)
   }
   return 'Terjadi kesalahan, coba lagi.'
 }
@@ -52,8 +60,8 @@ export const authService = {
         accessToken: response.data.accessToken,
         refreshToken: response.data.refreshToken,
       }
-    } catch (error: any) {
-      const message = error.response?.data?.message || 'Login failed'
+    } catch (error: unknown) {
+      const message = extractAxiosErrorMessage(error) || 'Login failed'
       throw new Error(message)
     }
   },
@@ -76,8 +84,8 @@ export const authService = {
         },
         message: 'Registrasi berhasil',
       }
-    } catch (error: any) {
-      const message = error.response?.data?.message || 'Registration failed'
+    } catch (error: unknown) {
+      const message = extractAxiosErrorMessage(error) || 'Registration failed'
       throw new Error(message)
     }
   },
@@ -86,8 +94,8 @@ export const authService = {
     try {
       await api.post('/auth/logout')
       return { message: 'Berhasil logout' }
-    } catch (error: any) {
-      const message = error.response?.data?.message || 'Logout failed'
+    } catch (error: unknown) {
+      const message = extractAxiosErrorMessage(error) || 'Logout failed'
       throw new Error(message)
     }
   },

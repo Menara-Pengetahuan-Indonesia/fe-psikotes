@@ -17,7 +17,7 @@ test.describe('API Integration Tests - Fixed', () => {
       test.skip()
     }
 
-    const publishedTest = tests.find((t: any) => t.isPublished)
+    const publishedTest = tests.find((t: Record<string, unknown>) => t.isPublished)
     if (!publishedTest) {
       test.skip()
     }
@@ -67,7 +67,7 @@ test.describe('API Integration Tests - Fixed', () => {
 
   test('should measure API response time', async ({ request }) => {
     const startTime = Date.now()
-    const response = await request.get(`${API_BASE}/admin/tests`)
+    await request.get(`${API_BASE}/admin/tests`)
     const responseTime = Date.now() - startTime
 
     // Should respond within reasonable time

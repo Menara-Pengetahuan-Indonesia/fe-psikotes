@@ -40,7 +40,7 @@ test.describe('Backend API - Public Endpoints', () => {
     // Submit answers
     const submitResponse = await request.post(`${API_BASE}/tests/${testId}/submit`, {
       data: {
-        answers: config.questions.map((q: any) => ({
+        answers: (config.questions as Record<string, unknown>[]).map((q: Record<string, unknown>) => ({
           questionId: q.id,
           answer: 'Yes',
         })),
@@ -55,7 +55,7 @@ test.describe('Backend API - Public Endpoints', () => {
     const testId = '647e4a56-16b7-49c1-a3bd-8e6c80d09bc6'
 
     const startTime = Date.now()
-    const response = await request.get(`${API_BASE}/tests/${testId}/config`)
+    await request.get(`${API_BASE}/tests/${testId}/config`)
     const responseTime = Date.now() - startTime
 
     expect(responseTime).toBeLessThan(2000)

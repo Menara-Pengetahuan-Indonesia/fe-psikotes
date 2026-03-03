@@ -9,10 +9,11 @@ import { CameraProctoring } from './CameraProctoring'
 import { Button } from '@/components/ui/button'
 import { ChevronLeft, ChevronRight, Clock, AlertCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import type { TestConfig, TestResult, ExamQuestion } from '../types/exam.types'
 
 interface ExamInterfaceProps {
   testId: string
-  onComplete?: (result: any) => void
+  onComplete?: (result: TestResult) => void
 }
 
 export function ExamInterface({ testId, onComplete }: ExamInterfaceProps) {
@@ -218,12 +219,12 @@ export function ExamInterface({ testId, onComplete }: ExamInterfaceProps) {
   )
 }
 
-function getAllQuestions(config: any) {
+function getAllQuestions(config: TestConfig): ExamQuestion[] {
   const questions = [...config.questions]
-  config.sections.forEach((section: any) => {
+  config.sections.forEach((section) => {
     questions.push(...section.questions)
   })
-  return questions.sort((a: any, b: any) => a.order - b.order)
+  return questions.sort((a, b) => a.order - b.order)
 }
 
 function formatTime(seconds: number) {

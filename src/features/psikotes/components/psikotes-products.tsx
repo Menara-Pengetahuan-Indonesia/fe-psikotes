@@ -1,13 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { 
-  Brain, 
-  Smile, 
-  Compass, 
-  ArrowRight, 
+import {
+  ArrowRight,
   Star,
-  Users,
   Zap,
   Target
 } from 'lucide-react'
@@ -21,7 +17,9 @@ export function PsikotesProducts() {
     ? PREMIUM_TESTS 
     : PREMIUM_TESTS.filter(p => p.subCategory === filter)
 
-  const categories = [
+  type FilterCategory = typeof filter
+
+  const categories: { id: FilterCategory; label: string }[] = [
     { id: 'all', label: 'Semua Produk' },
     { id: 'Kepribadian', label: 'The New You' },
     { id: 'Intelligence', label: 'Kapasitas Diri' },
@@ -52,7 +50,7 @@ export function PsikotesProducts() {
             {categories.map((cat) => (
               <button
                 key={cat.id}
-                onClick={() => setFilter(cat.id as any)}
+                onClick={() => setFilter(cat.id)}
                 className={cn(
                   "px-8 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500 border",
                   filter === cat.id 

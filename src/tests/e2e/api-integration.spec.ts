@@ -159,16 +159,17 @@ test.describe('API Integration Tests', () => {
     // Get published test
     const listResponse = await request.get(`${API_BASE}/admin/tests`)
     const tests = await listResponse.json()
-    const publishedTest = tests.find((t: any) => t.isPublished)
+    const publishedTest = tests.find((t: Record<string, unknown>) => t.isPublished) as Record<string, unknown> | undefined
 
     if (!publishedTest) {
       test.skip()
+      return
     }
 
     // Submit answers
     const response = await request.post(`${API_BASE}/tests/${publishedTest.id}/submit`, {
       data: {
-        answers: publishedTest.questions.map((q: any) => ({
+        answers: (publishedTest.questions as Record<string, unknown>[]).map((q: Record<string, unknown>) => ({
           questionId: q.id,
           answer: 'Yes',
         })),
