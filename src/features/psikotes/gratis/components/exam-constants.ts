@@ -1,6 +1,6 @@
-import type { Question } from '@/features/psikotes/constants'
+import type { MockQuestion } from '@/features/psikotes/constants'
 
-export const MOCK_QUESTIONS: Question[] = [
+export const MOCK_QUESTIONS: MockQuestion[] = [
   {
     id: 1,
     question: 'Mana yang lebih kamu pilih?',
