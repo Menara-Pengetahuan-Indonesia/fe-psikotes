@@ -4,24 +4,7 @@ import { useState } from 'react'
 import { ChevronDown, HelpCircle, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const FAQS = [
-  {
-    q: 'Apakah hasil tes bisa langsung didapatkan?',
-    a: 'Ya, untuk sebagian besar tes (IQ, Kepribadian), hasil akan keluar otomatis (real-time) setelah Anda menyelesaikan pengerjaan. Untuk tes yang membutuhkan validasi psikolog (seperti MMPI-2 atau screening klinis), hasil maksimal H+1 kerja.',
-  },
-  {
-    q: 'Apakah tes ini valid untuk keperluan lamaran kerja?',
-    a: 'Tentu. Alat tes yang kami gunakan (IST, CFIT, MMPI, DISC) adalah standar industri yang digunakan oleh HRD perusahaan nasional maupun multinasional. Laporan kami dilengkapi kop resmi Bermoela.',
-  },
-  {
-    q: 'Bagaimana jika koneksi internet terputus saat tes?',
-    a: 'Sistem kami memiliki fitur auto-save. Anda bisa login kembali dan melanjutkan tes dari sesi terakhir yang tersimpan tanpa kehilangan progres.',
-  },
-  {
-    q: 'Apakah ada sesi konsultasi setelah tes?',
-    a: 'Paket Premium sudah memberikan laporan lengkap yang self-explanatory. Namun jika Anda butuh pendalaman, Anda bisa memesan sesi konseling terpisah dengan psikolog kami dengan harga khusus member.',
-  },
-]
+import { PREMIUM_FAQS } from '../constants'
 
 export function FaqAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
@@ -45,7 +28,7 @@ export function FaqAccordion() {
         </div>
 
         <div className="space-y-4">
-          {FAQS.map((faq, i) => {
+          {PREMIUM_FAQS.map((faq, i) => {
             const isOpen = openIndex === i
 
             return (

@@ -1,29 +1,7 @@
 import { Quote, Star, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const TESTIMONIALS = [
-  {
-    name: 'Andi Pratama',
-    role: 'HR Manager',
-    quote:
-      'Hasil tes sangat akurat dan laporannya mudah dipahami. Sangat membantu kami dalam proses rekrutmen kandidat management trainee.',
-    rating: 5,
-  },
-  {
-    name: 'Sarah Wijaya',
-    role: 'Mahasiswa Psikologi',
-    quote:
-      'Tes MMPI-2 di sini jauh lebih terjangkau dibanding klinik offline, tapi kualitas laporannya sama profesionalnya. Recommended!',
-    rating: 5,
-  },
-  {
-    name: 'Budi Santoso',
-    role: 'Professional',
-    quote:
-      'Berkat tes minat bakat karir, saya jadi yakin switch career ke bidang data analyst. Insight-nya benar-benar membuka mata.',
-    rating: 5,
-  },
-]
+import { TESTIMONIALS } from '../constants'
 
 export function Testimonials() {
   return (

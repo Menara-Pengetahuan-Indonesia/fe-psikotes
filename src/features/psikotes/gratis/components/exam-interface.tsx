@@ -4,16 +4,16 @@ import { useState } from 'react'
 import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-import type { Question } from '@/features/psikotes/constants'
+import type { MockQuestion } from '@/features/psikotes/constants'
 import { ExamHeader } from './exam-header'
 import { ExamSubmitModal } from './exam-submit-modal'
 import { ExamDisclaimer } from './exam-disclaimer'
-import { MOCK_QUESTIONS } from './exam-constants'
+import { MOCK_QUESTIONS } from '../constants'
 
 interface ExamInterfaceProps {
   slug?: string
   totalQuestions?: number
-  questions?: Question[]
+  questions?: MockQuestion[]
   backHref?: string
   resultHref?: string
 }

@@ -8,7 +8,7 @@ import { GRATIS_TESTS } from '@features/psikotes/constants'
 import { cn } from '@/lib/utils'
 import { TOPO_WHITE, TOPO_BG_SIZE, PLUS_CROSS_PATTERN } from '@/shared/constants/bg-patterns.constants'
 
-const FILTER_TABS = ['Semua', 'Kepribadian', 'Karir', 'Hubungan', 'Edukasi', 'Kesehatan Mental']
+import { GRATIS_FILTER_TABS } from '../constants'
 
 export function GratisListing() {
   const [search, setSearch] = useState('')
@@ -90,7 +90,7 @@ export function GratisListing() {
 
           {/* Filter Tabs (Refined Pills) */}
           <div className="flex flex-wrap gap-3 justify-center mb-20">
-            {FILTER_TABS.map((tab) => (
+            {GRATIS_FILTER_TABS.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}

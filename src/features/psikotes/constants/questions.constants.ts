@@ -3,13 +3,13 @@
 // Will be replaced by real questions from the backend later.
 // -----------------------------------------------------------
 
-export interface Question {
+export interface MockQuestion {
   id: number
   question: string
   options: { label: string; text: string }[]
 }
 
-export const QUESTIONS_MAP: Record<string, Question[]> = {
+export const QUESTIONS_MAP: Record<string, MockQuestion[]> = {
   // =================================================================
   // GRATIS (8 tests)
   // =================================================================

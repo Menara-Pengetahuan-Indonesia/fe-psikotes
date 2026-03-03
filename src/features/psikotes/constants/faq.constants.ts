@@ -1,45 +1,22 @@
 export const PSIKOTES_FAQS = [
   {
-    q: 'Apa itu psikotes online Bermoela?',
-    a: 'Bermoela menyediakan platform'
-      + ' asesmen psikologi online yang'
-      + ' dirancang oleh psikolog'
-      + ' profesional. Hasil tes Anda'
-      + ' berupa laporan lengkap yang'
-      + ' mudah dipahami.',
+    q: 'Apa itu Mental Health insight dari BERMOELA?',
+    a: 'BERMOELA bukan sekadar tes, tapi panduan untuk melepaskan kendala masa lalu. Kami menyediakan pemetaan diri agar kamu bisa menjadi "The New You" yang tumbuh dan sukses di era penuh tekanan.',
   },
   {
-    q: 'Apakah hasil tes valid dan bisa'
-      + ' digunakan secara resmi?',
-    a: 'Ya, alat tes yang kami gunakan'
-      + ' (IST, CFIT, MMPI, DISC) adalah'
-      + ' standar industri. Laporan kami'
-      + ' dilengkapi kop resmi Bermoela'
-      + ' dan validasi psikolog.',
+    q: 'Bagaimana cara mulai merancang masa depan yang indah?',
+    a: 'Semua bermula dari kesadaran. Gunakan asesmen kami sebagai baseline (titik awal), lalu konsultasikan hasilnya dengan para ahli untuk menentukan arah hidupmu yang baru.',
   },
   {
-    q: 'Bagaimana jika koneksi internet'
-      + ' terputus saat tes?',
-    a: 'Sistem kami memiliki fitur'
-      + ' auto-save. Anda bisa login'
-      + ' kembali dan melanjutkan tes'
-      + ' dari sesi terakhir yang'
-      + ' tersimpan tanpa kehilangan'
-      + ' progres.',
+    q: 'Apakah hasil tes ini bisa membantu karir dan bisnis saya?',
+    a: 'Sangat bisa. Dengan mengenali potensi diri melalui Mental Health yang sehat, kamu bisa tumbuh secara optimal dan mencapai kesuksesan karir tanpa merasa terbebani.',
   },
   {
-    q: 'Berapa lama hasil tes keluar?',
-    a: 'Untuk sebagian besar tes, hasil'
-      + ' keluar otomatis (real-time)'
-      + ' setelah pengerjaan. Tes yang'
-      + ' membutuhkan validasi psikolog'
-      + ' maksimal H+1 hari kerja.',
+    q: 'Apa bedanya BERMOELA dengan psikotes biasa?',
+    a: 'Kami fokus pada transformasi, bukan sekadar nilai. Kami membawa kamu dari fase bertahan (survive) menjadi penentu masa depanmu sendiri yang bebas dan merdeka.',
   },
   {
-    q: 'Apakah ada tes yang gratis?',
-    a: 'Ya! Kami menyediakan beberapa'
-      + ' tes gratis untuk Anda coba.'
-      + ' Kunjungi halaman Tes Gratis'
-      + ' untuk memulai tanpa biaya.',
+    q: 'Apakah ada pendampingan setelah tes?',
+    a: 'Ya! Kamu bisa bergabung menjadi Mental Health practitioners atau berkonsultasi lebih lanjut untuk terus tumbuh satu persen lebih baik setiap harinya.',
   },
 ]

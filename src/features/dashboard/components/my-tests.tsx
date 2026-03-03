@@ -8,36 +8,11 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 import {
+  CATEGORY_STYLE,
   DUMMY_TEST_HISTORY,
-  type TestCategory,
+  FILTER_TABS,
+  type FilterTab,
 } from '@/features/dashboard/constants'
-
-type FilterTab = 'semua' | TestCategory
-
-const FILTER_TABS: {
-  value: FilterTab
-  label: string
-}[] = [
-  { value: 'semua', label: 'Semua Kategori' },
-  { value: 'gratis', label: 'Gratis' },
-  { value: 'premium', label: 'Premium' },
-  { value: 'mahasiswa', label: 'Mahasiswa' },
-  { value: 'perusahaan', label: 'Perusahaan' },
-  {
-    value: 'kesehatan-mental',
-    label: 'Kesehatan Mental',
-  },
-]
-
-const CATEGORY_STYLE: Record<
-  TestCategory, { bg: string, text: string, border: string }
-> = {
-  gratis: { bg: 'bg-primary-50', text: 'text-primary-700', border: 'border-primary-100' },
-  premium: { bg: 'bg-violet-50', text: 'text-violet-700', border: 'border-violet-100' },
-  mahasiswa: { bg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-100' },
-  perusahaan: { bg: 'bg-orange-50', text: 'text-orange-700', border: 'border-orange-100' },
-  'kesehatan-mental': { bg: 'bg-rose-50', text: 'text-rose-700', border: 'border-rose-100' },
-}
 
 export function MyTests() {
   const [activeFilter, setActiveFilter] =
@@ -172,7 +147,7 @@ export function MyTests() {
                         className="bg-primary-500 hover:bg-primary-600 text-white rounded-xl h-12 px-6 font-bold shadow-lg shadow-primary-500/20 transition-all active:scale-95"
                         asChild
                       >
-                        <Link href="/pengguna/riwayat">
+                        <Link href="/dashboard/riwayat">
                           Hasil Detail
                           <ChevronRight className="ml-2 size-4" />
                         </Link>

@@ -1,3 +1,4 @@
+// Explicit named exports — no `export *`, no `export {}`
 export type {
   Service,
   PhilosophyItem,
@@ -8,5 +9,42 @@ export type {
   FaqItem,
   CtaBannerData,
 } from './types'
-export {} from './hooks'
-export {} from './services'
+export {
+  PSIKOTES_FAQS,
+  SERVICES,
+  PHILOSOPHY_ITEMS,
+  CURRICULUM_LEVELS,
+  MAHASISWA_TESTS,
+  PERUSAHAAN_TESTS,
+  KESEHATAN_MENTAL_TESTS,
+  GRATIS_TESTS,
+  PREMIUM_TESTS,
+  QUESTIONS_MAP,
+  RESULTS_MAP,
+  LEVELS,
+  PERUSAHAAN_STATS,
+  PERUSAHAAN_PROCESS,
+  PERUSAHAAN_FAQ,
+  PERUSAHAAN_CTA,
+  MAHASISWA_BENEFITS,
+  MAHASISWA_PROCESS,
+  MAHASISWA_FAQ,
+  MAHASISWA_CTA,
+  MENTAL_HEALTH_BENEFITS,
+  MENTAL_HEALTH_JOURNEY,
+  MENTAL_HEALTH_FAQ,
+  MENTAL_HEALTH_CTA,
+  PILL_COLORS,
+  ROWS,
+  MARQUEE_CSS,
+  SEP_ICONS,
+  PILLARS,
+  TRANSFORMATION_STEPS,
+  NAV_CATEGORIES,
+} from './constants'
+export type {
+  MockQuestion,
+  ResultData,
+  Level,
+  Pill,
+} from './constants'

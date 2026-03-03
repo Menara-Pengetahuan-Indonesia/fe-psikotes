@@ -3,22 +3,28 @@ import { describe, it, expect } from 'vitest'
 import { PsikotesHero } from '@/features/psikotes/components'
 
 describe('PsikotesHero', () => {
-  it('renders all 4 benefits', () => {
+  it('renders the transformation badge', () => {
     render(<PsikotesHero />)
-    expect(screen.getByText('Self-Awareness')).toBeInTheDocument()
-    expect(screen.getByText('Good Pragmatism')).toBeInTheDocument()
-    expect(screen.getByText('Continuous Growth')).toBeInTheDocument()
-    expect(screen.getByText('Mental Resilience')).toBeInTheDocument()
+    expect(screen.getByText('The New You Transformation')).toBeInTheDocument()
   })
 
-  it('renders starting price', () => {
+  it('renders the hero heading', () => {
     render(<PsikotesHero />)
-    expect(screen.getByText('Rp25.000')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
+      /Mental Health untuk Tumbuh dan/
+    )
   })
 
-  it('renders CTA link to premium', () => {
+  it('renders the diagnostic input area', () => {
     render(<PsikotesHero />)
-    const link = screen.getByText(/mulai tes/i)
-    expect(link.closest('a')).toHaveAttribute('href', '/psikotes/premium')
+    expect(
+      screen.getByPlaceholderText('Ceritakan kendala yang kamu rasakan saat ini...')
+    ).toBeInTheDocument()
+  })
+
+  it('renders the footer tagline', () => {
+    render(<PsikotesHero />)
+    expect(screen.getByText(/Semua bisa/)).toBeInTheDocument()
+    expect(screen.getByText(/dari sini/)).toBeInTheDocument()
   })
 })

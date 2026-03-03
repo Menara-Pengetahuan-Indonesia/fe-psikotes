@@ -1,7 +1,7 @@
 import { Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-import { DESTINATION_CARDS } from './hero-constants'
+import { DESTINATION_CARDS } from '../constants'
 import { HeroBackground } from './hero-background'
 import { DestinationCard } from './destination-card'
 
@@ -75,9 +75,8 @@ export function HomepageHero() {
               "font-medium max-w-2xl mx-auto",
               "leading-relaxed text-balance"
             )}>
-              Platform pengembangan diri terintegrasi
-              untuk kesehatan mental, karir, dan
-              keahlianmu.
+              Platform terintegrasi untuk psikotes, konseling, dan pelatihan
+              dalam mendukung kesehatan mental, kehidupan, dan karirmu.
             </p>
           </div>
         </header>
@@ -101,7 +100,7 @@ export function HomepageHero() {
           "font-medium tracking-widest uppercase",
           "animate-pulse"
         )}>
-          Mulai perjalananmu
+          Pilih layanan yang sesuai dengan kebutuhanmu.
         </p>
       </div>
     </section>

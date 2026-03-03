@@ -13,14 +13,6 @@ import type {
   RegisterFormData,
 } from '../schemas'
 
-function getRoleDefaultPath(
-  role: 'user' | 'company' | 'admin',
-) {
-  if (role === 'company') return '/perusahaan'
-  if (role === 'admin') return '/admin'
-  return '/pengguna'
-}
-
 export function useLogin() {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -40,11 +32,11 @@ export function useLogin() {
       // Get redirect from URL params
       const redirect = searchParams.get('redirect')
 
-      // If redirect exists and is valid, use it; otherwise use role default
+      // If redirect exists and is valid, use it; otherwise go to dashboard
       if (redirect && redirect.startsWith('/')) {
         router.push(redirect)
       } else {
-        router.push(getRoleDefaultPath(res.user.role))
+        router.push('/dashboard')
       }
     },
     onError: (error) => {
@@ -80,7 +72,7 @@ export function useLogout() {
     onSettled: () => {
       logout()
       toast.success('Berhasil keluar dari akun.')
-      router.push('/psikotes')
+      router.push('/masuk')
     },
   })
 }

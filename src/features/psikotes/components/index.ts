@@ -4,7 +4,14 @@ export {
 export {
   TestListingCard,
 } from './test-listing-card'
+export { BermoelaText } from './bermoela-text'
 export { PsikotesHero } from './psikotes-hero'
+export { PsikotesPillars } from './psikotes-pillars'
+export { PsikotesCategoryNav } from './psikotes-category-nav'
+export { PsikotesProducts } from './psikotes-products'
+export { PsikotesJoinPractitioner } from './psikotes-join-practitioner'
+export { PsikotesTransformationMap } from './psikotes-transformation-map'
+export { PsikotesDiagnostic } from './psikotes-diagnostic'
 export {
   PhilosophySection,
 } from './philosophy-section'
@@ -17,3 +24,8 @@ export {
   CategoryShowcase,
 } from './category-showcase'
 export { PsikotesFaq } from './psikotes-faq'
+export { ExamInterface } from './ExamInterface'
+export { QuestionRenderer } from './QuestionRenderer'
+export { ResultDisplay } from './ResultDisplay'
+export { ActivityLog } from './ActivityLog'
+export { CameraProctoring } from './CameraProctoring'

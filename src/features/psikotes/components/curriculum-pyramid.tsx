@@ -9,7 +9,7 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-import { LEVELS } from './curriculum-levels'
+import { LEVELS } from '../constants'
 import { PyramidLevelItem } from './pyramid-level-item'
 
 export function CurriculumPyramid() {

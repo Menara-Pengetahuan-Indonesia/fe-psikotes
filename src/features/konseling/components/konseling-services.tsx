@@ -12,21 +12,14 @@ import {
 import { ServiceCard } from '@/features/psikotes/components/service-card'
 import { cn } from '@/lib/utils'
 import { TOPO_KONSELING, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
-import { KONSELING_SERVICES } from '../constants'
-
-const TAB_FILTERS: Record<string, string[]> = {
-  semua: [],
-  individu: ['Individu'],
-  pasangan: ['Pasangan'],
-  kelompok: ['Kelompok'],
-}
+import { KONSELING_SERVICES, KONSELING_TAB_FILTERS } from '../constants'
 
 export function KonselingServices() {
   const filtered = (tab: string) =>
-    TAB_FILTERS[tab]?.length === 0
+    KONSELING_TAB_FILTERS[tab]?.length === 0
       ? KONSELING_SERVICES
       : KONSELING_SERVICES.filter((s) =>
-          TAB_FILTERS[tab]?.includes(s.tag)
+          KONSELING_TAB_FILTERS[tab]?.includes(s.tag)
         )
 
   return (
@@ -159,7 +152,7 @@ export function KonselingServices() {
               'backdrop-blur-sm'
             )}
           >
-            {Object.keys(TAB_FILTERS).map((tab) => (
+            {Object.keys(KONSELING_TAB_FILTERS).map((tab) => (
               <TabsTrigger
                 key={tab}
                 value={tab}
@@ -178,7 +171,7 @@ export function KonselingServices() {
             ))}
           </TabsList>
 
-          {Object.keys(TAB_FILTERS).map((tab) => (
+          {Object.keys(KONSELING_TAB_FILTERS).map((tab) => (
             <TabsContent
               key={tab}
               value={tab}

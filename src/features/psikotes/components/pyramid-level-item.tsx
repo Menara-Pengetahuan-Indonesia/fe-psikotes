@@ -1,7 +1,7 @@
 import { ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-import { type Level } from './curriculum-levels'
+import { type Level } from '../constants'
 
 type PyramidLevelItemProps = {
   item: Level
@@ -57,7 +57,7 @@ export function PyramidLevelItem({
           <div
             className={cn(
               'absolute inset-0',
-              'bg-gradient-to-br',
+              'bg-linear-to-br',
               'from-white/20',
               'via-transparent',
               'to-black/10',

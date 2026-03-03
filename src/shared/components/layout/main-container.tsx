@@ -11,9 +11,11 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
     || pathname === '/daftar'
     || pathname === '/forgot-password'
     || pathname.startsWith('/psikotes/mahasiswa/try-out/form')
-  const isDashboard = pathname.startsWith('/pengguna')
+  const isDashboard = pathname.startsWith('/dashboard')
+    || pathname.startsWith('/pengguna')
     || pathname.startsWith('/admin')
     || pathname.startsWith('/perusahaan')
+    || pathname.startsWith('/superadmin')
 
   return (
     <main

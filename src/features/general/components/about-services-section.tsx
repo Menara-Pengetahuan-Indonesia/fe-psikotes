@@ -3,45 +3,9 @@ import {
   Diamond,
   Circle,
   Sparkles,
-  Brain,
-  HeartHandshake,
-  GraduationCap,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
-const SERVICES_OVERVIEW = [
-  {
-    icon: Brain,
-    title: 'Psikotes Online',
-    desc:
-      'Asesmen psikologi terstandar dengan'
-      + ' hasil real-time dan laporan'
-      + ' komprehensif.',
-    color: 'bg-primary-600',
-    lightBg: 'bg-primary-50',
-    lightText: 'text-primary-600',
-  },
-  {
-    icon: HeartHandshake,
-    title: 'Konseling',
-    desc:
-      'Sesi konseling profesional bersama'
-      + ' psikolog berlisensi secara daring.',
-    color: 'bg-konseling-600',
-    lightBg: 'bg-konseling-50',
-    lightText: 'text-konseling-600',
-  },
-  {
-    icon: GraduationCap,
-    title: 'Pelatihan',
-    desc:
-      'Program pengembangan diri melalui'
-      + ' webinar, kelas, dan mentoring.',
-    color: 'bg-pelatihan-600',
-    lightBg: 'bg-pelatihan-50',
-    lightText: 'text-pelatihan-600',
-  },
-] as const
+import { SERVICES_OVERVIEW } from '../constants'
 
 export function AboutServicesSection() {
   return (

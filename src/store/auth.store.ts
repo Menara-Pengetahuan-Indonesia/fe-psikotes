@@ -4,13 +4,26 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { useSyncExternalStore } from 'react'
 
-export type UserRole = 'user' | 'company' | 'admin'
+export type UserRole = 'USER' | 'ADMIN' | 'SUPERADMIN'
 
 export interface User {
   id: string
   email: string
   name: string
   role: UserRole
+}
+
+// Cookie helpers for middleware route protection
+function setAuthCookie(role: UserRole) {
+  if (typeof document === 'undefined') return
+  document.cookie = `auth-role=${role}; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=Lax`
+  document.cookie = `auth-active=1; path=/; max-age=${7 * 24 * 60 * 60}; SameSite=Lax`
+}
+
+function clearAuthCookie() {
+  if (typeof document === 'undefined') return
+  document.cookie = 'auth-role=; path=/; max-age=0'
+  document.cookie = 'auth-active=; path=/; max-age=0'
 }
 
 interface AuthState {
@@ -40,17 +53,20 @@ export const useAuthStore = create<AuthState>()(
       isAuthenticated: false,
       _hasHydrated: false,
       setAuth: (user, accessToken, refreshToken) => {
+        setAuthCookie(user.role)
         set({
           user,
           accessToken,
           refreshToken,
           isAuthenticated: true,
+          _hasHydrated: true,
         })
       },
       setTokens: (accessToken, refreshToken) => {
         set({ accessToken, refreshToken })
       },
       logout: () => {
+        clearAuthCookie()
         set({
           user: null,
           accessToken: null,
@@ -61,8 +77,12 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: 'auth-storage',
-      onRehydrateStorage: () => () => {
+      onRehydrateStorage: () => (state) => {
         useAuthStore.setState({ _hasHydrated: true })
+        // Sync cookie on rehydrate
+        if (state?.user?.role) {
+          setAuthCookie(state.user.role)
+        }
       },
     },
   ),

@@ -11,7 +11,6 @@ import {
   LogOut,
   ChevronsUpDown,
 } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
 
 import {
   Avatar,
@@ -40,16 +39,11 @@ import {
 import { useAuthStoreHydrated } from '@/store/auth.store'
 import { useLogout } from '@/features/auth/hooks'
 import { cn } from '@/lib/utils'
-
-interface NavItem {
-  href: string
-  label: string
-  icon: LucideIcon
-}
+import type { NavItem } from '../types'
 
 const NAV_ITEMS: NavItem[] = [
   {
-    href: '/pengguna',
+    href: '/dashboard',
     label: 'Dasbor',
     icon: LayoutDashboard,
   },
@@ -64,7 +58,7 @@ const NAV_ITEMS: NavItem[] = [
     icon: History,
   },
   {
-    href: '/pengguna/profil',
+    href: '/dashboard/profil',
     label: 'Profil',
     icon: UserCircle,
   },
@@ -204,7 +198,7 @@ export function AppSidebar(
                     className="cursor-pointer rounded-2xl hover:bg-white/5 focus:bg-white/5 focus:text-primary-400 py-3.5 px-4 transition-all"
                     asChild
                   >
-                    <Link href="/pengguna/profil" className="flex items-center gap-3">
+                    <Link href="/dashboard/profil" className="flex items-center gap-3">
                       <div className="size-8 rounded-lg bg-slate-800 flex items-center justify-center">
                         <UserCircle className="size-4" />
                       </div>

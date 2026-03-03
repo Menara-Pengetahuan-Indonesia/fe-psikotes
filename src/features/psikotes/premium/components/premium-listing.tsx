@@ -8,7 +8,7 @@ import { TOPO_WHITE, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constan
 import { TestListingCard } from '@/features/psikotes/components'
 import { PREMIUM_TESTS } from '@/features/psikotes/constants'
 
-const FILTERS = ['Semua', 'Karir & Profesi', 'Klinis', 'Kepribadian', 'Edukasi']
+import { PREMIUM_FILTERS } from '../constants'
 
 export function PremiumListing() {
   const [activeFilter, setActiveFilter] = useState('Semua')
@@ -96,7 +96,7 @@ export function PremiumListing() {
 
           {/* Filter Tabs */}
           <div className="flex flex-wrap gap-3 justify-center mb-20">
-            {FILTERS.map((filter) => (
+            {PREMIUM_FILTERS.map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
