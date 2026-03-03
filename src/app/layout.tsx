@@ -16,8 +16,11 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Psikotest Platform",
+  title: "Bermoela — Life School",
   description: "Platform Psikotes, Konseling & Coaching, Training & Program",
+  icons: {
+    icon: "/logo/logo_bermoela.png",
+  },
 }
 
 import { Toaster } from "@/components/ui/sonner"

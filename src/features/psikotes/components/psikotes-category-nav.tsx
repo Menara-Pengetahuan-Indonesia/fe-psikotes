@@ -19,7 +19,7 @@ export function PsikotesCategoryNav() {
   const activeData = NAV_CATEGORIES.find(c => c.id === activeTab) || NAV_CATEGORIES[0]
 
   return (
-    <section id="pemetaan" className="py-24 relative overflow-hidden bg-background">
+    <section id="pemetaan" className="py-12 md:py-16 relative overflow-hidden bg-background">
       
       {/* Background Topo Pattern */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-multiply"
@@ -34,13 +34,13 @@ export function PsikotesCategoryNav() {
         <div className="text-center mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-primary-200 shadow-sm">
              <Target className="w-3 h-3 text-primary-600" />
-             <span className="text-[10px] font-black text-primary-700 uppercase tracking-widest">Pilih Titik Mulamu</span>
+             <span className="text-xs font-black text-primary-700 uppercase tracking-widest">Hadapi Titik Mulamu</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black text-secondary-900 tracking-tight leading-none">
-            Ke Mana Kamu Ingin <span className="text-primary-600 italic">Melangkah?</span>
+            Berhenti Berlari dari <span className="text-primary-600 italic">Masalahmu.</span>
           </h2>
           <p className="text-secondary-700/70 font-medium max-w-xl mx-auto text-sm md:text-base">
-            Setiap perjalanan <span className="text-secondary-900 font-bold italic">&quot;The New You&quot;</span> bermula dari kesadaran di area yang paling penting bagimu saat ini.
+            Semua perubahan besar berawal dari keberanian mengakui apa yang benar-benar menahanmu hari ini.
           </p>
         </div>
 
@@ -52,12 +52,12 @@ export function PsikotesCategoryNav() {
               
               // Dynamic colors based on active category
               const activeBg = 
-                cat.id === 'personal' ? 'bg-primary-50 border-primary-100 shadow-primary-500/10' :
+                cat.id === 'personal' ? 'bg-indigo-50 border-indigo-100 shadow-indigo-500/10' :
                 cat.id === 'relationship' ? 'bg-rose-50 border-rose-100 shadow-rose-500/10' :
                 'bg-amber-50 border-amber-100 shadow-amber-500/10';
               
               const activeText = 
-                cat.id === 'personal' ? 'text-primary-700' :
+                cat.id === 'personal' ? 'text-indigo-700' :
                 cat.id === 'relationship' ? 'text-rose-700' :
                 'text-amber-700';
 
@@ -89,7 +89,7 @@ export function PsikotesCategoryNav() {
                       {cat.title}
                     </h3>
                     <p className={cn(
-                      "text-[9px] font-black uppercase tracking-widest transition-colors",
+                      "text-xs font-black uppercase tracking-widest transition-colors",
                       isActive ? activeText.replace('700', '500') : "text-slate-400"
                     )}>
                       {cat.subtitle}
@@ -139,7 +139,7 @@ export function PsikotesCategoryNav() {
               <div className="lg:w-1/2 p-10 md:p-16 flex flex-col justify-center relative bg-white">
                  {/* Subtle Radial Glow */}
                  <div className={cn(
-                    "absolute inset-0 opacity-[0.03] transition-all duration-1000 bg-linear-to-br",
+                    "absolute inset-0 opacity-[0.4] transition-all duration-1000 bg-linear-to-br",
                     activeData.gradient
                  )} />
                  
@@ -157,23 +157,10 @@ export function PsikotesCategoryNav() {
                        </div>
                        
                        <div className="space-y-2">
-                          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Solusi Terpadu:</p>
+                          <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Solusi Terpadu:</p>
                           <h3 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight tracking-tighter">
                              {activeData.content.product}
                           </h3>
-                       </div>
-                    </div>
-
-                    {/* Step Card */}
-                    <div className="p-6 rounded-[2rem] bg-white shadow-xl shadow-slate-200/50 border border-slate-100 flex items-start gap-5">
-                       <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100">
-                          <CheckCircle2 className="w-6 h-6" />
-                       </div>
-                       <div className="space-y-1">
-                          <p className="text-slate-900 font-black text-lg leading-tight">Langkah Perubahan</p>
-                          <p className="text-slate-500 font-medium text-sm leading-relaxed">
-                             {activeData.content.solution}
-                          </p>
                        </div>
                     </div>
 
@@ -188,8 +175,8 @@ export function PsikotesCategoryNav() {
                              <Flower2 className="w-5 h-5 text-accent-600 animate-pulse" />
                           </div>
                           <div className="space-y-0.5">
-                             <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Target Akhir:</p>
-                             <p className="text-xs font-black text-primary-600 leading-tight">{activeData.content.benefit}</p>
+                             <p className="text-xs font-black text-slate-400 uppercase tracking-widest">Target Akhir:</p>
+                             <p className="text-sm md:text-base font-black text-primary-600 leading-tight">{activeData.content.benefit}</p>
                           </div>
                        </div>
                     </div>
@@ -207,7 +194,7 @@ export function PsikotesCategoryNav() {
         </div>
 
         <div className="mt-20 text-center">
-           <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.4em]">
+           <p className="text-slate-400 text-xs font-black uppercase tracking-[0.4em]">
               Setiap langkah besar dimulai dengan satu keputusan kecil. <BermoelaText className="text-primary-600" />
            </p>
         </div>

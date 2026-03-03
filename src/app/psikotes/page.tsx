@@ -19,11 +19,20 @@ export const metadata: Metadata = {
 export default function PsikotesPage() {
   return (
     <main>
+      {/* 1. Chatbot & Intro Message */}
       <PsikotesHero />
-      <PsikotesTransformationMap />
+
+      {/* 2. Masalah: Identifikasi Kondisi Saat Ini */}
       <PsikotesCategoryNav />
-      <PsikotesPillars />
+
+      {/* 3. Solusi: Peta Perjalanan Transformasi */}
+      <PsikotesTransformationMap />
+
+      {/* 4. Produk: Pilihan Alat Bantu Transformasi */}
       <PsikotesProducts />
+
+      {/* 5. Benefit: Detail Transformasi & Hasil Akhir */}
+      <PsikotesPillars />
     </main>
   )
 }

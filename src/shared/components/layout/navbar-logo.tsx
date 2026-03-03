@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
@@ -5,41 +6,23 @@ interface NavbarLogoProps {
   isScrolled: boolean
 }
 
-export function NavbarLogo({ isScrolled }: NavbarLogoProps) {
+export function NavbarLogo({ isScrolled: _isScrolled }: NavbarLogoProps) {
   return (
     <Link
       href="/"
-      className="flex items-center gap-2 group mr-8"
+      className="flex items-center group mr-8"
     >
-      <div
+      <Image
+        src="/logo/logo_bermoela.png"
+        alt="Bermoela"
+        width={48}
+        height={48}
         className={cn(
-          'w-8 h-8 bg-primary-500 rounded-lg',
-          'flex items-center justify-center',
-          'text-white font-black text-xs shadow-md',
-          'group-hover:rotate-12 transition-transform',
+          'w-12 h-12 object-contain',
+          'group-hover:scale-110 transition-transform',
           'duration-300'
         )}
-      >
-        B
-      </div>
-      <span
-        className={cn(
-          'font-bold text-lg tracking-tight',
-          'transition-colors duration-500',
-          isScrolled ? 'text-slate-800' : 'text-white'
-        )}
-      >
-        BER
-        <span
-          className={cn(
-            isScrolled
-              ? 'text-primary-600'
-              : 'text-primary-400'
-          )}
-        >
-          MOELA
-        </span>
-      </span>
+      />
     </Link>
   )
 }

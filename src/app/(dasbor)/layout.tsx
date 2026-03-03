@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
@@ -88,12 +89,13 @@ export default function DashboardLayout({
           {/* Left: Logo & Nav */}
           <div className="flex items-center gap-10">
             <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
-              <div className="size-8 rounded-lg bg-slate-900 flex items-center justify-center text-white shadow-lg shadow-black/10 group-hover:scale-105 transition-transform">
-                <span className="text-sm font-black italic">B</span>
-              </div>
-              <span className="hidden lg:block text-base font-black tracking-tighter text-slate-900 uppercase">
-                BER<span className="text-primary-600">MOELA</span>
-              </span>
+              <Image
+                src="/logo/logo_bermoela.png"
+                alt="Bermoela"
+                width={32}
+                height={32}
+                className="size-8 object-contain group-hover:scale-105 transition-transform"
+              />
             </Link>
 
             <nav className="hidden md:flex items-center gap-6">

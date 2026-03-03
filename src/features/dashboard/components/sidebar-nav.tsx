@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
@@ -91,17 +92,13 @@ export function AppSidebar(
               className="hover:bg-transparent"
             >
               <Link href="/">
-                <div className="flex aspect-square size-11 items-center justify-center rounded-2xl bg-gradient-to-tr from-primary-500 to-primary-600 shadow-xl shadow-primary-500/20 text-white transform transition-transform group-hover:scale-105">
-                  <span className="text-xl font-black italic">B</span>
-                </div>
-                <div className="grid flex-1 text-left text-sm leading-tight ml-3">
-                  <span className="truncate font-black tracking-tight text-white text-xl">
-                    BER<span className="text-primary-400">MOELA</span>
-                  </span>
-                  <span className="truncate text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">
-                    Life School
-                  </span>
-                </div>
+                <Image
+                  src="/logo/logo_bermoela.png"
+                  alt="Bermoela"
+                  width={44}
+                  height={44}
+                  className="aspect-square size-11 object-contain transform transition-transform group-hover:scale-105"
+                />
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

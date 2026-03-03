@@ -15,7 +15,7 @@ import { BermoelaText } from './bermoela-text'
 
 export function PsikotesHero() {
   return (
-    <section className="relative overflow-hidden bg-linear-to-b from-primary-900 via-primary-800 to-primary-600 pt-32 pb-16 md:pt-44 md:pb-24">
+    <section className="relative overflow-hidden bg-linear-to-b from-primary-900 via-primary-800 to-primary-600 pt-26 pb-8 md:pt-36 md:pb-12">
       
       {/* --- RICH BACKGROUND ORNAMENTS --- */}
       {/* 1. Topographic Pattern */}
@@ -44,18 +44,10 @@ export function PsikotesHero() {
           
           {/* Header Content */}
           <div className="flex flex-col items-center space-y-6 max-w-5xl mx-auto">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
-              <Sparkles className="w-3 h-3 text-accent-400 fill-accent-400" />
-              <span className="text-[9px] font-black tracking-[0.2em] text-primary-50 uppercase">
-                The New You Transformation
-              </span>
-            </div>
-            
             {/* Title */}
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-[1.1] drop-shadow-sm">
-                Mental Health untuk Tumbuh dan <br className="hidden md:block" /> Sukses di <span className="text-accent-300 italic">Era Penuh Tekanan</span>
+              <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-[1.1] drop-shadow-sm">
+                Mental Health untuk Tumbuh dan Sukses <br /> <span className="text-accent-300 italic text-4xl md:text-5xl">di Era Penuh Tekanan</span>
               </h1>
               <p className="text-sm md:text-base text-primary-50/80 max-w-xl mx-auto leading-relaxed font-medium text-pretty">
                 Assessment berbasis riset psikologi untuk membantumu mendapatkan <span className="text-white font-bold italic">&quot;The New You&quot;</span>, dirimu yang baru menyambut masa depan yang indah.
@@ -76,7 +68,7 @@ export function PsikotesHero() {
 
           {/* Footer of Hero */}
           <div className="pt-12 flex flex-col items-center gap-4">
-             <p className="text-primary-200/40 text-[10px] font-bold uppercase tracking-[0.3em]">
+             <p className="text-primary-200/40 text-xs font-bold uppercase tracking-[0.3em]">
                 Semua bisa <BermoelaText className="text-primary-200/60" /> dari sini
              </p>
              <div className="animate-bounce opacity-20">
