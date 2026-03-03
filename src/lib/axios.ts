@@ -81,6 +81,7 @@ api.interceptors.response.use(
       useAuthStore.getState()
 
     if (!refreshToken) {
+      isRefreshing = false
       logout()
       if (typeof window !== 'undefined') {
         window.location.href = '/masuk'
