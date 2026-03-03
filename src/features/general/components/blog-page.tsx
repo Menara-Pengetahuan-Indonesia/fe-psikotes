@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils'
 
 import { BlogHeroSection } from './blog-hero-section'
 import { BlogCard } from './blog-card'
-import { BLOG_POSTS } from './blog-constants'
+import { BLOG_POSTS } from '../constants'
 
 export function BlogPage() {
   return (

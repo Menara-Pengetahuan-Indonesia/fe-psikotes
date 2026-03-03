@@ -4,7 +4,7 @@ import { HomepageHero } from '@/features/homepage/components'
 
 export const metadata: Metadata = {
   title: 'BERMOELA — Platform Pengembangan Diri',
-  description: 'Kenali dirimu dan temukan potensi terbaikmu dengan psikotes, konseling, dan training berkualitas.',
+  description: 'Platform terintegrasi untuk psikotes, konseling, dan pelatihan dalam mendukung kesehatan mental, kehidupan, dan karirmu.',
 }
 
 export default function HomePage() {

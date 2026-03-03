@@ -3,18 +3,11 @@ import { Clock, Users, Play, Share2, Info, AlertCircle } from 'lucide-react'
 
 import { GRATIS_TESTS } from '@features/psikotes/constants'
 
+import { GRATIS_INSTRUCTIONS } from '../constants'
+
 interface TestDetailPageProps {
   slug: string
 }
-
-const INSTRUCTIONS = [
-  'Luangkan waktumu sejenak. Agar hasil tes akurat dan bermanfaat, perhatikan panduan singkat ini.',
-  'Tidak ada jawaban yang benar atau salah. Pilih dengan jujur yang paling mewakili dirimu.',
-  'Tes ini tidak dibatasi waktu. Kerjakan dengan santai dan nikmati prosesnya.',
-  'Cari tempat yang nyaman agar kamu bisa fokus menjawab tanpa gangguan.',
-  'Jika kamu keluar di tengah-tengah, progres akan hilang. Pastikan kamu menyelesaikannya dalam satu sesi.',
-  'Dapatkan laporan hasil tes lengkap setelah kamu menjawab semua pertanyaan.',
-]
 
 export function TestDetailPage({ slug }: TestDetailPageProps) {
   const test = GRATIS_TESTS.find((t) => t.slug === slug)
@@ -82,7 +75,7 @@ export function TestDetailPage({ slug }: TestDetailPageProps) {
             <Info className="w-6 h-6" /> Panduan Pengisian
           </h3>
           <div className="space-y-6">
-            {INSTRUCTIONS.map((item, i) => (
+            {GRATIS_INSTRUCTIONS.map((item, i) => (
               <div key={i} className="flex gap-4 items-start group">
                 <div className="w-8 h-8 flex-shrink-0 bg-white border border-slate-200 rounded-full flex items-center justify-center font-bold text-sm text-slate-400 group-hover:border-black group-hover:text-black transition-colors">
                   {i + 1}

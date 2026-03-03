@@ -1,10 +1,5 @@
 import { CheckCircle2, Video, Sparkles } from 'lucide-react'
-
-const GATHERING_POINTS = [
-  'Dipandu oleh Community Manager berpengalaman',
-  'Topik diskusi yang relevan dengan kehidupan sehari-hari',
-  'Sesi tanya jawab interaktif & ruang berbagi aman',
-]
+import { GATHERING_POINTS } from '../constants'
 
 export function GatheringSection() {
   return (

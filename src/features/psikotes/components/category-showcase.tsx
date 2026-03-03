@@ -1,13 +1,13 @@
 import type { CSSProperties } from 'react'
 import { Sparkles, Plus, Star } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import type { Pill } from './category-showcase-constants'
 import {
   PILL_COLORS,
   ROWS,
   MARQUEE_CSS,
   SEP_ICONS,
-} from './category-showcase-constants'
+  type Pill,
+} from '../constants'
 
 function MarqueeRow({
   items,

@@ -114,7 +114,7 @@ export function TestListingCard({ test, variant = 'teal' }: TestListingCardProps
         <Link
           href={detailHref}
           className={cn(
-            "w-full py-3.5 bg-slate-900 text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-900/10",
+            "w-full py-3.5 bg-primary-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary-200",
             theme.btnBg,
             theme.btnShadow
           )}

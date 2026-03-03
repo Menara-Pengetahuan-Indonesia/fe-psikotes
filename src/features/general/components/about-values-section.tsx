@@ -2,47 +2,9 @@ import {
   Hexagon,
   Diamond,
   Sparkles,
-  ShieldCheck,
-  Trophy,
-  Lightbulb,
-  Heart,
-  Rocket,
-  Handshake,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-
-const VALUES = [
-  {
-    icon: ShieldCheck,
-    title: 'Profesional',
-    desc: 'Standar etika profesi tertinggi.',
-  },
-  {
-    icon: Trophy,
-    title: 'Terpercaya',
-    desc: 'Didukung psikolog berlisensi.',
-  },
-  {
-    icon: Lightbulb,
-    title: 'Inovatif',
-    desc: 'Metode asesmen modern.',
-  },
-  {
-    icon: Heart,
-    title: 'Inklusif',
-    desc: 'Untuk semua kalangan.',
-  },
-  {
-    icon: Rocket,
-    title: 'Berdampak',
-    desc: 'Hasil nyata dan terukur.',
-  },
-  {
-    icon: Handshake,
-    title: 'Kolaboratif',
-    desc: 'Bersama institusi & perusahaan.',
-  },
-] as const
+import { VALUES } from '../constants'
 
 export function AboutValuesSection() {
   return (

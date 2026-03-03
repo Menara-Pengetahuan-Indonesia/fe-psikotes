@@ -3,19 +3,23 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { 
-  Search, 
-  Bell, 
-  LayoutDashboard, 
-  FileText, 
-  History, 
+import {
+  Search,
+  Bell,
+  LayoutDashboard,
+  FileText,
+  History,
   Menu,
   X,
   LogOut,
   ChevronDown,
+  Users,
+  BookOpen,
+  Settings,
 } from 'lucide-react'
 
 import { useAuthStoreHydrated } from '@/store/auth.store'
+import type { UserRole } from '@/store/auth.store'
 import { useLogout } from '@/features/auth/hooks'
 import { cn } from '@/lib/utils'
 
@@ -30,12 +34,35 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import { Badge } from '@/components/ui/badge'
+import type { NavItem } from '@/features/dashboard/types'
 
-const NAV_ITEMS = [
-  { href: '/pengguna', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/pengguna/tes', label: 'Tes Saya', icon: FileText },
-  { href: '/pengguna/riwayat', label: 'Riwayat', icon: History },
-]
+const NAV_BY_ROLE: Record<UserRole, NavItem[]> = {
+  USER: [
+    { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { href: '/pengguna/tes', label: 'Tes Saya', icon: FileText },
+    { href: '/pengguna/riwayat', label: 'Riwayat', icon: History },
+  ],
+  ADMIN: [
+    { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { href: '/admin/tests', label: 'Kelola Tes', icon: BookOpen },
+    { href: '/admin/results', label: 'Hasil Peserta', icon: History },
+    { href: '/admin/settings', label: 'Pengaturan', icon: Settings },
+  ],
+  SUPERADMIN: [
+    { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { href: '/admin/tests', label: 'Kelola Tes', icon: BookOpen },
+    { href: '/admin/results', label: 'Hasil Peserta', icon: History },
+    { href: '/superadmin/users', label: 'Kelola User', icon: Users },
+    { href: '/admin/settings', label: 'Pengaturan', icon: Settings },
+  ],
+}
+
+const ROLE_BADGE: Record<UserRole, { label: string; className: string }> = {
+  USER: { label: 'User', className: 'bg-slate-100 text-slate-600' },
+  ADMIN: { label: 'Admin', className: 'bg-primary-50 text-primary-600' },
+  SUPERADMIN: { label: 'Superadmin', className: 'bg-violet-50 text-violet-600' },
+}
 
 export default function DashboardLayout({
   children,
@@ -46,6 +73,10 @@ export default function DashboardLayout({
   const pathname = usePathname()
   const { user } = useAuthStoreHydrated()
   const logoutMutation = useLogout()
+
+  const role: UserRole = user?.role || 'USER'
+  const navItems = NAV_BY_ROLE[role]
+  const badge = ROLE_BADGE[role]
 
   return (
     <div className="min-h-screen bg-[#F2F2F7] text-slate-900 font-sans selection:bg-primary-100 selection:text-primary-900">
@@ -66,16 +97,16 @@ export default function DashboardLayout({
             </Link>
 
             <nav className="hidden md:flex items-center gap-6">
-              {NAV_ITEMS.map((item) => {
-                const isActive = pathname === item.href
+              {navItems.map((item) => {
+                const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
                     className={cn(
                       "text-sm font-bold transition-all duration-200",
-                      isActive 
-                        ? "text-slate-900" 
+                      isActive
+                        ? "text-slate-900"
                         : "text-slate-400 hover:text-slate-900"
                     )}
                   >
@@ -121,10 +152,13 @@ export default function DashboardLayout({
                 <DropdownMenuLabel className="px-3 py-3">
                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Akun Saya</p>
                   <p className="text-sm font-bold text-slate-900 truncate">{user?.email}</p>
+                  <Badge className={cn('mt-2 text-[9px] font-black uppercase tracking-widest border-0', badge.className)}>
+                    {badge.label}
+                  </Badge>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem className="rounded-xl py-2.5 px-3 cursor-pointer font-bold text-slate-600 focus:bg-primary-50 focus:text-primary-700" asChild>
-                  <Link href="/pengguna/profil">Profil Lengkap</Link>
+                  <Link href="/dashboard/profil">Profil Lengkap</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem 

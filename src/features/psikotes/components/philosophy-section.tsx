@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { TOPO_PRIMARY, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 import { PHILOSOPHY_ITEMS } from '../constants'
 
+// Icon mapping for PHILOSOPHY_ITEMS rendering
 const ICONS = [Sparkles, Target, Zap, Heart]
 
 export function PhilosophySection() {

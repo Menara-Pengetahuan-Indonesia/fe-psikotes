@@ -6,11 +6,7 @@ import {
 
 import { cn } from '@/lib/utils'
 
-const PREMIUM_BENEFITS = [
-  'Strategy Report Karir Spesifik',
-  'Analisa Kekuatan & Kelemahan Valid',
-  'Panduan Pengembangan Diri Actionable',
-]
+import { PREMIUM_BENEFITS } from '../constants'
 
 export function PremiumUpsellSection() {
   return (

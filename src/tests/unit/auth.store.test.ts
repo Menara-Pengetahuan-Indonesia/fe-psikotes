@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 import { useAuthStore, useAuthStoreHydrated } from '@/store/auth.store'
 import type { User } from '@/store/auth.store'
@@ -7,7 +7,7 @@ const MOCK_USER: User = {
   id: '1',
   email: 'test@example.com',
   name: 'Test User',
-  role: 'user',
+  role: 'USER',
 }
 
 // Mock localStorage for persist middleware

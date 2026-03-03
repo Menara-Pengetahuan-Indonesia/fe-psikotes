@@ -1,12 +1,8 @@
-export {} from './types'
-export {} from './hooks'
-export {} from './services'
+// Explicit named exports — no `export *`, no `export {}`
 export {
-  AppSidebar,
-  DashboardOverview,
-  MyTests,
-  TestResults,
-  UserProfile,
+  UserDashboard,
+  AdminDashboard,
+  SuperAdminDashboard,
 } from './components'
 export {
   type TestCategory,

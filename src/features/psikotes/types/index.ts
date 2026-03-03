@@ -10,3 +10,4 @@ export type {
   FaqItem,
   CtaBannerData,
 } from './psikotes.types'
+export type { ActivityLogEntry } from './exam.types'

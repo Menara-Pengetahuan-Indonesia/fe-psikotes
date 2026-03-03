@@ -1,13 +1,7 @@
 import { cn } from '@/lib/utils'
 
-export const HEADING_COLORS = {
-  teal: 'bg-primary-500',
-  amber: 'bg-accent-500',
-  sky: 'bg-sky-500',
-}
-
-export type HeadingColor =
-  keyof typeof HEADING_COLORS
+import { HEADING_COLORS } from '../constants'
+import type { HeadingColor } from '../constants'
 
 export function SectionHeading({
   color,

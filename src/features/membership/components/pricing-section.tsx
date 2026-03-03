@@ -1,20 +1,5 @@
 import { CheckCircle2, Sparkles, Star, Zap } from 'lucide-react'
-
-const LITE_BENEFITS = [
-  'Akses Komunitas Telegram',
-  '1x Webinar Bulanan',
-  'Diskon 10% Layanan Bermoela',
-  'Update Event Terbaru',
-]
-
-const PRO_BENEFITS = [
-  'Akses Komunitas Exclusive',
-  'Weekly Premium Webinar',
-  'Akses 50+ Psikotes Premium',
-  'Diskon 30% Konseling Psikolog',
-  'Rekaman Webinar Unlimited',
-  'Priority Customer Support',
-]
+import { LITE_BENEFITS, PRO_BENEFITS } from '../constants'
 
 export function PricingSection() {
   return (

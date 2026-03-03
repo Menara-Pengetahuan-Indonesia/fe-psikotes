@@ -11,10 +11,14 @@ export {
   GRATIS_TESTS,
   PREMIUM_TESTS,
 } from './tests.constants'
-export type { Question } from './questions.constants'
+export type { MockQuestion } from './questions.constants'
 export { QUESTIONS_MAP } from './questions.constants'
 export type { ResultData } from './results.constants'
 export { RESULTS_MAP } from './results.constants'
+export {
+  LEVELS,
+  type Level,
+} from './curriculum-levels.constants'
 export {
   PERUSAHAAN_STATS,
   PERUSAHAAN_PROCESS,
@@ -29,3 +33,13 @@ export {
   MENTAL_HEALTH_FAQ,
   MENTAL_HEALTH_CTA,
 } from './category-sections.constants'
+export {
+  PILL_COLORS,
+  ROWS,
+  MARQUEE_CSS,
+  SEP_ICONS,
+  type Pill,
+} from './category-showcase.constants'
+export { PILLARS } from './pillars.constants'
+export { TRANSFORMATION_STEPS } from './transformation.constants'
+export { NAV_CATEGORIES } from './category-nav.constants'

@@ -167,7 +167,7 @@ export function TestCategoryCard({ test, number, href, variant = 'teal' }: TestC
         <Link
           href={href}
           className={cn(
-            "group/btn w-full py-3.5 bg-slate-900 text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-all shadow-lg shadow-slate-900/10 flex items-center justify-center gap-2",
+            "group/btn w-full py-3.5 bg-primary-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-all shadow-lg shadow-primary-200 flex items-center justify-center gap-2",
             theme.btnBg,
             theme.btnShadow
           )}

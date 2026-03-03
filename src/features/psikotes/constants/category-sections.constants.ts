@@ -27,22 +27,22 @@ export const PERUSAHAAN_STATS = [
     value: '95%',
     label: 'Akurasi Rekrutmen',
     description:
-      'Tingkat kecocokan kandidat dengan'
-      + ' posisi yang dibutuhkan.',
+      'Tingkat kecocokan kandidat yang'
+      + ' siap tumbuh bersama tim.',
   },
   {
     value: '500+',
     label: 'Perusahaan Mitra',
     description:
-      'Perusahaan dari berbagai industri'
-      + ' telah mempercayai asesmen kami.',
+      'Telah mempercayai asesmen kami'
+      + ' untuk membangun tim sukses.',
   },
   {
     value: '10K+',
-    label: 'Karyawan Diasesmen',
+    label: 'Karyawan Berdaya',
     description:
       'Talenta profesional yang telah'
-      + ' melalui proses asesmen kami.',
+      + ' melalui proses pemetaan diri.',
   },
 ]
 
@@ -52,30 +52,28 @@ export const PERUSAHAAN_PROCESS = [
     title: 'Konsultasi Kebutuhan',
     description:
       'Tim kami memahami kebutuhan SDM'
-      + ' dan menyusun paket asesmen'
-      + ' yang tepat.',
+      + ' untuk merancang masa depan bisnis.',
   },
   {
     icon: Users,
     title: 'Distribusi Tes',
     description:
       'Karyawan mengerjakan tes secara'
-      + ' online dengan link khusus'
-      + ' perusahaan.',
+      + ' online sebagai baseline kompetensi.',
   },
   {
     icon: Shield,
     title: 'Validasi Psikolog',
     description:
-      'Hasil dianalisis dan divalidasi'
-      + ' oleh psikolog berlisensi.',
+      'Hasil dianalisis untuk memastikan'
+      + ' kesiapan tumbuh dalam tim.',
   },
   {
     icon: TrendingUp,
-    title: 'Laporan & Rekomendasi',
+    title: 'Laporan Strategis',
     description:
-      'Terima laporan komprehensif'
-      + ' beserta rekomendasi strategis.',
+      'Terima rekomendasi nyata untuk'
+      + ' kesuksesan organisasi jangka panjang.',
   },
 ]
 
@@ -84,41 +82,38 @@ export const PERUSAHAAN_FAQ: FaqItem[] = [
     q: 'Apakah bisa tes untuk banyak'
       + ' karyawan sekaligus?',
     a: 'Ya, kami menyediakan paket korporat'
-      + ' untuk asesmen massal. Hubungi tim'
+      + ' untuk pemetaan massal. Hubungi tim'
       + ' kami untuk penawaran khusus.',
   },
   {
     q: 'Berapa lama hasil tes keluar?',
     a: 'Untuk tes standar, hasil keluar'
-      + ' real-time. Tes yang memerlukan'
-      + ' validasi psikolog maksimal H+1'
-      + ' hari kerja.',
+      + ' real-time sebagai baseline instan.'
+      + ' Validasi psikolog maksimal H+1.',
   },
   {
     q: 'Apakah laporan bisa digunakan'
       + ' untuk audit SDM?',
-    a: 'Tentu. Laporan kami dilengkapi kop'
-      + ' resmi dan tanda tangan psikolog'
-      + ' berlisensi, valid untuk kebutuhan'
-      + ' audit internal maupun eksternal.',
+    a: 'Tentu. Laporan kami valid untuk'
+      + ' kebutuhan audit internal guna'
+      + ' mengukur daya juang tim.',
   },
   {
     q: 'Apakah tersedia sesi konsultasi'
       + ' pasca-tes?',
     a: 'Ya, kami menawarkan sesi feedback'
-      + ' bersama psikolog untuk membahas'
-      + ' hasil dan rekomendasi tindak'
-      + ' lanjut bagi perusahaan.',
+      + ' untuk membahas strategi tumbuh'
+      + ' dan sukses bagi perusahaan.',
   },
 ]
 
 export const PERUSAHAAN_CTA: CtaBannerData = {
-  title: 'Siap Tingkatkan',
-  titleAccent: 'Kualitas SDM?',
+  title: 'Siap Bangun',
+  titleAccent: 'Tim yang Sukses?',
   description:
     'Mulai asesmen korporat bersama'
-    + ' Bermoela dan temukan talenta'
-    + ' terbaik untuk perusahaan Anda.',
+    + ' BERMOELA dan temukan talenta'
+    + ' yang siap tumbuh maksimal.',
   buttonText: 'Konsultasi Gratis',
   href: '/konseling',
 }
@@ -128,56 +123,56 @@ export const PERUSAHAAN_CTA: CtaBannerData = {
 export const MAHASISWA_BENEFITS = [
   {
     icon: Compass,
-    title: 'Temukan Arah Karir',
+    title: 'Temukan Arah Hidup',
     description:
-      'Ketahui minat dan bakat untuk'
-      + ' memilih jurusan atau jalur'
-      + ' karir yang tepat.',
+      'Ketahui titik mulamu untuk'
+      + ' memilih jalur karir yang'
+      + ' benar-benar membuatmu sukses.',
     theme: 'emerald' as const,
   },
   {
     icon: GraduationCap,
-    title: 'Persiapan Dunia Kerja',
+    title: 'The New You (Karir)',
     description:
-      'Siapkan diri menghadapi seleksi'
-      + ' kerja dengan pemahaman mendalam'
-      + ' tentang potensi Anda.',
+      'Siapkan diri hadapi dunia kerja'
+      + ' dengan pemahaman mendalam'
+      + ' tentang jati dirimu.',
     theme: 'amber' as const,
   },
   {
     icon: Lightbulb,
-    title: 'Insight Berbasis Data',
+    title: 'Insight Masa Depan',
     description:
-      'Hasil tes didukung metodologi'
-      + ' psikometri tervalidasi dan'
-      + ' analisis profesional.',
+      'Hasil tes membantu merancang'
+      + ' langkah nyata untuk berkembang'
+      + ' di era penuh tekanan.',
     theme: 'sky' as const,
   },
   {
     icon: Award,
     title: 'Sertifikat Resmi',
     description:
-      'Laporan dilengkapi kop resmi'
-      + ' Bermoela yang bisa dilampirkan'
-      + ' untuk keperluan akademik.',
+      'Laporan profesional sebagai bukti'
+      + ' kesiapanmu untuk menjadi'
+      + ' penentu masa depan sendiri.',
     theme: 'indigo' as const,
   },
   {
     icon: BookOpen,
-    title: 'Rekomendasi Jurusan',
+    title: 'Rekomendasi Presisi',
     description:
-      'Dapatkan rekomendasi jurusan'
-      + ' kuliah yang paling sesuai'
-      + ' dengan profil psikologis Anda.',
+      'Dapatkan saran jurusan atau'
+      + ' karir yang paling indah sesuai'
+      + ' profil psikologis Anda.',
     theme: 'rose' as const,
   },
   {
     icon: Sparkles,
-    title: 'Harga Terjangkau',
+    title: 'Investasi Tumbuh',
     description:
-      'Paket khusus pelajar dan'
-      + ' mahasiswa dengan harga yang'
-      + ' ramah di kantong.',
+      'Paket terjangkau untuk mahasiswa'
+      + ' yang ingin mulai berdaya'
+      + ' sedini mungkin.',
     theme: 'emerald' as const,
   },
 ]
@@ -185,31 +180,31 @@ export const MAHASISWA_BENEFITS = [
 export const MAHASISWA_PROCESS = [
   {
     step: '01',
-    title: 'Daftar Akun',
+    title: 'Titik Mula',
     description:
-      'Buat akun gratis di platform'
-      + ' Bermoela dalam hitungan detik.',
+      'Buat akun dan tentukan area'
+      + ' mana yang ingin kamu petakan.',
   },
   {
     step: '02',
-    title: 'Pilih Tes',
+    title: 'Pilih Asesmen',
     description:
       'Tentukan tes yang sesuai dengan'
-      + ' kebutuhan akademik atau karir.',
+      + ' mimpi dan target suksesmu.',
   },
   {
     step: '03',
-    title: 'Kerjakan Online',
+    title: 'Pemetaan Diri',
     description:
-      'Selesaikan tes kapan saja dan'
-      + ' di mana saja secara daring.',
+      'Selesaikan tes secara online'
+      + ' sebagai baseline perubahanmu.',
   },
   {
     step: '04',
     title: 'Terima Hasil',
     description:
-      'Dapatkan laporan profesional'
-      + ' dan rekomendasi personal.',
+      'Dapatkan laporan lengkap dan'
+      + ' rancang masa depanmu yang baru.',
   },
 ]
 
@@ -218,154 +213,144 @@ export const MAHASISWA_FAQ: FaqItem[] = [
     q: 'Apakah ada diskon khusus'
       + ' mahasiswa?',
     a: 'Ya, kami memiliki harga khusus'
-      + ' untuk pelajar dan mahasiswa.'
-      + ' Cek halaman harga masing-masing'
-      + ' tes untuk detail lengkapnya.',
+      + ' agar kamu bisa mulai tumbuh'
+      + ' tanpa kendala biaya.',
   },
   {
     q: 'Tes apa yang cocok untuk'
-      + ' mencari jurusan kuliah?',
-    a: 'Tes Minat Bakat adalah pilihan'
-      + ' terbaik. Tes ini akan mengukur'
-      + ' minat, bakat, dan kepribadian'
-      + ' Anda untuk rekomendasi jurusan.',
+      + ' mencari arah karir?',
+    a: 'Tes Minat Bakat adalah baseline'
+      + ' terbaik untuk merancang masa'
+      + ' depan suksesmu sedini mungkin.',
   },
   {
     q: 'Apakah hasil tes bisa digunakan'
       + ' untuk melamar kerja?',
-    a: 'Ya, laporan kami dilengkapi kop'
-      + ' resmi Bermoela dan valid untuk'
-      + ' dilampirkan dalam proses'
-      + ' rekrutmen kerja.',
+    a: 'Ya, laporan resmi BERMOELA valid'
+      + ' untuk menunjukkan potensimu'
+      + ' yang sebenarnya pada rekruter.',
   },
   {
     q: 'Berapa lama waktu pengerjaan?',
-    a: 'Durasi bervariasi tergantung'
-      + ' jenis tes, mulai dari 15 menit'
-      + ' hingga 90 menit. Detail waktu'
-      + ' tercantum di setiap halaman tes.',
+    a: 'Bervariasi, namun dirancang agar'
+      + ' kamu tetap fokus dalam proses'
+      + ' mengenali dirimu sendiri.',
   },
 ]
 
 export const MAHASISWA_CTA: CtaBannerData = {
-  title: 'Siap Temukan',
-  titleAccent: 'Potensi Terbaikmu?',
+  title: 'Siap Rancang',
+  titleAccent: 'Masa Depan Indah?',
   description:
-    'Ambil langkah pertama menuju masa'
-    + ' depan yang lebih terarah dengan'
-    + ' asesmen profesional Bermoela.',
-  buttonText: 'Mulai Tes Sekarang',
+    'Ambil langkah pertama menuju "The'
+    + ' New You" yang sukses dengan'
+    + ' asesmen profesional BERMOELA.',
+  buttonText: 'Mulai Sekarang',
   href: '/psikotes/mahasiswa',
 }
 
-// ── Kesehatan Mental ───────────────────────────────
+// ── Mental Health ───────────────────────────────
 
 export const MENTAL_HEALTH_BENEFITS = [
   {
     icon: Heart,
-    title: 'Deteksi Dini',
+    title: 'Melepaskan Kendala',
     description:
-      'Kenali tanda-tanda awal gangguan'
-      + ' mental sebelum berkembang.',
+      'Identifikasi masalah masa lalu'
+      + ' untuk hidup yang lebih bebas.',
   },
   {
     icon: Brain,
-    title: 'Pendekatan Klinis',
+    title: 'Mental Health Insight',
     description:
-      'Alat tes tervalidasi yang digunakan'
-      + ' praktisi profesional.',
+      'Alat tes tervalidasi untuk'
+      + ' memahami kondisi mentalmu.',
   },
   {
     icon: Lock,
-    title: 'Privasi Terjamin',
+    title: 'Kerahasiaan Utuh',
     description:
-      'Data dan hasil tes dijaga dengan'
-      + ' standar keamanan tertinggi.',
+      'Data pribadimu adalah milikmu,'
+      + ' aman dalam ekosistem kami.',
   },
   {
     icon: CheckCircle2,
-    title: 'Didampingi Psikolog',
+    title: 'Dukungan Para Ahli',
     description:
-      'Konsultasi lanjutan bersama'
-      + ' psikolog berpengalaman.',
+      'Rancang langkah perubahan bersama'
+      + ' psikolog profesional kami.',
   },
 ]
 
 export const MENTAL_HEALTH_JOURNEY = [
   {
     step: '01',
-    title: 'Screening Awal',
+    title: 'Baseline (Titik Awal)',
     description:
-      'Isi kuesioner singkat untuk'
-      + ' mengetahui area yang perlu'
-      + ' dieksplorasi.',
+      'Lakukan screening awal untuk'
+      + ' mengetahui area mana yang'
+      + ' perlu disembuhkan.',
   },
   {
     step: '02',
-    title: 'Asesmen Mendalam',
+    title: 'Pemetaan Mental',
     description:
-      'Ikuti tes psikologi klinis'
-      + ' yang sesuai dengan kondisi Anda.',
+      'Ikuti tes Mental Health yang'
+      + ' komprehensif sesuai kondisimu.',
   },
   {
     step: '03',
-    title: 'Analisis Hasil',
+    title: 'Analisis Transformasi',
     description:
-      'Psikolog menganalisis dan'
-      + ' menyusun laporan lengkap.',
+      'Psikolog membantu merumuskan'
+      + ' potensi "The New You".',
   },
   {
     step: '04',
-    title: 'Konseling Lanjutan',
+    title: 'Tumbuh & Berdaya',
     description:
-      'Diskusikan hasil bersama'
-      + ' psikolog untuk langkah'
-      + ' pemulihan.',
+      'Jalankan langkah nyata untuk'
+      + ' hidup indah dan masa depan cerah.',
   },
 ]
 
 export const MENTAL_HEALTH_FAQ: FaqItem[] = [
   {
-    q: 'Apakah tes ini bisa mendiagnosis'
-      + ' gangguan mental?',
-    a: 'Tes ini berfungsi sebagai'
-      + ' screening awal. Untuk diagnosis'
-      + ' resmi, diperlukan konsultasi'
-      + ' lanjutan dengan psikolog.',
+    q: 'Apa bedanya Mental Health'
+      + ' dengan tes biasa?',
+    a: 'Kami tidak mendiagnosis penyakit,'
+      + ' tapi memetakan cara agar kamu'
+      + ' bisa tumbuh dan sukses kembali.',
   },
   {
     q: 'Apakah hasil tes saya bersifat'
       + ' rahasia?',
-    a: 'Tentu. Semua data dan hasil tes'
-      + ' hanya dapat diakses oleh Anda.'
-      + ' Kami menjunjung tinggi kode etik'
-      + ' kerahasiaan psikologi.',
+    a: 'Tentu. Kami menjunjung tinggi'
+      + ' privasi agar kamu bebas merdeka'
+      + ' menceritakan kondisimu.',
   },
   {
-    q: 'Siapa yang membuat laporan'
-      + ' hasil tes?',
-    a: 'Laporan disusun oleh sistem kami'
-      + ' yang divalidasi oleh psikolog'
+    q: 'Siapa yang memvalidasi hasil?',
+    a: 'Laporan divalidasi oleh psikolog'
       + ' klinis berlisensi untuk'
-      + ' memastikan akurasi.',
+      + ' akurasi rencana masa depanmu.',
   },
   {
     q: 'Apakah ada layanan konseling'
-      + ' setelah tes?',
-    a: 'Ya, kami menyediakan layanan'
-      + ' konseling lanjutan bersama'
-      + ' psikolog berpengalaman untuk'
-      + ' membahas hasil tes Anda.',
+      + ' lanjutan?',
+    a: 'Ya, kami sediakan sesi bersama'
+      + ' para ahli untuk memastikanmu'
+      + ' benar-benar berkembang.',
   },
 ]
 
 export const MENTAL_HEALTH_CTA: CtaBannerData = {
-  title: 'Mulai Peduli',
-  titleAccent: 'Kesehatan Mentalmu',
+  title: 'Mulai Langkah',
+  titleAccent: 'The New You',
   description:
-    'Langkah kecil hari ini bisa membawa'
-    + ' perubahan besar. Kenali kondisi'
-    + ' mental Anda bersama Bermoela.',
-  buttonText: 'Mulai Asesmen',
-  href: '/psikotes/kesehatan-mental',
+    'Jangan hanya bertahan. Mari tumbuh'
+    + ' dan sukses di era penuh tekanan'
+    + ' bersama BERMOELA.',
+  buttonText: 'Mulai Sekarang',
+  href: '/psikotes/psikotes/kesehatan-mental',
 }

@@ -1,5 +1,4 @@
-export type ApiRole = 'USER' | 'COMPANY' | 'ADMIN'
-export type AppRole = 'user' | 'company' | 'admin'
+export type ApiRole = 'USER' | 'ADMIN' | 'SUPERADMIN'
 
 export interface ApiUser {
   id: string

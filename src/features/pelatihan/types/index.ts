@@ -15,7 +15,4 @@ export interface ProcessStep {
   icon: LucideIcon
 }
 
-export interface FaqItem {
-  q: string
-  a: string
-}
+export type { FaqItem } from '@shared/types'

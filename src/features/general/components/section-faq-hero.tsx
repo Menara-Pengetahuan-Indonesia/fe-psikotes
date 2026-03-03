@@ -2,7 +2,7 @@ import { Diamond, Plus, Sparkles } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
-import type { FaqTheme } from './section-faq-types'
+import type { FaqTheme } from '../types'
 
 type SectionFaqHeroProps = {
   badge: string

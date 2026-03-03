@@ -22,10 +22,7 @@ export interface CorporateTest extends PsikotesTest {
   features: TestFeature[]
 }
 
-export interface FaqItem {
-  q: string
-  a: string
-}
+export type { FaqItem } from '@shared/types'
 
 export interface CtaBannerData {
   title: string

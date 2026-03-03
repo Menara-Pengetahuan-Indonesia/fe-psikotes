@@ -1,5 +1,3 @@
-export { AppSidebar } from './sidebar-nav'
-export { DashboardOverview } from './dashboard-overview'
-export { MyTests } from './my-tests'
-export { TestResults } from './test-results'
-export { UserProfile } from './user-profile'
+export { UserDashboard } from './user-dashboard'
+export { AdminDashboard } from './admin-dashboard'
+export { SuperAdminDashboard } from './superadmin-dashboard'

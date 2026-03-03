@@ -6,19 +6,9 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import {
+  CATEGORY_CONFIG,
   DUMMY_TEST_HISTORY,
-  type TestCategory,
 } from '@/features/dashboard/constants'
-
-const CATEGORY_CONFIG: Record<
-  TestCategory, { bg: string, text: string, border: string, iconColor: string }
-> = {
-  gratis: { bg: 'bg-primary-50', text: 'text-primary-700', border: 'border-primary-100', iconColor: 'text-primary-500' },
-  premium: { bg: 'bg-violet-50', text: 'text-violet-700', border: 'border-violet-100', iconColor: 'text-violet-500' },
-  mahasiswa: { bg: 'bg-sky-50', text: 'text-sky-700', border: 'border-sky-100', iconColor: 'text-sky-500' },
-  perusahaan: { bg: 'bg-orange-50', text: 'text-orange-700', border: 'border-orange-100', iconColor: 'text-orange-500' },
-  'kesehatan-mental': { bg: 'bg-rose-50', text: 'text-rose-700', border: 'border-rose-100', iconColor: 'text-rose-500' },
-}
 
 const completedTests = DUMMY_TEST_HISTORY.filter(
   (t) => t.status === 'selesai'

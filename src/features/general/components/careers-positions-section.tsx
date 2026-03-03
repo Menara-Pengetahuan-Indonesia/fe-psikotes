@@ -5,7 +5,7 @@ import {
   Briefcase,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { POSITIONS } from './careers-constants'
+import { POSITIONS } from '../constants'
 
 export function CareersPositionsSection() {
   return (

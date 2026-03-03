@@ -1,6 +1,5 @@
 export type {
   ApiRole,
-  AppRole,
   ApiUser,
   LoginResponse,
   RegisterResponse,

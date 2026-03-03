@@ -11,13 +11,13 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { useAuthStoreHydrated } from '@/store/auth.store'
 
-import { ExamStartScreen } from './exam-start-screen'
-import { ExamResultScreen } from './exam-result-screen'
+import { ExamStartScreen } from '@/features/psikotes/mahasiswa/components/exam-start-screen'
+import { ExamResultScreen } from '@/features/psikotes/mahasiswa/components/exam-result-screen'
 import {
   ExamHeader,
   ExamProctor,
   ExamNavSidebar,
-} from './exam-ui-parts'
+} from '@/features/psikotes/mahasiswa/components/exam-ui-parts'
 
 const QUESTIONS = Array.from({ length: 20 }, (_, i) => ({
   id: i + 1,

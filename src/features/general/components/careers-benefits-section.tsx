@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import { BENEFITS } from './careers-constants'
+import { BENEFITS } from '../constants'
 
 export function CareersBenefitsSection() {
   return (

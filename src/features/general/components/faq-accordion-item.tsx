@@ -2,7 +2,8 @@ import { ChevronDown, HelpCircle } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
-import type { FaqItem, FaqTheme } from './section-faq-types'
+import type { FaqItem } from '@shared/types'
+import type { FaqTheme } from '../types'
 
 type FaqAccordionItemProps = {
   faq: FaqItem

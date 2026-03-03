@@ -2,10 +2,6 @@ import { Button } from '@/components/ui/button'
 import {
   ArrowRight,
   Sparkles,
-  ShieldCheck,
-  Award,
-  Target,
-  HeartHandshake,
   Plus,
   Hexagon,
   Diamond,
@@ -13,29 +9,7 @@ import {
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { TOPO_WHITE, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
-
-const HERO_BENEFITS = [
-  {
-    label: 'Confidential',
-    desc: 'Sesi privat dan aman',
-    icon: ShieldCheck,
-  },
-  {
-    label: 'Licensed Experts',
-    desc: 'Psikolog klinis berlisensi',
-    icon: Award,
-  },
-  {
-    label: 'Personalized',
-    desc: 'Pendekatan sesuai kebutuhanmu',
-    icon: Target,
-  },
-  {
-    label: 'Follow-up Care',
-    desc: 'Dukungan berkelanjutan',
-    icon: HeartHandshake,
-  },
-]
+import { KONSELING_HERO_BENEFITS } from '../constants'
 
 export function KonselingHero() {
   return (
@@ -103,7 +77,7 @@ export function KonselingHero() {
 
             {/* Benefits Cards */}
             <div className="grid sm:grid-cols-2 gap-4">
-              {HERO_BENEFITS.map((b, idx) => (
+              {KONSELING_HERO_BENEFITS.map((b, idx) => (
                 <div key={b.label}
                      className={cn(
                        "flex items-start gap-4 p-5 rounded-3xl border transition-all duration-500 hover:-translate-y-1",

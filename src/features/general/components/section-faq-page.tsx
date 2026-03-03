@@ -8,10 +8,10 @@ import { cn } from '@/lib/utils'
 
 import { FaqAccordionItem } from './faq-accordion-item'
 import { SectionFaqHero } from './section-faq-hero'
-import type { SectionFaqPageProps } from './section-faq-types'
+import type { SectionFaqPageProps } from '../types'
 
-export { EMERALD_FAQ, INDIGO_FAQ, ORANGE_FAQ } from './section-faq-themes'
-export type { FaqItem, FaqTheme, SectionFaqPageProps } from './section-faq-types'
+export { EMERALD_FAQ, INDIGO_FAQ, ORANGE_FAQ } from '../constants'
+export type { FaqItem, FaqTheme, SectionFaqPageProps } from '../types'
 
 export function SectionFaqPage({
   badge,

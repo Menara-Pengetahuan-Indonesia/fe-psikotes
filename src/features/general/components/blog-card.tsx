@@ -2,7 +2,7 @@ import { Sparkles, Calendar, User } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 
-import type { BlogPost } from './blog-constants'
+import type { BlogPost } from '../constants'
 
 interface BlogCardProps {
   post: BlogPost

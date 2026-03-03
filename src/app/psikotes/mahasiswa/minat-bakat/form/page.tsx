@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 
-import { ExamInterface } from '@/features/psikotes/gratis/components'
-import { QUESTIONS_MAP } from '@/features/psikotes/constants'
+import { ExamInterface } from '@/features/psikotes/components/ExamInterface'
 
 export const metadata: Metadata = {
   title: 'Tes Minat & Bakat — Mulai Tes — BERMOELA',
@@ -9,14 +8,12 @@ export const metadata: Metadata = {
 }
 
 export default function MinatBakatFormPage() {
+  // Get test ID from URL params or use default RIASEC test ID
+  const testId = 'riasec-test' // Hardcoded: this page is the minat-bakat exam route
+
   return (
     <main>
-      <ExamInterface
-        slug="minat-bakat"
-        questions={QUESTIONS_MAP['minat-bakat']}
-        backHref="/psikotes/mahasiswa/minat-bakat"
-        resultHref="/psikotes/mahasiswa/minat-bakat/result"
-      />
+      <ExamInterface testId={testId} />
     </main>
   )
 }
