@@ -195,7 +195,7 @@ export function PsikotesCategoryNav() {
 
         <div className="mt-20 text-center">
            <p className="text-slate-400 text-xs font-black uppercase tracking-[0.4em]">
-              Setiap langkah besar dimulai dengan satu keputusan kecil. <BermoelaText className="text-primary-600" />
+              Titik mula perjalananmu untuk tumbuh dan menemukan kembali dirimu. <BermoelaText className="text-primary-600" />
            </p>
         </div>
 
