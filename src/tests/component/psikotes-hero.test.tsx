@@ -15,6 +15,15 @@ describe('PsikotesHero', () => {
     )
   })
 
+  it('renders the updated hero description', () => {
+    render(<PsikotesHero />)
+    expect(
+      screen.getByText(/Assessment psikologis berbasis riset sebagai titik mula menuju/)
+    ).toBeInTheDocument()
+    expect(screen.getByText(/"The New You"/)).toBeInTheDocument()
+    expect(screen.getByText(/dan masa depan yang lebih terarah/)).toBeInTheDocument()
+  })
+
   it('renders the diagnostic input area', () => {
     render(<PsikotesHero />)
     expect(

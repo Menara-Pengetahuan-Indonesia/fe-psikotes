@@ -29,7 +29,7 @@ export const NAV_CATEGORIES = [
     accent: 'text-rose-400',
     gradient: 'from-rose-400/20 to-rose-600/20',
     content: {
-      problem: 'Hubungan yang beracun, komunikasi yang mati, atau terjebak dalam trauma pasangan.',
+      problem: 'Terjebak dalam hubungan yang toxic, komunikasi yang penuh silent treatment , gaslighting, pasangan dengan kecenderungan (NPD) yang perlahan mengikis kepercayaan diri dan batasan pribadi.',
       product: 'Asesmen Kecocokan Pasangan, & Konseling Keluarga.',
       solution: 'Bongkar dinamika hubunganmu, temukan solusi nyata untuk membangun keharmonisan.',
       benefit: 'Wujudkan hubungan yang sehat, damai, dan masa depan keluarga yang indah.'
