@@ -16,9 +16,9 @@ vi.mock('next/link', () => ({
 import { Navbar } from '@/shared/components/layout/navbar'
 
 describe('Navbar', () => {
-  it('renders the logo text', () => {
+  it('renders the logo image', () => {
     render(<Navbar />)
-    expect(screen.getByText('MOELA')).toBeInTheDocument()
+    expect(screen.getByAltText('Bermoela')).toBeInTheDocument()
   })
 
   it('renders navigation items for psikotes route', () => {
@@ -90,7 +90,7 @@ describe('Navbar', () => {
       fireEvent.click(menuButton)
     }
     // After click, mobile menu component should render or toggle
-    expect(screen.getByText('MOELA')).toBeInTheDocument()
+    expect(screen.getByAltText('Bermoela')).toBeInTheDocument()
   })
 
   it('uses custom navItems when provided', () => {
@@ -106,13 +106,13 @@ describe('Navbar', () => {
     mockUsePathname.mockReturnValue('/konseling')
     render(<Navbar />)
     // Should render navbar (not hidden) with konseling items
-    expect(screen.getByText('MOELA')).toBeInTheDocument()
+    expect(screen.getByAltText('Bermoela')).toBeInTheDocument()
   })
 
   it('renders pelatihan nav items on pelatihan route', () => {
     mockUsePathname.mockReturnValue('/pelatihan')
     render(<Navbar />)
-    expect(screen.getByText('MOELA')).toBeInTheDocument()
+    expect(screen.getByAltText('Bermoela')).toBeInTheDocument()
   })
 
   it('returns null for forgot-password route', () => {

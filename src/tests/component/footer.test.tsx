@@ -16,9 +16,9 @@ vi.mock('next/link', () => ({
 import { Footer } from '@/shared/components/layout/footer'
 
 describe('Footer', () => {
-  it('renders brand name', () => {
+  it('renders brand logo', () => {
     render(<Footer />)
-    expect(screen.getByText('MOELA')).toBeInTheDocument()
+    expect(screen.getByAltText('Bermoela')).toBeInTheDocument()
   })
 
   it('renders copyright text', () => {

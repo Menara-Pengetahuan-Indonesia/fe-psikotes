@@ -68,7 +68,7 @@ describe('PsikotesDiagnostic', () => {
 
     // Should show result phase with first message response
     expect(screen.getByText(/Terima kasih sudah mau berbagi/)).toBeInTheDocument()
-    expect(screen.getByText('Analisis & Respon AI')).toBeInTheDocument()
+    expect(screen.getByText('Respon AI Counsellor')).toBeInTheDocument()
   })
 
   it('shows user message history in result phase', () => {
@@ -82,7 +82,7 @@ describe('PsikotesDiagnostic', () => {
     })
 
     expect(screen.getByText('Saya merasa cemas')).toBeInTheDocument()
-    expect(screen.getByText('Riwayat Ceritamu')).toBeInTheDocument()
+    expect(screen.getByText('Ceritakan Masalahmu')).toBeInTheDocument()
   })
 
   it('clears input after submission', () => {

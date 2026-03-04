@@ -44,7 +44,7 @@ import { AppSidebar } from '@/features/dashboard/components/sidebar-nav'
 describe('AppSidebar', () => {
   it('renders brand logo', () => {
     render(<AppSidebar />)
-    expect(screen.getByText('MOELA')).toBeInTheDocument()
+    expect(screen.getByAltText('Bermoela')).toBeInTheDocument()
   })
 
   it('renders navigation items', () => {
