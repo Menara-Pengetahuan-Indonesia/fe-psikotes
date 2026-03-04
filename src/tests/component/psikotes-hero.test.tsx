@@ -3,9 +3,9 @@ import { describe, it, expect } from 'vitest'
 import { PsikotesHero } from '@/features/psikotes/components'
 
 describe('PsikotesHero', () => {
-  it('renders the transformation badge', () => {
+  it('renders the AI counsellor label', () => {
     render(<PsikotesHero />)
-    expect(screen.getByText('The New You Transformation')).toBeInTheDocument()
+    expect(screen.getByText(/AI Counsellor/)).toBeInTheDocument()
   })
 
   it('renders the hero heading', () => {

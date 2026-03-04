@@ -12,19 +12,19 @@ import { PsikotesCategoryNav } from '@/features/psikotes/components/psikotes-cat
 describe('PsikotesCategoryNav', () => {
   it('renders section heading', () => {
     render(<PsikotesCategoryNav />)
-    expect(screen.getByText(/Ke Mana Kamu Ingin/)).toBeInTheDocument()
+    expect(screen.getByText(/Berhenti Berlari dari/)).toBeInTheDocument()
   })
 
   it('renders badge text', () => {
     render(<PsikotesCategoryNav />)
-    expect(screen.getByText('Pilih Titik Mulamu')).toBeInTheDocument()
+    expect(screen.getByText('Hadapi Titik Mulamu')).toBeInTheDocument()
   })
 
   it('renders solution labels', () => {
     render(<PsikotesCategoryNav />)
     expect(screen.getByText('Kondisi Saat Ini')).toBeInTheDocument()
     expect(screen.getByText('The New You Transformation')).toBeInTheDocument()
-    expect(screen.getByText('Langkah Perubahan')).toBeInTheDocument()
+    expect(screen.getByText(/Solusi Terpadu/)).toBeInTheDocument()
   })
 
   it('renders CTA button', () => {

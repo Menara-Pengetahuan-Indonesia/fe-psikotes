@@ -12,7 +12,7 @@ import { PsikotesProducts } from '@/features/psikotes/components/psikotes-produc
 describe('PsikotesProducts', () => {
   it('renders section heading', () => {
     render(<PsikotesProducts />)
-    expect(screen.getByText(/Pilih Alat Bantu/)).toBeInTheDocument()
+    expect(screen.getByText(/Ambil Senjata/)).toBeInTheDocument()
   })
 
   it('renders premium badge', () => {
@@ -23,8 +23,8 @@ describe('PsikotesProducts', () => {
   it('renders filter tabs', () => {
     render(<PsikotesProducts />)
     expect(screen.getByText('Semua Produk')).toBeInTheDocument()
-    expect(screen.getByText('The New You')).toBeInTheDocument()
-    expect(screen.getByText('Kapasitas Diri')).toBeInTheDocument()
+    expect(screen.getByText('Diri Sendiri')).toBeInTheDocument()
+    expect(screen.getByText('Relationship')).toBeInTheDocument()
   })
 
   it('renders bottom CTA', () => {
