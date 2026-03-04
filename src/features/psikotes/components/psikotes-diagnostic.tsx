@@ -132,9 +132,16 @@ export function PsikotesDiagnostic() {
       {/* 1. INITIAL INPUT PHASE (Big Search Bar) */}
       {phase === 'input' && (
         <div className={cn(
-          "mx-auto flex flex-col gap-4 transition-all duration-700 ease-in-out",
+          "mx-auto flex flex-col gap-6 transition-all duration-700 ease-in-out",
           isInputFocused ? "max-w-4xl" : "max-w-xl"
         )}>
+          {/* Subtle label above search bar */}
+          <div className="text-center animate-in fade-in slide-in-from-top-4 duration-1000">
+             <p className="text-xs font-black text-white/40 uppercase tracking-[0.4em]">
+                Ceritakan masalahmu, AI Counsellor akan mendengarkanmu
+             </p>
+          </div>
+
           <form 
             onSubmit={handleManualSubmit}
             className={cn(

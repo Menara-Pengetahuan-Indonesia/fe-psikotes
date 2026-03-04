@@ -203,7 +203,7 @@ export function PsikotesPillars() {
                           
                           <div className="flex items-center gap-3 pt-2">
                              <div className={cn("h-1 w-12 rounded-full", activeData.theme.accent)} />
-                             <p className="text-xs font-black uppercase tracking-widest opacity-80 italic">Ready to Bloom</p>
+                             <p className="text-xs font-black uppercase tracking-widest opacity-80 italic">Kenali Potensimu</p>
                              <Sparkles className="w-3 h-3 text-accent-300 animate-pulse" />
                           </div>
                        </div>

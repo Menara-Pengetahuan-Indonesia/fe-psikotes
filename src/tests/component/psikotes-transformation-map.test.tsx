@@ -22,7 +22,7 @@ describe('PsikotesTransformationMap', () => {
 
   it('renders social proof', () => {
     render(<PsikotesTransformationMap />)
-    expect(screen.getByText('+10k Wanita Berdaya')).toBeInTheDocument()
+    expect(screen.getByText('+10k Jiwa yang Tumbuh')).toBeInTheDocument()
   })
 
   it('renders description', () => {

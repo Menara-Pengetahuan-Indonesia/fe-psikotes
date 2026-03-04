@@ -44,11 +44,11 @@ export function PsikotesTransformationMap() {
                 <span className="text-xs font-black text-primary-100 uppercase tracking-widest">Transformation Journey</span>
               </div>
               <h2 className="text-3xl font-black text-white tracking-tight leading-tight">
-                Hancurkan Belenggu <br />
-                <span className="text-accent-400 italic">Masa Lalumu</span>
+                Peta Perjalanan <br />
+                <span className="text-accent-400 italic">&quot;The New You&quot;</span>
               </h2>
               <p className="text-primary-100/60 text-sm font-medium leading-relaxed">
-                Empat langkah kunci untuk melepaskan diri dari kegagalan dan membangun masa depan yang indah. Semua harus bermula dari sini.
+                Empat langkah kunci untuk melepaskan kendala masa lalu dan meraih masa depan yang indah. Semua bermula dari sini.
               </p>
               <div className="flex items-center gap-4 pt-4">
                  <div className="flex -space-x-2">
@@ -56,7 +56,7 @@ export function PsikotesTransformationMap() {
                       <div key={i} className="w-8 h-8 rounded-full border-2 border-primary-900 bg-primary-800" />
                     ))}
                  </div>
-                 <span className="text-xs font-black text-primary-300/60 uppercase tracking-widest">+10k Wanita Berdaya</span>
+                 <span className="text-xs font-black text-primary-300/60 uppercase tracking-widest">+10k Jiwa yang Tumbuh</span>
               </div>
             </div>
 
