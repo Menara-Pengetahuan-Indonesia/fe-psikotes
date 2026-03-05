@@ -127,21 +127,21 @@ export function PsikotesDiagnostic() {
   const rec = (phase === 'result' || phase === 'thinking') && messages.length > 0 ? getRecommendation() : null
 
   return (
-    <div className="w-full">
+    <div className="w-full space-y-8">
       
+      {/* Persisting label above everything */}
+      <div className="text-center animate-in fade-in slide-in-from-top-4 duration-1000">
+          <p className="text-[14px] font-black text-white uppercase tracking-[0.3em] max-w-4xl mx-auto">
+            Ceritakan masalahmu, AI Counsellor akan mendengarkanmu
+          </p>
+      </div>
+
       {/* 1. INITIAL INPUT PHASE (Big Search Bar) */}
       {phase === 'input' && (
         <div className={cn(
           "mx-auto flex flex-col gap-6 transition-all duration-700 ease-in-out",
           isInputFocused ? "max-w-4xl" : "max-w-xl"
         )}>
-          {/* Subtle label above search bar */}
-          <div className="text-center animate-in fade-in slide-in-from-top-4 duration-1000">
-             <p className="text-xs font-black text-white/40 uppercase tracking-[0.4em]">
-                Ceritakan masalahmu, AI Counsellor akan mendengarkanmu
-             </p>
-          </div>
-
           <form 
             onSubmit={handleManualSubmit}
             className={cn(
@@ -191,12 +191,12 @@ export function PsikotesDiagnostic() {
           <div className="flex justify-center gap-4 opacity-60">
              <div className="flex items-center gap-1.5">
                 <Sparkles className="w-3 h-3 text-accent-300" />
-                <span className="text-[9px] font-black text-white uppercase tracking-widest">Mental Health Insight</span>
+                <span className="text-[11px] font-black text-white uppercase tracking-widest">Mental Health Insight</span>
              </div>
              <div className="w-px h-2 bg-white/20 mt-1" />
              <div className="flex items-center gap-1.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <span className="text-[9px] font-black text-white uppercase tracking-widest">Always Active</span>
+                <span className="text-[11px] font-black text-white uppercase tracking-widest">Always Active</span>
              </div>
           </div>
         </div>
@@ -216,13 +216,6 @@ export function PsikotesDiagnostic() {
       {/* 3. RESULT/CHAT PHASE */}
       {(phase === 'result' || (phase === 'thinking' && messages.length > 1)) && (
         <div className="max-w-6xl mx-auto space-y-12">
-          {/* Subtle sub-caption above cards */}
-          <div className="text-center animate-in fade-in slide-in-from-top-4 duration-1000">
-             <p className="text-xs font-black text-white/40 uppercase tracking-[0.4em]">
-                Ceritakan masalahmu, AI Counsellor akan mendengarkanmu
-             </p>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-6 items-stretch animate-in fade-in slide-in-from-bottom-4 duration-700 w-full pt-4">
             
             {/* LEFT CARD: USER HISTORY (FIXED HEIGHT, HIDDEN SCROLLBAR) */}

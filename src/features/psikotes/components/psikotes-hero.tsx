@@ -67,7 +67,7 @@ export function PsikotesHero() {
           </div>
 
           {/* Footer of Hero */}
-          <div className="pt-12 flex flex-col items-center gap-4">
+          <div className="pt-0 flex flex-col items-center gap-4">
              <p className="text-primary-200/40 text-xs font-bold uppercase tracking-[0.3em]">
                 Semua bisa <BermoelaText className="text-primary-200/60" /> dari sini
              </p>
