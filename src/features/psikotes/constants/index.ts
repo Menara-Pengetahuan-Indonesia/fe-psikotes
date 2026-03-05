@@ -42,4 +42,5 @@ export {
 } from './category-showcase.constants'
 export { PILLARS } from './pillars.constants'
 export { TRANSFORMATION_STEPS } from './transformation.constants'
+export { TRANSFORMATION_STAGES } from './stages.constants'
 export { NAV_CATEGORIES } from './category-nav.constants'

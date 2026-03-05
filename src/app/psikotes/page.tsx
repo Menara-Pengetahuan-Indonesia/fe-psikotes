@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import {
   PsikotesHero,
   PsikotesTransformationMap,
+  PsikotesStage,
   PsikotesCategoryNav,
   PsikotesPillars,
   PsikotesProducts,
@@ -25,6 +26,9 @@ export default function PsikotesPage() {
       {/* 2. Masalah: Identifikasi Kondisi Saat Ini */}
       <PsikotesCategoryNav />
 
+      {/* NEW: Stage Transformation */}
+      <PsikotesStage />
+
       {/* 3. Solusi: Peta Perjalanan Transformasi */}
       <PsikotesTransformationMap />
 
@@ -32,7 +36,7 @@ export default function PsikotesPage() {
       <PsikotesProducts />
 
       {/* 5. Benefit: Detail Transformasi & Hasil Akhir */}
-      <PsikotesPillars />
+      {/* <PsikotesPillars /> */}
     </main>
   )
 }
