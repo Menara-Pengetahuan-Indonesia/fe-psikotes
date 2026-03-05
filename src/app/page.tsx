@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import { HomepageHero } from '@/features/homepage/components'
+import { PsikotesCategoryNav, PsikotesStage } from '@/features/psikotes/components'
 
 export const metadata: Metadata = {
   title: 'BERMOELA — Platform Pengembangan Diri',
@@ -8,5 +9,11 @@ export const metadata: Metadata = {
 }
 
 export default function HomePage() {
-  return <HomepageHero />
+  return (
+    <main>
+      <HomepageHero />
+      <PsikotesStage />
+      <PsikotesCategoryNav />
+    </main>
+  )
 }

@@ -11,6 +11,7 @@ export { PsikotesCategoryNav } from './psikotes-category-nav'
 export { PsikotesProducts } from './psikotes-products'
 export { PsikotesJoinPractitioner } from './psikotes-join-practitioner'
 export { PsikotesTransformationMap } from './psikotes-transformation-map'
+export { PsikotesStage } from './psikotes-stage'
 export { PsikotesDiagnostic } from './psikotes-diagnostic'
 export {
   PhilosophySection,
