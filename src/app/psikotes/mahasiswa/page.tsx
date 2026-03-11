@@ -27,9 +27,10 @@ const CategoryFaqSection = dynamic(
 export const metadata: Metadata = {
   title: 'Psikotes Mahasiswa — BERMOELA',
   description:
-    'Temukan minat, bakat, dan potensi'
-    + ' akademik Anda melalui psikotes'
-    + ' khusus mahasiswa dan pelajar.',
+    'Tes psikologi ini membantu kamu'
+    + ' memahami potensi, cara berpikir,'
+    + ' dan kekuatan diri untuk menentukan'
+    + ' langkah berikutnya.',
 }
 
 export default function MahasiswaPage() {

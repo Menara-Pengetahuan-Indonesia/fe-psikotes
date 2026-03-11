@@ -115,7 +115,7 @@ export function MahasiswaOverview() {
           >
             Asesmen untuk<br />
             <span className="text-accent-300">
-              Mahasiswa & Pelajar
+              Mahasiswa dan Pelajar
             </span>
           </h1>
 
@@ -124,12 +124,22 @@ export function MahasiswaOverview() {
               'text-lg md:text-xl'
               + ' text-primary-50/80'
               + ' max-w-2xl mx-auto font-medium'
+              + ' leading-relaxed mb-4'
+            }
+          >
+            Masih bingung dengan potensi dan arah masa depanmu?
+          </p>
+          <p
+            className={
+              'text-base md:text-lg'
+              + ' text-primary-50/60'
+              + ' max-w-2xl mx-auto font-medium'
               + ' leading-relaxed'
             }
           >
-            Temukan potensi terbaik Anda dengan rangkaian
-            tes psikologi profesional yang dirancang khusus
-            untuk mendukung perjalanan akademik dan karir.
+            Tes psikologi ini membantu kamu memahami potensi,
+            cara berpikir, dan kekuatan diri — supaya kamu
+            tidak lagi bingung menentukan langkah berikutnya
           </p>
         </div>
       </header>

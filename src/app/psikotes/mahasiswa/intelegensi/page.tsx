@@ -15,7 +15,7 @@ export default function IntelegensiPage() {
       <TestDetail
         title="Tes Intelegensi"
         badge="Mahasiswa & Pelajar"
-        description="Tes Intelegensi mengukur berbagai aspek kemampuan kognitif Anda mulai dari penalaran logis, kemampuan verbal, hingga pemecahan masalah. Hasil tes dapat membantu Anda memahami gaya belajar dan strategi akademik yang optimal."
+        description="Kenali kemampuan berpikirmu, mulai dari logika, pemahaman verbal, hingga cara memecahkan masalah. Hasilnya memberikan insight tentang gaya belajar yang paling cocok untukmu."
         duration="20 menit"
         participants="9.800+"
         aspects={[

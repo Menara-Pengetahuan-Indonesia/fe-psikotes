@@ -15,7 +15,7 @@ export default function MinatBakatPage() {
       <TestDetail
         title="Tes Minat & Bakat"
         badge="Mahasiswa & Pelajar"
-        description="Tes Minat & Bakat dirancang untuk membantu Anda mengidentifikasi minat dan kekuatan alami yang dimiliki. Hasil tes akan memberikan gambaran komprehensif tentang arah karir dan aktivitas yang paling sesuai dengan profil Anda."
+        description="Tes ini membantu kamu mengenali minat, bakat, dan potensi alami yang kamu miliki. Dari hasilnya, kamu bisa melihat gambaran arah karier dan aktivitas yang paling cocok dengan dirimu."
         duration="15 menit"
         participants="12.400+"
         aspects={[

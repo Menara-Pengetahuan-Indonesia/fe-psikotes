@@ -15,7 +15,7 @@ export default function RelationshipPage() {
       <TestDetail
         title="Tes Hubungan"
         badge="Kesehatan Mental"
-        description="Tes Hubungan dirancang untuk membantu Anda memahami pola hubungan dan dinamika interpersonal dalam kehidupan Anda. Dari hubungan romantis hingga profesional, tes ini memberikan wawasan berharga tentang gaya interaksi Anda."
+        description="Pahami pola hubungan dan cara Anda berinteraksi dengan orang lain. Tes ini membantu Anda mengenali dinamika hubungan, baik dalam relasi romantis maupun profesional."
         duration="15 menit"
         participants="10.800+"
         aspects={[

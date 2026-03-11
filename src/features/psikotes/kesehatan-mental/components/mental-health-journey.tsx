@@ -117,9 +117,9 @@ export function MentalHealthJourney() {
                 'drop-shadow-md',
               )}
             >
-              Perjalanan Menuju{' '}
+              Mulai Perjalanan{' '}
               <span className="text-accent-300 relative">
-                Kesejahteraan
+                Memahami Diri Anda
                 <svg
                   className={cn(
                     'absolute -bottom-2 left-0',
@@ -146,9 +146,9 @@ export function MentalHealthJourney() {
                 'font-medium leading-relaxed',
               )}
             >
-              Empat tahapan yang dirancang dengan
-              pendekatan klinis untuk mendampingi
-              proses pemulihan Anda.
+              Mulai perjalanan Anda menuju kesehatan
+              mental yang lebih baik melalui empat
+              tahapan ini.
             </p>
           </div>
 

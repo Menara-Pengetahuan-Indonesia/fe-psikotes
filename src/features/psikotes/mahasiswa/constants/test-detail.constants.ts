@@ -9,27 +9,30 @@ export type HeadingColor =
 
 export const FAQ_ITEMS = [
   {
-    q: 'Berapa lama waktu yang diperlukan'
-      + ' untuk menyelesaikan tes ini?',
-    a: 'Durasi tes bervariasi tergantung'
-      + ' jenis tes, umumnya berkisar antara'
-      + ' 10-45 menit. Anda dapat melihat'
-      + ' estimasi waktu di bagian atas.',
+    q: 'Apakah saya akan mendapatkan'
+      + ' laporan hasil setelah'
+      + ' menyelesaikan tes?',
+    a: 'Ya. Setelah tes selesai, kamu'
+      + ' akan mendapatkan laporan hasil'
+      + ' yang berisi insight tentang'
+      + ' potensi, kemampuan, dan'
+      + ' rekomendasi pengembangan diri.',
   },
   {
-    q: 'Apakah hasil tes bisa digunakan'
-      + ' untuk keperluan akademik?',
-    a: 'Ya, hasil tes kami telah tervalidasi'
-      + ' secara ilmiah dan dapat digunakan'
-      + ' sebagai referensi untuk keperluan'
-      + ' akademik maupun profesional.',
+    q: 'Berapa lama waktu yang'
+      + ' dibutuhkan untuk menyelesaikan'
+      + ' tes?',
+    a: 'Durasi setiap tes berbeda, namun'
+      + ' sebagian besar dapat diselesaikan'
+      + ' dalam waktu sekitar 20–30 menit.',
   },
   {
-    q: 'Dapatkah saya mengulang tes'
-      + ' setelah selesai?',
-    a: 'Anda dapat mengulang tes kapan saja'
-      + ' dengan melakukan pembelian ulang.'
-      + ' Hasil sebelumnya tetap tersimpan'
-      + ' di akun Anda.',
+    q: 'Seberapa akurat hasil tes ini?',
+    a: 'Tes yang tersedia disusun'
+      + ' berdasarkan pendekatan psikologi'
+      + ' dan dirancang untuk memberikan'
+      + ' gambaran yang membantu kamu'
+      + ' memahami potensi, kemampuan,'
+      + ' dan arah pengembangan diri.',
   },
 ]

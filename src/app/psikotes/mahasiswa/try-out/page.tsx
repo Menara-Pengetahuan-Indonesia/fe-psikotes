@@ -4,8 +4,8 @@ import { TestDetail } from '@/features/psikotes/mahasiswa/components'
 import { AuthGuard } from '@/features/auth/components'
 
 export const metadata: Metadata = {
-  title: 'Try Out CPNS & Akademik — BERMOELA',
-  description: 'Latih kemampuan Anda dengan try out yang menyimulasikan tes seleksi nyata.',
+  title: 'Try Out Akademik — BERMOELA',
+  description: 'Persiapkan dirimu menghadapi berbagai ujian akademik melalui simulasi try out.',
 }
 
 export default function TryOutPage() {
@@ -13,9 +13,9 @@ export default function TryOutPage() {
     <main>
       <AuthGuard>
       <TestDetail
-        title="Try Out CPNS & Akademik"
+        title="Try Out Akademik"
         badge="Mahasiswa & Pelajar"
-        description="Simulasi try out yang dirancang untuk mempersiapkan Anda menghadapi tes seleksi akademik dan CPNS. Latih kemampuan Anda dengan soal-soal berkualitas tinggi yang mencakup berbagai aspek kompetensi."
+        description="Persiapkan dirimu menghadapi berbagai ujian akademik melalui simulasi try out dan lihat sejauh mana kesiapanmu menghadapi ujian akademik."
         duration="30 menit"
         participants="7.200+"
         aspects={[

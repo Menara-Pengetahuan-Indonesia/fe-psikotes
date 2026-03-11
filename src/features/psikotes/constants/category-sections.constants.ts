@@ -24,25 +24,28 @@ import type {
 
 export const PERUSAHAAN_STATS = [
   {
-    value: '95%',
-    label: 'Akurasi Rekrutmen',
+    value: '50%',
+    label: 'Proses Asesmen Lebih Efisien',
     description:
-      'Tingkat kecocokan kandidat yang'
-      + ' siap tumbuh bersama tim.',
+      'Lakukan asesmen kandidat dan karyawan'
+      + ' secara online dengan proses yang'
+      + ' lebih cepat dan praktis.',
   },
   {
-    value: '500+',
-    label: 'Perusahaan Mitra',
+    value: '3',
+    label: 'Area Asesmen Utama',
     description:
-      'Telah mempercayai asesmen kami'
-      + ' untuk membangun tim sukses.',
+      'Ukur kepribadian, kemampuan kognitif,'
+      + ' dan potensi kerja untuk memahami'
+      + ' kandidat secara lebih menyeluruh.',
   },
   {
-    value: '10K+',
-    label: 'Karyawan Berdaya',
+    value: '100%',
+    label: 'Insight Berbasis Data',
     description:
-      'Talenta profesional yang telah'
-      + ' melalui proses pemetaan diri.',
+      'Dapatkan laporan asesmen yang terstruktur'
+      + ' untuk membantu HR mengambil keputusan'
+      + ' yang lebih objektif.',
   },
 ]
 
@@ -51,59 +54,69 @@ export const PERUSAHAAN_PROCESS = [
     icon: Target,
     title: 'Konsultasi Kebutuhan',
     description:
-      'Tim kami memahami kebutuhan SDM'
-      + ' untuk merancang masa depan bisnis.',
+      'Kami berdiskusi dengan perusahaan'
+      + ' untuk memahami kebutuhan rekrutmen,'
+      + ' pengembangan karyawan, atau'
+      + ' perencanaan karier.',
   },
   {
     icon: Users,
-    title: 'Distribusi Tes',
+    title: 'Pelaksanaan Tes',
     description:
-      'Karyawan mengerjakan tes secara'
-      + ' online sebagai baseline kompetensi.',
+      'Kandidat atau karyawan mengerjakan'
+      + ' asesmen secara online melalui sistem'
+      + ' yang mudah digunakan.',
   },
   {
     icon: Shield,
-    title: 'Validasi Psikolog',
+    title: 'Analisis Psikolog',
     description:
-      'Hasil dianalisis untuk memastikan'
-      + ' kesiapan tumbuh dalam tim.',
+      'Tim psikolog menganalisis hasil tes'
+      + ' untuk melihat potensi, kemampuan'
+      + ' berpikir, dan karakter kerja peserta.',
   },
   {
     icon: TrendingUp,
-    title: 'Laporan Strategis',
+    title: 'Laporan & Rekomendasi',
     description:
-      'Terima rekomendasi nyata untuk'
-      + ' kesuksesan organisasi jangka panjang.',
+      'Perusahaan menerima laporan hasil'
+      + ' asesmen beserta insight dan rekomendasi'
+      + ' yang dapat digunakan sebagai dasar'
+      + ' pengambilan keputusan.',
   },
 ]
 
 export const PERUSAHAAN_FAQ: FaqItem[] = [
   {
-    q: 'Apakah bisa tes untuk banyak'
-      + ' karyawan sekaligus?',
-    a: 'Ya, kami menyediakan paket korporat'
-      + ' untuk pemetaan massal. Hubungi tim'
-      + ' kami untuk penawaran khusus.',
+    q: 'Apa manfaat asesmen psikologi'
+      + ' bagi perusahaan?',
+    a: 'Asesmen psikologi membantu perusahaan'
+      + ' memahami potensi, kemampuan berpikir,'
+      + ' serta karakter kerja kandidat atau'
+      + ' karyawan. Hasilnya dapat digunakan'
+      + ' sebagai bahan pertimbangan dalam proses'
+      + ' rekrutmen, promosi jabatan, maupun'
+      + ' pengembangan karyawan.',
   },
   {
-    q: 'Berapa lama hasil tes keluar?',
-    a: 'Untuk tes standar, hasil keluar'
-      + ' real-time sebagai baseline instan.'
-      + ' Validasi psikolog maksimal H+1.',
+    q: 'Apakah perusahaan akan mendapatkan'
+      + ' laporan hasil asesmen?',
+    a: 'Ya. Setelah peserta menyelesaikan tes,'
+      + ' perusahaan akan mendapatkan laporan'
+      + ' hasil yang berisi insight mengenai'
+      + ' potensi, kemampuan, serta rekomendasi'
+      + ' yang dapat membantu pengambilan'
+      + ' keputusan dalam proses HR.',
   },
   {
-    q: 'Apakah laporan bisa digunakan'
-      + ' untuk audit SDM?',
-    a: 'Tentu. Laporan kami valid untuk'
-      + ' kebutuhan audit internal guna'
-      + ' mengukur daya juang tim.',
-  },
-  {
-    q: 'Apakah tersedia sesi konsultasi'
-      + ' pasca-tes?',
-    a: 'Ya, kami menawarkan sesi feedback'
-      + ' untuk membahas strategi tumbuh'
-      + ' dan sukses bagi perusahaan.',
+    q: 'Apakah asesmen ini dapat digunakan'
+      + ' untuk kebutuhan rekrutmen dan'
+      + ' pengembangan karyawan?',
+    a: 'Ya. Asesmen dapat digunakan untuk'
+      + ' berbagai kebutuhan perusahaan, seperti'
+      + ' proses seleksi kandidat, evaluasi'
+      + ' potensi karyawan, hingga perencanaan'
+      + ' pengembangan karier di dalam organisasi.',
   },
 ]
 
@@ -203,38 +216,43 @@ export const MAHASISWA_PROCESS = [
     step: '04',
     title: 'Terima Hasil',
     description:
-      'Dapatkan laporan lengkap dan'
-      + ' rancang masa depanmu yang baru.',
+      'Dapatkan laporan lengkap tentang'
+      + ' potensi dan arah pengembangan'
+      + ' dirimu.',
   },
 ]
 
 export const MAHASISWA_FAQ: FaqItem[] = [
   {
-    q: 'Apakah ada diskon khusus'
+    q: 'Apakah ada diskon untuk'
       + ' mahasiswa?',
     a: 'Ya, kami memiliki harga khusus'
       + ' agar kamu bisa mulai tumbuh'
       + ' tanpa kendala biaya.',
   },
   {
-    q: 'Tes apa yang cocok untuk'
-      + ' mencari arah karir?',
-    a: 'Tes Minat Bakat adalah baseline'
-      + ' terbaik untuk merancang masa'
-      + ' depan suksesmu sedini mungkin.',
+    q: 'Tes apa yang bisa membantu saya'
+      + ' untuk menemukan arah karir?',
+    a: 'Tes Minat Bakat adalah pilihan'
+      + ' terbaik untuk memahami potensi'
+      + ' dan arah karir yang sesuai'
+      + ' dengan dirimu.',
   },
   {
-    q: 'Apakah hasil tes bisa digunakan'
-      + ' untuk melamar kerja?',
+    q: 'Apakah hasil tes ini bisa'
+      + ' digunakan untuk melamar kerja?',
     a: 'Ya, laporan resmi BERMOELA valid'
       + ' untuk menunjukkan potensimu'
       + ' yang sebenarnya pada rekruter.',
   },
   {
-    q: 'Berapa lama waktu pengerjaan?',
-    a: 'Bervariasi, namun dirancang agar'
-      + ' kamu tetap fokus dalam proses'
-      + ' mengenali dirimu sendiri.',
+    q: 'Berapa lama waktu yang'
+      + ' dibutuhkan untuk menyelesaikan'
+      + ' tes?',
+    a: 'Bervariasi tergantung jenis tes,'
+      + ' umumnya berkisar antara 15-60'
+      + ' menit. Estimasi waktu tersedia'
+      + ' di halaman masing-masing tes.',
   },
 ]
 
@@ -254,31 +272,36 @@ export const MAHASISWA_CTA: CtaBannerData = {
 export const MENTAL_HEALTH_BENEFITS = [
   {
     icon: Heart,
-    title: 'Melepaskan Kendala',
+    title: 'Memahami Diri Lebih Dalam',
     description:
-      'Identifikasi masalah masa lalu'
-      + ' untuk hidup yang lebih bebas.',
+      'Asesmen membantu kamu mengenali'
+      + ' perasaan, pengalaman, dan hal-hal'
+      + ' yang mungkin memengaruhi kondisi'
+      + ' mentalmu saat ini.',
   },
   {
     icon: Brain,
-    title: 'Mental Health Insight',
+    title: 'Insight Kesehatan Mental',
     description:
-      'Alat tes tervalidasi untuk'
-      + ' memahami kondisi mentalmu.',
+      'Dapatkan gambaran yang lebih jelas'
+      + ' tentang kondisi mentalmu melalui'
+      + ' alat asesmen yang terstruktur.',
   },
   {
     icon: Lock,
-    title: 'Kerahasiaan Utuh',
+    title: 'Privasi Terjaga',
     description:
-      'Data pribadimu adalah milikmu,'
-      + ' aman dalam ekosistem kami.',
+      'Data dan hasil asesmenmu bersifat'
+      + ' pribadi dan dijaga kerahasiaannya.',
   },
   {
     icon: CheckCircle2,
-    title: 'Dukungan Para Ahli',
+    title: 'Dukungan Profesional',
     description:
-      'Rancang langkah perubahan bersama'
-      + ' psikolog profesional kami.',
+      'Hasil asesmen dapat menjadi langkah'
+      + ' awal untuk memahami diri dan'
+      + ' menentukan dukungan yang kamu'
+      + ' butuhkan.',
   },
 ]
 
@@ -287,60 +310,64 @@ export const MENTAL_HEALTH_JOURNEY = [
     step: '01',
     title: 'Baseline (Titik Awal)',
     description:
-      'Lakukan screening awal untuk'
-      + ' mengetahui area mana yang'
-      + ' perlu disembuhkan.',
+      'Mulai dengan screening awal untuk'
+      + ' memahami kondisi mental Anda dan'
+      + ' menemukan area yang membutuhkan'
+      + ' perhatian.',
   },
   {
     step: '02',
     title: 'Pemetaan Mental',
     description:
-      'Ikuti tes Mental Health yang'
-      + ' komprehensif sesuai kondisimu.',
+      'Ikuti tes kesehatan mental yang'
+      + ' komprehensif untuk mendapatkan'
+      + ' gambaran lebih dalam tentang'
+      + ' kondisi psikologis Anda.',
   },
   {
     step: '03',
     title: 'Analisis Transformasi',
     description:
-      'Psikolog membantu merumuskan'
-      + ' potensi "The New You".',
+      'Diskusikan hasil asesmen bersama'
+      + ' psikolog untuk memahami potensi'
+      + ' perubahan dan arah pengembangan'
+      + ' diri Anda.',
   },
   {
     step: '04',
     title: 'Tumbuh & Berdaya',
     description:
-      'Jalankan langkah nyata untuk'
-      + ' hidup indah dan masa depan cerah.',
+      'Ambil langkah nyata untuk membangun'
+      + ' kesejahteraan mental dan menjalani'
+      + ' hidup yang lebih seimbang.',
   },
 ]
 
 export const MENTAL_HEALTH_FAQ: FaqItem[] = [
   {
-    q: 'Apa bedanya Mental Health'
-      + ' dengan tes biasa?',
-    a: 'Kami tidak mendiagnosis penyakit,'
-      + ' tapi memetakan cara agar kamu'
-      + ' bisa tumbuh dan sukses kembali.',
+    q: 'Apa itu tes kesehatan mental?',
+    a: 'Tes kesehatan mental membantu Anda'
+      + ' memahami kondisi psikologis saat'
+      + ' ini, termasuk tingkat stres,'
+      + ' kecemasan, dan kesejahteraan'
+      + ' mental secara keseluruhan.',
   },
   {
-    q: 'Apakah hasil tes saya bersifat'
-      + ' rahasia?',
-    a: 'Tentu. Kami menjunjung tinggi'
-      + ' privasi agar kamu bebas merdeka'
-      + ' menceritakan kondisimu.',
+    q: 'Apakah hasil tes kesehatan mental'
+      + ' ini dapat dipercaya?',
+    a: 'Tes dirancang berdasarkan pendekatan'
+      + ' psikologis yang digunakan untuk'
+      + ' membantu Anda mendapatkan gambaran'
+      + ' awal tentang kondisi mental Anda.',
   },
   {
-    q: 'Siapa yang memvalidasi hasil?',
-    a: 'Laporan divalidasi oleh psikolog'
-      + ' klinis berlisensi untuk'
-      + ' akurasi rencana masa depanmu.',
-  },
-  {
-    q: 'Apakah ada layanan konseling'
-      + ' lanjutan?',
-    a: 'Ya, kami sediakan sesi bersama'
-      + ' para ahli untuk memastikanmu'
-      + ' benar-benar berkembang.',
+    q: 'Siapa saja yang bisa mengikuti tes'
+      + ' kesehatan mental ini?',
+    a: 'Tes ini dapat diikuti oleh siapa'
+      + ' saja yang ingin lebih memahami'
+      + ' kondisi mentalnya dan mulai'
+      + ' mengambil langkah untuk menjaga'
+      + ' kesejahteraan psikologis.',
   },
 ]
 

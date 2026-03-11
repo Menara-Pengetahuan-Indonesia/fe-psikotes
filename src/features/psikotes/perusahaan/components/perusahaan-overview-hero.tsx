@@ -107,9 +107,9 @@ export function PerusahaanOverviewHero() {
             + ' mb-6 drop-shadow-2xl'
           }
         >
-          Asesmen Profesional<br />
+          Asesmen Psikologi untuk<br />
           <span className="text-accent-300">
-            Perusahaan & Bisnis
+            Perusahaan
           </span>
         </h1>
 
@@ -121,9 +121,9 @@ export function PerusahaanOverviewHero() {
             + ' leading-relaxed'
           }
         >
-          Solusi asesmen psikologi end-to-end untuk
-          mendukung proses rekrutmen, pengembangan
-          talenta, dan perencanaan karir strategis.
+          Solusi asesmen profesional untuk membantu
+          proses rekrutmen, pemetaan potensi, dan
+          pengembangan talenta di perusahaan Anda
         </p>
       </div>
     </header>

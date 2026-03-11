@@ -15,7 +15,7 @@ export default function MentalHealthDetailPage() {
       <TestDetail
         title="Tes Kesehatan Mental"
         badge="Kesehatan Mental"
-        description="Tes Kesehatan Mental memberikan gambaran kondisi mental Anda saat ini. Tes ini mencakup penilaian terhadap tingkat stres, kecemasan, dan kesejahteraan psikologis secara keseluruhan. Hasil akan disertai rekomendasi praktis untuk menjaga kesehatan mental."
+        description="Kenali kondisi mental Anda saat ini melalui tes yang membantu mengukur tingkat stres, kecemasan, dan kesejahteraan psikologis Anda."
         duration="10 menit"
         participants="22.500+"
         aspects={[
