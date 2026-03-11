@@ -12,23 +12,23 @@ import { PsikotesCategoryNav } from '@/features/psikotes/components/psikotes-cat
 describe('PsikotesCategoryNav', () => {
   it('renders section heading', () => {
     render(<PsikotesCategoryNav />)
-    expect(screen.getByText(/Berhenti Berlari dari/)).toBeInTheDocument()
+    expect(screen.getByText(/Ke Mana Kamu Ingin/)).toBeInTheDocument()
   })
 
   it('renders badge text', () => {
     render(<PsikotesCategoryNav />)
-    expect(screen.getByText('Hadapi Titik Mulamu')).toBeInTheDocument()
+    expect(screen.getByText('Pilih Titik Mulamu')).toBeInTheDocument()
   })
 
   it('renders solution labels', () => {
     render(<PsikotesCategoryNav />)
-    expect(screen.getByText('Kondisi Saat Ini')).toBeInTheDocument()
-    expect(screen.getByText('The New You Transformation')).toBeInTheDocument()
-    expect(screen.getByText(/Solusi Terpadu/)).toBeInTheDocument()
+    expect(screen.getByText('01. Masalah')).toBeInTheDocument()
+    expect(screen.getByText('02. Solusi')).toBeInTheDocument()
+    expect(screen.getByText('03. Benefit')).toBeInTheDocument()
   })
 
-  it('renders CTA button', () => {
+  it('renders footer tagline', () => {
     render(<PsikotesCategoryNav />)
-    expect(screen.getByText('Mulai Transformasi')).toBeInTheDocument()
+    expect(screen.getByText(/Titik mula perjalananmu/)).toBeInTheDocument()
   })
 })
