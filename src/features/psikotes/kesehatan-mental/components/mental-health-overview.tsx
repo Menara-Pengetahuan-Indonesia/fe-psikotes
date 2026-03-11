@@ -113,7 +113,7 @@ export function MentalHealthOverview() {
               + ' mb-6 drop-shadow-2xl'
             }
           >
-            Asesmen untuk<br />
+            Asesmen<br />
             <span className="text-accent-300">
               Kesehatan Mental
             </span>
@@ -127,9 +127,9 @@ export function MentalHealthOverview() {
               + ' leading-relaxed'
             }
           >
-            Kenali kondisi mental Anda lebih dalam melalui
-            asesmen yang dirancang dengan pendekatan
-            psikologi klinis profesional.
+            Kenali kondisi mentalmu lebih dalam melalui
+            asesmen yang membantu memahami perasaan,
+            pikiran, dan pengalaman yang sedang kamu alami
           </p>
         </div>
       </header>
@@ -190,7 +190,7 @@ export function MentalHealthOverview() {
                   + ' text-sm max-w-md'
                 }
               >
-                Asesmen klinis untuk memahami
+                Asesmen untuk memahami
                 kondisi psikologis Anda lebih dalam.
               </p>
             </div>

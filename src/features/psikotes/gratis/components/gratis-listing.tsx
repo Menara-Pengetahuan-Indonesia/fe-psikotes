@@ -55,12 +55,12 @@ export function GratisListing() {
           </div>
 
           <h1 className="text-4xl md:text-7xl font-black tracking-tight leading-none mb-6 drop-shadow-lg">
-            Kumpulan Tes <br />
-            <span className="text-accent-300">Psikologi Gratis</span>
+            Tes Psikologi{' '}<br />
+            <span className="text-accent-300">Gratis</span>
           </h1>
 
           <p className="text-lg md:text-xl text-primary-50/80 max-w-2xl mx-auto font-medium leading-relaxed mb-12 text-pretty">
-            Mulai perjalanan mengenal diri dengan berbagai alat tes psikologi berbasis riset yang dapat diakses secara cuma-cuma.
+            Mulai kenali diri Anda melalui berbagai tes psikologi berbasis riset yang dapat Anda akses secara gratis.
           </p>
 
           {/* Refined Search Bar (Non-3D) */}

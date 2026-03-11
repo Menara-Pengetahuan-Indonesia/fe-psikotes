@@ -142,8 +142,8 @@ export function PerusahaanProcess() {
               'max-w-lg mx-auto',
             )}
           >
-            Proses asesmen yang terstruktur
-            dari awal hingga laporan akhir.
+            Proses asesmen yang sederhana, terstruktur,
+            dan mudah diterapkan untuk kebutuhan perusahaan.
           </p>
         </div>
 

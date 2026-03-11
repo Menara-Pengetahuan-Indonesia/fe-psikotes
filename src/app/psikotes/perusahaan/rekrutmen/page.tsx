@@ -15,7 +15,7 @@ export default function RekrutmenPage() {
       <TestDetail
         title="Tes Rekrutmen"
         badge="Perusahaan"
-        description="Tes Rekrutmen dirancang untuk membantu perusahaan mengidentifikasi kandidat yang paling sesuai dengan kebutuhan organisasi. Mencakup pengukuran kepribadian, kemampuan kognitif, dan kesesuaian budaya perusahaan."
+        description="Asesmen untuk membantu perusahaan menilai potensi kandidat secara lebih objektif, mulai dari kemampuan berpikir, karakter kerja, hingga kesesuaian dengan budaya perusahaan."
         duration="25 menit"
         participants="8.900+"
         aspects={[

@@ -15,7 +15,7 @@ export default function KenaikanJabatanPage() {
       <TestDetail
         title="Tes Kenaikan Jabatan"
         badge="Perusahaan"
-        description="Tes Kenaikan Jabatan membantu perusahaan menilai kesiapan karyawan untuk mengambil tanggung jawab yang lebih besar. Mencakup penilaian kepemimpinan, kemampuan pengambilan keputusan, dan kompetensi manajerial."
+        description="Bantu perusahaan menilai kesiapan karyawan sebelum memberikan tanggung jawab yang lebih besar. Melalui asesmen ini, perusahaan dapat melihat potensi kepemimpinan, cara mengambil keputusan, serta kemampuan manajerial karyawan."
         duration="30 menit"
         participants="5.400+"
         aspects={[

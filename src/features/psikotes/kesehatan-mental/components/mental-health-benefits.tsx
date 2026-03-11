@@ -48,7 +48,7 @@ export function MentalHealthBenefits() {
                 )}
               >
                 <Sparkles className="h-3 w-3" />
-                Kenapa Bermoela
+                Pendekatan Kami
               </div>
               <h2
                 className={cn(
@@ -62,7 +62,7 @@ export function MentalHealthBenefits() {
                 <span
                   className="text-primary-600 relative"
                 >
-                  Tepat & Aman
+                  Aman & Terpercaya
                   <svg
                     className={cn(
                       'absolute -bottom-2 left-0',
@@ -88,9 +88,10 @@ export function MentalHealthBenefits() {
                   'font-medium',
                 )}
               >
-                Kami memahami pentingnya
-                kenyamanan dan keamanan dalam
-                proses asesmen kesehatan mental.
+                Kami menghadirkan asesmen kesehatan
+                mental dengan pendekatan yang menjaga
+                kenyamanan, privasi, dan keamanan
+                setiap pengguna.
               </p>
             </div>
 

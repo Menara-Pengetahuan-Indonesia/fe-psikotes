@@ -15,7 +15,7 @@ export default function PerencanaanKarirPage() {
       <TestDetail
         title="Tes Perencanaan Karir"
         badge="Perusahaan"
-        description="Tes Perencanaan Karir membantu karyawan memahami kekuatan dan minat mereka untuk merancang jalur karir yang lebih bermakna. Hasil tes memberikan rekomendasi pengembangan profesional yang dipersonalisasi."
+        description="Bantu karyawan memahami kekuatan, minat, dan potensi mereka untuk merencanakan perkembangan karier di dalam perusahaan. Melalui asesmen ini, perusahaan juga mendapatkan insight dan rekomendasi pengembangan yang lebih personal bagi setiap karyawan."
         duration="20 menit"
         participants="6.100+"
         aspects={[

@@ -29,7 +29,7 @@ export const MAHASISWA_TESTS: PsikotesTest[] = [
     tag: 'Career',
     icon: Compass,
     description:
-      'Temukan potensi terpendam dan arah karir yang membuatmu benar-benar tumbuh dan sukses.',
+      'Kenali apa yang benar-benar cocok di dirimu. Tes ini membantu kamu memahami minat, potensi dan arah karir yang paling sesuai dengan dirimu.',
     users: '10k+ Peserta',
     duration: '45 Menit',
     price: 'Mulai Rp 75rb',
@@ -42,7 +42,7 @@ export const MAHASISWA_TESTS: PsikotesTest[] = [
     tag: 'IQ Test',
     icon: Brain,
     description:
-      'Ukur kapasitas kognitif sebagai baseline untuk merancang masa depan yang lebih cerah.',
+      'Ketahui cara otakmu bekerja, dan bagaimana memaksimalkannya. Tes ini membantu kamu memahami kemampuan berpikir, logika dan cara belajar yang paling efektif untukmu.',
     users: '15k+ Peserta',
     duration: '60 Menit',
     price: 'Mulai Rp 50rb',
@@ -55,7 +55,7 @@ export const MAHASISWA_TESTS: PsikotesTest[] = [
     tag: 'Education',
     icon: BookOpen,
     description:
-      'Persiapkan dirimu menembus universitas impian untuk menjadi penentu masa depanmu sendiri.',
+      'Ukur kesiapanmu sebelum menghadapi ujian yang sebenarnya. Latihan soal dan simulasi ini membantu kamu melihat kemampuanmu sekarang, sekaligus tahu bagian mana yang perlu ditingkatkan.',
     users: '50k+ Peserta',
     duration: '90 Menit',
     price: 'Mulai Rp 25rb',
@@ -68,7 +68,7 @@ export const MAHASISWA_TESTS: PsikotesTest[] = [
     tag: 'Government',
     icon: Building2,
     description:
-      'Latih kemampuanmu untuk meraih posisi di instansi pemerintahan dan berbakti bagi negeri.',
+      'Persiapkan dirimu untuk lolos seleksi CPNS dengan lebih percaya diri. Latihan tes ini membantu kamu memahami pola soal dan meningkatkan kesiapanmu menghadapi seleksi ASN.',
     users: '25k+ Peserta',
     duration: '100 Menit',
     price: 'Mulai Rp 40rb',
@@ -87,7 +87,7 @@ export const PERUSAHAAN_TESTS: CorporateTest[] = [
     tag: 'Hiring',
     icon: UserPlus,
     description:
-      'Temukan talenta yang tidak hanya sekadar bertahan, tapi mampu tumbuh dan sukses bersama perusahaan.',
+      'Gunakan asesmen psikologi untuk membantu mengidentifikasi potensi, kemampuan berpikir, dan kecocokan kandidat dengan kebutuhan perusahaan Anda.',
     users: '500+ Perusahaan',
     duration: 'Fleksibel',
     price: 'Mulai Rp 150rb',
@@ -105,7 +105,7 @@ export const PERUSAHAAN_TESTS: CorporateTest[] = [
     tag: 'Promotion',
     icon: TrendingUp,
     description:
-      'Evaluasi potensi kepemimpinan untuk memastikan timmu berkembang dengan sehat dan berdaya juang.',
+      'Asesmen ini membantu perusahaan menilai kesiapan karyawan untuk mengambil tanggung jawab yang lebih besar dan berkembang ke level berikutnya.',
     users: '200+ Perusahaan',
     duration: '60 Menit',
     price: 'Mulai Rp 250rb',
@@ -123,7 +123,7 @@ export const PERUSAHAAN_TESTS: CorporateTest[] = [
     tag: 'Development',
     icon: Map,
     description:
-      'Bantu tim merancang jalur karir yang selaras dengan "The New You" dalam konteks profesional.',
+      'Pahami potensi, kekuatan, dan area pengembangan untuk mendukung jalur karier yang lebih terarah di dalam perusahaan.',
     users: '150+ Perusahaan',
     duration: '45 Menit',
     price: 'Mulai Rp 200rb',
@@ -147,7 +147,7 @@ export const KESEHATAN_MENTAL_TESTS: PsikotesTest[] = [
     tag: 'Personality',
     icon: Smile,
     description:
-      'Lepaskan diri dari kendala masa lalu dan kenali jati dirimu yang baru untuk hidup yang lebih indah.',
+      'Kenali dirimu lebih dalam, termasuk pola pikir, emosi, dan pengalaman masa lalu yang mungkin memengaruhi dirimu saat ini.',
     users: '12k+ Peserta',
     duration: '30 Menit',
     price: 'Mulai Rp 50rb',
@@ -161,7 +161,7 @@ export const KESEHATAN_MENTAL_TESTS: PsikotesTest[] = [
     tag: 'Well-being',
     icon: Activity,
     description:
-      'Bukan hanya baik-baik saja, tapi benar-benar berkembang dan sukses di era penuh tekanan.',
+      'Pahami kondisi mentalmu, termasuk tingkat stres dan kecemasan yang mungkin sedang kamu alami dalam kehidupan sehari-hari.',
     users: '8k+ Peserta',
     duration: '20 Menit',
     price: 'Mulai Rp 60rb',
@@ -175,7 +175,7 @@ export const KESEHATAN_MENTAL_TESTS: PsikotesTest[] = [
     tag: 'Couples',
     icon: Heart,
     description:
-      'Bangun hubungan yang indah dan masa depan yang sukses bersama pasangan pilihanmu.',
+      'Bantu kamu dan pasangan memahami pola komunikasi, kebutuhan emosional, serta dinamika hubungan dengan lebih baik.',
     users: '5k+ Pasangan',
     duration: '40 Menit',
     price: 'Mulai Rp 90rb',

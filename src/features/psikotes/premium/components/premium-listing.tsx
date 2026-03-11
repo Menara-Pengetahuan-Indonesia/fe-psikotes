@@ -61,12 +61,12 @@ export function PremiumListing() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none mb-6 drop-shadow-2xl">
-            Investasi Terbaik <br />
-            <span className="text-accent-300">Untuk Dirimu</span>
+            Kenali Diri Anda{' '}<br />
+            <span className="text-accent-300">Lebih Mendalam</span>
           </h1>
 
           <p className="text-lg md:text-xl text-primary-50/80 max-w-2xl mx-auto font-medium leading-relaxed mb-12 text-pretty">
-            Dapatkan analisis mendalam, laporan komprehensif, dan rekomendasi yang dipersonalisasi dari alat tes berstandar profesional.
+            Akses tes dengan analisis yang lebih detail serta laporan lengkap yang membantu Anda memahami pola diri dengan lebih jelas.
           </p>
 
           {/* Refined Search Bar */}

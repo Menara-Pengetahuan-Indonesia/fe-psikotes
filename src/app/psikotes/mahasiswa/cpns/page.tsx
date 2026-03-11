@@ -15,7 +15,7 @@ export default function CpnsPage() {
       <TestDetail
         title="Tes Persiapan CPNS"
         badge="Mahasiswa & Pelajar"
-        description="Tes Persiapan CPNS dirancang khusus untuk membantu calon PNS mempersiapkan diri menghadapi ujian kompetensi dasar (SKD). Materi mencakup tes wawasan kebangsaan, tes kemampuan umum, dan tes kemampuan berhitung."
+        description="Persiapkan dirimu menghadapi seleksi CPNS dengan simulasi tes yang dirancang seperti ujian SKD. Kamu bisa berlatih melalui soal TWK, TIU, dan TKP untuk melihat sejauh mana kesiapanmu."
         duration="45 menit"
         participants="15.600+"
         aspects={[

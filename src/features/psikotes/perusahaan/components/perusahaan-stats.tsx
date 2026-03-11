@@ -103,7 +103,7 @@ export function PerusahaanStats() {
                   'text-primary-100 uppercase',
                 )}
               >
-                Proven Results
+                Why BERMOELA
               </span>
             </div>
 
@@ -114,9 +114,9 @@ export function PerusahaanStats() {
                 'drop-shadow-md',
               )}
             >
-              Dipercaya oleh{' '}
+              Mengapa Harus{' '}
               <span className="text-accent-300 relative">
-                Ratusan Perusahaan
+                BERMOELA?
                 <svg
                   className={cn(
                     'absolute -bottom-2 left-0',
@@ -141,8 +141,8 @@ export function PerusahaanStats() {
                 'max-w-xl mx-auto',
               )}
             >
-              Data nyata dari klien korporat
-              yang telah menggunakan layanan kami.
+              Keunggulan asesmen kami untuk mendukung
+              kebutuhan perusahaan Anda.
             </p>
           </div>
 
