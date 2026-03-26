@@ -1,3 +1,6 @@
 export { UserDashboard } from './user-dashboard'
 export { AdminDashboard } from './admin-dashboard'
 export { SuperAdminDashboard } from './superadmin-dashboard'
+export { MyTests } from './my-tests'
+export { TestResults } from './test-results'
+export { UserProfile } from './user-profile'

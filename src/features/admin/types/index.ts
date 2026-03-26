@@ -77,6 +77,7 @@ export interface ScoringRule {
   minScore: number
   maxScore: number
   resultType: string
+  description?: string
   createdAt: string
   updatedAt: string
 }

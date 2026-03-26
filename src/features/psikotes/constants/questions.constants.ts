@@ -7,6 +7,25 @@ export interface MockQuestion {
   id: number
   question: string
   options: { label: string; text: string }[]
+  sectionId?: number
+}
+
+export interface MockSection {
+  id: number
+  name: string
+  description: string
+  questionsCount?: number
+}
+
+export const SECTIONS_MAP: Record<string, MockSection[]> = {
+  'tes-kepribadian-mbti': [
+    { id: 1, name: 'Energi & Interaksi', description: 'Bagaimana kamu mendapatkan energi dan berinteraksi dengan dunia luar.' },
+    { id: 2, name: 'Pengambilan Keputusan', description: 'Cara kamu memproses informasi dan mengambil keputusan.' },
+  ],
+  'tes-minat-bakat-riasec': [
+    { id: 1, name: 'Minat Realistik & Investigatif', description: 'Mengukur ketertarikan pada aktivitas praktis dan analitis.' },
+    { id: 2, name: 'Minat Artistik & Sosial', description: 'Mengukur ketertarikan pada kreativitas dan interaksi sosial.' },
+  ],
 }
 
 export const QUESTIONS_MAP: Record<string, MockQuestion[]> = {
@@ -17,6 +36,7 @@ export const QUESTIONS_MAP: Record<string, MockQuestion[]> = {
   'tes-kepribadian-mbti': [
     {
       id: 1,
+      sectionId: 1,
       question:
         'Setelah acara sosial yang ramai, apa yang biasanya kamu rasakan?',
       options: [
@@ -26,6 +46,17 @@ export const QUESTIONS_MAP: Record<string, MockQuestion[]> = {
     },
     {
       id: 2,
+      sectionId: 1,
+      question:
+        'Mana yang lebih menggambarkan dirimu?',
+      options: [
+        { label: 'A', text: 'Senang berbicara dan berdiskusi dengan orang baru' },
+        { label: 'B', text: 'Lebih suka mengamati dan mendengarkan terlebih dahulu' },
+      ],
+    },
+    {
+      id: 3,
+      sectionId: 2,
       question:
         'Saat mengambil keputusan penting, apa yang lebih kamu andalkan?',
       options: [
@@ -34,16 +65,8 @@ export const QUESTIONS_MAP: Record<string, MockQuestion[]> = {
       ],
     },
     {
-      id: 3,
-      question:
-        'Bagaimana caramu merencanakan liburan?',
-      options: [
-        { label: 'A', text: 'Membuat itinerary detail jauh-jauh hari' },
-        { label: 'B', text: 'Biarkan mengalir, lihat situasi di sana' },
-      ],
-    },
-    {
       id: 4,
+      sectionId: 2,
       question:
         'Saat ada konflik, kamu cenderung...',
       options: [
@@ -53,11 +76,12 @@ export const QUESTIONS_MAP: Record<string, MockQuestion[]> = {
     },
     {
       id: 5,
+      sectionId: 2,
       question:
-        'Mana yang lebih menggambarkan dirimu?',
+        'Bagaimana caramu merencanakan liburan?',
       options: [
-        { label: 'A', text: 'Senang berbicara dan berdiskusi dengan orang baru' },
-        { label: 'B', text: 'Lebih suka mengamati dan mendengarkan terlebih dahulu' },
+        { label: 'A', text: 'Membuat itinerary detail jauh-jauh hari' },
+        { label: 'B', text: 'Biarkan mengalir, lihat situasi di sana' },
       ],
     },
   ],

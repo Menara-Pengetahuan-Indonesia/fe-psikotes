@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import { Clock, Users, Play, Share2, Info, AlertCircle } from 'lucide-react'
+import { Clock, Users, Play, Share2, Info, AlertCircle, ChevronRight, Shield, Brain, BookOpen } from 'lucide-react'
 
 import { GRATIS_TESTS } from '@features/psikotes/constants'
-
 import { GRATIS_INSTRUCTIONS } from '../constants'
+import { cn } from '@/lib/utils'
 
 interface TestDetailPageProps {
   slug: string
@@ -11,98 +11,140 @@ interface TestDetailPageProps {
 
 export function TestDetailPage({ slug }: TestDetailPageProps) {
   const test = GRATIS_TESTS.find((t) => t.slug === slug)
-
-  // Fallback banner icon when no test is found
   const Icon = test?.icon
 
   return (
-    <div className="min-h-screen bg-white">
-      <main className="max-w-4xl mx-auto px-6 pt-32 pb-24">
-        {/* Banner Image Area */}
-        <div className="relative w-full aspect-[21/9] bg-slate-100 rounded-3xl overflow-hidden mb-12 flex items-center justify-center border border-slate-200">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-slate-200 via-slate-100 to-white opacity-50" />
-          <div className="text-center z-10 space-y-4">
-            <div className="w-20 h-20 bg-black text-white rounded-2xl mx-auto flex items-center justify-center shadow-2xl">
-              {Icon ? (
-                <Icon className="w-10 h-10" />
-              ) : (
-                <span className="text-2xl font-black">?</span>
-              )}
+    <div className="min-h-screen bg-[#F2F2F7]">
+      {/* HERO BANNER */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 pt-8 pb-10 md:pt-10 md:pb-12 text-white">
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
+          <Link
+            href="/psikotes/gratis"
+            className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-8 group"
+          >
+            <div className="size-8 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+              <ChevronRight className="size-4 rotate-180" />
             </div>
-            <h3 className="text-slate-400 font-bold tracking-widest uppercase text-xs">Psychology Test</h3>
+            <span className="text-sm font-bold">Kembali ke Daftar Tes</span>
+          </Link>
+
+          <div className="flex items-start gap-6">
+            <div className="size-16 rounded-2xl bg-gradient-to-br from-indigo-400 to-indigo-500 flex items-center justify-center shrink-0 shadow-lg">
+              {Icon ? <Icon className="size-7 text-white" /> : <Brain className="size-7 text-white" />}
+            </div>
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-teal-500/20 text-teal-300">
+                  Tes Gratis
+                </span>
+                <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-white/10 text-slate-300">
+                  Edisi 1.0
+                </span>
+              </div>
+              <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-3">
+                {test?.title ?? 'Tes Tidak Ditemukan'}
+              </h1>
+              <p className="text-slate-400 font-medium text-sm max-w-2xl leading-relaxed">
+                {test?.description ?? 'Tes yang diminta tidak ditemukan. Silakan kembali ke halaman daftar tes.'}
+              </p>
+            </div>
+          </div>
+
+          {/* Stats + CTA */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mt-10">
+            <div className="flex items-center gap-4">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl px-5 py-3 flex items-center gap-2.5">
+                <Clock className="size-4 text-indigo-300" />
+                <span className="text-sm font-bold">{test?.duration ?? '—'}</span>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl px-5 py-3 flex items-center gap-2.5">
+                <Users className="size-4 text-teal-300" />
+                <span className="text-sm font-bold">{test?.users ?? '—'} Peserta</span>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl px-5 py-3 flex items-center gap-2.5">
+                <Shield className="size-4 text-violet-300" />
+                <span className="text-sm font-bold">Gratis</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <button className="size-12 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
+                <Share2 className="size-5" />
+              </button>
+              <Link
+                href={`/psikotes/gratis/${slug}/exam`}
+                className="h-14 px-8 bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl font-black text-base shadow-xl transition-all active:scale-95 flex items-center gap-2"
+              >
+                <Play className="size-5 fill-current" />
+                Mulai Tes
+              </Link>
+            </div>
           </div>
         </div>
 
-        {/* Header Content */}
-        <div className="text-center max-w-2xl mx-auto space-y-8 mb-16">
-          <div className="space-y-4">
-            <h1 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-              {test?.title ?? 'Tes Tidak Ditemukan'}
-            </h1>
-            <div className="flex items-center justify-center gap-3">
-              <span className="px-3 py-1 bg-slate-100 border border-slate-200 rounded-lg text-xs font-bold text-slate-500 uppercase tracking-wider">
-                Edisi 1.0
-              </span>
-              <span className="flex items-center gap-1.5 text-xs font-bold text-slate-400">
-                <Clock className="w-3.5 h-3.5" /> {test?.duration ?? '—'}
-              </span>
-              <span className="flex items-center gap-1.5 text-xs font-bold text-slate-400">
-                <Users className="w-3.5 h-3.5" /> {test?.users ?? '—'} Users
-              </span>
+        <div className="absolute -right-10 -top-10 opacity-5 pointer-events-none">
+          <Brain className="size-[400px]" />
+        </div>
+      </div>
+
+      {/* CONTENT */}
+      <div className="max-w-4xl mx-auto px-6 py-10 space-y-6">
+        {/* PANDUAN */}
+        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+          <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
+            <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
+              <Info className="size-5 text-indigo-600" />
+            </div>
+            <div>
+              <h2 className="text-lg font-black text-slate-900">Panduan Pengisian</h2>
+              <p className="text-xs text-slate-400 font-medium">Baca sebelum memulai tes</p>
             </div>
           </div>
-
-          <p className="text-slate-500 leading-relaxed text-sm md:text-base">
-            {test?.description ?? 'Tes yang diminta tidak ditemukan. Silakan kembali ke halaman daftar tes.'}
-          </p>
-
-          <div className="flex justify-center gap-4">
-            <Link
-              href={`/psikotes/gratis/${slug}/exam`}
-              className="px-10 py-4 bg-black text-white rounded-full font-bold text-sm uppercase tracking-widest hover:bg-slate-800 hover:scale-105 transition-all shadow-xl shadow-slate-200 flex items-center gap-2"
-            >
-              <Play className="w-4 h-4 fill-current" /> Mulai Tes
-            </Link>
-            <button className="px-4 py-4 bg-white border border-slate-200 text-slate-900 rounded-full hover:border-black transition-all">
-              <Share2 className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-
-        {/* Instructions */}
-        <div className="bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-100 mb-16">
-          <h3 className="text-xl font-black text-slate-900 mb-8 flex items-center gap-3">
-            <Info className="w-6 h-6" /> Panduan Pengisian
-          </h3>
-          <div className="space-y-6">
+          <div className="p-8 space-y-4">
             {GRATIS_INSTRUCTIONS.map((item, i) => (
               <div key={i} className="flex gap-4 items-start group">
-                <div className="w-8 h-8 flex-shrink-0 bg-white border border-slate-200 rounded-full flex items-center justify-center font-bold text-sm text-slate-400 group-hover:border-black group-hover:text-black transition-colors">
+                <div className={cn(
+                  'size-9 rounded-xl flex items-center justify-center shrink-0 text-sm font-black transition-all',
+                  i === 0 ? 'bg-indigo-100 text-indigo-600' :
+                  i === 1 ? 'bg-teal-100 text-teal-600' :
+                  i === 2 ? 'bg-violet-100 text-violet-600' :
+                  i === 3 ? 'bg-rose-100 text-rose-600' :
+                  i === 4 ? 'bg-amber-100 text-amber-600' :
+                  'bg-cyan-100 text-cyan-600'
+                )}>
                   {i + 1}
                 </div>
-                <p className="text-slate-600 text-sm leading-relaxed pt-1.5">{item}</p>
+                <p className="text-sm text-slate-600 font-medium leading-relaxed pt-2">{item}</p>
               </div>
             ))}
           </div>
-          <div className="mt-8 pt-8 border-t border-slate-200">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest italic">Selamat mengerjakan!</p>
+        </div>
+
+        {/* DISCLAIMER */}
+        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+          <div className="px-8 py-6 flex items-start gap-4">
+            <div className="size-10 rounded-xl bg-rose-100 flex items-center justify-center shrink-0 mt-0.5">
+              <AlertCircle className="size-5 text-rose-600" />
+            </div>
+            <div>
+              <h3 className="text-sm font-black text-slate-900 mb-1">Disclaimer</h3>
+              <p className="text-xs text-slate-400 font-medium leading-relaxed">
+                Jika Anda sedang mengalami krisis psikologis yang mengancam hidup Anda (seperti keinginan menyakiti diri sendiri atau bunuh diri), layanan ini <strong className="text-slate-600">TIDAK</strong> direkomendasikan. Segera hubungi profesional kesehatan mental terdekat atau layanan darurat <strong className="text-slate-600">119</strong> / <strong className="text-slate-600">112</strong>.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Disclaimer */}
-        <div className="bg-red-50 border border-red-100 rounded-2xl p-6 flex flex-col md:flex-row gap-6 items-start">
-          <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-red-500 shadow-sm flex-shrink-0">
-            <AlertCircle className="w-6 h-6" />
-          </div>
-          <div>
-            <h4 className="font-bold text-red-900 mb-2">Disclaimer</h4>
-            <p className="text-red-700/80 text-xs leading-relaxed max-w-2xl">
-              Jika Anda sedang mengalami krisis psikologis yang mengancam hidup Anda (seperti keinginan menyakiti diri sendiri atau bunuh diri), layanan ini <strong>TIDAK</strong> direkomendasikan. Segera hubungi profesional kesehatan mental terdekat atau layanan darurat{' '}
-              <strong>119</strong> / <strong>112</strong>.
-            </p>
-          </div>
+        {/* BOTTOM CTA */}
+        <div className="flex justify-center pt-4">
+          <Link
+            href={`/psikotes/gratis/${slug}/exam`}
+            className="h-14 px-10 bg-slate-900 text-white hover:bg-slate-800 rounded-2xl font-black text-base shadow-xl transition-all active:scale-95 flex items-center gap-2"
+          >
+            <Play className="size-5 fill-current" />
+            Mulai Tes Sekarang
+          </Link>
         </div>
-      </main>
+      </div>
     </div>
   )
 }

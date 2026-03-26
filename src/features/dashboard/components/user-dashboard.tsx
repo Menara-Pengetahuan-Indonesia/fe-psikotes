@@ -12,152 +12,221 @@ import {
   Target,
   ChevronRight,
   History,
+  Clock,
+  Award,
+  CheckCircle2,
+  ArrowRight,
+  BookMarked,
 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { useAuthStoreHydrated } from '@/store/auth.store'
 import { DUMMY_TEST_HISTORY } from '@/features/dashboard/constants'
+import { cn } from '@/lib/utils'
+
+const quickAccess = [
+  { href: '/psikotes', label: 'Mulai Tes', desc: 'Pilih dan kerjakan tes psikotes', icon: Brain, color: 'bg-gradient-to-br from-indigo-400 to-indigo-500' },
+  { href: '/pengguna/tes', label: 'Tes Saya', desc: 'Lihat katalog tes yang diambil', icon: BookMarked, color: 'bg-gradient-to-br from-teal-400 to-teal-500' },
+  { href: '/pengguna/riwayat', label: 'Riwayat', desc: 'Lihat hasil dan riwayat tes', icon: History, color: 'bg-gradient-to-br from-violet-400 to-violet-500' },
+]
+
+const recentColors = [
+  { icon: 'bg-indigo-100 text-indigo-600', score: 'text-indigo-600 bg-indigo-50' },
+  { icon: 'bg-teal-100 text-teal-600', score: 'text-teal-600 bg-teal-50' },
+  { icon: 'bg-violet-100 text-violet-600', score: 'text-violet-600 bg-violet-50' },
+  { icon: 'bg-rose-100 text-rose-600', score: 'text-rose-600 bg-rose-50' },
+  { icon: 'bg-amber-100 text-amber-600', score: 'text-amber-600 bg-amber-50' },
+]
 
 export function UserDashboard() {
   const { user } = useAuthStoreHydrated()
   const completedTests = DUMMY_TEST_HISTORY.filter((t) => t.status === 'selesai')
-  const recentTests = DUMMY_TEST_HISTORY.filter((t) => t.status === 'selesai').slice(0, 5)
+  const recentTests = completedTests.slice(0, 5)
+  const avgScore = completedTests.length
+    ? Math.round(completedTests.reduce((sum, t) => sum + (t.score ?? 0), 0) / completedTests.length)
+    : 0
 
   return (
-    <div className="max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-1000">
-
-      {/* HEADER */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 px-2 gap-4">
-        <div>
-          <p className="text-primary-600 font-black text-[10px] uppercase tracking-[0.3em] mb-2">Workspace</p>
-          <h1 className="text-4xl font-black text-slate-900 tracking-tight">Halo, {user?.name?.split(' ')[0] || 'Pengguna'}.</h1>
+    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      {/* HERO BANNER */}
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div>
+            <p className="text-indigo-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+              Dashboard
+            </p>
+            <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
+              Halo, {user?.name?.split(' ')[0] || 'Pengguna'}.
+            </h1>
+            <p className="text-slate-400 font-medium text-sm">
+              Ukur potensimu dan dapatkan hasil psikotes yang akurat.
+            </p>
+          </div>
+          <Button
+            size="lg"
+            className="bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
+            asChild
+          >
+            <Link href="/psikotes">
+              <Brain className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+              Mulai Tes Baru
+            </Link>
+          </Button>
         </div>
-        <div className="flex items-center gap-2 text-slate-400 bg-white px-4 py-2 rounded-2xl border border-slate-100 shadow-sm">
-          <CalendarDays className="size-4" />
-          <span className="text-xs font-bold">{new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+
+        {/* Stats */}
+        <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
+              <FileText className="size-5 text-indigo-300" />
+            </div>
+            <div>
+              <p className="text-2xl font-black leading-none">{DUMMY_TEST_HISTORY.length}</p>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total Tes</p>
+            </div>
+          </div>
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="size-10 rounded-xl bg-teal-500/30 flex items-center justify-center">
+              <CheckCircle2 className="size-5 text-teal-300" />
+            </div>
+            <div>
+              <p className="text-2xl font-black leading-none">{completedTests.length}</p>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Selesai</p>
+            </div>
+          </div>
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="size-10 rounded-xl bg-violet-500/30 flex items-center justify-center">
+              <Award className="size-5 text-violet-300" />
+            </div>
+            <div>
+              <p className="text-2xl font-black leading-none">{avgScore}</p>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Rata-rata</p>
+            </div>
+          </div>
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="size-10 rounded-xl bg-rose-500/30 flex items-center justify-center">
+              <TrendingUp className="size-5 text-rose-300" />
+            </div>
+            <div>
+              <p className="text-2xl font-black leading-none">+12%</p>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Progress</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute -right-10 -top-10 opacity-5 pointer-events-none">
+          <Target className="size-72" />
         </div>
       </div>
 
-      {/* MAIN BENTO GRID */}
+      {/* QUICK ACCESS + RECENT */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-
-        {/* LEFT COLUMN (8 Cols) */}
-        <div className="lg:col-span-8 space-y-6">
-
-          {/* HERO CARD */}
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-900 p-10 md:p-12 text-white shadow-2xl group transition-all hover:shadow-primary-500/10">
-            <div className="relative z-10 h-full flex flex-col justify-between">
-              <div className="space-y-6">
-                <div className="size-14 rounded-2xl bg-primary-500 text-white flex items-center justify-center shadow-lg">
-                  <Brain className="size-7" />
-                </div>
-                <h2 className="text-4xl font-black tracking-tight leading-[1.1]">
-                  Ukur Potensimu <br />
-                  Sekarang Juga.
-                </h2>
-                <p className="max-w-sm text-slate-400 font-medium text-lg leading-relaxed">
-                  Dapatkan hasil psikotes akurat untuk jenjang pendidikan dan karir masa depanmu.
-                </p>
-              </div>
-              <div className="mt-10">
-                <Button size="lg" className="bg-primary-500 hover:bg-primary-400 text-white rounded-2xl h-14 px-10 font-black text-lg shadow-xl shadow-primary-500/20 transition-all active:scale-95" asChild>
-                  <Link href="/psikotes">Mulai Tes Baru</Link>
-                </Button>
-              </div>
-            </div>
-            <div className="absolute -right-10 -bottom-10 opacity-10 pointer-events-none group-hover:scale-110 transition-transform duration-1000">
-              <Target className="size-80" />
-            </div>
+        {/* LEFT: Quick Access + Pillars */}
+        <div className="lg:col-span-7 space-y-6">
+          {/* Quick Access */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {quickAccess.map((item) => {
+              const Icon = item.icon
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="group bg-white rounded-[2rem] border border-slate-100 p-6 hover:shadow-md transition-all"
+                >
+                  <div className={cn('size-12 rounded-2xl flex items-center justify-center text-white mb-4 transition-all group-hover:scale-105 group-hover:shadow-md', item.color)}>
+                    <Icon className="size-5" />
+                  </div>
+                  <h3 className="text-base font-black text-slate-900 mb-0.5 group-hover:text-indigo-600 transition-colors">{item.label}</h3>
+                  <p className="text-xs text-slate-400 font-medium">{item.desc}</p>
+                  <div className="mt-3 flex items-center gap-1.5 text-xs font-black text-slate-400 group-hover:text-indigo-600 transition-colors">
+                    <span>Buka</span>
+                    <ArrowRight className="size-3 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              )
+            })}
           </div>
 
-          {/* STATS MINI GRID */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="rounded-[2.5rem] bg-white border border-slate-100 p-8 shadow-sm flex flex-col justify-between group hover:border-primary-100 transition-all">
-              <div className="flex items-center justify-between">
-                <div className="size-12 rounded-2xl bg-slate-50 text-slate-900 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-all">
-                  <TrendingUp className="size-6" />
-                </div>
-                <span className="text-[10px] font-black text-primary-600 bg-primary-50 px-2 py-1 rounded-full">+12%</span>
-              </div>
-              <div className="mt-6">
-                <p className="text-5xl font-black text-slate-900 tracking-tighter leading-none">
-                  {completedTests.length ? Math.round(completedTests.reduce((sum, t) => sum + (t.score ?? 0), 0) / completedTests.length) : 0}
-                </p>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-4">Rata-rata Skor</p>
-              </div>
-            </div>
-
-            <div className="rounded-[2.5rem] bg-white border border-slate-100 p-8 shadow-sm flex flex-col justify-between group hover:border-indigo-100 transition-all">
-              <div className="flex items-center justify-between">
-                <div className="size-12 rounded-2xl bg-slate-50 text-slate-900 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all">
-                  <FileText className="size-6" />
-                </div>
-              </div>
-              <div className="mt-6">
-                <p className="text-5xl font-black text-slate-900 tracking-tighter leading-none">{DUMMY_TEST_HISTORY.length}</p>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-4">Total Aktivitas</p>
-              </div>
-            </div>
-          </div>
-
-          {/* PILLARS & UPSELL GRID */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-             <Link href="/konseling" className="rounded-[2rem] bg-indigo-600 p-6 text-white shadow-lg shadow-indigo-600/10 group relative overflow-hidden transition-all hover:-translate-y-1">
-                <MessageCircle className="size-8 mb-4 group-hover:scale-110 transition-transform" />
-                <h4 className="font-black text-lg">Konseling</h4>
-                <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Cari Solusi</p>
-             </Link>
-             <Link href="/pelatihan" className="rounded-[2rem] bg-orange-500 p-6 text-white shadow-lg shadow-orange-500/10 group relative overflow-hidden transition-all hover:-translate-y-1">
-                <BookOpen className="size-8 mb-4 group-hover:scale-110 transition-transform" />
-                <h4 className="font-black text-lg">Pelatihan</h4>
-                <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Asah Skill</p>
-             </Link>
-             <div className="rounded-[2rem] bg-[#14B8A6] p-6 text-white shadow-lg shadow-primary-500/10 group relative overflow-hidden transition-all hover:-translate-y-1">
-                <Star className="size-8 mb-4 group-hover:rotate-12 transition-transform" />
-                <h4 className="font-black text-lg">Premium</h4>
-                <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Unlock All</p>
-             </div>
+          {/* Pillars */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Link href="/konseling" className="rounded-[2rem] bg-gradient-to-br from-indigo-500 to-indigo-600 p-6 text-white group hover:shadow-lg transition-all hover:-translate-y-0.5">
+              <MessageCircle className="size-7 mb-3 group-hover:scale-110 transition-transform" />
+              <h4 className="font-black text-base">Konseling</h4>
+              <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Cari Solusi</p>
+            </Link>
+            <Link href="/pelatihan" className="rounded-[2rem] bg-gradient-to-br from-amber-400 to-amber-500 p-6 text-white group hover:shadow-lg transition-all hover:-translate-y-0.5">
+              <BookOpen className="size-7 mb-3 group-hover:scale-110 transition-transform" />
+              <h4 className="font-black text-base">Pelatihan</h4>
+              <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Asah Skill</p>
+            </Link>
+            <Link href="/psikotes/premium" className="rounded-[2rem] bg-gradient-to-br from-teal-400 to-teal-500 p-6 text-white group hover:shadow-lg transition-all hover:-translate-y-0.5">
+              <Star className="size-7 mb-3 group-hover:rotate-12 transition-transform" />
+              <h4 className="font-black text-base">Premium</h4>
+              <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Unlock All</p>
+            </Link>
           </div>
         </div>
 
-        {/* RIGHT COLUMN: RECENT HISTORY (4 Cols) */}
-        <aside className="lg:col-span-4 h-full">
-           <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm p-8 h-full flex flex-col">
-              <div className="flex items-center justify-between mb-8">
-                 <div className="flex items-center gap-3">
-                    <History className="size-5 text-primary-600" />
-                    <h3 className="text-xl font-black text-slate-900 tracking-tight">Riwayat</h3>
-                 </div>
-                 <Link href="/dashboard/riwayat" className="size-8 rounded-lg bg-slate-50 flex items-center justify-center hover:bg-primary-50 transition-colors group">
-                    <ChevronRight className="size-4 text-slate-400 group-hover:text-primary-600" />
-                 </Link>
+        {/* RIGHT: Recent History */}
+        <div className="lg:col-span-5">
+          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden h-full flex flex-col">
+            <div className="px-7 py-5 border-b border-slate-50 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
+                  <History className="size-5 text-indigo-600" />
+                </div>
+                <div>
+                  <h2 className="text-base font-black text-slate-900">Riwayat Terbaru</h2>
+                  <p className="text-xs text-slate-400 font-medium">{completedTests.length} tes selesai</p>
+                </div>
               </div>
+              <Link href="/pengguna/riwayat" className="size-8 rounded-lg bg-slate-50 flex items-center justify-center hover:bg-indigo-50 transition-colors group">
+                <ChevronRight className="size-4 text-slate-400 group-hover:text-indigo-600" />
+              </Link>
+            </div>
 
-              <div className="space-y-3 flex-1">
-                 {recentTests.map((test) => (
-                   <div key={test.id} className="p-4 rounded-2xl bg-slate-50/50 border border-transparent hover:border-slate-100 hover:bg-white hover:shadow-sm transition-all group/item">
-                      <div className="flex flex-col gap-3">
-                         <div className="flex items-start justify-between gap-2">
-                            <p className="text-sm font-black text-slate-900 leading-tight line-clamp-2">{test.name}</p>
-                            <span className="text-lg font-black text-primary-600">{test.score}</span>
-                         </div>
-                         <div className="flex items-center justify-between">
-                            <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest bg-white px-2 py-1 rounded-md border border-slate-100">{test.categoryLabel}</span>
-                            <span className="text-[9px] font-bold text-slate-400">{new Date(test.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short' })}</span>
-                         </div>
+            <div className="divide-y divide-slate-50 flex-1">
+              {recentTests.length === 0 ? (
+                <div className="p-10 text-center">
+                  <div className="size-12 rounded-2xl bg-slate-50 flex items-center justify-center mx-auto mb-4">
+                    <FileText className="size-6 text-slate-300" />
+                  </div>
+                  <p className="text-slate-400 font-bold text-sm">Belum ada riwayat tes.</p>
+                </div>
+              ) : (
+                recentTests.map((test, index) => {
+                  const color = recentColors[index % recentColors.length]
+                  return (
+                    <div key={test.id} className="px-7 py-4 flex items-center gap-4 group hover:bg-slate-50/50 transition-all">
+                      <div className={cn('size-10 rounded-xl flex items-center justify-center shrink-0', color.icon)}>
+                        <Brain className="size-5" />
                       </div>
-                   </div>
-                 ))}
-              </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-black text-slate-900 truncate">{test.name}</p>
+                        <div className="flex items-center gap-2 mt-0.5">
+                          <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{test.categoryLabel}</span>
+                          <span className="text-[9px] text-slate-300">•</span>
+                          <span className="text-[9px] text-slate-400 font-medium">
+                            {new Date(test.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short' })}
+                          </span>
+                        </div>
+                      </div>
+                      <span className={cn('text-sm font-black px-2.5 py-1 rounded-full shrink-0', color.score)}>
+                        {test.score}
+                      </span>
+                    </div>
+                  )
+                })
+              )}
+            </div>
 
-              <div className="mt-8 pt-6 border-t border-slate-50">
-                 <Button variant="outline" className="w-full h-12 rounded-xl border-slate-200 font-black text-xs uppercase tracking-widest hover:bg-slate-50" asChild>
-                    <Link href="/dashboard/riwayat">Lihat Semua Hasil</Link>
-                 </Button>
-              </div>
-           </div>
-        </aside>
-
+            <div className="px-7 py-4 border-t border-slate-50">
+              <Button variant="outline" className="w-full h-11 rounded-xl border-slate-200 font-black text-xs uppercase tracking-widest hover:bg-slate-50" asChild>
+                <Link href="/pengguna/riwayat">Lihat Semua Hasil</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

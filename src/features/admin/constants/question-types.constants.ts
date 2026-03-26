@@ -13,8 +13,8 @@ export const QUESTION_TYPE_SHORT_LABELS: Record<string, string> = {
 }
 
 export const QUESTION_TYPE_COLORS: Record<string, string> = {
-  MULTIPLE_CHOICE: 'bg-blue-100 text-blue-800 border-blue-200',
-  TRUE_FALSE: 'bg-green-100 text-green-800 border-green-200',
-  RATING_SCALE: 'bg-purple-100 text-purple-800 border-purple-200',
-  ESSAY: 'bg-orange-100 text-orange-800 border-orange-200',
+  MULTIPLE_CHOICE: 'bg-indigo-100 text-indigo-800 border-indigo-200',
+  TRUE_FALSE: 'bg-teal-100 text-teal-800 border-teal-200',
+  RATING_SCALE: 'bg-violet-100 text-violet-800 border-violet-200',
+  ESSAY: 'bg-slate-100 text-slate-800 border-slate-200',
 }

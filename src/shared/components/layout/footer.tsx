@@ -29,6 +29,8 @@ export function Footer() {
     || pathname === '/daftar'
     || pathname === '/forgot-password'
     || pathname.startsWith('/psikotes/mahasiswa/try-out/form')
+    || pathname.startsWith('/psikotes/gratis/')
+    || pathname.startsWith('/psikotes/premium/')
     || pathname.startsWith('/dashboard')
     || pathname.startsWith('/pengguna')
     || pathname.startsWith('/admin')

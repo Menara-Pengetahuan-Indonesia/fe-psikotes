@@ -1,90 +1,73 @@
-import { CheckCircle2 } from 'lucide-react'
-
+import { CheckCircle2, AlertTriangle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface ExamSubmitModalProps {
+  answeredCount?: number
+  totalQuestions?: number
   onCancel: () => void
   onConfirm: () => void
 }
 
 export function ExamSubmitModal({
+  answeredCount = 0,
+  totalQuestions = 0,
   onCancel,
   onConfirm,
 }: ExamSubmitModalProps) {
+  const allAnswered = answeredCount === totalQuestions
+
   return (
-    <div
-      className={cn(
-        'fixed inset-0 z-50',
-        'flex items-center justify-center p-6',
-        'bg-black/50 backdrop-blur-sm',
-      )}
-    >
-      <div
-        className={cn(
-          'bg-white rounded-3xl p-8',
-          'max-w-sm w-full',
-          'shadow-2xl shadow-slate-900/20',
-          'space-y-6 text-center',
-        )}
-      >
-        <div
-          className={cn(
-            'w-16 h-16 bg-primary-50',
-            'rounded-full flex items-center',
-            'justify-center mx-auto mb-2',
-            'border border-primary-200',
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
+      <div className="bg-white rounded-[2rem] p-8 max-w-sm w-full shadow-2xl space-y-6 text-center animate-in fade-in zoom-in-95 duration-300">
+        <div className={cn(
+          'size-16 rounded-2xl flex items-center justify-center mx-auto',
+          allAnswered ? 'bg-teal-100' : 'bg-amber-100'
+        )}>
+          {allAnswered ? (
+            <CheckCircle2 className="size-8 text-teal-600" />
+          ) : (
+            <AlertTriangle className="size-8 text-amber-600" />
           )}
-        >
-          <CheckCircle2
-            className="w-8 h-8 text-primary-600"
-          />
         </div>
+
         <div className="space-y-2">
-          <h3
-            className={cn(
-              'text-xl font-black',
-              'text-stone-800',
-            )}
-          >
-            Selesaikan Tes?
+          <h3 className="text-xl font-black text-slate-900">
+            {allAnswered ? 'Selesaikan Tes?' : 'Belum Semua Dijawab'}
           </h3>
-          <p
-            className={cn(
-              'text-sm text-stone-500',
-              'font-medium',
-            )}
-          >
-            Pastikan semua jawaban sudah sesuai.
-            Anda tidak dapat mengubah jawaban
-            setelah ini.
+          <p className="text-sm text-slate-400 font-medium">
+            {allAnswered
+              ? 'Pastikan semua jawaban sudah sesuai. Anda tidak dapat mengubah jawaban setelah ini.'
+              : `Anda baru menjawab ${answeredCount} dari ${totalQuestions} soal. Yakin ingin mengirim?`
+            }
           </p>
         </div>
+
+        {/* Progress indicator */}
+        <div className="px-4">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs font-bold text-slate-400">{answeredCount}/{totalQuestions} dijawab</span>
+            <span className="text-xs font-black text-slate-900">{Math.round((answeredCount / totalQuestions) * 100)}%</span>
+          </div>
+          <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+            <div
+              className={cn('h-full rounded-full transition-all', allAnswered ? 'bg-teal-500' : 'bg-amber-500')}
+              style={{ width: `${(answeredCount / totalQuestions) * 100}%` }}
+            />
+          </div>
+        </div>
+
         <div className="flex gap-3 pt-2">
           <button
             onClick={onCancel}
-            className={cn(
-              'flex-1 py-3 bg-white',
-              'border border-slate-200',
-              'text-stone-800 rounded-2xl',
-              'font-bold text-sm',
-              'hover:bg-slate-50',
-              'transition-colors',
-            )}
+            className="flex-1 h-12 bg-white border border-slate-200 text-slate-900 rounded-xl font-black text-sm hover:bg-slate-50 transition-colors"
           >
             Kembali
           </button>
           <button
             onClick={onConfirm}
-            className={cn(
-              'flex-1 py-3',
-              'bg-primary-600 text-white',
-              'rounded-2xl font-bold text-sm',
-              'hover:bg-primary-700',
-              'transition-colors shadow-lg',
-              'shadow-primary-600/20',
-            )}
+            className="flex-1 h-12 bg-slate-900 text-white rounded-xl font-black text-sm hover:bg-slate-800 transition-colors shadow-lg active:scale-95"
           >
-            Ya, Selesai
+            Ya, Kirim
           </button>
         </div>
       </div>
