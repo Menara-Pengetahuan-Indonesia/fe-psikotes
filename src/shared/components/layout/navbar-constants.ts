@@ -61,4 +61,6 @@ export const HIDDEN_ROUTE_PREFIXES = [
   '/perusahaan',
   '/superadmin',
   '/psikotes/mahasiswa/try-out/form',
+  '/psikotes/gratis/',
+  '/psikotes/premium/',
 ] as const

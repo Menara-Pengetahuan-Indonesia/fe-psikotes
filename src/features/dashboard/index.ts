@@ -3,6 +3,9 @@ export {
   UserDashboard,
   AdminDashboard,
   SuperAdminDashboard,
+  MyTests,
+  TestResults,
+  UserProfile,
 } from './components'
 export {
   type TestCategory,

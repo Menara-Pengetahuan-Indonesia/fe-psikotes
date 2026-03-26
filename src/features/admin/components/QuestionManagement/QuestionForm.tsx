@@ -222,12 +222,12 @@ export function QuestionForm({
                   )
                 }
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full bg-white border-transparent shadow-sm">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-white border-transparent shadow-lg">
                   {Object.entries(QUESTION_TYPE_LABELS).map(([value, label]) => (
-                    <SelectItem key={value} value={value}>
+                    <SelectItem key={value} value={value} className="">
                       {label}
                     </SelectItem>
                   ))}
@@ -242,13 +242,13 @@ export function QuestionForm({
                   setValue('sectionId', value === '_none' ? '' : value)
                 }
               >
-                <SelectTrigger className="w-full">
+                <SelectTrigger className="w-full bg-white border-transparent shadow-sm">
                   <SelectValue placeholder="Pilih seksi..." />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="_none">Tanpa Seksi</SelectItem>
+                <SelectContent className="bg-white border-transparent shadow-lg">
+                  <SelectItem value="_none" className="">Tanpa Seksi</SelectItem>
                   {sections.map((section) => (
-                    <SelectItem key={section.id} value={section.id}>
+                    <SelectItem key={section.id} value={section.id} className="">
                       {section.name}
                     </SelectItem>
                   ))}

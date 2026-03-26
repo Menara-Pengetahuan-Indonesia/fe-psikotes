@@ -77,9 +77,10 @@ export const indicatorService = {
   },
 
   create: async (dto: CreateIndicatorDto): Promise<Indicator> => {
+    const { testId, ...body } = dto
     const { data } = await api.post<Indicator>(
-      `${BASE_PATH}/${dto.testId}/indicators`,
-      dto,
+      `${BASE_PATH}/${testId}/indicators`,
+      body,
     )
     return data
   },
@@ -114,9 +115,10 @@ export const sectionService = {
   },
 
   create: async (dto: CreateSectionDto): Promise<Section> => {
+    const { testId, ...body } = dto
     const { data } = await api.post<Section>(
-      `${BASE_PATH}/${dto.testId}/sections`,
-      dto,
+      `${BASE_PATH}/${testId}/sections`,
+      body,
     )
     return data
   },
@@ -151,9 +153,10 @@ export const questionService = {
   },
 
   create: async (dto: CreateQuestionDto): Promise<Question> => {
+    const { testId, ...body } = dto
     const { data } = await api.post<Question>(
-      `${BASE_PATH}/${dto.testId}/questions`,
-      dto,
+      `${BASE_PATH}/${testId}/questions`,
+      body,
     )
     return data
   },
@@ -254,9 +257,10 @@ export const scoringRuleService = {
   },
 
   create: async (dto: CreateScoringRuleDto): Promise<ScoringRule> => {
+    const { testId, ...body } = dto
     const { data } = await api.post<ScoringRule>(
-      `${BASE_PATH}/${dto.testId}/scoring-rules`,
-      dto,
+      `${BASE_PATH}/${testId}/scoring-rules`,
+      body,
     )
     return data
   },
