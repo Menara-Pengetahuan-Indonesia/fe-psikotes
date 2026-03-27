@@ -1,29 +1,20 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import {
   Package,
   Search,
   Clock,
   FileText,
-  ChevronRight,
-  BadgeDollarSign,
   Brain,
-  Users,
   ArrowRight,
 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
+import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
-
-const dummyPackages = [
-  { id: '1', name: 'Paket Tes Kepribadian', description: 'Kumpulan tes untuk mengukur tipe kepribadian, karakter, dan gaya interaksi individu.', price: 0, estimatedDuration: 90, testsCount: 4, participants: 1240 },
-  { id: '2', name: 'Paket Intelegensi & Kognitif', description: 'Tes komprehensif untuk mengukur kemampuan kognitif, verbal, numerik, dan logika.', price: 150000, estimatedDuration: 120, testsCount: 3, participants: 856 },
-  { id: '3', name: 'Paket Minat & Bakat Karir', description: 'Identifikasi minat karir dan bakat alami untuk perencanaan masa depan.', price: 0, estimatedDuration: 60, testsCount: 2, participants: 2100 },
-  { id: '4', name: 'Paket Rekrutmen Karyawan', description: 'Paket lengkap untuk proses seleksi dan rekrutmen karyawan baru perusahaan.', price: 350000, estimatedDuration: 180, testsCount: 5, participants: 430 },
-  { id: '5', name: 'Paket Kesehatan Mental', description: 'Skrining awal kesehatan mental: stres, kecemasan, dan kesejahteraan psikologis.', price: 0, estimatedDuration: 45, testsCount: 3, participants: 3200 },
-  { id: '6', name: 'Paket Kecerdasan Emosional', description: 'Mengukur kemampuan mengelola emosi, empati, dan keterampilan sosial.', price: 99000, estimatedDuration: 60, testsCount: 2, participants: 670 },
-]
+import { publicPackageService } from '@/features/admin/services'
+import type { Package as PackageType } from '@/features/admin/types'
 
 type TabType = 'gratis' | 'premium'
 
@@ -44,15 +35,24 @@ const cardColors = [
 export default function JenisTesPage() {
   const [tab, setTab] = useState<TabType>('gratis')
   const [search, setSearch] = useState('')
+  const [packages, setPackages] = useState<PackageType[]>([])
+  const [loading, setLoading] = useState(true)
 
-  const filtered = dummyPackages.filter((p) => {
+  useEffect(() => {
+    publicPackageService.getAll().then((data) => {
+      setPackages(data)
+      setLoading(false)
+    }).catch(() => setLoading(false))
+  }, [])
+
+  const filtered = packages.filter((p) => {
     const matchesTab = tab === 'gratis' ? p.price === 0 : p.price > 0
     const matchesSearch = !search || p.name.toLowerCase().includes(search.toLowerCase())
     return matchesTab && matchesSearch
   })
 
-  const gratisCount = dummyPackages.filter((p) => p.price === 0).length
-  const premiumCount = dummyPackages.filter((p) => p.price > 0).length
+  const gratisCount = packages.filter((p) => p.price === 0).length
+  const premiumCount = packages.filter((p) => p.price > 0).length
 
   return (
     <div className="min-h-screen bg-[#F2F2F7]">
@@ -111,7 +111,11 @@ export default function JenisTesPage() {
         </div>
 
         {/* Grid */}
-        {filtered.length === 0 ? (
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {Array.from({ length: 3 }).map((_, i) => <Skeleton key={i} className="h-64 rounded-[2rem]" />)}
+          </div>
+        ) : filtered.length === 0 ? (
           <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
             <div className="size-16 rounded-2xl bg-indigo-50 flex items-center justify-center mb-5">
               <Package className="size-8 text-indigo-400" />
@@ -124,6 +128,7 @@ export default function JenisTesPage() {
             {filtered.map((pkg, index) => {
               const color = cardColors[index % cardColors.length]
               const isFree = pkg.price === 0
+              const testsCount = pkg.tests?.length ?? 0
 
               return (
                 <Link
@@ -160,16 +165,14 @@ export default function JenisTesPage() {
                     <div className="flex items-center gap-3 mb-4">
                       <div className="flex items-center gap-1 text-[10px] font-bold text-slate-500 bg-slate-50 px-2.5 py-1 rounded-full">
                         <FileText className="size-3" />
-                        <span>{pkg.testsCount} tes</span>
+                        <span>{testsCount} tes</span>
                       </div>
-                      <div className="flex items-center gap-1 text-[10px] font-bold text-slate-500 bg-slate-50 px-2.5 py-1 rounded-full">
-                        <Clock className="size-3" />
-                        <span>{pkg.estimatedDuration}m</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-[10px] font-bold text-slate-500 bg-slate-50 px-2.5 py-1 rounded-full">
-                        <Users className="size-3" />
-                        <span>{pkg.participants.toLocaleString()}</span>
-                      </div>
+                      {pkg.estimatedDuration && (
+                        <div className="flex items-center gap-1 text-[10px] font-bold text-slate-500 bg-slate-50 px-2.5 py-1 rounded-full">
+                          <Clock className="size-3" />
+                          <span>{pkg.estimatedDuration}m</span>
+                        </div>
+                      )}
                     </div>
 
                     {/* CTA */}
