@@ -53,13 +53,13 @@ export const psikotesNavItems: NavItem[] = [
     children: [
       {
         label: 'Tes Gratis',
-        href: '/psikotes/gratis',
+        href: '/jenis-tes',
         icon: 'Gift',
         desc: 'Coba tes tanpa biaya',
       },
       {
         label: 'Tes Premium',
-        href: '/psikotes/premium',
+        href: '/jenis-tes',
         icon: 'Crown',
         desc: 'Analisis mendalam & sertifikat',
       },

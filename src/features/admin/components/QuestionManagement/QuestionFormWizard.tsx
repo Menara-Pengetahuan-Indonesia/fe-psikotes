@@ -10,14 +10,7 @@ import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import { Plus, Trash2, X, HelpCircle, Layout, ImageIcon, CheckCircle2, AlertCircle } from 'lucide-react'
+import { Plus, Trash2, X, HelpCircle, Layout, ImageIcon, CheckCircle2, AlertCircle, ChevronDown } from 'lucide-react'
 import {
   useIndicators,
   useSections,
@@ -119,6 +112,10 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
   const [imagePreview, setImagePreview] = useState<string | null>(initialData?.imageUrl ?? null)
   const [isSaving, setIsSaving] = useState(false)
   const prevTypeRef = useRef<QuestionType | null>(null)
+  const [typeDropdownOpen, setTypeDropdownOpen] = useState(false)
+  const [sectionDropdownOpen, setSectionDropdownOpen] = useState(false)
+  const typeRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
 
   const { data: indicators } = useIndicators(testId)
   const { data: sections } = useSections(testId)
@@ -147,6 +144,16 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
       replace(buildDefaultOptions(questionType))
     }
   }, [questionType, replace])
+
+  // Close dropdowns on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (typeRef.current && !typeRef.current.contains(e.target as Node)) setTypeDropdownOpen(false)
+      if (sectionRef.current && !sectionRef.current.contains(e.target as Node)) setSectionDropdownOpen(false)
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -238,27 +245,76 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="space-y-1.5">
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Tipe</label>
-            <Select value={questionType} onValueChange={(v) => setValue('type', v as QuestionType)}>
-              <SelectTrigger className="h-10 rounded-xl bg-slate-50 border-slate-200 font-bold text-sm px-4">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent className="rounded-xl shadow-lg border-slate-100">
-                {Object.entries(QUESTION_TYPE_LABELS).map(([v, l]) => <SelectItem key={v} value={v} className="text-sm font-bold">{l}</SelectItem>)}
-              </SelectContent>
-            </Select>
+            <div ref={typeRef} className="relative">
+              <button
+                type="button"
+                onClick={() => setTypeDropdownOpen(!typeDropdownOpen)}
+                className="w-full h-10 rounded-xl bg-slate-50 border border-slate-200 px-4 flex items-center justify-between text-sm font-bold text-slate-700 hover:bg-white hover:border-slate-300 transition-all"
+              >
+                <span>{QUESTION_TYPE_LABELS[questionType]}</span>
+                <ChevronDown className={cn("size-4 text-slate-400 transition-transform", typeDropdownOpen && "rotate-180")} />
+              </button>
+              {typeDropdownOpen && (
+                <div className="absolute z-20 top-full mt-2 w-full bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden">
+                  {Object.entries(QUESTION_TYPE_LABELS).map(([v, l]) => (
+                    <div
+                      key={v}
+                      onClick={() => { setValue('type', v as QuestionType); setTypeDropdownOpen(false) }}
+                      className={cn(
+                        "flex items-center justify-between px-4 py-3 cursor-pointer transition-all border-b border-slate-50 last:border-0",
+                        questionType === v ? "bg-indigo-50" : "hover:bg-slate-50"
+                      )}
+                    >
+                      <p className="text-sm font-bold text-slate-700">{l}</p>
+                      {questionType === v && <CheckCircle2 className="size-4 text-indigo-600" />}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="space-y-1.5">
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Seksi</label>
-            <Select value={watch('sectionId') || '_none'} onValueChange={(v) => setValue('sectionId', v === '_none' ? '' : v)}>
-              <SelectTrigger className="h-10 rounded-xl bg-slate-50 border-slate-200 font-bold text-sm px-4">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent className="rounded-xl shadow-lg border-slate-100">
-                <SelectItem value="_none" className="text-sm font-bold">Tanpa Seksi</SelectItem>
-                {(sections ?? []).map((s) => <SelectItem key={s.id} value={s.id} className="text-sm font-bold">{s.name}</SelectItem>)}
-              </SelectContent>
-            </Select>
+            <div ref={sectionRef} className="relative">
+              <button
+                type="button"
+                onClick={() => setSectionDropdownOpen(!sectionDropdownOpen)}
+                className="w-full h-10 rounded-xl bg-slate-50 border border-slate-200 px-4 flex items-center justify-between text-sm font-bold text-slate-700 hover:bg-white hover:border-slate-300 transition-all"
+              >
+                <span className={!watch('sectionId') ? 'text-slate-400' : ''}>
+                  {watch('sectionId') ? (sections ?? []).find((s) => s.id === watch('sectionId'))?.name ?? 'Tanpa Seksi' : 'Tanpa Seksi'}
+                </span>
+                <ChevronDown className={cn("size-4 text-slate-400 transition-transform", sectionDropdownOpen && "rotate-180")} />
+              </button>
+              {sectionDropdownOpen && (
+                <div className="absolute z-20 top-full mt-2 w-full bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden">
+                  <div
+                    onClick={() => { setValue('sectionId', ''); setSectionDropdownOpen(false) }}
+                    className={cn(
+                      "flex items-center justify-between px-4 py-3 cursor-pointer transition-all border-b border-slate-50",
+                      !watch('sectionId') ? "bg-indigo-50" : "hover:bg-slate-50"
+                    )}
+                  >
+                    <p className="text-sm font-bold text-slate-700">Tanpa Seksi</p>
+                    {!watch('sectionId') && <CheckCircle2 className="size-4 text-indigo-600" />}
+                  </div>
+                  {(sections ?? []).map((s) => (
+                    <div
+                      key={s.id}
+                      onClick={() => { setValue('sectionId', s.id); setSectionDropdownOpen(false) }}
+                      className={cn(
+                        "flex items-center justify-between px-4 py-3 cursor-pointer transition-all border-b border-slate-50 last:border-0",
+                        watch('sectionId') === s.id ? "bg-indigo-50" : "hover:bg-slate-50"
+                      )}
+                    >
+                      <p className="text-sm font-bold text-slate-700">{s.name}</p>
+                      {watch('sectionId') === s.id && <CheckCircle2 className="size-4 text-indigo-600" />}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="space-y-1.5">

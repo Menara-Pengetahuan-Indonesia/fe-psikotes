@@ -214,7 +214,7 @@ export function Footer() {
             'justify-between items-center gap-2',
           )}
         >
-          <p className={cn('text-xs font-medium', theme.copyright)}>
+          <p className={cn('text-xs font-medium', theme.copyright)} suppressHydrationWarning>
             &copy; {new Date().getFullYear()} Bermoela Indonesia.
             All rights reserved.
           </p>

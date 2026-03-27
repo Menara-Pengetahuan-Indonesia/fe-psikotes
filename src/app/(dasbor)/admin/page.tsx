@@ -8,7 +8,7 @@ import {
   Users,
   Plus,
   ArrowRight,
-  Tag,
+  Package,
   CalendarClock,
   FileBarChart,
   TrendingUp,
@@ -22,7 +22,7 @@ import { cn } from '@/lib/utils'
 
 const quickAccess = [
   { href: '/admin/tests', label: 'Kelola Tes', desc: 'Buat dan atur instrumen tes', icon: BookOpen, stat: '24', statLabel: 'Tes', color: 'bg-gradient-to-br from-indigo-400 to-indigo-500', iconBg: 'bg-indigo-100 text-indigo-600' },
-  { href: '/admin/categories', label: 'Kategori', desc: 'Kelompokkan tes berdasarkan jenis', icon: Tag, stat: '6', statLabel: 'Kategori', color: 'bg-gradient-to-br from-violet-400 to-violet-500', iconBg: 'bg-violet-100 text-violet-600' },
+  { href: '/admin/packages', label: 'Paket', desc: 'Kelola bundel paket tes', icon: Package, stat: '6', statLabel: 'Paket', color: 'bg-gradient-to-br from-violet-400 to-violet-500', iconBg: 'bg-violet-100 text-violet-600' },
   { href: '/admin/schedules', label: 'Jadwal', desc: 'Atur jadwal akses tes', icon: CalendarClock, stat: '2', statLabel: 'Aktif', color: 'bg-gradient-to-br from-teal-400 to-teal-500', iconBg: 'bg-teal-100 text-teal-600' },
   { href: '/admin/participants', label: 'Peserta', desc: 'Kelola peserta terdaftar', icon: Users, stat: '1,240', statLabel: 'Peserta', color: 'bg-gradient-to-br from-indigo-400 to-indigo-500', iconBg: 'bg-indigo-100 text-indigo-600' },
   { href: '/admin/results', label: 'Hasil', desc: 'Lihat hasil tes peserta', icon: FileBarChart, stat: '840', statLabel: 'Selesai', color: 'bg-gradient-to-br from-teal-400 to-teal-500', iconBg: 'bg-teal-100 text-teal-600' },
@@ -90,11 +90,11 @@ export default function AdminDashboardPage() {
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
             <div className="size-10 rounded-xl bg-violet-500/30 flex items-center justify-center">
-              <Tag className="size-5 text-violet-300" />
+              <Package className="size-5 text-violet-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">6</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Kategori</p>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Paket</p>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
