@@ -196,3 +196,50 @@ export interface UploadResponse {
   url: string
   filename: string
 }
+
+// ============================================================
+// PACKAGE TYPES
+// ============================================================
+
+export interface Package {
+  id: string
+  name: string
+  description?: string
+  imageUrl?: string | null
+  price: number
+  estimatedDuration?: number | null
+  isPublished: boolean
+  createdAt: string
+  updatedAt: string
+  tests?: PackageTest[]
+}
+
+export interface PackageTest {
+  id: string
+  packageId: string
+  testId: string
+  order: number
+  createdAt: string
+  test?: Test
+}
+
+export interface CreatePackageDto {
+  name: string
+  description?: string
+  imageUrl?: string
+  price?: number
+  estimatedDuration?: number
+}
+
+export interface UpdatePackageDto {
+  name?: string
+  description?: string
+  imageUrl?: string
+  price?: number
+  estimatedDuration?: number
+}
+
+export interface AddTestToPackageDto {
+  testId: string
+  order: number
+}

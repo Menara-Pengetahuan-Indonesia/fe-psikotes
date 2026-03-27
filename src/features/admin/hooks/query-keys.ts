@@ -10,4 +10,6 @@ export const adminKeys = {
     [...adminKeys.all, 'questions', testId] as const,
   scoringRules: (testId: string) =>
     [...adminKeys.all, 'scoring-rules', testId] as const,
+  packages: () => [...adminKeys.all, 'packages'] as const,
+  package: (id: string) => [...adminKeys.packages(), id] as const,
 }

@@ -7,6 +7,8 @@ import type {
   QuestionOption,
   OptionIndicatorMapping,
   ScoringRule,
+  Package,
+  PackageTest,
   CreateTestDto,
   UpdateTestDto,
   CreateIndicatorDto,
@@ -20,6 +22,9 @@ import type {
   CreateOptionIndicatorMappingDto,
   CreateScoringRuleDto,
   UpdateScoringRuleDto,
+  CreatePackageDto,
+  UpdatePackageDto,
+  AddTestToPackageDto,
 } from '../types'
 
 const BASE_PATH = '/admin/tests'
@@ -295,6 +300,74 @@ export const uploadService = {
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } },
     )
+    return data
+  },
+}
+
+// ============================================================
+// PACKAGE SERVICE
+// ============================================================
+
+const PKG_PATH = '/admin/packages'
+
+export const packageService = {
+  getAll: async (): Promise<Package[]> => {
+    const { data } = await api.get<Package[]>(PKG_PATH)
+    return data
+  },
+
+  getById: async (id: string): Promise<Package> => {
+    const { data } = await api.get<Package>(`${PKG_PATH}/${id}`)
+    return data
+  },
+
+  create: async (dto: CreatePackageDto): Promise<Package> => {
+    const { data } = await api.post<Package>(PKG_PATH, dto)
+    return data
+  },
+
+  update: async (id: string, dto: UpdatePackageDto): Promise<Package> => {
+    const { data } = await api.patch<Package>(`${PKG_PATH}/${id}`, dto)
+    return data
+  },
+
+  delete: async (id: string): Promise<void> => {
+    await api.delete(`${PKG_PATH}/${id}`)
+  },
+
+  publish: async (id: string): Promise<Package> => {
+    const { data } = await api.post<Package>(`${PKG_PATH}/${id}/publish`)
+    return data
+  },
+
+  unpublish: async (id: string): Promise<Package> => {
+    const { data } = await api.post<Package>(`${PKG_PATH}/${id}/unpublish`)
+    return data
+  },
+
+  addTest: async (packageId: string, dto: AddTestToPackageDto): Promise<PackageTest> => {
+    const { data } = await api.post<PackageTest>(`${PKG_PATH}/${packageId}/tests`, dto)
+    return data
+  },
+
+  removeTest: async (packageId: string, testId: string): Promise<void> => {
+    await api.delete(`${PKG_PATH}/${packageId}/tests/${testId}`)
+  },
+}
+
+// ============================================================
+// PUBLIC PACKAGE SERVICE
+// ============================================================
+
+export const publicPackageService = {
+  getAll: async (type?: 'free' | 'premium'): Promise<Package[]> => {
+    const params = type ? `?type=${type}` : ''
+    const { data } = await api.get<Package[]>(`/packages${params}`)
+    return data
+  },
+
+  getById: async (id: string): Promise<Package> => {
+    const { data } = await api.get<Package>(`/packages/${id}`)
     return data
   },
 }
