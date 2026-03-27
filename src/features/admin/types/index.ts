@@ -18,6 +18,9 @@ export interface Test {
   precisionLevel?: number | null
   popularity?: string | null
   packageIds?: string[]
+  questions?: Question[]
+  indicators?: Indicator[]
+  sections?: Section[]
   createdAt: string
   updatedAt: string
 }
