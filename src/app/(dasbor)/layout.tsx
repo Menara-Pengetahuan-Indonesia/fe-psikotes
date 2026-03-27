@@ -17,7 +17,7 @@ import {
   Users,
   BookOpen,
   Settings,
-  Tag,
+  Package,
   CalendarClock,
   BarChart3,
 } from 'lucide-react'
@@ -50,7 +50,7 @@ const NAV_BY_ROLE: Record<UserRole, NavItem[]> = {
   ADMIN: [
     { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/admin/tests', label: 'Kelola Tes', icon: BookOpen },
-    { href: '/admin/categories', label: 'Kategori', icon: Tag },
+    { href: '/admin/packages', label: 'Paket', icon: Package },
     { href: '/admin/schedules', label: 'Jadwal', icon: CalendarClock },
     { href: '/admin/participants', label: 'Peserta', icon: Users },
     { href: '/admin/results', label: 'Hasil', icon: History },

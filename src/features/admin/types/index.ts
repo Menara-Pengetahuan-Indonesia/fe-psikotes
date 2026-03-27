@@ -13,6 +13,11 @@ export interface Test {
   timePerQuestion?: number | null // waktu per soal (detik)
   shuffleQuestions: boolean
   shuffleOptions: boolean
+  originalYear?: number | null
+  adaptationYear?: number | null
+  precisionLevel?: number | null
+  popularity?: string | null
+  packageIds?: string[]
   createdAt: string
   updatedAt: string
 }

@@ -52,7 +52,7 @@ export function ExamInterface({
 
   // Timer
   const [timeLeft, setTimeLeft] = useState(duration * 60)
-  const [questionStartTime, setQuestionStartTime] = useState(Date.now())
+  const [questionStartTime, setQuestionStartTime] = useState(0)
   const [questionTimes, setQuestionTimes] = useState<Record<number, number>>({})
 
   // Activity log
@@ -81,6 +81,11 @@ export function ExamInterface({
         questions: questions.map((q, idx) => ({ ...q, globalIdx: idx })).filter((q) => q.sectionId === s.id),
       }))
     : [{ section: null, questions: questions.map((q, idx) => ({ ...q, globalIdx: idx })) }]
+
+  // Initialize questionStartTime on client
+  useEffect(() => {
+    setQuestionStartTime(Date.now())
+  }, [])
 
   // Countdown timer
   useEffect(() => {

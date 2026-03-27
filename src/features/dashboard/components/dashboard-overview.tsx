@@ -18,9 +18,15 @@ import { Button } from '@/components/ui/button'
 
 import { useAuthStoreHydrated } from '@/store/auth.store'
 import { DUMMY_TEST_HISTORY } from '@/features/dashboard/constants'
+import { useState, useEffect } from 'react'
 
 export function DashboardOverview() {
   const { user } = useAuthStoreHydrated()
+  const [dateStr, setDateStr] = useState('')
+
+  useEffect(() => {
+    setDateStr(new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }))
+  }, [])
   const completedTests = DUMMY_TEST_HISTORY.filter((t) => t.status === 'selesai')
   const recentTests = DUMMY_TEST_HISTORY.filter((t) => t.status === 'selesai').slice(0, 5)
 
@@ -35,7 +41,7 @@ export function DashboardOverview() {
         </div>
         <div className="flex items-center gap-2 text-slate-400 bg-white px-4 py-2 rounded-2xl border border-slate-100 shadow-sm">
           <CalendarDays className="size-4" />
-          <span className="text-xs font-bold">{new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+          <span className="text-xs font-bold">{dateStr}</span>
         </div>
       </div>
 
@@ -144,7 +150,7 @@ export function DashboardOverview() {
                          </div>
                          <div className="flex items-center justify-between">
                             <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest bg-white px-2 py-1 rounded-md border border-slate-100">{test.categoryLabel}</span>
-                            <span className="text-[9px] font-bold text-slate-400">{new Date(test.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short' })}</span>
+                            <span className="text-[9px] font-bold text-slate-400" suppressHydrationWarning>{new Date(test.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short' })}</span>
                          </div>
                       </div>
                    </div>
