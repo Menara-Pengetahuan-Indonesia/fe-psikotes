@@ -29,27 +29,10 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { Skeleton } from '@/components/ui/skeleton'
 import { ConfirmDialog } from '@/features/admin/components/Common/ConfirmDialog'
-
-interface PackageItem {
-  id: string
-  name: string
-  description: string
-  price: number
-  estimatedDuration: number
-  testsCount: number
-  isPublished: boolean
-  createdAt: string
-}
-
-const initialPackages: PackageItem[] = [
-  { id: '1', name: 'Paket Tes Kepribadian', description: 'Kumpulan tes untuk mengukur tipe kepribadian, karakter, dan gaya interaksi individu.', price: 0, estimatedDuration: 90, testsCount: 4, isPublished: true, createdAt: '2026-01-10T08:00:00Z' },
-  { id: '2', name: 'Paket Intelegensi & Kognitif', description: 'Tes komprehensif untuk mengukur kemampuan kognitif, verbal, numerik, dan logika.', price: 150000, estimatedDuration: 120, testsCount: 3, isPublished: true, createdAt: '2026-01-12T10:00:00Z' },
-  { id: '3', name: 'Paket Minat & Bakat Karir', description: 'Identifikasi minat karir dan bakat alami untuk perencanaan masa depan.', price: 0, estimatedDuration: 60, testsCount: 2, isPublished: true, createdAt: '2026-01-15T14:00:00Z' },
-  { id: '4', name: 'Paket Rekrutmen Karyawan', description: 'Paket lengkap untuk proses seleksi dan rekrutmen karyawan baru perusahaan.', price: 350000, estimatedDuration: 180, testsCount: 5, isPublished: true, createdAt: '2026-02-01T09:00:00Z' },
-  { id: '5', name: 'Paket Kesehatan Mental', description: 'Skrining awal kesehatan mental: stres, kecemasan, dan kesejahteraan psikologis.', price: 0, estimatedDuration: 45, testsCount: 3, isPublished: true, createdAt: '2026-02-10T11:00:00Z' },
-  { id: '6', name: 'Paket Kecerdasan Emosional', description: 'Mengukur kemampuan mengelola emosi, empati, dan keterampilan sosial.', price: 99000, estimatedDuration: 60, testsCount: 2, isPublished: false, createdAt: '2026-02-20T13:00:00Z' },
-]
+import { usePackages, useCreatePackage, useUpdatePackage, useDeletePackage, usePublishPackage, useUnpublishPackage } from '@/features/admin/hooks'
+import type { Package as PackageType } from '@/features/admin/types'
 
 type FilterType = 'all' | 'published' | 'draft' | 'free' | 'premium'
 
@@ -77,9 +60,8 @@ export default function AdminPackagesPage() {
   const router = useRouter()
   const [filter, setFilter] = useState<FilterType>('all')
   const [search, setSearch] = useState('')
-  const [packages, setPackages] = useState<PackageItem[]>(initialPackages)
   const [formOpen, setFormOpen] = useState(false)
-  const [editData, setEditData] = useState<PackageItem | null>(null)
+  const [editData, setEditData] = useState<PackageType | null>(null)
   const [deleteId, setDeleteId] = useState<string | null>(null)
 
   // Form state
@@ -89,19 +71,28 @@ export default function AdminPackagesPage() {
   const [formDuration, setFormDuration] = useState(60)
   const [formError, setFormError] = useState('')
 
-  const publishedCount = packages.filter((p) => p.isPublished).length
-  const draftCount = packages.filter((p) => !p.isPublished).length
-  const freeCount = packages.filter((p) => p.price === 0).length
-  const premiumCount = packages.filter((p) => p.price > 0).length
+  // API hooks
+  const { data: packages, isLoading } = usePackages()
+  const createPackage = useCreatePackage()
+  const updatePackage = useUpdatePackage()
+  const deletePackage = useDeletePackage()
+  const publishPackage = usePublishPackage()
+  const unpublishPackage = useUnpublishPackage()
 
-  const filtered = packages.filter((p) => {
+  const allPackages = packages ?? []
+  const publishedCount = allPackages.filter((p) => p.isPublished).length
+  const draftCount = allPackages.filter((p) => !p.isPublished).length
+  const freeCount = allPackages.filter((p) => p.price === 0).length
+  const premiumCount = allPackages.filter((p) => p.price > 0).length
+
+  const filtered = allPackages.filter((p) => {
     const matchesFilter =
       filter === 'all' ||
       (filter === 'published' && p.isPublished) ||
       (filter === 'draft' && !p.isPublished) ||
       (filter === 'free' && p.price === 0) ||
       (filter === 'premium' && p.price > 0)
-    const matchesSearch = !search || p.name.toLowerCase().includes(search.toLowerCase()) || p.description.toLowerCase().includes(search.toLowerCase())
+    const matchesSearch = !search || p.name.toLowerCase().includes(search.toLowerCase()) || (p.description ?? '').toLowerCase().includes(search.toLowerCase())
     return matchesFilter && matchesSearch
   })
 
@@ -115,12 +106,12 @@ export default function AdminPackagesPage() {
     setFormOpen(true)
   }
 
-  const openEdit = (pkg: PackageItem) => {
+  const openEdit = (pkg: PackageType) => {
     setEditData(pkg)
     setFormName(pkg.name)
-    setFormDesc(pkg.description)
+    setFormDesc(pkg.description ?? '')
     setFormPrice(pkg.price)
-    setFormDuration(pkg.estimatedDuration)
+    setFormDuration(pkg.estimatedDuration ?? 60)
     setFormError('')
     setFormOpen(true)
   }
@@ -128,31 +119,35 @@ export default function AdminPackagesPage() {
   const handleSubmit = () => {
     if (!formName.trim()) { setFormError('Nama paket wajib diisi.'); return }
     if (editData) {
-      setPackages((prev) => prev.map((p) => p.id === editData.id ? { ...p, name: formName.trim(), description: formDesc.trim(), price: formPrice, estimatedDuration: formDuration } : p))
+      updatePackage.mutate({ id: editData.id, dto: { name: formName.trim(), description: formDesc.trim(), price: formPrice, estimatedDuration: formDuration } }, { onSuccess: () => setFormOpen(false) })
     } else {
-      const newPkg: PackageItem = {
-        id: String(Date.now()),
-        name: formName.trim(),
-        description: formDesc.trim(),
-        price: formPrice,
-        estimatedDuration: formDuration,
-        testsCount: 0,
-        isPublished: false,
-        createdAt: new Date().toISOString(),
-      }
-      setPackages((prev) => [...prev, newPkg])
+      createPackage.mutate({ name: formName.trim(), description: formDesc.trim(), price: formPrice, estimatedDuration: formDuration }, { onSuccess: () => setFormOpen(false) })
     }
-    setFormOpen(false)
   }
 
   const handleDelete = () => {
     if (!deleteId) return
-    setPackages((prev) => prev.filter((p) => p.id !== deleteId))
-    setDeleteId(null)
+    deletePackage.mutate(deleteId, { onSuccess: () => setDeleteId(null) })
   }
 
-  const handleTogglePublish = (id: string) => {
-    setPackages((prev) => prev.map((p) => p.id === id ? { ...p, isPublished: !p.isPublished } : p))
+  const handleTogglePublish = (id: string, isPublished: boolean) => {
+    if (isPublished) {
+      unpublishPackage.mutate(id)
+    } else {
+      publishPackage.mutate(id)
+    }
+  }
+
+  if (isLoading) {
+    return (
+      <div className="space-y-6 animate-in fade-in duration-500">
+        <Skeleton className="h-52 rounded-[2.5rem]" />
+        <Skeleton className="h-11 rounded-xl" />
+        <div className="space-y-3">
+          {Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="h-20 rounded-2xl" />)}
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -188,7 +183,7 @@ export default function AdminPackagesPage() {
               <Package className="size-5 text-violet-300" />
             </div>
             <div>
-              <p className="text-2xl font-black leading-none">{packages.length}</p>
+              <p className="text-2xl font-black leading-none">{allPackages.length}</p>
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total</p>
             </div>
           </div>
@@ -230,7 +225,7 @@ export default function AdminPackagesPage() {
       <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3">
         <div className="flex items-center bg-white rounded-xl border border-slate-100 p-1 gap-1 overflow-x-auto no-scrollbar">
           {([
-            { key: 'all', label: 'Semua', count: packages.length },
+            { key: 'all', label: 'Semua', count: allPackages.length },
             { key: 'published', label: 'Published', count: publishedCount },
             { key: 'draft', label: 'Draft', count: draftCount },
             { key: 'free', label: 'Gratis', count: freeCount },
@@ -314,7 +309,7 @@ export default function AdminPackagesPage() {
                 <div className="hidden lg:flex items-center gap-2 shrink-0">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-violet-500 bg-violet-50 px-3 py-1.5 rounded-full">
                     <FileText className="size-3.5" />
-                    <span>{pkg.testsCount} tes</span>
+                    <span>{pkg.tests?.length ?? 0} tes</span>
                   </div>
                   <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 bg-slate-50 px-3 py-1.5 rounded-full">
                     <Clock className="size-3.5" />
@@ -325,7 +320,7 @@ export default function AdminPackagesPage() {
                 {/* Actions */}
                 <div className="flex items-center gap-2 shrink-0">
                   <button
-                    onClick={(e) => { e.stopPropagation(); handleTogglePublish(pkg.id) }}
+                    onClick={(e) => { e.stopPropagation(); handleTogglePublish(pkg.id, pkg.isPublished) }}
                     className={cn(
                       'size-9 rounded-xl bg-white border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all',
                       pkg.isPublished
