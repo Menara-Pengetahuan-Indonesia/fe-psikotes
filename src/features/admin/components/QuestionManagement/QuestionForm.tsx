@@ -70,7 +70,7 @@ export function QuestionForm({
     control,
     setValue,
   } = useForm<QuestionFormValues>({
-    resolver: zodResolver(createQuestionSchema),
+    resolver: zodResolver(createQuestionSchema) as any,
     defaultValues: {
       text: initialData?.text ?? '',
       type: initialData?.type ?? 'MULTIPLE_CHOICE',
@@ -99,6 +99,7 @@ export function QuestionForm({
         order: initialData?.order ?? 0,
         imageUrl: initialData?.imageUrl ?? undefined,
         displayStyle: initialData?.displayStyle ?? 'UPPERCASE',
+        optionImageEnabled: initialData?.optionImageEnabled ?? false,
         options: isEditing
           ? []
           : [

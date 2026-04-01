@@ -176,7 +176,7 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
   const uploadImage = useUploadImage()
 
   const { register, handleSubmit, formState: { errors }, reset, watch, control, setValue } = useForm<FormValues>({
-    resolver: zodResolver(questionFormWizardSchema),
+    resolver: zodResolver(questionFormWizardSchema) as any,
     defaultValues: buildInitialValues(initialData),
   })
 
@@ -221,7 +221,7 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
     try {
       setIsSaving(true)
       if (isEditing && initialData) {
-        await updateQuestion.mutateAsync({ testId, questionId: initialData.id, dto: { text: data.text, type: data.type, sectionId: data.sectionId || undefined, order: data.order, imageUrl: data.imageUrl || null, displayStyle: data.displayStyle || null, optionImageEnabled: data.optionImageEnabled ?? false } })
+        await updateQuestion.mutateAsync({ testId, questionId: initialData.id, dto: { text: data.text, type: data.type, sectionId: data.sectionId || undefined, order: data.order, imageUrl: data.imageUrl || null, displayStyle: data.displayStyle || undefined, optionImageEnabled: data.optionImageEnabled ?? false } })
         const formOptionIds = new Set(data.options.filter((o) => o.id).map((o) => o.id!))
         for (const existingOpt of initialData.options ?? []) { if (!formOptionIds.has(existingOpt.id)) await deleteOption.mutateAsync({ testId, optionId: existingOpt.id }) }
         const savedOptions: Array<{ optionId: string, scores: Record<string, number | ''> }> = []
@@ -241,7 +241,7 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
           }
         }
       } else {
-        const question = await createQuestion.mutateAsync({ testId, text: data.text, type: data.type, sectionId: data.sectionId || undefined, order: data.order, imageUrl: data.imageUrl || null, displayStyle: data.displayStyle || null, optionImageEnabled: data.optionImageEnabled ?? false })
+        const question = await createQuestion.mutateAsync({ testId, text: data.text, type: data.type, sectionId: data.sectionId || undefined, order: data.order, imageUrl: data.imageUrl || null, displayStyle: data.displayStyle || undefined, optionImageEnabled: data.optionImageEnabled ?? false })
         for (const formOpt of data.options) {
           const createdOpt = await createOption.mutateAsync({ testId, questionId: question.id, dto: { questionId: question.id, text: formOpt.text, order: formOpt.order, imageUrl: formOpt.imageUrl || null } })
           for (const [indicatorId, value] of Object.entries(formOpt.scores)) {
