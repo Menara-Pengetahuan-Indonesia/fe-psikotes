@@ -169,8 +169,10 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
   const [isSaving, setIsSaving] = useState(false)
   const prevTypeRef = useRef<QuestionType | null>(null)
   const [typeDropdownOpen, setTypeDropdownOpen] = useState(false)
+  const [styleDropdownOpen, setStyleDropdownOpen] = useState(false)
   const [sectionDropdownOpen, setSectionDropdownOpen] = useState(false)
   const typeRef = useRef<HTMLDivElement>(null)
+  const styleRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
 
   const { data: indicators } = useIndicators(testId)
@@ -205,6 +207,7 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (typeRef.current && !typeRef.current.contains(e.target as Node)) setTypeDropdownOpen(false)
+      if (styleRef.current && !styleRef.current.contains(e.target as Node)) setStyleDropdownOpen(false)
       if (sectionRef.current && !sectionRef.current.contains(e.target as Node)) setSectionDropdownOpen(false)
     }
     document.addEventListener('mousedown', handler)
@@ -298,8 +301,8 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
           {errors.text && <p className="text-rose-500 text-[10px] font-bold flex items-center gap-1"><AlertCircle className="size-3" />{errors.text.message}</p>}
         </div>
 
-        <div className="flex flex-wrap items-end gap-4">
-          <div className="space-y-1.5 min-w-[160px]">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+          <div className={cn("space-y-1.5", questionType === 'MULTIPLE_CHOICE' ? "md:col-span-3" : "md:col-span-4")}>
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Tipe</label>
             <div ref={typeRef} className="relative">
               <button
@@ -331,29 +334,39 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
           </div>
 
           {questionType === 'MULTIPLE_CHOICE' && (
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 md:col-span-3">
               <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Gaya Tampilan</label>
-              <div className="inline-flex gap-1 bg-slate-50 border border-slate-200 rounded-xl p-1 h-10 items-center">
-                {DISPLAY_STYLE_OPTIONS.map((style) => (
-                  <button
-                    key={style.value}
-                    type="button"
-                    onClick={() => setValue('displayStyle', style.value)}
-                    className={cn(
-                      "px-3 py-1.5 rounded-lg text-xs font-black transition-all whitespace-nowrap",
-                      watch('displayStyle') === style.value
-                        ? "bg-indigo-500 text-white shadow-sm"
-                        : "text-slate-500 hover:text-slate-700 hover:bg-white"
-                    )}
-                  >
-                    {style.label}
-                  </button>
-                ))}
+              <div ref={styleRef} className="relative">
+                <button
+                  type="button"
+                  onClick={() => setStyleDropdownOpen(!styleDropdownOpen)}
+                  className="w-full h-10 rounded-xl bg-slate-50 border border-slate-200 px-4 flex items-center justify-between text-sm font-bold text-slate-700 hover:bg-white hover:border-slate-300 transition-all"
+                >
+                  <span>{DISPLAY_STYLE_OPTIONS.find(s => s.value === watch('displayStyle'))?.label ?? 'Pilih Gaya'}</span>
+                  <ChevronDown className={cn("size-4 text-slate-400 transition-transform", styleDropdownOpen && "rotate-180")} />
+                </button>
+                {styleDropdownOpen && (
+                  <div className="absolute z-20 top-full mt-2 w-full bg-white rounded-xl border border-slate-200 shadow-xl overflow-hidden">
+                    {DISPLAY_STYLE_OPTIONS.map((style) => (
+                      <div
+                        key={style.value}
+                        onClick={() => { setValue('displayStyle', style.value); setStyleDropdownOpen(false) }}
+                        className={cn(
+                          "flex items-center justify-between px-4 py-3 cursor-pointer transition-all border-b border-slate-50 last:border-0",
+                          watch('displayStyle') === style.value ? "bg-indigo-50" : "hover:bg-slate-50"
+                        )}
+                      >
+                        <p className="text-sm font-bold text-slate-700">{style.label}</p>
+                        {watch('displayStyle') === style.value && <CheckCircle2 className="size-4 text-indigo-600" />}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           )}
 
-          <div className="space-y-1.5 min-w-[160px]">
+          <div className={cn("space-y-1.5", questionType === 'MULTIPLE_CHOICE' ? "md:col-span-4" : "md:col-span-6")}>
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Seksi</label>
             <div ref={sectionRef} className="relative">
               <button
@@ -396,7 +409,7 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
             </div>
           </div>
 
-          <div className="space-y-1.5 w-20">
+          <div className="space-y-1.5 md:col-span-2">
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Urutan</label>
             <Input type="number" className="h-10 rounded-xl bg-slate-50 border-slate-200 font-black text-sm" {...register('order', { valueAsNumber: true })} />
           </div>
