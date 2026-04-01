@@ -113,6 +113,16 @@ function buildInitialValues(initialData?: Question): FormValues {
   }
 }
 
+function getOptionLabel(index: number, displayStyle?: string | null): string {
+  switch (displayStyle) {
+    case 'LOWERCASE': return String.fromCharCode(97 + index) // a, b, c, d, e
+    case 'NUMBER': return String(index + 1) // 1, 2, 3, 4, 5
+    case 'RADIO': return '●'
+    case 'UPPERCASE':
+    default: return String.fromCharCode(65 + index) // A, B, C, D, E
+  }
+}
+
 function OptionImageCell({ imageUrl, onUpload, onRemove, uploading }: {
   imageUrl?: string | null
   onUpload: (file: File) => void
@@ -288,7 +298,7 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
           {errors.text && <p className="text-rose-500 text-[10px] font-bold flex items-center gap-1"><AlertCircle className="size-3" />{errors.text.message}</p>}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="space-y-1.5">
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Tipe</label>
             <div ref={typeRef} className="relative">
@@ -321,16 +331,16 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
           </div>
 
           {questionType === 'MULTIPLE_CHOICE' && (
-            <div className="space-y-1.5">
+            <div className="md:col-span-3 space-y-1.5">
               <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Gaya Tampilan</label>
-              <div className="flex gap-1 bg-slate-50 border border-slate-200 rounded-xl p-1">
+              <div className="inline-flex gap-1 bg-slate-50 border border-slate-200 rounded-xl p-1">
                 {DISPLAY_STYLE_OPTIONS.map((style) => (
                   <button
                     key={style.value}
                     type="button"
                     onClick={() => setValue('displayStyle', style.value)}
                     className={cn(
-                      "flex-1 px-2 py-1.5 rounded-lg text-xs font-black transition-all",
+                      "px-4 py-1.5 rounded-lg text-xs font-black transition-all whitespace-nowrap",
                       watch('displayStyle') === style.value
                         ? "bg-indigo-500 text-white shadow-sm"
                         : "text-slate-500 hover:text-slate-700 hover:bg-white"
@@ -479,15 +489,14 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
                 {fields.map((field, index) => (
                   <tr key={field.id} className="hover:bg-slate-50/50 transition-colors">
                     <td className="px-4 py-3">
-                      <Input
-                        type="number"
-                        className="h-9 w-12 text-center rounded-lg bg-slate-50 border-slate-200 text-xs font-black p-0"
-                        {...register(`options.${index}.order`, { valueAsNumber: true })}
-                      />
+                      <div className="h-9 w-12 flex items-center justify-center rounded-lg bg-slate-50 border border-slate-200 text-xs font-black text-slate-700">
+                        {getOptionLabel(index, questionType === 'MULTIPLE_CHOICE' ? watch('displayStyle') : null)}
+                      </div>
+                      <input type="hidden" {...register(`options.${index}.order`, { valueAsNumber: true })} value={index + 1} />
                     </td>
                     <td className="px-4 py-3">
                       <Input
-                        placeholder={`Opsi ${index + 1}`}
+                        placeholder={`Opsi ${getOptionLabel(index, questionType === 'MULTIPLE_CHOICE' ? watch('displayStyle') : null)}`}
                         className="h-9 rounded-lg bg-white border-slate-200 text-sm font-bold px-3 focus:ring-2 focus:ring-indigo-500/10"
                         {...register(`options.${index}.text`)}
                       />
