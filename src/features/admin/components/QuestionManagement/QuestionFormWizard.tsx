@@ -25,7 +25,7 @@ import {
   adminKeys,
 } from '../../hooks'
 import type { Question, QuestionType } from '../../types'
-import { QUESTION_TYPE_LABELS } from '@features/admin/constants'
+import { QUESTION_TYPE_LABELS, DISPLAY_STYLE_OPTIONS } from '@features/admin/constants'
 import { cn } from '@/lib/utils'
 
 // ============================================================
@@ -39,10 +39,13 @@ const questionTypeEnum = z.enum([
   'ESSAY',
 ])
 
+const displayStyleEnum = z.enum(['UPPERCASE', 'LOWERCASE', 'NUMBER', 'RADIO'])
+
 const optionScoreSchema = z.object({
   id: z.string().optional(),
   text: z.string().min(1, 'Teks opsi wajib diisi').max(500, 'Teks opsi terlalu panjang'),
   order: z.number().min(0, 'Urutan tidak boleh negatif'),
+  imageUrl: z.string().optional().nullable(),
   scores: z.record(z.string(), z.union([z.number(), z.literal('')])),
 })
 
@@ -52,6 +55,8 @@ const questionFormWizardSchema = z.object({
   sectionId: z.string().optional().or(z.literal('')),
   order: z.number().min(0),
   imageUrl: z.string().optional().nullable(),
+  displayStyle: displayStyleEnum.optional().nullable(),
+  optionImageEnabled: z.boolean().optional().default(false),
   options: z.array(optionScoreSchema),
 })
 
@@ -86,7 +91,7 @@ function buildDefaultOptions(type: QuestionType): FormValues['options'] {
 
 function buildInitialValues(initialData?: Question): FormValues {
   if (!initialData) {
-    return { text: '', type: 'MULTIPLE_CHOICE', sectionId: '', order: 0, imageUrl: null, options: buildDefaultOptions('MULTIPLE_CHOICE') }
+    return { text: '', type: 'MULTIPLE_CHOICE', sectionId: '', order: 0, imageUrl: null, displayStyle: 'UPPERCASE', optionImageEnabled: false, options: buildDefaultOptions('MULTIPLE_CHOICE') }
   }
   return {
     text: initialData.text,
@@ -94,12 +99,15 @@ function buildInitialValues(initialData?: Question): FormValues {
     sectionId: initialData.sectionId ?? '',
     order: initialData.order,
     imageUrl: initialData.imageUrl ?? null,
+    displayStyle: initialData.displayStyle ?? 'UPPERCASE',
+    optionImageEnabled: initialData.optionImageEnabled ?? false,
     options: (initialData.options ?? [])
       .sort((a, b) => a.order - b.order)
       .map((opt) => ({
         id: opt.id,
         text: opt.text,
         order: opt.order,
+        imageUrl: opt.imageUrl ?? null,
         scores: (opt.mappings ?? []).reduce((acc, m) => { acc[m.indicatorId] = m.scoreValue; return acc }, {} as Record<string, number | ''>),
       })),
   }
@@ -175,16 +183,16 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
     try {
       setIsSaving(true)
       if (isEditing && initialData) {
-        await updateQuestion.mutateAsync({ testId, questionId: initialData.id, dto: { text: data.text, type: data.type, sectionId: data.sectionId || undefined, order: data.order, imageUrl: data.imageUrl || null } })
+        await updateQuestion.mutateAsync({ testId, questionId: initialData.id, dto: { text: data.text, type: data.type, sectionId: data.sectionId || undefined, order: data.order, imageUrl: data.imageUrl || null, displayStyle: data.displayStyle || null, optionImageEnabled: data.optionImageEnabled ?? false } })
         const formOptionIds = new Set(data.options.filter((o) => o.id).map((o) => o.id!))
         for (const existingOpt of initialData.options ?? []) { if (!formOptionIds.has(existingOpt.id)) await deleteOption.mutateAsync({ testId, optionId: existingOpt.id }) }
         const savedOptions: Array<{ optionId: string, scores: Record<string, number | ''> }> = []
         for (const formOpt of data.options) {
           if (formOpt.id) {
-            await updateOption.mutateAsync({ testId, optionId: formOpt.id, dto: { text: formOpt.text, order: formOpt.order } })
+            await updateOption.mutateAsync({ testId, optionId: formOpt.id, dto: { text: formOpt.text, order: formOpt.order, imageUrl: formOpt.imageUrl || null } })
             savedOptions.push({ optionId: formOpt.id, scores: formOpt.scores })
           } else {
-            const created = await createOption.mutateAsync({ testId, questionId: initialData.id, dto: { questionId: initialData.id, text: formOpt.text, order: formOpt.order } })
+            const created = await createOption.mutateAsync({ testId, questionId: initialData.id, dto: { questionId: initialData.id, text: formOpt.text, order: formOpt.order, imageUrl: formOpt.imageUrl || null } })
             savedOptions.push({ optionId: created.id, scores: formOpt.scores })
           }
         }
@@ -195,9 +203,9 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
           }
         }
       } else {
-        const question = await createQuestion.mutateAsync({ testId, text: data.text, type: data.type, sectionId: data.sectionId || undefined, order: data.order, imageUrl: data.imageUrl || null })
+        const question = await createQuestion.mutateAsync({ testId, text: data.text, type: data.type, sectionId: data.sectionId || undefined, order: data.order, imageUrl: data.imageUrl || null, displayStyle: data.displayStyle || null, optionImageEnabled: data.optionImageEnabled ?? false })
         for (const formOpt of data.options) {
-          const createdOpt = await createOption.mutateAsync({ testId, questionId: question.id, dto: { questionId: question.id, text: formOpt.text, order: formOpt.order } })
+          const createdOpt = await createOption.mutateAsync({ testId, questionId: question.id, dto: { questionId: question.id, text: formOpt.text, order: formOpt.order, imageUrl: formOpt.imageUrl || null } })
           for (const [indicatorId, value] of Object.entries(formOpt.scores)) {
             if (value !== '' && value !== null) await createMapping.mutateAsync({ testId, optionId: createdOpt.id, dto: { indicatorId, scoreValue: Number(value) } })
           }
@@ -215,7 +223,7 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
     if (await saveForm(data)) {
       const nextOrder = data.order + 1
       prevTypeRef.current = null
-      reset({ text: '', type: data.type, sectionId: data.sectionId, order: nextOrder, imageUrl: null, options: buildDefaultOptions(data.type) })
+      reset({ text: '', type: data.type, sectionId: data.sectionId, order: nextOrder, imageUrl: null, displayStyle: data.displayStyle, optionImageEnabled: false, options: buildDefaultOptions(data.type) })
       setImagePreview(null)
       prevTypeRef.current = data.type
     }
@@ -242,7 +250,7 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
           {errors.text && <p className="text-rose-500 text-[10px] font-bold flex items-center gap-1"><AlertCircle className="size-3" />{errors.text.message}</p>}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="space-y-1.5">
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Tipe</label>
             <div ref={typeRef} className="relative">
@@ -273,6 +281,29 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
               )}
             </div>
           </div>
+
+          {questionType === 'MULTIPLE_CHOICE' && (
+            <div className="space-y-1.5">
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Gaya Tampilan</label>
+              <div className="flex gap-1 bg-slate-50 border border-slate-200 rounded-xl p-1">
+                {DISPLAY_STYLE_OPTIONS.map((style) => (
+                  <button
+                    key={style.value}
+                    type="button"
+                    onClick={() => setValue('displayStyle', style.value)}
+                    className={cn(
+                      "flex-1 px-2 py-1.5 rounded-lg text-xs font-black transition-all",
+                      watch('displayStyle') === style.value
+                        ? "bg-indigo-500 text-white shadow-sm"
+                        : "text-slate-500 hover:text-slate-700 hover:bg-white"
+                    )}
+                  >
+                    {style.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="space-y-1.5">
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Seksi</label>
