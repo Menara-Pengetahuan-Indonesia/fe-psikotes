@@ -26,7 +26,7 @@ import {
   useCreateIndicatorMapping,
   adminKeys,
 } from '../../hooks'
-import type { Indicator, Section, QuestionType } from '../../types'
+import type { Indicator, Section, QuestionType, OptionDisplayStyle } from '../../types'
 import { QUESTION_TYPE_SHORT_LABELS, VALID_QUESTION_TYPES } from '@features/admin/constants'
 import { cn } from '@/lib/utils'
 
@@ -39,6 +39,7 @@ interface ParsedRow {
   text: string
   type: string
   section: string
+  displayStyle: string
   options: string[]
   scores: Record<string, number[]> // indicatorName -> score per option slot
   valid: boolean
@@ -85,6 +86,7 @@ export function BulkImportCSV({ testId }: BulkImportCSVProps) {
       'text',
       'type',
       'section',
+      'display_style',
       'option1',
       'option2',
       'option3',
@@ -94,7 +96,7 @@ export function BulkImportCSV({ testId }: BulkImportCSVProps) {
 
     const sectionName = (sections as Section[]).length > 0 ? (sections as Section[])[0].name : 'Seksi 1'
     const exampleRows: string[][] = [
-      ['Apa ibu kota Indonesia?', 'MULTIPLE_CHOICE', sectionName, 'Jakarta', 'Bandung', 'Surabaya', 'Medan', ...indicatorList.flatMap(() => ['3', '1', '1', '1'])],
+      ['Apa ibu kota Indonesia?', 'MULTIPLE_CHOICE', sectionName, 'UPPERCASE', 'Jakarta', 'Bandung', 'Surabaya', 'Medan', ...indicatorList.flatMap(() => ['3', '1', '1', '1'])],
     ]
 
     const csvContent = [headers.join(','), ...exampleRows.map((row) => row.map((cell) => (cell.includes(',') ? `"${cell}"` : cell)).join(','))].join('\n')
@@ -114,6 +116,7 @@ export function BulkImportCSV({ testId }: BulkImportCSVProps) {
     const text = (row['text'] ?? '').trim()
     const type = (row['type'] ?? '').trim().toUpperCase()
     const section = (row['section'] ?? '').trim()
+    const displayStyle = (row['display_style'] ?? '').trim().toUpperCase()
     const options: string[] = []
     for (let i = 1; i <= 4; i++) options.push((row[`option${i}`] ?? '').trim())
     const scores: Record<string, number[]> = {}
@@ -134,9 +137,11 @@ export function BulkImportCSV({ testId }: BulkImportCSVProps) {
     if (!text) errors.push('Teks soal tidak boleh kosong')
     if (!VALID_QUESTION_TYPES.includes(type as QuestionType)) errors.push(`Tipe "${type}" tidak valid.`)
     if (section && !sMap.has(section.toLowerCase())) errors.push(`Seksi "${section}" tidak ditemukan.`)
+    const validDisplayStyles = ['UPPERCASE', 'LOWERCASE', 'NUMBER', 'RADIO', '']
+    if (!validDisplayStyles.includes(displayStyle)) errors.push(`Display style "${displayStyle}" tidak valid.`)
     const nonEmptyOptions = options.filter((o) => o !== '')
     if ((type === 'MULTIPLE_CHOICE' || type === 'TRUE_FALSE') && nonEmptyOptions.length < 2) errors.push(`Butuh minimal 2 opsi`)
-    return { index: rowIndex, text, type, section, options, scores, valid: errors.length === 0, errors }
+    return { index: rowIndex, text, type, section, displayStyle, options, scores, valid: errors.length === 0, errors }
   }, [indicatorList, sections])
 
   const parseFile = useCallback((file: File) => {
@@ -164,7 +169,15 @@ export function BulkImportCSV({ testId }: BulkImportCSVProps) {
         const row = validRows[i]
         let sectionId: string | undefined
         if (row.section) { const sec = sMap.get(row.section.toLowerCase()); if (sec) sectionId = sec.id }
-        const question = await createQuestion.mutateAsync({ testId, text: row.text, type: row.type as QuestionType, sectionId, order: i + 1, imageUrl: null })
+        const question = await createQuestion.mutateAsync({
+          testId,
+          text: row.text,
+          type: row.type as QuestionType,
+          sectionId,
+          order: i + 1,
+          imageUrl: null,
+          displayStyle: row.displayStyle ? row.displayStyle as OptionDisplayStyle : undefined,
+        })
         const nonEmptyOptions = row.options.map((text, idx) => ({ text, slotIndex: idx })).filter((o) => o.text !== '')
         for (const opt of nonEmptyOptions) {
           const option = await createOption.mutateAsync({ testId, questionId: question.id, dto: { questionId: question.id, text: opt.text, order: opt.slotIndex + 1 } })
