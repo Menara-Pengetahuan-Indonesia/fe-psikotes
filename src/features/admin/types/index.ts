@@ -4,6 +4,8 @@
 
 export type QuestionType = 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'RATING_SCALE' | 'ESSAY'
 
+export type OptionDisplayStyle = 'UPPERCASE' | 'LOWERCASE' | 'NUMBER' | 'RADIO'
+
 export interface Test {
   id: string
   name: string
@@ -54,6 +56,8 @@ export interface Question {
   type: 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'RATING_SCALE' | 'ESSAY'
   order: number
   imageUrl?: string | null
+  displayStyle?: OptionDisplayStyle | null
+  optionImageEnabled?: boolean
   createdAt: string
   updatedAt: string
   options?: QuestionOption[]
@@ -64,6 +68,7 @@ export interface QuestionOption {
   questionId: string
   text: string
   order: number
+  imageUrl?: string | null
   createdAt: string
   updatedAt: string
   mappings?: OptionIndicatorMapping[]
@@ -147,6 +152,8 @@ export interface CreateQuestionDto {
   type: 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'RATING_SCALE' | 'ESSAY'
   order: number
   imageUrl?: string | null
+  displayStyle?: OptionDisplayStyle
+  optionImageEnabled?: boolean
 }
 
 export interface UpdateQuestionDto {
@@ -155,17 +162,21 @@ export interface UpdateQuestionDto {
   sectionId?: string
   order?: number
   imageUrl?: string | null
+  displayStyle?: OptionDisplayStyle
+  optionImageEnabled?: boolean
 }
 
 export interface CreateQuestionOptionDto {
   questionId: string
   text: string
   order: number
+  imageUrl?: string | null
 }
 
 export interface UpdateQuestionOptionDto {
   text?: string
   order?: number
+  imageUrl?: string | null
 }
 
 export interface CreateOptionIndicatorMappingDto {
