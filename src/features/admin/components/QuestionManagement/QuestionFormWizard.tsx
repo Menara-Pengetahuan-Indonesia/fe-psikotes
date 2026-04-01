@@ -298,8 +298,8 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
           {errors.text && <p className="text-rose-500 text-[10px] font-bold flex items-center gap-1"><AlertCircle className="size-3" />{errors.text.message}</p>}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="space-y-1.5">
+        <div className="flex flex-wrap items-end gap-4">
+          <div className="space-y-1.5 min-w-[160px]">
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Tipe</label>
             <div ref={typeRef} className="relative">
               <button
@@ -331,16 +331,16 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
           </div>
 
           {questionType === 'MULTIPLE_CHOICE' && (
-            <div className="md:col-span-3 space-y-1.5">
+            <div className="space-y-1.5">
               <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Gaya Tampilan</label>
-              <div className="inline-flex gap-1 bg-slate-50 border border-slate-200 rounded-xl p-1">
+              <div className="inline-flex gap-1 bg-slate-50 border border-slate-200 rounded-xl p-1 h-10 items-center">
                 {DISPLAY_STYLE_OPTIONS.map((style) => (
                   <button
                     key={style.value}
                     type="button"
                     onClick={() => setValue('displayStyle', style.value)}
                     className={cn(
-                      "px-4 py-1.5 rounded-lg text-xs font-black transition-all whitespace-nowrap",
+                      "px-3 py-1.5 rounded-lg text-xs font-black transition-all whitespace-nowrap",
                       watch('displayStyle') === style.value
                         ? "bg-indigo-500 text-white shadow-sm"
                         : "text-slate-500 hover:text-slate-700 hover:bg-white"
@@ -353,7 +353,7 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
             </div>
           )}
 
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 min-w-[160px]">
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Seksi</label>
             <div ref={sectionRef} className="relative">
               <button
@@ -396,7 +396,7 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
             </div>
           </div>
 
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 w-20">
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Urutan</label>
             <Input type="number" className="h-10 rounded-xl bg-slate-50 border-slate-200 font-black text-sm" {...register('order', { valueAsNumber: true })} />
           </div>
