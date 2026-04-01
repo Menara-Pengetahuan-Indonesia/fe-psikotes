@@ -31,7 +31,7 @@ import {
 import { createQuestionSchema, type CreateQuestionFormData } from '../../schemas'
 import { FormField } from '../Common/FormField'
 import type { Question, Section } from '../../types'
-import { QUESTION_TYPE_LABELS, DISPLAY_STYLE_OPTIONS } from '@features/admin/constants'
+import { QUESTION_TYPE_LABELS, DISPLAY_STYLE_OPTIONS } from '@features/admin/constants/question-types.constants'
 import { cn } from '@/lib/utils'
 
 interface QuestionFormProps {

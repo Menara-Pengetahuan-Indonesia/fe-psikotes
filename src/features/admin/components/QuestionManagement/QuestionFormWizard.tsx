@@ -25,7 +25,7 @@ import {
   adminKeys,
 } from '../../hooks'
 import type { Question, QuestionType } from '../../types'
-import { QUESTION_TYPE_LABELS, DISPLAY_STYLE_OPTIONS } from '@features/admin/constants'
+import { QUESTION_TYPE_LABELS, DISPLAY_STYLE_OPTIONS } from '@features/admin/constants/question-types.constants'
 import { cn } from '@/lib/utils'
 
 // ============================================================
