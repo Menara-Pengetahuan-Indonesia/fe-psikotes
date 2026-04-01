@@ -136,6 +136,11 @@ export default function PackageDetailPublicPage() {
             <Button
               size="lg"
               className="bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95"
+              onClick={() => {
+                const firstTest = tests.sort((a, b) => a.order - b.order)[0]
+                if (firstTest?.test) router.push(`/tes/${(firstTest.test as any).id}`)
+              }}
+              disabled={tests.length === 0}
             >
               <Play className="size-5 mr-2 fill-current" />
               Mulai Tes
@@ -216,6 +221,11 @@ export default function PackageDetailPublicPage() {
           <Button
             size="lg"
             className="h-14 px-10 bg-slate-900 text-white hover:bg-slate-800 rounded-2xl font-black text-base shadow-xl transition-all active:scale-95"
+            onClick={() => {
+              const firstTest = tests.sort((a, b) => a.order - b.order)[0]
+              if (firstTest?.test) router.push(`/tes/${(firstTest.test as any).id}`)
+            }}
+            disabled={tests.length === 0}
           >
             <Play className="size-5 mr-2 fill-current" />
             Mulai Tes Sekarang
