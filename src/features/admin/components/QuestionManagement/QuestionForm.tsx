@@ -31,7 +31,8 @@ import {
 import { createQuestionSchema, type CreateQuestionFormData } from '../../schemas'
 import { FormField } from '../Common/FormField'
 import type { Question, Section } from '../../types'
-import { QUESTION_TYPE_LABELS } from '@features/admin/constants'
+import { QUESTION_TYPE_LABELS, DISPLAY_STYLE_OPTIONS } from '@features/admin/constants'
+import { cn } from '@/lib/utils'
 
 interface QuestionFormProps {
   testId: string
@@ -76,6 +77,7 @@ export function QuestionForm({
       sectionId: initialData?.sectionId ?? '',
       order: initialData?.order ?? 0,
       imageUrl: initialData?.imageUrl ?? undefined,
+      displayStyle: initialData?.displayStyle ?? 'UPPERCASE',
       options: [
         { text: '', order: 0 },
         { text: '', order: 1 },
@@ -96,6 +98,7 @@ export function QuestionForm({
         sectionId: initialData?.sectionId ?? '',
         order: initialData?.order ?? 0,
         imageUrl: initialData?.imageUrl ?? undefined,
+        displayStyle: initialData?.displayStyle ?? 'UPPERCASE',
         options: isEditing
           ? []
           : [
@@ -143,6 +146,7 @@ export function QuestionForm({
         sectionId: data.sectionId || undefined,
         order: data.order,
         imageUrl: data.imageUrl || null,
+        displayStyle: data.type === 'MULTIPLE_CHOICE' ? (data.displayStyle || 'UPPERCASE') : undefined,
       }
 
       if (isEditing && initialData) {
@@ -256,6 +260,29 @@ export function QuestionForm({
               </Select>
             </FormField>
           </div>
+
+          {questionType === 'MULTIPLE_CHOICE' && (
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium">Gaya Tampilan</label>
+              <div className="flex gap-1 bg-slate-50 border rounded-lg p-1">
+                {DISPLAY_STYLE_OPTIONS.map((style) => (
+                  <button
+                    key={style.value}
+                    type="button"
+                    onClick={() => setValue('displayStyle', style.value)}
+                    className={cn(
+                      "flex-1 px-3 py-1.5 rounded-md text-xs font-bold transition-all",
+                      watch('displayStyle') === style.value
+                        ? "bg-indigo-500 text-white shadow-sm"
+                        : "text-slate-500 hover:text-slate-700 hover:bg-white"
+                    )}
+                  >
+                    {style.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           <FormField label="Urutan" error={errors.order} required>
             <Input
