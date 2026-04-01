@@ -113,6 +113,44 @@ function buildInitialValues(initialData?: Question): FormValues {
   }
 }
 
+function OptionImageCell({ imageUrl, onUpload, onRemove, uploading }: {
+  imageUrl?: string | null
+  onUpload: (file: File) => void
+  onRemove: () => void
+  uploading: boolean
+}) {
+  const ref = useRef<HTMLInputElement>(null)
+
+  if (imageUrl) {
+    return (
+      <div className="relative group w-fit mx-auto">
+        <Image src={imageUrl} alt="" width={48} height={36} className="rounded-lg border border-slate-200 object-cover w-12 h-9" unoptimized />
+        <button
+          type="button"
+          onClick={onRemove}
+          className="absolute -top-1.5 -right-1.5 size-4 rounded-full bg-rose-500 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all"
+        >
+          <X className="size-2.5" />
+        </button>
+      </div>
+    )
+  }
+
+  return (
+    <>
+      <input ref={ref} type="file" accept="image/*" onChange={(e) => { const f = e.target.files?.[0]; if (f) onUpload(f); if (ref.current) ref.current.value = '' }} className="hidden" />
+      <button
+        type="button"
+        onClick={() => ref.current?.click()}
+        disabled={uploading}
+        className="w-12 h-9 mx-auto rounded-lg border border-dashed border-slate-300 flex items-center justify-center text-slate-400 hover:border-indigo-400 hover:text-indigo-500 transition-all"
+      >
+        {uploading ? <div className="size-3 border-2 border-slate-300 border-t-indigo-500 rounded-full animate-spin" /> : <Plus className="size-3.5" />}
+      </button>
+    </>
+  )
+}
+
 export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: QuestionFormWizardProps) {
   const isEditing = !!initialData
   const queryClient = useQueryClient()
@@ -373,6 +411,32 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
         </div>
       </div>
 
+      {/* Image toggle for options */}
+      {questionType !== 'ESSAY' && (
+        <div className="flex items-center gap-3 px-1">
+          <button
+            type="button"
+            onClick={() => {
+              const current = watch('optionImageEnabled')
+              setValue('optionImageEnabled', !current)
+              if (current) {
+                fields.forEach((_, idx) => setValue(`options.${idx}.imageUrl`, null))
+              }
+            }}
+            className={cn(
+              "relative w-10 h-[22px] rounded-full transition-colors",
+              watch('optionImageEnabled') ? "bg-indigo-500" : "bg-slate-200"
+            )}
+          >
+            <span className={cn(
+              "absolute top-[2px] size-[18px] rounded-full bg-white shadow-sm transition-all",
+              watch('optionImageEnabled') ? "left-[20px]" : "left-[2px]"
+            )} />
+          </button>
+          <span className="text-xs font-bold text-slate-600">Opsi Jawaban Bergambar</span>
+        </div>
+      )}
+
       {/* Section 2: Options & Scoring */}
       {questionType !== 'ESSAY' && (
         <div className="space-y-5">
@@ -400,6 +464,9 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
                 <tr className="bg-slate-50 border-b border-slate-100">
                   <th className="px-4 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest w-14">#</th>
                   <th className="px-4 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest min-w-[180px]">Teks Jawaban</th>
+                  {watch('optionImageEnabled') && (
+                    <th className="px-3 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center w-20">Gambar</th>
+                  )}
                   {(indicators ?? []).map(ind => (
                     <th key={ind.id} className="px-3 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest text-center w-20">
                       <span className="truncate block max-w-[70px] mx-auto">{ind.name}</span>
@@ -425,6 +492,19 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
                         {...register(`options.${index}.text`)}
                       />
                     </td>
+                    {watch('optionImageEnabled') && (
+                      <td className="px-3 py-3">
+                        <OptionImageCell
+                          imageUrl={watch(`options.${index}.imageUrl`)}
+                          onUpload={async (file: File) => {
+                            const result = await uploadImage.mutateAsync(file)
+                            setValue(`options.${index}.imageUrl`, result.url)
+                          }}
+                          onRemove={() => setValue(`options.${index}.imageUrl`, null)}
+                          uploading={uploadImage.isPending}
+                        />
+                      </td>
+                    )}
                     {(indicators ?? []).map(ind => (
                       <td key={ind.id} className="px-3 py-3">
                         <Input
