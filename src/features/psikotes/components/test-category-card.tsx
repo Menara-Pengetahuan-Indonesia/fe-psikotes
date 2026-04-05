@@ -106,7 +106,7 @@ export function TestCategoryCard({ test, number, href, variant = 'teal' }: TestC
           <div className="relative">
             <div
               className={cn(
-                'absolute inset-0 blur-xl',
+                'absolute inset-0',
                 'opacity-0',
                 'group-hover:opacity-40',
                 'transition-opacity',
