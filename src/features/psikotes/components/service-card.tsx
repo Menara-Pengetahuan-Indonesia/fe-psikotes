@@ -38,13 +38,11 @@ export function ServiceCard({
       )}
     >
       {/* Decorative Background Aura */}
-      <div className="absolute -right-8 -top-8 w-32 h-32 bg-primary-50 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      
+
       <CardHeader className="relative z-10 pt-7 px-7">
         <div className="flex items-start justify-between">
           <div className="relative">
-            <div className="absolute inset-0 bg-primary-400 blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
-            <div className="relative w-16 h-16 flex items-center justify-center rounded-2xl bg-primary-50 text-primary-600 group-hover:bg-primary-600 group-hover:text-white transition-all duration-500 shadow-inner border border-primary-100">
+            <div className="relative w-16 h-16 flex items-center justify-center rounded-2xl bg-primary-50 text-primary-600 group-hover:bg-primary-600 group-hover:text-white transition-colors duration-300 shadow-inner border border-primary-100">
               <Icon className="size-8 group-hover:text-white transition-colors duration-500 stroke-[1.5]" />
             </div>
           </div>
