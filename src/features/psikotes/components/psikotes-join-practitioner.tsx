@@ -68,7 +68,7 @@ export function PsikotesJoinPractitioner() {
              <div className="bg-white rounded-[3rem] p-10 shadow-2xl border border-slate-100 relative z-20 overflow-hidden group">
                 <div className="flex flex-col items-center text-center space-y-6">
                    <div className="relative">
-                      <div className="w-32 h-32 rounded-full bg-slate-100 border-4 border-white shadow-lg overflow-hidden flex items-center justify-center text-5xl grayscale group-hover:grayscale-0 transition-all duration-700">
+                      <div className="w-32 h-32 rounded-full bg-slate-100 border-4 border-white shadow-lg overflow-hidden flex items-center justify-center text-5xl grayscale group-hover:grayscale-0 transition-[filter] duration-700">
                          👩‍💼
                       </div>
                       <div className="absolute -right-2 -bottom-2 w-10 h-10 bg-emerald-500 rounded-full border-4 border-white flex items-center justify-center">

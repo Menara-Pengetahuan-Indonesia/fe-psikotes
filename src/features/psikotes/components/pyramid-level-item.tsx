@@ -21,7 +21,7 @@ export function PyramidLevelItem({
       className={cn(
         'group cursor-pointer',
         item.width,
-        'transition-all',
+        'transition-transform',
         'duration-500',
         isActive
           ? 'scale-[1.05]'
@@ -131,7 +131,7 @@ export function PyramidLevelItem({
             'text-white',
             'font-bold text-sm',
             'whitespace-nowrap',
-            'transition-all',
+            'transition-transform',
             'duration-500',
             item.pill,
             isActive &&
@@ -158,7 +158,7 @@ export function PyramidLevelItem({
       <div
         className={cn(
           'grid',
-          'transition-all',
+          'transition-transform',
           'duration-500',
           'ease-in-out',
           isActive
