@@ -20,9 +20,9 @@ export default function HomePage() {
   return (
     <main>
       <PsikotesHero />
-      <PsikotesCategoryNav />
-      <PsikotesStage />
       <PsikotesTransformationMap />
+      <PsikotesStage />
+      <PsikotesCategoryNav />
       <PsikotesProducts />
     </main>
   )
