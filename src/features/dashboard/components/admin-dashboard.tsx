@@ -21,18 +21,15 @@ import { Button } from '@/components/ui/button'
 import { useAuthStoreHydrated } from '@/store/auth.store'
 
 import { ADMIN_STATS } from '../constants/admin-stats.constants'
-import { WEEKLY_PARTICIPANTS_DATA } from '../constants/admin-chart.constants'
 import { POPULAR_TESTS } from '../constants/admin-popular-tests.constants'
 import { RECENT_TESTS } from '../constants/admin-recent-tests.constants'
 import { RECENT_ACTIVITIES } from '../constants/admin-activity.constants'
 
-// Lazy load recharts (SSR-incompatible)
-const AreaChart = dynamic(() => import('recharts').then((m) => m.AreaChart), { ssr: false })
-const Area = dynamic(() => import('recharts').then((m) => m.Area), { ssr: false })
-const XAxis = dynamic(() => import('recharts').then((m) => m.XAxis), { ssr: false })
-const YAxis = dynamic(() => import('recharts').then((m) => m.YAxis), { ssr: false })
-const Tooltip = dynamic(() => import('recharts').then((m) => m.Tooltip), { ssr: false })
-const ResponsiveContainer = dynamic(() => import('recharts').then((m) => m.ResponsiveContainer), { ssr: false })
+// Lazy load chart component (recharts is 512KB — only load when admin dashboard renders)
+const AdminChart = dynamic(() => import('./admin-chart').then((m) => m.AdminChart), {
+  ssr: false,
+  loading: () => <div className="h-52 w-full animate-pulse bg-slate-100 rounded-2xl" />,
+})
 
 const ACTIVITY_ICONS = {
   publish: Upload,
@@ -47,9 +44,6 @@ const ACTIVITY_COLORS = {
   submit: 'text-violet-500 bg-violet-50',
   delete: 'text-rose-400 bg-rose-50',
 } as const
-
-// Chart data for recharts
-const chartData = WEEKLY_PARTICIPANTS_DATA.map((d) => ({ name: d.week, peserta: d.count }))
 
 export function AdminDashboard() {
   const { user } = useAuthStoreHydrated()
@@ -181,23 +175,7 @@ export function AdminDashboard() {
             </div>
           </div>
           <div className="h-52 w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={chartData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
-                <defs>
-                  <linearGradient id="colorPeserta" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#6366F1" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#6366F1" stopOpacity={0} />
-                  </linearGradient>
-                </defs>
-                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 700, fill: '#94a3b8' }} />
-                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 11, fontWeight: 700, fill: '#94a3b8' }} />
-                <Tooltip
-                  contentStyle={{ borderRadius: 16, border: 'none', boxShadow: '0 10px 40px rgba(0,0,0,.08)', fontWeight: 700, fontSize: 12 }}
-                  labelStyle={{ fontWeight: 900, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#94a3b8' }}
-                />
-                <Area type="monotone" dataKey="peserta" stroke="#6366F1" strokeWidth={3} fill="url(#colorPeserta)" dot={{ r: 4, fill: '#6366F1', strokeWidth: 2, stroke: '#fff' }} activeDot={{ r: 6, fill: '#6366F1', strokeWidth: 3, stroke: '#fff' }} />
-              </AreaChart>
-            </ResponsiveContainer>
+            <AdminChart />
           </div>
         </div>
 
