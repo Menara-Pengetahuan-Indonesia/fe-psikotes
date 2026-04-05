@@ -34,8 +34,8 @@ export function Footer() {
   return (
     <footer
       className={cn(
-        'fixed bottom-0 left-0 right-0 z-0',
-        'h-100 overflow-hidden',
+        'relative',
+        'overflow-hidden',
         theme.bg,
       )}
     >
@@ -43,8 +43,7 @@ export function Footer() {
       <div
         className={cn(
           'max-w-7xl mx-auto px-6 relative z-10',
-          'h-full flex flex-col justify-center',
-          'py-8 gap-6',
+          'py-12 gap-6',
         )}
       >
         {/* CTA Banner */}

@@ -29,7 +29,7 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
             ? "bg-white min-h-dvh mb-0 rounded-none"
             : isDashboard
               ? "bg-slate-50 min-h-dvh mb-0 rounded-none"
-              : "bg-background rounded-b-[80px] md:rounded-b-[120px] overflow-clip mb-[400px] min-h-screen"
+              : "bg-background min-h-screen"
       )}
     >
       <div className={cn(
