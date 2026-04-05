@@ -10,7 +10,6 @@ import {
   ChevronRight,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { TOPO_PRIMARY, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 import { NAV_CATEGORIES } from '../constants'
 
 export function PsikotesCategoryNav() {
@@ -27,14 +26,6 @@ export function PsikotesCategoryNav() {
 
   return (
     <section id="pemetaan" className="py-16 pb-12 relative overflow-hidden bg-background">
-      
-      {/* Background Topo Pattern */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-multiply"
-           style={{
-             backgroundImage: TOPO_PRIMARY,
-             backgroundSize: TOPO_BG_SIZE,
-           }}
-      />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
@@ -54,7 +45,7 @@ export function PsikotesCategoryNav() {
 
         {/* 1. Category Selection Tabs - REVERTED TO PREVIOUS DETAILED DESIGN */}
         <div className="flex justify-center mb-10">
-          <div className="inline-flex flex-col md:flex-row items-center p-2 bg-white/60 backdrop-blur-xl border border-slate-200/50 rounded-[2.5rem] shadow-soft-xl">
+          <div className="inline-flex flex-col md:flex-row items-center p-2 bg-white/60 border border-slate-200/50 rounded-[2.5rem] shadow-soft-xl">
             {NAV_CATEGORIES.map((cat) => {
               const isActive = activeTab === cat.id;
               
@@ -202,7 +193,7 @@ export function PsikotesCategoryNav() {
 
               {/* COL 4: Produk (Centered & Colored) */}
               <div className="col-span-1 lg:col-span-3 p-10 lg:p-14 bg-primary-600 flex flex-col justify-center items-center text-center text-white relative overflow-hidden" key={`prod-${activeProblemIndex}`}>
-                 <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                 <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
                  <Box className="absolute -right-6 -bottom-6 w-32 h-32 text-white/10 -rotate-12" />
                  
                  <div className="lg:hidden flex items-center gap-2 mb-4 justify-center">
