@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { Target } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { TRANSFORMATION_STAGES } from '../constants'
-import { TOPO_PRIMARY, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 
 export function PsikotesStage() {
   const [activeStageId, setActiveStageId] = useState(TRANSFORMATION_STAGES[0].id)
@@ -13,14 +12,6 @@ export function PsikotesStage() {
 
   return (
     <section id="transformation-stages" className="py-24 bg-background relative overflow-hidden">
-      
-      {/* Background Topo Pattern (Same as Category Nav) */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-multiply"
-           style={{
-             backgroundImage: TOPO_PRIMARY,
-             backgroundSize: TOPO_BG_SIZE,
-           }}
-      />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         

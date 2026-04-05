@@ -3,18 +3,12 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
-import {
-  Plus,
-  Star,
-  Circle,
-} from 'lucide-react'
 import { cn } from '@/lib/utils'
 import {
   getFooterTheme,
   getFooterLinks,
   getFooterCta,
   SOCIAL_LINKS,
-  TOPO_PATTERN_SVG,
 } from '@/config/footer'
 import { FooterCtaBanner } from './footer-cta-banner'
 
@@ -45,59 +39,6 @@ export function Footer() {
         theme.bg,
       )}
     >
-      {/* Topographic Pattern Overlay */}
-      <div
-        className={cn(
-          'absolute inset-0 opacity-[0.04]',
-          'pointer-events-none mix-blend-overlay',
-        )}
-        style={{
-          backgroundImage: TOPO_PATTERN_SVG,
-          backgroundSize: '400px 400px',
-        }}
-      />
-
-      {/* Ambient Glows */}
-      <div
-        className={cn(
-          'absolute -top-32 -right-32',
-          'w-96 h-96 rounded-full blur-[80px]',
-          'pointer-events-none',
-          theme.glowTop,
-        )}
-      />
-      <div
-        className={cn(
-          'absolute -bottom-24 -left-24',
-          'w-72 h-72 rounded-full blur-[100px]',
-          'pointer-events-none',
-          theme.glowBottom,
-        )}
-      />
-
-      {/* Static Ornaments */}
-      <Plus
-        className={cn(
-          'absolute top-12 right-[15%]',
-          'w-10 h-10 pointer-events-none',
-          theme.ornamentPlus,
-        )}
-      />
-      <Star
-        className={cn(
-          'absolute bottom-16 left-[10%]',
-          'w-8 h-8 pointer-events-none',
-          theme.ornamentStar,
-        )}
-      />
-      <Circle
-        className={cn(
-          'absolute top-16 left-[8%]',
-          'text-white/5 w-14 h-14',
-          'pointer-events-none',
-        )}
-      />
-
       {/* Content */}
       <div
         className={cn(

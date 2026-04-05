@@ -17,23 +17,10 @@ export function PsikotesTransformationMap() {
 
   return (
     <section className="py-12 md:py-16 bg-linear-to-b from-primary-600 to-background relative">
-      {/* Extension of the Topo Pattern from Hero to make the blend completely seamless */}
-      <div className="absolute top-0 left-0 w-full h-1/2 opacity-[0.05] pointer-events-none mix-blend-overlay"
-           style={{
-             backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'400\' height=\'400\' viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' stroke=\'white\' stroke-width=\'0.8\' stroke-opacity=\'0.6\'%3E%3Cpath d=\'M0 200 C 40 160, 80 240, 120 200 S 200 160, 240 200 S 320 240, 400 200 M0 150 C 40 110, 80 190, 120 150 S 200 110, 240 150 S 320 190, 400 150 M0 250 C 40 210, 80 290, 120 250 S 200 210, 240 250 S 320 290, 400 250 M0 100 C 50 50, 100 150, 150 100 S 250 50, 300 100 S 400 150, 450 100 M0 300 C 50 250, 100 350, 150 300 S 250 250, 300 300 S 400 350, 450 300\'/%3E%3Cpath d=\'M-50 175 C 0 125, 50 225, 100 175 S 200 125, 250 175 S 350 225, 400 175 M-50 225 C 0 175, 50 275, 100 225 S 200 175, 250 225 S 350 275, 400 225\'/%3E%3C/g%3E%3C/svg%3E")',
-             backgroundSize: '400px 400px',
-             maskImage: 'linear-gradient(to bottom, black, transparent)',
-             WebkitMaskImage: 'linear-gradient(to bottom, black, transparent)',
-           }}
-      />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
-        <div className="bg-primary-950 rounded-[3rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group">
-          
-          {/* Background Visuals (Subtle Glows) */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl -z-0" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent-500/10 rounded-full blur-3xl -z-0" />
+
+        <div className="bg-primary-950 rounded-[3rem] p-8 md:p-12 shadow-2xl relative overflow-hidden">
 
           <div className="relative z-10 grid lg:grid-cols-12 gap-12 items-center">
             
@@ -65,7 +52,7 @@ export function PsikotesTransformationMap() {
               {TRANSFORMATION_STEPS.map((step, idx) => (
                 <div 
                   key={step.id}
-                  className="bg-white/5 backdrop-blur-sm border border-white/5 p-6 rounded-[2rem] hover:bg-white/10 transition-all duration-500 group/item relative overflow-hidden"
+                  className="bg-white/5 border border-white/5 p-6 rounded-[2rem] hover:bg-white/10 transition-colors duration-300 group/item relative overflow-hidden"
                 >
                   <div className="flex gap-4 relative z-10">
                     <div className={cn(
