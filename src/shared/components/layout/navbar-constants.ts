@@ -47,11 +47,10 @@ export const ICON_MAP: Record<string, LucideIcon> = {
 }
 
 export const HIDDEN_ROUTES = [
-  '/',
   '/masuk',
   '/daftar',
   '/forgot-password',
-  '/psikotes/mahasiswa/try-out/form',
+  '/mahasiswa/try-out/form',
 ] as const
 
 export const HIDDEN_ROUTE_PREFIXES = [
@@ -60,8 +59,8 @@ export const HIDDEN_ROUTE_PREFIXES = [
   '/admin',
   '/perusahaan',
   '/superadmin',
-  '/psikotes/mahasiswa/try-out/form',
-  '/psikotes/gratis/',
-  '/psikotes/premium/',
+  '/mahasiswa/try-out/form',
+  '/gratis/',
+  '/premium/',
   '/tes/',
 ] as const

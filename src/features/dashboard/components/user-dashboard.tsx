@@ -1,7 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import {
   FileText,
-  CalendarDays,
   TrendingUp,
   Brain,
   MessageCircle,
@@ -10,7 +11,6 @@ import {
   Target,
   ChevronRight,
   History,
-  Clock,
   Award,
   CheckCircle2,
   ArrowRight,
@@ -23,7 +23,7 @@ import { DUMMY_TEST_HISTORY } from '@/features/dashboard/constants'
 import { cn } from '@/lib/utils'
 
 const quickAccess = [
-  { href: '/psikotes', label: 'Mulai Tes', desc: 'Pilih dan kerjakan tes psikotes', icon: Brain, color: 'bg-gradient-to-br from-indigo-400 to-indigo-500' },
+  { href: '/', label: 'Mulai Tes', desc: 'Pilih dan kerjakan tes psikotes', icon: Brain, color: 'bg-gradient-to-br from-indigo-400 to-indigo-500' },
   { href: '/pengguna/tes', label: 'Tes Saya', desc: 'Lihat katalog tes yang diambil', icon: BookMarked, color: 'bg-gradient-to-br from-teal-400 to-teal-500' },
   { href: '/pengguna/riwayat', label: 'Riwayat', desc: 'Lihat hasil dan riwayat tes', icon: History, color: 'bg-gradient-to-br from-violet-400 to-violet-500' },
 ]
@@ -65,7 +65,7 @@ export function UserDashboard() {
             className="bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
             asChild
           >
-            <Link href="/psikotes">
+            <Link href="/">
               <Brain className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
               Mulai Tes Baru
             </Link>
@@ -146,21 +146,16 @@ export function UserDashboard() {
           </div>
 
           {/* Pillars */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Link href="/konseling" className="rounded-[2rem] bg-gradient-to-br from-indigo-500 to-indigo-600 p-6 text-white group hover:shadow-lg transition-all hover:-translate-y-0.5">
-              <MessageCircle className="size-7 mb-3 group-hover:scale-110 transition-transform" />
-              <h4 className="font-black text-base">Konseling</h4>
-              <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Cari Solusi</p>
-            </Link>
-            <Link href="/pelatihan" className="rounded-[2rem] bg-gradient-to-br from-amber-400 to-amber-500 p-6 text-white group hover:shadow-lg transition-all hover:-translate-y-0.5">
-              <BookOpen className="size-7 mb-3 group-hover:scale-110 transition-transform" />
-              <h4 className="font-black text-base">Pelatihan</h4>
-              <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Asah Skill</p>
-            </Link>
-            <Link href="/psikotes/premium" className="rounded-[2rem] bg-gradient-to-br from-teal-400 to-teal-500 p-6 text-white group hover:shadow-lg transition-all hover:-translate-y-0.5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Link href="/premium" className="rounded-[2rem] bg-gradient-to-br from-teal-400 to-teal-500 p-6 text-white group hover:shadow-lg transition-all hover:-translate-y-0.5">
               <Star className="size-7 mb-3 group-hover:rotate-12 transition-transform" />
               <h4 className="font-black text-base">Premium</h4>
               <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Unlock All</p>
+            </Link>
+            <Link href="/gratis" className="rounded-[2rem] bg-gradient-to-br from-primary-400 to-primary-500 p-6 text-white group hover:shadow-lg transition-all hover:-translate-y-0.5">
+              <BookOpen className="size-7 mb-3 group-hover:scale-110 transition-transform" />
+              <h4 className="font-black text-base">Tes Gratis</h4>
+              <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Coba Sekarang</p>
             </Link>
           </div>
         </div>

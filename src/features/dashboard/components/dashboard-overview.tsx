@@ -18,15 +18,11 @@ import { Button } from '@/components/ui/button'
 
 import { useAuthStoreHydrated } from '@/store/auth.store'
 import { DUMMY_TEST_HISTORY } from '@/features/dashboard/constants'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 export function DashboardOverview() {
   const { user } = useAuthStoreHydrated()
-  const [dateStr, setDateStr] = useState('')
-
-  useEffect(() => {
-    setDateStr(new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }))
-  }, [])
+  const [dateStr] = useState(() => new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }))
   const completedTests = DUMMY_TEST_HISTORY.filter((t) => t.status === 'selesai')
   const recentTests = DUMMY_TEST_HISTORY.filter((t) => t.status === 'selesai').slice(0, 5)
 
@@ -68,7 +64,7 @@ export function DashboardOverview() {
               </div>
               <div className="mt-10">
                 <Button size="lg" className="bg-primary-500 hover:bg-primary-400 text-white rounded-2xl h-14 px-10 font-black text-lg shadow-xl shadow-primary-500/20 transition-all active:scale-95" asChild>
-                  <Link href="/psikotes">Mulai Tes Baru</Link>
+                  <Link href="/">Mulai Tes Baru</Link>
                 </Button>
               </div>
             </div>
@@ -108,22 +104,17 @@ export function DashboardOverview() {
           </div>
 
           {/* PILLARS & UPSELL GRID */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-             <Link href="/konseling" className="rounded-[2rem] bg-indigo-600 p-6 text-white shadow-lg shadow-indigo-600/10 group relative overflow-hidden transition-all hover:-translate-y-1">
-                <MessageCircle className="size-8 mb-4 group-hover:scale-110 transition-transform" />
-                <h4 className="font-black text-lg">Konseling</h4>
-                <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Cari Solusi</p>
-             </Link>
-             <Link href="/pelatihan" className="rounded-[2rem] bg-orange-500 p-6 text-white shadow-lg shadow-orange-500/10 group relative overflow-hidden transition-all hover:-translate-y-1">
-                <BookOpen className="size-8 mb-4 group-hover:scale-110 transition-transform" />
-                <h4 className="font-black text-lg">Pelatihan</h4>
-                <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Asah Skill</p>
-             </Link>
-             <div className="rounded-[2rem] bg-[#14B8A6] p-6 text-white shadow-lg shadow-primary-500/10 group relative overflow-hidden transition-all hover:-translate-y-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+             <Link href="/premium" className="rounded-[2rem] bg-[#14B8A6] p-6 text-white shadow-lg shadow-primary-500/10 group relative overflow-hidden transition-all hover:-translate-y-1">
                 <Star className="size-8 mb-4 group-hover:rotate-12 transition-transform" />
                 <h4 className="font-black text-lg">Premium</h4>
                 <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Unlock All</p>
-             </div>
+             </Link>
+             <Link href="/gratis" className="rounded-[2rem] bg-gradient-to-br from-teal-400 to-teal-500 p-6 text-white shadow-lg shadow-primary-500/10 group relative overflow-hidden transition-all hover:-translate-y-1">
+                <BookOpen className="size-8 mb-4 group-hover:scale-110 transition-transform" />
+                <h4 className="font-black text-lg">Tes Gratis</h4>
+                <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Coba Sekarang</p>
+             </Link>
           </div>
         </div>
 

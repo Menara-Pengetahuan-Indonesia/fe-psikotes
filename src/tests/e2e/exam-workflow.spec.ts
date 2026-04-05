@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Exam Taking - Complete Workflow', () => {
   test('should access published exam', async ({ page }) => {
     // Navigate to exam form
-    await page.goto('/psikotes/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
+    await page.goto('/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
 
     // Verify exam interface loads
     await expect(page.getByText('RIASEC')).toBeVisible()
@@ -11,7 +11,7 @@ test.describe('Exam Taking - Complete Workflow', () => {
   })
 
   test('should start exam and display questions', async ({ page }) => {
-    await page.goto('/psikotes/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
+    await page.goto('/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
 
     // Start exam
     await page.getByRole('button', { name: /start/i }).click()
@@ -22,7 +22,7 @@ test.describe('Exam Taking - Complete Workflow', () => {
   })
 
   test('should answer true/false questions', async ({ page }) => {
-    await page.goto('/psikotes/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
+    await page.goto('/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
 
     // Start exam
     await page.getByRole('button', { name: /start/i }).click()
@@ -35,7 +35,7 @@ test.describe('Exam Taking - Complete Workflow', () => {
   })
 
   test('should navigate between questions', async ({ page }) => {
-    await page.goto('/psikotes/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
+    await page.goto('/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
 
     // Start exam
     await page.getByRole('button', { name: /start/i }).click()
@@ -52,7 +52,7 @@ test.describe('Exam Taking - Complete Workflow', () => {
   })
 
   test('should show timer', async ({ page }) => {
-    await page.goto('/psikotes/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
+    await page.goto('/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
 
     // Start exam
     await page.getByRole('button', { name: /start/i }).click()
@@ -62,7 +62,7 @@ test.describe('Exam Taking - Complete Workflow', () => {
   })
 
   test('should show progress bar', async ({ page }) => {
-    await page.goto('/psikotes/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
+    await page.goto('/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
 
     // Start exam
     await page.getByRole('button', { name: /start/i }).click()
@@ -72,7 +72,7 @@ test.describe('Exam Taking - Complete Workflow', () => {
   })
 
   test('should submit exam and show results', async ({ page }) => {
-    await page.goto('/psikotes/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
+    await page.goto('/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
 
     // Start exam
     await page.getByRole('button', { name: /start/i }).click()
@@ -97,7 +97,7 @@ test.describe('Exam Taking - Complete Workflow', () => {
   })
 
   test('should display scoring breakdown', async ({ page }) => {
-    await page.goto('/psikotes/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
+    await page.goto('/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
 
     // Start and complete exam
     await page.getByRole('button', { name: /start/i }).click()

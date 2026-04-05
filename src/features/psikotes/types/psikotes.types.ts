@@ -24,6 +24,27 @@ export interface CorporateTest extends PsikotesTest {
 
 export type { FaqItem } from '@shared/types'
 
+export interface AlatTes {
+  name: string
+  description?: string
+  measures: string
+}
+
+export interface AspekPaket {
+  id: string
+  number: number
+  aspek: string
+  tools: AlatTes[]
+}
+
+export interface PaketDetail {
+  id: string
+  slug: string
+  title: string
+  description: string
+  aspeks: AspekPaket[]
+}
+
 export interface CtaBannerData {
   title: string
   titleAccent: string

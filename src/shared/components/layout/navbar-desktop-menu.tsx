@@ -2,12 +2,6 @@ import Link from 'next/link'
 import { ChevronDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 import { ICON_MAP, type NavItem } from './navbar-constants'
 
 interface NavbarDesktopMenuProps {
@@ -134,8 +128,9 @@ function DesktopDropdown({
   isScrolled: boolean
 }) {
   return (
-    <DropdownMenu modal={false}>
-      <DropdownMenuTrigger
+    <div className="relative group">
+      <Link
+        href={item.href || '#'}
         className={cn(
           'flex items-center gap-1 px-4 py-2',
           'rounded-full text-sm font-medium',
@@ -152,34 +147,33 @@ function DesktopDropdown({
         )}
       >
         {item.label}
-        <ChevronDown className="w-3 h-3 opacity-50" />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent
-        align="start"
-        className={cn(
+        <ChevronDown className="w-3 h-3 opacity-50 transition-transform group-hover:rotate-180" />
+      </Link>
+      <div className={cn(
+        'absolute top-full left-0 pt-2',
+        'opacity-0 invisible translate-y-1',
+        'group-hover:opacity-100 group-hover:visible group-hover:translate-y-0',
+        'transition-all duration-200 z-50'
+      )}>
+        <div className={cn(
           'w-72 rounded-2xl p-2',
           'bg-white/95 backdrop-blur-xl',
           'border border-slate-100 shadow-xl'
-        )}
-      >
-        <div className="space-y-1">
-          {item.children?.map((child) => {
-            const Icon = child.icon
-              ? ICON_MAP[child.icon]
-              : undefined
-            return (
-              <DropdownMenuItem
-                key={child.label}
-                asChild
-              >
+        )}>
+          <div className="space-y-1">
+            {item.children?.map((child) => {
+              const Icon = child.icon
+                ? ICON_MAP[child.icon]
+                : undefined
+              return (
                 <Link
+                  key={child.label}
                   href={child.href}
                   className={cn(
                     'flex items-center gap-3',
                     'cursor-pointer rounded-xl p-2.5',
                     'transition-colors duration-150',
-                    'focus:bg-primary-50',
-                    'hover:bg-primary-50 group'
+                    'hover:bg-primary-50 group/item'
                   )}
                 >
                   {Icon && (
@@ -189,16 +183,14 @@ function DesktopDropdown({
                         'items-center justify-center',
                         'rounded-xl bg-slate-100',
                         'transition-colors duration-150',
-                        'group-hover:bg-primary-100',
-                        'group-focus:bg-primary-100'
+                        'group-hover/item:bg-primary-100'
                       )}
                     >
                       <Icon
                         className={cn(
                           'h-5 w-5 text-slate-500',
                           'transition-colors duration-150',
-                          'group-hover:text-primary-600',
-                          'group-focus:text-primary-600'
+                          'group-hover/item:text-primary-600'
                         )}
                       />
                     </div>
@@ -208,8 +200,7 @@ function DesktopDropdown({
                       className={cn(
                         'text-sm font-semibold',
                         'text-slate-700',
-                        'group-hover:text-primary-700',
-                        'group-focus:text-primary-700'
+                        'group-hover/item:text-primary-700'
                       )}
                     >
                       {child.label}
@@ -226,11 +217,11 @@ function DesktopDropdown({
                     )}
                   </div>
                 </Link>
-              </DropdownMenuItem>
-            )
-          })}
+              )
+            })}
+          </div>
         </div>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </div>
+    </div>
   )
 }

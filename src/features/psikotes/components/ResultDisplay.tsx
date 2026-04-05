@@ -108,7 +108,7 @@ export function ResultDisplay({ result, config }: ResultDisplayProps) {
             Kembali
           </Button>
           <Button
-            onClick={() => router.push('/psikotes/mahasiswa')}
+            onClick={() => router.push('/mahasiswa')}
             className="flex-1 bg-blue-600 hover:bg-blue-700"
           >
             Ke Dashboard

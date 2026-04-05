@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import Link from 'next/link'
-import { Clock, ArrowRight, Search, ChevronRight, Brain, Zap, BookMarked, CheckCircle2, FileText } from 'lucide-react'
+import { Clock, ArrowRight, Search, ChevronRight, Brain, Zap, BookMarked, CheckCircle2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -56,7 +56,7 @@ export function MyTests() {
             className="bg-white text-slate-900 hover:bg-violet-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
             asChild
           >
-            <Link href="/psikotes">
+            <Link href="/">
               <Brain className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
               Ambil Tes Baru
             </Link>

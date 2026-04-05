@@ -33,12 +33,6 @@ export const TOPO_PRIMARY_LIGHT = topoPattern('%2399F6E4')
 /** Accent-400 amber stroke */
 export const TOPO_ACCENT = topoPattern('%23FBBF24')
 
-/** Konseling indigo stroke */
-export const TOPO_KONSELING = topoPattern('%234338ca')
-
-/** Pelatihan orange stroke */
-export const TOPO_PELATIHAN = topoPattern('%23c2410c')
-
 /** Plus-cross decorative pattern (gratis listing) */
 export const PLUS_CROSS_PATTERN =
   'url("data:image/svg+xml,'

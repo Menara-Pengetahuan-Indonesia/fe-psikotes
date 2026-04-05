@@ -1,3 +1,5 @@
+'use client'
+
 import { 
   Users, 
   Award, 
@@ -14,9 +16,9 @@ export function PsikotesJoinPractitioner() {
       
       {/* Background Ornaments (Flowering & Rainbow Vibe) */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-linear-to-r from-transparent via-primary-200 to-transparent" />
-      <Flower2 className="absolute -top-12 -left-12 w-48 h-48 text-primary-200 opacity-20 animate-spin-slow" />
-      <Flower2 className="absolute -bottom-12 -right-12 w-80 h-80 text-accent-200 opacity-30 animate-spin-slow" />
-      <Flower2 className="absolute top-1/2 left-0 w-24 h-24 text-primary-300 opacity-10 animate-pulse" />
+      <Flower2 className="absolute -top-12 -left-12 w-48 h-48 text-primary-200 opacity-20" />
+      <Flower2 className="absolute -bottom-12 -right-12 w-80 h-80 text-accent-200 opacity-30" />
+      <Flower2 className="absolute top-1/2 left-0 w-24 h-24 text-primary-300 opacity-10" />
       
       {/* Subtle Rainbow Glow */}
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-linear-to-br from-primary-400/10 via-accent-400/10 via-indigo-400/10 to-rose-400/10 rounded-full blur-[120px] -z-10" />
@@ -27,7 +29,7 @@ export function PsikotesJoinPractitioner() {
           {/* Left: Persuasive Content */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-accent-200 shadow-sm animate-bounce-subtle">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-accent-200 shadow-sm">
                 <Sparkles className="w-4 h-4 text-accent-500 fill-accent-500" />
                 <span className="text-[11px] font-black text-slate-600 uppercase tracking-[0.2em]">Become a Solution Provider</span>
               </div>
@@ -114,7 +116,7 @@ export function PsikotesJoinPractitioner() {
              </div>
 
              {/* Floating Badge */}
-             <div className="absolute -top-8 -right-8 w-32 h-32 bg-accent-500 rounded-full z-30 flex items-center justify-center text-center p-4 shadow-2xl shadow-accent-200 rotate-12 animate-float-medium">
+             <div className="absolute -top-8 -right-8 w-32 h-32 bg-accent-500 rounded-full z-30 flex items-center justify-center text-center p-4 shadow-2xl shadow-accent-200 rotate-12">
                 <p className="text-white font-black text-[10px] uppercase tracking-widest leading-tight">
                   Mulai Sukses Dari Sini
                 </p>

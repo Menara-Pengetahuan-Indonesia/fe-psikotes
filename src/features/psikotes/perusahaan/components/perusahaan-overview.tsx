@@ -95,7 +95,7 @@ export function PerusahaanOverview() {
                   test={test}
                   number={index + 1}
                   href={
-                    `/psikotes/perusahaan/${test.slug}`
+                    `/bisnis/${test.slug}`
                   }
                 />
 

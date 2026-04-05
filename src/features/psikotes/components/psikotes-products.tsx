@@ -32,7 +32,7 @@ export function PsikotesProducts() {
         
         <div className="space-y-12 mb-16">
           <div className="space-y-4 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-100 border border-accent-200 shadow-sm animate-bounce-subtle">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-100 border border-accent-200 shadow-sm">
                <Zap className="w-3 h-3 text-accent-600 fill-accent-600" />
                <span className="text-xs font-black text-accent-700 uppercase tracking-widest">Premium Assessment</span>
             </div>
@@ -101,7 +101,7 @@ export function PsikotesProducts() {
                 </div>
                 
                 <a 
-                  href={`/psikotes/pembayaran?id=${product.id}`}
+                  href={`/pembayaran?id=${product.id}`}
                   className="w-full h-12 rounded-xl bg-primary-600 text-white flex items-center justify-center gap-2 text-xs font-black uppercase tracking-widest hover:bg-primary-700 transition-all shadow-lg shadow-primary-100"
                 >
                   Pilih Layanan <ArrowRight className="w-4 h-4" />

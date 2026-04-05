@@ -48,7 +48,7 @@ export function LegalHeroSection({
       <Plus
         className={cn(
           'absolute top-[10%] left-[15%]',
-          'w-8 h-8 animate-pulse',
+          'w-8 h-8',
           theme.ornamentPlus,
         )}
       />

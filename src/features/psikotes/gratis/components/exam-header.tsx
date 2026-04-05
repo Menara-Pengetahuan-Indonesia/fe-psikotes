@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { ArrowLeft, Clock, Brain } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { ArrowLeft, Brain } from 'lucide-react'
 
 interface ExamHeaderProps {
   currentIdx: number
@@ -22,7 +21,7 @@ export function ExamHeader({
       <div className="max-w-4xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between mb-3">
           <Link
-            href={backHref ?? `/psikotes/gratis/${slug}`}
+            href={backHref ?? `/gratis/${slug}`}
             className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group"
           >
             <div className="size-8 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">

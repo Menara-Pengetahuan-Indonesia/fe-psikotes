@@ -27,8 +27,8 @@ export const ECOSYSTEM_ITEMS = [
   },
   {
     icon: Shield,
-    title: 'Konseling Diskon',
-    description: 'Potongan harga khusus untuk sesi konseling dengan psikolog profesional.',
+    title: 'Diskon Konsultasi',
+    description: 'Potongan harga khusus untuk sesi konsultasi dengan psikolog profesional.',
     theme: 'rose'
   },
   {
@@ -50,7 +50,7 @@ export const PRO_BENEFITS = [
   'Akses Komunitas Exclusive',
   'Weekly Premium Webinar',
   'Akses 50+ Psikotes Premium',
-  'Diskon 30% Konseling Psikolog',
+  'Diskon 30% Konsultasi Psikolog',
   'Rekaman Webinar Unlimited',
   'Priority Customer Support',
 ]

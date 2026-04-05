@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
 vi.mock('next/navigation', () => ({
-  usePathname: () => '/psikotes/mahasiswa',
+  usePathname: () => '/mahasiswa',
 }))
 
 vi.mock('next/link', () => ({

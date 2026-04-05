@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Bermoela — Life School",
-  description: "Platform Psikotes, Konseling & Coaching, Training & Program",
+  description: "Platform Psikotes & Asesmen Profesional",
   icons: {
     icon: "/logo/logo_bermoela.png",
   },
