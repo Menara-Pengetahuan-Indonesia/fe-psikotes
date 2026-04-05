@@ -13,15 +13,9 @@ import {
 export function PsikotesJoinPractitioner() {
   return (
     <section id="komunitas" className="py-24 bg-linear-to-b from-white to-accent-50/30 relative overflow-hidden">
-      
-      {/* Background Ornaments (Flowering & Rainbow Vibe) */}
+
+      {/* Background Ornaments */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-linear-to-r from-transparent via-primary-200 to-transparent" />
-      <Flower2 className="absolute -top-12 -left-12 w-48 h-48 text-primary-200 opacity-20" />
-      <Flower2 className="absolute -bottom-12 -right-12 w-80 h-80 text-accent-200 opacity-30" />
-      <Flower2 className="absolute top-1/2 left-0 w-24 h-24 text-primary-300 opacity-10" />
-      
-      {/* Subtle Rainbow Glow */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-linear-to-br from-primary-400/10 via-accent-400/10 via-indigo-400/10 to-rose-400/10 rounded-full blur-[120px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -123,7 +117,7 @@ export function PsikotesJoinPractitioner() {
              </div>
 
              {/* Background Decoration */}
-             <div className="absolute inset-10 bg-primary-600/10 rounded-[4rem] -rotate-6 -z-10 blur-2xl" />
+             <div className="absolute inset-10 bg-primary-600/10 rounded-[4rem] -rotate-6 -z-10" />
           </div>
 
         </div>

@@ -7,12 +7,9 @@ import {
   Target,
   Sparkles,
   Sunrise,
-  Plus,
-  Circle
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { BermoelaText } from './bermoela-text'
-import { TOPO_PRIMARY, TOPO_WHITE, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 import { PILLARS } from '../constants'
 
 export function PsikotesPillars() {
@@ -21,14 +18,6 @@ export function PsikotesPillars() {
 
   return (
     <section id="konsultasi" className="bg-background py-12 md:py-16 relative overflow-hidden">
-      
-      {/* Background Pattern for the whole section to avoid "too clean" look */}
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none"
-           style={{
-             backgroundImage: TOPO_PRIMARY,
-             backgroundSize: TOPO_BG_SIZE,
-           }}
-      />
 
       <div className={cn(
         "bg-primary-950 text-white relative overflow-hidden shadow-2xl",
@@ -39,32 +28,9 @@ export function PsikotesPillars() {
         
         {/* Background Ornaments inside the rounded box */}
         <div className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none">
-           <div className="absolute top-0 right-0 w-96 h-96 bg-primary-600/20 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
-           <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-300/10 rounded-full blur-[100px] -translate-x-1/2 translate-y-1/2" />
+           <div className="absolute top-0 right-0 w-96 h-96 bg-primary-600/20 rounded-full translate-x-1/2 -translate-y-1/2" />
+           <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary-300/10 rounded-full -translate-x-1/2 translate-y-1/2" />
         </div>
-
-        {/* Floating Ornaments */}
-        <Plus
-          className={cn(
-            'absolute top-[15%] left-[5%]',
-            'text-primary-400/20 w-8 h-8',
-          )}
-        />
-        <Circle
-          className={cn(
-            'absolute bottom-[20%]',
-            'right-[8%]',
-            'text-accent-400/20 w-16 h-16',
-          )}
-        />
-
-        {/* Inner Topo Pattern for texture */}
-        <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay"
-             style={{
-               backgroundImage: TOPO_WHITE,
-               backgroundSize: TOPO_BG_SIZE,
-             }}
-        />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           
@@ -178,19 +144,11 @@ export function PsikotesPillars() {
                     
                     {/* REDESIGNED CARD: Dynamic Brand Colors */}
                     <div className={cn(
-                      "p-8 md:p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden group w-full transition-all duration-700",
+                      "p-8 md:p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden group w-full",
                       activeData.theme.bg,
                       activeData.theme.text,
                       activeData.theme.shadow
                     )}>
-                       {/* Subtle Textures */}
-                       <div className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
-                            style={{
-                              backgroundImage: TOPO_WHITE,
-                              backgroundSize: '200px 200px',
-                            }}
-                       />
-                       
                        <div className="relative z-10 space-y-4">
                           <div className="space-y-1">
                              <p className="text-xs font-black opacity-60 uppercase tracking-[0.2em]">Transformasi Akhir</p>

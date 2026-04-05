@@ -1,7 +1,6 @@
-import { Sparkles, Target, Zap, Heart, Plus, Hexagon, Diamond } from 'lucide-react'
+import { Sparkles, Target, Zap, Heart } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-import { TOPO_PRIMARY, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 import { PHILOSOPHY_ITEMS } from '../constants'
 
 // Icon mapping for PHILOSOPHY_ITEMS rendering
@@ -10,25 +9,6 @@ const ICONS = [Sparkles, Target, Zap, Heart]
 export function PhilosophySection() {
   return (
     <section className="relative z-10 py-24 md:py-36 bg-background overflow-hidden text-stone-800">
-      
-      {/* --- RICH BACKGROUND ORNAMENTS (Matching Hero) --- */}
-      {/* 1. Subtle Topographic Line Pattern */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-multiply"
-           style={{
-             backgroundImage: TOPO_PRIMARY,
-             backgroundSize: TOPO_BG_SIZE,
-           }}
-      />
-
-      {/* 2. Technical Ornaments */}
-      <Plus className="absolute top-[15%] right-[10%] text-primary-600/20 w-8 h-8" />
-      <Plus className="absolute bottom-[10%] left-[5%] text-stone-400/20 w-10 h-10 rotate-45" />
-      <Hexagon className="absolute top-[10%] left-[20%] text-primary-600/10 w-20 h-20 -rotate-12" />
-      <Diamond className="absolute bottom-[20%] right-[5%] text-accent-600/10 w-16 h-16 rotate-12" />
-
-      {/* 3. Floating 3D-like Spheres (Pastel) */}
-      <div className="absolute top-[-5%] left-[-5%] w-64 h-64 bg-[radial-gradient(circle_at_30%_30%,#CCFBF1_0%,#99F6E4_100%)] opacity-40 rounded-full blur-3xl mix-blend-multiply" />
-      <div className="absolute bottom-[-10%] right-[10%] w-80 h-80 bg-[radial-gradient(circle_at_30%_30%,#FEF3C7_0%,#FDE68A_100%)] opacity-30 rounded-full blur-3xl mix-blend-multiply" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -92,7 +72,7 @@ export function PhilosophySection() {
                 </div>
 
                 {/* Floating Elements */}
-                <div className="absolute -top-4 -left-4 w-16 h-16 bg-accent-200 rounded-full blur-xl opacity-60 z-0" />
+                <div className="absolute -top-4 -left-4 w-16 h-16 bg-accent-200 rounded-full opacity-60 z-0" />
              </div>
           </div>
         </div>
