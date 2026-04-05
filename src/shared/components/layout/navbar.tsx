@@ -69,7 +69,9 @@ export function Navbar({
     HIDDEN_ROUTE_PREFIXES.some((p) =>
       pathname.startsWith(p)
     ) ||
-    pathname.startsWith('/psikotes/mahasiswa/try-out/form')
+    pathname.startsWith('/psikotes/mahasiswa/try-out/form') ||
+    pathname.startsWith('/tes/')
+  if (isHiddenRoute) return null
   if (isHiddenRoute) return null
 
   return (
