@@ -70,7 +70,7 @@ export function TestListingCard({ test, variant = 'teal' }: TestListingCardProps
         {/* Icon + category tag */}
         <div className="flex justify-between items-start mb-6">
           <div className={cn(
-            "w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-500",
+            "w-12 h-12 rounded-2xl flex items-center justify-center transition-colors duration-300",
             theme.iconBg,
             theme.iconColor,
             theme.iconHover,
@@ -114,7 +114,7 @@ export function TestListingCard({ test, variant = 'teal' }: TestListingCardProps
         <Link
           href={detailHref}
           className={cn(
-            "w-full py-3.5 bg-primary-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary-200",
+            "w-full py-3.5 bg-primary-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest transition-colors flex items-center justify-center gap-2 shadow-lg shadow-primary-200",
             theme.btnBg,
             theme.btnShadow
           )}

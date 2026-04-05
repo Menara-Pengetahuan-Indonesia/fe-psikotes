@@ -45,7 +45,7 @@ export function ServiceGrid() {
               <TabsTrigger 
                 key={tab}
                 value={tab} 
-                className="capitalize rounded-full px-8 py-3 font-black text-stone-500 data-[state=active]:bg-primary-600 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300 hover:text-primary-700"
+                className="capitalize rounded-full px-8 py-3 font-black text-stone-500 data-[state=active]:bg-primary-600 data-[state=active]:text-white data-[state=active]:shadow-lg transition-colors duration-300 hover:text-primary-700"
               >
                 {tab}
               </TabsTrigger>
