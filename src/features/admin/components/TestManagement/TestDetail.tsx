@@ -1,5 +1,3 @@
-'use client'
-
 import { TestWizard } from './TestWizard'
 
 interface TestDetailProps {

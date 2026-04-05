@@ -93,7 +93,7 @@ export function BenefitsVisual() {
             'absolute -top-4 -left-4',
             'w-16 h-16 bg-accent-200',
             'rounded-full blur-xl',
-            'opacity-60 animate-pulse z-0',
+            'opacity-60 z-0',
           )}
         />
       </div>

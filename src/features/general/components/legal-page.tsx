@@ -2,7 +2,7 @@ import { LegalContentSection } from './legal-content-section'
 import { LegalHeroSection } from './legal-hero-section'
 import type { LegalPageProps } from '../types'
 
-export { EMERALD_LEGAL, INDIGO_LEGAL, ORANGE_LEGAL } from '../constants'
+export { EMERALD_LEGAL } from '../constants'
 export type { LegalSection, LegalTheme, LegalPageProps } from '../types'
 
 export function LegalPage({

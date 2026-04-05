@@ -8,7 +8,7 @@ import {
   MAHASISWA_TESTS,
   KESEHATAN_MENTAL_TESTS,
   PERUSAHAAN_TESTS,
-} from '@features/psikotes/constants'
+} from '@/features/psikotes/constants'
 
 type Category =
   | 'gratis'
@@ -48,15 +48,15 @@ function getTestHref(
 ) {
   switch (category) {
     case 'premium':
-      return `/psikotes/premium/${slug}`
+      return `/premium/${slug}`
     case 'mahasiswa':
-      return `/psikotes/mahasiswa/${slug}`
+      return `/mahasiswa/${slug}`
     case 'kesehatan-mental':
-      return `/psikotes/kesehatan-mental/${slug}`
+      return `/kesehatan-mental/${slug}`
     case 'perusahaan':
-      return `/psikotes/perusahaan/${slug}`
+      return `/bisnis/${slug}`
     default:
-      return `/psikotes/gratis/${slug}`
+      return `/gratis/${slug}`
   }
 }
 

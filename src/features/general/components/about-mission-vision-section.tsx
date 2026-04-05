@@ -117,8 +117,8 @@ export function AboutMissionVisionSection() {
               Menyediakan layanan psikologi
               berkualitas tinggi yang mudah diakses
               oleh seluruh masyarakat Indonesia
-              melalui asesmen ilmiah, konseling,
-              dan pelatihan.
+              melalui asesmen ilmiah yang mudah
+              diakses.
             </p>
           </div>
           <div

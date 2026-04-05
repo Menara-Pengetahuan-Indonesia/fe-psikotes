@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
-import { RESULTS_MAP } from '@features/psikotes/constants'
-import type { ResultData } from '@features/psikotes/constants'
+import { RESULTS_MAP } from '@/features/psikotes/constants'
+import type { ResultData } from '@/features/psikotes/constants'
 
 import { CommunitySection } from './community-section'
 import {
@@ -37,8 +37,8 @@ const DEFAULT_RESULT: ResultData = {
 
 export function ResultDisplay({
   slug = '',
-  backHref = '/psikotes/gratis',
-  tesLainnyaHref = '/psikotes/gratis',
+  backHref = '/gratis',
+  tesLainnyaHref = '/gratis',
   category = 'gratis',
 }: ResultDisplayProps) {
   const result =

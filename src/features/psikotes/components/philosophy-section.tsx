@@ -21,14 +21,14 @@ export function PhilosophySection() {
       />
 
       {/* 2. Technical Ornaments */}
-      <Plus className="absolute top-[15%] right-[10%] text-primary-600/20 w-8 h-8 animate-pulse" />
+      <Plus className="absolute top-[15%] right-[10%] text-primary-600/20 w-8 h-8" />
       <Plus className="absolute bottom-[10%] left-[5%] text-stone-400/20 w-10 h-10 rotate-45" />
-      <Hexagon className="absolute top-[10%] left-[20%] text-primary-600/10 w-20 h-20 -rotate-12 animate-float-slow" />
-      <Diamond className="absolute bottom-[20%] right-[5%] text-accent-600/10 w-16 h-16 rotate-12 animate-float-medium" />
+      <Hexagon className="absolute top-[10%] left-[20%] text-primary-600/10 w-20 h-20 -rotate-12" />
+      <Diamond className="absolute bottom-[20%] right-[5%] text-accent-600/10 w-16 h-16 rotate-12" />
 
       {/* 3. Floating 3D-like Spheres (Pastel) */}
-      <div className="absolute top-[-5%] left-[-5%] w-64 h-64 bg-[radial-gradient(circle_at_30%_30%,#CCFBF1_0%,#99F6E4_100%)] opacity-40 rounded-full blur-3xl animate-float-slow mix-blend-multiply" />
-      <div className="absolute bottom-[-10%] right-[10%] w-80 h-80 bg-[radial-gradient(circle_at_30%_30%,#FEF3C7_0%,#FDE68A_100%)] opacity-30 rounded-full blur-3xl animate-float-medium mix-blend-multiply" />
+      <div className="absolute top-[-5%] left-[-5%] w-64 h-64 bg-[radial-gradient(circle_at_30%_30%,#CCFBF1_0%,#99F6E4_100%)] opacity-40 rounded-full blur-3xl mix-blend-multiply" />
+      <div className="absolute bottom-[-10%] right-[10%] w-80 h-80 bg-[radial-gradient(circle_at_30%_30%,#FEF3C7_0%,#FDE68A_100%)] opacity-30 rounded-full blur-3xl mix-blend-multiply" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -75,7 +75,7 @@ export function PhilosophySection() {
           
           {/* Right: Refined Illustration */}
           <div className="hidden lg:block relative perspective-1000">
-             <div className="aspect-square relative max-w-md mx-auto transform-style-3d animate-float-medium">
+             <div className="aspect-square relative max-w-md mx-auto transform-style-3d">
                 {/* Back Plate */}
                 <div className="absolute inset-0 bg-white rounded-[3rem] border border-slate-100 shadow-2xl transform rotate-6 z-0"></div>
                 
@@ -92,7 +92,7 @@ export function PhilosophySection() {
                 </div>
 
                 {/* Floating Elements */}
-                <div className="absolute -top-4 -left-4 w-16 h-16 bg-accent-200 rounded-full blur-xl opacity-60 animate-pulse z-0" />
+                <div className="absolute -top-4 -left-4 w-16 h-16 bg-accent-200 rounded-full blur-xl opacity-60 z-0" />
              </div>
           </div>
         </div>

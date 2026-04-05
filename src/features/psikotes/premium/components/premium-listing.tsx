@@ -43,12 +43,12 @@ export function PremiumListing() {
              }}
         />
 
-        <Plus className="absolute top-[15%] left-[10%] text-primary-300/30 w-8 h-8 animate-pulse" />
-        <Hexagon className="absolute top-[40%] right-[10%] text-white/5 w-24 h-24 -rotate-12 animate-float-slow" />
-        <Diamond className="absolute bottom-[10%] left-[20%] text-accent-400/20 w-16 h-16 rotate-12 animate-float-medium" />
+        <Plus className="absolute top-[15%] left-[10%] text-primary-300/30 w-8 h-8" />
+        <Hexagon className="absolute top-[40%] right-[10%] text-white/5 w-24 h-24 -rotate-12" />
+        <Diamond className="absolute bottom-[10%] left-[20%] text-accent-400/20 w-16 h-16 rotate-12" />
 
         {/* Ambient Glows */}
-        <div className="absolute top-[-10%] left-[-10%] w-150 h-150 bg-primary-900/20 rounded-full blur-[80px] pointer-events-none animate-pulse" />
+        <div className="absolute top-[-10%] left-[-10%] w-150 h-150 bg-primary-900/20 rounded-full blur-[80px] pointer-events-none" />
         <div className="absolute bottom-[-10%] right-[-5%] w-125 h-125 bg-primary-300/20 rounded-full blur-[80px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">

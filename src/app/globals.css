@@ -88,52 +88,6 @@
   --color-ps-accent-foreground: var(--ps-accent-foreground);
   --color-ps-muted: var(--ps-muted);
   --color-ps-muted-foreground: var(--ps-muted-foreground);
-
-  /* Konseling Colors - Indigo (Wisdom, Trust) */
-  --color-ks-primary: var(--ks-primary);
-  --color-ks-primary-foreground: var(--ks-primary-foreground);
-  --color-ks-secondary: var(--ks-secondary);
-  --color-ks-secondary-foreground: var(--ks-secondary-foreground);
-  --color-ks-accent: var(--ks-accent);
-  --color-ks-accent-foreground: var(--ks-accent-foreground);
-  --color-ks-muted: var(--ks-muted);
-  --color-ks-muted-foreground: var(--ks-muted-foreground);
-
-  /* Konseling palette (indigo) */
-  --color-konseling-50: #EEF2FF;
-  --color-konseling-100: #E0E7FF;
-  --color-konseling-200: #C7D2FE;
-  --color-konseling-300: #A5B4FC;
-  --color-konseling-400: #818CF8;
-  --color-konseling-500: #6366F1;
-  --color-konseling-600: #4F46E5;
-  --color-konseling-700: #4338CA;
-  --color-konseling-800: #3730A3;
-  --color-konseling-900: #312E81;
-  --color-konseling-950: #1E1B4B;
-
-  /* Training Colors - Orange (Energik, Motivasi) */
-  --color-tr-primary: var(--tr-primary);
-  --color-tr-primary-foreground: var(--tr-primary-foreground);
-  --color-tr-secondary: var(--tr-secondary);
-  --color-tr-secondary-foreground: var(--tr-secondary-foreground);
-  --color-tr-accent: var(--tr-accent);
-  --color-tr-accent-foreground: var(--tr-accent-foreground);
-  --color-tr-muted: var(--tr-muted);
-  --color-tr-muted-foreground: var(--tr-muted-foreground);
-
-  /* Pelatihan palette (orange) */
-  --color-pelatihan-50: #FFF7ED;
-  --color-pelatihan-100: #FFEDD5;
-  --color-pelatihan-200: #FED7AA;
-  --color-pelatihan-300: #FDBA74;
-  --color-pelatihan-400: #FB923C;
-  --color-pelatihan-500: #F97316;
-  --color-pelatihan-600: #EA580C;
-  --color-pelatihan-700: #C2410C;
-  --color-pelatihan-800: #9A3412;
-  --color-pelatihan-900: #7C2D12;
-  --color-pelatihan-950: #431407;
 }
 
 :root {
@@ -188,26 +142,6 @@
   --ps-accent-foreground: #FFFFFF;
   --ps-muted: #F0FDFA;
   --ps-muted-foreground: #134E4A;
-
-  /* Konseling - Indigo palette */
-  --ks-primary: #6366F1;
-  --ks-primary-foreground: #FFFFFF;
-  --ks-secondary: #818CF8;
-  --ks-secondary-foreground: #FFFFFF;
-  --ks-accent: #4338CA;
-  --ks-accent-foreground: #FFFFFF;
-  --ks-muted: #EEF2FF;
-  --ks-muted-foreground: #312E81;
-
-  /* Training - Orange palette */
-  --tr-primary: #F97316;
-  --tr-primary-foreground: #FFFFFF;
-  --tr-secondary: #FB923C;
-  --tr-secondary-foreground: #FFFFFF;
-  --tr-accent: #EA580C;
-  --tr-accent-foreground: #FFFFFF;
-  --tr-muted: #FFF7ED;
-  --tr-muted-foreground: #7C2D12;
 }
 
 .dark {
@@ -252,26 +186,6 @@
   --ps-accent-foreground: #164E63;
   --ps-muted: #1E3A5F;
   --ps-muted-foreground: #93C5FD;
-
-  /* Konseling Dark - Indigo */
-  --ks-primary: #818CF8;
-  --ks-primary-foreground: #1E1B4B;
-  --ks-secondary: #A5B4FC;
-  --ks-secondary-foreground: #312E81;
-  --ks-accent: #6366F1;
-  --ks-accent-foreground: #EEF2FF;
-  --ks-muted: #312E81;
-  --ks-muted-foreground: #C7D2FE;
-
-  /* Training Dark - Orange */
-  --tr-primary: #FB923C;
-  --tr-primary-foreground: #431407;
-  --tr-secondary: #FDBA74;
-  --tr-secondary-foreground: #7C2D12;
-  --tr-accent: #F97316;
-  --tr-accent-foreground: #FFF7ED;
-  --tr-muted: #7C2D12;
-  --tr-muted-foreground: #FED7AA;
 }
 
 /* Auth page animations */

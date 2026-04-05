@@ -4,7 +4,7 @@ test.describe('Exam Taking - Public Workflow', () => {
   test('should access published exam page', async ({ page }) => {
     // Use a known published test ID from database
     const testId = '647e4a56-16b7-49c1-a3bd-8e6c80d09bc6'
-    await page.goto(`/psikotes/mahasiswa/minat-bakat/form?testId=${testId}`)
+    await page.goto(`/mahasiswa/minat-bakat/form?testId=${testId}`)
 
     // Wait for page to load
     await page.waitForLoadState('networkidle')
@@ -16,7 +16,7 @@ test.describe('Exam Taking - Public Workflow', () => {
 
   test('should display exam interface', async ({ page }) => {
     const testId = '647e4a56-16b7-49c1-a3bd-8e6c80d09bc6'
-    await page.goto(`/psikotes/mahasiswa/minat-bakat/form?testId=${testId}`)
+    await page.goto(`/mahasiswa/minat-bakat/form?testId=${testId}`)
 
     await page.waitForLoadState('networkidle')
 
@@ -26,7 +26,7 @@ test.describe('Exam Taking - Public Workflow', () => {
   })
 
   test('should handle invalid test ID', async ({ page }) => {
-    await page.goto('/psikotes/mahasiswa/minat-bakat/form?testId=invalid-id')
+    await page.goto('/mahasiswa/minat-bakat/form?testId=invalid-id')
 
     await page.waitForLoadState('networkidle')
 

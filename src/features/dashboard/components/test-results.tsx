@@ -54,7 +54,7 @@ export function TestResults() {
             className="bg-white text-slate-900 hover:bg-teal-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
             asChild
           >
-            <Link href="/psikotes">
+            <Link href="/">
               <Brain className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
               Mulai Tes Baru
             </Link>
@@ -106,7 +106,7 @@ export function TestResults() {
           <p className="text-slate-900 font-black text-lg mb-1">Belum ada hasil.</p>
           <p className="text-slate-400 font-medium text-sm mb-6">Selesaikan tes pertamamu untuk melihat hasilnya di sini.</p>
           <Button size="lg" className="rounded-2xl h-12 px-8 font-black bg-slate-900 hover:bg-slate-800" asChild>
-            <Link href="/psikotes">Mulai Tes Sekarang</Link>
+            <Link href="/">Mulai Tes Sekarang</Link>
           </Button>
         </div>
       ) : (
