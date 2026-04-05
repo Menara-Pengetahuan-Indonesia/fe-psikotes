@@ -204,7 +204,7 @@ export function PsikotesDiagnostic() {
 
       {/* 2. THINKING PHASE */}
       {phase === 'thinking' && messages.length === 1 && (
-        <div className="max-w-xl mx-auto bg-white/10 backdrop-blur-md rounded-3xl p-10 border border-white/20 flex flex-col items-center text-center gap-4 animate-in fade-in zoom-in-95 duration-500">
+        <div className="max-w-xl mx-auto bg-white/10 backdrop-blur-sm rounded-3xl p-10 border border-white/20 flex flex-col items-center text-center gap-4 animate-in fade-in zoom-in-95 duration-500">
           <Loader2 className="w-10 h-10 text-white animate-spin" />
           <div className="space-y-1">
             <h3 className="text-white font-black uppercase text-xs tracking-widest">Merumuskan Solusi</h3>
@@ -219,11 +219,11 @@ export function PsikotesDiagnostic() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-6 items-stretch animate-in fade-in slide-in-from-bottom-4 duration-700 w-full pt-4">
             
             {/* LEFT CARD: USER HISTORY (FIXED HEIGHT, HIDDEN SCROLLBAR) */}
-          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 flex flex-col gap-6 text-left relative h-[500px]">
+          <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 flex flex-col gap-6 text-left relative h-[500px]">
             
             {/* FLOATING TOP LABEL (The "Cap") */}
             <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20 w-full flex justify-center">
-               <div className="bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-2xl shadow-xl border border-white/20 flex items-center gap-3 animate-in slide-in-from-top-4 duration-1000">
+               <div className="bg-white/10 backdrop-blur-sm px-5 py-2.5 rounded-2xl shadow-xl border border-white/20 flex items-center gap-3 animate-in slide-in-from-top-4 duration-1000">
                   <div className="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center">
                     <User className="w-4 h-4 text-white" />
                   </div>
@@ -328,7 +328,7 @@ export function PsikotesDiagnostic() {
                       )}
                     >
                       <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
                           <rec.icon className="w-5 h-5" />
                         </div>
                         <div>
