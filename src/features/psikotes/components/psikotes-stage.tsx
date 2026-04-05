@@ -41,7 +41,7 @@ export function PsikotesStage() {
                    key={stage.id}
                    onClick={() => setActiveStageId(stage.id)}
                    className={cn(
-                     "w-full text-left p-8 rounded-[2.5rem] transition-all duration-500 border-2 flex flex-col gap-4 group",
+                     "w-full text-left p-8 rounded-[2.5rem] transition-colors duration-300 border-2 flex flex-col gap-4 group",
                      isActive 
                        ? cn("bg-white border-primary-500 shadow-soft-xl scale-[1.02] z-10")
                        : "bg-white/40 border-slate-200/50 hover:bg-white/80 hover:border-slate-300 opacity-70 hover:opacity-100"

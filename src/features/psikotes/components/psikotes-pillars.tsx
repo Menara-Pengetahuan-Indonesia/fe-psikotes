@@ -53,7 +53,7 @@ export function PsikotesPillars() {
                   key={pillar.id}
                   onClick={() => setActivePillar(pillar.id)}
                   className={cn(
-                    "block w-full text-left p-6 rounded-[2rem] transition-all duration-500 border-2 group relative overflow-hidden",
+                    "block w-full text-left p-6 rounded-[2rem] transition-colors duration-300 border-2 group relative overflow-hidden",
                     activePillar === pillar.id 
                       ? "bg-white border-primary-400 shadow-2xl shadow-primary-900/40 scale-[1.02] z-10" 
                       : "bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20"
