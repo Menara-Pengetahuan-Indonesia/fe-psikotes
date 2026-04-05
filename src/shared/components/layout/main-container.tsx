@@ -20,7 +20,7 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
   return (
     <main
       className={cn(
-        "relative z-10 transition-all duration-500",
+        "relative z-10",
         isExam
           ? "bg-[#F2F2F7] min-h-dvh mb-0 rounded-none"
           : pathname.startsWith('/mahasiswa/try-out/form')
