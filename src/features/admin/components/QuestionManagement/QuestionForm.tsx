@@ -70,6 +70,7 @@ export function QuestionForm({
     control,
     setValue,
   } = useForm<QuestionFormValues>({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resolver: zodResolver(createQuestionSchema) as any,
     defaultValues: {
       text: initialData?.text ?? '',

@@ -7,13 +7,10 @@ import { toast } from 'sonner'
 import {
   Download,
   Upload,
-  FileText,
   CheckCircle2,
   AlertTriangle,
   Loader2,
-  X,
   FileSpreadsheet,
-  ArrowRight
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -59,7 +56,6 @@ export function BulkImportCSV({ testId }: BulkImportCSVProps) {
   const [fileName, setFileName] = useState<string | null>(null)
   const [importing, setImporting] = useState(false)
   const [progress, setProgress] = useState({ current: 0, total: 0 })
-  const [expandedErrors, setExpandedErrors] = useState<Set<number>>(new Set())
   const [isDragOver, setIsDragOver] = useState(false)
 
   const sectionMap = useCallback((): Map<string, Section> => {
@@ -142,7 +138,7 @@ export function BulkImportCSV({ testId }: BulkImportCSVProps) {
     const nonEmptyOptions = options.filter((o) => o !== '')
     if ((type === 'MULTIPLE_CHOICE' || type === 'TRUE_FALSE') && nonEmptyOptions.length < 2) errors.push(`Butuh minimal 2 opsi`)
     return { index: rowIndex, text, type, section, displayStyle, options, scores, valid: errors.length === 0, errors }
-  }, [indicatorList, sections])
+  }, [indicatorList])
 
   const parseFile = useCallback((file: File) => {
     setFileName(file.name)
@@ -194,7 +190,7 @@ export function BulkImportCSV({ testId }: BulkImportCSVProps) {
       await queryClient.invalidateQueries({ queryKey: adminKeys.questions(testId) })
       toast.success(`Berhasil mengimpor ${validRows.length} soal`)
       setParsedRows([]); setFileName(null);
-    } catch (err) { toast.error(`Gagal pada soal ke-${progress.current + 1}`) }
+    } catch { toast.error(`Gagal pada soal ke-${progress.current + 1}`) }
     finally { setImporting(false) }
   }, [validRows, sectionMap, createQuestion, createOption, createIndicatorMapping, indicatorList, testId, queryClient, progress])
 
@@ -308,7 +304,7 @@ export function BulkImportCSV({ testId }: BulkImportCSVProps) {
                            <tr key={row.index} className={cn("hover:bg-slate-50/50 transition-colors", !row.valid && "bg-rose-50/30")}>
                               <td className="px-8 py-4 text-xs font-black text-slate-300">#{row.index + 1}</td>
                               <td className="px-8 py-4">
-                                 <p className="text-sm font-bold text-slate-700 line-clamp-1 italic">"{row.text}"</p>
+                                 <p className="text-sm font-bold text-slate-700 line-clamp-1 italic">&quot;{row.text}&quot;</p>
                               </td>
                               <td className="px-8 py-4">
                                  <Badge className="bg-slate-100 text-slate-500 border-0 rounded-full font-black text-[9px] uppercase tracking-widest px-3">

@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { ArrowLeft, Clock, Brain } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { ArrowLeft, Brain } from 'lucide-react'
 
 interface ExamHeaderProps {
   currentIdx: number

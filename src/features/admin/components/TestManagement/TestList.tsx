@@ -10,14 +10,11 @@ import {
   FileText,
   CheckCircle2,
   BookOpen,
-  ArrowRight,
   BarChart3,
   Shuffle,
-  Timer,
   Calendar,
   Search,
   ChevronRight,
-  Zap,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -229,7 +226,7 @@ export function TestList() {
         </div>
       ) : (
         <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden divide-y divide-slate-50">
-          {filteredTests.map((test, index) => {
+          {filteredTests.map((test) => {
             const isPublished = test.isPublished
 
             return (

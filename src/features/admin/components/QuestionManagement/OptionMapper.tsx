@@ -21,7 +21,6 @@ interface OptionMapperProps {
 
 export function OptionMapper({
   testId,
-  questionId: _questionId,
   option,
 }: OptionMapperProps) {
   const { data: indicators, isLoading } = useIndicators(testId)

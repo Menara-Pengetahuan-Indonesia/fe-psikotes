@@ -6,7 +6,8 @@ interface NavbarLogoProps {
   isScrolled: boolean
 }
 
-export function NavbarLogo({ isScrolled: _isScrolled }: NavbarLogoProps) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function NavbarLogo(_props: NavbarLogoProps) {
   return (
     <Link
       href="/"

@@ -5,7 +5,6 @@ import {
   PsikotesTransformationMap,
   PsikotesStage,
   PsikotesCategoryNav,
-  PsikotesPillars,
   PsikotesProducts,
 } from '@/features/psikotes/components'
 

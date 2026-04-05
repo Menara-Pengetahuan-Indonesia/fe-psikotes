@@ -8,7 +8,6 @@ import {
   Package,
   FileText,
   Clock,
-  Users,
   Play,
   Brain,
   Shield,
@@ -84,7 +83,6 @@ export default function PackageDetailPublicPage() {
 
   const isFree = pkg.price === 0
   const tests = pkg.tests ?? []
-  const totalQuestions = tests.reduce((sum, pt) => sum + ((pt.test as any)?.questions?.length ?? 0), 0)
 
   return (
     <div className="min-h-screen bg-[#F2F2F7]">
@@ -138,7 +136,7 @@ export default function PackageDetailPublicPage() {
               className="bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95"
               onClick={() => {
                 const firstTest = tests.sort((a, b) => a.order - b.order)[0]
-                if (firstTest?.test) router.push(`/tes/${(firstTest.test as any).id}`)
+                if (firstTest?.test) router.push(`/tes/${(firstTest.test as { id: string }).id}`)
               }}
               disabled={tests.length === 0}
             >
@@ -168,7 +166,7 @@ export default function PackageDetailPublicPage() {
           </div>
           <div className="divide-y divide-slate-50">
             {tests.sort((a, b) => a.order - b.order).map((pt, index) => {
-              const test = pt.test as any
+              const test = pt.test as { id: string; name: string; description?: string; duration?: number; originalYear?: number; adaptationYear?: number; precisionLevel?: number; popularity?: string; questions?: unknown[] } | undefined
               if (!test) return null
               const color = testRowColors[index % testRowColors.length]
               return (
@@ -223,7 +221,7 @@ export default function PackageDetailPublicPage() {
             className="h-14 px-10 bg-slate-900 text-white hover:bg-slate-800 rounded-2xl font-black text-base shadow-xl transition-all active:scale-95"
             onClick={() => {
               const firstTest = tests.sort((a, b) => a.order - b.order)[0]
-              if (firstTest?.test) router.push(`/tes/${(firstTest.test as any).id}`)
+              if (firstTest?.test) router.push(`/tes/${(firstTest.test as { id: string }).id}`)
             }}
             disabled={tests.length === 0}
           >

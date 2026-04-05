@@ -14,8 +14,6 @@ import {
   ShieldBan,
   ShieldCheck,
   KeyRound,
-  CheckCircle2,
-  XCircle,
   BarChart3,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'

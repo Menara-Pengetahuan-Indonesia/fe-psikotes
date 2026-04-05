@@ -2,17 +2,14 @@
 
 import { useState } from 'react'
 import {
-  Sparkles,
-  ArrowRight,
   Target,
   Zap,
   CheckCircle2,
   Box,
   TrendingUp,
-  ChevronRight
+  ChevronRight,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { BermoelaText } from './bermoela-text'
 import { TOPO_PRIMARY, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 import { NAV_CATEGORIES } from '../constants'
 

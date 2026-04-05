@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Target, ChevronRight } from 'lucide-react'
+import { Target } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { TRANSFORMATION_STAGES } from '../constants'
 import { TOPO_PRIMARY, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'

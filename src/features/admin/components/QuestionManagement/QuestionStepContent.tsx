@@ -10,7 +10,6 @@ import {
   HelpCircle,
   Plus,
   Layout,
-  Hash,
   AlertCircle
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'

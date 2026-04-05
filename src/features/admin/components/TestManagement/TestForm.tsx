@@ -7,7 +7,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import {
   FileEdit,
   Clock,
-  Settings2,
   CheckCircle2,
   AlertCircle,
   BookOpen,
@@ -68,8 +67,6 @@ export function TestForm({ initialData, onSuccess }: TestFormProps) {
     handleSubmit,
     formState: { errors },
     reset,
-    setValue,
-    watch,
   } = useForm<CreateTestFormData>({
     resolver: zodResolver(createTestSchema),
     defaultValues: {
@@ -108,9 +105,6 @@ export function TestForm({ initialData, onSuccess }: TestFormProps) {
     document.addEventListener('mousedown', handler)
     return () => document.removeEventListener('mousedown', handler)
   }, [])
-
-  const shuffleQuestions = watch('shuffleQuestions')
-  const shuffleOptions = watch('shuffleOptions')
 
   const onSubmit = async (data: CreateTestFormData) => {
     const payload = {

@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import {
   FileText,
-  CalendarDays,
   TrendingUp,
   Brain,
   MessageCircle,
@@ -12,7 +11,6 @@ import {
   Target,
   ChevronRight,
   History,
-  Clock,
   Award,
   CheckCircle2,
   ArrowRight,

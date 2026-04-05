@@ -188,6 +188,7 @@ export function QuestionFormWizard({ testId, initialData, onSaved, onCancel }: Q
   const uploadImage = useUploadImage()
 
   const { register, handleSubmit, formState: { errors }, reset, watch, control, setValue } = useForm<FormValues>({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resolver: zodResolver(questionFormWizardSchema) as any,
     defaultValues: buildInitialValues(initialData),
   })

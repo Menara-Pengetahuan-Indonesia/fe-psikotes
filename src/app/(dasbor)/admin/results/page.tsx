@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import {
-  BarChart3,
   Search,
   ChevronRight,
   Users,
@@ -19,7 +18,6 @@ import {
 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
 
 // Dummy data - 10 peserta
@@ -148,18 +146,6 @@ function formatDate(dateStr: string) {
     })
   } catch {
     return '-'
-  }
-}
-
-function formatTime(dateStr: string) {
-  if (!dateStr) return ''
-  try {
-    return new Date(dateStr).toLocaleTimeString('id-ID', {
-      hour: '2-digit',
-      minute: '2-digit',
-    })
-  } catch {
-    return ''
   }
 }
 
