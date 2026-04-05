@@ -70,37 +70,6 @@ export default {
           950: '#0F766E',
         },
 
-        // Pillar: Konseling - Indigo palette
-        konseling: {
-          DEFAULT: '#6366F1',
-          50: '#EEF2FF',
-          100: '#E0E7FF',
-          200: '#C7D2FE',
-          300: '#A5B4FC',
-          400: '#818CF8',
-          500: '#6366F1',
-          600: '#4F46E5',
-          700: '#4338CA',
-          800: '#3730A3',
-          900: '#312E81',
-          950: '#1E1B4B',
-        },
-        // Pillar: Pelatihan - Orange palette
-        pelatihan: {
-          DEFAULT: '#F97316',
-          50: '#FFF7ED',
-          100: '#FFEDD5',
-          200: '#FED7AA',
-          300: '#FDBA74',
-          400: '#FB923C',
-          500: '#F97316',
-          600: '#EA580C',
-          700: '#C2410C',
-          800: '#9A3412',
-          900: '#7C2D12',
-          950: '#431407',
-        },
-
         // shadcn/ui system colors
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -147,36 +116,10 @@ export default {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
-        'float-slow': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-20px)' },
-        },
-        'float-medium': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-12px)' },
-        },
-        'float-fast': {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-8px)' },
-        },
-        'spin-slow': {
-          '0%': { transform: 'rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg)' },
-        },
-        ripple: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0' },
-        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'float-slow': 'float-slow 8s ease-in-out infinite',
-        'float-medium': 'float-medium 5s ease-in-out infinite',
-        'float-fast': 'float-fast 3s ease-in-out infinite',
-        'spin-slow': 'spin-slow 12s linear infinite',
-        ripple: 'ripple 3s ease-in-out infinite',
-        'ripple-slow': 'ripple 4s ease-in-out infinite',
       },
     },
   },

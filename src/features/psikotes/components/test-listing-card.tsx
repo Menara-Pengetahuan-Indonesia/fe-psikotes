@@ -17,7 +17,7 @@ interface TestListingCardProps {
 
 export function TestListingCard({ test, variant = 'teal' }: TestListingCardProps) {
   const Icon = test.icon
-  const detailHref = `/psikotes/${test.category}/${test.slug}`
+  const detailHref = `/${test.category}/${test.slug}`
 
   const themes = {
     teal: {

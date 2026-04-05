@@ -128,7 +128,7 @@ export const PERUSAHAAN_CTA: CtaBannerData = {
     + ' BERMOELA dan temukan talenta'
     + ' yang siap tumbuh maksimal.',
   buttonText: 'Konsultasi Gratis',
-  href: '/konseling',
+  href: '/psikotes',
 }
 
 // ── Mahasiswa ──────────────────────────────────────
@@ -264,7 +264,7 @@ export const MAHASISWA_CTA: CtaBannerData = {
     + ' New You" yang sukses dengan'
     + ' asesmen profesional BERMOELA.',
   buttonText: 'Mulai Sekarang',
-  href: '/psikotes/mahasiswa',
+  href: '/mahasiswa',
 }
 
 // ── Mental Health ───────────────────────────────
@@ -379,5 +379,5 @@ export const MENTAL_HEALTH_CTA: CtaBannerData = {
     + ' dan sukses di era penuh tekanan'
     + ' bersama BERMOELA.',
   buttonText: 'Mulai Sekarang',
-  href: '/psikotes/psikotes/kesehatan-mental',
+  href: '/kesehatan-mental',
 }

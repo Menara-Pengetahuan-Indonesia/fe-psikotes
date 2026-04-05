@@ -43,14 +43,12 @@ export function MentalHealthJourney() {
           className={cn(
             'absolute top-[15%] right-[8%]',
             'text-primary-300/30 w-8 h-8',
-            'animate-pulse',
           )}
         />
         <Heart
           className={cn(
             'absolute bottom-[15%] left-[5%]',
             'text-accent-400/20 w-12 h-12',
-            'animate-float-slow',
           )}
         />
 

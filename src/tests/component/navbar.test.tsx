@@ -62,14 +62,14 @@ describe('Navbar', () => {
     expect(container.innerHTML).toBe('')
   })
 
-  it('returns null for root route', () => {
+  it('renders navbar on root route', () => {
     mockUsePathname.mockReturnValue('/')
-    const { container } = render(<Navbar />)
-    expect(container.innerHTML).toBe('')
+    render(<Navbar />)
+    expect(screen.getByAltText('Bermoela')).toBeInTheDocument()
   })
 
   it('returns null for try-out form route', () => {
-    mockUsePathname.mockReturnValue('/psikotes/mahasiswa/try-out/form')
+    mockUsePathname.mockReturnValue('/mahasiswa/try-out/form')
     const { container } = render(<Navbar />)
     expect(container.innerHTML).toBe('')
   })
@@ -102,15 +102,8 @@ describe('Navbar', () => {
     expect(screen.getByText('Custom Item')).toBeInTheDocument()
   })
 
-  it('renders konseling nav items on konseling route', () => {
-    mockUsePathname.mockReturnValue('/konseling')
-    render(<Navbar />)
-    // Should render navbar (not hidden) with konseling items
-    expect(screen.getByAltText('Bermoela')).toBeInTheDocument()
-  })
-
-  it('renders pelatihan nav items on pelatihan route', () => {
-    mockUsePathname.mockReturnValue('/pelatihan')
+  it('renders psikotes nav items on any non-hidden route', () => {
+    mockUsePathname.mockReturnValue('/psikotes')
     render(<Navbar />)
     expect(screen.getByAltText('Bermoela')).toBeInTheDocument()
   })

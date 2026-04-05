@@ -38,14 +38,12 @@ export function PerusahaanStats() {
           className={cn(
             'absolute top-[15%] left-[5%]',
             'text-primary-400/20 w-8 h-8',
-            'animate-pulse',
           )}
         />
         <Circle
           className={cn(
             'absolute top-[40%] right-[8%]',
             'text-accent-400/20 w-16 h-16',
-            'animate-float-slow',
           )}
         />
 

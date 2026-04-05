@@ -202,10 +202,10 @@ export function ExamInterface({
   const handleConfirmSubmit = () => {
     stopCamera()
     setShowSubmitModal(false)
-    window.location.href = resultHref ?? `/psikotes/gratis/${slug}/result`
+    window.location.href = resultHref ?? `/gratis/${slug}/result`
   }
 
-  const resolvedBackHref = backHref ?? `/psikotes/gratis/${slug}`
+  const resolvedBackHref = backHref ?? `/gratis/${slug}`
   const isTimeLow = timeLeft < 300
 
   return (

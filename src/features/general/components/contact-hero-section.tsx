@@ -49,21 +49,20 @@ export function ContactHeroSection() {
           className={cn(
             'absolute top-[10%] left-[15%]',
             'text-sky-300/30 w-8 h-8',
-            'animate-pulse',
           )}
         />
         <Hexagon
           className={cn(
             'absolute top-[20%] right-[25%]',
             'text-white/10 w-24 h-24',
-            '-rotate-12 animate-float-medium',
+            '-rotate-12',
           )}
         />
         <Diamond
           className={cn(
             'absolute bottom-[20%] right-[40%]',
             'text-accent-200/10 w-16 h-16',
-            'rotate-12 animate-float-slow',
+            'rotate-12',
           )}
         />
 

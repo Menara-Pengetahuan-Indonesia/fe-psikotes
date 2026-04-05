@@ -10,7 +10,7 @@ import { FaqAccordionItem } from './faq-accordion-item'
 import { SectionFaqHero } from './section-faq-hero'
 import type { SectionFaqPageProps } from '../types'
 
-export { EMERALD_FAQ, INDIGO_FAQ, ORANGE_FAQ } from '../constants'
+export { EMERALD_FAQ } from '../constants'
 export type { FaqItem, FaqTheme, SectionFaqPageProps } from '../types'
 
 export function SectionFaqPage({

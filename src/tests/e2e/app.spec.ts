@@ -1,11 +1,9 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Landing Page', () => {
-  test('shows three pillars', async ({ page }) => {
+  test('shows psikotes pillar', async ({ page }) => {
     await page.goto('/')
     await expect(page.getByText('Psikotes')).toBeVisible()
-    await expect(page.getByText('Konseling & Coaching')).toBeVisible()
-    await expect(page.getByText('Training & Program')).toBeVisible()
   })
 
   test('navigates to login', async ({ page }) => {

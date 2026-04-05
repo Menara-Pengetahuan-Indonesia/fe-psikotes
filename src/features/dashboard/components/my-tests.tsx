@@ -56,7 +56,7 @@ export function MyTests() {
             className="bg-white text-slate-900 hover:bg-violet-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
             asChild
           >
-            <Link href="/psikotes">
+            <Link href="/">
               <Brain className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
               Ambil Tes Baru
             </Link>

@@ -8,13 +8,13 @@ export function EcosystemSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-20 space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm mb-2">
-            <Sparkles className="w-3.5 h-3.5 text-konseling-600 fill-konseling-600" />
+            <Sparkles className="w-3.5 h-3.5 text-primary-600 fill-primary-600" />
             <span className="text-[10px] font-black tracking-[0.2em] text-slate-500 uppercase">
               Holistic Growth
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-            Bukan Sekadar <span className="text-konseling-600">Komunitas</span>
+            Bukan Sekadar <span className="text-primary-600">Komunitas</span>
           </h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto font-medium leading-relaxed">
             Ini adalah ekosistem lengkap untuk membantumu tumbuh 1% setiap harinya melalui berbagai metode pembelajaran yang teruji.
@@ -26,7 +26,7 @@ export function EcosystemSection() {
             const Icon = item.icon
             
             const themes = {
-              indigo: 'bg-konseling-50/30 border-konseling-100 hover:border-konseling-500 hover:shadow-konseling-900/5',
+              indigo: 'bg-primary-50/30 border-primary-100 hover:border-primary-500 hover:shadow-primary-900/5',
               amber: 'bg-accent-50/30 border-accent-100 hover:border-accent-500 hover:shadow-accent-900/5',
               teal: 'bg-primary-50/30 border-primary-100 hover:border-primary-500 hover:shadow-primary-900/5',
               sky: 'bg-sky-50/30 border-sky-100 hover:border-sky-500 hover:shadow-sky-900/5',

@@ -23,7 +23,7 @@ export const TRANSFORMATION_STEPS = [
   {
     id: 'masa-depan',
     title: 'Masa Depan',
-    description: 'Ikuti pelatihan dan program pengembangan untuk memperkuat mental health dan meningkatkan kapasitas dirimu dalam hidup maupun karier',
+    description: 'Ikuti program pengembangan untuk memperkuat mental health dan meningkatkan kapasitas dirimu dalam hidup maupun karier',
     icon: GraduationCap,
     color: 'bg-primary-600 text-white',
   },

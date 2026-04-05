@@ -37,7 +37,7 @@ export const PREMIUM_FAQS = [
   },
   {
     q: 'Apakah ada sesi konsultasi setelah tes?',
-    a: 'Paket Premium sudah memberikan laporan lengkap yang self-explanatory. Namun jika Anda butuh pendalaman, Anda bisa memesan sesi konseling terpisah dengan psikolog kami dengan harga khusus member.',
+    a: 'Paket Premium sudah memberikan laporan lengkap yang self-explanatory. Namun jika Anda butuh pendalaman, Anda bisa memesan sesi konsultasi terpisah dengan psikolog kami dengan harga khusus member.',
   },
 ]
 

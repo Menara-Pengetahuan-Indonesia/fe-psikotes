@@ -53,7 +53,7 @@ test.describe('Performance Testing', () => {
 
   test('should render exam interface within acceptable time', async ({ page }) => {
     const startTime = Date.now()
-    await page.goto('/psikotes/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
+    await page.goto('/mahasiswa/minat-bakat/form?testId=647e4a56-16b7-49c1-a3bd-8e6c80d09bc6')
     const loadTime = Date.now() - startTime
 
     expect(loadTime).toBeLessThan(3000) // 3 seconds

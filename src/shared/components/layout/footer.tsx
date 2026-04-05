@@ -24,13 +24,13 @@ export function Footer() {
   const links = getFooterLinks(pathname)
   const cta = getFooterCta(pathname)
 
-  const hidden = pathname === '/'
-    || pathname === '/masuk'
+  const hidden = pathname === '/masuk'
     || pathname === '/daftar'
     || pathname === '/forgot-password'
-    || pathname.startsWith('/psikotes/mahasiswa/try-out/form')
-    || pathname.startsWith('/psikotes/gratis/')
-    || pathname.startsWith('/psikotes/premium/')
+    || pathname.startsWith('/mahasiswa/try-out/form')
+    || pathname.startsWith('/gratis/')
+    || pathname.startsWith('/premium/')
+    || pathname.startsWith('/tes/')
     || pathname.startsWith('/dashboard')
     || pathname.startsWith('/pengguna')
     || pathname.startsWith('/admin')

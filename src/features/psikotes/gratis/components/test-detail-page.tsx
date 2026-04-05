@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Clock, Users, Play, Share2, Info, AlertCircle, ChevronRight, Shield, Brain } from 'lucide-react'
 
-import { GRATIS_TESTS } from '@features/psikotes/constants'
+import { GRATIS_TESTS } from '@/features/psikotes/constants'
 import { GRATIS_INSTRUCTIONS } from '../constants'
 import { cn } from '@/lib/utils'
 
@@ -19,7 +19,7 @@ export function TestDetailPage({ slug }: TestDetailPageProps) {
       <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 pt-8 pb-10 md:pt-10 md:pb-12 text-white">
         <div className="max-w-4xl mx-auto px-6 relative z-10">
           <Link
-            href="/psikotes/gratis"
+            href="/gratis"
             className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-8 group"
           >
             <div className="size-8 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
@@ -71,7 +71,7 @@ export function TestDetailPage({ slug }: TestDetailPageProps) {
                 <Share2 className="size-5" />
               </button>
               <Link
-                href={`/psikotes/gratis/${slug}/exam`}
+                href={`/gratis/${slug}/exam`}
                 className="h-14 px-8 bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl font-black text-base shadow-xl transition-all active:scale-95 flex items-center gap-2"
               >
                 <Play className="size-5 fill-current" />
@@ -137,7 +137,7 @@ export function TestDetailPage({ slug }: TestDetailPageProps) {
         {/* BOTTOM CTA */}
         <div className="flex justify-center pt-4">
           <Link
-            href={`/psikotes/gratis/${slug}/exam`}
+            href={`/gratis/${slug}/exam`}
             className="h-14 px-10 bg-slate-900 text-white hover:bg-slate-800 rounded-2xl font-black text-base shadow-xl transition-all active:scale-95 flex items-center gap-2"
           >
             <Play className="size-5 fill-current" />
