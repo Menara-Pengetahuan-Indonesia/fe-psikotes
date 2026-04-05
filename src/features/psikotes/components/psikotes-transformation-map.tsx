@@ -70,13 +70,13 @@ export function PsikotesTransformationMap() {
                   </div>
                   
                   {/* Visual Indicator (Number) */}
-                  <span className="absolute -right-2 -bottom-4 text-7xl font-black text-white/5 select-none transition-all group-hover/item:text-white/10">
+                  <span className="absolute -right-2 -bottom-4 text-7xl font-black text-white/5 select-none transition-opacity group-hover/item:text-white/10">
                     0{idx + 1}
                   </span>
 
                   <button 
                     onClick={() => scrollToSection(step.id)}
-                    className="mt-4 flex items-center gap-2 text-xs font-black text-accent-400 uppercase tracking-widest transition-all hover:text-accent-300 group/btn"
+                    className="mt-4 flex items-center gap-2 text-xs font-black text-accent-400 uppercase tracking-widest transition-colors hover:text-accent-300 group/btn"
                   >
                     Eksplorasi <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
                   </button>

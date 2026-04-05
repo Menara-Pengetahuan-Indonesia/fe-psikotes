@@ -139,13 +139,13 @@ export function PsikotesDiagnostic() {
       {/* 1. INITIAL INPUT PHASE (Big Search Bar) */}
       {phase === 'input' && (
         <div className={cn(
-          "mx-auto flex flex-col gap-6 transition-all duration-700 ease-in-out",
+          "mx-auto flex flex-col gap-6 transition-[max-width] duration-700 ease-in-out",
           isInputFocused ? "max-w-4xl" : "max-w-xl"
         )}>
           <form 
             onSubmit={handleManualSubmit}
             className={cn(
-              "relative flex items-start transition-all duration-500",
+              "relative flex items-start transition-shadow duration-300",
               "bg-white rounded-[2.5rem] shadow-2xl overflow-hidden p-2.5",
               isInputFocused ? "ring-8 ring-primary-500/10 -translate-y-1" : ""
             )}
@@ -178,7 +178,7 @@ export function PsikotesDiagnostic() {
               type="submit"
               disabled={!inputValue.trim()}
               className={cn(
-                "mt-1.5 h-12 px-6 rounded-2xl font-black text-xs uppercase tracking-widest transition-all shrink-0",
+                "mt-1.5 h-12 px-6 rounded-2xl font-black text-xs uppercase tracking-widest transition-colors shrink-0",
                 inputValue.trim() 
                   ? "bg-primary-600 text-white hover:bg-primary-700 shadow-lg shadow-primary-600/20" 
                   : "bg-slate-50 text-slate-300 cursor-not-allowed"
@@ -258,7 +258,7 @@ export function PsikotesDiagnostic() {
               <span className="text-xs font-black text-white/40 uppercase tracking-widest">Lanjutkan ceritamu...</span>
               <form 
                 onSubmit={handleManualSubmit}
-                className="relative flex items-end bg-white/10 rounded-2xl border border-white/20 p-1 focus-within:bg-white/20 transition-all"
+                className="relative flex items-end bg-white/10 rounded-2xl border border-white/20 p-1 focus-within:bg-white/20 transition-colors"
               >
                 <textarea
                   ref={inputRef}
@@ -278,7 +278,7 @@ export function PsikotesDiagnostic() {
                 <button
                   type="submit"
                   disabled={!inputValue.trim() || phase === 'thinking'}
-                  className="mb-1 p-2 rounded-xl bg-white text-primary-600 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/90 transition-all shrink-0"
+                  className="mb-1 p-2 rounded-xl bg-white text-primary-600 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/90 transition-colors shrink-0"
                 >
                   <Send className="w-4 h-4" />
                 </button>
@@ -323,7 +323,7 @@ export function PsikotesDiagnostic() {
                     <a 
                       href={rec.href}
                       className={cn(
-                        "flex items-center justify-between p-5 rounded-2xl transition-all hover:scale-[1.02] shadow-sm",
+                        "flex items-center justify-between p-5 rounded-2xl transition-transform hover:scale-[1.02] shadow-sm",
                         rec.theme
                       )}
                     >

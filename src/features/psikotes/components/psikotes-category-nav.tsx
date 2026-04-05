@@ -149,7 +149,7 @@ export function PsikotesCategoryNav() {
                       key={idx}
                       onClick={() => setActiveProblemIndex(idx)}
                       className={cn(
-                        "w-full text-center lg:text-left p-4 px-5 rounded-2xl transition-all duration-300 border-2 flex flex-col lg:flex-row gap-3 items-center group/btn relative",
+                        "w-full text-center lg:text-left p-4 px-5 rounded-2xl transition-colors duration-300 border-2 flex flex-col lg:flex-row gap-3 items-center group/btn relative",
                         activeProblemIndex === idx 
                           ? "bg-white border-primary-500 shadow-md scale-[1.02] z-10" 
                           : "bg-white/20 border-transparent hover:border-slate-200 opacity-60 hover:opacity-100"

@@ -164,7 +164,7 @@ export function PsikotesPillars() {
                           </div>
                        </div>
 
-                       <ArrowRight className="absolute right-8 bottom-8 w-12 h-12 text-white/5 group-hover:translate-x-2 group-hover:text-white/10 transition-all duration-500" />
+                       <ArrowRight className="absolute right-8 bottom-8 w-12 h-12 text-white/5 group-hover:translate-x-2 group-hover:text-white/10 transition-transform duration-300" />
                     </div>
                   </div>
                 </div>
