@@ -73,9 +73,6 @@ export function TestCategoryCard({ test, number, href, variant = 'teal' }: TestC
       theme.border,
       theme.shadow
     )}>
-      {/* Decorative Background Aura */}
-      <div className={cn("absolute -right-8 -top-8 w-32 h-32 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500", theme.aura)} />
-
       {/* Body */}
       <CardContent className="relative z-10 flex-1 flex flex-col px-6 pt-7 pb-0">
         {/* Icon row + number badge */}

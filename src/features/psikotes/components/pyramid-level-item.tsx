@@ -174,7 +174,6 @@ export function PyramidLevelItem({
             className={cn(
               'rounded-2xl p-5',
               'md:p-6',
-              'backdrop-blur-md',
               'border',
               item.cardBg,
               item.cardBorder,
