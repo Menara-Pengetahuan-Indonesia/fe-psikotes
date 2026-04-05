@@ -81,10 +81,10 @@ export function Navbar({
           className={cn(
             'w-full max-w-6xl flex items-center',
             'justify-between px-6 py-3',
-            'transition-all duration-500',
+            'transition-colors duration-300',
             isScrolled
               ? cn(
-                'bg-white/90 backdrop-blur-md',
+                'bg-white/95',
                 'rounded-full shadow-lg',
                 'border border-white/40'
               )
