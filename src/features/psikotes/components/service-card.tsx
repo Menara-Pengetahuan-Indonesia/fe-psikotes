@@ -72,10 +72,10 @@ export function ServiceCard({
         )}
         
         <div className="flex items-center gap-2 group/btn">
-          <span className="text-sm font-black text-primary-600 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+          <span className="text-sm font-black text-primary-600 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-[opacity,transform] duration-300">
             {actionLabel || 'Lihat Detail'}
           </span>
-          <div className="w-12 h-12 rounded-2xl bg-slate-900 flex items-center justify-center text-white shadow-lg transition-all duration-300 group-hover:bg-primary-600 group-hover:scale-110 shadow-slate-900/10 hover:shadow-primary-600/20">
+          <div className="w-12 h-12 rounded-2xl bg-slate-900 flex items-center justify-center text-white shadow-lg transition-colors duration-300 group-hover:bg-primary-600 shadow-slate-900/10 hover:shadow-primary-600/20">
             <ArrowRight className="size-5 transition-transform duration-300 group-hover:-rotate-45" />
           </div>
         </div>

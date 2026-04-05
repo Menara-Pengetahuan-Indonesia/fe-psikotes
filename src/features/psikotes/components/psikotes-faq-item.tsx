@@ -21,8 +21,8 @@ export function PsikotesFaqItem({
     <div
       className={cn(
         'bg-white rounded-3xl',
-        'border transition-all',
-        'duration-500 overflow-hidden',
+        'border transition-shadow',
+        'duration-300 overflow-hidden',
         isOpen
           ? 'border-primary-500'
             + ' shadow-xl'
@@ -79,7 +79,7 @@ export function PsikotesFaqItem({
           className={cn(
             'ml-4 shrink-0',
             'rounded-full p-2',
-            'transition-all',
+            'transition-colors',
             isOpen
               ? 'bg-primary-50'
                 + ' text-primary-600'
@@ -100,7 +100,7 @@ export function PsikotesFaqItem({
 
       <div
         className={cn(
-          'grid transition-all',
+          'grid transition-[grid-template-rows,opacity]',
           'duration-500 ease-in-out',
           isOpen
             ? 'grid-rows-[1fr]'
