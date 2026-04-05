@@ -10,15 +10,15 @@ vi.mock('next/link', () => ({
 import { NavbarMobileMenu } from '@/shared/components/layout/navbar-mobile-menu'
 
 const mockNavItems = [
-  { label: 'Beranda', href: '/psikotes' },
+  { label: 'Beranda', href: '/' },
   {
-    label: 'Layanan',
+    label: 'Kategori',
     children: [
-      { label: 'Psikotes Online', href: '/psikotes', icon: 'Brain', desc: 'Tes psikologi' },
-      { label: 'Konseling', href: '/konseling', icon: 'Heart', desc: 'Konsultasi' },
+      { label: 'Mahasiswa & Pelajar', href: '/mahasiswa', icon: 'BookOpen', desc: 'Tes minat bakat' },
+      { label: 'Perusahaan', href: '/bisnis', icon: 'Building2', desc: 'Rekrutmen' },
     ],
   },
-  { label: 'Membership', href: '/psikotes/membership/benefit' },
+  { label: 'Membership', href: '/membership/benefit' },
 ]
 
 describe('NavbarMobileMenu', () => {
@@ -30,13 +30,13 @@ describe('NavbarMobileMenu', () => {
 
   it('renders dropdown section label', () => {
     render(<NavbarMobileMenu navItems={mockNavItems} onClose={vi.fn()} />)
-    expect(screen.getByText('Layanan')).toBeInTheDocument()
+    expect(screen.getByText('Kategori')).toBeInTheDocument()
   })
 
   it('renders dropdown children', () => {
     render(<NavbarMobileMenu navItems={mockNavItems} onClose={vi.fn()} />)
-    expect(screen.getByText('Psikotes Online')).toBeInTheDocument()
-    expect(screen.getByText('Konseling')).toBeInTheDocument()
+    expect(screen.getByText('Mahasiswa & Pelajar')).toBeInTheDocument()
+    expect(screen.getByText('Perusahaan')).toBeInTheDocument()
   })
 
   it('renders auth CTA buttons', () => {

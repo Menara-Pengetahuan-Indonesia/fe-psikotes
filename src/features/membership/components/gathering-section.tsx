@@ -7,19 +7,19 @@ export function GatheringSection() {
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
         {/* Visual Content */}
         <div className="order-2 md:order-1 relative">
-          <div className="absolute inset-0 bg-konseling-600/5 transform -rotate-3 rounded-[3rem]" />
-          <div className="relative bg-white border border-slate-100 rounded-[3rem] p-3 shadow-2xl shadow-konseling-900/5">
+          <div className="absolute inset-0 bg-primary-600/5 transform -rotate-3 rounded-[3rem]" />
+          <div className="relative bg-white border border-slate-100 rounded-[3rem] p-3 shadow-2xl shadow-primary-900/5">
             <div className="aspect-video bg-slate-950 rounded-[2.5rem] flex items-center justify-center relative overflow-hidden">
               {/* Animated Background Grids */}
               <div className="absolute inset-0 grid grid-cols-4 gap-2 p-4 opacity-20">
                 {Array.from({ length: 12 }).map((_, i) => (
-                  <div key={i} className="bg-konseling-500/20 rounded-2xl animate-pulse" style={{ animationDelay: `${i * 100}ms` }} />
+                  <div key={i} className="bg-primary-500/20 rounded-2xl" style={{ animationDelay: `${i * 100}ms` }} />
                 ))}
               </div>
               
               <div className="relative z-10 text-center space-y-4">
-                <div className="w-20 h-20 bg-konseling-600/20 rounded-full mx-auto flex items-center justify-center backdrop-blur-md border border-white/10">
-                   <Video className="w-10 h-10 text-konseling-400" />
+                <div className="w-20 h-20 bg-primary-600/20 rounded-full mx-auto flex items-center justify-center backdrop-blur-md border border-white/10">
+                   <Video className="w-10 h-10 text-primary-400" />
                 </div>
                 <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-md rounded-full text-white text-[10px] font-black uppercase tracking-[0.2em] border border-white/10">
                   Live Gathering Session
@@ -29,7 +29,7 @@ export function GatheringSection() {
           </div>
           
           {/* Floating Avatar Card */}
-          <div className="absolute -bottom-10 -right-10 bg-white p-4 rounded-3xl shadow-2xl border border-slate-50 items-center gap-3 animate-float-medium hidden lg:flex">
+          <div className="absolute -bottom-10 -right-10 bg-white p-4 rounded-3xl shadow-2xl border border-slate-50 items-center gap-3 hidden lg:flex">
              <div className="w-12 h-12 rounded-2xl bg-accent-100 flex items-center justify-center text-xl">👤</div>
              <div>
                 <p className="font-black text-sm text-slate-900">Andi Pratama</p>
@@ -63,7 +63,7 @@ export function GatheringSection() {
           </ul>
 
           <div className="pt-4">
-             <button className="px-10 py-4 bg-slate-950 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-konseling-600 transition-all shadow-xl shadow-slate-950/10">
+             <button className="px-10 py-4 bg-slate-950 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-primary-600 transition-all shadow-xl shadow-slate-950/10">
                 Lihat Jadwal Gathering
              </button>
           </div>

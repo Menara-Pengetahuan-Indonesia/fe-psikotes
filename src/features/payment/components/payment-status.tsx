@@ -115,7 +115,7 @@ export function PaymentStatus({ method, nextUrl, orderId, productName, price }: 
 
             <div className="pt-6 border-t border-slate-100 mt-6">
               <Link
-                href="/psikotes/pembayaran"
+                href="/pembayaran"
                 className="block w-full py-3 bg-yellow-400 text-black font-bold text-center text-xs uppercase tracking-wider rounded-xl hover:bg-yellow-500 transition-colors"
               >
                 Ganti Metode Lain

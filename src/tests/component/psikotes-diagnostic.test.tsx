@@ -188,8 +188,8 @@ describe('PsikotesDiagnostic', () => {
     fireEvent.submit(t3.closest('form')!)
     act(() => { vi.advanceTimersByTime(1500) })
 
-    // Should show konseling recommendation
-    expect(screen.getByText('Konseling Profesional')).toBeInTheDocument()
+    // Should show psikotes premium recommendation
+    expect(screen.getByText('Psikotes Premium')).toBeInTheDocument()
   })
 
   it('shows no recommendation before 3 messages', () => {

@@ -48,7 +48,6 @@ export function PsikotesPillars() {
           className={cn(
             'absolute top-[15%] left-[5%]',
             'text-primary-400/20 w-8 h-8',
-            'animate-pulse',
           )}
         />
         <Circle
@@ -56,7 +55,6 @@ export function PsikotesPillars() {
             'absolute bottom-[20%]',
             'right-[8%]',
             'text-accent-400/20 w-16 h-16',
-            'animate-float-slow',
           )}
         />
 
@@ -204,7 +202,7 @@ export function PsikotesPillars() {
                           <div className="flex items-center gap-3 pt-2">
                              <div className={cn("h-1 w-12 rounded-full", activeData.theme.accent)} />
                              <p className="text-xs font-black uppercase tracking-widest opacity-80 italic">Kenali Potensimu</p>
-                             <Sparkles className="w-3 h-3 text-accent-300 animate-pulse" />
+                             <Sparkles className="w-3 h-3 text-accent-300" />
                           </div>
                        </div>
 

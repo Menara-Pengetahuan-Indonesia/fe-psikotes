@@ -37,7 +37,6 @@ export function MahasiswaProcess() {
           className={cn(
             'absolute top-[15%] left-[5%]',
             'text-primary-400/20 w-8 h-8',
-            'animate-pulse',
           )}
         />
         <Circle
@@ -45,7 +44,6 @@ export function MahasiswaProcess() {
             'absolute bottom-[20%]',
             'right-[8%]',
             'text-accent-400/20 w-16 h-16',
-            'animate-float-slow',
           )}
         />
 

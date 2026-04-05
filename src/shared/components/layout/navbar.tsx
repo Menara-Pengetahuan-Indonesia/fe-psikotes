@@ -6,8 +6,6 @@ import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import {
   psikotesNavItems,
-  konselingNavItems,
-  pelatihanNavItems,
 } from '@/config/navigation'
 import {
   HIDDEN_ROUTES,
@@ -37,12 +35,8 @@ export function Navbar({
 
   const navItems = React.useMemo(() => {
     if (customNavItems) return customNavItems
-    if (pathname.startsWith('/konseling'))
-      return konselingNavItems
-    if (pathname.startsWith('/pelatihan'))
-      return pelatihanNavItems
     return psikotesNavItems
-  }, [customNavItems, pathname])
+  }, [customNavItems])
 
   React.useEffect(() => {
     let ticking = false
@@ -69,9 +63,8 @@ export function Navbar({
     HIDDEN_ROUTE_PREFIXES.some((p) =>
       pathname.startsWith(p)
     ) ||
-    pathname.startsWith('/psikotes/mahasiswa/try-out/form') ||
+    pathname.startsWith('/mahasiswa/try-out/form') ||
     pathname.startsWith('/tes/')
-  if (isHiddenRoute) return null
   if (isHiddenRoute) return null
 
   return (

@@ -9,5 +9,8 @@ export type {
   CorporateTest,
   FaqItem,
   CtaBannerData,
+  AlatTes,
+  AspekPaket,
+  PaketDetail,
 } from './psikotes.types'
 export type { ActivityLogEntry } from './exam.types'

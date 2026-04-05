@@ -17,6 +17,5 @@ describe('ServiceGrid', () => {
     render(<ServiceGrid />)
     expect(screen.getByText('semua')).toBeInTheDocument()
     expect(screen.getByText('psikotes')).toBeInTheDocument()
-    expect(screen.getByText('konseling')).toBeInTheDocument()
   })
 })

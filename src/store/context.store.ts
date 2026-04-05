@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-type Pillar = 'psikotes' | 'konseling' | 'training'
+type Pillar = 'psikotes'
 
 interface ContextState {
   activePillar: Pillar

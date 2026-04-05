@@ -1,7 +1,6 @@
-import { Download, Share2, Brain, Award, TrendingUp } from 'lucide-react'
+import { Download, Share2, Brain, Award } from 'lucide-react'
 
-import { cn } from '@/lib/utils'
-import type { ResultData } from '@features/psikotes/constants'
+import type { ResultData } from '@/features/psikotes/constants'
 
 interface ResultCardSectionProps {
   result: ResultData

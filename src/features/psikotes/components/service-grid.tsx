@@ -1,3 +1,5 @@
+'use client'
+
 import { Grid, Plus, Hexagon, Diamond } from 'lucide-react'
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
@@ -9,7 +11,6 @@ import { SERVICES } from '../constants'
 const TAB_FILTERS: Record<string, string[]> = {
   semua: [],
   psikotes: ['Terpopuler', 'Karir', 'Edukasi', 'Premium'],
-  konseling: ['Klinis', 'Personal'],
 }
 
 export function ServiceGrid() {
@@ -29,10 +30,10 @@ export function ServiceGrid() {
       />
 
       {/* 2. Technical Ornaments */}
-      <Plus className="absolute top-[10%] left-[10%] text-primary-600/20 w-8 h-8 animate-pulse" />
+      <Plus className="absolute top-[10%] left-[10%] text-primary-600/20 w-8 h-8" />
       <Plus className="absolute bottom-[10%] right-[15%] text-stone-400/20 w-10 h-10 rotate-45" />
-      <Hexagon className="absolute top-[25%] right-[5%] text-primary-600/10 w-24 h-24 rotate-12 animate-float-slow" />
-      <Diamond className="absolute bottom-[20%] left-[5%] text-accent-600/10 w-16 h-16 -rotate-12 animate-float-medium" />
+      <Hexagon className="absolute top-[25%] right-[5%] text-primary-600/10 w-24 h-24 rotate-12" />
+      <Diamond className="absolute bottom-[20%] left-[5%] text-accent-600/10 w-16 h-16 -rotate-12" />
 
       {/* 3. Ambient Glows */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[radial-gradient(circle_at_30%_30%,#CCFBF1_0%,#99F6E4_100%)] opacity-30 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3 pointer-events-none" />
@@ -60,7 +61,7 @@ export function ServiceGrid() {
         {/* Tabs & Content */}
         <Tabs defaultValue="semua" className="w-full">
           <TabsList className="mx-auto flex justify-center w-fit mb-16 bg-white border-2 border-stone-200 p-1.5 rounded-full shadow-xl shadow-stone-200/50 backdrop-blur-sm">
-            {['semua', 'psikotes', 'konseling'].map((tab) => (
+            {['semua', 'psikotes'].map((tab) => (
               <TabsTrigger 
                 key={tab}
                 value={tab} 

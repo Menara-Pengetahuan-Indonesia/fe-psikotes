@@ -19,7 +19,7 @@ export function MembershipFaq() {
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 leading-tight">
-            FAQ <span className="text-konseling-600">Membership</span>
+            FAQ <span className="text-primary-600">Membership</span>
           </h2>
           <p className="text-lg text-slate-500 max-w-xl mx-auto font-medium">
             Pertanyaan umum seputar keanggotaan dan benefit komunitas eksklusif Bermoela.
@@ -36,7 +36,7 @@ export function MembershipFaq() {
                 className={cn(
                   "bg-white rounded-3xl border transition-all duration-500 overflow-hidden",
                   isOpen 
-                    ? "border-konseling-500 shadow-xl shadow-konseling-900/5 ring-1 ring-konseling-500/10" 
+                    ? "border-primary-500 shadow-xl shadow-primary-900/5 ring-1 ring-primary-500/10"
                     : "border-slate-100 shadow-lg shadow-stone-200/50 hover:border-slate-200"
                 )}
               >
@@ -47,7 +47,7 @@ export function MembershipFaq() {
                   <div className="flex items-center gap-4">
                     <div className={cn(
                       "w-10 h-10 rounded-xl flex items-center justify-center transition-colors",
-                      isOpen ? "bg-konseling-600 text-white" : "bg-slate-50 text-slate-400"
+                      isOpen ? "bg-primary-600 text-white" : "bg-slate-50 text-slate-400"
                     )}>
                       <HelpCircle className="h-5 w-5" />
                     </div>
@@ -61,7 +61,7 @@ export function MembershipFaq() {
                   <span
                     className={cn(
                       "ml-4 shrink-0 rounded-full p-2 transition-all",
-                      isOpen ? "bg-konseling-50 text-konseling-600" : "bg-slate-50 text-slate-300"
+                      isOpen ? "bg-primary-50 text-primary-600" : "bg-slate-50 text-slate-300"
                     )}
                   >
                     <ChevronDown className={cn("h-5 w-5 transition-transform duration-500", isOpen && "rotate-180")} />

@@ -43,14 +43,14 @@ export const PILLARS = [
     },
     detail: {
       problem: 'Sudah tahu masalahnya, tapi tidak tahu cara mengurainya secara tuntas.',
-      product: 'Layanan Konseling & Konsultasi Ahli.',
+      product: 'Layanan Konsultasi & Pendampingan Ahli.',
       solution: 'Sesi privat dengan psikolog profesional untuk mendapatkan panduan personal.',
       benefit: 'Ketenangan pikiran dan strategi hidup yang lebih terarah.'
     }
   },
   {
-    id: 'pelatihan',
-    title: 'Rancang Masa Depan (Pelatihan)',
+    id: 'pengembangan',
+    title: 'Rancang Masa Depan (Pengembangan)',
     subtitle: 'Tumbuh & Sukses',
     description: 'Tingkatkan kemampuanmu dalam bidang mental health. Bukan sekadar bertahan, tapi benar-benar berkembang.',
     icon: GraduationCap,
@@ -64,7 +64,7 @@ export const PILLARS = [
     },
     detail: {
       problem: 'Kurangnya skill untuk menghadapi tekanan atau ingin mendalami bidang psikologi.',
-      product: 'Pelatihan Mental Health & Sertifikasi Praktisi.',
+      product: 'Program Pengembangan Mental Health & Sertifikasi Praktisi.',
       solution: 'Belajar metode praktis untuk tumbuh kuat dan sukses di era penuh tekanan.',
       benefit: 'Menjadi pribadi yang berdaya dan memiliki sertifikasi kompetensi.'
     }

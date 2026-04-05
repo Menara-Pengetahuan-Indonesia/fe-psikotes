@@ -93,15 +93,15 @@ export function PsikotesDiagnostic() {
     const isIntense = lastUserMessage.length > 50 || lastUserMessage.includes('parah') || lastUserMessage.includes('stres') || lastUserMessage.includes('depresi')
     
     return isIntense ? {
-      title: 'Konseling Profesional',
-      desc: 'Sesi privat untuk membebaskanmu dari kendala masa lalu.',
-      href: '/konseling',
-      icon: MessageSquare,
-      theme: 'bg-indigo-600 text-white',
+      title: 'Psikotes Premium',
+      desc: 'Asesmen mendalam untuk membebaskanmu dari kendala masa lalu.',
+      href: '/premium',
+      icon: Brain,
+      theme: 'bg-primary-600 text-white',
     } : {
       title: 'Psikotes & Asesmen',
       desc: 'Pemetaan diri untuk merancang masa depan yang indah.',
-      href: '/psikotes/premium',
+      href: '/premium',
       icon: Brain,
       theme: 'bg-primary-600 text-white',
     }
@@ -352,14 +352,14 @@ export function PsikotesDiagnostic() {
             <div className="pt-4 border-t border-slate-50 flex items-center justify-between shrink-0">
                <div className="flex items-center gap-2">
                   <div className={cn(
-                    "w-2 h-2 rounded-full animate-pulse",
+                    "w-2 h-2 rounded-full",
                     phase === 'thinking' ? "bg-amber-400" : "bg-emerald-500"
                   )} />
                   <span className="text-xs font-bold text-slate-400 uppercase tracking-tight">
                     {phase === 'thinking' ? 'Menganalisis...' : 'Analisis Aktif'}
                   </span>
                </div>
-               <Sparkles className="w-4 h-4 text-accent-400 animate-pulse" />
+               <Sparkles className="w-4 h-4 text-accent-400" />
             </div>
           </div>
 
