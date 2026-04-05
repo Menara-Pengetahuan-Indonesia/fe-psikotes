@@ -1,9 +1,8 @@
 'use client'
 
-import { Grid, Plus, Hexagon, Diamond } from 'lucide-react'
+import { Grid } from 'lucide-react'
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
-import { TOPO_PRIMARY, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 
 import { ServiceCard } from './service-card'
 import { SERVICES } from '../constants'
@@ -19,25 +18,6 @@ export function ServiceGrid() {
 
   return (
     <section className="py-24 md:py-36 bg-background relative overflow-hidden">
-      
-      {/* --- RICH BACKGROUND ORNAMENTS (Matching Hero) --- */}
-      {/* 1. Subtle Topographic Line Pattern */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-multiply"
-           style={{
-             backgroundImage: TOPO_PRIMARY,
-             backgroundSize: TOPO_BG_SIZE,
-           }}
-      />
-
-      {/* 2. Technical Ornaments */}
-      <Plus className="absolute top-[10%] left-[10%] text-primary-600/20 w-8 h-8" />
-      <Plus className="absolute bottom-[10%] right-[15%] text-stone-400/20 w-10 h-10 rotate-45" />
-      <Hexagon className="absolute top-[25%] right-[5%] text-primary-600/10 w-24 h-24 rotate-12" />
-      <Diamond className="absolute bottom-[20%] left-[5%] text-accent-600/10 w-16 h-16 -rotate-12" />
-
-      {/* 3. Ambient Glows */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[radial-gradient(circle_at_30%_30%,#CCFBF1_0%,#99F6E4_100%)] opacity-30 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-125 h-125 bg-[radial-gradient(circle_at_30%_30%,#FEF3C7_0%,#FDE68A_100%)] opacity-20 rounded-full blur-[80px] -translate-x-1/4 translate-y-1/4 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section Header */}
@@ -60,7 +40,7 @@ export function ServiceGrid() {
         
         {/* Tabs & Content */}
         <Tabs defaultValue="semua" className="w-full">
-          <TabsList className="mx-auto flex justify-center w-fit mb-16 bg-white border-2 border-stone-200 p-1.5 rounded-full shadow-xl shadow-stone-200/50 backdrop-blur-sm">
+          <TabsList className="mx-auto flex justify-center w-fit mb-16 bg-white border-2 border-stone-200 p-1.5 rounded-full shadow-xl shadow-stone-200/50">
             {['semua', 'psikotes'].map((tab) => (
               <TabsTrigger 
                 key={tab}
