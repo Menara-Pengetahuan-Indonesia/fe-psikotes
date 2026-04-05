@@ -28,9 +28,6 @@ import { cn } from '@/lib/utils'
 import { ConfirmDialog } from '@/features/admin/components/Common/ConfirmDialog'
 import { usePackage } from '@/features/admin/hooks'
 
-function formatDate(dateStr: string) {
-  try { return new Date(dateStr).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) } catch { return '-' }
-}
 
 function formatPrice(price: number) {
   if (price === 0) return 'Gratis'

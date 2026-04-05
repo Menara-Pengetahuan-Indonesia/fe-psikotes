@@ -9,7 +9,6 @@ import {
   ChevronRight,
   Pencil,
   Trash2,
-  BarChart3,
   FileText,
   Clock,
   BadgeDollarSign,
@@ -35,12 +34,6 @@ import { usePackages, useCreatePackage, useUpdatePackage, useDeletePackage, useP
 import type { Package as PackageType } from '@/features/admin/types'
 
 type FilterType = 'all' | 'published' | 'draft' | 'free' | 'premium'
-
-function formatDate(dateStr: string) {
-  try {
-    return new Date(dateStr).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })
-  } catch { return '-' }
-}
 
 function formatPrice(price: number) {
   if (price === 0) return 'Gratis'

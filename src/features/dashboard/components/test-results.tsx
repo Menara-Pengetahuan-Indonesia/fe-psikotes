@@ -1,6 +1,6 @@
 'use client'
 
-import { Award, ChevronRight, Calendar, Brain, History, CheckCircle2, Clock, FileText, TrendingUp } from 'lucide-react'
+import { Award, ChevronRight, Calendar, Brain, History, CheckCircle2, FileText, TrendingUp } from 'lucide-react'
 import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'

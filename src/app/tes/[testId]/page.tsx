@@ -1,21 +1,22 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { ArrowLeft, ArrowRight, CheckCircle2, Brain, Hash, Clock, Camera, CameraOff, Eye, Lock, History } from 'lucide-react'
-
+import { useParams, useRouter } from 'next/navigation'
+import {
+  ArrowLeft, ArrowRight, CheckCircle2, Brain, Hash, Clock,
+  Camera, CameraOff, Eye, Lock, History, Loader2, AlertTriangle,
+} from 'lucide-react'
 import { cn } from '@/lib/utils'
-import type { MockQuestion, MockSection } from '@/features/psikotes/constants'
-import { ExamSubmitModal } from './exam-submit-modal'
-import { MOCK_QUESTIONS } from '../constants'
+import { api } from '@/lib/axios'
+import type { TestConfig, ExamQuestion } from '@/features/psikotes/types/exam.types'
+import { ExamSubmitModal } from '@/features/psikotes/gratis/components/exam-submit-modal'
 
-interface ExamInterfaceProps {
-  slug?: string
-  totalQuestions?: number
-  questions?: MockQuestion[]
-  sections?: MockSection[]
-  backHref?: string
-  resultHref?: string
-  duration?: number // in minutes
+function getAllQuestions(config: TestConfig): ExamQuestion[] {
+  const questions = [...config.questions]
+  config.sections.forEach(section => {
+    questions.push(...section.questions)
+  })
+  return questions.sort((a, b) => a.order - b.order)
 }
 
 function formatTimer(seconds: number) {
@@ -32,30 +33,24 @@ function formatDuration(seconds: number) {
   return s > 0 ? `${m}m ${s}d` : `${m}m`
 }
 
-export function ExamInterface({
-  slug = '',
-  totalQuestions = 5,
-  questions: questionsProp,
-  sections: sectionsProp,
-  backHref,
-  resultHref,
-  duration = 30,
-}: ExamInterfaceProps) {
-  const questions = questionsProp ?? MOCK_QUESTIONS.slice(0, totalQuestions)
-  const sections = sectionsProp ?? []
-  const hasSections = sections.length > 0
+export default function TesPage() {
+  const params = useParams()
+  const router = useRouter()
+  const testId = params.testId as string
+
+  // State
+  const [config, setConfig] = useState<TestConfig | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [, setSubmitting] = useState(false)
 
   const [currentIdx, setCurrentIdx] = useState(0)
-  const [selectedOption, setSelectedOption] = useState<number | null>(null)
-  const [answers, setAnswers] = useState<Record<number, number>>({})
+  const [answers, setAnswers] = useState<Record<string, string>>({})
+  const [timeLeft, setTimeLeft] = useState(0)
   const [showSubmitModal, setShowSubmitModal] = useState(false)
 
-  // Timer
-  const [timeLeft, setTimeLeft] = useState(duration * 60)
   const [questionStartTime, setQuestionStartTime] = useState(() => Date.now())
-  const [questionTimes, setQuestionTimes] = useState<Record<number, number>>({})
-
-  // Activity log
+  const [questionTimes, setQuestionTimes] = useState<Record<string, number>>({})
   const [activityLog, setActivityLog] = useState<{ questionNum: number; label: string; time: string; duration: number }[]>([])
 
   // Camera
@@ -63,28 +58,30 @@ export function ExamInterface({
   const [cameraActive, setCameraActive] = useState(false)
   const [cameraError, setCameraError] = useState(false)
 
-  const question = questions[currentIdx]
-  const progress = ((currentIdx + 1) / questions.length) * 100
-  const answeredCount = Object.keys(answers).length
-
-  // Section tracking
-  const currentSection = hasSections ? sections.find((s) => s.id === question.sectionId) : null
-  const prevQuestion = currentIdx > 0 ? questions[currentIdx - 1] : null // eslint-disable-line @typescript-eslint/no-unused-vars
-  const [showSectionIntro, setShowSectionIntro] = useState(false)
-  const [introSection, setIntroSection] = useState<MockSection | null>(null)
-
-  // Group questions by section for navigator
-  const questionsBySection = hasSections
-    ? sections.map((s) => ({
-        section: s,
-        questions: questions.map((q, idx) => ({ ...q, globalIdx: idx })).filter((q) => q.sectionId === s.id),
-      }))
-    : [{ section: null, questions: questions.map((q, idx) => ({ ...q, globalIdx: idx })) }]
-
-  // Countdown timer
+  // Fetch config
   useEffect(() => {
+    api.get(`/tests/${testId}/config`)
+      .then(res => {
+        setConfig(res.data)
+        setTimeLeft(res.data.test.duration * 60)
+      })
+      .catch(() => setError('Tes tidak ditemukan atau belum dipublikasi'))
+      .finally(() => setLoading(false))
+  }, [testId])
+
+  const questions = config ? getAllQuestions(config) : []
+  const question = questions[currentIdx]
+  const sections = config?.sections ?? []
+  const hasSections = sections.length > 0
+  const currentSection = hasSections && question ? sections.find(s => s.questions.some(q => q.id === question.id)) : null
+  const answeredCount = Object.keys(answers).length
+  const progress = questions.length > 0 ? ((currentIdx + 1) / questions.length) * 100 : 0
+
+  // Timer
+  useEffect(() => {
+    if (!config || timeLeft <= 0) return
     const interval = setInterval(() => {
-      setTimeLeft((prev) => {
+      setTimeLeft(prev => {
         if (prev <= 1) {
           clearInterval(interval)
           setShowSubmitModal(true)
@@ -94,9 +91,9 @@ export function ExamInterface({
       })
     }, 1000)
     return () => clearInterval(interval)
-  }, [])
+  }, [config, timeLeft > 0]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Camera setup
+  // Camera
   const startCamera = useCallback(async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: { width: 320, height: 240, facingMode: 'user' } })
@@ -114,99 +111,116 @@ export function ExamInterface({
   const stopCamera = useCallback(() => {
     if (videoRef.current?.srcObject) {
       const stream = videoRef.current.srcObject as MediaStream
-      stream.getTracks().forEach((track) => track.stop())
+      stream.getTracks().forEach(track => track.stop())
       videoRef.current.srcObject = null
     }
     setCameraActive(false)
   }, [])
 
   useEffect(() => {
-    startCamera()
+    if (config?.features.hasCamera !== false) startCamera() // eslint-disable-line react-hooks/set-state-in-effect
     return () => stopCamera()
-  }, [startCamera, stopCamera])
+  }, [config, startCamera, stopCamera])
 
-  // Track time per question
-  const recordQuestionTime = () => {
-    const elapsed = Math.round((Date.now() - questionStartTime) / 1000) // eslint-disable-line react-hooks/purity
-    setQuestionTimes((prev) => ({
-      ...prev,
-      [question.id]: (prev[question.id] ?? 0) + elapsed,
-    }))
-  }
+  // Helpers
+  const recordQuestionTime = useCallback(() => {
+    if (!question) return
+    const elapsed = Math.round((Date.now() - questionStartTime) / 1000)
+    setQuestionTimes(prev => ({ ...prev, [question.id]: (prev[question.id] ?? 0) + elapsed }))
+  }, [question, questionStartTime])
 
-  const handleSelect = (optionIdx: number) => {
-    setSelectedOption(optionIdx)
-    setAnswers((prev) => ({ ...prev, [question.id]: optionIdx }))
-  }
+  const handleSelect = useCallback((optionId: string) => {
+    if (!question) return
+    setAnswers(prev => ({ ...prev, [question.id]: optionId }))
+  }, [question])
 
-  const handleNext = () => {
-    if (selectedOption === null) return
+  const handleNext = useCallback(() => {
+    if (!question || !answers[question.id]) return
     recordQuestionTime()
 
-    // Log activity
-    const elapsed = Math.round((Date.now() - questionStartTime) / 1000) // eslint-disable-line react-hooks/purity
-    const selectedLabel = question.options[selectedOption]?.label ?? '?'
-    const selectedText = question.options[selectedOption]?.text ?? ''
+    const selectedOption = question.options.find(o => o.id === answers[question.id])
     const now = new Date()
-    const timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
-
-    setActivityLog((prev) => [
-      {
-        questionNum: currentIdx + 1,
-        label: `${selectedLabel}. ${selectedText}`,
-        time: timeStr,
-        duration: elapsed,
-      },
-      ...prev,
-    ])
+    const elapsed = Math.round((Date.now() - questionStartTime) / 1000)
+    setActivityLog(prev => [{
+      questionNum: currentIdx + 1,
+      label: selectedOption?.text ?? '?',
+      time: now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+      duration: elapsed,
+    }, ...prev])
 
     if (currentIdx < questions.length - 1) {
-      const nextIdx = currentIdx + 1
-      const nextQuestion = questions[nextIdx]
-
-      // Check if entering a new section
-      if (hasSections && nextQuestion.sectionId !== question.sectionId) {
-        const nextSec = sections.find((s) => s.id === nextQuestion.sectionId)
-        if (nextSec) {
-          setIntroSection(nextSec)
-          setShowSectionIntro(true)
-        }
-      }
-
-      setCurrentIdx(nextIdx)
-      setSelectedOption(answers[nextQuestion.id] ?? null)
-      setQuestionStartTime(Date.now()) // eslint-disable-line react-hooks/purity
+      setCurrentIdx(currentIdx + 1)
+      setQuestionStartTime(Date.now())
     } else {
       setShowSubmitModal(true)
     }
-  }
+  }, [question, answers, recordQuestionTime, questionStartTime, currentIdx, questions.length])
 
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     if (currentIdx > 0) {
       recordQuestionTime()
-      setCurrentIdx((prev) => prev - 1)
-      const prevId = questions[currentIdx - 1].id
-      setSelectedOption(answers[prevId] ?? null)
-      setQuestionStartTime(Date.now()) // eslint-disable-line react-hooks/purity
+      setCurrentIdx(currentIdx - 1)
+      setQuestionStartTime(Date.now())
     }
-  }
+  }, [currentIdx, recordQuestionTime])
 
-  const handleJumpTo = (idx: number) => {
+  const handleJumpTo = useCallback((idx: number) => {
     recordQuestionTime()
     setCurrentIdx(idx)
-    const qId = questions[idx].id
-    setSelectedOption(answers[qId] ?? null)
-    setQuestionStartTime(Date.now()) // eslint-disable-line react-hooks/purity
-  }
+    setQuestionStartTime(Date.now())
+  }, [recordQuestionTime])
 
-  const handleConfirmSubmit = () => {
-    stopCamera()
-    setShowSubmitModal(false)
-    window.location.href = resultHref ?? `/psikotes/gratis/${slug}/result`
-  }
+  const handleConfirmSubmit = useCallback(async () => {
+    setSubmitting(true)
+    try {
+      const res = await api.post(`/tests/${testId}/submit`, { answers })
+      stopCamera()
+      setShowSubmitModal(false)
+      router.push(`/tes/${testId}/result/${res.data.testResult.id}`)
+    } catch {
+      setError('Gagal mengirim jawaban. Coba lagi.')
+      setSubmitting(false)
+      setShowSubmitModal(false)
+    }
+  }, [testId, answers, stopCamera, router])
 
-  const resolvedBackHref = backHref ?? `/psikotes/gratis/${slug}`
+  // Group questions by section for navigator
+  const questionsBySection = hasSections
+    ? sections.map(s => ({
+        section: s,
+        questions: questions.map((q, idx) => ({ ...q, globalIdx: idx })).filter(q => q.sectionId === s.id),
+      }))
+    : [{ section: null as { id: string; name: string } | null, questions: questions.map((q, idx) => ({ ...q, globalIdx: idx })) }]
+
   const isTimeLow = timeLeft < 300
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#F2F2F7] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="size-10 text-indigo-600 animate-spin" />
+          <p className="text-sm font-bold text-slate-500">Memuat tes...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !config || !question) {
+    return (
+      <div className="min-h-screen bg-[#F2F2F7] flex items-center justify-center">
+        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
+          <div className="size-16 rounded-2xl bg-rose-50 flex items-center justify-center mb-5">
+            <AlertTriangle className="size-8 text-rose-400" />
+          </div>
+          <p className="text-slate-900 font-black text-lg mb-1">{error ?? 'Tes tidak ditemukan'}</p>
+          <p className="text-slate-400 font-medium text-sm mb-6">Pastikan tes sudah dipublikasi.</p>
+          <button onClick={() => router.back()} className="h-12 px-8 bg-slate-900 text-white rounded-2xl font-black text-sm">
+            <ArrowLeft className="size-4 mr-2 inline" /> Kembali
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-[#F2F2F7] flex flex-col">
@@ -215,7 +229,7 @@ export function ExamInterface({
         <div className="max-w-5xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between mb-3">
             <button
-              onClick={() => { if (confirm('Yakin ingin keluar? Progress akan hilang.')) window.location.href = resolvedBackHref }}
+              onClick={() => { if (confirm('Yakin ingin keluar? Progress akan hilang.')) router.back() }}
               className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group"
             >
               <div className="size-8 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
@@ -224,7 +238,6 @@ export function ExamInterface({
               <span className="text-sm font-bold hidden md:inline">Keluar</span>
             </button>
 
-            {/* Timer */}
             <div className={cn(
               'flex items-center gap-2 px-5 py-2.5 rounded-full backdrop-blur-sm font-mono',
               isTimeLow ? 'bg-rose-500/20 border border-rose-400/30' : 'bg-white/10 border border-white/10'
@@ -252,7 +265,6 @@ export function ExamInterface({
             </div>
           </div>
 
-          {/* Progress Bar */}
           <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
             <div
               className="h-full bg-gradient-to-r from-indigo-400 to-teal-400 transition-all duration-500 ease-out rounded-full"
@@ -266,7 +278,6 @@ export function ExamInterface({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* LEFT: Question + Options */}
           <div className="lg:col-span-8 space-y-6">
-            {/* Question Card */}
             <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
               <div className="px-8 py-6 border-b border-slate-50 flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -278,7 +289,6 @@ export function ExamInterface({
                     <p className="text-xs text-slate-400 font-medium">{answeredCount} dari {questions.length} dijawab</p>
                   </div>
                 </div>
-                {/* Time spent on this question */}
                 {questionTimes[question.id] !== undefined && (
                   <div className="flex items-center gap-1.5 text-xs font-bold text-violet-500 bg-violet-50 px-3 py-1.5 rounded-full">
                     <Clock className="size-3.5" />
@@ -288,7 +298,7 @@ export function ExamInterface({
               </div>
               <div className="p-8">
                 <h2 className="text-xl md:text-2xl font-black text-slate-900 leading-tight tracking-tight">
-                  {question.question}
+                  {question.text}
                 </h2>
               </div>
             </div>
@@ -296,11 +306,12 @@ export function ExamInterface({
             {/* Options */}
             <div className="space-y-3">
               {question.options.map((opt, idx) => {
-                const isSelected = selectedOption === idx
+                const isSelected = answers[question.id] === opt.id
+                const label = String.fromCharCode(65 + idx) // A, B, C, D
                 return (
                   <button
-                    key={idx}
-                    onClick={() => handleSelect(idx)}
+                    key={opt.id}
+                    onClick={() => handleSelect(opt.id)}
                     className={cn(
                       'w-full text-left p-5 rounded-2xl border-2 transition-all duration-300 group flex items-center gap-4',
                       isSelected
@@ -308,22 +319,18 @@ export function ExamInterface({
                         : 'border-slate-100 bg-white hover:border-indigo-200 hover:shadow-sm'
                     )}
                   >
-                    <span
-                      className={cn(
-                        'size-10 rounded-xl flex items-center justify-center text-sm font-black transition-colors shrink-0',
-                        isSelected
-                          ? 'bg-indigo-600 text-white'
-                          : 'bg-slate-50 text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600'
-                      )}
-                    >
-                      {opt.label}
+                    <span className={cn(
+                      'size-10 rounded-xl flex items-center justify-center text-sm font-black transition-colors shrink-0',
+                      isSelected
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-slate-50 text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600'
+                    )}>
+                      {label}
                     </span>
                     <span className={cn('font-medium flex-1', isSelected ? 'text-slate-900' : 'text-slate-500')}>
                       {opt.text}
                     </span>
-                    {isSelected && (
-                      <CheckCircle2 className="size-5 text-indigo-600 shrink-0" />
-                    )}
+                    {isSelected && <CheckCircle2 className="size-5 text-indigo-600 shrink-0" />}
                   </button>
                 )
               })}
@@ -341,34 +348,27 @@ export function ExamInterface({
                     : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 shadow-sm'
                 )}
               >
-                <ArrowLeft className="size-4" />
-                Sebelumnya
+                <ArrowLeft className="size-4" /> Sebelumnya
               </button>
               <button
                 onClick={handleNext}
-                disabled={selectedOption === null}
+                disabled={!answers[question.id]}
                 className={cn(
                   'h-12 px-8 rounded-xl font-black text-sm flex items-center gap-2 transition-all',
-                  selectedOption !== null
+                  answers[question.id]
                     ? 'bg-slate-900 text-white hover:bg-slate-800 shadow-lg active:scale-95'
                     : 'bg-slate-200 text-slate-400 cursor-not-allowed'
                 )}
               >
                 {currentIdx === questions.length - 1 ? (
-                  <>
-                    <CheckCircle2 className="size-4" />
-                    Selesai & Kirim
-                  </>
+                  <><CheckCircle2 className="size-4" /> Selesai & Kirim</>
                 ) : (
-                  <>
-                    Selanjutnya
-                    <ArrowRight className="size-4" />
-                  </>
+                  <>Selanjutnya <ArrowRight className="size-4" /></>
                 )}
               </button>
             </div>
 
-            {/* ACTIVITY LOG - Jawaban Terkunci */}
+            {/* Activity Log */}
             {activityLog.length > 0 && (
               <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
                 <div className="px-8 py-5 border-b border-slate-50 flex items-center gap-3">
@@ -396,8 +396,7 @@ export function ExamInterface({
                       </div>
                       <div className="flex items-center gap-3 shrink-0">
                         <span className="text-[10px] font-bold text-violet-500 bg-violet-50 px-2 py-0.5 rounded-full flex items-center gap-1">
-                          <Clock className="size-3" />
-                          {formatDuration(log.duration)}
+                          <Clock className="size-3" /> {formatDuration(log.duration)}
                         </span>
                         <span className="text-[10px] font-medium text-slate-400">{log.time}</span>
                       </div>
@@ -433,28 +432,18 @@ export function ExamInterface({
               </div>
               <div className="p-4">
                 <div className="relative rounded-2xl overflow-hidden bg-slate-900 aspect-[4/3]">
-                  <video
-                    ref={videoRef}
-                    autoPlay
-                    muted
-                    playsInline
-                    className={cn('w-full h-full object-cover', !cameraActive && 'hidden')}
-                  />
+                  <video ref={videoRef} autoPlay muted playsInline className={cn('w-full h-full object-cover', !cameraActive && 'hidden')} />
                   {!cameraActive && (
                     <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-500">
                       <CameraOff className="size-8 mb-2" />
                       <p className="text-xs font-bold">{cameraError ? 'Kamera tidak diizinkan' : 'Memuat kamera...'}</p>
                       {cameraError && (
-                        <button
-                          onClick={startCamera}
-                          className="mt-3 text-[10px] font-black text-indigo-400 hover:text-indigo-300 uppercase tracking-widest"
-                        >
+                        <button onClick={startCamera} className="mt-3 text-[10px] font-black text-indigo-400 hover:text-indigo-300 uppercase tracking-widest">
                           Coba Lagi
                         </button>
                       )}
                     </div>
                   )}
-                  {/* Overlay frame */}
                   {cameraActive && (
                     <div className="absolute inset-0 border-2 border-white/10 rounded-2xl pointer-events-none">
                       <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full">
@@ -490,12 +479,11 @@ export function ExamInterface({
                       {group.questions.map((q) => {
                         const isAnswered = answers[q.id] !== undefined
                         const isCurrent = q.globalIdx === currentIdx
-                        const timeSpent = questionTimes[q.id]
                         return (
                           <button
                             key={q.id}
                             onClick={() => handleJumpTo(q.globalIdx)}
-                            title={timeSpent ? `Waktu: ${formatDuration(timeSpent)}` : undefined}
+                            title={questionTimes[q.id] ? `Waktu: ${formatDuration(questionTimes[q.id])}` : undefined}
                             className={cn(
                               'size-10 rounded-xl text-xs font-black transition-all relative',
                               isCurrent
@@ -513,7 +501,6 @@ export function ExamInterface({
                   </div>
                 ))}
 
-                {/* Legend */}
                 <div className="pt-4 border-t border-slate-50 flex flex-wrap gap-4">
                   <div className="flex items-center gap-2">
                     <div className="size-3 rounded bg-indigo-600" />
@@ -541,32 +528,6 @@ export function ExamInterface({
           onCancel={() => setShowSubmitModal(false)}
           onConfirm={handleConfirmSubmit}
         />
-      )}
-
-      {/* Section Intro Modal */}
-      {showSectionIntro && introSection && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white rounded-[2rem] p-8 max-w-md w-full shadow-2xl text-center animate-in fade-in zoom-in-95 duration-300">
-            <div className="size-16 rounded-2xl bg-gradient-to-br from-violet-400 to-violet-500 flex items-center justify-center mx-auto mb-5">
-              <Brain className="size-7 text-white" />
-            </div>
-            <p className="text-[10px] font-black text-violet-600 uppercase tracking-widest mb-2">Section Baru</p>
-            <h3 className="text-xl font-black text-slate-900 mb-2">{introSection.name}</h3>
-            <p className="text-sm text-slate-400 font-medium mb-6">{introSection.description}</p>
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1.5 rounded-full">
-                <Hash className="size-3.5" />
-                <span>{questions.filter((q) => q.sectionId === introSection.id).length} soal</span>
-              </div>
-            </div>
-            <button
-              onClick={() => setShowSectionIntro(false)}
-              className="h-12 px-10 bg-slate-900 text-white rounded-xl font-black text-sm shadow-lg hover:bg-slate-800 transition-all active:scale-95"
-            >
-              Mulai Section
-            </button>
-          </div>
-        </div>
       )}
     </div>
   )

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Plus, Edit2, Trash2, Target, Hash } from 'lucide-react'
+import { Plus, Edit2, Trash2, Target } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useIndicators, useDeleteIndicator } from '../../hooks'

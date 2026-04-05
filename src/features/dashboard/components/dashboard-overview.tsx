@@ -18,15 +18,11 @@ import { Button } from '@/components/ui/button'
 
 import { useAuthStoreHydrated } from '@/store/auth.store'
 import { DUMMY_TEST_HISTORY } from '@/features/dashboard/constants'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 export function DashboardOverview() {
   const { user } = useAuthStoreHydrated()
-  const [dateStr, setDateStr] = useState('')
-
-  useEffect(() => {
-    setDateStr(new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }))
-  }, [])
+  const [dateStr] = useState(() => new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }))
   const completedTests = DUMMY_TEST_HISTORY.filter((t) => t.status === 'selesai')
   const recentTests = DUMMY_TEST_HISTORY.filter((t) => t.status === 'selesai').slice(0, 5)
 

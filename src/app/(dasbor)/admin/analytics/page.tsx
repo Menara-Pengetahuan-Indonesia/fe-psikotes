@@ -7,7 +7,6 @@ import {
   TrendingUp,
   Award,
   FileBarChart,
-  Clock,
   Target,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'

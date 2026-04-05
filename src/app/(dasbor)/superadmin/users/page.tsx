@@ -4,7 +4,6 @@ import { useState } from 'react'
 import {
   Users,
   Search,
-  ChevronRight,
   Shield,
   ShieldCheck,
   ShieldBan,

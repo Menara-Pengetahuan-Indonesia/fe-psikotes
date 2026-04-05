@@ -5,17 +5,16 @@ import {
   ArrowLeft,
   User,
   Mail,
-  Clock,
   Calendar,
   Award,
   TrendingUp,
   FileBarChart,
+  Clock,
   CheckCircle2,
   BarChart3,
   Download,
   Target,
   Brain,
-  Zap,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'

@@ -48,7 +48,7 @@ export function ScoringRuleForm({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: {},
     reset,
     setValue,
     watch,

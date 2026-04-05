@@ -38,7 +38,8 @@ export function BentoCard({
   description,
   icon,
   badge,
-  header,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  header: _header,
   footer,
   onClick,
 }: BentoCardProps) {

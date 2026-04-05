@@ -20,7 +20,6 @@ import { Button } from '@/components/ui/button'
 import { useAuthStoreHydrated } from '@/store/auth.store'
 import { DUMMY_TEST_HISTORY } from '@/features/dashboard/constants'
 import { cn } from '@/lib/utils'
-import Link from 'next/link'
 
 const ROLE_CONFIG: Record<string, { label: string; bg: string }> = {
   USER: { label: 'Pengguna', bg: 'bg-indigo-500/20 text-indigo-300' },

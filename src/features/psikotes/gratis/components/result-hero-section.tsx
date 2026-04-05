@@ -1,4 +1,4 @@
-import { Sparkles, Award, Brain } from 'lucide-react'
+import { Sparkles, Award } from 'lucide-react'
 
 interface ResultHeroSectionProps {
   subtitle: string

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Clock, Users, Play, Share2, Info, AlertCircle, ChevronRight, Shield, Brain, BookOpen } from 'lucide-react'
+import { Clock, Users, Play, Share2, Info, AlertCircle, ChevronRight, Shield, Brain } from 'lucide-react'
 
 import { GRATIS_TESTS } from '@features/psikotes/constants'
 import { GRATIS_INSTRUCTIONS } from '../constants'
