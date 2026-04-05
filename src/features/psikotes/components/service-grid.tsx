@@ -1,5 +1,3 @@
-'use client'
-
 import { Grid, Plus, Hexagon, Diamond } from 'lucide-react'
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'

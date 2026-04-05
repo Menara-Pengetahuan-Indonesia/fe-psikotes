@@ -1,5 +1,3 @@
-'use client'
-
 import { Award, ChevronRight, Calendar, Brain, History, CheckCircle2, Clock, FileText, TrendingUp } from 'lucide-react'
 import Link from 'next/link'
 
