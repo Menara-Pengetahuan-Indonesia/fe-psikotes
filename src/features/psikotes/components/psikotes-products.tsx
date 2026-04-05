@@ -102,7 +102,7 @@ export function PsikotesProducts() {
                 
                 <a 
                   href={`/pembayaran?id=${product.id}`}
-                  className="w-full h-12 rounded-xl bg-primary-600 text-white flex items-center justify-center gap-2 text-xs font-black uppercase tracking-widest hover:bg-primary-700 transition-all shadow-lg shadow-primary-100"
+                  className="w-full h-12 rounded-xl bg-primary-600 text-white flex items-center justify-center gap-2 text-xs font-black uppercase tracking-widest hover:bg-primary-700 transition-colors shadow-lg shadow-primary-100"
                 >
                   Pilih Layanan <ArrowRight className="w-4 h-4" />
                 </a>
@@ -124,7 +124,7 @@ export function PsikotesProducts() {
               </div>
               <button 
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="px-8 h-16 rounded-2xl bg-white text-primary-600 text-sm font-black uppercase tracking-widest shadow-xl hover:bg-slate-50 transition-all flex items-center gap-3 shrink-0"
+                className="px-8 h-16 rounded-2xl bg-white text-primary-600 text-sm font-black uppercase tracking-widest shadow-xl hover:bg-slate-50 transition-colors flex items-center gap-3 shrink-0"
               >
                  Mulai Analisis Sekarang <Target className="w-5 h-5" />
               </button>

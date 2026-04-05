@@ -53,10 +53,10 @@ export function PsikotesJoinPractitioner() {
             </div>
 
             <div className="pt-4 flex flex-col sm:flex-row gap-4">
-               <button className="h-16 px-10 rounded-2xl bg-slate-900 text-white font-black text-sm uppercase tracking-widest hover:bg-primary-600 transition-all shadow-xl shadow-slate-200 flex items-center justify-center gap-3">
+               <button className="h-16 px-10 rounded-2xl bg-slate-900 text-white font-black text-sm uppercase tracking-widest hover:bg-primary-600 transition-colors shadow-xl shadow-slate-200 flex items-center justify-center gap-3">
                   Gabung Sekarang <ArrowRight className="w-5 h-5" />
                </button>
-               <button className="h-16 px-10 rounded-2xl bg-white border-2 border-slate-100 text-slate-600 font-black text-sm uppercase tracking-widest hover:border-primary-600 transition-all flex items-center justify-center gap-3">
+               <button className="h-16 px-10 rounded-2xl bg-white border-2 border-slate-100 text-slate-600 font-black text-sm uppercase tracking-widest hover:border-primary-600 transition-colors flex items-center justify-center gap-3">
                   Pelajari Alurnya <HeartHandshake className="w-5 h-5" />
                </button>
             </div>

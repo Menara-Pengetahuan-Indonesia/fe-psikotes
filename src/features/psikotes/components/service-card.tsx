@@ -31,7 +31,7 @@ export function ServiceCard({
     <Card
       onClick={onAction}
       className={cn(
-        'group relative flex flex-col p-1 transition-all duration-500 cursor-pointer overflow-hidden',
+        'group relative flex flex-col p-1 transition-shadow duration-300 cursor-pointer overflow-hidden',
         'bg-white border border-slate-200 hover:border-primary-500 hover:shadow-2xl hover:shadow-primary-900/10 hover:-translate-y-1.5',
         'rounded-[2.5rem] shadow-sm',
         className

@@ -73,7 +73,7 @@ export function PsikotesCategoryNav() {
                 >
                   {/* Category Icon Box */}
                   <div className={cn(
-                    "w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-all duration-500 shadow-sm",
+                    "w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-colors duration-300 shadow-sm",
                     isActive ? cat.theme : "bg-slate-100 text-slate-400 border border-slate-200"
                   )}>
                     <cat.icon className={cn("w-6 h-6 transition-transform", isActive ? "scale-110" : "")} />

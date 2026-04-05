@@ -38,7 +38,7 @@ export function PhilosophySection() {
                   <div 
                     key={item.title} 
                     className={cn(
-                      "p-6 rounded-[2.5rem] border border-slate-100 bg-white transition-all duration-500 hover:-translate-y-1.5",
+                      "p-6 rounded-[2.5rem] border border-slate-100 bg-white transition-shadow duration-300",
                       "shadow-xl shadow-stone-200/50 hover:shadow-2xl hover:shadow-primary-900/5 hover:border-primary-500"
                     )}
                   >
