@@ -16,7 +16,7 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
     || pathname.startsWith('/admin')
     || pathname.startsWith('/perusahaan')
     || pathname.startsWith('/superadmin')
-  const isExam = pathname.includes('/exam') || pathname.includes('/result') || pathname.match(/\/psikotes\/(gratis|premium)\/[^/]+$/)
+  const isExam = pathname.includes('/exam') || pathname.includes('/result') || pathname.match(/\/psikotes\/(gratis|premium)\/[^/]+$/) || pathname.startsWith('/tes/')
 
   return (
     <main

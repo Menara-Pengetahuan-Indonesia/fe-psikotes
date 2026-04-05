@@ -4,6 +4,7 @@ import { DetailHero } from './test-detail-hero'
 import { FaqSection } from './test-detail-faq-section'
 import { PricingCard } from './test-detail-pricing-card'
 import { SectionHeading } from './test-detail-section-heading'
+import { PackageSelector } from './test-detail-package-selector'
 
 export interface TestDetailProps {
   title: string
@@ -18,6 +19,7 @@ export interface TestDetailProps {
   price: string
   originalPrice?: string
   formHref: string
+  selectable?: boolean
 }
 
 export function TestDetail({
@@ -30,6 +32,7 @@ export function TestDetail({
   price,
   originalPrice,
   formHref,
+  selectable = false,
 }: TestDetailProps) {
   return (
     <div className="min-h-screen bg-background">
@@ -46,6 +49,7 @@ export function TestDetail({
         price={price}
         originalPrice={originalPrice}
         formHref={formHref}
+        selectable={selectable}
       />
     </div>
   )
@@ -58,43 +62,41 @@ function DetailBody({
   price,
   originalPrice,
   formHref,
+  selectable,
 }: Pick<
   TestDetailProps,
   | 'aspects'
   | 'price'
   | 'originalPrice'
   | 'formHref'
+  | 'selectable'
 >) {
   return (
-    <div
-      className={cn(
-        'max-w-7xl mx-auto px-6',
-        'py-14 md:py-20',
+    <div className={cn('max-w-7xl mx-auto px-6', 'py-14 md:py-20')}>
+      {selectable && aspects && aspects.length > 0 ? (
+        <PackageSelector
+          aspects={aspects}
+          price={price}
+          originalPrice={originalPrice}
+          formHref={formHref}
+        />
+      ) : (
+        <div className={cn('grid grid-cols-1', 'lg:grid-cols-3 gap-12')}>
+          <div className="lg:col-span-2 space-y-14">
+            {aspects && aspects.length > 0 && (
+              <AspectsSection aspects={aspects} />
+            )}
+            <FaqSection />
+          </div>
+          <div className="lg:col-span-1">
+            <PricingCard
+              price={price}
+              originalPrice={originalPrice}
+              formHref={formHref}
+            />
+          </div>
+        </div>
       )}
-    >
-      <div
-        className={cn(
-          'grid grid-cols-1',
-          'lg:grid-cols-3 gap-12',
-        )}
-      >
-        {/* Left Column */}
-        <div className="lg:col-span-2 space-y-14">
-          {aspects && aspects.length > 0 && (
-            <AspectsSection aspects={aspects} />
-          )}
-          <FaqSection />
-        </div>
-
-        {/* Right Column */}
-        <div className="lg:col-span-1">
-          <PricingCard
-            price={price}
-            originalPrice={originalPrice}
-            formHref={formHref}
-          />
-        </div>
-      </div>
     </div>
   )
 }
