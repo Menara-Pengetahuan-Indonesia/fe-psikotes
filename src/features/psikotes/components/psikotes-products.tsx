@@ -51,7 +51,7 @@ export function PsikotesProducts() {
                 key={cat.id}
                 onClick={() => setFilter(cat.id)}
                 className={cn(
-                  "px-8 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500 border",
+                  "px-8 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-colors duration-300 border",
                   filter === cat.id 
                     ? "bg-primary-600 text-white border-primary-600 shadow-xl shadow-primary-900/20 -translate-y-1" 
                     : "bg-white text-slate-400 border-slate-100 hover:border-primary-200 hover:text-primary-600 shadow-sm"
@@ -68,11 +68,11 @@ export function PsikotesProducts() {
           {filteredProducts.map((product) => (
             <div 
               key={product.id}
-              className="group bg-white rounded-[2rem] border border-slate-100 shadow-soft hover:shadow-xl transition-all duration-500 flex flex-col p-6 hover:-translate-y-2"
+              className="group bg-white rounded-[2rem] border border-slate-100 shadow-soft hover:shadow-xl transition-shadow duration-300 flex flex-col p-6"
             >
               <div className="flex justify-between items-start mb-6">
                 <div className={cn(
-                  "w-12 h-12 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-3",
+                  "w-12 h-12 rounded-2xl flex items-center justify-center",
                   "bg-slate-50 text-primary-600"
                 )}>
                   <product.icon className="w-6 h-6" />

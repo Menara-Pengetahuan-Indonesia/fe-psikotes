@@ -65,7 +65,7 @@ export function PsikotesCategoryNav() {
                   key={cat.id}
                   onClick={() => handleTabChange(cat.id)}
                   className={cn(
-                    "relative flex items-center gap-4 px-6 py-4 rounded-[2rem] transition-all duration-500 border border-transparent w-full md:w-auto",
+                    "relative flex items-center gap-4 px-6 py-4 rounded-[2rem] transition-colors duration-300 border border-transparent w-full md:w-auto",
                     isActive 
                       ? cn("shadow-lg scale-[1.02]", activeBg)
                       : "hover:bg-slate-50/80 text-slate-500"
