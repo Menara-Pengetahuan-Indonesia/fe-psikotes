@@ -14,5 +14,6 @@ export type {
   PaketDetail,
   TierPricing,
   DiriPribadiProduct,
+  RelationshipProduct,
 } from './psikotes.types'
 export type { ActivityLogEntry } from './exam.types'
