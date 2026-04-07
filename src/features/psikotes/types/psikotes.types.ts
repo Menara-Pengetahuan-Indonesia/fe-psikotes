@@ -52,3 +52,69 @@ export interface CtaBannerData {
   buttonText: string
   href: string
 }
+
+// ─── New Product Structure Types ───────────────────────────────────────────
+
+export type ProductTier = 'dasar' | 'lengkap' | 'comprehensive'
+export type CorporateTier = 'mandatory' | 'comprehensive'
+
+export interface TierPricing {
+  tier: ProductTier
+  label: string
+  price: number
+  priceLabel: string
+  coverage: string
+}
+
+export interface CorporateTierPricing {
+  tier: CorporateTier
+  label: string
+  description: string
+}
+
+export interface SubIssue {
+  id: string
+  label: string
+  shortDesc: string
+}
+
+export interface DiriPribadiProduct {
+  id: string
+  slug: string
+  title: string
+  subtitle: string
+  painPoint: string
+  description: string
+  icon: LucideIcon
+  category: 'diri-pribadi'
+  pricing: TierPricing[]
+  users?: string
+  duration?: string
+}
+
+export interface RelationshipProduct {
+  id: string
+  slug: string
+  title: string
+  subtitle: string
+  painPoint: string
+  description: string
+  icon: LucideIcon
+  category: 'relationship'
+  subIssues: SubIssue[]
+  pricing: TierPricing[]
+  users?: string
+  duration?: string
+  canDoWithPartner?: boolean
+}
+
+export interface CorporateProduct {
+  id: string
+  slug: string
+  title: string
+  description: string
+  icon: LucideIcon
+  category: 'bisnis'
+  callForDetail?: boolean
+  pricing: CorporateTierPricing[]
+}
