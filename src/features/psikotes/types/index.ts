@@ -12,5 +12,7 @@ export type {
   AlatTes,
   AspekPaket,
   PaketDetail,
+  TierPricing,
+  DiriPribadiProduct,
 } from './psikotes.types'
 export type { ActivityLogEntry } from './exam.types'
