@@ -1,8 +1,4 @@
-import {
-  User,
-  Heart,
-  Briefcase,
-} from 'lucide-react'
+import { User, Heart, Briefcase } from 'lucide-react'
 
 export const NAV_CATEGORIES = [
   {
@@ -15,36 +11,36 @@ export const NAV_CATEGORIES = [
     gradient: 'from-indigo-500/20 to-indigo-700/20',
     items: [
       {
-        problem: 'Overthinking & burnout',
-        product: 'Psychological Assessment',
-        solution: 'Memahami pola emosi & pola pikir secara menyeluruh',
-        benefit: '-'
+        problem: 'Trauma masa lalu & luka batin',
+        product: 'Past Trauma & Depression Healing',
+        solution: 'Mengidentifikasi akar luka yang mendikte reaksimu hari ini',
+        benefit: 'Berdamai dengan masa lalu, melangkah lebih ringan',
       },
       {
-        problem: 'Quarter-life / mid-life confusion',
-        product: 'Online Counseling',
-        solution: 'Menemukan akar masalah, bukan hanya meredakan gejala',
-        benefit: '-'
+        problem: 'Anxiety, depresi & burnout berkepanjangan',
+        product: 'Anxiety & Burnout Check',
+        solution: 'Mendeteksi tingkat kecemasan & kelelahan mental secara akurat',
+        benefit: 'Tahu persis kondisi mental & langkah pemulihan yang tepat',
       },
       {
-        problem: 'Emosi tidak stabil',
-        product: 'Hybrid Deep Session',
-        solution: 'Memiliki rencana perkembangan 90 hari yang jelas',
-        benefit: '-'
+        problem: 'Tidak pernah merasa cukup & butuh validasi',
+        product: 'Body Image, Self-Confidence & Self-Worth',
+        solution: 'Membedah self-image & akar rendahnya harga diri',
+        benefit: 'Percaya diri dari dalam, bukan dari pengakuan orang lain',
       },
       {
-        problem: 'Merasa “capek tapi tidak tahu kenapa”',
-        product: 'Personal Growth Roadmap™',
-        solution: 'Emosi lebih stabil di tengah tekanan',
-        benefit: '-'
+        problem: 'Quarter-life crisis & merasa tertinggal',
+        product: 'Identity, Purpose & Quarter-Life Crisis',
+        solution: 'Memetakan kembali jalur hidupmu sendiri — bukan milik orang lain',
+        benefit: 'Ketenangan di tengah bisingnya pencapaian teman sebaya',
       },
       {
-        problem: 'Sudah coba curhat, tapi tidak ada arah',
-        product: 'Progress Review System',
-        solution: 'Mental clarity untuk mengambil keputusan penting',
-        benefit: '-'
-      }
-    ]
+        problem: 'Bingung arah karir & potensi diri',
+        product: 'Tes IQ, Bakat Minat & Perencanaan Karier',
+        solution: 'Peta kapasitas kognitif + bidang yang cocok dengan kepribadianmu',
+        benefit: 'Karier yang selaras dengan siapa kamu, bukan sekadar gaji',
+      },
+    ],
   },
   {
     id: 'relationship',
@@ -56,36 +52,30 @@ export const NAV_CATEGORIES = [
     gradient: 'from-rose-400/20 to-rose-600/20',
     items: [
       {
-        problem: 'Konflik yang terus berulang.',
-        product: 'Relationship Mapping Session',
-        solution: 'Memahami dinamika hubungan secara objektif',
-        benefit: '-'
+        problem: 'Pacaran tapi belum yakin: lanjut atau jangan?',
+        product: 'Red Flag Test Pasangan Baru',
+        solution: 'Melihat secara objektif karakter, nilai hidup & pola komunikasi pasangan',
+        benefit: 'Keputusan dengan kepala dingin, bukan hanya perasaan',
       },
       {
-        problem: 'Komunikasi terasa tidak pernah benar-benar nyambung.',
-        product: 'Attachment Style Assessment',
-        solution: 'Mengidentifikasi pola konflik dan memutuskannya',
-        benefit: '-'
+        problem: 'Konflik berulang, KDRT, NPD, perselingkuhan',
+        product: 'Konflik & Trauma Rumah Tangga',
+        solution: 'Memetakan potensi konflik, trauma lama & tanda bahaya relasi',
+        benefit: 'Fondasi rumah tangga diperbaiki sebelum terlalu dalam retak',
       },
       {
-        problem: 'Cemburu, trust issue, overthinking berlebihan.',
-        product: 'Couple Hybrid Session',
-        solution: 'Komunikasi lebih dewasa & terarah',
-        benefit: '-'
+        problem: 'Nikah tapi merasa sendiri dan hampa',
+        product: 'Nikah Tapi Sepi: Hampa Emosional',
+        solution: 'Menemukan penyebab hilangnya koneksi & cara membangun kembali',
+        benefit: 'Rumah kembali jadi tempat bernaung, bukan tempat bersembunyi',
       },
       {
-        problem: 'Sulit mengatakan “tidak”.',
-        product: 'Communication Pattern Analysis',
-        solution: 'Relasi yang lebih aman dan sehat',
-        benefit: '-'
+        problem: 'Single, HTS, takut ditolak & tidak yakin diri',
+        product: 'Single & Tidak Happy Assessment',
+        solution: 'Memahami pola relasi & mengatasi hambatan emosional',
+        benefit: 'Siap membuka hati dengan berani & batasan yang sehat',
       },
-      {
-        problem: 'Terjebak ekspektasi keluarga & peran sosial.',
-        product: 'Integrated Individual + Couple Plan',
-        solution: 'Harmoni tanpa kehilangan jati diri',
-        benefit: '-'
-      }
-    ]
+    ],
   },
   {
     id: 'professional',
@@ -97,35 +87,29 @@ export const NAV_CATEGORIES = [
     gradient: 'from-amber-500/20 to-amber-700/20',
     items: [
       {
-        problem: 'Burnout berkepanjangan.',
+        problem: 'Burnout kronis tapi takut resign',
         product: 'Career Psychological Assessment',
-        solution: 'Keputusan karier lebih matang dan sadar diri',
-        benefit: '-'
+        solution: 'Keputusan karir lebih matang berdasarkan psikologi diri',
+        benefit: 'Tidak lagi terjebak di jalur yang salah karena takut berubah',
       },
       {
-        problem: 'Bingung arah karier selanjutnya.',
+        problem: 'Bingung langkah karir berikutnya',
+        product: 'IQ, Bakat Minat & Perencanaan Karir (Full)',
+        solution: 'Peta lengkap potensi kognitif + arah karir yang presisi',
+        benefit: 'Langkah karir lebih terarah, bukan coba-coba',
+      },
+      {
+        problem: 'Stres membangun atau mengelola bisnis',
         product: 'Entrepreneur Mental Clarity Session',
-        solution: 'Emosi tetap stabil di situasi tekanan tinggi',
-        benefit: '-'
+        solution: 'Mental clarity dalam keputusan-keputusan besar bisnis',
+        benefit: 'Bisnis berkembang tanpa mengorbankan kesehatan mental',
       },
       {
-        problem: 'Stres membangun atau mengembangkan bisnis.',
-        product: 'Leadership Emotional Capacity Mapping',
-        solution: 'Leadership yang lebih reflektif dan terkendali',
-        benefit: '-'
+        problem: 'Siap naik jabatan tapi butuh validasi objektif',
+        product: 'Leadership Competency Assessment',
+        solution: 'Peta kekuatan leadership + Individual Development Plan',
+        benefit: 'Promosi yang tepat sasaran dengan data, bukan asumsi',
       },
-      {
-        problem: 'Masalah kerja terbawa ke rumah.',
-        product: 'Online Follow-up System',
-        solution: 'Bisnis berkembang tanpa mengorbankan kesehatan mental',
-        benefit: '-'
-      },
-      {
-        problem: 'Takut mengambil keputusan besar.',
-        product: 'Hybrid Intensive Strategy Session',
-        solution: 'Work-life integration yang lebih sehat and realistis',
-        benefit: '-'
-      }
-    ]
-  }
+    ],
+  },
 ]
