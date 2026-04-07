@@ -13,9 +13,11 @@ export type {
   AspekPaket,
   PaketDetail,
   TierPricing,
+  ProductTier,
   DiriPribadiProduct,
   RelationshipProduct,
   CorporateProduct,
   CorporateTierPricing,
+  SubIssue,
 } from './psikotes.types'
 export type { ActivityLogEntry } from './exam.types'
