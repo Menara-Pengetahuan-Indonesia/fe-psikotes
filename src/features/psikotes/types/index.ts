@@ -15,5 +15,7 @@ export type {
   TierPricing,
   DiriPribadiProduct,
   RelationshipProduct,
+  CorporateProduct,
+  CorporateTierPricing,
 } from './psikotes.types'
 export type { ActivityLogEntry } from './exam.types'
