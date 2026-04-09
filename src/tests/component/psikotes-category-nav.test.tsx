@@ -24,7 +24,7 @@ describe('PsikotesCategoryNav', () => {
     render(<PsikotesCategoryNav />)
     expect(screen.getByText('01. Masalah')).toBeInTheDocument()
     expect(screen.getByText('02. Solusi')).toBeInTheDocument()
-    expect(screen.getByText('03. Benefit')).toBeInTheDocument()
+    expect(screen.getByText('03. Apa yang kamu dapatkan')).toBeInTheDocument()
   })
 
   it('renders footer tagline', () => {
