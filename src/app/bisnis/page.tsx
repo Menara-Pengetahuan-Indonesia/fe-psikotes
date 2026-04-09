@@ -91,14 +91,14 @@ export default function BisnisPage() {
                 {/* CTA */}
                 {product.callForDetail ? (
                   <a
-                    href="/contact"
+                    href={`/bisnis/${product.slug}`}
                     className="w-full h-12 rounded-xl bg-amber-600 text-white flex items-center justify-center gap-2 text-xs font-black uppercase tracking-widest hover:bg-amber-700 transition-colors shadow-lg shadow-amber-100"
                   >
-                    <Phone className="w-4 h-4" /> Hubungi Kami
+                    Lihat Detail
                   </a>
                 ) : (
                   <a
-                    href={`/pembayaran?id=${product.id}`}
+                    href={`/bisnis/${product.slug}`}
                     className="w-full h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center gap-2 text-xs font-black uppercase tracking-widest hover:bg-slate-800 transition-colors shadow-lg shadow-slate-900/10"
                   >
                     Lihat Detail

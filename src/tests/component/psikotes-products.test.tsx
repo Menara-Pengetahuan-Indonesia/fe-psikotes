@@ -23,7 +23,7 @@ describe('PsikotesProducts', () => {
   it('renders filter tabs', () => {
     render(<PsikotesProducts />)
     expect(screen.getByText('Semua Produk')).toBeInTheDocument()
-    expect(screen.getByText('Diri Sendiri')).toBeInTheDocument()
+    expect(screen.getByText('Diri Pribadi')).toBeInTheDocument()
     expect(screen.getByText('Relationship')).toBeInTheDocument()
   })
 
