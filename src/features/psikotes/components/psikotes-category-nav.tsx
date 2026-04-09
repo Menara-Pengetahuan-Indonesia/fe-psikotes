@@ -115,11 +115,11 @@ export function PsikotesCategoryNav() {
               </div>
               <div className="col-span-3 p-6 flex flex-col items-center justify-center gap-1 border-r border-slate-200/60">
                  <TrendingUp className="w-4 h-4 text-amber-600" />
-                 <span className="text-xs font-black uppercase tracking-[0.2em] text-amber-600">03. Benefit</span>
+                 <span className="text-xs font-black uppercase tracking-[0.2em] text-amber-600">03. Apa yang kamu dapatkan</span>
               </div>
               <div className="col-span-3 p-6 flex flex-col items-center justify-center gap-1">
                  <Box className="w-5 h-5 text-primary-600" />
-                 <span className="text-xs font-black uppercase tracking-[0.2em] text-primary-600">04. Produk</span>
+                 <span className="text-xs font-black uppercase tracking-[0.2em] text-primary-600">04. Prioritas kamu</span>
               </div>
            </div>
 
@@ -156,7 +156,7 @@ export function PsikotesCategoryNav() {
                       )}
                     >
                        <span className={cn("text-xl font-black italic transition-colors", activeProblemIndex === idx ? "text-primary-500" : "text-slate-300")}>
-                          0{idx + 1}
+                          {String(idx + 1).padStart(2, '0')}
                        </span>
                        <span className={cn("text-[13px] font-bold leading-tight transition-colors", activeProblemIndex === idx ? "text-slate-900" : "text-slate-400 group-hover/btn:text-slate-600")}>
                           {item.problem}
@@ -165,43 +165,86 @@ export function PsikotesCategoryNav() {
                  ))}
               </div>
 
-              {/* COL 2: Solusi (Centered) */}
-              <div className="col-span-1 lg:col-span-3 p-10 lg:p-14 border-r border-slate-100 flex flex-col justify-center items-center text-center relative bg-white overflow-hidden" key={`sol-${activeProblemIndex}`}>
+              {/* COL 2: Solusi */}
+              <div className="col-span-1 lg:col-span-3 p-8 lg:p-10 border-r border-slate-100 flex flex-col justify-center relative bg-white overflow-hidden" key={`sol-${activeProblemIndex}`}>
                  <CheckCircle2 className="absolute -right-6 -bottom-6 w-32 h-32 text-emerald-500/5 -rotate-12" />
-                 
-                 <div className="lg:hidden flex items-center gap-2 mb-4">
+
+                 <div className="lg:hidden flex items-center gap-2 mb-4 justify-center">
                     <CheckCircle2 className="w-3 h-3 text-emerald-500" />
                     <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Solusi:</span>
                  </div>
-                 <p className="text-slate-700 font-bold text-lg md:text-xl leading-relaxed italic relative z-10 animate-in slide-in-from-bottom-2 duration-500">
-                    &quot;{activeItem.solution}&quot;
-                 </p>
+                 {typeof activeItem.solution === 'string' ? (
+                    <p className="text-slate-700 font-bold text-lg md:text-xl leading-relaxed italic relative z-10 animate-in slide-in-from-bottom-2 duration-500 text-center">
+                       &quot;{activeItem.solution}&quot;
+                    </p>
+                 ) : (
+                    <ol className="relative z-10 space-y-3 animate-in slide-in-from-bottom-2 duration-500">
+                       {activeItem.solution.stages.map((stage, i) => (
+                          <li key={i} className="flex gap-2.5">
+                             <span className="shrink-0 w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-black flex items-center justify-center mt-0.5">
+                                {i + 1}
+                             </span>
+                             <div className="min-w-0 flex-1">
+                                <p className="font-black text-slate-800 text-xs leading-tight">{stage.title}</p>
+                                <p className="text-slate-500 text-[11px] leading-snug mt-0.5">{stage.description}</p>
+                             </div>
+                          </li>
+                       ))}
+                    </ol>
+                 )}
               </div>
 
-              {/* COL 3: Benefit (Centered) */}
-              <div className="col-span-1 lg:col-span-3 p-10 lg:p-14 border-r border-slate-100 flex flex-col justify-center items-center text-center relative bg-amber-50/20 overflow-hidden" key={`ben-${activeProblemIndex}`}>
+              {/* COL 3: Benefit */}
+              <div className="col-span-1 lg:col-span-3 p-8 lg:p-10 border-r border-slate-100 flex flex-col justify-center relative bg-amber-50/20 overflow-hidden" key={`ben-${activeProblemIndex}`}>
                  <TrendingUp className="absolute -right-6 -bottom-6 w-32 h-32 text-amber-500/10 rotate-12" />
 
                  <div className="lg:hidden flex items-center gap-2 mb-4 justify-center">
                     <TrendingUp className="w-3 h-3 text-amber-500" />
                     <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Target:</span>
                  </div>
-                 <p className="text-2xl md:text-3xl font-black text-amber-700 tracking-tighter leading-tight relative z-10 animate-in slide-in-from-bottom-2 duration-500">
-                    {activeItem.benefit === '-' ? <span className="opacity-40 italic text-xl font-medium">Berdamai & Tumbuh</span> : activeItem.benefit}
-                 </p>
+                 {typeof activeItem.benefit === 'string' ? (
+                    <p className="text-2xl md:text-3xl font-black text-amber-700 tracking-tighter leading-tight relative z-10 animate-in slide-in-from-bottom-2 duration-500 text-center">
+                       {activeItem.benefit === '-' ? <span className="opacity-40 italic text-xl font-medium">Berdamai & Tumbuh</span> : activeItem.benefit}
+                    </p>
+                 ) : (
+                    <div className="relative z-10 space-y-4 animate-in slide-in-from-bottom-2 duration-500">
+                       <div>
+                          <p className="text-[10px] font-black uppercase tracking-widest text-rose-500 mb-2">Sebelum</p>
+                          <ul className="space-y-1">
+                             {activeItem.benefit.before.map((item, i) => (
+                                <li key={i} className="text-[11px] text-slate-500 leading-snug flex gap-1.5">
+                                   <span className="text-rose-400 shrink-0">×</span>
+                                   <span>{item}</span>
+                                </li>
+                             ))}
+                          </ul>
+                       </div>
+                       <div className="border-t border-amber-100 pt-3">
+                          <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 mb-2">Sesudah</p>
+                          <ul className="space-y-1">
+                             {activeItem.benefit.after.map((item, i) => (
+                                <li key={i} className="text-[11px] text-slate-700 leading-snug flex gap-1.5 font-semibold">
+                                   <span className="text-emerald-500 shrink-0">✓</span>
+                                   <span>{item}</span>
+                                </li>
+                             ))}
+                          </ul>
+                       </div>
+                    </div>
+                 )}
               </div>
 
               {/* COL 4: Produk (Centered & Colored) */}
               <div className="col-span-1 lg:col-span-3 p-10 lg:p-14 bg-primary-600 flex flex-col justify-center items-center text-center text-white relative overflow-hidden" key={`prod-${activeProblemIndex}`}>
                  <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
                  <Box className="absolute -right-6 -bottom-6 w-32 h-32 text-white/10 -rotate-12" />
-                 
+
                  <div className="lg:hidden flex items-center gap-2 mb-4 justify-center">
                     <Box className="w-3 h-3 text-white/60" />
                     <span className="text-[10px] font-black uppercase tracking-widest text-white/60">Rekomendasi:</span>
                  </div>
                  <h4 className="text-2xl md:text-3xl font-black text-white tracking-tight leading-tight relative z-10 animate-in slide-in-from-right-4 duration-700">
-                    {activeItem.product}
+                    {activeItem.product || <span className="text-white/30 italic text-base font-medium">—</span>}
                  </h4>
               </div>
 
