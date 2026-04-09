@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { RELATIONSHIP_PRODUCTS } from '@/features/psikotes/constants'
-import { ProductCardNew } from '@/features/psikotes/components'
+import { RelationshipProductGrid } from '@/features/psikotes/components'
 import { Heart } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -30,11 +29,7 @@ export default function RelationshipPage() {
       {/* Products */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {RELATIONSHIP_PRODUCTS.map((product) => (
-              <ProductCardNew key={product.id} product={product} />
-            ))}
-          </div>
+          <RelationshipProductGrid />
         </div>
       </section>
     </main>
