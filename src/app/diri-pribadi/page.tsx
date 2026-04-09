@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { DIRI_PRIBADI_PRODUCTS } from '@/features/psikotes/constants'
-import { ProductCardNew } from '@/features/psikotes/components'
+import { DiriPribadiProductGrid } from '@/features/psikotes/components'
 import { User } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -30,11 +29,7 @@ export default function DiriPribadiPage() {
       {/* Products */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {DIRI_PRIBADI_PRODUCTS.map((product) => (
-              <ProductCardNew key={product.id} product={product} />
-            ))}
-          </div>
+          <DiriPribadiProductGrid />
         </div>
       </section>
     </main>
