@@ -3,7 +3,7 @@ import type { NavItem } from '@/shared/components/layout'
 export const psikotesNavItems: NavItem[] = [
   { label: 'Beranda', href: '/' },
   {
-    label: 'Produk',
+    label: 'Asesmen',
     href: '/kategori',
     children: [
       {
@@ -31,25 +31,11 @@ export const psikotesNavItems: NavItem[] = [
     href: '/gratis',
   },
   {
-    label: 'Lainnya',
-    href: '/jenis-tes',
-    children: [
-      {
-        label: 'Mahasiswa & Pelajar',
-        href: '/mahasiswa',
-        icon: 'BookOpen',
-        desc: 'Try out, CPNS & minat bakat',
-      },
-      {
-        label: 'Kesehatan Mental',
-        href: '/kesehatan-mental',
-        icon: 'HeartPulse',
-        desc: 'Deteksi dini kesehatan jiwa',
-      },
-    ],
+    label: 'Tentang',
+    href: '/about',
   },
   {
-    label: 'Membership',
-    href: '/membership/benefit',
+    label: 'Blog',
+    href: '/blog',
   },
 ]

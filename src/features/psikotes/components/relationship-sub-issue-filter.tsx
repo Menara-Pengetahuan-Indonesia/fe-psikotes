@@ -38,8 +38,8 @@ export function RelationshipSubIssueFilter({
             className={cn(
               'px-3 py-1.5 rounded-xl text-[11px] font-bold border transition-colors',
               activeId === issue.id
-                ? 'bg-rose-500 text-white border-rose-500'
-                : 'bg-white text-slate-500 border-slate-200 hover:border-rose-300 hover:text-rose-600'
+                ? 'bg-primary-600 text-white border-primary-600'
+                : 'bg-white text-slate-500 border-slate-200 hover:border-primary-300 hover:text-primary-600'
             )}
           >
             {issue.label}

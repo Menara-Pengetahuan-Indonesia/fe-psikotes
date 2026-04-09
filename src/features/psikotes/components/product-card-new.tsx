@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { ArrowRight, Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { DiriPribadiProduct, RelationshipProduct, ProductTier } from '../types'
@@ -14,6 +15,11 @@ interface ProductCardNewProps {
   defaultTier?: ProductTier
 }
 
+const CATEGORY_PATH: Record<string, string> = {
+  'diri-pribadi': '/diri-pribadi',
+  'relationship': '/relationship',
+}
+
 export function ProductCardNew({ product, defaultTier = 'lengkap' }: ProductCardNewProps) {
   const [selectedTier, setSelectedTier] = useState<ProductTier>(defaultTier)
   const [activeSubIssue, setActiveSubIssue] = useState<string | null>(null)
@@ -22,6 +28,7 @@ export function ProductCardNew({ product, defaultTier = 'lengkap' }: ProductCard
   const relProduct = isRelationship ? (product as RelationshipProduct) : null
 
   const activePricing = product.pricing.find(p => p.tier === selectedTier) || product.pricing[1]
+  const detailHref = `${CATEGORY_PATH[product.category]}/${product.slug}`
 
   return (
     <div className={cn('group bg-white rounded-[2rem] border border-slate-100 shadow-soft hover:shadow-xl transition-shadow duration-300 flex flex-col p-6 gap-5')}>
@@ -32,7 +39,7 @@ export function ProductCardNew({ product, defaultTier = 'lengkap' }: ProductCard
           <product.icon className="w-6 h-6" />
         </div>
         {isRelationship && relProduct?.canDoWithPartner && (
-          <span className="px-2 py-1 rounded-full bg-rose-50 text-[10px] font-black text-rose-600 uppercase tracking-widest border border-rose-100">
+          <span className="px-2 py-1 rounded-full bg-accent-50 text-[10px] font-black text-accent-700 uppercase tracking-widest border border-accent-100">
             Bisa Bersama Pasangan
           </span>
         )}
@@ -86,12 +93,12 @@ export function ProductCardNew({ product, defaultTier = 'lengkap' }: ProductCard
             )}
           </div>
         )}
-        <a
-          href={`/pembayaran?id=${product.id}&tier=${selectedTier}`}
+        <Link
+          href={detailHref}
           className="w-full h-12 rounded-xl bg-primary-600 text-white flex items-center justify-center gap-2 text-xs font-black uppercase tracking-widest hover:bg-primary-700 transition-colors shadow-lg shadow-primary-100"
         >
-          Mulai — {activePricing.priceLabel} <ArrowRight className="w-4 h-4" />
-        </a>
+          Lihat Detail <ArrowRight className="w-4 h-4" />
+        </Link>
       </div>
     </div>
   )
