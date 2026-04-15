@@ -1,296 +1,154 @@
 import { api } from '@/lib/axios'
 import type {
-  Test,
-  Indicator,
-  Section,
-  Question,
-  QuestionOption,
-  OptionIndicatorMapping,
-  ScoringRule,
-  Package,
-  PackageTest,
-  CreateTestDto,
-  UpdateTestDto,
-  CreateIndicatorDto,
-  UpdateIndicatorDto,
-  CreateSectionDto,
-  UpdateSectionDto,
-  CreateQuestionDto,
-  UpdateQuestionDto,
-  CreateQuestionOptionDto,
-  UpdateQuestionOptionDto,
-  CreateOptionIndicatorMappingDto,
-  CreateScoringRuleDto,
-  UpdateScoringRuleDto,
-  CreatePackageDto,
-  UpdatePackageDto,
-  AddTestToPackageDto,
+  Package, ChildPackage, PackageType, Test, SubTest, Question,
+  ApiResponse,
+  CreatePackageDto, UpdatePackageDto,
+  CreateChildPackageDto, UpdateChildPackageDto,
+  CreatePackageTypeDto, UpdatePackageTypeDto,
+  CreateTestDto, UpdateTestDto,
+  CreateSubTestDto, UpdateSubTestDto,
+  CreateQuestionDto, UpdateQuestionDto,
 } from '../types'
 
-const BASE_PATH = '/admin/tests'
+// ── PACKAGE SERVICE ─────────────────────────────────
+export const packageService = {
+  getAll: async (): Promise<Package[]> => {
+    const { data } = await api.get<ApiResponse<Package[]>>('/admin/packages')
+    return data.data
+  },
+  getById: async (id: string): Promise<Package> => {
+    const { data } = await api.get<ApiResponse<Package>>(`/admin/packages/${id}`)
+    return data.data
+  },
+  create: async (dto: CreatePackageDto): Promise<Package> => {
+    const { data } = await api.post<ApiResponse<Package>>('/admin/packages', dto)
+    return data.data
+  },
+  update: async (id: string, dto: UpdatePackageDto): Promise<Package> => {
+    const { data } = await api.patch<ApiResponse<Package>>(`/admin/packages/${id}`, dto)
+    return data.data
+  },
+  delete: async (id: string): Promise<void> => {
+    await api.delete(`/admin/packages/${id}`)
+  },
+}
 
-// ============================================================
-// TEST SERVICE
-// ============================================================
+// ── CHILD PACKAGE SERVICE ───────────────────────────
+export const childPackageService = {
+  getAll: async (): Promise<ChildPackage[]> => {
+    const { data } = await api.get<ApiResponse<ChildPackage[]>>('/admin/child-packages')
+    return data.data
+  },
+  getById: async (id: string): Promise<ChildPackage> => {
+    const { data } = await api.get<ApiResponse<ChildPackage>>(`/admin/child-packages/${id}`)
+    return data.data
+  },
+  create: async (dto: CreateChildPackageDto): Promise<ChildPackage> => {
+    const { data } = await api.post<ApiResponse<ChildPackage>>('/admin/child-packages', dto)
+    return data.data
+  },
+  update: async (id: string, dto: UpdateChildPackageDto): Promise<ChildPackage> => {
+    const { data } = await api.patch<ApiResponse<ChildPackage>>(`/admin/child-packages/${id}`, dto)
+    return data.data
+  },
+  delete: async (id: string): Promise<void> => {
+    await api.delete(`/admin/child-packages/${id}`)
+  },
+}
 
+// ── PACKAGE TYPE SERVICE ────────────────────────────
+export const packageTypeService = {
+  getAll: async (): Promise<PackageType[]> => {
+    const { data } = await api.get<ApiResponse<PackageType[]>>('/admin/package-types')
+    return data.data
+  },
+  getById: async (id: string): Promise<PackageType> => {
+    const { data } = await api.get<ApiResponse<PackageType>>(`/admin/package-types/${id}`)
+    return data.data
+  },
+  create: async (dto: CreatePackageTypeDto): Promise<PackageType> => {
+    const { data } = await api.post<ApiResponse<PackageType>>('/admin/package-types', dto)
+    return data.data
+  },
+  update: async (id: string, dto: UpdatePackageTypeDto): Promise<PackageType> => {
+    const { data } = await api.patch<ApiResponse<PackageType>>(`/admin/package-types/${id}`, dto)
+    return data.data
+  },
+  delete: async (id: string): Promise<void> => {
+    await api.delete(`/admin/package-types/${id}`)
+  },
+}
+
+// ── TEST SERVICE ────────────────────────────────────
 export const testService = {
   getAll: async (): Promise<Test[]> => {
-    const { data } = await api.get<Test[]>(BASE_PATH)
-    return data
+    const { data } = await api.get<ApiResponse<Test[]>>('/admin/tests')
+    return data.data
   },
-
   getById: async (id: string): Promise<Test> => {
-    const { data } = await api.get<Test>(`${BASE_PATH}/${id}`)
-    return data
+    const { data } = await api.get<ApiResponse<Test>>(`/admin/tests/${id}`)
+    return data.data
   },
-
   create: async (dto: CreateTestDto): Promise<Test> => {
-    const { data } = await api.post<Test>(BASE_PATH, dto)
-    return data
+    const { data } = await api.post<ApiResponse<Test>>('/admin/tests', dto)
+    return data.data
   },
-
   update: async (id: string, dto: UpdateTestDto): Promise<Test> => {
-    const { data } = await api.patch<Test>(`${BASE_PATH}/${id}`, dto)
-    return data
+    const { data } = await api.patch<ApiResponse<Test>>(`/admin/tests/${id}`, dto)
+    return data.data
   },
-
   delete: async (id: string): Promise<void> => {
-    await api.delete(`${BASE_PATH}/${id}`)
-  },
-
-  publish: async (id: string): Promise<Test> => {
-    const { data } = await api.post<Test>(`${BASE_PATH}/${id}/publish`)
-    return data
-  },
-
-  unpublish: async (id: string): Promise<Test> => {
-    const { data } = await api.post<Test>(`${BASE_PATH}/${id}/unpublish`)
-    return data
+    await api.delete(`/admin/tests/${id}`)
   },
 }
 
-// ============================================================
-// INDICATOR SERVICE
-// ============================================================
-
-export const indicatorService = {
-  getAll: async (testId: string): Promise<Indicator[]> => {
-    const { data } = await api.get<Indicator[]>(
-      `${BASE_PATH}/${testId}/indicators`,
-    )
-    return data
+// ── SUBTEST SERVICE ─────────────────────────────────
+export const subTestService = {
+  getAll: async (): Promise<SubTest[]> => {
+    const { data } = await api.get<ApiResponse<SubTest[]>>('/admin/subtests')
+    return data.data
   },
-
-  create: async (dto: CreateIndicatorDto): Promise<Indicator> => {
-    const { testId, ...body } = dto
-    const { data } = await api.post<Indicator>(
-      `${BASE_PATH}/${testId}/indicators`,
-      body,
-    )
-    return data
+  getById: async (id: string): Promise<SubTest> => {
+    const { data } = await api.get<ApiResponse<SubTest>>(`/admin/subtests/${id}`)
+    return data.data
   },
-
-  update: async (
-    testId: string,
-    indicatorId: string,
-    dto: UpdateIndicatorDto,
-  ): Promise<Indicator> => {
-    const { data } = await api.patch<Indicator>(
-      `${BASE_PATH}/${testId}/indicators/${indicatorId}`,
-      dto,
-    )
-    return data
+  create: async (dto: CreateSubTestDto): Promise<SubTest> => {
+    const { data } = await api.post<ApiResponse<SubTest>>('/admin/subtests', dto)
+    return data.data
   },
-
-  delete: async (testId: string, indicatorId: string): Promise<void> => {
-    await api.delete(`${BASE_PATH}/${testId}/indicators/${indicatorId}`)
+  update: async (id: string, dto: UpdateSubTestDto): Promise<SubTest> => {
+    const { data } = await api.patch<ApiResponse<SubTest>>(`/admin/subtests/${id}`, dto)
+    return data.data
+  },
+  delete: async (id: string): Promise<void> => {
+    await api.delete(`/admin/subtests/${id}`)
   },
 }
 
-// ============================================================
-// SECTION SERVICE
-// ============================================================
-
-export const sectionService = {
-  getAll: async (testId: string): Promise<Section[]> => {
-    const { data } = await api.get<Section[]>(
-      `${BASE_PATH}/${testId}/sections`,
-    )
-    return data
-  },
-
-  create: async (dto: CreateSectionDto): Promise<Section> => {
-    const { testId, ...body } = dto
-    const { data } = await api.post<Section>(
-      `${BASE_PATH}/${testId}/sections`,
-      body,
-    )
-    return data
-  },
-
-  update: async (
-    testId: string,
-    sectionId: string,
-    dto: UpdateSectionDto,
-  ): Promise<Section> => {
-    const { data } = await api.patch<Section>(
-      `${BASE_PATH}/${testId}/sections/${sectionId}`,
-      dto,
-    )
-    return data
-  },
-
-  delete: async (testId: string, sectionId: string): Promise<void> => {
-    await api.delete(`${BASE_PATH}/${testId}/sections/${sectionId}`)
-  },
-}
-
-// ============================================================
-// QUESTION SERVICE
-// ============================================================
-
+// ── QUESTION SERVICE ────────────────────────────────
 export const questionService = {
-  getAll: async (testId: string): Promise<Question[]> => {
-    const { data } = await api.get<Question[]>(
-      `${BASE_PATH}/${testId}/questions`,
-    )
-    return data
+  getAll: async (): Promise<Question[]> => {
+    const { data } = await api.get<ApiResponse<Question[]>>('/admin/questions')
+    return data.data
   },
-
+  getById: async (id: string): Promise<Question> => {
+    const { data } = await api.get<ApiResponse<Question>>(`/admin/questions/${id}`)
+    return data.data
+  },
   create: async (dto: CreateQuestionDto): Promise<Question> => {
-    const { testId, ...body } = dto
-    const { data } = await api.post<Question>(
-      `${BASE_PATH}/${testId}/questions`,
-      body,
-    )
-    return data
+    const { data } = await api.post<ApiResponse<Question>>('/admin/questions', dto)
+    return data.data
   },
-
-  update: async (
-    testId: string,
-    questionId: string,
-    dto: UpdateQuestionDto,
-  ): Promise<Question> => {
-    const { data } = await api.patch<Question>(
-      `${BASE_PATH}/${testId}/questions/${questionId}`,
-      dto,
-    )
-    return data
+  update: async (id: string, dto: UpdateQuestionDto): Promise<Question> => {
+    const { data } = await api.patch<ApiResponse<Question>>(`/admin/questions/${id}`, dto)
+    return data.data
   },
-
-  delete: async (testId: string, questionId: string): Promise<void> => {
-    await api.delete(`${BASE_PATH}/${testId}/questions/${questionId}`)
+  delete: async (id: string): Promise<void> => {
+    await api.delete(`/admin/questions/${id}`)
   },
 }
 
-// ============================================================
-// QUESTION OPTION SERVICE
-// ============================================================
-
-export const optionService = {
-  create: async (
-    testId: string,
-    questionId: string,
-    dto: CreateQuestionOptionDto,
-  ): Promise<QuestionOption> => {
-    const { data } = await api.post<QuestionOption>(
-      `${BASE_PATH}/${testId}/questions/${questionId}/options`,
-      dto,
-    )
-    return data
-  },
-
-  update: async (
-    testId: string,
-    optionId: string,
-    dto: UpdateQuestionOptionDto,
-  ): Promise<QuestionOption> => {
-    const { data } = await api.patch<QuestionOption>(
-      `${BASE_PATH}/${testId}/questions/options/${optionId}`,
-      dto,
-    )
-    return data
-  },
-
-  delete: async (
-    testId: string,
-    optionId: string,
-  ): Promise<void> => {
-    await api.delete(
-      `${BASE_PATH}/${testId}/questions/options/${optionId}`,
-    )
-  },
-}
-
-// ============================================================
-// INDICATOR MAPPING SERVICE
-// ============================================================
-
-export const indicatorMappingService = {
-  create: async (
-    testId: string,
-    optionId: string,
-    dto: CreateOptionIndicatorMappingDto,
-  ): Promise<OptionIndicatorMapping> => {
-    const { data } = await api.post<OptionIndicatorMapping>(
-      `${BASE_PATH}/${testId}/questions/options/${optionId}/indicator-mapping`,
-      dto,
-    )
-    return data
-  },
-
-  delete: async (
-    testId: string,
-    mappingId: string,
-  ): Promise<void> => {
-    await api.delete(
-      `${BASE_PATH}/${testId}/questions/indicator-mapping/${mappingId}`,
-    )
-  },
-}
-
-// ============================================================
-// SCORING RULE SERVICE
-// ============================================================
-
-export const scoringRuleService = {
-  getAll: async (testId: string): Promise<ScoringRule[]> => {
-    const { data } = await api.get<ScoringRule[]>(
-      `${BASE_PATH}/${testId}/scoring-rules`,
-    )
-    return data
-  },
-
-  create: async (dto: CreateScoringRuleDto): Promise<ScoringRule> => {
-    const { testId, ...body } = dto
-    const { data } = await api.post<ScoringRule>(
-      `${BASE_PATH}/${testId}/scoring-rules`,
-      body,
-    )
-    return data
-  },
-
-  update: async (
-    testId: string,
-    ruleId: string,
-    dto: UpdateScoringRuleDto,
-  ): Promise<ScoringRule> => {
-    const { data } = await api.patch<ScoringRule>(
-      `${BASE_PATH}/${testId}/scoring-rules/${ruleId}`,
-      dto,
-    )
-    return data
-  },
-
-  delete: async (testId: string, ruleId: string): Promise<void> => {
-    await api.delete(`${BASE_PATH}/${testId}/scoring-rules/${ruleId}`)
-  },
-}
-
-// ============================================================
-// UPLOAD SERVICE
-// ============================================================
-
+// ── UPLOAD SERVICE ──────────────────────────────────
 export const uploadService = {
   uploadImage: async (file: File): Promise<{ url: string; filename: string }> => {
     const formData = new FormData()
@@ -300,74 +158,6 @@ export const uploadService = {
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } },
     )
-    return data
-  },
-}
-
-// ============================================================
-// PACKAGE SERVICE
-// ============================================================
-
-const PKG_PATH = '/admin/packages'
-
-export const packageService = {
-  getAll: async (): Promise<Package[]> => {
-    const { data } = await api.get<Package[]>(PKG_PATH)
-    return data
-  },
-
-  getById: async (id: string): Promise<Package> => {
-    const { data } = await api.get<Package>(`${PKG_PATH}/${id}`)
-    return data
-  },
-
-  create: async (dto: CreatePackageDto): Promise<Package> => {
-    const { data } = await api.post<Package>(PKG_PATH, dto)
-    return data
-  },
-
-  update: async (id: string, dto: UpdatePackageDto): Promise<Package> => {
-    const { data } = await api.patch<Package>(`${PKG_PATH}/${id}`, dto)
-    return data
-  },
-
-  delete: async (id: string): Promise<void> => {
-    await api.delete(`${PKG_PATH}/${id}`)
-  },
-
-  publish: async (id: string): Promise<Package> => {
-    const { data } = await api.post<Package>(`${PKG_PATH}/${id}/publish`)
-    return data
-  },
-
-  unpublish: async (id: string): Promise<Package> => {
-    const { data } = await api.post<Package>(`${PKG_PATH}/${id}/unpublish`)
-    return data
-  },
-
-  addTest: async (packageId: string, dto: AddTestToPackageDto): Promise<PackageTest> => {
-    const { data } = await api.post<PackageTest>(`${PKG_PATH}/${packageId}/tests`, dto)
-    return data
-  },
-
-  removeTest: async (packageId: string, testId: string): Promise<void> => {
-    await api.delete(`${PKG_PATH}/${packageId}/tests/${testId}`)
-  },
-}
-
-// ============================================================
-// PUBLIC PACKAGE SERVICE
-// ============================================================
-
-export const publicPackageService = {
-  getAll: async (type?: 'free' | 'premium'): Promise<Package[]> => {
-    const params = type ? `?type=${type}` : ''
-    const { data } = await api.get<Package[]>(`/packages${params}`)
-    return data
-  },
-
-  getById: async (id: string): Promise<Package> => {
-    const { data } = await api.get<Package>(`/packages/${id}`)
     return data
   },
 }

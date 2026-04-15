@@ -1,75 +1,57 @@
-'use client'
-
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { questionService } from '../services'
-import type { CreateQuestionDto, UpdateQuestionDto } from '../types'
 import { adminKeys } from './query-keys'
+import type { CreateQuestionDto, UpdateQuestionDto } from '../types'
 
-export function useQuestions(testId: string) {
+export function useQuestions() {
   return useQuery({
-    queryKey: adminKeys.questions(testId),
-    queryFn: () => questionService.getAll(testId),
-    enabled: !!testId,
+    queryKey: adminKeys.questions.all,
+    queryFn: questionService.getAll,
+  })
+}
+
+export function useQuestion(id: string) {
+  return useQuery({
+    queryKey: adminKeys.questions.detail(id),
+    queryFn: () => questionService.getById(id),
+    enabled: !!id,
   })
 }
 
 export function useCreateQuestion() {
-  const queryClient = useQueryClient()
-
+  const qc = useQueryClient()
   return useMutation({
     mutationFn: (dto: CreateQuestionDto) => questionService.create(dto),
-    onSuccess: (data) => {
-      queryClient.invalidateQueries({
-        queryKey: adminKeys.questions(data.testId),
-      })
-      toast.success('Pertanyaan berhasil dibuat')
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: adminKeys.questions.all })
+      toast.success('Soal berhasil dibuat')
     },
-    onError: () => {
-      toast.error('Gagal membuat pertanyaan')
-    },
+    onError: () => toast.error('Gagal membuat soal'),
   })
 }
 
 export function useUpdateQuestion() {
-  const queryClient = useQueryClient()
-
+  const qc = useQueryClient()
   return useMutation({
-    mutationFn: ({
-      testId,
-      questionId,
-      dto,
-    }: {
-      testId: string
-      questionId: string
-      dto: UpdateQuestionDto
-    }) => questionService.update(testId, questionId, dto),
-    onSuccess: (data) => {
-      queryClient.invalidateQueries({
-        queryKey: adminKeys.questions(data.testId),
-      })
-      toast.success('Pertanyaan berhasil diperbarui')
+    mutationFn: ({ id, dto }: { id: string; dto: UpdateQuestionDto }) =>
+      questionService.update(id, dto),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: adminKeys.questions.all })
+      toast.success('Soal berhasil diperbarui')
     },
-    onError: () => {
-      toast.error('Gagal memperbarui pertanyaan')
-    },
+    onError: () => toast.error('Gagal memperbarui soal'),
   })
 }
 
 export function useDeleteQuestion() {
-  const queryClient = useQueryClient()
-
+  const qc = useQueryClient()
   return useMutation({
-    mutationFn: ({ testId, questionId }: { testId: string; questionId: string }) =>
-      questionService.delete(testId, questionId),
-    onSuccess: (_, { testId }) => {
-      queryClient.invalidateQueries({
-        queryKey: adminKeys.questions(testId),
-      })
-      toast.success('Pertanyaan berhasil dihapus')
+    mutationFn: (id: string) => questionService.delete(id),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: adminKeys.questions.all })
+      toast.success('Soal berhasil dihapus')
     },
-    onError: () => {
-      toast.error('Gagal menghapus pertanyaan')
-    },
+    onError: () => toast.error('Gagal menghapus soal'),
   })
 }
