@@ -1,6 +1,7 @@
 import { api } from '@/lib/axios'
 import type {
   Package, ChildPackage, PackageType, Test, SubTest, Question,
+  PublicPackage,
   ApiResponse,
   CreatePackageDto, UpdatePackageDto,
   CreateChildPackageDto, UpdateChildPackageDto,
@@ -159,5 +160,17 @@ export const uploadService = {
       { headers: { 'Content-Type': 'multipart/form-data' } },
     )
     return data
+  },
+}
+
+// ── PUBLIC PACKAGE SERVICE (unauthenticated) ─────────
+export const publicPackageService = {
+  getAll: async (): Promise<PublicPackage[]> => {
+    const { data } = await api.get<ApiResponse<PublicPackage[]>>('/packages')
+    return data.data
+  },
+  getById: async (id: string): Promise<PublicPackage> => {
+    const { data } = await api.get<ApiResponse<PublicPackage>>(`/packages/${id}`)
+    return data.data
   },
 }

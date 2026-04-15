@@ -30,7 +30,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
 import { TOPO_WHITE, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 import { publicPackageService } from '@/features/admin/services'
-import type { Package as PackageType } from '@/features/admin/types'
+import type { PublicPackage } from '@/features/admin/types'
 
 type TabType = 'gratis' | 'premium'
 
@@ -67,7 +67,7 @@ export default function JenisTesPage() {
   const [tab, setTab] = useState<TabType>('gratis')
   const [search, setSearch] = useState('')
   const [kategori, setKategori] = useState<string | null>(null)
-  const [packages, setPackages] = useState<PackageType[]>([])
+  const [packages, setPackages] = useState<PublicPackage[]>([])
   const [loading, setLoading] = useState(true)
   const packagesRef = useRef<HTMLDivElement>(null)
 
