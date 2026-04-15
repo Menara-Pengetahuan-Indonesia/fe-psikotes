@@ -10,8 +10,6 @@ export const metadata: Metadata = {
 }
 
 export default function RelationshipPage() {
-  const productCount = RELATIONSHIP_PRODUCTS.length
-
   return (
     <main className="min-h-screen bg-background">
 
@@ -40,7 +38,7 @@ export default function RelationshipPage() {
           {/* Stats strip */}
           <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 pt-8">
             <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-4xl font-black text-white tracking-tight">{productCount}</span>
+              <span className="text-3xl md:text-4xl font-black text-white tracking-tight">4</span>
               <span className="text-[10px] font-black text-primary-200 uppercase tracking-widest mt-1">Assessment</span>
             </div>
             <div className="w-px h-10 bg-white/15 hidden sm:block" />

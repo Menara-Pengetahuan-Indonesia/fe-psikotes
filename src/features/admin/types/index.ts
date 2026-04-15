@@ -15,6 +15,30 @@ export interface Package {
   childPackages?: ChildPackage[]
 }
 
+// Public-facing package shape (returned by /packages endpoint)
+export interface PublicPackage {
+  id: string
+  name: string
+  description?: string
+  price: number
+  estimatedDuration?: number
+  isActive: boolean
+  tests?: PublicTest[]
+}
+
+export interface PublicTest {
+  id: string
+  name: string
+  description?: string
+  order: number
+  duration?: number
+  originalYear?: number
+  adaptationYear?: number
+  precision?: number
+  popularity?: string
+  test?: { id: string; name: string }
+}
+
 export interface ChildPackage {
   id: string
   packageId: string

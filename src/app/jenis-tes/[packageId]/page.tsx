@@ -22,7 +22,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
 import { TOPO_WHITE, TOPO_BG_SIZE } from '@/shared/constants/bg-patterns.constants'
 import { publicPackageService } from '@/features/admin/services'
-import type { Package as PackageType } from '@/features/admin/types'
+import type { PublicPackage } from '@/features/admin/types'
 
 function formatPrice(price: number) {
   if (price === 0) return 'Gratis'
@@ -59,7 +59,7 @@ type TestItem = {
 export default function PackageDetailPublicPage() {
   const params = useParams()
   const router = useRouter()
-  const [pkg, setPkg] = useState<PackageType | null>(null)
+  const [pkg, setPkg] = useState<PublicPackage | null>(null)
   const [loading, setLoading] = useState(true)
   const [notFound, setNotFound] = useState(false)
 
