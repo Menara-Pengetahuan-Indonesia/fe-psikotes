@@ -1,205 +1,233 @@
 // ============================================================
-// DOMAIN TYPES
+// DOMAIN TYPES — matches backend API response shapes
 // ============================================================
 
-export type QuestionType = 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'RATING_SCALE' | 'ESSAY'
+export type QuestionType = 'MULTIPLE_CHOICE' | 'CHECKBOX' | 'SCALE_RATING' | 'ESSAY'
+export type ScoringType = 'IMMEDIATE' | 'END_OF_TEST'
 
-export type OptionDisplayStyle = 'UPPERCASE' | 'LOWERCASE' | 'NUMBER' | 'RADIO'
+export interface Package {
+  id: string
+  name: string
+  description?: string
+  isActive: boolean
+  createdAt: string
+  updatedAt: string
+  childPackages?: ChildPackage[]
+}
+
+export interface ChildPackage {
+  id: string
+  packageId: string
+  name: string
+  description?: string
+  isActive: boolean
+  createdAt: string
+  updatedAt: string
+  packageTypes?: PackageType[]
+}
+
+export interface PackageType {
+  id: string
+  childPackageId: string
+  name: string
+  description?: string
+  price: number
+  testTool?: string
+  isActive: boolean
+  createdAt: string
+  updatedAt: string
+}
 
 export interface Test {
   id: string
+  packageTypeId: string
   name: string
   description?: string
-  duration: number // in minutes
-  isPublished: boolean
-  timePerQuestion?: number | null // waktu per soal (detik)
-  shuffleQuestions: boolean
-  shuffleOptions: boolean
+  scoringType: ScoringType
+  order: number
+  isActive: boolean
   originalYear?: number | null
+  precision?: number | null
   adaptationYear?: number | null
-  precisionLevel?: number | null
   popularity?: string | null
-  packageIds?: string[]
-  questions?: Question[]
-  indicators?: Indicator[]
-  sections?: Section[]
   createdAt: string
   updatedAt: string
 }
 
-export interface Indicator {
+export interface SubTest {
   id: string
   testId: string
   name: string
   description?: string
+  duration?: number | null
   order: number
+  isDefault: boolean
+  isActive: boolean
   createdAt: string
   updatedAt: string
 }
 
-export interface Section {
-  id: string
-  testId: string
-  name: string
-  description?: string
+export interface QuestionOption {
+  id?: string
+  optionText: string
+  imageUrl?: string | null
+  isCorrect: boolean
+  points: number
   order: number
-  duration?: number | null // waktu per section (menit)
-  createdAt: string
-  updatedAt: string
+}
+
+export interface CorrectAnswer {
+  correctEssayKeywords?: string[]
+  minScaleValue?: number
+  maxScaleValue?: number
+  scaleWeights?: Record<string, number>
 }
 
 export interface Question {
   id: string
-  testId: string
-  sectionId?: string
-  text: string
-  type: 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'RATING_SCALE' | 'ESSAY'
-  order: number
+  subTestId: string
+  questionType: QuestionType
+  questionText: string
   imageUrl?: string | null
-  displayStyle?: OptionDisplayStyle | null
-  optionImageEnabled?: boolean
-  createdAt: string
-  updatedAt: string
+  order: number
+  points: number
   options?: QuestionOption[]
-}
-
-export interface QuestionOption {
-  id: string
-  questionId: string
-  text: string
-  order: number
-  imageUrl?: string | null
-  createdAt: string
-  updatedAt: string
-  mappings?: OptionIndicatorMapping[]
-}
-
-export interface OptionIndicatorMapping {
-  id: string
-  optionId: string
-  indicatorId: string
-  scoreValue: number
-  createdAt: string
-  updatedAt: string
-}
-
-export interface ScoringRule {
-  id: string
-  testId: string
-  indicatorId: string
-  minScore: number
-  maxScore: number
-  resultType: string
-  description?: string
+  correctAnswer?: CorrectAnswer | null
   createdAt: string
   updatedAt: string
 }
 
 // ============================================================
-// CREATE/UPDATE DTOs
+// API RESPONSE WRAPPER
 // ============================================================
 
-export interface CreateTestDto {
+export interface ApiResponse<T> {
+  statusCode: number
+  message: string
+  data: T
+}
+
+// ============================================================
+// CREATE / UPDATE DTOs
+// ============================================================
+
+export interface CreatePackageDto {
   name: string
   description?: string
-  duration: number
-  timePerQuestion?: number
-  shuffleQuestions?: boolean
-  shuffleOptions?: boolean
+  isActive?: boolean
+  childPackages?: {
+    name: string
+    description?: string
+    packageTypes: {
+      name: string
+      description?: string
+      price: number
+    }[]
+  }[]
+}
+
+export interface UpdatePackageDto {
+  name?: string
+  description?: string
+  isActive?: boolean
+}
+
+export interface CreateChildPackageDto {
+  packageId: string
+  name: string
+  description?: string
+  isActive?: boolean
+}
+
+export interface UpdateChildPackageDto {
+  packageId?: string
+  name?: string
+  description?: string
+  isActive?: boolean
+}
+
+export interface CreatePackageTypeDto {
+  childPackageId: string
+  name: string
+  description?: string
+  price: number
+  testTool?: string
+  isActive?: boolean
+}
+
+export interface UpdatePackageTypeDto {
+  childPackageId?: string
+  name?: string
+  description?: string
+  price?: number
+  testTool?: string
+  isActive?: boolean
+}
+
+export interface CreateTestDto {
+  packageTypeId: string
+  name: string
+  description?: string
+  scoringType: ScoringType
+  order?: number
+  isActive?: boolean
+  originalYear?: number
+  precision?: number
+  adaptationYear?: number
+  popularity?: string
 }
 
 export interface UpdateTestDto {
+  packageTypeId?: string
+  name?: string
+  description?: string
+  scoringType?: ScoringType
+  order?: number
+  isActive?: boolean
+  originalYear?: number
+  precision?: number
+  adaptationYear?: number
+  popularity?: string
+}
+
+export interface CreateSubTestDto {
+  testId: string
+  name: string
+  description?: string
+  duration?: number
+  order: number
+  isActive: boolean
+}
+
+export interface UpdateSubTestDto {
+  testId?: string
   name?: string
   description?: string
   duration?: number
-  timePerQuestion?: number | null
-  shuffleQuestions?: boolean
-  shuffleOptions?: boolean
-}
-
-export interface CreateIndicatorDto {
-  testId: string
-  name: string
-  description?: string
-  order: number
-}
-
-export interface UpdateIndicatorDto {
-  name?: string
-  description?: string
   order?: number
-}
-
-export interface CreateSectionDto {
-  testId: string
-  name: string
-  description?: string
-  order: number
-  duration?: number | null
-}
-
-export interface UpdateSectionDto {
-  name?: string
-  description?: string
-  order?: number
-  duration?: number | null
+  isActive?: boolean
 }
 
 export interface CreateQuestionDto {
-  testId: string
-  sectionId?: string
-  text: string
-  type: 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'RATING_SCALE' | 'ESSAY'
+  subTestId: string
+  questionType: QuestionType
+  questionText: string
+  imageUrl?: string
   order: number
-  imageUrl?: string | null
-  displayStyle?: OptionDisplayStyle
-  optionImageEnabled?: boolean
+  points?: number
+  options?: Omit<QuestionOption, 'id'>[]
+  correctAnswer?: CorrectAnswer
 }
 
 export interface UpdateQuestionDto {
-  text?: string
-  type?: 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'RATING_SCALE' | 'ESSAY'
-  sectionId?: string
+  subTestId?: string
+  questionType?: QuestionType
+  questionText?: string
+  imageUrl?: string
   order?: number
-  imageUrl?: string | null
-  displayStyle?: OptionDisplayStyle
-  optionImageEnabled?: boolean
-}
-
-export interface CreateQuestionOptionDto {
-  questionId: string
-  text: string
-  order: number
-  imageUrl?: string | null
-}
-
-export interface UpdateQuestionOptionDto {
-  text?: string
-  order?: number
-  imageUrl?: string | null
-}
-
-export interface CreateOptionIndicatorMappingDto {
-  indicatorId: string
-  scoreValue: number
-}
-
-export interface UpdateOptionIndicatorMappingDto {
-  scoreValue?: number
-}
-
-export interface CreateScoringRuleDto {
-  testId: string
-  indicatorId: string
-  minScore: number
-  maxScore: number
-  resultType: string
-}
-
-export interface UpdateScoringRuleDto {
-  minScore?: number
-  maxScore?: number
-  resultType?: string
+  points?: number
+  options?: Omit<QuestionOption, 'id'>[]
+  correctAnswer?: CorrectAnswer
 }
 
 // ============================================================
@@ -209,51 +237,4 @@ export interface UpdateScoringRuleDto {
 export interface UploadResponse {
   url: string
   filename: string
-}
-
-// ============================================================
-// PACKAGE TYPES
-// ============================================================
-
-export interface Package {
-  id: string
-  name: string
-  description?: string
-  imageUrl?: string | null
-  price: number
-  estimatedDuration?: number | null
-  isPublished: boolean
-  createdAt: string
-  updatedAt: string
-  tests?: PackageTest[]
-}
-
-export interface PackageTest {
-  id: string
-  packageId: string
-  testId: string
-  order: number
-  createdAt: string
-  test?: Test
-}
-
-export interface CreatePackageDto {
-  name: string
-  description?: string
-  imageUrl?: string
-  price?: number
-  estimatedDuration?: number
-}
-
-export interface UpdatePackageDto {
-  name?: string
-  description?: string
-  imageUrl?: string
-  price?: number
-  estimatedDuration?: number
-}
-
-export interface AddTestToPackageDto {
-  testId: string
-  order: number
 }

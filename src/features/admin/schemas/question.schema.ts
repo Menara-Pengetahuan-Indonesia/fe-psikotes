@@ -1,32 +1,26 @@
 import { z } from 'zod'
 
-const questionTypeEnum = z.enum([
-  'MULTIPLE_CHOICE',
-  'TRUE_FALSE',
-  'RATING_SCALE',
-  'ESSAY',
-])
-
-const displayStyleEnum = z.enum([
-  'UPPERCASE',
-  'LOWERCASE',
-  'NUMBER',
-  'RADIO',
-])
+export const questionOptionSchema = z.object({
+  optionText: z.string().min(1, 'Teks opsi wajib diisi'),
+  imageUrl: z.string().optional(),
+  isCorrect: z.boolean(),
+  points: z.number().int(),
+  order: z.number().int(),
+})
 
 export const createQuestionSchema = z.object({
-  text: z
-    .string()
-    .min(1, 'Teks pertanyaan wajib diisi')
-    .max(2000, 'Teks pertanyaan terlalu panjang'),
-  type: questionTypeEnum,
-  sectionId: z.string().optional().or(z.literal('')),
-  order: z
-    .number({ message: 'Urutan harus berupa angka' })
-    .min(0, 'Urutan tidak boleh negatif'),
-  imageUrl: z.string().optional().nullable(),
-  displayStyle: displayStyleEnum.optional().nullable(),
-  optionImageEnabled: z.boolean().optional().default(false),
+  subTestId: z.string().min(1),
+  questionType: z.enum(['MULTIPLE_CHOICE', 'CHECKBOX', 'SCALE_RATING', 'ESSAY']),
+  questionText: z.string().min(1, 'Teks soal wajib diisi'),
+  imageUrl: z.string().optional(),
+  order: z.number().int().min(0),
+  points: z.number().int().min(0).optional(),
+  options: z.array(questionOptionSchema).optional(),
+  correctAnswer: z.object({
+    correctEssayKeywords: z.array(z.string()).optional(),
+    minScaleValue: z.number().optional(),
+    maxScaleValue: z.number().optional(),
+  }).optional(),
 })
 
 export const updateQuestionSchema = createQuestionSchema.partial()

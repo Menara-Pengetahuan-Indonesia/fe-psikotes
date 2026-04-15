@@ -1,15 +1,26 @@
 export const adminKeys = {
-  all: ['admin'] as const,
-  tests: () => [...adminKeys.all, 'tests'] as const,
-  test: (id: string) => [...adminKeys.tests(), id] as const,
-  indicators: (testId: string) =>
-    [...adminKeys.all, 'indicators', testId] as const,
-  sections: (testId: string) =>
-    [...adminKeys.all, 'sections', testId] as const,
-  questions: (testId: string) =>
-    [...adminKeys.all, 'questions', testId] as const,
-  scoringRules: (testId: string) =>
-    [...adminKeys.all, 'scoring-rules', testId] as const,
-  packages: () => [...adminKeys.all, 'packages'] as const,
-  package: (id: string) => [...adminKeys.packages(), id] as const,
+  packages: {
+    all: ['admin', 'packages'] as const,
+    detail: (id: string) => ['admin', 'packages', id] as const,
+  },
+  childPackages: {
+    all: ['admin', 'child-packages'] as const,
+    detail: (id: string) => ['admin', 'child-packages', id] as const,
+  },
+  packageTypes: {
+    all: ['admin', 'package-types'] as const,
+    detail: (id: string) => ['admin', 'package-types', id] as const,
+  },
+  tests: {
+    all: ['admin', 'tests'] as const,
+    detail: (id: string) => ['admin', 'tests', id] as const,
+  },
+  subTests: {
+    all: ['admin', 'subtests'] as const,
+    detail: (id: string) => ['admin', 'subtests', id] as const,
+  },
+  questions: {
+    all: ['admin', 'questions'] as const,
+    detail: (id: string) => ['admin', 'questions', id] as const,
+  },
 }

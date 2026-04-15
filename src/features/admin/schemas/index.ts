@@ -5,32 +5,26 @@ export {
   type UpdateTestFormData,
 } from './test.schema'
 export {
-  createIndicatorSchema,
-  updateIndicatorSchema,
-  type CreateIndicatorFormData,
-  type UpdateIndicatorFormData,
-} from './indicator.schema'
-export {
-  createSectionSchema,
-  updateSectionSchema,
-  type CreateSectionFormData,
-  type UpdateSectionFormData,
-} from './section.schema'
-export {
   createQuestionSchema,
   updateQuestionSchema,
   type CreateQuestionFormData,
   type UpdateQuestionFormData,
 } from './question.schema'
 export {
-  createOptionSchema,
-  updateOptionSchema,
-  type CreateOptionFormData,
-  type UpdateOptionFormData,
-} from './option.schema'
+  createChildPackageSchema,
+  updateChildPackageSchema,
+  type CreateChildPackageFormData,
+  type UpdateChildPackageFormData,
+} from './child-package.schema'
 export {
-  createScoringRuleSchema,
-  updateScoringRuleSchema,
-  type CreateScoringRuleFormData,
-  type UpdateScoringRuleFormData,
-} from './scoring-rule.schema'
+  createPackageTypeSchema,
+  updatePackageTypeSchema,
+  type CreatePackageTypeFormData,
+  type UpdatePackageTypeFormData,
+} from './package-type.schema'
+export {
+  createSubTestSchema,
+  updateSubTestSchema,
+  type CreateSubTestFormData,
+  type UpdateSubTestFormData,
+} from './subtest.schema'
