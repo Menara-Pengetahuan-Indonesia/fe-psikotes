@@ -103,7 +103,8 @@ export {
 export {
   ConfirmDialog,
   FormField,
-  Bento,
+  BentoGrid,
+  BentoCard,
   QuestionList,
   QuestionForm,
   BulkImportCSV,
