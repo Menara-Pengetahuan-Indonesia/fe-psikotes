@@ -1,22 +1,22 @@
 export const QUESTION_TYPE_LABELS: Record<string, string> = {
   MULTIPLE_CHOICE: 'Pilihan Ganda',
-  TRUE_FALSE: 'Benar/Salah',
-  RATING_SCALE: 'Skala Rating',
+  CHECKBOX: 'Checkbox',
+  SCALE_RATING: 'Skala Rating',
   ESSAY: 'Essay',
 }
 
 export const QUESTION_TYPE_SHORT_LABELS: Record<string, string> = {
   MULTIPLE_CHOICE: 'PG',
-  TRUE_FALSE: 'B/S',
-  RATING_SCALE: 'Skala',
+  CHECKBOX: 'CB',
+  SCALE_RATING: 'Skala',
   ESSAY: 'Essay',
 }
 
 export const QUESTION_TYPE_COLORS: Record<string, string> = {
-  MULTIPLE_CHOICE: 'bg-indigo-100 text-indigo-800 border-indigo-200',
-  TRUE_FALSE: 'bg-teal-100 text-teal-800 border-teal-200',
-  RATING_SCALE: 'bg-violet-100 text-violet-800 border-violet-200',
-  ESSAY: 'bg-slate-100 text-slate-800 border-slate-200',
+  MULTIPLE_CHOICE: 'bg-indigo-50 text-indigo-600',
+  CHECKBOX: 'bg-teal-50 text-teal-600',
+  SCALE_RATING: 'bg-violet-50 text-violet-600',
+  ESSAY: 'bg-amber-50 text-amber-600',
 }
 
 export const DISPLAY_STYLE_OPTIONS = [

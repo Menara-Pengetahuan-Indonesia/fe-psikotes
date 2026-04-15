@@ -52,6 +52,7 @@ export interface Test {
   popularity?: string | null
   createdAt: string
   updatedAt: string
+  subTests?: SubTest[]
 }
 
 export interface SubTest {

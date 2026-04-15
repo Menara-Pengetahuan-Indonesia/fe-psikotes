@@ -1,6 +1,6 @@
 export { ConfirmDialog } from './Common/ConfirmDialog'
 export { FormField } from './Common/FormField'
-export { Bento } from './Common/Bento'
+export { BentoGrid, BentoCard } from './Common/Bento'
 export { QuestionList } from './QuestionManagement/QuestionList'
 export { QuestionForm } from './QuestionManagement/QuestionForm'
 export { BulkImportCSV } from './QuestionManagement/BulkImportCSV'
