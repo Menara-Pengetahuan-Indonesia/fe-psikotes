@@ -59,7 +59,7 @@ export default function AdminDashboardPage() {
             className="bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
             asChild
           >
-            <Link href="/admin/tests/buat">
+            <Link href="/admin/packages">
               <Plus className="w-5 h-5 mr-2 group-hover:rotate-90 transition-transform" />
               Buat Tes Baru
             </Link>
