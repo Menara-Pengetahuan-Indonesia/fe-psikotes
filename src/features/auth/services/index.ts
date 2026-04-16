@@ -50,12 +50,13 @@ export const authService = {
         password: data.password,
       })
 
+      const u = response.data.user
       return {
         user: {
-          id: response.data.user.id,
-          email: response.data.user.email,
-          name: response.data.user.name,
-          role: response.data.user.role || 'USER',
+          id: u.id,
+          email: u.email,
+          name: u.name ?? `${u.firstName ?? ''} ${u.lastName ?? ''}`.trim(),
+          role: u.role || 'USER',
         },
         accessToken: response.data.accessToken,
         refreshToken: response.data.refreshToken,
@@ -75,12 +76,13 @@ export const authService = {
         telp: data.telp || '',
       })
 
+      const u = response.data.user
       return {
         user: {
-          id: response.data.user.id,
-          email: response.data.user.email,
-          name: response.data.user.name,
-          role: response.data.user.role || 'USER',
+          id: u.id,
+          email: u.email,
+          name: u.name ?? `${u.firstName ?? ''} ${u.lastName ?? ''}`.trim(),
+          role: u.role || 'USER',
         },
         message: 'Registrasi berhasil',
       }
