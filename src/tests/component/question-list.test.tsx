@@ -61,35 +61,35 @@ import { QuestionList } from '@/features/admin/components/QuestionManagement/Que
 
 describe('QuestionList', () => {
   it('renders question list heading', () => {
-    render(<QuestionList testId="test-1" />)
+    render(<QuestionList subTestId="test-1" />)
     expect(screen.getByText('Pertanyaan')).toBeInTheDocument()
   })
 
   it('renders add question button', () => {
-    render(<QuestionList testId="test-1" />)
+    render(<QuestionList subTestId="test-1" />)
     expect(screen.getByText('Tambah Pertanyaan')).toBeInTheDocument()
   })
 
   it('renders question texts', () => {
-    render(<QuestionList testId="test-1" />)
+    render(<QuestionList subTestId="test-1" />)
     expect(screen.getByText('Apa warna favorit Anda?')).toBeInTheDocument()
     expect(screen.getByText('Jelaskan diri Anda.')).toBeInTheDocument()
   })
 
   it('renders question count', () => {
-    render(<QuestionList testId="test-1" />)
+    render(<QuestionList subTestId="test-1" />)
     expect(screen.getByText('(2 total)')).toBeInTheDocument()
   })
 
   it('renders empty state when no questions', () => {
     mockQuestionsData = []
-    render(<QuestionList testId="test-1" />)
+    render(<QuestionList subTestId="test-1" />)
     expect(screen.getByText('Belum ada pertanyaan')).toBeInTheDocument()
     mockQuestionsData = mockQuestions
   })
 
   it('renders option count badge', () => {
-    render(<QuestionList testId="test-1" />)
+    render(<QuestionList subTestId="test-1" />)
     expect(screen.getByText('2 opsi')).toBeInTheDocument()
   })
 })
