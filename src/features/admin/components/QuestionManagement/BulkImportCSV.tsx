@@ -174,7 +174,7 @@ export function BulkImportCSV({ subTestId }: BulkImportCSVProps) {
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-6">
           <div className="flex items-center justify-between px-2">
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 bg-teal-50 text-teal-600 px-4 py-2 rounded-full border border-teal-100">
+              <div className="flex items-center gap-2 bg-indigo-50 text-indigo-600 px-4 py-2 rounded-full border border-indigo-100">
                 <CheckCircle2 className="size-4" />
                 <span className="text-xs font-black uppercase tracking-widest">{validRows.length} Valid</span>
               </div>
@@ -237,7 +237,7 @@ export function BulkImportCSV({ subTestId }: BulkImportCSVProps) {
                       </td>
                       <td className="px-8 py-4 text-center">
                         {row.valid ? (
-                          <div className="size-6 rounded-full bg-teal-50 text-teal-600 flex items-center justify-center mx-auto shadow-inner">
+                          <div className="size-6 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto shadow-inner">
                             <CheckCircle2 className="size-3" />
                           </div>
                         ) : (

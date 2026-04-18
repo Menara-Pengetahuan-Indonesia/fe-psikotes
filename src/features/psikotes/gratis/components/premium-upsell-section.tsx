@@ -114,7 +114,7 @@ export function PremiumUpsellSection() {
               'font-bold uppercase',
               'tracking-wider text-xs',
               'hover:bg-primary-50',
-              'transition-all flex',
+              'transition-colors flex',
               'items-center justify-center',
               'gap-2',
             )}

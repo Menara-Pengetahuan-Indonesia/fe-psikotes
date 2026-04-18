@@ -54,7 +54,7 @@ export function ServiceGrid() {
           
           {Object.keys(TAB_FILTERS).map((tab) => (
             <TabsContent key={tab} value={tab} className="mt-0 outline-none">
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filtered(tab).map((service) => (
                   <ServiceCard
                     key={service.title}

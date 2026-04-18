@@ -191,7 +191,7 @@ export default function PackageDetailPage() {
                     className={cn(
                       'text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full',
                       pkg.isActive
-                        ? 'bg-teal-500/20 text-teal-300'
+                        ? 'bg-indigo-500/20 text-indigo-300'
                         : 'bg-slate-500/20 text-slate-300',
                     )}
                   >
@@ -230,8 +230,8 @@ export default function PackageDetailPage() {
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-teal-500/30 flex items-center justify-center">
-                <CheckCircle2 className="size-5 text-teal-300" />
+              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
+                <CheckCircle2 className="size-5 text-indigo-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{activeCount}</p>
@@ -316,7 +316,7 @@ export default function PackageDetailPage() {
                       className={cn(
                         'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
                         cp.isActive
-                          ? 'bg-teal-50 text-teal-600'
+                          ? 'bg-indigo-50 text-indigo-600'
                           : 'bg-slate-100 text-slate-400',
                       )}
                     >
@@ -423,7 +423,7 @@ export default function PackageDetailPage() {
                   onClick={() => setFormActive(!formActive)}
                   className={cn(
                     'flex items-center gap-2 text-sm font-bold transition-colors',
-                    formActive ? 'text-teal-600' : 'text-slate-400',
+                    formActive ? 'text-indigo-600' : 'text-slate-400',
                   )}
                 >
                   {formActive ? (

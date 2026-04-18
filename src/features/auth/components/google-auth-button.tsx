@@ -21,7 +21,7 @@ export function GoogleAuthButton({
         'w-full h-12 flex items-center justify-center gap-3',
         'bg-white border border-slate-200 rounded-xl',
         'text-sm font-bold text-slate-700',
-        'hover:bg-slate-50 hover:border-slate-300 transition-all active:scale-[0.98]',
+        'hover:bg-slate-50 hover:border-slate-300 transition-colors active:scale-[0.98]',
         'shadow-sm shadow-black/5',
         className,
       )}

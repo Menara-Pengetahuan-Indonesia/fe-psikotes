@@ -18,7 +18,7 @@ export function ExamSubmitModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
-      <div className="bg-white rounded-[2rem] p-8 max-w-sm w-full shadow-2xl space-y-6 text-center animate-in fade-in zoom-in-95 duration-300">
+      <div className="bg-white rounded-[2rem] p-8 max-w-sm w-full shadow-2xl space-y-6 text-center">
         <div className={cn(
           'size-16 rounded-2xl flex items-center justify-center mx-auto',
           allAnswered ? 'bg-teal-100' : 'bg-amber-100'
@@ -50,7 +50,7 @@ export function ExamSubmitModal({
           </div>
           <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
             <div
-              className={cn('h-full rounded-full transition-all', allAnswered ? 'bg-teal-500' : 'bg-amber-500')}
+              className={cn('h-full rounded-full transition-colors', allAnswered ? 'bg-teal-500' : 'bg-amber-500')}
               style={{ width: `${(answeredCount / totalQuestions) * 100}%` }}
             />
           </div>

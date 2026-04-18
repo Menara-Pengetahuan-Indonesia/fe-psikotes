@@ -1,0 +1,237 @@
+- generic:
+  - main:
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - link:
+                - /url: /
+                - img
+              - navigation:
+                - link:
+                  - /url: /dashboard
+                  - text: Dashboard
+                - link:
+                  - /url: /admin/kelola-tes
+                  - text: Kelola Tes
+                - link:
+                  - /url: /admin/packages
+                  - text: Paket
+                - link:
+                  - /url: /admin/schedules
+                  - text: Jadwal
+                - link:
+                  - /url: /admin/participants
+                  - text: Peserta
+                - link:
+                  - /url: /admin/results
+                  - text: Hasil
+                - link:
+                  - /url: /admin/analytics
+                  - text: Analitik
+                - link:
+                  - /url: /admin/settings
+                  - text: Pengaturan
+            - generic:
+              - button:
+                - img
+              - link:
+                - /url: /admin/notifications
+                - img
+              - button:
+                - generic:
+                  - generic: AD
+                - generic:
+                  - paragraph: Admin
+                - img
+        - main:
+          - generic:
+            - generic:
+              - navigation:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - img
+                      - heading [level=2]: Kelola Tes
+                    - button:
+                      - img
+                      - text: Paket
+                  - generic:
+                    - img
+                    - searchbox
+                - tree:
+                  - generic:
+                    - generic:
+                      - button:
+                        - img
+                      - treeitem:
+                        - img
+                        - generic: Relationship
+                        - generic: "1"
+                  - generic:
+                    - generic:
+                      - button:
+                        - img
+                      - treeitem:
+                        - img
+                        - generic: Diri Pribadi
+                        - generic: "1"
+                  - generic:
+                    - generic:
+                      - button:
+                        - img
+                      - treeitem:
+                        - img
+                        - generic: Proses Bisnis
+                        - generic: "2"
+              - main:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - img
+                      - generic:
+                        - generic:
+                          - heading [level=2]: Kecocokan Nilai
+                          - status: Aktif
+                        - paragraph: "Sub Tes · Urutan #1"
+                    - button:
+                      - img
+                  - generic:
+                    - heading [level=3]: Soal
+                    - generic:
+                      - generic:
+                        - heading [level=2]:
+                          - text: Pertanyaan
+                          - generic: (3 total)
+                        - button:
+                          - img
+                          - text: Tambah Pertanyaan
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: Pilihan Ganda
+                                - generic: "#1"
+                                - generic: 4 opsi
+                              - paragraph: Bagaimana pandangan pasangan Anda tentang agama/spiritualitas?
+                            - generic:
+                              - button:
+                                - img
+                              - button:
+                                - img
+                        - generic:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: Pilihan Ganda
+                                - generic: "#2"
+                                - generic: 4 opsi
+                              - paragraph: Apakah Anda dan pasangan memiliki pandangan yang sama tentang keuangan?
+                            - generic:
+                              - button:
+                                - img
+                              - button:
+                                - img
+                        - generic:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: Pilihan Ganda
+                                - generic: "#3"
+                                - generic: 4 opsi
+                              - paragraph: Bagaimana pandangan Anda berdua tentang memiliki anak?
+                            - generic:
+                              - button:
+                                - img
+                              - button:
+                                - img
+                  - generic:
+                    - generic:
+                      - generic:
+                        - heading [level=3]: Bulk Import.
+                        - paragraph: Unggah ribuan soal sekaligus melalui file CSV.
+                      - button:
+                        - img
+                        - text: Unduh Template
+                    - generic:
+                      - generic:
+                        - img
+                      - generic:
+                        - paragraph: Klik atau seret file CSV ke sini.
+                        - paragraph: Pastikan format file sesuai dengan template.
+        - generic:
+          - generic:
+            - paragraph: © 2026 Bermoela — Indonesian Life School
+            - generic:
+              - link:
+                - /url: "#"
+                - text: Bantuan
+              - link:
+                - /url: "#"
+                - text: Kebijakan
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e169] [cursor=pointer]:
+    - img [ref=e170]
+  - alert
+  - dialog "Tambah Pertanyaan" [ref=e175]:
+    - generic [ref=e176]:
+      - heading "Tambah Pertanyaan" [level=2] [ref=e177]
+      - paragraph [ref=e178]: Isi informasi pertanyaan untuk subtes ini
+    - generic [ref=e179]:
+      - generic [ref=e180]:
+        - generic [ref=e181]:
+          - text: Teks Pertanyaan
+          - generic [ref=e182]: "*"
+        - textbox "Masukkan teks pertanyaan..." [active] [ref=e183]
+      - generic [ref=e184]:
+        - generic [ref=e185]:
+          - generic [ref=e186]:
+            - text: Tipe Pertanyaan
+            - generic [ref=e187]: "*"
+          - combobox [ref=e188]:
+            - generic: Pilihan Ganda
+            - img
+          - combobox [ref=e189]
+        - generic [ref=e190]:
+          - generic [ref=e191]:
+            - text: Urutan
+            - generic [ref=e192]: "*"
+          - spinbutton [ref=e193]: "1"
+      - generic [ref=e194]:
+        - generic [ref=e195]: Poin
+        - spinbutton [ref=e196]: "1"
+      - generic [ref=e197]:
+        - text: Gambar (Opsional)
+        - button "Unggah Gambar" [ref=e199]:
+          - img
+          - text: Unggah Gambar
+      - generic [ref=e200]:
+        - generic [ref=e201]:
+          - generic [ref=e202]: Opsi Jawaban
+          - button "Tambah Opsi" [ref=e203]:
+            - img
+            - text: Tambah Opsi
+        - generic [ref=e204]:
+          - generic [ref=e205]:
+            - checkbox "Jawaban benar" [ref=e206]
+            - textbox "Opsi 1" [ref=e207]
+            - spinbutton [ref=e208]: "0"
+            - button [ref=e209]:
+              - img
+          - generic [ref=e210]:
+            - checkbox "Jawaban benar" [ref=e211]
+            - textbox "Opsi 2" [ref=e212]
+            - spinbutton [ref=e213]: "0"
+            - button [ref=e214]:
+              - img
+        - paragraph [ref=e215]: Centang checkbox untuk menandai jawaban benar.
+      - generic [ref=e216]:
+        - button "Batal" [ref=e217]
+        - button "Tambah" [ref=e218]
+    - button "Close" [ref=e219]:
+      - img
+      - generic [ref=e220]: Close

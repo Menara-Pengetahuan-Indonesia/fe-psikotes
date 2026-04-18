@@ -19,19 +19,19 @@ import { useAuthStoreHydrated } from '@/store/auth.store'
 import { cn } from '@/lib/utils'
 
 const quickAccess = [
-  { href: '/admin/tests', label: 'Kelola Tes', desc: 'Buat dan atur instrumen tes', icon: BookOpen, stat: '24', statLabel: 'Tes', color: 'bg-gradient-to-br from-indigo-400 to-indigo-500', iconBg: 'bg-indigo-100 text-indigo-600' },
+  { href: '/admin/kelola-tes', label: 'Kelola Tes', desc: 'Buat dan atur instrumen tes', icon: BookOpen, stat: '24', statLabel: 'Tes', color: 'bg-gradient-to-br from-indigo-400 to-indigo-500', iconBg: 'bg-indigo-100 text-indigo-600' },
   { href: '/admin/packages', label: 'Paket', desc: 'Kelola bundel paket tes', icon: Package, stat: '6', statLabel: 'Paket', color: 'bg-gradient-to-br from-violet-400 to-violet-500', iconBg: 'bg-violet-100 text-violet-600' },
-  { href: '/admin/schedules', label: 'Jadwal', desc: 'Atur jadwal akses tes', icon: CalendarClock, stat: '2', statLabel: 'Aktif', color: 'bg-gradient-to-br from-teal-400 to-teal-500', iconBg: 'bg-teal-100 text-teal-600' },
+  { href: '/admin/schedules', label: 'Jadwal', desc: 'Atur jadwal akses tes', icon: CalendarClock, stat: '2', statLabel: 'Aktif', color: 'bg-gradient-to-br from-indigo-400 to-indigo-500', iconBg: 'bg-indigo-100 text-indigo-600' },
   { href: '/admin/participants', label: 'Peserta', desc: 'Kelola peserta terdaftar', icon: Users, stat: '1,240', statLabel: 'Peserta', color: 'bg-gradient-to-br from-indigo-400 to-indigo-500', iconBg: 'bg-indigo-100 text-indigo-600' },
-  { href: '/admin/results', label: 'Hasil', desc: 'Lihat hasil tes peserta', icon: FileBarChart, stat: '840', statLabel: 'Selesai', color: 'bg-gradient-to-br from-teal-400 to-teal-500', iconBg: 'bg-teal-100 text-teal-600' },
+  { href: '/admin/results', label: 'Hasil', desc: 'Lihat hasil tes peserta', icon: FileBarChart, stat: '840', statLabel: 'Selesai', color: 'bg-gradient-to-br from-indigo-400 to-indigo-500', iconBg: 'bg-indigo-100 text-indigo-600' },
   { href: '/admin/analytics', label: 'Analitik', desc: 'Insight dan statistik platform', icon: BarChart3, stat: '+18%', statLabel: 'Tren', color: 'bg-gradient-to-br from-violet-400 to-violet-500', iconBg: 'bg-violet-100 text-violet-600' },
 ]
 
 const recentActivities = [
-  { text: 'Ahmad Fauzi menyelesaikan Tes Kepribadian MBTI', time: '5 menit lalu', icon: CheckCircle2, color: 'bg-teal-100 text-teal-600' },
+  { text: 'Ahmad Fauzi menyelesaikan Tes Kepribadian MBTI', time: '5 menit lalu', icon: CheckCircle2, color: 'bg-indigo-100 text-indigo-600' },
   { text: 'Siti Nurhaliza mendaftar sebagai peserta baru', time: '12 menit lalu', icon: User, color: 'bg-indigo-100 text-indigo-600' },
   { text: 'Tes Intelegensi IST diperbarui', time: '1 jam lalu', icon: BookOpen, color: 'bg-violet-100 text-violet-600' },
-  { text: 'Dewi Lestari menyelesaikan Tes Minat Bakat RIASEC', time: '2 jam lalu', icon: CheckCircle2, color: 'bg-teal-100 text-teal-600' },
+  { text: 'Dewi Lestari menyelesaikan Tes Minat Bakat RIASEC', time: '2 jam lalu', icon: CheckCircle2, color: 'bg-indigo-100 text-indigo-600' },
   { text: 'Jadwal Rekrutmen Batch 5 dibuat', time: '3 jam lalu', icon: CalendarClock, color: 'bg-rose-100 text-rose-600' },
 ]
 
@@ -59,7 +59,7 @@ export default function AdminDashboardPage() {
             className="bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
             asChild
           >
-            <Link href="/admin/packages">
+            <Link href="/admin/kelola-tes">
               <Plus className="w-5 h-5 mr-2 group-hover:rotate-90 transition-transform" />
               Buat Tes Baru
             </Link>
@@ -78,8 +78,8 @@ export default function AdminDashboardPage() {
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-teal-500/30 flex items-center justify-center">
-              <Users className="size-5 text-teal-300" />
+            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
+              <Users className="size-5 text-indigo-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">1,240</p>

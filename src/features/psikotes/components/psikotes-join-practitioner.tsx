@@ -1,6 +1,4 @@
-'use client'
-
-import { 
+import {
   Users, 
   Award, 
   HeartHandshake, 
@@ -12,7 +10,7 @@ import {
 
 export function PsikotesJoinPractitioner() {
   return (
-    <section id="komunitas" className="py-24 bg-linear-to-b from-white to-accent-50/30 relative overflow-hidden">
+    <section id="komunitas" className="py-24 bg-gray-50 relative overflow-hidden">
 
       {/* Background Ornaments */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-linear-to-r from-transparent via-primary-200 to-transparent" />
@@ -71,7 +69,7 @@ export function PsikotesJoinPractitioner() {
                       <div className="w-32 h-32 rounded-full bg-slate-100 border-4 border-white shadow-lg overflow-hidden flex items-center justify-center text-5xl grayscale group-hover:grayscale-0 transition-[filter] duration-700">
                          👩‍💼
                       </div>
-                      <div className="absolute -right-2 -bottom-2 w-10 h-10 bg-emerald-500 rounded-full border-4 border-white flex items-center justify-center">
+                      <div className="absolute -right-2 -bottom-2 w-10 h-10 bg-primary-500 rounded-full border-4 border-white flex items-center justify-center">
                          <CheckCircle2 className="w-5 h-5 text-white" />
                       </div>
                    </div>

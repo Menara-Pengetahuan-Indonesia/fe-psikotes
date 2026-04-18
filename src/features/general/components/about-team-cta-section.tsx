@@ -98,7 +98,7 @@ export function AboutTeamCtaSection() {
             'bg-accent-400 hover:bg-accent-300',
             'text-secondary font-bold shadow-lg',
             'shadow-accent-400/20',
-            'transition-all group',
+            'transition-colors group',
           )}
         >
           <Link

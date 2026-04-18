@@ -26,7 +26,7 @@ export function PaymentMethodSelector({ selectedPayment, onSelect }: PaymentMeth
         return (
           <div
             key={cat.id}
-            className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden ${
+            className={`bg-white rounded-2xl border transition-colors duration-300 overflow-hidden ${
               isExpanded ? 'border-black shadow-md' : 'border-slate-200 hover:border-slate-300'
             }`}
           >
@@ -53,7 +53,7 @@ export function PaymentMethodSelector({ selectedPayment, onSelect }: PaymentMeth
 
             {/* Expandable method list */}
             <div
-              className={`transition-all duration-300 ease-in-out ${
+              className={`transition-[max-height] duration-300 ease-in-out ${
                 isExpanded ? 'max-h-125 opacity-100' : 'max-h-0 opacity-0'
               }`}
             >
@@ -65,7 +65,7 @@ export function PaymentMethodSelector({ selectedPayment, onSelect }: PaymentMeth
                     return (
                       <label
                         key={opt.id}
-                        className={`flex items-center justify-between p-4 rounded-xl border cursor-pointer transition-all ${
+                        className={`flex items-center justify-between p-4 rounded-xl border cursor-pointer transition-colors ${
                           isSelected
                             ? 'bg-slate-900 border-slate-900 text-white shadow-lg'
                             : 'bg-white border-slate-100 text-slate-600 hover:border-slate-300 hover:bg-slate-50'

@@ -67,7 +67,7 @@ export function OrderSummary({
       <button
         onClick={onContinue}
         disabled={!hasPaymentSelected || isProcessing}
-        className="w-full py-4 bg-black text-white rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-slate-800 transition-all flex items-center justify-center gap-2 disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed shadow-lg hover:shadow-xl disabled:shadow-none"
+        className="w-full py-4 bg-black text-white rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-slate-800 transition-colors flex items-center justify-center gap-2 disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed shadow-lg hover:shadow-xl disabled:shadow-none"
       >
         {isProcessing ? 'Memproses...' : <>Lanjut Pembayaran <ArrowRight className="w-4 h-4" /></>}
       </button>

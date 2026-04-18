@@ -72,7 +72,7 @@ export function TestDetailPage({ slug }: TestDetailPageProps) {
               </button>
               <Link
                 href={`/gratis/${slug}/exam`}
-                className="h-14 px-8 bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl font-black text-base shadow-xl transition-all active:scale-95 flex items-center gap-2"
+                className="h-14 px-8 bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl font-black text-base shadow-xl transition-colors active:scale-95 flex items-center gap-2"
               >
                 <Play className="size-5 fill-current" />
                 Mulai Tes
@@ -103,7 +103,7 @@ export function TestDetailPage({ slug }: TestDetailPageProps) {
             {GRATIS_INSTRUCTIONS.map((item, i) => (
               <div key={i} className="flex gap-4 items-start group">
                 <div className={cn(
-                  'size-9 rounded-xl flex items-center justify-center shrink-0 text-sm font-black transition-all',
+                  'size-9 rounded-xl flex items-center justify-center shrink-0 text-sm font-black transition-colors',
                   i === 0 ? 'bg-indigo-100 text-indigo-600' :
                   i === 1 ? 'bg-teal-100 text-teal-600' :
                   i === 2 ? 'bg-violet-100 text-violet-600' :
@@ -138,7 +138,7 @@ export function TestDetailPage({ slug }: TestDetailPageProps) {
         <div className="flex justify-center pt-4">
           <Link
             href={`/gratis/${slug}/exam`}
-            className="h-14 px-10 bg-slate-900 text-white hover:bg-slate-800 rounded-2xl font-black text-base shadow-xl transition-all active:scale-95 flex items-center gap-2"
+            className="h-14 px-10 bg-slate-900 text-white hover:bg-slate-800 rounded-2xl font-black text-base shadow-xl transition-colors active:scale-95 flex items-center gap-2"
           >
             <Play className="size-5 fill-current" />
             Mulai Tes Sekarang

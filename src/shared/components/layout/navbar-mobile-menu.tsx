@@ -17,7 +17,7 @@ export function NavbarMobileMenu({
       className={cn(
         'fixed inset-0 z-40 bg-white/98',
         'backdrop-blur-2xl pt-28 px-6 md:hidden',
-        'animate-in fade-in slide-in-from-top-6',
+        '',
         'duration-300'
       )}
     >
@@ -58,7 +58,7 @@ export function NavbarMobileMenu({
               'w-full h-12 rounded-2xl text-[13px] font-semibold',
               'border-slate-200 text-slate-600',
               'hover:bg-primary-50 hover:border-primary-200 hover:text-primary-700',
-              'transition-all cursor-pointer'
+              'transition-colors cursor-pointer'
             )}
             asChild
           >
@@ -69,7 +69,7 @@ export function NavbarMobileMenu({
               'w-full h-12 rounded-2xl text-[13px] font-semibold',
               'bg-primary-600 hover:bg-primary-700 text-white',
               'shadow-lg shadow-primary-600/20',
-              'transition-all cursor-pointer'
+              'transition-colors cursor-pointer'
             )}
             asChild
           >
@@ -114,7 +114,7 @@ function MobileDropdownSection({
                 'flex items-center gap-3.5',
                 'rounded-2xl p-3 cursor-pointer',
                 'hover:bg-primary-50/60 group',
-                'transition-all duration-200'
+                'transition-colors duration-200'
               )}
             >
               {Icon && (
@@ -125,7 +125,7 @@ function MobileDropdownSection({
                     'rounded-xl bg-slate-50',
                     'group-hover:bg-primary-100',
                     'group-hover:shadow-sm',
-                    'transition-all duration-200'
+                    'transition-colors duration-200'
                   )}
                 >
                   <Icon

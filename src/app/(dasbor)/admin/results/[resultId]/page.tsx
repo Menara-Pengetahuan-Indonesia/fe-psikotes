@@ -256,7 +256,7 @@ function formatTime(dateStr: string) {
 
 const indicatorColors = [
   { bar: 'bg-indigo-500', bg: 'bg-indigo-50', text: 'text-indigo-600', icon: 'bg-indigo-100' },
-  { bar: 'bg-teal-500', bg: 'bg-teal-50', text: 'text-teal-600', icon: 'bg-teal-100' },
+  { bar: 'bg-indigo-500', bg: 'bg-indigo-50', text: 'text-indigo-600', icon: 'bg-indigo-100' },
   { bar: 'bg-violet-500', bg: 'bg-violet-50', text: 'text-violet-600', icon: 'bg-violet-100' },
   { bar: 'bg-rose-500', bg: 'bg-rose-50', text: 'text-rose-600', icon: 'bg-rose-100' },
   { bar: 'bg-amber-500', bg: 'bg-amber-50', text: 'text-amber-600', icon: 'bg-amber-100' },
@@ -297,7 +297,7 @@ export default function ResultDetailPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
         <div className="relative z-10">
           {/* Back button */}
           <button
@@ -313,7 +313,7 @@ export default function ResultDetailPage() {
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
             <div className="flex items-start gap-5">
               {/* Avatar */}
-              <div className="size-16 rounded-2xl bg-gradient-to-br from-teal-400 to-teal-500 flex items-center justify-center shrink-0 shadow-lg">
+              <div className="size-16 rounded-2xl bg-gradient-to-br from-indigo-400 to-indigo-500 flex items-center justify-center shrink-0 shadow-lg">
                 <User className="size-7 text-white" />
               </div>
               <div>
@@ -329,7 +329,7 @@ export default function ResultDetailPage() {
                 <div className="flex items-center gap-3 mt-3">
                   <span className={cn(
                     'text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full',
-                    isCompleted ? 'bg-teal-500/20 text-teal-300' : 'bg-amber-500/20 text-amber-300'
+                    isCompleted ? 'bg-indigo-500/20 text-indigo-300' : 'bg-amber-500/20 text-amber-300'
                   )}>
                     {isCompleted ? 'Selesai' : 'Berlangsung'}
                   </span>
@@ -342,7 +342,7 @@ export default function ResultDetailPage() {
 
             <Button
               size="lg"
-              className="bg-white text-slate-900 hover:bg-teal-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
+              className="bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
             >
               <Download className="w-5 h-5 mr-2 group-hover:translate-y-0.5 transition-transform" />
               Export PDF
@@ -352,8 +352,8 @@ export default function ResultDetailPage() {
           {/* Quick stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-teal-500/30 flex items-center justify-center">
-                <Award className="size-5 text-teal-300" />
+              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
+                <Award className="size-5 text-indigo-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{result.score}</p>
@@ -464,8 +464,8 @@ export default function ResultDetailPage() {
                 <span className="text-sm font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
                   {answer.answer}
                 </span>
-                <div className="size-7 rounded-lg bg-teal-50 flex items-center justify-center">
-                  <CheckCircle2 className="size-4 text-teal-500" />
+                <div className="size-7 rounded-lg bg-indigo-50 flex items-center justify-center">
+                  <CheckCircle2 className="size-4 text-indigo-500" />
                 </div>
               </div>
             </div>

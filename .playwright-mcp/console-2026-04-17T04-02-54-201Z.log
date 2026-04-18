@@ -1,0 +1,172 @@
+[     118ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     334ms] [LOG] [Fast Refresh] done in 316ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     436ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     751ms] [LOG] [Fast Refresh] done in 415ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     930ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[    1018ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[    1387ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[    1476ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <AppDevOverlayErrorBoundary globalError={[...]}>
+      <ReplaySsrOnlyErrors>
+      <DevRootHTTPAccessFallbackBoundary>
+        <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+          <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <RedirectBoundary>
+              <RedirectErrorBoundary router={{...}}>
+                <Head>
+                <__next_root_layout_boundary__>
+                  <SegmentViewNode type="layout" pagePath="layout.tsx">
+                    <SegmentTrieNode>
+                    <link>
+                    <script>
+                    <script>
+                    <script>
+                    <RootLayout>
+                      <html lang="id" suppressHydrationWarning={true}>
+                        <body className="plus_jakar...">
+                          <QueryProvider>
+                            <QueryClientProvider client={{}}>
+                              <Navbar>
+                                <header className="fixed top-...">
+                                  <nav
++                                   className="w-full max-w-6xl flex items-center justify-between px-5 py-2.5 transiti..."
+-                                   className="w-full max-w-6xl flex items-center justify-between px-5 py-2.5 transiti..."
+                                  >
+                                    <NavbarLogo>
+                                    <NavbarDesktopMenu navItems={[...]} pathname="/" isScrolled={false}>
+                                      <div className="hidden md:...">
+                                        <LinkComponent href="/" className="px-4 py-2 ...">
+                                          <a
++                                           className="px-4 py-2 rounded-full text-[13px] font-semibold tracking-wide ..."
+-                                           className="px-4 py-2 rounded-full text-[13px] font-semibold tracking-wide ..."
+                                            ref={function}
+                                            onClick={function onClick}
+                                            onMouseEnter={function onMouseEnter}
+                                            onTouchStart={function onTouchStart}
+                                            href="/"
+                                          >
++                                           Beranda
+                                        <DesktopDropdown item={{label:"Ase...", ...}} isScrolled={false}>
+                                          <div className="relative g...">
+                                            <LinkComponent href="/kategori" className="flex items...">
+                                              <a
++                                               className="flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px..."
+-                                               className="flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px..."
+                                                ref={function}
+                                                onClick={function onClick}
+                                                onMouseEnter={function onMouseEnter}
+                                                onTouchStart={function onTouchStart}
+                                                href="/kategori"
+                                              >
+                                            ...
+                                        <LinkComponent href="/gratis" className="px-4 py-2 ...">
+                                          <a
++                                           className="px-4 py-2 rounded-full text-[13px] font-semibold tracking-wide ..."
+-                                           className="px-4 py-2 rounded-full text-[13px] font-semibold tracking-wide ..."
+                                            ref={function}
+                                            onClick={function onClick}
+                                            onMouseEnter={function onMouseEnter}
+                                            onTouchStart={function onTouchStart}
+                                            href="/gratis"
+                                          >
++                                           Tes Gratis
+                                        <LinkComponent href="/about" className="px-4 py-2 ...">
+                                          <a
++                                           className="px-4 py-2 rounded-full text-[13px] font-semibold tracking-wide ..."
+-                                           className="px-4 py-2 rounded-full text-[13px] font-semibold tracking-wide ..."
+                                            ref={function}
+                                            onClick={function onClick}
+                                            onMouseEnter={function onMouseEnter}
+                                            onTouchStart={function onTouchStart}
+                                            href="/about"
+                                          >
++                                           Tentang
+                                        <LinkComponent href="/blog" className="px-4 py-2 ...">
+                                          <a
++                                           className="px-4 py-2 rounded-full text-[13px] font-semibold tracking-wide ..."
+-                                           className="px-4 py-2 rounded-full text-[13px] font-semibold tracking-wide ..."
+                                            ref={function}
+                                            onClick={function onClick}
+                                            onMouseEnter={function onMouseEnter}
+                                            onTouchStart={function onTouchStart}
+                                            href="/blog"
+                                          >
++                                           Blog
+                                    <div className="flex items...">
+                                      <NavbarDesktopCta isScrolled={false}>
+                                        <div className="hidden md:...">
+                                          ...
+                                            <Slot.SlotClone data-slot="button" data-variant="ghost" data-size="sm" ...>
+                                              <LinkComponent href="/masuk" data-slot="button" data-variant="ghost" ...>
+                                                <a
+                                                  data-slot="button"
+                                                  data-variant="ghost"
+                                                  data-size="sm"
++                                                 className={"inline-flex items-center justify-center whitespace-nowr..."}
+-                                                 className={"inline-flex items-center justify-center whitespace-nowr..."}
+                                                  ref={function}
+                                                  onClick={function onClick}
+                                                  onMouseEnter={function onMouseEnter}
+                                                  onTouchStart={function onTouchStart}
+                                                  href="/masuk"
+                                                >
++                                                 Masuk
+                                          ...
+                                            <Slot.SlotClone data-slot="button" data-variant="default" data-size="sm" ...>
+                                              <LinkComponent href="/daftar" data-slot="button" data-variant="default" ...>
+                                                <a
+                                                  data-slot="button"
+                                                  data-variant="default"
+                                                  data-size="sm"
++                                                 className={"inline-flex items-center justify-center whitespace-nowr..."}
+-                                                 className={"inline-flex items-center justify-center whitespace-nowr..."}
+                                                  ref={function}
+                                                  onClick={function onClick}
+                                                  onMouseEnter={function onMouseEnter}
+                                                  onTouchStart={function onTouchStart}
+                                                  href="/daftar"
+                                                >
++                                                 Daftar
+                                      <button
++                                       className="md:hidden p-2.5 rounded-xl transition-all duration-200 cursor-point..."
+-                                       className="md:hidden p-2.5 rounded-xl transition-all duration-200 cursor-point..."
+                                        onClick={function onClick}
+                                      >
+                              <MainContainer>
+                                <main
++                                 className="relative z-10 bg-background min-h-screen"
+-                                 className="relative z-10 bg-background"
+                                >
+                                  ...
+                                    <HomePage>
+                                      <main>
+                                        <PsikotesHero>
+                                          <section className="relative o...">
+                                            <div
++                                             className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary-50/50 r..."
+-                                             className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-50/40 r..."
+                                            >
+                                            <div
++                                             className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-slate-50 roun..."
+-                                             className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-slate-50 roun..."
+                                            >
+                                            ...
+                                        ...
+                              ...
+                ...
+ @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[    1535ms] [LOG] [Fast Refresh] done in 256ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[   45857ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[   46056ms] [LOG] [Fast Refresh] done in 158ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297

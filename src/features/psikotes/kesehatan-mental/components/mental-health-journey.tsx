@@ -164,7 +164,7 @@ export function MentalHealthJourney() {
                   'bg-white/5 backdrop-blur-md',
                   'p-8 rounded-[2rem]',
                   'border border-white/10',
-                  'transition-all duration-500',
+                  'transition-colors duration-300',
                   'hover:-translate-y-1',
                   'hover:shadow-2xl',
                   'hover:shadow-primary-900/40',

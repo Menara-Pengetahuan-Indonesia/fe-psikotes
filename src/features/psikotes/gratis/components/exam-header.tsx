@@ -43,7 +43,7 @@ export function ExamHeader({
         {/* Progress Bar */}
         <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-indigo-400 to-teal-400 transition-all duration-500 ease-out rounded-full"
+            className="h-full bg-gradient-to-r from-indigo-400 to-teal-400 transition-[width] duration-500 ease-out rounded-full"
             style={{ width: `${progress}%` }}
           />
         </div>

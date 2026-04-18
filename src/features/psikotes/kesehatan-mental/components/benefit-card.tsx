@@ -19,7 +19,7 @@ export function BenefitCard({
         'p-6 rounded-[2.5rem]',
         'border border-slate-100',
         'bg-white',
-        'transition-all',
+        'transition-colors',
         'duration-500',
         'hover:-translate-y-1.5',
         'shadow-xl',

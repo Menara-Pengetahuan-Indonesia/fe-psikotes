@@ -105,7 +105,7 @@ export function RegisterForm({
               'bg-slate-900 text-white',
               'font-bold text-sm',
               'hover:bg-slate-800 active:scale-[0.98]',
-              'transition-all duration-200 shadow-xl shadow-slate-900/20',
+              'transition-colors duration-200 shadow-xl shadow-slate-900/20',
             )}
             disabled={isLoading}
           >

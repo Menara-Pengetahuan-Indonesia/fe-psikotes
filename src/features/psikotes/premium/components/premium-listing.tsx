@@ -71,7 +71,7 @@ export function PremiumListing() {
 
           {/* Refined Search Bar */}
           <div className="max-w-xl mx-auto relative group">
-            <div className="relative flex items-center bg-white rounded-3xl border border-slate-200 p-2 shadow-xl shadow-primary-900/20 focus-within:border-primary-500 transition-all">
+            <div className="relative flex items-center bg-white rounded-3xl border border-slate-200 p-2 shadow-xl shadow-primary-900/20 focus-within:border-primary-500 transition-colors">
               <div className="pl-4 pr-2">
                 <Search className="w-6 h-6 text-slate-400" />
               </div>
@@ -82,7 +82,7 @@ export function PremiumListing() {
                 placeholder="Cari tes premium..."
                 className="w-full py-4 px-2 bg-transparent focus:outline-none text-slate-900 font-bold placeholder:text-slate-300"
               />
-              <button className="hidden md:block px-8 py-4 bg-primary-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-black transition-all shadow-lg shadow-primary-700/20">
+              <button className="hidden md:block px-8 py-4 bg-primary-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-black transition-colors shadow-lg shadow-primary-700/20">
                 Cari Tes
               </button>
             </div>
@@ -101,7 +101,7 @@ export function PremiumListing() {
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
                 className={cn(
-                  "px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all border",
+                  "px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-colors border",
                   activeFilter === filter
                     ? "bg-primary-600 border-primary-700 text-white shadow-lg shadow-primary-600/20 -translate-y-0.5"
                     : "bg-white border-slate-200 text-slate-500 hover:border-primary-500 hover:text-primary-600 shadow-sm"

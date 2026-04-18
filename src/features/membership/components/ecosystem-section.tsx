@@ -39,7 +39,7 @@ export function EcosystemSection() {
               <div
                 key={item.title}
                 className={cn(
-                  "group relative p-8 rounded-[2.5rem] bg-white border transition-all duration-500 hover:-translate-y-1.5",
+                  "group relative p-8 rounded-[2.5rem] bg-white border transition-[transform,box-shadow] duration-300 hover:-translate-y-1.5",
                   "shadow-xl shadow-stone-200/50 hover:shadow-2xl",
                   themeClass
                 )}

@@ -168,7 +168,7 @@ export function PersonalProductDetail({
                   type="button"
                   onClick={() => setSelectedTier(p.tier)}
                   className={cn(
-                    'relative rounded-[2rem] border-2 p-6 text-left transition-all duration-300',
+                    'relative rounded-[2rem] border-2 p-6 text-left transition-colors duration-300',
                     isActive
                       ? 'border-primary-500 bg-white shadow-2xl shadow-primary-500/20 md:-translate-y-1'
                       : 'border-slate-100 bg-white/60 hover:border-primary-200 opacity-80 hover:opacity-100'
@@ -238,7 +238,7 @@ export function PersonalProductDetail({
               {relProduct.subIssues.map((issue) => (
                 <div
                   key={issue.id}
-                  className="bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg hover:border-primary-200 transition-all"
+                  className="bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-lg hover:border-primary-200 transition-[box-shadow,border-color]"
                 >
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center shrink-0">
@@ -304,7 +304,7 @@ export function PersonalProductDetail({
                 <Link
                   key={rel.id}
                   href={`${categoryHref}/${rel.slug}`}
-                  className="group bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-xl hover:border-primary-200 transition-all"
+                  className="group bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-xl hover:border-primary-200 transition-[box-shadow,border-color]"
                 >
                   <div className="w-10 h-10 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center mb-4">
                     <rel.icon className="w-5 h-5" />

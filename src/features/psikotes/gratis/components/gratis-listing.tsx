@@ -65,7 +65,7 @@ export function GratisListing() {
 
           {/* Refined Search Bar (Non-3D) */}
           <div className="max-w-xl mx-auto relative group">
-            <div className="relative flex items-center bg-white rounded-3xl border border-slate-200 p-2 shadow-xl shadow-primary-900/20 focus-within:border-primary-500 transition-all">
+            <div className="relative flex items-center bg-white rounded-3xl border border-slate-200 p-2 shadow-xl shadow-primary-900/20 focus-within:border-primary-500 transition-colors">
               <div className="pl-4 pr-2">
                 <Search className="w-6 h-6 text-slate-400" />
               </div>
@@ -76,7 +76,7 @@ export function GratisListing() {
                 placeholder="Cari jenis tes (misal: Kepribadian, Karir...)"
                 className="w-full py-4 px-2 bg-transparent focus:outline-none text-slate-900 font-bold placeholder:text-slate-300"
               />
-              <button className="hidden md:block px-8 py-4 bg-primary-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-black transition-all shadow-lg shadow-primary-700/20">
+              <button className="hidden md:block px-8 py-4 bg-primary-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-black transition-colors shadow-lg shadow-primary-700/20">
                 Cari Tes
               </button>
             </div>
@@ -95,7 +95,7 @@ export function GratisListing() {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={cn(
-                  "px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all border",
+                  "px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-colors border",
                   activeTab === tab
                     ? "bg-primary-600 border-primary-700 text-white shadow-lg shadow-primary-600/20 -translate-y-0.5"
                     : "bg-white border-slate-200 text-slate-500 hover:border-primary-500 hover:text-primary-600 shadow-sm"
@@ -162,7 +162,7 @@ export function GratisListing() {
 
           {/* Clean Load More Button */}
           <div className="mt-16 text-center">
-            <button className="px-12 py-5 bg-white border-2 border-primary-800 text-primary-800 rounded-2xl text-xs font-black uppercase tracking-[0.2em] hover:bg-primary-800 hover:text-white transition-all shadow-xl shadow-primary-800/5">
+            <button className="px-12 py-5 bg-white border-2 border-primary-800 text-primary-800 rounded-2xl text-xs font-black uppercase tracking-[0.2em] hover:bg-primary-800 hover:text-white transition-colors shadow-xl shadow-primary-800/5">
               Muat Lebih Banyak Assessments
             </button>
           </div>

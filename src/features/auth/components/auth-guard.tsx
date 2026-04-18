@@ -37,7 +37,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
         className={cn(
           needsLogin && 'pointer-events-none select-none',
           needsLogin && 'blur-sm opacity-60',
-          'transition-all duration-300',
+          'transition-colors duration-300',
         )}
       >
         {children}
@@ -73,7 +73,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
               'bg-secondary text-white',
               'font-black text-xs uppercase',
               'tracking-widest',
-              'hover:bg-primary transition-all',
+              'hover:bg-primary transition-colors',
               'shadow-xl shadow-secondary/10',
               'hover:shadow-primary/20',
             )}>

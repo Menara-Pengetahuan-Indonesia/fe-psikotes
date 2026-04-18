@@ -26,7 +26,7 @@ export function CareersBenefitsSection() {
                 'p-6 rounded-2xl border',
                 'border-slate-200 text-center',
                 'hover:-translate-y-1',
-                'hover:shadow-lg transition-all',
+                'hover:shadow-lg transition-[box-shadow]',
                 'duration-300',
               )}
             >

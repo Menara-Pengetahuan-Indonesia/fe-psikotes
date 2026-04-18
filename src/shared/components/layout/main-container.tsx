@@ -29,11 +29,11 @@ export function MainContainer({ children }: { children: React.ReactNode }) {
             ? "bg-white min-h-dvh mb-0 rounded-none"
             : isDashboard
               ? "bg-slate-50 min-h-dvh mb-0 rounded-none"
-              : "bg-background min-h-screen"
+              : "bg-background"
       )}
     >
       <div className={cn(
-        "min-h-full w-full",
+        "w-full",
         isExam
           ? "bg-[#F2F2F7]"
           : pathname.startsWith('/mahasiswa/try-out/form')

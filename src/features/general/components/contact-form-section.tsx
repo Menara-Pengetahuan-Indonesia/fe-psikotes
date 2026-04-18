@@ -206,7 +206,7 @@ export function ContactFormSection() {
                   'bg-secondary',
                   'hover:bg-secondary-700',
                   'text-white font-bold',
-                  'transition-all group',
+                  'transition-colors group',
                 )}
               >
                 <Send

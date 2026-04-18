@@ -1,0 +1,204 @@
+[     113ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     266ms] [LOG] [Fast Refresh] done in 254ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     368ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     589ms] [LOG] [Fast Refresh] done in 322ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     728ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     829ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[    1188ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[    1229ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <body className="plus_jakar...">
+      <QueryProvider>
+        <QueryClientProvider client={{}}>
+          <Navbar>
+            <header className="fixed top-...">
+              <nav className="w-full max...">
+                <NavbarLogo>
+                <NavbarDesktopMenu>
+                <div className="flex items...">
+                  <NavbarDesktopCta isScrolled={false}>
+                    <div className="hidden md:...">
+                      <Button>
+                      <Button size="sm" className="rounded-fu..." asChild={true}>
+                        <Slot.Slot data-slot="button" data-variant="default" data-size="sm" className={"inline-f..."}>
+                          <Slot.SlotClone data-slot="button" data-variant="default" data-size="sm" ...>
+                            <LinkComponent href="/daftar" data-slot="button" data-variant="default" data-size="sm" ...>
+                              <a
+                                data-slot="button"
+                                data-variant="default"
+                                data-size="sm"
++                               className={"inline-flex items-center justify-center whitespace-nowrap disabled:pointe..."}
+-                               className={"inline-flex items-center justify-center whitespace-nowrap disabled:pointe..."}
+                                ref={function}
+                                onClick={function onClick}
+                                onMouseEnter={function onMouseEnter}
+                                onTouchStart={function onTouchStart}
+                                href="/daftar"
+                              >
++                               Daftar
+                  ...
+          ...
+            <RedirectBoundary>
+              <RedirectErrorBoundary router={{...}}>
+                <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+                  <SegmentViewNode type="page" pagePath="page.tsx">
+                    <SegmentTrieNode>
+                    <HomePage>
+                      <main>
+                        ...
+                          <div className="max-w-7xl ...">
+                            <div className="grid grid-...">
+                              <div className="space-y-8">
+                                <div>
+                                <div className="space-y-4">
+                                  <h1
++                                   className="text-4xl md:text-5xl lg:text-[3.5rem] font-black text-slate-900 trackin..."
+-                                   className="text-4xl md:text-5xl lg:text-[3.5rem] font-black text-primary-900 track..."
+                                  >
+                                  <p
++                                   className="text-base md:text-lg text-slate-500 max-w-lg leading-relaxed font-medium"
+-                                   className="text-base md:text-lg text-primary-800/60 max-w-lg leading-relaxed font-..."
+                                  >
+                                    <span
++                                     className="text-slate-800 font-bold italic"
+-                                     className="text-primary-900 font-bold italic"
+                                    >
++                                     {"\"The New You\""}
+                                    ...
+                                <div className="flex flex-...">
+                                  <LinkComponent href="/jenis-tes" className="inline-fle...">
+                                    <a
++                                     className="inline-flex items-center gap-2.5 px-8 py-4 bg-slate-900 text-white ro..."
+-                                     className="inline-flex items-center gap-2.5 px-8 py-4 bg-primary-600 text-white ..."
+                                      ref={function}
+                                      onClick={function onClick}
+                                      onMouseEnter={function onMouseEnter}
+                                      onTouchStart={function onTouchStart}
+                                      href="/jenis-tes"
+                                    >
+                                  <LinkComponent href="/tentang" className="inline-fle...">
+                                    <a
++                                     className="inline-flex items-center gap-2 px-8 py-4 bg-slate-100 text-slate-700 ..."
+-                                     className="inline-flex items-center gap-2 px-8 py-4 bg-primary-50 text-primary-7..."
+                                      ref={function}
+                                      onClick={function onClick}
+                                      onMouseEnter={function onMouseEnter}
+                                      onTouchStart={function onTouchStart}
+                                      href="/tentang"
+                                    >
++                                     Pelajari Lebih
+                                <div className="flex flex-...">
+                                  <div
++                                   className="flex items-center gap-2 text-slate-400"
+-                                   className="flex items-center gap-2 text-primary-600/60"
+                                  >
+                                  <div
++                                   className="flex items-center gap-2 text-slate-400"
+-                                   className="flex items-center gap-2 text-primary-600/60"
+                                  >
+                                  <div
++                                   className="flex items-center gap-2 text-slate-400"
+-                                   className="flex items-center gap-2 text-primary-600/60"
+                                  >
+                              ...
+                        <PreloadChunks>
+                        <PsikotesTransformationMap>
+                        <PreloadChunks>
+                        <PsikotesStage>
+                        ...
+                          <section id="pemetaan" className="py-16 pb-1...">
+                            <div className="max-w-7xl ...">
+                              <div>
+                              <div>
+                              <div className="bg-white r...">
+                                <div>
+                                <div className="grid grid-...">
+                                  <div>
+                                  <div>
+                                  <div className="hidden lg:...">
+                                    <div
++                                     className="absolute inset-0 bg-slate-900"
+-                                     className="absolute inset-0 bg-primary-600"
+                                    >
+                                    ...
+                                  <div>
+                                  <div>
+                                  <div>
+                                  <div
++                                   className="col-span-1 lg:col-span-3 p-10 lg:p-14 bg-slate-900 flex flex-col justif..."
+-                                   className="col-span-1 lg:col-span-3 p-10 lg:p-14 bg-primary-700 flex flex-col just..."
+                                  >
+                              ...
+                        <LoadableComponent>
+                          <PreloadChunks>
+                          <LoadableComponent>
+                            <PsikotesProducts>
+                              <section id="masa-depan" className="py-12 md:p...">
+                                <div className="max-w-7xl ...">
+                                  <div className="space-y-12...">
+                                    <div>
+                                    <div className="flex flex-...">
+                                      <button
+                                        onClick={function onClick}
++                                       className="flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-black up..."
+-                                       className="flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-black up..."
+                                      >
+                                      ...
+                                      ...
+                                  <div>
+                                  <div
++                                   className="mt-20 p-8 md:p-12 rounded-[3rem] bg-slate-900 shadow-2xl shadow-slate-9..."
+-                                   className="mt-20 p-8 md:p-12 rounded-[3rem] bg-primary-800 shadow-2xl shadow-prima..."
+                                  >
+                                    <div className="relative z...">
+                                      <div className="space-y-4 ...">
+                                        <h3 className="text-2xl m...">
+                                          <span
++                                           className="text-primary-400 italic"
+-                                           className="text-accent-300 italic"
+                                          >
++                                           Titik Mula?
+                                        <p
++                                         className="text-slate-400 font-medium text-sm md:text-base max-w-xl"
+-                                         className="text-primary-100 font-medium text-sm md:text-base max-w-xl"
+                                        >
++                                         Ceritakan situasimu ke AI Counsellor kami — gratis, tanpa daftar, dan langsun...
+                                      <button
+                                        onClick={function onClick}
++                                       className="px-8 h-16 rounded-2xl bg-primary-500 text-white text-sm font-black ..."
+-                                       className="px-8 h-16 rounded-2xl bg-white text-primary-700 text-sm font-black ..."
+                                      >
+                  ...
+                ...
+          ...
+ @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[    1298ms] [LOG] [Fast Refresh] done in 218ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[   91591ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[   91748ms] [LOG] [Fast Refresh] done in 231ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  121358ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  121396ms] [LOG] [Fast Refresh] done in 120ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  155923ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  156048ms] [LOG] [Fast Refresh] done in 205ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  156166ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  156448ms] [LOG] [Fast Refresh] done in 334ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  188102ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  188218ms] [LOG] [Fast Refresh] done in 199ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  214887ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  215124ms] [LOG] [Fast Refresh] done in 337ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  215782ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  215835ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  224808ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  225606ms] [LOG] [Fast Refresh] done in 791ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  225791ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  225965ms] [LOG] [Fast Refresh] done in 255ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297

@@ -43,7 +43,7 @@ const initialNotifications: Notification[] = [
 ]
 
 const typeConfig: Record<NotifType, { icon: typeof Bell; color: string }> = {
-  test_completed: { icon: CheckCircle2, color: 'bg-teal-100 text-teal-600' },
+  test_completed: { icon: CheckCircle2, color: 'bg-indigo-100 text-indigo-600' },
   new_user: { icon: UserPlus, color: 'bg-indigo-100 text-indigo-600' },
   test_updated: { icon: FileText, color: 'bg-violet-100 text-violet-600' },
   schedule_created: { icon: CalendarClock, color: 'bg-rose-100 text-rose-600' },
@@ -126,8 +126,8 @@ export default function AdminNotificationsPage() {
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-teal-500/30 flex items-center justify-center">
-              <CheckCircle2 className="size-5 text-teal-300" />
+            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
+              <CheckCircle2 className="size-5 text-indigo-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{readCount}</p>

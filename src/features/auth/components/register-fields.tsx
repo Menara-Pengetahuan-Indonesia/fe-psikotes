@@ -21,7 +21,7 @@ const INPUT_CLS = cn(
   'pl-11 pr-4 text-slate-900 text-sm font-medium',
   'placeholder:text-slate-400 placeholder:font-normal',
   'focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10',
-  'transition-all duration-200',
+  'transition-colors duration-200',
 )
 const INPUT_PW_CLS = cn(INPUT_CLS, 'pr-12')
 const ERROR_CLS = 'text-[11px] text-red-500 ml-3 font-medium flex items-center gap-1'

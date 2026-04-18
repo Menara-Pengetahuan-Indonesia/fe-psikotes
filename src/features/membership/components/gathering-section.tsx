@@ -63,7 +63,7 @@ export function GatheringSection() {
           </ul>
 
           <div className="pt-4">
-             <button className="px-10 py-4 bg-slate-950 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-primary-600 transition-all shadow-xl shadow-slate-950/10">
+             <button className="px-10 py-4 bg-slate-950 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-primary-600 transition-colors shadow-xl shadow-slate-950/10">
                 Lihat Jadwal Gathering
              </button>
           </div>

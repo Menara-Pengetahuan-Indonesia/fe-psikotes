@@ -1,0 +1,210 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - link "Bermoela" [ref=e8] [cursor=pointer]:
+            - /url: /
+            - img "Bermoela" [ref=e9]
+          - navigation [ref=e10]:
+            - link "Dashboard" [ref=e11] [cursor=pointer]:
+              - /url: /dashboard
+            - link "Kelola Tes" [ref=e12] [cursor=pointer]:
+              - /url: /admin/kelola-tes
+            - link "Paket" [ref=e13] [cursor=pointer]:
+              - /url: /admin/packages
+            - link "Jadwal" [ref=e14] [cursor=pointer]:
+              - /url: /admin/schedules
+            - link "Peserta" [ref=e15] [cursor=pointer]:
+              - /url: /admin/participants
+            - link "Hasil" [ref=e16] [cursor=pointer]:
+              - /url: /admin/results
+            - link "Analitik" [ref=e17] [cursor=pointer]:
+              - /url: /admin/analytics
+            - link "Pengaturan" [ref=e18] [cursor=pointer]:
+              - /url: /admin/settings
+        - generic [ref=e19]:
+          - button [ref=e20]:
+            - img
+          - link [ref=e21] [cursor=pointer]:
+            - /url: /admin/notifications
+            - img
+          - button "AD" [ref=e22]:
+            - generic [ref=e24]: AD
+            - img [ref=e25]
+      - main [ref=e27]:
+        - generic [ref=e29]:
+          - generic [ref=e30]:
+            - generic [ref=e31]:
+              - paragraph [ref=e32]: Admin Panel
+              - heading "Halo, Admin." [level=1] [ref=e33]
+            - generic [ref=e34]:
+              - img [ref=e35]
+              - generic [ref=e37]: 16 April 2026
+          - generic [ref=e38]:
+            - generic [ref=e39]:
+              - generic [ref=e40]:
+                - img [ref=e42]
+                - heading "Selamat Datang, Admin." [level=2] [ref=e44]
+                - paragraph [ref=e45]: Kelola tes psikotes dan pantau perkembangan peserta Anda.
+              - generic:
+                - img
+            - generic [ref=e46]:
+              - heading "Quick Actions" [level=3] [ref=e47]
+              - link "Buat Tes Baru" [ref=e48] [cursor=pointer]:
+                - /url: /admin/tests
+                - img
+                - text: Buat Tes Baru
+              - link "Lihat Hasil Peserta" [ref=e49] [cursor=pointer]:
+                - /url: /admin/results
+                - img
+                - text: Lihat Hasil Peserta
+              - link "Pengaturan" [ref=e50] [cursor=pointer]:
+                - /url: /admin/settings
+                - img
+                - text: Pengaturan
+            - generic [ref=e51]:
+              - img [ref=e54]
+              - paragraph [ref=e57]: "24"
+              - paragraph [ref=e58]: Total Tes
+            - generic [ref=e59]:
+              - generic [ref=e60]:
+                - img [ref=e62]
+                - generic [ref=e67]: +12%
+              - paragraph [ref=e68]: "156"
+              - paragraph [ref=e69]: Total Peserta
+            - generic [ref=e70]:
+              - img [ref=e73]
+              - paragraph [ref=e75]: "8"
+              - paragraph [ref=e76]: Tes Aktif
+            - generic [ref=e77]:
+              - img [ref=e80]
+              - paragraph [ref=e83]: 87%
+              - paragraph [ref=e84]: Completion Rate
+            - generic [ref=e85]:
+              - generic [ref=e86]:
+                - img [ref=e87]
+                - heading "Tes Populer" [level=3] [ref=e93]
+              - generic [ref=e94]:
+                - generic [ref=e95]:
+                  - generic [ref=e96]: "1"
+                  - generic [ref=e97]:
+                    - paragraph [ref=e98]: Tes Kepribadian MBTI
+                    - paragraph [ref=e99]: 48 peserta
+                  - generic [ref=e100]: Live
+                - generic [ref=e101]:
+                  - generic [ref=e102]: "2"
+                  - generic [ref=e103]:
+                    - paragraph [ref=e104]: Tes Minat Bakat Holland
+                    - paragraph [ref=e105]: 35 peserta
+                  - generic [ref=e106]: Live
+                - generic [ref=e107]:
+                  - generic [ref=e108]: "3"
+                  - generic [ref=e109]:
+                    - paragraph [ref=e110]: Tes IQ Premium
+                    - paragraph [ref=e111]: 29 peserta
+                  - generic [ref=e112]: Live
+                - generic [ref=e113]:
+                  - generic [ref=e114]: "4"
+                  - generic [ref=e115]:
+                    - paragraph [ref=e116]: Tes Kecerdasan Emosional
+                    - paragraph [ref=e117]: 22 peserta
+                  - generic [ref=e118]: Live
+                - generic [ref=e119]:
+                  - generic [ref=e120]: "5"
+                  - generic [ref=e121]:
+                    - paragraph [ref=e122]: Tes Rekrutmen Karyawan
+                    - paragraph [ref=e123]: 18 peserta
+                  - generic [ref=e124]: Draft
+            - generic [ref=e126]:
+              - generic [ref=e127]:
+                - heading "Tren Peserta" [level=3] [ref=e128]
+                - paragraph [ref=e129]: 8 minggu terakhir
+              - generic [ref=e130]: Peserta
+            - generic [ref=e134]:
+              - generic [ref=e135]:
+                - img [ref=e136]
+                - heading "Tes Terbaru" [level=3] [ref=e139]
+              - generic [ref=e140]:
+                - generic [ref=e141]:
+                  - generic [ref=e142]:
+                    - paragraph [ref=e143]: Tes Kepribadian Big Five
+                    - paragraph [ref=e144]: 24 Mar 2026
+                  - generic [ref=e145]: Draft
+                - generic [ref=e146]:
+                  - generic [ref=e147]:
+                    - paragraph [ref=e148]: Tes Minat Bakat Holland
+                    - paragraph [ref=e149]: 22 Mar 2026
+                  - generic [ref=e150]: Live
+                - generic [ref=e151]:
+                  - generic [ref=e152]:
+                    - paragraph [ref=e153]: Tes Kecerdasan Emosional
+                    - paragraph [ref=e154]: 20 Mar 2026
+                  - generic [ref=e155]: Live
+                - generic [ref=e156]:
+                  - generic [ref=e157]:
+                    - paragraph [ref=e158]: Tes Rekrutmen Karyawan
+                    - paragraph [ref=e159]: 18 Mar 2026
+                  - generic [ref=e160]: Draft
+                - generic [ref=e161]:
+                  - generic [ref=e162]:
+                    - paragraph [ref=e163]: Tes IQ Premium
+                    - paragraph [ref=e164]: 15 Mar 2026
+                  - generic [ref=e165]: Live
+            - generic [ref=e166]:
+              - generic [ref=e167]:
+                - img [ref=e168]
+                - heading "Aktivitas" [level=3] [ref=e171]
+              - generic [ref=e172]:
+                - generic [ref=e173]:
+                  - img [ref=e175]
+                  - generic [ref=e178]:
+                    - paragraph [ref=e179]: Tes MBTI dipublish
+                    - paragraph [ref=e180]: 2 jam lalu
+                - generic [ref=e181]:
+                  - img [ref=e183]
+                  - generic [ref=e184]:
+                    - paragraph [ref=e185]: Peserta baru mendaftar
+                    - paragraph [ref=e186]: 3 jam lalu
+                - generic [ref=e187]:
+                  - img [ref=e189]
+                  - generic [ref=e192]:
+                    - paragraph [ref=e193]: Hasil tes IQ disubmit
+                    - paragraph [ref=e194]: 5 jam lalu
+                - generic [ref=e195]:
+                  - img [ref=e197]
+                  - generic [ref=e198]:
+                    - paragraph [ref=e199]: Tes Big Five dibuat
+                    - paragraph [ref=e200]: 1 hari lalu
+                - generic [ref=e201]:
+                  - img [ref=e203]
+                  - generic [ref=e206]:
+                    - paragraph [ref=e207]: Tes Rekrutmen dihapus
+                    - paragraph [ref=e208]: 1 hari lalu
+            - generic [ref=e209]:
+              - generic [ref=e210]:
+                - heading "Skor Rata-Rata" [level=3] [ref=e211]
+                - paragraph [ref=e212]: Dari semua hasil tes
+              - generic [ref=e213]:
+                - paragraph [ref=e214]: "78"
+                - paragraph [ref=e215]: +3.2 dari bulan lalu
+              - generic [ref=e216]:
+                - generic [ref=e217]:
+                  - paragraph [ref=e218]: Hasil Minggu Ini
+                  - paragraph [ref=e219]: "42"
+                - generic [ref=e220]:
+                  - paragraph [ref=e221]: Peserta Baru
+                  - paragraph [ref=e222]:
+                    - img [ref=e223]
+                    - text: "12"
+      - generic [ref=e227]:
+        - paragraph [ref=e228]: © 2026 Bermoela — Indonesian Life School
+        - generic [ref=e229]:
+          - link "Bantuan" [ref=e230] [cursor=pointer]:
+            - /url: "#"
+          - link "Kebijakan" [ref=e231] [cursor=pointer]:
+            - /url: "#"
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e237] [cursor=pointer]:
+    - img [ref=e238]
+  - alert [ref=e241]

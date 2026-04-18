@@ -1,0 +1,169 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - link "Bermoela" [ref=e8] [cursor=pointer]:
+            - /url: /
+            - img "Bermoela" [ref=e9]
+          - navigation [ref=e50]:
+            - link "Dashboard" [ref=e51] [cursor=pointer]:
+              - /url: /dashboard
+            - link "Kelola Tes" [ref=e52] [cursor=pointer]:
+              - /url: /admin/kelola-tes
+            - link "Paket" [ref=e53] [cursor=pointer]:
+              - /url: /admin/packages
+            - link "Jadwal" [ref=e54] [cursor=pointer]:
+              - /url: /admin/schedules
+            - link "Peserta" [ref=e55] [cursor=pointer]:
+              - /url: /admin/participants
+            - link "Hasil" [ref=e56] [cursor=pointer]:
+              - /url: /admin/results
+            - link "Analitik" [ref=e57] [cursor=pointer]:
+              - /url: /admin/analytics
+            - link "Pengaturan" [ref=e58] [cursor=pointer]:
+              - /url: /admin/settings
+        - generic [ref=e10]:
+          - button [ref=e11]:
+            - img
+          - link [ref=e12] [cursor=pointer]:
+            - /url: /admin/notifications
+            - img
+          - button "AD Admin" [ref=e59]:
+            - generic [ref=e61]: AD
+            - paragraph [ref=e63]: Admin
+            - img [ref=e64]
+      - main [ref=e13]:
+        - generic [ref=e15]:
+          - navigation "Navigasi pohon tes" [ref=e16]:
+            - generic [ref=e17]:
+              - generic [ref=e18]:
+                - generic [ref=e19]:
+                  - img [ref=e21]
+                  - heading "Kelola Tes" [level=2] [ref=e26]
+                - button "Buat paket baru" [ref=e27]:
+                  - img [ref=e28]
+                  - text: Paket
+              - generic [ref=e66]:
+                - img [ref=e67]
+                - searchbox "Cari item dalam pohon navigasi" [ref=e70]
+            - tree "Hierarki paket dan tes" [ref=e29]:
+              - generic [ref=e72]:
+                - button "Buka Relationship" [ref=e73]:
+                  - img [ref=e74]
+                - treeitem "Relationship" [ref=e76]:
+                  - img [ref=e77]
+                  - generic [ref=e81]: Relationship
+                  - generic [ref=e82]: "1"
+              - generic [ref=e84]:
+                - button "Buka Diri Pribadi" [ref=e85]:
+                  - img [ref=e86]
+                - treeitem "Diri Pribadi" [ref=e88]:
+                  - img [ref=e89]
+                  - generic [ref=e93]: Diri Pribadi
+                  - generic [ref=e94]: "1"
+              - generic [ref=e96]:
+                - button "Buka Proses Bisnis" [ref=e97]:
+                  - img [ref=e98]
+                - treeitem "Proses Bisnis" [ref=e100]:
+                  - img [ref=e101]
+                  - generic [ref=e105]: Proses Bisnis
+                  - generic [ref=e106]: "2"
+          - main "Detail konten" [ref=e34]:
+            - generic [ref=e216]:
+              - generic [ref=e217]:
+                - generic [ref=e218]:
+                  - img [ref=e220]
+                  - generic [ref=e223]:
+                    - generic [ref=e224]:
+                      - heading "Red Flag Pasangan Baru" [level=2] [ref=e225]
+                      - status [ref=e226]: Aktif
+                    - paragraph [ref=e227]: Lanjut ke nikah atau jangan? Cek red flag pasangan baru.
+                    - paragraph [ref=e228]: Tes · Skor Langsung
+                - button "Edit tes Red Flag Pasangan Baru" [ref=e229]:
+                  - img [ref=e230]
+              - generic [ref=e233]:
+                - generic [ref=e234]:
+                  - img [ref=e236]
+                  - generic [ref=e238]:
+                    - paragraph [ref=e239]: "4"
+                    - paragraph [ref=e240]: Sub Tes
+                - generic [ref=e241]:
+                  - img [ref=e243]
+                  - generic [ref=e246]:
+                    - paragraph [ref=e247]: "4"
+                    - paragraph [ref=e248]: Aktif
+                - generic [ref=e249]:
+                  - img [ref=e251]
+                  - generic [ref=e255]:
+                    - paragraph [ref=e256]: "0"
+                    - paragraph [ref=e257]: Nonaktif
+              - generic [ref=e258]:
+                - heading "Sub Tes" [level=3] [ref=e259]
+                - button "Tambah" [ref=e260]:
+                  - img
+                  - text: Tambah
+              - generic [ref=e261]:
+                - img [ref=e262]
+                - textbox "Cari sub tes" [ref=e265]:
+                  - /placeholder: Cari sub tes...
+              - list "Daftar sub tes" [ref=e266]:
+                - 'listitem "Sub tes: Kecocokan Nilai" [ref=e267] [cursor=pointer]':
+                  - img [ref=e269]
+                  - generic [ref=e271]:
+                    - generic [ref=e272]:
+                      - generic [ref=e273]: Kecocokan Nilai
+                      - generic [ref=e274]: Aktif
+                    - paragraph [ref=e275]: "Urutan #1"
+                  - generic [ref=e276]:
+                    - button "Edit Kecocokan Nilai" [ref=e277]:
+                      - img [ref=e278]
+                    - button "Hapus Kecocokan Nilai" [ref=e281]:
+                      - img [ref=e282]
+                - 'listitem "Sub tes: Pola Komunikasi" [ref=e285] [cursor=pointer]':
+                  - img [ref=e287]
+                  - generic [ref=e289]:
+                    - generic [ref=e290]:
+                      - generic [ref=e291]: Pola Komunikasi
+                      - generic [ref=e292]: Aktif
+                    - paragraph [ref=e293]: "Urutan #2"
+                  - generic [ref=e294]:
+                    - button "Edit Pola Komunikasi" [ref=e295]:
+                      - img [ref=e296]
+                    - button "Hapus Pola Komunikasi" [ref=e299]:
+                      - img [ref=e300]
+                - 'listitem "Sub tes: Red Flag Behavior" [ref=e303] [cursor=pointer]':
+                  - img [ref=e305]
+                  - generic [ref=e307]:
+                    - generic [ref=e308]:
+                      - generic [ref=e309]: Red Flag Behavior
+                      - generic [ref=e310]: Aktif
+                    - paragraph [ref=e311]: "Urutan #3"
+                  - generic [ref=e312]:
+                    - button "Edit Red Flag Behavior" [ref=e313]:
+                      - img [ref=e314]
+                    - button "Hapus Red Flag Behavior" [ref=e317]:
+                      - img [ref=e318]
+                - 'listitem "Sub tes: Kesiapan Komitmen" [ref=e321] [cursor=pointer]':
+                  - img [ref=e323]
+                  - generic [ref=e325]:
+                    - generic [ref=e326]:
+                      - generic [ref=e327]: Kesiapan Komitmen
+                      - generic [ref=e328]: Aktif
+                    - paragraph [ref=e329]: "Urutan #4"
+                  - generic [ref=e330]:
+                    - button "Edit Kesiapan Komitmen" [ref=e331]:
+                      - img [ref=e332]
+                    - button "Hapus Kesiapan Komitmen" [ref=e335]:
+                      - img [ref=e336]
+      - generic [ref=e36]:
+        - paragraph [ref=e37]: © 2026 Bermoela — Indonesian Life School
+        - generic [ref=e38]:
+          - link "Bantuan" [ref=e39] [cursor=pointer]:
+            - /url: "#"
+          - link "Kebijakan" [ref=e40] [cursor=pointer]:
+            - /url: "#"
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e46] [cursor=pointer]:
+    - img [ref=e47]
+  - alert [ref=e215]

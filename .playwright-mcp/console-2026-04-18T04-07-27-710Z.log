@@ -1,0 +1,138 @@
+[     111ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     150ms] [LOG] [Fast Refresh] done in 139ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     251ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     408ms] [LOG] [Fast Refresh] done in 257ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     530ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     587ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     805ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <ScrollAndFocusHandler segmentPath={[...]}>
+      <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
+        <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+          <LoadingBoundary name="/" loading={null}>
+            <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+              <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+                <RedirectBoundary>
+                  <RedirectErrorBoundary router={{...}}>
+                    <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>
+                      <SegmentViewNode type="page" pagePath="page.tsx">
+                        <SegmentTrieNode>
+                        <HomePage>
+                          <main>
+                            <PsikotesHero>
+                            <PreloadChunks>
+                            <PsikotesTransformationMap>
+                            <LoadableComponent>
+                              <PreloadChunks>
+                              <LoadableComponent>
+                                <PsikotesStage>
+                                  <section
+                                    id="transformation-stages"
++                                   className="py-20 bg-gradient-to-b from-white to-emerald-50/30 relative overflow-hi..."
+-                                   className="py-20 bg-gray-50 relative overflow-hidden"
+                                  >
+                                    <div
++                                     className="absolute top-20 right-0 w-80 h-80 bg-emerald-100/30 rounded-full blur..."
+-                                     className="absolute top-20 right-0 w-80 h-80 bg-emerald-100/20 rounded-full blur..."
+                                    >
+                                    <div
++                                     className="absolute bottom-20 left-0 w-64 h-64 bg-amber-100/20 rounded-full blur..."
+-                                     className="absolute bottom-20 left-0 w-64 h-64 bg-amber-100/15 rounded-full blur..."
+                                    >
+                                    ...
+                            <PreloadChunks>
+                            <PsikotesCategoryNav>
+                            ...
+                              <div className="grid grid-...">
+                                <ProductCardNew>
+                                <ProductCardNew product={{id:"dp-anx...", ...}}>
+                                  <div className="group bg-w...">
+                                    <div>
+                                    <div className="flex flex-...">
+                                      <div className="flex items...">
+                                        <div
++                                         className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 b..."
+-                                         className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 b..."
+                                        >
+                                      ...
+                                <ProductCardNew product={{id:"dp-cit...", ...}}>
+                                  <div className="group bg-w...">
+                                    <div>
+                                    <div className="flex flex-...">
+                                      <div className="flex items...">
+                                        <div
++                                         className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 b..."
+-                                         className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 b..."
+                                        >
+                                      ...
+                                <ProductCardNew product={{id:"dp-qua...", ...}}>
+                                  <div className="group bg-w...">
+                                    <div>
+                                    <div className="flex flex-...">
+                                      <div className="flex items...">
+                                        <div
++                                         className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 b..."
+-                                         className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 b..."
+                                        >
+                                      ...
+                                <ProductCardNew product={{id:"dp-iq-...", ...}}>
+                                  <div className="group bg-w...">
+                                    <div>
+                                    <div className="flex flex-...">
+                                      <div className="flex items...">
+                                        <div
++                                         className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 b..."
+-                                         className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 b..."
+                                        >
+                                      ...
+                                <ProductCardNew product={{id:"dp-sim...", ...}}>
+                                  <div className="group bg-w...">
+                                    <div>
+                                    <div className="flex flex-...">
+                                      <div className="flex items...">
+                                        <div
++                                         className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 b..."
+-                                         className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 b..."
+                                        >
+                                      ...
+                      ...
+                    ...
+        ...
+ @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[     864ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     918ms] [LOG] [Fast Refresh] done in 154ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[   55858ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[   55913ms] [LOG] [Fast Refresh] done in 114ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[   67795ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[   67819ms] [LOG] [Fast Refresh] done in 100ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  181257ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  181304ms] [LOG] [Fast Refresh] done in 119ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  214921ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  214991ms] [LOG] [Fast Refresh] done in 142ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  228517ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  228577ms] [LOG] [Fast Refresh] done in 134ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  245981ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  246044ms] [LOG] [Fast Refresh] done in 134ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  260976ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  261063ms] [LOG] [Fast Refresh] done in 164ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  274995ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  275049ms] [LOG] [Fast Refresh] done in 126ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  295561ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  295622ms] [LOG] [Fast Refresh] done in 135ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  347072ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  347160ms] [LOG] [Fast Refresh] done in 156ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  362645ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  362719ms] [LOG] [Fast Refresh] done in 149ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  559475ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  559542ms] [LOG] [Fast Refresh] done in 168ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297

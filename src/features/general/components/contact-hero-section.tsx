@@ -142,7 +142,7 @@ export function ContactHeroSection() {
                   'border border-slate-100',
                   'hover:-translate-y-1',
                   'hover:shadow-2xl',
-                  'transition-all duration-300',
+                  'transition-colors duration-300',
                   'group text-center',
                 )}
               >

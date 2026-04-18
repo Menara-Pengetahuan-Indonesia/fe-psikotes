@@ -83,7 +83,7 @@ function LegalCard({
       className={cn(
         'bg-white rounded-3xl border',
         'border-slate-100 shadow-lg',
-        'shadow-stone-200/50 transition-all',
+        'shadow-stone-200/50 transition-[box-shadow]',
         'duration-300 p-6 md:p-8',
         theme.cardBorder,
       )}

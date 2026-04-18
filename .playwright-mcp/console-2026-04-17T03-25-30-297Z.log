@@ -1,0 +1,435 @@
+[     115ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     136ms] [LOG] [Fast Refresh] done in 121ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     312ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     410ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     772ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     918ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <AppDevOverlayErrorBoundary globalError={[...]}>
+      <ReplaySsrOnlyErrors>
+      <DevRootHTTPAccessFallbackBoundary>
+        <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+          <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+            <RedirectBoundary>
+              <RedirectErrorBoundary router={{...}}>
+                <Head>
+                <__next_root_layout_boundary__>
+                  <SegmentViewNode type="layout" pagePath="layout.tsx">
+                    <SegmentTrieNode>
+                    <link>
+                    <script>
+                    <script>
+                    <script>
+                    <RootLayout>
+                      <html lang="id" suppressHydrationWarning={true}>
+                        <body className="plus_jakar...">
+                          <QueryProvider>
+                            <QueryClientProvider client={{}}>
+                              <Navbar>
+                                <header className="fixed top-...">
+                                  <nav
++                                   className="w-full max-w-6xl flex items-center justify-between px-5 py-2.5 transiti..."
+-                                   className="w-full max-w-6xl flex items-center justify-between px-5 py-2.5 transiti..."
+                                  >
+                                    <NavbarLogo>
+                                    <NavbarDesktopMenu>
+                                    ...
+                                      <Slot.SlotClone data-slot="button" data-variant="default" data-size="sm" ...>
+                                        <LinkComponent href="/daftar" data-slot="button" data-variant="default" ...>
+                                          <a
+                                            data-slot="button"
+                                            data-variant="default"
+                                            data-size="sm"
++                                           className={"inline-flex items-center justify-center whitespace-nowrap dis..."}
+-                                           className={"inline-flex items-center justify-center whitespace-nowrap dis..."}
+                                            ref={function}
+                                            onClick={function onClick}
+                                            onMouseEnter={function onMouseEnter}
+                                            onTouchStart={function onTouchStart}
+                                            href="/daftar"
+                                          >
++                                           Daftar
+                              ...
+                                <SegmentViewNode type="page" pagePath="page.tsx">
+                                  <SegmentTrieNode>
+                                  <HomePage>
+                                    <main>
+                                      <PsikotesHero>
+                                        <section
++                                         className="relative overflow-hidden bg-linear-to-b from-primary-900 via-prim..."
+-                                         className="relative overflow-hidden bg-linear-to-b from-slate-950 via-slate-..."
+                                        >
+                                          <div
++                                           className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary-..."
+-                                           className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary-..."
+                                          >
+                                          <div
++                                           className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-accen..."
+-                                           className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-prima..."
+                                          >
+                                          <div className="max-w-7xl ...">
+                                            <div className="flex flex-...">
+                                              <div className="flex flex-...">
+                                                <div className="space-y-4">
+                                                  <h1 className="text-3xl m...">
+                                                    <br>
+                                                    <span
++                                                     className="text-accent-300 italic text-4xl md:text-5xl"
+-                                                     className="text-primary-400 italic text-4xl md:text-5xl"
+                                                    >
++                                                     di Era Penuh Tekanan
+                                                  <p
++                                                   className="text-sm md:text-base text-primary-50/80 max-w-xl mx-aut..."
+-                                                   className="text-sm md:text-base text-slate-400 max-w-xl mx-auto le..."
+                                                  >
+                                              <div>
+                                              <div className="pt-0 flex ...">
+                                                <p
++                                                 className="text-primary-200/40 text-xs font-bold uppercase tracking-..."
+-                                                 className="text-slate-500 text-xs font-bold uppercase tracking-[0.3em]"
+                                                >
+                                                  <BermoelaText className="text-prima...">
+                                                    <span
++                                                     className="font-black tracking-tight text-primary-200/60"
+-                                                     className="font-black tracking-tight text-slate-400"
+                                                    >
+                                                  ...
+                                                ...
+                                      <LoadableComponent>
+                                        <PreloadChunks>
+                                        <LoadableComponent>
+                                          <PsikotesTransformationMap>
+                                            <section
++                                             className="py-12 md:py-16 bg-linear-to-b from-primary-600 to-background ..."
+-                                             className="py-12 md:py-16 bg-linear-to-b from-slate-800 to-background re..."
+                                            >
+                                              <div className="max-w-7xl ...">
+                                                <div
++                                                 className="bg-primary-950 rounded-[3rem] p-8 md:p-12 shadow-2xl rela..."
+-                                                 className="bg-slate-950 rounded-[3rem] p-8 md:p-12 shadow-2xl relati..."
+                                                >
+                                                  <div className="relative z...">
+                                                    <div className="lg:col-spa...">
+                                                      <div className="inline-fle...">
+                                                        <Sparkles>
+                                                        <span
++                                                         className="text-xs font-black text-primary-100 uppercase tra..."
+-                                                         className="text-xs font-black text-slate-400 uppercase track..."
+                                                        >
++                                                         Transformation Journey
+                                                      <h2>
+                                                      <p
++                                                       className="text-primary-100/60 text-sm font-medium leading-rel..."
+-                                                       className="text-slate-400 text-sm font-medium leading-relaxed"
+                                                      >
++                                                       Empat langkah kunci untuk melepaskan kendala masa lalu dan mera...
+                                                      <div className="flex items...">
+                                                        <div className="flex -spac...">
+                                                          <div
++                                                           className="w-8 h-8 rounded-full border-2 border-primary-90..."
+-                                                           className="w-8 h-8 rounded-full border-2 border-slate-800 ..."
+                                                          >
+                                                          <div
++                                                           className="w-8 h-8 rounded-full border-2 border-primary-90..."
+-                                                           className="w-8 h-8 rounded-full border-2 border-slate-800 ..."
+                                                          >
+                                                          <div
++                                                           className="w-8 h-8 rounded-full border-2 border-primary-90..."
+-                                                           className="w-8 h-8 rounded-full border-2 border-slate-800 ..."
+                                                          >
+                                                        <span
++                                                         className="text-xs font-black text-primary-300/60 uppercase ..."
+-                                                         className="text-xs font-black text-slate-500 uppercase track..."
+                                                        >
++                                                         +10k Jiwa yang Tumbuh
+                                                    <div className="lg:col-spa...">
+                                                      <div className="bg-white/5...">
+                                                        <div className="flex gap-4...">
+                                                          <div>
+                                                          <div className="space-y-1">
+                                                            <h4>
+                                                            <p
++                                                             className="text-sm text-primary-100/50 font-medium leadi..."
+-                                                             className="text-sm text-slate-400 font-medium leading-re..."
+                                                            >
++                                                             {"Mulai dengan assessment & psikotes profesional untuk..."}
+                                                        ...
+                                                      <div className="bg-white/5...">
+                                                        <div className="flex gap-4...">
+                                                          <div>
+                                                          <div className="space-y-1">
+                                                            <h4>
+                                                            <p
++                                                             className="text-sm text-primary-100/50 font-medium leadi..."
+-                                                             className="text-sm text-slate-400 font-medium leading-re..."
+                                                            >
++                                                             Pahami langkah nyata yang harus diambil bersama para ahli.
+                                                        ...
+                                                      <div className="bg-white/5...">
+                                                        <div className="flex gap-4...">
+                                                          <div>
+                                                          <div className="space-y-1">
+                                                            <h4>
+                                                            <p
++                                                             className="text-sm text-primary-100/50 font-medium leadi..."
+-                                                             className="text-sm text-slate-400 font-medium leading-re..."
+                                                            >
++                                                             Ikuti program pengembangan untuk memperkuat mental health...
+                                                        ...
+                                                      <div className="bg-white/5...">
+                                                        <div className="flex gap-4...">
+                                                          <div>
+                                                          <div className="space-y-1">
+                                                            <h4>
+                                                            <p
++                                                             className="text-sm text-primary-100/50 font-medium leadi..."
+-                                                             className="text-sm text-slate-400 font-medium leading-re..."
+                                                            >
++                                                             Terhubung dengan komunitas dan praktisi yang saling mendu...
+                                                        ...
+                                      ...
+                              <Footer>
+                                <footer
++                                 className="relative overflow-hidden bg-primary-950"
+-                                 className="relative overflow-hidden bg-slate-950"
+                                >
+                                  <div className="max-w-7xl ...">
+                                    <FooterCtaBanner cta={{title:"Sia...", ...}} theme={{bg:"bg-pri...", ...}}>
+                                      <div className="rounded-2x...">
+                                        <div>
+                                          <h3>
+                                          <p
++                                           className="text-sm mt-1 text-primary-200/60"
+-                                           className="text-sm mt-1 text-slate-400"
+                                          >
++                                           Mulai perjalanan pengembangan dirimu sekarang
+                                        <LinkComponent href="/" className="inline-fle...">
+                                          <a
++                                           className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold..."
+-                                           className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold..."
+                                            ref={function}
+                                            onClick={function onClick}
+                                            onMouseEnter={function onMouseEnter}
+                                            onTouchStart={function onTouchStart}
+                                            href="/"
+                                          >
+                                    <div className="grid md:gr...">
+                                      <div className="md:col-spa...">
+                                        <LinkComponent>
+                                        <p
++                                         className="text-sm leading-relaxed text-primary-200/60"
+-                                         className="text-sm leading-relaxed text-slate-400"
+                                        >
++                                         Platform pengembangan diri #1 di Indonesia.
+                                        <div className="flex gap-2.5">
+                                          <a
+                                            href="https://instagram.com/bermoela"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
++                                           className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex it..."
+-                                           className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex it..."
+                                          >
+                                          <a
+                                            href="https://linkedin.com/company/bermoela"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
++                                           className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex it..."
+-                                           className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex it..."
+                                          >
+                                          <a
+                                            href="https://x.com/bermoela"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
++                                           className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex it..."
+-                                           className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex it..."
+                                          >
+                                          <a
+                                            href="https://facebook.com/bermoela"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
++                                           className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex it..."
+-                                           className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex it..."
+                                          >
+                                      <div className="md:col-spa...">
+                                        <div className="space-y-3">
+                                          <h4>
+                                          <ul className="space-y-2.5">
+                                            <li>
+                                              <LinkComponent href="/" className="text-sm fo...">
+                                                <a
++                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+-                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+                                                  ref={function}
+                                                  onClick={function onClick}
+                                                  onMouseEnter={function onMouseEnter}
+                                                  onTouchStart={function onTouchStart}
+                                                  href="/"
+                                                >
+                                                  <span
++                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-primary-7..."
+-                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-slate-700..."
+                                                  >
+                                                  ...
+                                            <li>
+                                              <LinkComponent href="/perusahaan" className="text-sm fo...">
+                                                <a
++                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+-                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+                                                  ref={function}
+                                                  onClick={function onClick}
+                                                  onMouseEnter={function onMouseEnter}
+                                                  onTouchStart={function onTouchStart}
+                                                  href="/perusahaan"
+                                                >
+                                                  <span
++                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-primary-7..."
+-                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-slate-700..."
+                                                  >
+                                                  ...
+                                        <div className="space-y-3">
+                                          <h4>
+                                          <ul className="space-y-2.5">
+                                            <li>
+                                              <LinkComponent href="/mahasiswa" className="text-sm fo...">
+                                                <a
++                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+-                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+                                                  ref={function}
+                                                  onClick={function onClick}
+                                                  onMouseEnter={function onMouseEnter}
+                                                  onTouchStart={function onTouchStart}
+                                                  href="/mahasiswa"
+                                                >
+                                                  <span
++                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-primary-7..."
+-                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-slate-700..."
+                                                  >
+                                                  ...
+                                            <li>
+                                              <LinkComponent href="/bisnis" className="text-sm fo...">
+                                                <a
++                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+-                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+                                                  ref={function}
+                                                  onClick={function onClick}
+                                                  onMouseEnter={function onMouseEnter}
+                                                  onTouchStart={function onTouchStart}
+                                                  href="/bisnis"
+                                                >
+                                                  <span
++                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-primary-7..."
+-                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-slate-700..."
+                                                  >
+                                                  ...
+                                            <li>
+                                              <LinkComponent href="/kesehatan..." className="text-sm fo...">
+                                                <a
++                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+-                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+                                                  ref={function}
+                                                  onClick={function onClick}
+                                                  onMouseEnter={function onMouseEnter}
+                                                  onTouchStart={function onTouchStart}
+                                                  href="/kesehatan-mental"
+                                                >
+                                                  <span
++                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-primary-7..."
+-                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-slate-700..."
+                                                  >
+                                                  ...
+                                            <li>
+                                              <LinkComponent href="/gratis" className="text-sm fo...">
+                                                <a
++                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+-                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+                                                  ref={function}
+                                                  onClick={function onClick}
+                                                  onMouseEnter={function onMouseEnter}
+                                                  onTouchStart={function onTouchStart}
+                                                  href="/gratis"
+                                                >
+                                                  <span
++                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-primary-7..."
+-                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-slate-700..."
+                                                  >
+                                                  ...
+                                        <div className="space-y-3">
+                                          <h4>
+                                          <ul className="space-y-2.5">
+                                            <li>
+                                              <LinkComponent href="/syarat-ke..." className="text-sm fo...">
+                                                <a
++                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+-                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+                                                  ref={function}
+                                                  onClick={function onClick}
+                                                  onMouseEnter={function onMouseEnter}
+                                                  onTouchStart={function onTouchStart}
+                                                  href="/syarat-ketentuan"
+                                                >
+                                                  <span
++                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-primary-7..."
+-                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-slate-700..."
+                                                  >
+                                                  ...
+                                            <li>
+                                              <LinkComponent href="/kebijakan..." className="text-sm fo...">
+                                                <a
++                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+-                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+                                                  ref={function}
+                                                  onClick={function onClick}
+                                                  onMouseEnter={function onMouseEnter}
+                                                  onTouchStart={function onTouchStart}
+                                                  href="/kebijakan-privasi"
+                                                >
+                                                  <span
++                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-primary-7..."
+-                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-slate-700..."
+                                                  >
+                                                  ...
+                                            <li>
+                                              <LinkComponent href="/faq" className="text-sm fo...">
+                                                <a
++                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+-                                                 className="text-sm font-medium flex items-center gap-2 group hover:t..."
+                                                  ref={function}
+                                                  onClick={function onClick}
+                                                  onMouseEnter={function onMouseEnter}
+                                                  onTouchStart={function onTouchStart}
+                                                  href="/faq"
+                                                >
+                                                  <span
++                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-primary-7..."
+-                                                   className="w-1.5 h-1.5 rounded-full transition-colors bg-slate-700..."
+                                                  >
+                                                  ...
+                                    <div className="pt-4 borde...">
+                                      <p>
+                                      <p
++                                       className="text-xs text-primary-200/30"
+-                                       className="text-xs text-slate-600"
+                                      >
++                                       Dibuat dengan ❤️ di Indonesia
+                              ...
+                ...
+ @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[     967ms] [LOG] [Fast Refresh] done in 314ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[    4005ms] [WARNING] The resource http://localhost:3000/_next/static/media/fba5a26ea33df6a3-s.p.1bbdebe6.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/:0
+[  107264ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  107400ms] [LOG] [Fast Refresh] done in 188ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  107514ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  107672ms] [LOG] [Fast Refresh] done in 200ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  136180ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  136258ms] [LOG] [Fast Refresh] done in 152ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297

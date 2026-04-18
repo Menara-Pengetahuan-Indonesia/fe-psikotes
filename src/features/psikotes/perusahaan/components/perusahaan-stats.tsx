@@ -159,7 +159,7 @@ export function PerusahaanStats() {
                   'bg-white/5 backdrop-blur-md',
                   'rounded-[2.5rem]',
                   'border border-white/10',
-                  'transition-all duration-500',
+                  'transition-colors duration-300',
                   'hover:-translate-y-2',
                   'hover:shadow-2xl',
                   'hover:shadow-primary-900/40',

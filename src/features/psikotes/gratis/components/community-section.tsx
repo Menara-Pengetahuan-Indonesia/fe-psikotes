@@ -136,7 +136,7 @@ export function CommunitySection() {
           'tracking-wider text-xs',
           'hover:border-primary-600',
           'hover:bg-primary-700',
-          'hover:text-white transition-all',
+          'hover:text-white transition-colors',
         )}
       >
         Gabung Komunitas (Gratis)

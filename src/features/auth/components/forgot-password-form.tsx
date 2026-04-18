@@ -28,7 +28,7 @@ const INPUT_CLS = cn(
   'placeholder:text-slate-400',
   'focus:bg-white focus:border-sky-300',
   'focus:ring-4 focus:ring-sky-100/50',
-  'transition-all duration-200',
+  'transition-colors duration-200',
 )
 
 export function ForgotPasswordForm() {
@@ -166,7 +166,7 @@ function FormView({
             'font-semibold text-sm',
             'hover:bg-slate-800',
             'active:scale-[0.98]',
-            'transition-all duration-200',
+            'transition-colors duration-200',
             'shadow-lg shadow-slate-900/20',
           )}
           disabled={isLoading}

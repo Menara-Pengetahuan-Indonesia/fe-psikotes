@@ -61,7 +61,7 @@ function formatDate(dateStr: string) {
 }
 
 const statusConfig: Record<ScheduleStatus, { label: string; badge: string; iconBg: string }> = {
-  active: { label: 'Aktif', badge: 'bg-teal-50 text-teal-600', iconBg: 'from-teal-400 to-teal-500' },
+  active: { label: 'Aktif', badge: 'bg-indigo-50 text-indigo-600', iconBg: 'from-indigo-400 to-indigo-500' },
   upcoming: { label: 'Mendatang', badge: 'bg-indigo-50 text-indigo-600', iconBg: 'from-indigo-400 to-indigo-500' },
   completed: { label: 'Selesai', badge: 'bg-slate-100 text-slate-500', iconBg: 'from-slate-400 to-slate-500' },
 }
@@ -156,10 +156,10 @@ export default function AdminSchedulesPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <p className="text-teal-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+            <p className="text-indigo-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
               Manajemen
             </p>
             <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
@@ -172,7 +172,7 @@ export default function AdminSchedulesPage() {
           <Button
             size="lg"
             onClick={openCreate}
-            className="bg-white text-slate-900 hover:bg-teal-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
+            className="bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
           >
             <Plus className="w-5 h-5 mr-2 group-hover:rotate-90 transition-transform" />
             Buat Jadwal
@@ -182,8 +182,8 @@ export default function AdminSchedulesPage() {
         {/* Stats */}
         <div className="relative z-10 grid grid-cols-3 gap-4 mt-8">
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-teal-500/30 flex items-center justify-center">
-              <Play className="size-5 text-teal-300" />
+            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
+              <Play className="size-5 text-indigo-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{activeCount}</p>
@@ -247,7 +247,7 @@ export default function AdminSchedulesPage() {
             placeholder="Cari jadwal tes..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-11 h-11 bg-white border-slate-100 rounded-xl text-sm font-medium focus:ring-2 focus:ring-teal-500/10"
+            className="pl-11 h-11 bg-white border-slate-100 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500/10"
           />
         </div>
       </div>
@@ -255,8 +255,8 @@ export default function AdminSchedulesPage() {
       {/* LIST */}
       {filtered.length === 0 ? (
         <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
-          <div className="size-16 rounded-2xl bg-teal-50 flex items-center justify-center mb-5">
-            <CalendarClock className="size-8 text-teal-400" />
+          <div className="size-16 rounded-2xl bg-indigo-50 flex items-center justify-center mb-5">
+            <CalendarClock className="size-8 text-indigo-400" />
           </div>
           <p className="text-slate-900 font-black text-lg mb-1">Tidak ditemukan.</p>
           <p className="text-slate-400 font-medium text-sm">Coba ubah filter atau kata kunci pencarian.</p>
@@ -281,7 +281,7 @@ export default function AdminSchedulesPage() {
                 {/* Info */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2.5 mb-0.5">
-                    <h3 className="text-base font-black text-slate-900 truncate group-hover:text-teal-600 transition-colors">
+                    <h3 className="text-base font-black text-slate-900 truncate group-hover:text-indigo-600 transition-colors">
                       {schedule.testName}
                     </h3>
                     <span className={cn('text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0', config.badge)}>
@@ -305,7 +305,7 @@ export default function AdminSchedulesPage() {
                     </div>
                     <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
                       <div
-                        className={cn('h-full rounded-full transition-all', schedule.status === 'active' ? 'bg-teal-500' : schedule.status === 'upcoming' ? 'bg-indigo-500' : 'bg-slate-400')}
+                        className={cn('h-full rounded-full transition-all', schedule.status === 'active' ? 'bg-indigo-500' : schedule.status === 'upcoming' ? 'bg-indigo-500' : 'bg-slate-400')}
                         style={{ width: `${pct}%` }}
                       />
                     </div>
@@ -326,7 +326,7 @@ export default function AdminSchedulesPage() {
                   >
                     <Trash2 className="size-4" />
                   </button>
-                  <div className="size-9 rounded-xl bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-teal-600 group-hover:text-white transition-all">
+                  <div className="size-9 rounded-xl bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all">
                     <ChevronRight className="size-4" />
                   </div>
                 </div>
@@ -341,7 +341,7 @@ export default function AdminSchedulesPage() {
         <DialogContent className="max-w-[460px] p-0 border-0 rounded-2xl overflow-hidden bg-white shadow-2xl">
           <div className="px-6 pt-6 pb-3">
             <div className="flex items-center gap-3 mb-2">
-              <div className="size-9 rounded-xl bg-teal-500 text-white flex items-center justify-center">
+              <div className="size-9 rounded-xl bg-indigo-500 text-white flex items-center justify-center">
                 <CalendarClock className="size-4" />
               </div>
               <div>
@@ -363,7 +363,7 @@ export default function AdminSchedulesPage() {
                   placeholder="Misal: Tes Kepribadian MBTI"
                   value={formTestName}
                   onChange={(e) => { setFormTestName(e.target.value); setFormError('') }}
-                  className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-teal-500/10"
+                  className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500/10"
                 />
               </div>
 
@@ -374,7 +374,7 @@ export default function AdminSchedulesPage() {
                     type="date"
                     value={formStartDate}
                     onChange={(e) => { setFormStartDate(e.target.value); setFormError('') }}
-                    className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-teal-500/10"
+                    className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500/10"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -383,7 +383,7 @@ export default function AdminSchedulesPage() {
                     type="date"
                     value={formEndDate}
                     onChange={(e) => { setFormEndDate(e.target.value); setFormError('') }}
-                    className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-teal-500/10"
+                    className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500/10"
                   />
                 </div>
               </div>
@@ -394,7 +394,7 @@ export default function AdminSchedulesPage() {
                   type="number"
                   value={formMaxParticipants}
                   onChange={(e) => setFormMaxParticipants(Number(e.target.value))}
-                  className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-black text-sm w-28 focus:bg-white focus:ring-2 focus:ring-teal-500/10"
+                  className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-black text-sm w-28 focus:bg-white focus:ring-2 focus:ring-indigo-500/10"
                 />
               </div>
 

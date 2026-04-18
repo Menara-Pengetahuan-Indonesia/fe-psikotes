@@ -45,7 +45,7 @@ export function UserDashboard() {
     : 0
 
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="space-y-6">
       {/* HERO BANNER */}
       <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -62,7 +62,7 @@ export function UserDashboard() {
           </div>
           <Button
             size="lg"
-            className="bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
+            className="bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-colors active:scale-95 group shrink-0"
             asChild
           >
             <Link href="/">
@@ -129,9 +129,9 @@ export function UserDashboard() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group bg-white rounded-[2rem] border border-slate-100 p-6 hover:shadow-md transition-all"
+                  className="group bg-white rounded-[2rem] border border-slate-100 p-6 hover:shadow-md transition-[box-shadow]"
                 >
-                  <div className={cn('size-12 rounded-2xl flex items-center justify-center text-white mb-4 transition-all group-hover:scale-105 group-hover:shadow-md', item.color)}>
+                  <div className={cn('size-12 rounded-2xl flex items-center justify-center text-white mb-4 transition-[transform,box-shadow] group-hover:scale-105 group-hover:shadow-md', item.color)}>
                     <Icon className="size-5" />
                   </div>
                   <h3 className="text-base font-black text-slate-900 mb-0.5 group-hover:text-indigo-600 transition-colors">{item.label}</h3>
@@ -147,12 +147,12 @@ export function UserDashboard() {
 
           {/* Pillars */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Link href="/premium" className="rounded-[2rem] bg-gradient-to-br from-teal-400 to-teal-500 p-6 text-white group hover:shadow-lg transition-all hover:-translate-y-0.5">
+            <Link href="/premium" className="rounded-[2rem] bg-gradient-to-br from-teal-400 to-teal-500 p-6 text-white group hover:shadow-lg transition-[transform,box-shadow] hover:-translate-y-0.5">
               <Star className="size-7 mb-3 group-hover:rotate-12 transition-transform" />
               <h4 className="font-black text-base">Premium</h4>
               <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Unlock All</p>
             </Link>
-            <Link href="/gratis" className="rounded-[2rem] bg-gradient-to-br from-primary-400 to-primary-500 p-6 text-white group hover:shadow-lg transition-all hover:-translate-y-0.5">
+            <Link href="/gratis" className="rounded-[2rem] bg-gradient-to-br from-primary-400 to-primary-500 p-6 text-white group hover:shadow-lg transition-[transform,box-shadow] hover:-translate-y-0.5">
               <BookOpen className="size-7 mb-3 group-hover:scale-110 transition-transform" />
               <h4 className="font-black text-base">Tes Gratis</h4>
               <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Coba Sekarang</p>
@@ -190,7 +190,7 @@ export function UserDashboard() {
                 recentTests.map((test, index) => {
                   const color = recentColors[index % recentColors.length]
                   return (
-                    <div key={test.id} className="px-7 py-4 flex items-center gap-4 group hover:bg-slate-50/50 transition-all">
+                    <div key={test.id} className="px-7 py-4 flex items-center gap-4 group hover:bg-slate-50/50 transition-colors">
                       <div className={cn('size-10 rounded-xl flex items-center justify-center shrink-0', color.icon)}>
                         <Brain className="size-5" />
                       </div>

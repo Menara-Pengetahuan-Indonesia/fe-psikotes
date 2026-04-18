@@ -66,7 +66,7 @@ function TrueFalseQuestion({
             key={option.id}
             onClick={() => onChange(option.id)}
             className={cn(
-              'p-4 rounded-lg border-2 font-bold transition-all',
+              'p-4 rounded-lg border-2 font-bold transition-colors',
               selected === option.id
                 ? 'border-primary-500 bg-primary-50 text-primary-700'
                 : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300',
@@ -96,7 +96,7 @@ function MultipleChoiceQuestion({
               key={option.id}
               onClick={() => onChange(option.id)}
               className={cn(
-                'w-full flex items-center gap-4 p-4 rounded-lg border-2 text-left transition-all',
+                'w-full flex items-center gap-4 p-4 rounded-lg border-2 text-left transition-colors',
                 selected === option.id
                   ? 'border-primary-500 bg-primary-50'
                   : 'border-slate-200 bg-white hover:border-slate-300',
@@ -143,7 +143,7 @@ function RatingScaleQuestion({
             key={value}
             onClick={() => onChange(String(value))}
             className={cn(
-              'flex-1 py-3 rounded-lg border-2 font-bold transition-all',
+              'flex-1 py-3 rounded-lg border-2 font-bold transition-colors',
               selected === String(value)
                 ? 'border-primary-500 bg-primary-500 text-white'
                 : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300',

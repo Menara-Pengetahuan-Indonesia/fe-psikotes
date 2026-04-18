@@ -20,7 +20,7 @@ export function CtaBannerSection({
             'bg-white rounded-[3rem]',
             'border border-slate-100',
             'text-center space-y-8',
-            'transition-all duration-500',
+            'transition-colors duration-300',
             'hover:shadow-2xl',
             'hover:shadow-primary-900/5',
             'hover:-translate-y-1',
@@ -107,7 +107,7 @@ export function CtaBannerSection({
                   'font-black uppercase',
                   'tracking-widest',
                   'hover:bg-primary-600',
-                  'transition-all shadow-lg',
+                  'transition-colors shadow-lg',
                   'hover:shadow-primary-200',
                 )}
               >

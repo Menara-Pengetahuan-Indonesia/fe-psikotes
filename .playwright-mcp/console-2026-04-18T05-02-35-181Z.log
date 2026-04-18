@@ -1,0 +1,148 @@
+[     367ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     414ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     656ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     662ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="/" loading={null}>
+        <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+          <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+            <RedirectBoundary>
+              <RedirectErrorBoundary router={{...}}>
+                <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+                  <SegmentViewNode type="page" pagePath="page.tsx">
+                    <SegmentTrieNode>
+                    <HomePage>
+                      <main>
+                        <PsikotesHero>
+                          <section className="bg-white p...">
+                            <div className="relative o..." style={{...}}>
+                              <div className="relative z..." style={{...}}>
+                                <div>
+                                <div
++                                 className="relative self-stretch"
+-                                 className="relative flex items-end justify-center"
++                                 style={{minHeight:"500px"}}
+-                                 style={{}}
+                                >
+                                  <div>
+                                  <div>
+                                  <img
+                                    alt="Psikolog profesional"
+                                    fetchPriority={undefined}
+                                    loading={undefined}
++                                   width={undefined}
+-                                   width="340"
++                                   height={undefined}
+-                                   height="620"
+                                    decoding="async"
++                                   data-nimg="fill"
+-                                   data-nimg="1"
++                                   className="object-contain object-bottom"
+-                                   className="w-full h-auto object-contain"
+                                    style={{
++                                     position: "absolute"
++                                     height: "100%"
+-                                     height: "auto"
++                                     width: "100%"
+-                                     width: "100%"
++                                     left: 0
++                                     top: 0
++                                     right: 0
++                                     bottom: 0
++                                     objectFit: undefined
++                                     objectPosition: undefined
++                                     color: "transparent"
+-                                     color: "transparent"
+                                    }}
++                                   sizes="340px"
+-                                   sizes={null}
++                                   srcSet={"/_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1612349317150..."}
+-                                   srcSet={"/_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1612349317150..."}
++                                   src={"/_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1612349317150-e4..."}
+-                                   src={"/_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1612349317150-e4..."}
+                                    ref={function}
+                                    onLoad={function onLoad}
+                                    onError={function onError}
+                                  >
+                                  ...
+                                ...
+                        <PreloadChunks>
+                        <PsikotesTransformationMap>
+                        <PreloadChunks>
+                        <PsikotesStage>
+                        <PreloadChunks>
+                        <PsikotesCategoryNav>
+                        ...
+                          <div className="grid grid-...">
+                            <ProductCardNew>
+                            <ProductCardNew product={{id:"dp-anx...", ...}}>
+                              <div className="group bg-w...">
+                                <div>
+                                <div className="flex flex-...">
+                                  <div className="flex items...">
+                                    <div
++                                     className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 bg-am..."
+-                                     className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 bg-ro..."
+                                    >
+                                  ...
+                            <ProductCardNew product={{id:"dp-cit...", ...}}>
+                              <div className="group bg-w...">
+                                <div>
+                                <div className="flex flex-...">
+                                  <div className="flex items...">
+                                    <div
++                                     className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 bg-te..."
+-                                     className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 bg-am..."
+                                    >
+                                  ...
+                            <ProductCardNew product={{id:"dp-qua...", ...}}>
+                              <div className="group bg-w...">
+                                <div>
+                                <div className="flex flex-...">
+                                  <div className="flex items...">
+                                    <div
++                                     className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 bg-em..."
+-                                     className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 bg-in..."
+                                    >
+                                  ...
+                            <ProductCardNew product={{id:"dp-iq-...", ...}}>
+                              <div className="group bg-w...">
+                                <div>
+                                <div className="flex flex-...">
+                                  <div className="flex items...">
+                                    <div
++                                     className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 bg-am..."
+-                                     className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 bg-te..."
+                                    >
+                                  ...
+                            <ProductCardNew product={{id:"dp-sim...", ...}}>
+                              <div className="group bg-w...">
+                                <div>
+                                <div className="flex flex-...">
+                                  <div className="flex items...">
+                                    <div
++                                     className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 bg-te..."
+-                                     className="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 bg-vi..."
+                                    >
+                                  ...
+                  ...
+                ...
+ @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:3127
+[     672ms] [WARNING] Image with src "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=700&q=80&auto=format&fit=crop&crop=top" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     733ms] [LOG] [Fast Refresh] done in 182ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[    3703ms] [WARNING] The resource http://localhost:3000/_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1612349317150-e413f6a5b16d%3Fw%3D700%26q%3D80%26auto%3Dformat%26fit%3Dcrop%26crop%3Dtop&w=640&q=75 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/:0
+[  116650ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  116733ms] [LOG] [Fast Refresh] done in 158ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  119728ms] [WARNING] The resource http://localhost:3000/_next/image?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1612349317150-e413f6a5b16d%3Fw%3D700%26q%3D80%26auto%3Dformat%26fit%3Dcrop%26crop%3Dtop&w=640&q=75 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/:0

@@ -36,7 +36,7 @@ export function MyTests() {
   const inProgressCount = DUMMY_TEST_HISTORY.filter((t) => t.status === 'berlangsung').length
 
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="space-y-6">
       {/* HERO BANNER */}
       <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-violet-900 p-8 md:p-10 text-white">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -53,7 +53,7 @@ export function MyTests() {
           </div>
           <Button
             size="lg"
-            className="bg-white text-slate-900 hover:bg-violet-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
+            className="bg-white text-slate-900 hover:bg-violet-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-colors active:scale-95 group shrink-0"
             asChild
           >
             <Link href="/">
@@ -107,7 +107,7 @@ export function MyTests() {
               key={tab.value}
               onClick={() => setActiveFilter(tab.value)}
               className={cn(
-                'px-4 py-2 rounded-lg text-xs font-black uppercase tracking-wider transition-all whitespace-nowrap',
+                'px-4 py-2 rounded-lg text-xs font-black uppercase tracking-wider transition-colors whitespace-nowrap',
                 activeFilter === tab.value
                   ? 'bg-slate-900 text-white shadow-sm'
                   : 'text-slate-400 hover:text-slate-900 hover:bg-slate-50'
@@ -147,10 +147,10 @@ export function MyTests() {
               <Link
                 key={test.id}
                 href={isCompleted ? `/pengguna/riwayat/${test.id}` : `/psikotes`}
-                className="group flex items-center gap-5 px-6 md:px-8 py-5 cursor-pointer hover:bg-slate-50/50 transition-all"
+                className="group flex items-center gap-5 px-6 md:px-8 py-5 cursor-pointer hover:bg-slate-50/50 transition-colors"
               >
                 {/* Icon */}
-                <div className={cn('size-12 rounded-2xl flex items-center justify-center shrink-0 transition-all group-hover:scale-105 group-hover:shadow-md', accent.bg, accent.text)}>
+                <div className={cn('size-12 rounded-2xl flex items-center justify-center shrink-0 transition-[transform,box-shadow] group-hover:scale-105 group-hover:shadow-md', accent.bg, accent.text)}>
                   <Brain className="size-5" />
                 </div>
 
@@ -194,15 +194,15 @@ export function MyTests() {
                 {/* Action */}
                 <div className="flex items-center gap-2 shrink-0">
                   {isCompleted ? (
-                    <span className="rounded-xl h-9 px-4 font-bold text-xs bg-slate-900 text-white opacity-0 group-hover:opacity-100 transition-all inline-flex items-center">
+                    <span className="rounded-xl h-9 px-4 font-bold text-xs bg-slate-900 text-white opacity-0 group-hover:opacity-100 transition-opacity inline-flex items-center">
                       Hasil <ChevronRight className="size-3.5 ml-1" />
                     </span>
                   ) : (
-                    <span className="rounded-xl h-9 px-4 font-bold text-xs bg-amber-500 text-white opacity-0 group-hover:opacity-100 transition-all inline-flex items-center">
+                    <span className="rounded-xl h-9 px-4 font-bold text-xs bg-amber-500 text-white opacity-0 group-hover:opacity-100 transition-opacity inline-flex items-center">
                       Lanjutkan <ArrowRight className="size-3.5 ml-1" />
                     </span>
                   )}
-                  <div className="size-9 rounded-xl bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-violet-600 group-hover:text-white transition-all">
+                  <div className="size-9 rounded-xl bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-violet-600 group-hover:text-white transition-colors">
                     <ChevronRight className="size-4" />
                   </div>
                 </div>

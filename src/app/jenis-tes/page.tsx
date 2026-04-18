@@ -126,7 +126,7 @@ export default function JenisTesPage() {
               <button
                 onClick={() => setTab('gratis')}
                 className={cn(
-                  'px-6 py-2.5 rounded-lg text-sm font-black uppercase tracking-wider transition-all',
+                  'px-6 py-2.5 rounded-lg text-sm font-black uppercase tracking-wider transition-colors',
                   tab === 'gratis' ? 'bg-white text-slate-900 shadow-sm' : 'text-primary-100 hover:text-white'
                 )}
               >
@@ -135,7 +135,7 @@ export default function JenisTesPage() {
               <button
                 onClick={() => setTab('premium')}
                 className={cn(
-                  'px-6 py-2.5 rounded-lg text-sm font-black uppercase tracking-wider transition-all',
+                  'px-6 py-2.5 rounded-lg text-sm font-black uppercase tracking-wider transition-colors',
                   tab === 'premium' ? 'bg-white text-slate-900 shadow-sm' : 'text-primary-100 hover:text-white'
                 )}
               >
@@ -197,7 +197,7 @@ export default function JenisTesPage() {
                     key={pkg.id}
                     href={`/jenis-tes/${pkg.id}`}
                     className={cn(
-                      'group relative flex flex-col p-1 transition-all duration-500 overflow-hidden',
+                      'group relative flex flex-col p-1 transition-colors duration-300 overflow-hidden',
                       'bg-white border border-slate-200 hover:shadow-2xl hover:-translate-y-1.5',
                       'rounded-[2.5rem] shadow-sm',
                       theme.border, theme.shadow
@@ -219,7 +219,7 @@ export default function JenisTesPage() {
                         <div className="relative">
                           <div className={cn('absolute inset-0 blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500', theme.glow)} />
                           <div className={cn(
-                            'relative w-14 h-14 rounded-2xl border flex items-center justify-center transition-all duration-500 shadow-inner',
+                            'relative w-14 h-14 rounded-2xl border flex items-center justify-center transition-colors duration-300 shadow-inner',
                             theme.iconBg, theme.iconColor, theme.iconHover,
                             'group-hover:text-white group-hover:border-transparent',
                             theme.borderColor
@@ -249,7 +249,7 @@ export default function JenisTesPage() {
                         )}
                       </div>
 
-                      <div className="w-full py-3.5 bg-primary-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest shadow-lg shadow-primary-200 flex items-center justify-center gap-2 transition-all group-hover:bg-primary-700">
+                      <div className="w-full py-3.5 bg-primary-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest shadow-lg shadow-primary-200 flex items-center justify-center gap-2 transition-colors group-hover:bg-primary-700">
                         Lihat Detail
                         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                       </div>
@@ -288,7 +288,7 @@ export default function JenisTesPage() {
                   packagesRef.current?.scrollIntoView({ behavior: 'smooth' })
                 }}
                 className={cn(
-                  'group flex flex-col items-center gap-3 p-5 rounded-2xl border transition-all cursor-pointer',
+                  'group flex flex-col items-center gap-3 p-5 rounded-2xl border transition-colors cursor-pointer',
                   kategori === cat.label
                     ? 'bg-primary-50 border-primary-200 shadow-md -translate-y-1'
                     : 'bg-white border-slate-100 hover:shadow-lg hover:-translate-y-1'
