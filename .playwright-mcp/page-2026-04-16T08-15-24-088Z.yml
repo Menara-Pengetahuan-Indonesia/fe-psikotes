@@ -1,0 +1,156 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - link "Bermoela" [ref=e8] [cursor=pointer]:
+            - /url: /
+            - img "Bermoela" [ref=e9]
+          - navigation [ref=e69]:
+            - link "Dashboard" [ref=e70] [cursor=pointer]:
+              - /url: /dashboard
+            - link "Kelola Tes" [ref=e71] [cursor=pointer]:
+              - /url: /admin/kelola-tes
+            - link "Paket" [ref=e72] [cursor=pointer]:
+              - /url: /admin/packages
+            - link "Jadwal" [ref=e73] [cursor=pointer]:
+              - /url: /admin/schedules
+            - link "Peserta" [ref=e74] [cursor=pointer]:
+              - /url: /admin/participants
+            - link "Hasil" [ref=e75] [cursor=pointer]:
+              - /url: /admin/results
+            - link "Analitik" [ref=e76] [cursor=pointer]:
+              - /url: /admin/analytics
+            - link "Pengaturan" [ref=e77] [cursor=pointer]:
+              - /url: /admin/settings
+        - generic [ref=e10]:
+          - button [ref=e11]:
+            - img
+          - link [ref=e12] [cursor=pointer]:
+            - /url: /admin/notifications
+            - img
+          - button "AD" [ref=e78]:
+            - generic [ref=e80]: AD
+            - img [ref=e81]
+      - main [ref=e13]:
+        - generic [ref=e15]:
+          - navigation "Navigasi pohon tes" [ref=e16]:
+            - generic [ref=e17]:
+              - generic [ref=e18]:
+                - generic [ref=e19]:
+                  - img [ref=e21]
+                  - heading "Kelola Tes" [level=2] [ref=e26]
+                - button "Buat paket baru" [ref=e27]:
+                  - img [ref=e28]
+                  - text: Paket
+              - generic [ref=e83]:
+                - img [ref=e84]
+                - searchbox "Cari item dalam pohon navigasi" [ref=e87]
+            - tree "Hierarki paket dan tes" [ref=e29]:
+              - generic [ref=e89]:
+                - button "Buka Relationship" [ref=e90]:
+                  - img [ref=e91]
+                - treeitem "Relationship" [ref=e93]:
+                  - img [ref=e94]
+                  - generic [ref=e98]: Relationship
+                  - generic [ref=e99]: "1"
+              - generic [ref=e101]:
+                - button "Buka Diri Pribadi" [ref=e102]:
+                  - img [ref=e103]
+                - treeitem "Diri Pribadi" [ref=e105]:
+                  - img [ref=e106]
+                  - generic [ref=e110]: Diri Pribadi
+                  - generic [ref=e111]: "1"
+              - generic [ref=e113]:
+                - button "Buka Proses Bisnis" [ref=e114]:
+                  - img [ref=e115]
+                - treeitem "Proses Bisnis" [ref=e117]:
+                  - img [ref=e118]
+                  - generic [ref=e122]: Proses Bisnis
+                  - generic [ref=e123]: "2"
+          - main "Detail konten" [ref=e34]:
+            - generic [ref=e199]:
+              - generic [ref=e200]:
+                - generic [ref=e201]:
+                  - img [ref=e203]
+                  - generic [ref=e207]:
+                    - generic [ref=e208]:
+                      - heading "Pasangan & Keluarga" [level=2] [ref=e209]
+                      - status [ref=e210]: Aktif
+                    - paragraph [ref=e211]: Tes untuk mengevaluasi dinamika hubungan.
+                    - paragraph [ref=e212]: Paket Kecil
+                - button "Edit Pasangan & Keluarga" [ref=e213]:
+                  - img [ref=e214]
+              - generic [ref=e217]:
+                - generic [ref=e218]:
+                  - img [ref=e220]
+                  - generic [ref=e222]:
+                    - paragraph [ref=e223]: "3"
+                    - paragraph [ref=e224]: Sub Paket
+                - generic [ref=e225]:
+                  - img [ref=e227]
+                  - generic [ref=e230]:
+                    - paragraph [ref=e231]: "3"
+                    - paragraph [ref=e232]: Aktif
+                - generic [ref=e233]:
+                  - img [ref=e235]
+                  - generic [ref=e239]:
+                    - paragraph [ref=e240]: "0"
+                    - paragraph [ref=e241]: Nonaktif
+              - generic [ref=e242]:
+                - heading "Sub Paket" [level=3] [ref=e243]
+                - button "Tambah" [ref=e244]:
+                  - img
+                  - text: Tambah
+              - generic [ref=e245]:
+                - img [ref=e246]
+                - textbox "Cari sub paket" [ref=e249]:
+                  - /placeholder: Cari sub paket...
+              - list "Daftar sub paket" [ref=e250]:
+                - 'listitem "Sub paket: Paket Komprehensif" [ref=e251] [cursor=pointer]':
+                  - img [ref=e253]
+                  - generic [ref=e255]:
+                    - generic [ref=e256]:
+                      - generic [ref=e257]: Paket Komprehensif
+                      - generic [ref=e258]: Aktif
+                    - paragraph [ref=e259]: Rp 299.000
+                  - generic [ref=e260]:
+                    - button "Edit Paket Komprehensif" [ref=e261]:
+                      - img [ref=e262]
+                    - button "Hapus Paket Komprehensif" [ref=e265]:
+                      - img [ref=e266]
+                - 'listitem "Sub paket: Paket Lengkap" [ref=e269] [cursor=pointer]':
+                  - img [ref=e271]
+                  - generic [ref=e273]:
+                    - generic [ref=e274]:
+                      - generic [ref=e275]: Paket Lengkap
+                      - generic [ref=e276]: Aktif
+                    - paragraph [ref=e277]: Rp 199.000
+                  - generic [ref=e278]:
+                    - button "Edit Paket Lengkap" [ref=e279]:
+                      - img [ref=e280]
+                    - button "Hapus Paket Lengkap" [ref=e283]:
+                      - img [ref=e284]
+                - 'listitem "Sub paket: Paket Dasar" [ref=e287] [cursor=pointer]':
+                  - img [ref=e289]
+                  - generic [ref=e291]:
+                    - generic [ref=e292]:
+                      - generic [ref=e293]: Paket Dasar
+                      - generic [ref=e294]: Aktif
+                    - paragraph [ref=e295]: Rp 99.000
+                  - generic [ref=e296]:
+                    - button "Edit Paket Dasar" [ref=e297]:
+                      - img [ref=e298]
+                    - button "Hapus Paket Dasar" [ref=e301]:
+                      - img [ref=e302]
+      - generic [ref=e55]:
+        - paragraph [ref=e56]: © 2026 Bermoela — Indonesian Life School
+        - generic [ref=e57]:
+          - link "Bantuan" [ref=e58] [cursor=pointer]:
+            - /url: "#"
+          - link "Kebijakan" [ref=e59] [cursor=pointer]:
+            - /url: "#"
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e65] [cursor=pointer]:
+    - img [ref=e66]
+  - alert [ref=e124]

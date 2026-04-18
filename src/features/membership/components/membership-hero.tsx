@@ -46,7 +46,7 @@ export function MembershipHero() {
             <div className="flex flex-col sm:flex-row items-center gap-6 pt-4 justify-center lg:justify-start">
               <Link
                 href="#pricing"
-                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 bg-slate-950 text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-primary-700 transition-all shadow-xl shadow-slate-950/20"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-5 bg-slate-950 text-white font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-primary-700 transition-colors shadow-xl shadow-slate-950/20"
               >
                 Gabung Sekarang <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -64,7 +64,7 @@ export function MembershipHero() {
           <div className="hidden lg:block relative perspective-2000">
             <div className="absolute inset-0 bg-primary-400/20 blur-3xl opacity-50 rounded-full" />
             <div className="relative transform-style-3d">
-              <div className="bg-white border border-slate-100 rounded-[3rem] p-10 shadow-2xl shadow-primary-950/20 space-y-8 transform rotate-3 hover:rotate-0 transition-all duration-700">
+              <div className="bg-white border border-slate-100 rounded-[3rem] p-10 shadow-2xl shadow-primary-950/20 space-y-8 transform rotate-3 hover:rotate-0 transition-transform duration-500">
                 <div className="flex items-center gap-6 border-b border-slate-50 pb-8">
                   <div className="w-16 h-16 bg-primary-600 rounded-3xl flex items-center justify-center text-white shadow-lg border-4 border-primary-50">
                     <Users className="w-8 h-8" />
@@ -75,12 +75,12 @@ export function MembershipHero() {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-6">
-                  <div className="bg-slate-50 p-6 rounded-[2rem] border border-slate-100 shadow-inner group/item hover:bg-white hover:shadow-xl transition-all duration-500">
+                  <div className="bg-slate-50 p-6 rounded-[2rem] border border-slate-100 shadow-inner group/item hover:bg-white hover:shadow-xl transition-[box-shadow] duration-300">
                     <Video className="w-10 h-10 mb-4 text-primary-600 transition-transform group-hover/item:scale-110" />
                     <p className="font-black text-slate-900 text-base leading-tight">Weekly Webinar</p>
                     <p className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-tight">Live Experts</p>
                   </div>
-                  <div className="bg-accent-50 p-6 rounded-[2rem] border border-accent-100 shadow-inner group/item hover:bg-white hover:shadow-xl transition-all duration-500">
+                  <div className="bg-accent-50 p-6 rounded-[2rem] border border-accent-100 shadow-inner group/item hover:bg-white hover:shadow-xl transition-[box-shadow] duration-300">
                     <MessageSquare className="w-10 h-10 mb-4 text-accent-500 transition-transform group-hover/item:scale-110" />
                     <p className="font-black text-slate-900 text-base leading-tight">Privat Group</p>
                     <p className="text-xs font-bold text-slate-400 mt-1 uppercase tracking-tight">Supportive Peers</p>

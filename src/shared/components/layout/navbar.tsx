@@ -39,6 +39,7 @@ export function Navbar({
   }, [customNavItems])
 
   React.useEffect(() => {
+    setIsScrolled(window.scrollY > 20)
     let ticking = false
     const handleScroll = () => {
       if (!ticking) {
@@ -71,45 +72,45 @@ export function Navbar({
     <>
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50',
-          'flex justify-center transition-all',
-          'duration-500 ease-out px-4 md:px-8',
-          isScrolled ? 'pt-3' : 'pt-5'
+          'sticky top-0 w-full transition-colors duration-500 ease-out',
+          isScrolled
+            ? 'z-50 flex justify-center px-4 md:px-8 py-3'
+            : 'z-50 bg-white'
         )}
       >
         <nav
           className={cn(
-            'w-full max-w-6xl flex items-center',
-            'justify-between px-5 py-2.5',
-            'transition-all duration-500 ease-out',
-            'bg-white rounded-full',
+            'grid grid-cols-3 items-center px-6 py-3',
+            'transition-colors duration-500 ease-out',
             isScrolled
-              ? 'shadow-lg shadow-slate-900/[0.06] border border-slate-100 ring-1 ring-black/[0.03]'
-              : 'bg-transparent shadow-none border border-transparent'
+              ? 'w-full max-w-6xl rounded-full bg-white/95 backdrop-blur-xl shadow-md shadow-gray-900/[0.06] border border-gray-200/50'
+              : 'w-full max-w-7xl mx-auto'
           )}
         >
-          <NavbarLogo isScrolled={isScrolled} />
+          {/* Left: Logo */}
+          <div className="flex items-center">
+            <NavbarLogo isScrolled={isScrolled} />
+          </div>
 
-          <NavbarDesktopMenu
-            navItems={navItems}
-            pathname={pathname}
-            isScrolled={isScrolled}
-          />
+          {/* Center: Nav links */}
+          <div className="flex justify-center">
+            <NavbarDesktopMenu
+              navItems={navItems}
+              pathname={pathname}
+              isScrolled={isScrolled}
+            />
+          </div>
 
-          <div className="flex items-center gap-2 ml-auto">
+          {/* Right: CTA + mobile toggle */}
+          <div className="flex items-center justify-end gap-2">
             <NavbarDesktopCta isScrolled={isScrolled} />
-
             <button
               className={cn(
                 'md:hidden p-2.5 rounded-xl',
-                'transition-all duration-200 cursor-pointer',
-                isScrolled
-                  ? 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'
-                  : 'text-white/80 hover:bg-white/10 hover:text-white'
+                'transition-colors duration-200 cursor-pointer',
+                'text-primary-500 hover:bg-primary-50 hover:text-primary-700'
               )}
-              onClick={() =>
-                setIsMobileMenuOpen(!isMobileMenuOpen)
-              }
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen
                 ? <X size={20} strokeWidth={2.5} />

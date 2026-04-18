@@ -27,7 +27,7 @@ const INPUT_CLS = cn(
   'pl-11 pr-4 text-slate-900 text-sm font-medium',
   'placeholder:text-slate-400 placeholder:font-normal',
   'focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10',
-  'transition-all duration-200',
+  'transition-colors duration-200',
 )
 
 interface LoginFormProps {
@@ -166,7 +166,7 @@ export function LoginForm({
               'bg-slate-900 text-white',
               'font-bold text-sm',
               'hover:bg-slate-800 active:scale-[0.98]',
-              'transition-all duration-200 shadow-xl shadow-slate-900/20',
+              'transition-colors duration-200 shadow-xl shadow-slate-900/20',
             )}
             disabled={isLoading}
           >

@@ -27,7 +27,7 @@ export function DashboardOverview() {
   const recentTests = DUMMY_TEST_HISTORY.filter((t) => t.status === 'selesai').slice(0, 5)
 
   return (
-    <div className="max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-1000">
+    <div className="max-w-7xl mx-auto">
       
       {/* HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 px-2 gap-4">
@@ -48,7 +48,7 @@ export function DashboardOverview() {
         <div className="lg:col-span-8 space-y-6">
           
           {/* HERO CARD */}
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-900 p-10 md:p-12 text-white shadow-2xl group transition-all hover:shadow-primary-500/10">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-900 p-10 md:p-12 text-white shadow-2xl group transition-shadow hover:shadow-primary-500/10">
             <div className="relative z-10 h-full flex flex-col justify-between">
               <div className="space-y-6">
                 <div className="size-14 rounded-2xl bg-primary-500 text-white flex items-center justify-center shadow-lg">
@@ -63,7 +63,7 @@ export function DashboardOverview() {
                 </p>
               </div>
               <div className="mt-10">
-                <Button size="lg" className="bg-primary-500 hover:bg-primary-400 text-white rounded-2xl h-14 px-10 font-black text-lg shadow-xl shadow-primary-500/20 transition-all active:scale-95" asChild>
+                <Button size="lg" className="bg-primary-500 hover:bg-primary-400 text-white rounded-2xl h-14 px-10 font-black text-lg shadow-xl shadow-primary-500/20 transition-colors active:scale-95" asChild>
                   <Link href="/">Mulai Tes Baru</Link>
                 </Button>
               </div>
@@ -75,9 +75,9 @@ export function DashboardOverview() {
 
           {/* STATS MINI GRID */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="rounded-[2.5rem] bg-white border border-slate-100 p-8 shadow-sm flex flex-col justify-between group hover:border-primary-100 transition-all">
+            <div className="rounded-[2.5rem] bg-white border border-slate-100 p-8 shadow-sm flex flex-col justify-between group hover:border-primary-100 transition-colors">
               <div className="flex items-center justify-between">
-                <div className="size-12 rounded-2xl bg-slate-50 text-slate-900 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-all">
+                <div className="size-12 rounded-2xl bg-slate-50 text-slate-900 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-colors">
                   <TrendingUp className="size-6" />
                 </div>
                 <span className="text-[10px] font-black text-primary-600 bg-primary-50 px-2 py-1 rounded-full">+12%</span>
@@ -90,9 +90,9 @@ export function DashboardOverview() {
               </div>
             </div>
 
-            <div className="rounded-[2.5rem] bg-white border border-slate-100 p-8 shadow-sm flex flex-col justify-between group hover:border-indigo-100 transition-all">
+            <div className="rounded-[2.5rem] bg-white border border-slate-100 p-8 shadow-sm flex flex-col justify-between group hover:border-indigo-100 transition-colors">
               <div className="flex items-center justify-between">
-                <div className="size-12 rounded-2xl bg-slate-50 text-slate-900 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                <div className="size-12 rounded-2xl bg-slate-50 text-slate-900 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
                   <FileText className="size-6" />
                 </div>
               </div>
@@ -105,12 +105,12 @@ export function DashboardOverview() {
 
           {/* PILLARS & UPSELL GRID */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-             <Link href="/premium" className="rounded-[2rem] bg-[#14B8A6] p-6 text-white shadow-lg shadow-primary-500/10 group relative overflow-hidden transition-all hover:-translate-y-1">
+             <Link href="/premium" className="rounded-[2rem] bg-[#14B8A6] p-6 text-white shadow-lg shadow-primary-500/10 group relative overflow-hidden transition-transform hover:-translate-y-1">
                 <Star className="size-8 mb-4 group-hover:rotate-12 transition-transform" />
                 <h4 className="font-black text-lg">Premium</h4>
                 <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Unlock All</p>
              </Link>
-             <Link href="/gratis" className="rounded-[2rem] bg-gradient-to-br from-teal-400 to-teal-500 p-6 text-white shadow-lg shadow-primary-500/10 group relative overflow-hidden transition-all hover:-translate-y-1">
+             <Link href="/gratis" className="rounded-[2rem] bg-gradient-to-br from-teal-400 to-teal-500 p-6 text-white shadow-lg shadow-primary-500/10 group relative overflow-hidden transition-transform hover:-translate-y-1">
                 <BookOpen className="size-8 mb-4 group-hover:scale-110 transition-transform" />
                 <h4 className="font-black text-lg">Tes Gratis</h4>
                 <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Coba Sekarang</p>
@@ -133,7 +133,7 @@ export function DashboardOverview() {
 
               <div className="space-y-3 flex-1">
                  {recentTests.map((test) => (
-                   <div key={test.id} className="p-4 rounded-2xl bg-slate-50/50 border border-transparent hover:border-slate-100 hover:bg-white hover:shadow-sm transition-all group/item">
+                   <div key={test.id} className="p-4 rounded-2xl bg-slate-50/50 border border-transparent hover:border-slate-100 hover:bg-white hover:shadow-sm transition-colors group/item">
                       <div className="flex flex-col gap-3">
                          <div className="flex items-start justify-between gap-2">
                             <p className="text-sm font-black text-slate-900 leading-tight line-clamp-2">{test.name}</p>

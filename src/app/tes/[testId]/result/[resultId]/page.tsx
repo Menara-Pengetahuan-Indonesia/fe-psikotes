@@ -172,7 +172,7 @@ export default function ResultPage() {
                     </div>
                     <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
                       <div
-                        className={cn('h-full rounded-full transition-all duration-700', barColors[idx % barColors.length])}
+                        className={cn('h-full rounded-full transition-[width] duration-700', barColors[idx % barColors.length])}
                         style={{ width: `${pct}%` }}
                       />
                     </div>
@@ -190,7 +190,7 @@ export default function ResultPage() {
         <div className="flex justify-center gap-4 pt-4">
           <button
             onClick={() => router.push('/jenis-tes')}
-            className="h-14 px-8 bg-slate-900 text-white rounded-2xl font-black text-sm shadow-xl transition-all active:scale-95 flex items-center gap-2"
+            className="h-14 px-8 bg-slate-900 text-white rounded-2xl font-black text-sm shadow-xl transition-colors active:scale-95 flex items-center gap-2"
           >
             <RotateCcw className="size-4" /> Tes Lainnya
           </button>

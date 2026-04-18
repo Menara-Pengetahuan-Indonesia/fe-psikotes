@@ -130,7 +130,7 @@ export function ExamInterface({ testId, onComplete }: ExamInterfaceProps) {
           </div>
           <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
             <div
-              className="h-full bg-linear-to-r from-blue-500 to-blue-600 transition-all duration-300"
+              className="h-full bg-linear-to-r from-blue-500 to-blue-600 transition-[width] duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -184,7 +184,7 @@ export function ExamInterface({ testId, onComplete }: ExamInterfaceProps) {
                   key={q.id}
                   onClick={() => handleJumpToQuestion(idx)}
                   className={cn(
-                    'aspect-square rounded-lg text-xs font-bold transition-all border',
+                    'aspect-square rounded-lg text-xs font-bold transition-colors border',
                     state.currentQuestionIndex === idx
                       ? 'border-blue-500 bg-blue-50 text-blue-600 ring-2 ring-blue-200'
                       : state.answers[q.id]

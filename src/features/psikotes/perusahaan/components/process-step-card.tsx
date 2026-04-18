@@ -46,7 +46,7 @@ export function ProcessStepCard({
           'group bg-white w-full',
           'p-6 rounded-3xl',
           'border border-slate-100',
-          'transition-all duration-500',
+          'transition-colors duration-300',
           'hover:-translate-y-1',
           'hover:shadow-2xl',
           'hover:shadow-primary-900/5',

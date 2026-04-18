@@ -255,7 +255,7 @@ export function ExamInterface({
           {/* Progress Bar */}
           <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-indigo-400 to-teal-400 transition-all duration-500 ease-out rounded-full"
+              className="h-full bg-gradient-to-r from-indigo-400 to-teal-400 transition-[width] duration-500 ease-out rounded-full"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -302,7 +302,7 @@ export function ExamInterface({
                     key={idx}
                     onClick={() => handleSelect(idx)}
                     className={cn(
-                      'w-full text-left p-5 rounded-2xl border-2 transition-all duration-300 group flex items-center gap-4',
+                      'w-full text-left p-5 rounded-2xl border-2 transition-colors duration-300 group flex items-center gap-4',
                       isSelected
                         ? 'border-indigo-500 bg-white shadow-md'
                         : 'border-slate-100 bg-white hover:border-indigo-200 hover:shadow-sm'
@@ -335,7 +335,7 @@ export function ExamInterface({
                 onClick={handleBack}
                 disabled={currentIdx === 0}
                 className={cn(
-                  'h-12 px-6 rounded-xl font-black text-sm flex items-center gap-2 transition-all',
+                  'h-12 px-6 rounded-xl font-black text-sm flex items-center gap-2 transition-colors',
                   currentIdx === 0
                     ? 'opacity-40 cursor-not-allowed text-slate-300 bg-white border border-slate-100'
                     : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 shadow-sm'
@@ -348,7 +348,7 @@ export function ExamInterface({
                 onClick={handleNext}
                 disabled={selectedOption === null}
                 className={cn(
-                  'h-12 px-8 rounded-xl font-black text-sm flex items-center gap-2 transition-all',
+                  'h-12 px-8 rounded-xl font-black text-sm flex items-center gap-2 transition-colors',
                   selectedOption !== null
                     ? 'bg-slate-900 text-white hover:bg-slate-800 shadow-lg active:scale-95'
                     : 'bg-slate-200 text-slate-400 cursor-not-allowed'
@@ -497,7 +497,7 @@ export function ExamInterface({
                             onClick={() => handleJumpTo(q.globalIdx)}
                             title={timeSpent ? `Waktu: ${formatDuration(timeSpent)}` : undefined}
                             className={cn(
-                              'size-10 rounded-xl text-xs font-black transition-all relative',
+                              'size-10 rounded-xl text-xs font-black transition-colors relative',
                               isCurrent
                                 ? 'bg-indigo-600 text-white shadow-md scale-110'
                                 : isAnswered
@@ -546,7 +546,7 @@ export function ExamInterface({
       {/* Section Intro Modal */}
       {showSectionIntro && introSection && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white rounded-[2rem] p-8 max-w-md w-full shadow-2xl text-center animate-in fade-in zoom-in-95 duration-300">
+          <div className="bg-white rounded-[2rem] p-8 max-w-md w-full shadow-2xl text-center">
             <div className="size-16 rounded-2xl bg-gradient-to-br from-violet-400 to-violet-500 flex items-center justify-center mx-auto mb-5">
               <Brain className="size-7 text-white" />
             </div>
@@ -561,7 +561,7 @@ export function ExamInterface({
             </div>
             <button
               onClick={() => setShowSectionIntro(false)}
-              className="h-12 px-10 bg-slate-900 text-white rounded-xl font-black text-sm shadow-lg hover:bg-slate-800 transition-all active:scale-95"
+              className="h-12 px-10 bg-slate-900 text-white rounded-xl font-black text-sm shadow-lg hover:bg-slate-800 transition-colors active:scale-95"
             >
               Mulai Section
             </button>

@@ -107,7 +107,7 @@ export default function AdminSettingsPage() {
             />
             <SettingRow
               icon={<Mail className="size-4" />}
-              iconColor="bg-teal-100 text-teal-600"
+              iconColor="bg-indigo-100 text-indigo-600"
               label="Email"
               value={user?.email ?? '—'}
             />
@@ -169,8 +169,8 @@ export default function AdminSettingsPage() {
         {/* PREFERENSI */}
         <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
           <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-teal-100 flex items-center justify-center">
-              <Palette className="size-5 text-teal-600" />
+            <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
+              <Palette className="size-5 text-indigo-600" />
             </div>
             <div>
               <h2 className="text-base font-black text-slate-900">Preferensi</h2>
@@ -179,14 +179,14 @@ export default function AdminSettingsPage() {
           </div>
           <div className="divide-y divide-slate-50">
             <div className="px-7 py-4 flex items-center gap-4 group hover:bg-slate-50/50 transition-all">
-              <div className="size-9 rounded-xl bg-teal-100 flex items-center justify-center shrink-0">
-                <Bell className="size-4 text-teal-600" />
+              <div className="size-9 rounded-xl bg-indigo-100 flex items-center justify-center shrink-0">
+                <Bell className="size-4 text-indigo-600" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-black text-slate-900">Notifikasi</p>
                 <p className="text-xs text-slate-400 font-medium">Email & push notification</p>
               </div>
-              <span className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-teal-50 text-teal-600">
+              <span className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-600">
                 Aktif
               </span>
             </div>

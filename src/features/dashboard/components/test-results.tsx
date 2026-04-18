@@ -34,7 +34,7 @@ export function TestResults() {
     : 0
 
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="space-y-6">
       {/* HERO BANNER */}
       <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 p-8 md:p-10 text-white">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -51,7 +51,7 @@ export function TestResults() {
           </div>
           <Button
             size="lg"
-            className="bg-white text-slate-900 hover:bg-teal-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
+            className="bg-white text-slate-900 hover:bg-teal-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-colors active:scale-95 group shrink-0"
             asChild
           >
             <Link href="/">
@@ -119,10 +119,10 @@ export function TestResults() {
               <Link
                 key={test.id}
                 href={`/pengguna/riwayat/${test.id}`}
-                className="group flex items-center gap-5 px-6 md:px-8 py-5 hover:bg-slate-50/50 transition-all"
+                className="group flex items-center gap-5 px-6 md:px-8 py-5 hover:bg-slate-50/50 transition-colors"
               >
                 {/* Icon */}
-                <div className={cn('size-12 rounded-2xl flex items-center justify-center shrink-0 transition-all group-hover:scale-105 group-hover:shadow-md', accent.bg, accent.text)}>
+                <div className={cn('size-12 rounded-2xl flex items-center justify-center shrink-0 transition-[transform,box-shadow] group-hover:scale-105 group-hover:shadow-md', accent.bg, accent.text)}>
                   <Brain className="size-5" />
                 </div>
 
@@ -163,7 +163,7 @@ export function TestResults() {
                 </div>
 
                 {/* Arrow */}
-                <div className="size-9 rounded-xl bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-teal-600 group-hover:text-white transition-all shrink-0">
+                <div className="size-9 rounded-xl bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-teal-600 group-hover:text-white transition-colors shrink-0">
                   <ChevronRight className="size-4" />
                 </div>
               </Link>

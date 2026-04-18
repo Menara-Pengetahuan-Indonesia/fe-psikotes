@@ -1,0 +1,24 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e6]:
+        - link "Bermoela" [ref=e8] [cursor=pointer]:
+          - /url: /
+          - img "Bermoela" [ref=e9]
+        - generic [ref=e10]:
+          - button [ref=e11]:
+            - img
+          - link [ref=e12] [cursor=pointer]:
+            - /url: /admin/notifications
+            - img
+      - main [ref=e13]
+      - generic [ref=e17]:
+        - paragraph [ref=e18]: © 2026 Bermoela — Indonesian Life School
+        - generic [ref=e19]:
+          - link "Bantuan" [ref=e20] [cursor=pointer]:
+            - /url: "#"
+          - link "Kebijakan" [ref=e21] [cursor=pointer]:
+            - /url: "#"
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e27] [cursor=pointer]:
+    - img [ref=e28]

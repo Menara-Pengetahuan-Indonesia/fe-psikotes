@@ -35,7 +35,7 @@ import { ConfirmDialog } from '@/features/admin/components/Common/ConfirmDialog'
 type ScheduleStatus = 'active' | 'upcoming' | 'completed'
 
 const statusConfig: Record<ScheduleStatus, { label: string; badge: string; bannerGrad: string; iconBg: string }> = {
-  active: { label: 'Aktif', badge: 'bg-teal-500/20 text-teal-300', bannerGrad: 'from-slate-900 via-slate-800 to-teal-900', iconBg: 'from-teal-400 to-teal-500' },
+  active: { label: 'Aktif', badge: 'bg-indigo-500/20 text-indigo-300', bannerGrad: 'from-slate-900 via-slate-800 to-indigo-900', iconBg: 'from-indigo-400 to-indigo-500' },
   upcoming: { label: 'Mendatang', badge: 'bg-indigo-500/20 text-indigo-300', bannerGrad: 'from-slate-900 via-slate-800 to-indigo-900', iconBg: 'from-indigo-400 to-indigo-500' },
   completed: { label: 'Selesai', badge: 'bg-slate-500/20 text-slate-300', bannerGrad: 'from-slate-900 via-slate-800 to-slate-700', iconBg: 'from-slate-400 to-slate-500' },
 }
@@ -136,14 +136,14 @@ function formatShortDate(dateStr: string) {
 
 const userRowColors = [
   { icon: 'bg-indigo-100 text-indigo-600' },
-  { icon: 'bg-teal-100 text-teal-600' },
+  { icon: 'bg-indigo-100 text-indigo-600' },
   { icon: 'bg-violet-100 text-violet-600' },
   { icon: 'bg-rose-100 text-rose-600' },
   { icon: 'bg-amber-100 text-amber-600' },
 ]
 
 const userStatusConfig = {
-  completed: { label: 'Selesai', badge: 'bg-teal-50 text-teal-600' },
+  completed: { label: 'Selesai', badge: 'bg-indigo-50 text-indigo-600' },
   in_progress: { label: 'Mengerjakan', badge: 'bg-amber-50 text-amber-600' },
   registered: { label: 'Terdaftar', badge: 'bg-indigo-50 text-indigo-600' },
 }
@@ -240,8 +240,8 @@ export default function ScheduleDetailPage() {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-teal-500/30 flex items-center justify-center">
-                <Users className="size-5 text-teal-300" />
+              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
+                <Users className="size-5 text-indigo-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{schedule.participants}<span className="text-sm font-bold text-slate-400">/{schedule.maxParticipants}</span></p>
@@ -327,7 +327,7 @@ export default function ScheduleDetailPage() {
                         </div>
                       </div>
                       {user.status === 'completed' && (
-                        <div className="flex items-center gap-1.5 text-sm font-black text-teal-600 bg-teal-50 px-3 py-1.5 rounded-full shrink-0">
+                        <div className="flex items-center gap-1.5 text-sm font-black text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full shrink-0">
                           <Award className="size-3.5" />
                           <span>{user.score}</span>
                         </div>
@@ -345,8 +345,8 @@ export default function ScheduleDetailPage() {
           {/* Info */}
           <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
             <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-teal-100 flex items-center justify-center">
-                <FileText className="size-5 text-teal-600" />
+              <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
+                <FileText className="size-5 text-indigo-600" />
               </div>
               <div>
                 <h2 className="text-lg font-black text-slate-900">Detail Jadwal</h2>
@@ -355,7 +355,7 @@ export default function ScheduleDetailPage() {
             </div>
             <div className="divide-y divide-slate-50">
               {[
-                { label: 'Tanggal Mulai', value: formatDate(schedule.startDate), icon: <Play className="size-4" />, color: 'bg-teal-100 text-teal-600' },
+                { label: 'Tanggal Mulai', value: formatDate(schedule.startDate), icon: <Play className="size-4" />, color: 'bg-indigo-100 text-indigo-600' },
                 { label: 'Tanggal Selesai', value: formatDate(schedule.endDate), icon: <CheckCircle2 className="size-4" />, color: 'bg-rose-100 text-rose-600' },
                 { label: 'Lokasi', value: schedule.location, icon: <MapPin className="size-4" />, color: 'bg-violet-100 text-violet-600' },
                 { label: 'Dibuat Oleh', value: schedule.createdBy, icon: <User className="size-4" />, color: 'bg-indigo-100 text-indigo-600' },
@@ -391,7 +391,7 @@ export default function ScheduleDetailPage() {
               </div>
               <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
                 <div
-                  className={cn('h-full rounded-full transition-all duration-1000', schedule.status === 'active' ? 'bg-teal-500' : schedule.status === 'upcoming' ? 'bg-indigo-500' : 'bg-slate-400')}
+                  className={cn('h-full rounded-full transition-all duration-1000', schedule.status === 'active' ? 'bg-indigo-500' : schedule.status === 'upcoming' ? 'bg-indigo-500' : 'bg-slate-400')}
                   style={{ width: `${pct}%` }}
                 />
               </div>
@@ -408,7 +408,7 @@ export default function ScheduleDetailPage() {
         <DialogContent className="max-w-[460px] p-0 border-0 rounded-2xl overflow-hidden bg-white shadow-2xl">
           <div className="px-6 pt-6 pb-3">
             <div className="flex items-center gap-3 mb-2">
-              <div className="size-9 rounded-xl bg-teal-500 text-white flex items-center justify-center">
+              <div className="size-9 rounded-xl bg-indigo-500 text-white flex items-center justify-center">
                 <CalendarClock className="size-4" />
               </div>
               <div>
@@ -425,7 +425,7 @@ export default function ScheduleDetailPage() {
                   placeholder="Misal: Tes Kepribadian MBTI"
                   value={formTestName}
                   onChange={(e) => { setFormTestName(e.target.value); setFormError('') }}
-                  className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-teal-500/10"
+                  className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500/10"
                 />
               </div>
               <div className="grid grid-cols-2 gap-3">
@@ -435,7 +435,7 @@ export default function ScheduleDetailPage() {
                     type="date"
                     value={formStartDate}
                     onChange={(e) => { setFormStartDate(e.target.value); setFormError('') }}
-                    className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-teal-500/10"
+                    className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500/10"
                   />
                 </div>
                 <div className="space-y-1.5">
@@ -444,7 +444,7 @@ export default function ScheduleDetailPage() {
                     type="date"
                     value={formEndDate}
                     onChange={(e) => { setFormEndDate(e.target.value); setFormError('') }}
-                    className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-teal-500/10"
+                    className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500/10"
                   />
                 </div>
               </div>
@@ -454,7 +454,7 @@ export default function ScheduleDetailPage() {
                   type="number"
                   value={formMaxParticipants}
                   onChange={(e) => setFormMaxParticipants(Number(e.target.value))}
-                  className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-black text-sm w-28 focus:bg-white focus:ring-2 focus:ring-teal-500/10"
+                  className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-black text-sm w-28 focus:bg-white focus:ring-2 focus:ring-indigo-500/10"
                 />
               </div>
               {formError && (

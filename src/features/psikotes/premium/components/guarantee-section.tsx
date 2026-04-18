@@ -4,7 +4,7 @@ export function GuaranteeSection() {
   return (
     <section className="py-24 px-6 bg-background">
       <div className="max-w-5xl mx-auto">
-        <div className="relative group p-10 md:p-16 bg-white rounded-[3rem] border border-slate-100 text-center space-y-8 transition-all duration-500 hover:shadow-2xl hover:shadow-primary-900/5 hover:-translate-y-1 shadow-xl shadow-stone-200/50 overflow-hidden">
+        <div className="relative group p-10 md:p-16 bg-white rounded-[3rem] border border-slate-100 text-center space-y-8 transition-[transform,box-shadow] duration-300 hover:shadow-2xl hover:shadow-primary-900/5 hover:-translate-y-1 shadow-xl shadow-stone-200/50 overflow-hidden">
           {/* Decorative Corner Ornaments */}
           <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary-50 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity" />
           <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-accent-50 rounded-full blur-3xl opacity-50 group-hover:opacity-100 transition-opacity" />
@@ -26,7 +26,7 @@ export function GuaranteeSection() {
             </div>
 
             <div className="pt-4">
-               <button className="px-10 py-4 bg-primary-700 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-primary-600 transition-all shadow-lg hover:shadow-primary-200">
+               <button className="px-10 py-4 bg-primary-700 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-primary-600 transition-colors shadow-lg hover:shadow-primary-200">
                   Pelajari Kebijakan Kami
                </button>
             </div>

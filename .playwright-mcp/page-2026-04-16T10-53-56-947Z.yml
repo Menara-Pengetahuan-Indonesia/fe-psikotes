@@ -1,0 +1,747 @@
+- generic [active] [ref=e1]:
+  - img
+  - generic [ref=e3]:
+    - generic [ref=e6]:
+      - img [ref=e8]
+      - button [ref=e44] [cursor=pointer]:
+        - img [ref=e45]
+    - generic [ref=e47]:
+      - generic:
+        - img
+      - generic [ref=e48]:
+        - generic [ref=e52]:
+          - heading "Psikotest API 1.0 OAS 3.0" [level=1] [ref=e54]:
+            - text: Psikotest API
+            - generic [ref=e55]:
+              - generic [ref=e57]: "1.0"
+              - generic [ref=e59]: OAS 3.0
+          - paragraph [ref=e62]: API Documentation for Psikotest Application
+        - generic [ref=e64]:
+          - generic [ref=e66]:
+            - text: Servers
+            - combobox [ref=e69]:
+              - option "http://localhost:5000 - Development" [selected]
+              - option "https://api.production.com - Production"
+          - button "Authorize" [ref=e71] [cursor=pointer]:
+            - generic [ref=e72]: Authorize
+            - img [ref=e73]
+        - generic [ref=e77]:
+          - generic [ref=e79]:
+            - heading "Authentication Collapse operation" [level=3] [ref=e80] [cursor=pointer]:
+              - link "Authentication" [ref=e81]:
+                - /url: "#/Authentication"
+              - button "Collapse operation" [expanded] [ref=e82]:
+                - img [ref=e83]
+            - generic [ref=e86]:
+              - generic [ref=e89] [cursor=pointer]:
+                - button "POST /auth/register Register new user" [ref=e90]:
+                  - generic [ref=e91]: POST
+                  - generic [ref=e92]:
+                    - link "/auth/register" [ref=e94]:
+                      - /url: "#/Authentication/AuthController_register"
+                      - generic [ref=e95]:
+                        - text: /auth
+                        - text: /register
+                    - generic [ref=e96]: Register new user
+                - generic "Copy to clipboard"
+                - button "post /auth/register" [ref=e99]:
+                  - img [ref=e100]
+              - generic [ref=e104] [cursor=pointer]:
+                - button "POST /auth/login Login user" [ref=e105]:
+                  - generic [ref=e106]: POST
+                  - generic [ref=e107]:
+                    - link "/auth/login" [ref=e109]:
+                      - /url: "#/Authentication/AuthController_login"
+                      - generic [ref=e110]:
+                        - text: /auth
+                        - text: /login
+                    - generic [ref=e111]: Login user
+                - generic "Copy to clipboard"
+                - button "post /auth/login" [ref=e114]:
+                  - img [ref=e115]
+              - generic [ref=e119] [cursor=pointer]:
+                - button "POST /auth/refresh Refresh access token" [ref=e120]:
+                  - generic [ref=e121]: POST
+                  - generic [ref=e122]:
+                    - link "/auth/refresh" [ref=e124]:
+                      - /url: "#/Authentication/AuthController_refresh"
+                      - generic [ref=e125]:
+                        - text: /auth
+                        - text: /refresh
+                    - generic [ref=e126]: Refresh access token
+                - generic "Copy to clipboard"
+                - button "post /auth/refresh" [ref=e129]:
+                  - img [ref=e130]
+              - generic [ref=e134] [cursor=pointer]:
+                - button "POST /auth/logout Logout user" [ref=e135]:
+                  - generic [ref=e136]: POST
+                  - generic [ref=e137]:
+                    - link "/auth/logout" [ref=e139]:
+                      - /url: "#/Authentication/AuthController_logout"
+                      - generic [ref=e140]:
+                        - text: /auth
+                        - text: /logout
+                    - generic [ref=e141]: Logout user
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e144]:
+                  - img [ref=e145]
+                - button "post /auth/logout" [ref=e147]:
+                  - img [ref=e148]
+          - generic [ref=e151]:
+            - heading "User Management Collapse operation" [level=3] [ref=e152] [cursor=pointer]:
+              - link "User Management" [ref=e153]:
+                - /url: "#/User%20Management"
+              - button "Collapse operation" [expanded] [ref=e154]:
+                - img [ref=e155]
+            - generic [ref=e158]:
+              - generic [ref=e161] [cursor=pointer]:
+                - button "GET /users Get all users" [ref=e162]:
+                  - generic [ref=e163]: GET
+                  - generic [ref=e164]:
+                    - link "/users" [ref=e166]:
+                      - /url: "#/User%20Management/UsersController_findAll"
+                    - generic [ref=e167]: Get all users
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e170]:
+                  - img [ref=e171]
+                - button "get /users" [ref=e173]:
+                  - img [ref=e174]
+              - generic [ref=e178] [cursor=pointer]:
+                - button "POST /users Create new user" [ref=e179]:
+                  - generic [ref=e180]: POST
+                  - generic [ref=e181]:
+                    - link "/users" [ref=e183]:
+                      - /url: "#/User%20Management/UsersController_create"
+                    - generic [ref=e184]: Create new user
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e187]:
+                  - img [ref=e188]
+                - button "post /users" [ref=e190]:
+                  - img [ref=e191]
+              - generic [ref=e195] [cursor=pointer]:
+                - 'button "GET /users/{id} Get user by ID" [ref=e196]':
+                  - generic [ref=e197]: GET
+                  - generic [ref=e198]:
+                    - 'link "/users/{id}" [ref=e200]':
+                      - /url: "#/User%20Management/UsersController_findOne"
+                      - generic [ref=e201]:
+                        - text: /users
+                        - text: "/{id}"
+                    - generic [ref=e202]: Get user by ID
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e205]:
+                  - img [ref=e206]
+                - 'button "get /users/{id}" [ref=e208]':
+                  - img [ref=e209]
+              - generic [ref=e213] [cursor=pointer]:
+                - 'button "PATCH /users/{id} Update user" [ref=e214]':
+                  - generic [ref=e215]: PATCH
+                  - generic [ref=e216]:
+                    - 'link "/users/{id}" [ref=e218]':
+                      - /url: "#/User%20Management/UsersController_update"
+                      - generic [ref=e219]:
+                        - text: /users
+                        - text: "/{id}"
+                    - generic [ref=e220]: Update user
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e223]:
+                  - img [ref=e224]
+                - 'button "patch /users/{id}" [ref=e226]':
+                  - img [ref=e227]
+              - generic [ref=e231] [cursor=pointer]:
+                - 'button "DELETE /users/{id} Delete user" [ref=e232]':
+                  - generic [ref=e233]: DELETE
+                  - generic [ref=e234]:
+                    - 'link "/users/{id}" [ref=e236]':
+                      - /url: "#/User%20Management/UsersController_remove"
+                      - generic [ref=e237]:
+                        - text: /users
+                        - text: "/{id}"
+                    - generic [ref=e238]: Delete user
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e241]:
+                  - img [ref=e242]
+                - 'button "delete /users/{id}" [ref=e244]':
+                  - img [ref=e245]
+          - generic [ref=e248]:
+            - heading "Admin - Packages Collapse operation" [level=3] [ref=e249] [cursor=pointer]:
+              - link "Admin - Packages" [ref=e250]:
+                - /url: "#/Admin%20-%20Packages"
+              - button "Collapse operation" [expanded] [ref=e251]:
+                - img [ref=e252]
+            - generic [ref=e255]:
+              - generic [ref=e258] [cursor=pointer]:
+                - button "POST /admin/packages Create new package with child packages and package types" [ref=e259]:
+                  - generic [ref=e260]: POST
+                  - generic [ref=e261]:
+                    - link "/admin/packages" [ref=e263]:
+                      - /url: "#/Admin%20-%20Packages/PackagesController_create"
+                      - generic [ref=e264]:
+                        - text: /admin
+                        - text: /packages
+                    - generic [ref=e265]: Create new package with child packages and package types
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e268]:
+                  - img [ref=e269]
+                - button "post /admin/packages" [ref=e271]:
+                  - img [ref=e272]
+              - generic [ref=e276] [cursor=pointer]:
+                - button "GET /admin/packages Get all packages with child packages and package types" [ref=e277]:
+                  - generic [ref=e278]: GET
+                  - generic [ref=e279]:
+                    - link "/admin/packages" [ref=e281]:
+                      - /url: "#/Admin%20-%20Packages/PackagesController_findAll"
+                      - generic [ref=e282]:
+                        - text: /admin
+                        - text: /packages
+                    - generic [ref=e283]: Get all packages with child packages and package types
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e286]:
+                  - img [ref=e287]
+                - button "get /admin/packages" [ref=e289]:
+                  - img [ref=e290]
+              - generic [ref=e294] [cursor=pointer]:
+                - 'button "GET /admin/packages/{id} Get package by ID with full hierarchy" [ref=e295]':
+                  - generic [ref=e296]: GET
+                  - generic [ref=e297]:
+                    - 'link "/admin/packages/{id}" [ref=e299]':
+                      - /url: "#/Admin%20-%20Packages/PackagesController_findOne"
+                      - generic [ref=e300]:
+                        - text: /admin
+                        - text: /packages
+                        - text: "/{id}"
+                    - generic [ref=e301]: Get package by ID with full hierarchy
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e304]:
+                  - img [ref=e305]
+                - 'button "get /admin/packages/{id}" [ref=e307]':
+                  - img [ref=e308]
+              - generic [ref=e312] [cursor=pointer]:
+                - 'button "PATCH /admin/packages/{id} Update package (name, description, isActive only)" [ref=e313]':
+                  - generic [ref=e314]: PATCH
+                  - generic [ref=e315]:
+                    - 'link "/admin/packages/{id}" [ref=e317]':
+                      - /url: "#/Admin%20-%20Packages/PackagesController_update"
+                      - generic [ref=e318]:
+                        - text: /admin
+                        - text: /packages
+                        - text: "/{id}"
+                    - generic [ref=e319]: Update package (name, description, isActive only)
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e322]:
+                  - img [ref=e323]
+                - 'button "patch /admin/packages/{id}" [ref=e325]':
+                  - img [ref=e326]
+              - generic [ref=e330] [cursor=pointer]:
+                - 'button "DELETE /admin/packages/{id} Delete package" [ref=e331]':
+                  - generic [ref=e332]: DELETE
+                  - generic [ref=e333]:
+                    - 'link "/admin/packages/{id}" [ref=e335]':
+                      - /url: "#/Admin%20-%20Packages/PackagesController_remove"
+                      - generic [ref=e336]:
+                        - text: /admin
+                        - text: /packages
+                        - text: "/{id}"
+                    - generic [ref=e337]: Delete package
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e340]:
+                  - img [ref=e341]
+                - 'button "delete /admin/packages/{id}" [ref=e343]':
+                  - img [ref=e344]
+          - generic [ref=e347]:
+            - heading "Admin - Child Packages Collapse operation" [level=3] [ref=e348] [cursor=pointer]:
+              - link "Admin - Child Packages" [ref=e349]:
+                - /url: "#/Admin%20-%20Child%20Packages"
+              - button "Collapse operation" [expanded] [ref=e350]:
+                - img [ref=e351]
+            - generic [ref=e354]:
+              - generic [ref=e357] [cursor=pointer]:
+                - button "POST /admin/child-packages Create new child package" [ref=e358]:
+                  - generic [ref=e359]: POST
+                  - generic [ref=e360]:
+                    - link "/admin/child-packages" [ref=e362]:
+                      - /url: "#/Admin%20-%20Child%20Packages/ChildPackagesController_create"
+                      - generic [ref=e363]:
+                        - text: /admin
+                        - text: /child-packages
+                    - generic [ref=e364]: Create new child package
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e367]:
+                  - img [ref=e368]
+                - button "post /admin/child-packages" [ref=e370]:
+                  - img [ref=e371]
+              - generic [ref=e375] [cursor=pointer]:
+                - button "GET /admin/child-packages Get all child packages" [ref=e376]:
+                  - generic [ref=e377]: GET
+                  - generic [ref=e378]:
+                    - link "/admin/child-packages" [ref=e380]:
+                      - /url: "#/Admin%20-%20Child%20Packages/ChildPackagesController_findAll"
+                      - generic [ref=e381]:
+                        - text: /admin
+                        - text: /child-packages
+                    - generic [ref=e382]: Get all child packages
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e385]:
+                  - img [ref=e386]
+                - button "get /admin/child-packages" [ref=e388]:
+                  - img [ref=e389]
+              - generic [ref=e393] [cursor=pointer]:
+                - 'button "GET /admin/child-packages/{id} Get child package by ID" [ref=e394]':
+                  - generic [ref=e395]: GET
+                  - generic [ref=e396]:
+                    - 'link "/admin/child-packages/{id}" [ref=e398]':
+                      - /url: "#/Admin%20-%20Child%20Packages/ChildPackagesController_findOne"
+                      - generic [ref=e399]:
+                        - text: /admin
+                        - text: /child-packages
+                        - text: "/{id}"
+                    - generic [ref=e400]: Get child package by ID
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e403]:
+                  - img [ref=e404]
+                - 'button "get /admin/child-packages/{id}" [ref=e406]':
+                  - img [ref=e407]
+              - generic [ref=e411] [cursor=pointer]:
+                - 'button "PATCH /admin/child-packages/{id} Update child package" [ref=e412]':
+                  - generic [ref=e413]: PATCH
+                  - generic [ref=e414]:
+                    - 'link "/admin/child-packages/{id}" [ref=e416]':
+                      - /url: "#/Admin%20-%20Child%20Packages/ChildPackagesController_update"
+                      - generic [ref=e417]:
+                        - text: /admin
+                        - text: /child-packages
+                        - text: "/{id}"
+                    - generic [ref=e418]: Update child package
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e421]:
+                  - img [ref=e422]
+                - 'button "patch /admin/child-packages/{id}" [ref=e424]':
+                  - img [ref=e425]
+              - generic [ref=e429] [cursor=pointer]:
+                - 'button "DELETE /admin/child-packages/{id} Delete child package" [ref=e430]':
+                  - generic [ref=e431]: DELETE
+                  - generic [ref=e432]:
+                    - 'link "/admin/child-packages/{id}" [ref=e434]':
+                      - /url: "#/Admin%20-%20Child%20Packages/ChildPackagesController_remove"
+                      - generic [ref=e435]:
+                        - text: /admin
+                        - text: /child-packages
+                        - text: "/{id}"
+                    - generic [ref=e436]: Delete child package
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e439]:
+                  - img [ref=e440]
+                - 'button "delete /admin/child-packages/{id}" [ref=e442]':
+                  - img [ref=e443]
+          - generic [ref=e446]:
+            - heading "Admin - Package Types Collapse operation" [level=3] [ref=e447] [cursor=pointer]:
+              - link "Admin - Package Types" [ref=e448]:
+                - /url: "#/Admin%20-%20Package%20Types"
+              - button "Collapse operation" [expanded] [ref=e449]:
+                - img [ref=e450]
+            - generic [ref=e453]:
+              - generic [ref=e456] [cursor=pointer]:
+                - button "POST /admin/package-types Create new package type (Dasar/Lengkap/Komprehensif)" [ref=e457]:
+                  - generic [ref=e458]: POST
+                  - generic [ref=e459]:
+                    - link "/admin/package-types" [ref=e461]:
+                      - /url: "#/Admin%20-%20Package%20Types/PackageTypesController_create"
+                      - generic [ref=e462]:
+                        - text: /admin
+                        - text: /package-types
+                    - generic [ref=e463]: Create new package type (Dasar/Lengkap/Komprehensif)
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e466]:
+                  - img [ref=e467]
+                - button "post /admin/package-types" [ref=e469]:
+                  - img [ref=e470]
+              - generic [ref=e474] [cursor=pointer]:
+                - button "GET /admin/package-types Get all package types" [ref=e475]:
+                  - generic [ref=e476]: GET
+                  - generic [ref=e477]:
+                    - link "/admin/package-types" [ref=e479]:
+                      - /url: "#/Admin%20-%20Package%20Types/PackageTypesController_findAll"
+                      - generic [ref=e480]:
+                        - text: /admin
+                        - text: /package-types
+                    - generic [ref=e481]: Get all package types
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e484]:
+                  - img [ref=e485]
+                - button "get /admin/package-types" [ref=e487]:
+                  - img [ref=e488]
+              - generic [ref=e492] [cursor=pointer]:
+                - 'button "GET /admin/package-types/{id} Get package type by ID" [ref=e493]':
+                  - generic [ref=e494]: GET
+                  - generic [ref=e495]:
+                    - 'link "/admin/package-types/{id}" [ref=e497]':
+                      - /url: "#/Admin%20-%20Package%20Types/PackageTypesController_findOne"
+                      - generic [ref=e498]:
+                        - text: /admin
+                        - text: /package-types
+                        - text: "/{id}"
+                    - generic [ref=e499]: Get package type by ID
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e502]:
+                  - img [ref=e503]
+                - 'button "get /admin/package-types/{id}" [ref=e505]':
+                  - img [ref=e506]
+              - generic [ref=e510] [cursor=pointer]:
+                - 'button "PATCH /admin/package-types/{id} Update package type" [ref=e511]':
+                  - generic [ref=e512]: PATCH
+                  - generic [ref=e513]:
+                    - 'link "/admin/package-types/{id}" [ref=e515]':
+                      - /url: "#/Admin%20-%20Package%20Types/PackageTypesController_update"
+                      - generic [ref=e516]:
+                        - text: /admin
+                        - text: /package-types
+                        - text: "/{id}"
+                    - generic [ref=e517]: Update package type
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e520]:
+                  - img [ref=e521]
+                - 'button "patch /admin/package-types/{id}" [ref=e523]':
+                  - img [ref=e524]
+              - generic [ref=e528] [cursor=pointer]:
+                - 'button "DELETE /admin/package-types/{id} Delete package type" [ref=e529]':
+                  - generic [ref=e530]: DELETE
+                  - generic [ref=e531]:
+                    - 'link "/admin/package-types/{id}" [ref=e533]':
+                      - /url: "#/Admin%20-%20Package%20Types/PackageTypesController_remove"
+                      - generic [ref=e534]:
+                        - text: /admin
+                        - text: /package-types
+                        - text: "/{id}"
+                    - generic [ref=e535]: Delete package type
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e538]:
+                  - img [ref=e539]
+                - 'button "delete /admin/package-types/{id}" [ref=e541]':
+                  - img [ref=e542]
+          - generic [ref=e545]:
+            - heading "Admin - Tests Collapse operation" [level=3] [ref=e546] [cursor=pointer]:
+              - link "Admin - Tests" [ref=e547]:
+                - /url: "#/Admin%20-%20Tests"
+              - button "Collapse operation" [expanded] [ref=e548]:
+                - img [ref=e549]
+            - generic [ref=e552]:
+              - generic [ref=e555] [cursor=pointer]:
+                - button "POST /admin/tests Create new test under a package type" [ref=e556]:
+                  - generic [ref=e557]: POST
+                  - generic [ref=e558]:
+                    - link "/admin/tests" [ref=e560]:
+                      - /url: "#/Admin%20-%20Tests/TestsController_create"
+                      - generic [ref=e561]:
+                        - text: /admin
+                        - text: /tests
+                    - generic [ref=e562]: Create new test under a package type
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e565]:
+                  - img [ref=e566]
+                - button "post /admin/tests" [ref=e568]:
+                  - img [ref=e569]
+              - generic [ref=e573] [cursor=pointer]:
+                - button "GET /admin/tests Get all tests" [ref=e574]:
+                  - generic [ref=e575]: GET
+                  - generic [ref=e576]:
+                    - link "/admin/tests" [ref=e578]:
+                      - /url: "#/Admin%20-%20Tests/TestsController_findAll"
+                      - generic [ref=e579]:
+                        - text: /admin
+                        - text: /tests
+                    - generic [ref=e580]: Get all tests
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e583]:
+                  - img [ref=e584]
+                - button "get /admin/tests" [ref=e586]:
+                  - img [ref=e587]
+              - generic [ref=e591] [cursor=pointer]:
+                - 'button "GET /admin/tests/{id} Get test by ID" [ref=e592]':
+                  - generic [ref=e593]: GET
+                  - generic [ref=e594]:
+                    - 'link "/admin/tests/{id}" [ref=e596]':
+                      - /url: "#/Admin%20-%20Tests/TestsController_findOne"
+                      - generic [ref=e597]:
+                        - text: /admin
+                        - text: /tests
+                        - text: "/{id}"
+                    - generic [ref=e598]: Get test by ID
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e601]:
+                  - img [ref=e602]
+                - 'button "get /admin/tests/{id}" [ref=e604]':
+                  - img [ref=e605]
+              - generic [ref=e609] [cursor=pointer]:
+                - 'button "PATCH /admin/tests/{id} Update test" [ref=e610]':
+                  - generic [ref=e611]: PATCH
+                  - generic [ref=e612]:
+                    - 'link "/admin/tests/{id}" [ref=e614]':
+                      - /url: "#/Admin%20-%20Tests/TestsController_update"
+                      - generic [ref=e615]:
+                        - text: /admin
+                        - text: /tests
+                        - text: "/{id}"
+                    - generic [ref=e616]: Update test
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e619]:
+                  - img [ref=e620]
+                - 'button "patch /admin/tests/{id}" [ref=e622]':
+                  - img [ref=e623]
+              - generic [ref=e627] [cursor=pointer]:
+                - 'button "DELETE /admin/tests/{id} Delete test" [ref=e628]':
+                  - generic [ref=e629]: DELETE
+                  - generic [ref=e630]:
+                    - 'link "/admin/tests/{id}" [ref=e632]':
+                      - /url: "#/Admin%20-%20Tests/TestsController_remove"
+                      - generic [ref=e633]:
+                        - text: /admin
+                        - text: /tests
+                        - text: "/{id}"
+                    - generic [ref=e634]: Delete test
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e637]:
+                  - img [ref=e638]
+                - 'button "delete /admin/tests/{id}" [ref=e640]':
+                  - img [ref=e641]
+          - generic [ref=e644]:
+            - heading "Admin - SubTests Collapse operation" [level=3] [ref=e645] [cursor=pointer]:
+              - link "Admin - SubTests" [ref=e646]:
+                - /url: "#/Admin%20-%20SubTests"
+              - button "Collapse operation" [expanded] [ref=e647]:
+                - img [ref=e648]
+            - generic [ref=e651]:
+              - generic [ref=e654] [cursor=pointer]:
+                - button "POST /admin/subtests Create new subtest" [ref=e655]:
+                  - generic [ref=e656]: POST
+                  - generic [ref=e657]:
+                    - link "/admin/subtests" [ref=e659]:
+                      - /url: "#/Admin%20-%20SubTests/SubtestsController_create"
+                      - generic [ref=e660]:
+                        - text: /admin
+                        - text: /subtests
+                    - generic [ref=e661]: Create new subtest
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e664]:
+                  - img [ref=e665]
+                - button "post /admin/subtests" [ref=e667]:
+                  - img [ref=e668]
+              - generic [ref=e672] [cursor=pointer]:
+                - button "GET /admin/subtests Get all subtests" [ref=e673]:
+                  - generic [ref=e674]: GET
+                  - generic [ref=e675]:
+                    - link "/admin/subtests" [ref=e677]:
+                      - /url: "#/Admin%20-%20SubTests/SubtestsController_findAll"
+                      - generic [ref=e678]:
+                        - text: /admin
+                        - text: /subtests
+                    - generic [ref=e679]: Get all subtests
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e682]:
+                  - img [ref=e683]
+                - button "get /admin/subtests" [ref=e685]:
+                  - img [ref=e686]
+              - generic [ref=e690] [cursor=pointer]:
+                - 'button "GET /admin/subtests/{id} Get subtest by ID" [ref=e691]':
+                  - generic [ref=e692]: GET
+                  - generic [ref=e693]:
+                    - 'link "/admin/subtests/{id}" [ref=e695]':
+                      - /url: "#/Admin%20-%20SubTests/SubtestsController_findOne"
+                      - generic [ref=e696]:
+                        - text: /admin
+                        - text: /subtests
+                        - text: "/{id}"
+                    - generic [ref=e697]: Get subtest by ID
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e700]:
+                  - img [ref=e701]
+                - 'button "get /admin/subtests/{id}" [ref=e703]':
+                  - img [ref=e704]
+              - generic [ref=e708] [cursor=pointer]:
+                - 'button "PATCH /admin/subtests/{id} Update subtest" [ref=e709]':
+                  - generic [ref=e710]: PATCH
+                  - generic [ref=e711]:
+                    - 'link "/admin/subtests/{id}" [ref=e713]':
+                      - /url: "#/Admin%20-%20SubTests/SubtestsController_update"
+                      - generic [ref=e714]:
+                        - text: /admin
+                        - text: /subtests
+                        - text: "/{id}"
+                    - generic [ref=e715]: Update subtest
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e718]:
+                  - img [ref=e719]
+                - 'button "patch /admin/subtests/{id}" [ref=e721]':
+                  - img [ref=e722]
+              - generic [ref=e726] [cursor=pointer]:
+                - 'button "DELETE /admin/subtests/{id} Delete subtest" [ref=e727]':
+                  - generic [ref=e728]: DELETE
+                  - generic [ref=e729]:
+                    - 'link "/admin/subtests/{id}" [ref=e731]':
+                      - /url: "#/Admin%20-%20SubTests/SubtestsController_remove"
+                      - generic [ref=e732]:
+                        - text: /admin
+                        - text: /subtests
+                        - text: "/{id}"
+                    - generic [ref=e733]: Delete subtest
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e736]:
+                  - img [ref=e737]
+                - 'button "delete /admin/subtests/{id}" [ref=e739]':
+                  - img [ref=e740]
+          - generic [ref=e743]:
+            - heading "Admin - Questions Collapse operation" [level=3] [ref=e744] [cursor=pointer]:
+              - link "Admin - Questions" [ref=e745]:
+                - /url: "#/Admin%20-%20Questions"
+              - button "Collapse operation" [expanded] [ref=e746]:
+                - img [ref=e747]
+            - generic [ref=e750]:
+              - generic [ref=e753] [cursor=pointer]:
+                - button "POST /admin/questions Create new question with options and correct answer" [ref=e754]:
+                  - generic [ref=e755]: POST
+                  - generic [ref=e756]:
+                    - link "/admin/questions" [ref=e758]:
+                      - /url: "#/Admin%20-%20Questions/QuestionsController_create"
+                      - generic [ref=e759]:
+                        - text: /admin
+                        - text: /questions
+                    - generic [ref=e760]: Create new question with options and correct answer
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e763]:
+                  - img [ref=e764]
+                - button "post /admin/questions" [ref=e766]:
+                  - img [ref=e767]
+              - generic [ref=e771] [cursor=pointer]:
+                - button "GET /admin/questions Get all questions" [ref=e772]:
+                  - generic [ref=e773]: GET
+                  - generic [ref=e774]:
+                    - link "/admin/questions" [ref=e776]:
+                      - /url: "#/Admin%20-%20Questions/QuestionsController_findAll"
+                      - generic [ref=e777]:
+                        - text: /admin
+                        - text: /questions
+                    - generic [ref=e778]: Get all questions
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e781]:
+                  - img [ref=e782]
+                - button "get /admin/questions" [ref=e784]:
+                  - img [ref=e785]
+              - generic [ref=e789] [cursor=pointer]:
+                - 'button "GET /admin/questions/{id} Get question by ID" [ref=e790]':
+                  - generic [ref=e791]: GET
+                  - generic [ref=e792]:
+                    - 'link "/admin/questions/{id}" [ref=e794]':
+                      - /url: "#/Admin%20-%20Questions/QuestionsController_findOne"
+                      - generic [ref=e795]:
+                        - text: /admin
+                        - text: /questions
+                        - text: "/{id}"
+                    - generic [ref=e796]: Get question by ID
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e799]:
+                  - img [ref=e800]
+                - 'button "get /admin/questions/{id}" [ref=e802]':
+                  - img [ref=e803]
+              - generic [ref=e807] [cursor=pointer]:
+                - 'button "PATCH /admin/questions/{id} Update question" [ref=e808]':
+                  - generic [ref=e809]: PATCH
+                  - generic [ref=e810]:
+                    - 'link "/admin/questions/{id}" [ref=e812]':
+                      - /url: "#/Admin%20-%20Questions/QuestionsController_update"
+                      - generic [ref=e813]:
+                        - text: /admin
+                        - text: /questions
+                        - text: "/{id}"
+                    - generic [ref=e814]: Update question
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e817]:
+                  - img [ref=e818]
+                - 'button "patch /admin/questions/{id}" [ref=e820]':
+                  - img [ref=e821]
+              - generic [ref=e825] [cursor=pointer]:
+                - 'button "DELETE /admin/questions/{id} Delete question" [ref=e826]':
+                  - generic [ref=e827]: DELETE
+                  - generic [ref=e828]:
+                    - 'link "/admin/questions/{id}" [ref=e830]':
+                      - /url: "#/Admin%20-%20Questions/QuestionsController_remove"
+                      - generic [ref=e831]:
+                        - text: /admin
+                        - text: /questions
+                        - text: "/{id}"
+                    - generic [ref=e832]: Delete question
+                - generic "Copy to clipboard"
+                - button "authorization button unlocked" [ref=e835]:
+                  - img [ref=e836]
+                - 'button "delete /admin/questions/{id}" [ref=e838]':
+                  - img [ref=e839]
+        - generic [ref=e843]:
+          - heading "Schemas" [level=4] [ref=e844] [cursor=pointer]:
+            - button "Schemas" [expanded] [ref=e845]:
+              - generic [ref=e846]: Schemas
+              - img [ref=e847]
+          - generic [ref=e849]:
+            - button "RegisterDto" [ref=e852] [cursor=pointer]:
+              - generic [ref=e854]: RegisterDto
+            - button "LoginDto" [ref=e858] [cursor=pointer]:
+              - generic [ref=e860]: LoginDto
+            - button "RefreshTokenDto" [ref=e864] [cursor=pointer]:
+              - generic [ref=e866]: RefreshTokenDto
+            - button "CreateUserDto" [ref=e870] [cursor=pointer]:
+              - generic [ref=e872]: CreateUserDto
+            - button "UpdateUserDto" [ref=e876] [cursor=pointer]:
+              - generic [ref=e878]: UpdateUserDto
+            - button "PackageTypeDto" [ref=e882] [cursor=pointer]:
+              - generic [ref=e884]: PackageTypeDto
+            - button "ChildPackageDto" [ref=e888] [cursor=pointer]:
+              - generic [ref=e890]: ChildPackageDto
+            - button "CreatePackageDto" [ref=e894] [cursor=pointer]:
+              - generic [ref=e896]: CreatePackageDto
+            - button "UpdatePackageDto" [ref=e900] [cursor=pointer]:
+              - generic [ref=e902]: UpdatePackageDto
+            - button "CreateChildPackageDto" [ref=e906] [cursor=pointer]:
+              - generic [ref=e908]: CreateChildPackageDto
+            - button "UpdateChildPackageDto" [ref=e912] [cursor=pointer]:
+              - generic [ref=e914]: UpdateChildPackageDto
+            - button "CreatePackageTypeDto" [ref=e918] [cursor=pointer]:
+              - generic [ref=e920]: CreatePackageTypeDto
+            - button "UpdatePackageTypeDto" [ref=e924] [cursor=pointer]:
+              - generic [ref=e926]: UpdatePackageTypeDto
+            - button "CreateTestDto" [ref=e930] [cursor=pointer]:
+              - generic [ref=e932]: CreateTestDto
+            - button "TestResponseDto" [ref=e936] [cursor=pointer]:
+              - generic [ref=e938]: TestResponseDto
+            - button "TestListResponseDto" [ref=e942] [cursor=pointer]:
+              - generic [ref=e944]: TestListResponseDto
+            - button "TestDataResponseDto" [ref=e948] [cursor=pointer]:
+              - generic [ref=e950]: TestDataResponseDto
+            - button "UpdateTestDto" [ref=e954] [cursor=pointer]:
+              - generic [ref=e956]: UpdateTestDto
+            - button "TestDeleteResponseDto" [ref=e960] [cursor=pointer]:
+              - generic [ref=e962]: TestDeleteResponseDto
+            - button "CreateSubTestDto" [ref=e966] [cursor=pointer]:
+              - generic [ref=e968]: CreateSubTestDto
+            - button "SubTestResponseDto" [ref=e972] [cursor=pointer]:
+              - generic [ref=e974]: SubTestResponseDto
+            - button "SubTestDataResponseDto" [ref=e978] [cursor=pointer]:
+              - generic [ref=e980]: SubTestDataResponseDto
+            - button "SubTestListResponseDto" [ref=e984] [cursor=pointer]:
+              - generic [ref=e986]: SubTestListResponseDto
+            - button "UpdateSubTestDto" [ref=e990] [cursor=pointer]:
+              - generic [ref=e992]: UpdateSubTestDto
+            - button "SubTestDeleteResponseDto" [ref=e996] [cursor=pointer]:
+              - generic [ref=e998]: SubTestDeleteResponseDto
+            - button "QuestionOptionDto" [ref=e1002] [cursor=pointer]:
+              - generic [ref=e1004]: QuestionOptionDto
+            - button "CorrectAnswerDto" [ref=e1008] [cursor=pointer]:
+              - generic [ref=e1010]: CorrectAnswerDto
+            - button "CreateQuestionDto" [ref=e1014] [cursor=pointer]:
+              - generic [ref=e1016]: CreateQuestionDto
+            - button "QuestionResponseDto" [ref=e1020] [cursor=pointer]:
+              - generic [ref=e1022]: QuestionResponseDto
+            - button "QuestionListResponseDto" [ref=e1026] [cursor=pointer]:
+              - generic [ref=e1028]: QuestionListResponseDto
+            - button "QuestionDataResponseDto" [ref=e1032] [cursor=pointer]:
+              - generic [ref=e1034]: QuestionDataResponseDto
+            - button "UpdateQuestionDto" [ref=e1038] [cursor=pointer]:
+              - generic [ref=e1040]: UpdateQuestionDto
+            - button "QuestionDeleteResponseDto" [ref=e1044] [cursor=pointer]:
+              - generic [ref=e1046]: QuestionDeleteResponseDto

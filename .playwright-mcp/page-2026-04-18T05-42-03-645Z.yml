@@ -1,0 +1,758 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "Bermoela" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "Bermoela" [ref=e6]
+      - generic [ref=e8]:
+        - link "Beranda" [ref=e9] [cursor=pointer]:
+          - /url: /
+        - link "Asesmen" [ref=e11] [cursor=pointer]:
+          - /url: /kategori
+          - text: Asesmen
+          - img [ref=e12]
+        - link "Tes Gratis" [ref=e14] [cursor=pointer]:
+          - /url: /gratis
+        - link "Tentang" [ref=e15] [cursor=pointer]:
+          - /url: /about
+        - link "Blog" [ref=e16] [cursor=pointer]:
+          - /url: /blog
+      - generic [ref=e18]:
+        - link "Masuk" [ref=e19] [cursor=pointer]:
+          - /url: /masuk
+        - link "Daftar" [ref=e20] [cursor=pointer]:
+          - /url: /daftar
+  - main [ref=e21]:
+    - main [ref=e23]:
+      - generic [ref=e25]:
+        - generic:
+          - img "Psikolog profesional"
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - generic [ref=e28]:
+              - generic [ref=e29]:
+                - generic [ref=e30]: A
+                - generic [ref=e31]: B
+                - generic [ref=e32]: C
+                - generic [ref=e33]: D
+              - generic [ref=e34]:
+                - generic [ref=e35]:
+                  - img [ref=e36]
+                  - img [ref=e38]
+                  - img [ref=e40]
+                  - img [ref=e42]
+                  - img [ref=e44]
+                - paragraph [ref=e46]: Dipercaya 10k+ pengguna
+            - generic [ref=e47]:
+              - heading "Mental Health untuk Tumbuh dan Sukses di Era Penuh Tekanan" [level=1] [ref=e48]
+              - paragraph [ref=e49]: Assessment psikologis berbasis riset sebagai titik mula menuju "The New You".
+            - generic [ref=e50]:
+              - generic [ref=e51]:
+                - img [ref=e52]
+                - text: Mental Health
+              - generic [ref=e55]:
+                - img [ref=e56]
+                - text: Berbasis Riset
+              - generic [ref=e58]:
+                - img [ref=e59]
+                - text: AI-Powered
+              - generic [ref=e61]:
+                - img [ref=e62]
+                - text: Growth Plan
+            - generic [ref=e67]:
+              - generic [ref=e68]:
+                - img [ref=e71]
+                - generic [ref=e75]:
+                  - paragraph [ref=e76]: AI Counsellor
+                  - paragraph [ref=e77]: Online sekarang
+              - generic [ref=e78]:
+                - generic [ref=e79]:
+                  - paragraph [ref=e80]: "Mulai dari sini:"
+                  - generic [ref=e81]:
+                    - button "Saya sering merasa cemas" [ref=e82]
+                    - button "Bingung pilih karir" [ref=e83]
+                    - button "Sulit fokus bekerja" [ref=e84]
+                    - button "Hubungan tidak harmonis" [ref=e85]
+                - generic [ref=e86]:
+                  - generic [ref=e87]:
+                    - textbox "Ceritakan yang kamu rasakan..." [ref=e88]
+                    - button [disabled] [ref=e89]:
+                      - img [ref=e90]
+                  - generic [ref=e93]:
+                    - generic [ref=e94]: Gratis
+                    - generic [ref=e95]: ·Tanpa Daftar
+                    - generic [ref=e96]: ·Privasi Terjaga
+          - generic [ref=e97]:
+            - generic [ref=e98]:
+              - img [ref=e100]
+              - generic [ref=e103]:
+                - paragraph [ref=e104]: Asesmen Selesai
+                - paragraph [ref=e105]: Laporan siap diunduh
+            - generic [ref=e106]:
+              - generic [ref=e107]:
+                - img [ref=e108]
+                - generic [ref=e116]: AI Insight
+              - paragraph [ref=e117]: Potensi kepemimpinan terdeteksi
+          - generic [ref=e118]:
+            - generic [ref=e119]:
+              - paragraph [ref=e120]: Statistik
+              - generic [ref=e121]:
+                - paragraph [ref=e122]: 10k+
+                - paragraph [ref=e123]: Pengguna Aktif
+              - generic [ref=e124]:
+                - paragraph [ref=e125]: 95%
+                - paragraph [ref=e126]: Kepuasan
+              - generic [ref=e127]:
+                - paragraph [ref=e128]: 50+
+                - paragraph [ref=e129]: Jenis Asesmen
+            - generic [ref=e130]:
+              - paragraph [ref=e131]: Layanan Kami
+              - generic [ref=e132]:
+                - generic [ref=e133]: Healthcare
+                - generic [ref=e134]: Diagnosis
+                - generic [ref=e135]: Physical Health
+                - generic [ref=e136]: Medical Team
+            - generic [ref=e137]:
+              - generic [ref=e138]:
+                - img [ref=e139]
+                - generic [ref=e144]: 10k+ Pengguna Aktif
+              - generic [ref=e145]:
+                - img [ref=e146]
+                - generic [ref=e148]: Berbasis Riset Ilmiah
+      - generic [ref=e152]:
+        - generic [ref=e153]:
+          - generic [ref=e154]:
+            - img [ref=e155]
+            - generic [ref=e158]: Transformation Journey
+          - heading "Peta Perjalanan \"The New You\"" [level=2] [ref=e159]:
+            - text: Peta Perjalanan
+            - text: "\"The New You\""
+          - paragraph [ref=e160]: Empat langkah kunci untuk melepaskan kendala masa lalu dan meraih masa depan yang indah. Semua bermula dari sini.
+          - generic [ref=e161]:
+            - generic [ref=e162]:
+              - generic [ref=e163]: "1"
+              - generic [ref=e164]: "2"
+              - generic [ref=e165]: "3"
+            - generic [ref=e166]: +10k Jiwa yang Tumbuh
+        - generic [ref=e167]:
+          - generic [ref=e168]:
+            - generic [ref=e169]:
+              - img [ref=e171]
+              - generic [ref=e174]:
+                - heading "Pemetaan Diri" [level=4] [ref=e175]
+                - paragraph [ref=e176]: Mulai dengan assessment & psikotes profesional untuk memahami pola pikir, emosi, dan potensi dirimu sebagai langkah awal perubahan
+            - generic [ref=e177]: "01"
+            - button "Eksplorasi" [ref=e178]:
+              - text: Eksplorasi
+              - img [ref=e179]
+          - generic [ref=e181]:
+            - generic [ref=e182]:
+              - img [ref=e184]
+              - generic [ref=e186]:
+                - heading "Konsultasi & Layanan" [level=4] [ref=e187]
+                - paragraph [ref=e188]: Pahami langkah nyata yang harus diambil bersama para ahli.
+            - generic [ref=e189]: "02"
+            - button "Eksplorasi" [ref=e190]:
+              - text: Eksplorasi
+              - img [ref=e191]
+          - generic [ref=e193]:
+            - generic [ref=e194]:
+              - img [ref=e196]
+              - generic [ref=e199]:
+                - heading "Masa Depan" [level=4] [ref=e200]
+                - paragraph [ref=e201]: Ikuti program pengembangan untuk memperkuat mental health dan meningkatkan kapasitas dirimu dalam hidup maupun karier
+            - generic [ref=e202]: "03"
+            - button "Eksplorasi" [ref=e203]:
+              - text: Eksplorasi
+              - img [ref=e204]
+          - generic [ref=e206]:
+            - generic [ref=e207]:
+              - img [ref=e209]
+              - generic [ref=e214]:
+                - heading "Bergabung Komunitas" [level=4] [ref=e215]
+                - paragraph [ref=e216]: Terhubung dengan komunitas dan praktisi yang saling mendukung dalam proses pemulihan dan pertumbuhan
+            - generic [ref=e217]: "04"
+            - button "Eksplorasi" [ref=e218]:
+              - text: Eksplorasi
+              - img [ref=e219]
+      - generic [ref=e222]:
+        - generic [ref=e223]:
+          - generic [ref=e224]:
+            - img [ref=e225]
+            - generic [ref=e229]: Tahapan Transformasi
+          - heading "Pilih Fase Hidupmu Saat Ini." [level=2] [ref=e230]
+          - paragraph [ref=e231]: Setiap tahapan usia memiliki tantangan unik. Temukan bagaimana kami mendampingimu melangkah lebih jauh di setiap fasenya.
+        - generic [ref=e232]:
+          - generic [ref=e233]:
+            - 'button "20-27 Tahun 01 Stage 1: Early Adult Fase krusial pencarian jati diri, kemandirian finansial, dan stabilitas emosional di awal kedewasaan." [ref=e234]':
+              - generic [ref=e235]:
+                - generic [ref=e236]: 20-27 Tahun
+                - generic [ref=e237]: "01"
+              - generic [ref=e238]:
+                - 'heading "Stage 1: Early Adult" [level=3] [ref=e239]'
+                - paragraph [ref=e240]: Fase krusial pencarian jati diri, kemandirian finansial, dan stabilitas emosional di awal kedewasaan.
+            - 'button "28-35 Tahun 02 Stage 2: Emerging Stability Fase membangun fondasi kehidupan yang stabil, mematangkan hubungan, dan menyelaraskan ambisi karier dengan nilai pribadi." [ref=e241]':
+              - generic [ref=e242]:
+                - generic [ref=e243]: 28-35 Tahun
+                - generic [ref=e244]: "02"
+              - generic [ref=e245]:
+                - 'heading "Stage 2: Emerging Stability" [level=3] [ref=e246]'
+                - paragraph [ref=e247]: Fase membangun fondasi kehidupan yang stabil, mematangkan hubungan, dan menyelaraskan ambisi karier dengan nilai pribadi.
+            - 'button "36-45 Tahun 03 Stage 3: Established Life Fase mengelola tanggung jawab besar, menguatkan pengaruh (leadership), dan menemukan kembali makna hidup di puncak kematangan." [ref=e248]':
+              - generic [ref=e249]:
+                - generic [ref=e250]: 36-45 Tahun
+                - generic [ref=e251]: "03"
+              - generic [ref=e252]:
+                - 'heading "Stage 3: Established Life" [level=3] [ref=e253]'
+                - paragraph [ref=e254]: Fase mengelola tanggung jawab besar, menguatkan pengaruh (leadership), dan menemukan kembali makna hidup di puncak kematangan.
+          - generic [ref=e257]:
+            - generic [ref=e258]:
+              - generic [ref=e259]:
+                - img [ref=e261]
+                - generic [ref=e263]: Tantangan Utama
+              - list [ref=e264]:
+                - listitem [ref=e265]:
+                  - generic [ref=e266]: "1"
+                  - generic [ref=e267]: Overthinking tentang masa depan
+                - listitem [ref=e268]:
+                  - generic [ref=e269]: "2"
+                  - generic [ref=e270]: Quarter-life crisis
+                - listitem [ref=e271]:
+                  - generic [ref=e272]: "3"
+                  - generic [ref=e273]: Toxic relationship / trust issue
+                - listitem [ref=e274]:
+                  - generic [ref=e275]: "4"
+                  - generic [ref=e276]: Sulit pasang boundaries
+                - listitem [ref=e277]:
+                  - generic [ref=e278]: "5"
+                  - generic [ref=e279]: Burnout kerja pertama
+                - listitem [ref=e280]:
+                  - generic [ref=e281]: "6"
+                  - generic [ref=e282]: FOMO & social comparison
+                - listitem [ref=e283]:
+                  - generic [ref=e284]: "7"
+                  - generic [ref=e285]: Bingung sebenarnya “aku ini siapa?”
+            - generic [ref=e286]:
+              - generic [ref=e287]:
+                - img [ref=e289]
+                - generic [ref=e292]: Pendekatan Solusi
+              - list [ref=e293]:
+                - listitem [ref=e294]:
+                  - generic [ref=e295]: "1"
+                  - generic [ref=e296]: Memetakan kondisi mental health secara objektif
+                - listitem [ref=e297]:
+                  - generic [ref=e298]: "2"
+                  - generic [ref=e299]: Memahami pola attachment & relasi
+                - listitem [ref=e300]:
+                  - generic [ref=e301]: "3"
+                  - generic [ref=e302]: Mengidentifikasi nilai hidup & arah karier
+                - listitem [ref=e303]:
+                  - generic [ref=e304]: "4"
+                  - generic [ref=e305]: Mengelola emosi & overthinking
+            - generic [ref=e306]:
+              - generic [ref=e307]:
+                - img [ref=e309]
+                - generic [ref=e312]: Hasil Transformasi
+              - list [ref=e313]:
+                - listitem [ref=e314]:
+                  - generic [ref=e315]: "1"
+                  - generic [ref=e316]: Lebih mengenal diri & kebutuhan pribadi
+                - listitem [ref=e317]:
+                  - generic [ref=e318]: "2"
+                  - generic [ref=e319]: Berani pasang batasan yang sehat
+                - listitem [ref=e320]:
+                  - generic [ref=e321]: "3"
+                  - generic [ref=e322]: Tidak mudah terseret relasi toxic
+                - listitem [ref=e323]:
+                  - generic [ref=e324]: "4"
+                  - generic [ref=e325]: Arah hidup & karier lebih jelas
+                - listitem [ref=e326]:
+                  - generic [ref=e327]: "5"
+                  - generic [ref=e328]: Lebih stabil secara emosional
+            - generic [ref=e329]:
+              - generic [ref=e330]:
+                - img [ref=e332]
+                - generic [ref=e335]: Rekomendasi Layanan
+              - list [ref=e336]:
+                - listitem [ref=e337]:
+                  - generic [ref=e338]: "1"
+                  - generic [ref=e339]: Psychological Assessment
+                - listitem [ref=e340]:
+                  - generic [ref=e341]: "2"
+                  - generic [ref=e342]: Attachment Style Assessment
+                - listitem [ref=e343]:
+                  - generic [ref=e344]: "3"
+                  - generic [ref=e345]: Online Counseling
+                - listitem [ref=e346]:
+                  - generic [ref=e347]: "4"
+                  - generic [ref=e348]: Personal Growth Roadmap™ (90 Days Plan)
+                - listitem [ref=e349]:
+                  - generic [ref=e350]: "5"
+                  - generic [ref=e351]: Progress Review System
+      - generic [ref=e353]:
+        - generic [ref=e354]:
+          - generic [ref=e355]:
+            - img [ref=e356]
+            - generic [ref=e360]: Pilih Titik Mulamu
+          - heading "Ke Mana Kamu Ingin Melangkah?" [level=2] [ref=e361]
+          - paragraph [ref=e362]: Setiap perjalanan "The New You" bermula dari kesadaran di area yang paling penting bagimu saat ini.
+        - generic [ref=e364]:
+          - button "Diri Pribadi Personal Growth" [ref=e365]:
+            - img [ref=e367]
+            - generic [ref=e370]:
+              - paragraph [ref=e371]: Diri Pribadi
+              - paragraph [ref=e372]: Personal Growth
+          - button "Relationship Pasangan & Keluarga" [ref=e373]:
+            - img [ref=e375]
+            - generic [ref=e377]:
+              - paragraph [ref=e378]: Relationship
+              - paragraph [ref=e379]: Pasangan & Keluarga
+          - button "Bisnis & Perusahaan Professional Path" [ref=e380]:
+            - img [ref=e382]
+            - generic [ref=e385]:
+              - paragraph [ref=e386]: Bisnis & Perusahaan
+              - paragraph [ref=e387]: Professional Path
+        - generic [ref=e389]:
+          - generic [ref=e390]:
+            - generic [ref=e391]:
+              - img [ref=e392]
+              - generic [ref=e394]: Pilih Masalahmu
+            - 'button "01 Luka Batin & Trauma Masa Lalu: Masihkah Mengganggu Hidupmu?" [ref=e395]':
+              - generic [ref=e396]: "01"
+              - generic [ref=e397]: "Luka Batin & Trauma Masa Lalu: Masihkah Mengganggu Hidupmu?"
+            - 'button "02 Anxiety, Depresi & Burnout Check: Kamu Capek Biasa atau Sudah Overload?" [ref=e398]':
+              - generic [ref=e399]: "02"
+              - generic [ref=e400]: "Anxiety, Depresi & Burnout Check: Kamu Capek Biasa atau Sudah Overload?"
+            - 'button "03 Citra Diri & Tingkat Pede Check : Kenapa Aku Nggak Pernah Merasa Dihargai" [ref=e401]':
+              - generic [ref=e402]: "03"
+              - generic [ref=e403]: "Citra Diri & Tingkat Pede Check : Kenapa Aku Nggak Pernah Merasa Dihargai"
+            - 'button "04 Quarter-life Crisis & Perbandingan Sosial : Kenapa Aku Merasa Tertinggal?" [ref=e404]':
+              - generic [ref=e405]: "04"
+              - generic [ref=e406]: "Quarter-life Crisis & Perbandingan Sosial : Kenapa Aku Merasa Tertinggal?"
+            - button "05 Tes IQ, Bakat Minat & Perencanaan Karier" [ref=e407]:
+              - generic [ref=e408]: "05"
+              - generic [ref=e409]: Tes IQ, Bakat Minat & Perencanaan Karier
+            - button "06 Simulasi Lolos Test PNS, Management Trainee & Recruitment BUMN" [ref=e410]:
+              - generic [ref=e411]: "06"
+              - generic [ref=e412]: Simulasi Lolos Test PNS, Management Trainee & Recruitment BUMN
+          - generic [ref=e413]:
+            - img [ref=e414]
+            - generic [ref=e417]:
+              - img [ref=e418]
+              - generic [ref=e421]: "Solusi:"
+            - list [ref=e422]:
+              - listitem [ref=e423]:
+                - generic [ref=e424]: "1"
+                - generic [ref=e425]:
+                  - paragraph [ref=e426]: Self-Assessment Awal
+                  - paragraph [ref=e427]: Mengidentifikasi ledakan emosi, rasa hampa, overthinking, dan pola luka masa lalu.
+              - listitem [ref=e428]:
+                - generic [ref=e429]: "2"
+                - generic [ref=e430]:
+                  - paragraph [ref=e431]: Analisis Psikologis
+                  - paragraph [ref=e432]: Psikolog membaca hasil asesmen dan memetakan akar trauma serta tingkat dampaknya.
+              - listitem [ref=e433]:
+                - generic [ref=e434]: "3"
+                - generic [ref=e435]:
+                  - paragraph [ref=e436]: Konsultasi Mendalam
+                  - paragraph [ref=e437]: Eksplorasi pengalaman masa lalu, relasi, dan emotional trigger utama.
+              - listitem [ref=e438]:
+                - generic [ref=e439]: "4"
+                - generic [ref=e440]:
+                  - paragraph [ref=e441]: Intervensi & Healing
+                  - paragraph [ref=e442]: Teknik pengelolaan emosi, inner child healing, dan pemrosesan trauma.
+              - listitem [ref=e443]:
+                - generic [ref=e444]: "5"
+                - generic [ref=e445]:
+                  - paragraph [ref=e446]: Pembentukan Pola Baru
+                  - paragraph [ref=e447]: Belajar respon sehat, membangun self-worth, dan hubungan yang lebih stabil.
+              - listitem [ref=e448]:
+                - generic [ref=e449]: "6"
+                - generic [ref=e450]:
+                  - paragraph [ref=e451]: Follow Up & Monitoring
+                  - paragraph [ref=e452]: Evaluasi progres dan penyesuaian strategi pemulihan.
+          - generic [ref=e453]:
+            - img [ref=e454]
+            - generic [ref=e457]:
+              - img [ref=e458]
+              - generic [ref=e461]: "Target:"
+            - generic [ref=e462]:
+              - generic [ref=e463]:
+                - paragraph [ref=e464]: Sebelum
+                - list [ref=e465]:
+                  - listitem [ref=e466]:
+                    - generic [ref=e467]: ×
+                    - generic [ref=e468]: Emosi meledak tiba-tiba
+                  - listitem [ref=e469]:
+                    - generic [ref=e470]: ×
+                    - generic [ref=e471]: Merasa hampa tanpa alasan
+                  - listitem [ref=e472]:
+                    - generic [ref=e473]: ×
+                    - generic [ref=e474]: Terjebak masa lalu
+                  - listitem [ref=e475]:
+                    - generic [ref=e476]: ×
+                    - generic [ref=e477]: Overthinking berlebihan
+                  - listitem [ref=e478]:
+                    - generic [ref=e479]: ×
+                    - generic [ref=e480]: Sulit percaya orang lain
+                  - listitem [ref=e481]:
+                    - generic [ref=e482]: ×
+                    - generic [ref=e483]: Hubungan berulang menyakitkan
+              - generic [ref=e484]:
+                - paragraph [ref=e485]: Sesudah
+                - list [ref=e486]:
+                  - listitem [ref=e487]:
+                    - generic [ref=e488]: ✓
+                    - generic [ref=e489]: Emosi lebih stabil & terkendali
+                  - listitem [ref=e490]:
+                    - generic [ref=e491]: ✓
+                    - generic [ref=e492]: Lebih tenang menghadapi trigger
+                  - listitem [ref=e493]:
+                    - generic [ref=e494]: ✓
+                    - generic [ref=e495]: Berdamai dengan masa lalu
+                  - listitem [ref=e496]:
+                    - generic [ref=e497]: ✓
+                    - generic [ref=e498]: Pikiran lebih jernih
+                  - listitem [ref=e499]:
+                    - generic [ref=e500]: ✓
+                    - generic [ref=e501]: Lebih percaya diri
+                  - listitem [ref=e502]:
+                    - generic [ref=e503]: ✓
+                    - generic [ref=e504]: Mampu membangun hubungan sehat
+          - generic [ref=e505]:
+            - img [ref=e506]
+            - generic [ref=e510]:
+              - img [ref=e511]
+              - generic [ref=e514]: "Rekomendasi:"
+            - heading "—" [level=4] [ref=e515]
+        - paragraph [ref=e517]: Titik mula perjalananmu untuk tumbuh dan menemukan kembali dirimu.
+      - generic [ref=e519]:
+        - generic [ref=e520]:
+          - generic [ref=e521]:
+            - generic [ref=e522]:
+              - img [ref=e523]
+              - generic [ref=e525]: Assessment & Solusi
+            - heading "Ambil Senjata Transformasimu" [level=2] [ref=e526]
+            - paragraph [ref=e527]: Setiap alat tes dirancang untuk membongkar kebenaran yang kamu butuhkan — tersedia dalam 3 level kedalaman sesuai kebutuhan.
+          - generic [ref=e528]:
+            - button "Diri Pribadi (6)" [ref=e529]:
+              - img [ref=e530]
+              - text: Diri Pribadi
+              - generic [ref=e533]: (6)
+            - button "Relationship (4)" [ref=e534]:
+              - img [ref=e535]
+              - text: Relationship
+              - generic [ref=e537]: (4)
+            - link "Bisnis & Perusahaan" [ref=e538] [cursor=pointer]:
+              - /url: /bisnis
+              - img [ref=e539]
+              - text: Bisnis & Perusahaan
+              - img [ref=e542]
+        - generic [ref=e544]:
+          - generic [ref=e547]:
+            - img [ref=e550]
+            - generic [ref=e552]:
+              - heading "Luka Batin & Trauma Masa Lalu" [level=3] [ref=e553]
+              - paragraph [ref=e554]: Masihkah Mengganggu Hidupmu?
+              - paragraph [ref=e555]: "\"Pernah merasa \"meledak\" tiba-tiba atau merasa hampa tanpa alasan yang jelas?\""
+              - paragraph [ref=e556]: Seringkali, reaksi kita hari ini adalah gema dari luka yang belum sembuh di masa lalu.
+            - generic [ref=e557]:
+              - button "Dasar Rp 30.000 Menjelaskan ~70% pola utama" [ref=e558]:
+                - generic [ref=e559]: Dasar
+                - generic [ref=e560]: Rp 30.000
+                - generic [ref=e561]: Menjelaskan ~70% pola utama
+              - button "Lengkap Rp 85.000 Sesuai kaidah konseptual & ilmiah" [ref=e562]:
+                - generic [ref=e563]: Lengkap
+                - generic [ref=e564]: Rp 85.000
+                - generic [ref=e565]: Sesuai kaidah konseptual & ilmiah
+              - button "Comprehensive Rp 300.000 End-to-end, semua korelasi tertelusur" [ref=e566]:
+                - generic [ref=e567]: Comprehensive
+                - generic [ref=e568]: Rp 300.000
+                - generic [ref=e569]: End-to-end, semua korelasi tertelusur
+            - generic [ref=e570]:
+              - generic [ref=e571]:
+                - img [ref=e572]
+                - generic [ref=e577]: 8k+
+              - generic [ref=e578]:
+                - img [ref=e579]
+                - generic [ref=e582]: 30-60 Menit
+              - generic [ref=e583]:
+                - img [ref=e584]
+                - img [ref=e586]
+                - img [ref=e588]
+                - img [ref=e590]
+                - img [ref=e592]
+            - link "Lihat Detail" [ref=e594] [cursor=pointer]:
+              - /url: /diri-pribadi/luka-batin-trauma
+              - text: Lihat Detail
+              - img [ref=e595]
+          - generic [ref=e599]:
+            - img [ref=e602]
+            - generic [ref=e604]:
+              - heading "Anxiety, Depresi & Burnout Check" [level=3] [ref=e605]
+              - paragraph [ref=e606]: Kamu Error, Capek Biasa atau Sudah Overload?
+              - paragraph [ref=e607]: "\"Di dunia yang serba cepat ini, batas antara \"lelah bekerja\" dan \"lelah mental\" seringkali kabur.\""
+              - paragraph [ref=e608]: Apakah kamu hanya butuh tidur di akhir pekan, atau mentalmu memang sedang meminta pertolongan? Asesmen ini dirancang untuk mendeteksi tingkat kecemasan, gejala depresi, dan kelelahan mental (burnout) secara akurat.
+            - generic [ref=e609]:
+              - button "Dasar Rp 30.000 Menjelaskan ~70% pola utama" [ref=e610]:
+                - generic [ref=e611]: Dasar
+                - generic [ref=e612]: Rp 30.000
+                - generic [ref=e613]: Menjelaskan ~70% pola utama
+              - button "Lengkap Rp 85.000 Sesuai kaidah konseptual & ilmiah" [ref=e614]:
+                - generic [ref=e615]: Lengkap
+                - generic [ref=e616]: Rp 85.000
+                - generic [ref=e617]: Sesuai kaidah konseptual & ilmiah
+              - button "Comprehensive Rp 300.000 End-to-end, semua korelasi tertelusur" [ref=e618]:
+                - generic [ref=e619]: Comprehensive
+                - generic [ref=e620]: Rp 300.000
+                - generic [ref=e621]: End-to-end, semua korelasi tertelusur
+            - generic [ref=e622]:
+              - generic [ref=e623]:
+                - img [ref=e624]
+                - generic [ref=e629]: 12k+
+              - generic [ref=e630]:
+                - img [ref=e631]
+                - generic [ref=e634]: 20-45 Menit
+              - generic [ref=e635]:
+                - img [ref=e636]
+                - img [ref=e638]
+                - img [ref=e640]
+                - img [ref=e642]
+                - img [ref=e644]
+            - link "Lihat Detail" [ref=e646] [cursor=pointer]:
+              - /url: /diri-pribadi/anxiety-depresi-burnout
+              - text: Lihat Detail
+              - img [ref=e647]
+          - generic [ref=e651]:
+            - img [ref=e654]
+            - generic [ref=e657]:
+              - heading "Citra Diri & Tingkat PeDe Check" [level=3] [ref=e658]
+              - paragraph [ref=e659]: Kenapa Aku Nggak Pernah Merasa Berharga dan Exist?
+              - paragraph [ref=e660]: "\"Apakah kamu merasa sudah melakukan segalanya tapi tetap merasa \"kurang\"?\""
+              - paragraph [ref=e661]: Kurangnya rasa percaya diri seringkali berakar dari cara kita memandang diri sendiri atau self-image.
+            - generic [ref=e662]:
+              - button "Dasar Rp 30.000 Menjelaskan ~70% pola utama" [ref=e663]:
+                - generic [ref=e664]: Dasar
+                - generic [ref=e665]: Rp 30.000
+                - generic [ref=e666]: Menjelaskan ~70% pola utama
+              - button "Lengkap Rp 85.000 Sesuai kaidah konseptual & ilmiah" [ref=e667]:
+                - generic [ref=e668]: Lengkap
+                - generic [ref=e669]: Rp 85.000
+                - generic [ref=e670]: Sesuai kaidah konseptual & ilmiah
+              - button "Comprehensive Rp 300.000 End-to-end, semua korelasi tertelusur" [ref=e671]:
+                - generic [ref=e672]: Comprehensive
+                - generic [ref=e673]: Rp 300.000
+                - generic [ref=e674]: End-to-end, semua korelasi tertelusur
+            - generic [ref=e675]:
+              - generic [ref=e676]:
+                - img [ref=e677]
+                - generic [ref=e682]: 9k+
+              - generic [ref=e683]:
+                - img [ref=e684]
+                - generic [ref=e687]: 25-50 Menit
+              - generic [ref=e688]:
+                - img [ref=e689]
+                - img [ref=e691]
+                - img [ref=e693]
+                - img [ref=e695]
+                - img [ref=e697]
+            - link "Lihat Detail" [ref=e699] [cursor=pointer]:
+              - /url: /diri-pribadi/citra-diri-self-worth
+              - text: Lihat Detail
+              - img [ref=e700]
+          - generic [ref=e704]:
+            - img [ref=e707]
+            - generic [ref=e710]:
+              - heading "Quarter-Life Crisis & Perbandingan Sosial" [level=3] [ref=e711]
+              - paragraph [ref=e712]: Kenapa Aku Merasa Tertinggal?
+              - paragraph [ref=e713]: "\"Melihat teman di media sosial sudah sukses, menikah, atau keliling dunia seringkali membuat kita merasa \"kalah start\".\""
+              - paragraph [ref=e714]: Fenomena Quarter-Life Crisis ini nyata dan sangat melelahkan.
+            - generic [ref=e715]:
+              - button "Dasar Rp 30.000 Menjelaskan ~70% pola utama" [ref=e716]:
+                - generic [ref=e717]: Dasar
+                - generic [ref=e718]: Rp 30.000
+                - generic [ref=e719]: Menjelaskan ~70% pola utama
+              - button "Lengkap Rp 85.000 Sesuai kaidah konseptual & ilmiah" [ref=e720]:
+                - generic [ref=e721]: Lengkap
+                - generic [ref=e722]: Rp 85.000
+                - generic [ref=e723]: Sesuai kaidah konseptual & ilmiah
+              - button "Comprehensive Rp 300.000 End-to-end, semua korelasi tertelusur" [ref=e724]:
+                - generic [ref=e725]: Comprehensive
+                - generic [ref=e726]: Rp 300.000
+                - generic [ref=e727]: End-to-end, semua korelasi tertelusur
+            - generic [ref=e728]:
+              - generic [ref=e729]:
+                - img [ref=e730]
+                - generic [ref=e735]: 15k+
+              - generic [ref=e736]:
+                - img [ref=e737]
+                - generic [ref=e740]: 30 Menit
+              - generic [ref=e741]:
+                - img [ref=e742]
+                - img [ref=e744]
+                - img [ref=e746]
+                - img [ref=e748]
+                - img [ref=e750]
+            - link "Lihat Detail" [ref=e752] [cursor=pointer]:
+              - /url: /diri-pribadi/quarter-life-crisis-perbandingan-sosial
+              - text: Lihat Detail
+              - img [ref=e753]
+          - generic [ref=e757]:
+            - img [ref=e760]
+            - generic [ref=e768]:
+              - heading "Tes IQ, Bakat Minat & Perencanaan Karier" [level=3] [ref=e769]
+              - paragraph [ref=e770]: "\"Memilih karier bukan cuma soal gaji, tapi soal keselarasan antara potensi otak dan minat hati.\""
+              - paragraph [ref=e771]: Melalui tes komprehensif ini, kamu akan mendapatkan gambaran jelas mengenai kapasitas kognitif (IQ) serta bidang yang paling cocok dengan kepribadianmu.
+            - generic [ref=e772]:
+              - button "Dasar Rp 30.000 Menjelaskan ~70% pola utama" [ref=e773]:
+                - generic [ref=e774]: Dasar
+                - generic [ref=e775]: Rp 30.000
+                - generic [ref=e776]: Menjelaskan ~70% pola utama
+              - button "Lengkap Rp 85.000 Sesuai kaidah konseptual & ilmiah" [ref=e777]:
+                - generic [ref=e778]: Lengkap
+                - generic [ref=e779]: Rp 85.000
+                - generic [ref=e780]: Sesuai kaidah konseptual & ilmiah
+              - button "Comprehensive Rp 300.000 End-to-end, semua korelasi tertelusur" [ref=e781]:
+                - generic [ref=e782]: Comprehensive
+                - generic [ref=e783]: Rp 300.000
+                - generic [ref=e784]: End-to-end, semua korelasi tertelusur
+            - generic [ref=e785]:
+              - generic [ref=e786]:
+                - img [ref=e787]
+                - generic [ref=e792]: 20k+
+              - generic [ref=e793]:
+                - img [ref=e794]
+                - generic [ref=e797]: 45-90 Menit
+              - generic [ref=e798]:
+                - img [ref=e799]
+                - img [ref=e801]
+                - img [ref=e803]
+                - img [ref=e805]
+                - img [ref=e807]
+            - link "Lihat Detail" [ref=e809] [cursor=pointer]:
+              - /url: /diri-pribadi/tes-iq-bakat-perencanaan-karir
+              - text: Lihat Detail
+              - img [ref=e810]
+          - generic [ref=e814]:
+            - img [ref=e817]
+            - generic [ref=e821]:
+              - heading "Simulasi Lolos Test PNS, Management Trainee & Recruitment BUMN" [level=3] [ref=e822]
+              - paragraph [ref=e823]: "\"Persaingan di dunia kerja, terutama untuk posisi prestisius seperti BUMN atau CPNS, sangatlah ketat.\""
+              - paragraph [ref=e824]: Asesmen ini memberikan simulasi nyata yang mencakup tes kognitif, kepribadian, hingga logic test yang sering digunakan perusahaan besar.
+            - generic [ref=e825]:
+              - button "Dasar Rp 30.000 Menjelaskan ~70% pola utama" [ref=e826]:
+                - generic [ref=e827]: Dasar
+                - generic [ref=e828]: Rp 30.000
+                - generic [ref=e829]: Menjelaskan ~70% pola utama
+              - button "Lengkap Rp 85.000 Sesuai kaidah konseptual & ilmiah" [ref=e830]:
+                - generic [ref=e831]: Lengkap
+                - generic [ref=e832]: Rp 85.000
+                - generic [ref=e833]: Sesuai kaidah konseptual & ilmiah
+              - button "Comprehensive Rp 300.000 End-to-end, semua korelasi tertelusur" [ref=e834]:
+                - generic [ref=e835]: Comprehensive
+                - generic [ref=e836]: Rp 300.000
+                - generic [ref=e837]: End-to-end, semua korelasi tertelusur
+            - generic [ref=e838]:
+              - generic [ref=e839]:
+                - img [ref=e840]
+                - generic [ref=e845]: 25k+
+              - generic [ref=e846]:
+                - img [ref=e847]
+                - generic [ref=e850]: 60-100 Menit
+              - generic [ref=e851]:
+                - img [ref=e852]
+                - img [ref=e854]
+                - img [ref=e856]
+                - img [ref=e858]
+                - img [ref=e860]
+            - link "Lihat Detail" [ref=e862] [cursor=pointer]:
+              - /url: /diri-pribadi/simulasi-pns-mt-bumn
+              - text: Lihat Detail
+              - img [ref=e863]
+        - generic [ref=e866]:
+          - generic [ref=e867]:
+            - paragraph [ref=e868]: AI Counsellor · Gratis
+            - heading "Masih Bingung Menentukan Titik Mula?" [level=3] [ref=e869]
+            - paragraph [ref=e870]: Ceritakan situasimu ke AI Counsellor kami — gratis, tanpa daftar, dan langsung dapat rekomendasi produk yang paling sesuai.
+          - button "Mulai Analisis Sekarang" [ref=e871]:
+            - text: Mulai Analisis Sekarang
+            - img [ref=e872]
+  - contentinfo [ref=e876]:
+    - generic [ref=e877]:
+      - generic [ref=e878]:
+        - generic [ref=e879]:
+          - heading "Siap Mengenali Potensimu?" [level=3] [ref=e880]
+          - paragraph [ref=e881]: Mulai perjalanan pengembangan dirimu sekarang
+        - link "Mulai Sekarang" [ref=e882] [cursor=pointer]:
+          - /url: /
+          - text: Mulai Sekarang
+          - img [ref=e883]
+      - generic [ref=e885]:
+        - generic [ref=e886]:
+          - link "Bermoela" [ref=e887] [cursor=pointer]:
+            - /url: /
+            - img "Bermoela" [ref=e888]
+          - paragraph [ref=e889]: "Platform pengembangan diri #1 di Indonesia."
+          - generic [ref=e890]:
+            - link [ref=e891] [cursor=pointer]:
+              - /url: https://instagram.com/bermoela
+              - img [ref=e892]
+            - link [ref=e895] [cursor=pointer]:
+              - /url: https://linkedin.com/company/bermoela
+              - img [ref=e896]
+            - link [ref=e900] [cursor=pointer]:
+              - /url: https://x.com/bermoela
+              - img [ref=e901]
+            - link [ref=e903] [cursor=pointer]:
+              - /url: https://facebook.com/bermoela
+              - img [ref=e904]
+        - generic [ref=e906]:
+          - generic [ref=e907]:
+            - heading "Layanan" [level=4] [ref=e908]
+            - list [ref=e909]:
+              - listitem [ref=e910]:
+                - link "Psikotes Online" [ref=e911] [cursor=pointer]:
+                  - /url: /
+                  - text: Psikotes Online
+              - listitem [ref=e913]:
+                - link "Untuk Perusahaan" [ref=e914] [cursor=pointer]:
+                  - /url: /perusahaan
+                  - text: Untuk Perusahaan
+          - generic [ref=e916]:
+            - heading "Kategori Tes" [level=4] [ref=e917]
+            - list [ref=e918]:
+              - listitem [ref=e919]:
+                - link "Mahasiswa & Pelajar" [ref=e920] [cursor=pointer]:
+                  - /url: /mahasiswa
+                  - text: Mahasiswa & Pelajar
+              - listitem [ref=e922]:
+                - link "Perusahaan" [ref=e923] [cursor=pointer]:
+                  - /url: /bisnis
+                  - text: Perusahaan
+              - listitem [ref=e925]:
+                - link "Kesehatan Mental" [ref=e926] [cursor=pointer]:
+                  - /url: /kesehatan-mental
+                  - text: Kesehatan Mental
+              - listitem [ref=e928]:
+                - link "Tes Gratis" [ref=e929] [cursor=pointer]:
+                  - /url: /gratis
+                  - text: Tes Gratis
+          - generic [ref=e931]:
+            - heading "Legal" [level=4] [ref=e932]
+            - list [ref=e933]:
+              - listitem [ref=e934]:
+                - link "Syarat & Ketentuan" [ref=e935] [cursor=pointer]:
+                  - /url: /syarat-ketentuan
+                  - text: Syarat & Ketentuan
+              - listitem [ref=e937]:
+                - link "Kebijakan Privasi" [ref=e938] [cursor=pointer]:
+                  - /url: /kebijakan-privasi
+                  - text: Kebijakan Privasi
+              - listitem [ref=e940]:
+                - link "FAQ" [ref=e941] [cursor=pointer]:
+                  - /url: /faq
+                  - text: FAQ
+      - generic [ref=e943]:
+        - paragraph [ref=e944]: © 2026 Bermoela Indonesia. All rights reserved.
+        - paragraph [ref=e945]: Dibuat dengan ❤️ di Indonesia
+  - region "Notifications alt+T"

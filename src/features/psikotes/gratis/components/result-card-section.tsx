@@ -49,11 +49,11 @@ export function ResultCardSection({
         </p>
 
         <div className="flex flex-col gap-3">
-          <button className="w-full h-12 bg-slate-900 text-white rounded-xl font-black uppercase tracking-widest text-xs hover:bg-slate-800 transition-all flex items-center justify-center gap-2 shadow-lg active:scale-95">
+          <button className="w-full h-12 bg-slate-900 text-white rounded-xl font-black uppercase tracking-widest text-xs hover:bg-slate-800 transition-colors flex items-center justify-center gap-2 shadow-lg active:scale-95">
             <Download className="size-4" />
             Download Laporan Lengkap (PDF)
           </button>
-          <button className="w-full h-12 bg-white border border-slate-200 text-slate-900 rounded-xl font-black uppercase tracking-widest text-xs hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center justify-center gap-2">
+          <button className="w-full h-12 bg-white border border-slate-200 text-slate-900 rounded-xl font-black uppercase tracking-widest text-xs hover:bg-slate-50 hover:border-slate-300 transition-colors flex items-center justify-center gap-2">
             <Share2 className="size-4" />
             Bagikan Hasil
           </button>

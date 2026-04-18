@@ -15,7 +15,7 @@ export function BlogCard({ post }: BlogCardProps) {
         'rounded-3xl border',
         'border-slate-200 overflow-hidden',
         'bg-white hover:-translate-y-1',
-        'hover:shadow-xl transition-all',
+        'hover:shadow-xl transition-[box-shadow]',
         'duration-300 group cursor-pointer',
       )}
     >

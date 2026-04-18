@@ -47,7 +47,7 @@ export function RelationshipSubIssueFilter({
         ))}
       </div>
       {activeId && (
-        <p className="text-xs text-slate-500 font-medium pt-1 animate-in fade-in duration-300">
+        <p className="text-xs text-slate-500 font-medium pt-1">
           {subIssues.find(s => s.id === activeId)?.shortDesc}
         </p>
       )}

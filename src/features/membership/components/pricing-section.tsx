@@ -22,7 +22,7 @@ export function PricingSection() {
 
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-start">
           {/* Lite Plan */}
-          <div className="group relative p-10 rounded-[3rem] border border-slate-100 bg-white transition-all duration-500 hover:-translate-y-2 shadow-xl shadow-stone-200/50 hover:shadow-2xl">
+          <div className="group relative p-10 rounded-[3rem] border border-slate-100 bg-white transition-[transform,box-shadow] duration-300 hover:-translate-y-2 shadow-xl shadow-stone-200/50 hover:shadow-2xl">
             <div className="space-y-6 mb-10">
               <div className="flex justify-between items-start">
                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Membership Lite</span>
@@ -37,7 +37,7 @@ export function PricingSection() {
               <p className="text-sm text-slate-500 font-medium leading-relaxed">Untuk kamu yang baru memulai perjalanan self-growth secara mandiri.</p>
             </div>
             
-            <button className="w-full py-4 bg-slate-50 text-slate-900 font-black text-xs uppercase tracking-widest rounded-2xl mb-10 hover:bg-slate-950 hover:text-white transition-all border border-slate-100">
+            <button className="w-full py-4 bg-slate-50 text-slate-900 font-black text-xs uppercase tracking-widest rounded-2xl mb-10 hover:bg-slate-950 hover:text-white transition-colors border border-slate-100">
               Pilih Paket Lite
             </button>
 
@@ -54,7 +54,7 @@ export function PricingSection() {
           </div>
 
           {/* Pro Plan */}
-          <div className="group relative p-10 rounded-[3rem] border border-slate-900 bg-slate-950 text-white transition-all duration-500 hover:-translate-y-2 shadow-2xl shadow-primary-950/20 md:-translate-y-6">
+          <div className="group relative p-10 rounded-[3rem] border border-slate-900 bg-slate-950 text-white transition-[transform,box-shadow] duration-300 hover:-translate-y-2 shadow-2xl shadow-primary-950/20 md:-translate-y-6">
             {/* Pop Badge */}
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent-400 text-slate-950 text-[10px] font-black px-6 py-2 rounded-full uppercase tracking-[0.2em] shadow-lg border-2 border-slate-950 flex items-center gap-2">
               <Sparkles className="w-3 h-3 fill-slate-950" />
@@ -75,7 +75,7 @@ export function PricingSection() {
               <p className="text-sm text-slate-400 font-medium leading-relaxed">Paket lengkap untuk akselerasi pertumbuhan diri maksimal dengan dukungan penuh.</p>
             </div>
 
-            <button className="w-full py-4 bg-accent-400 text-slate-950 font-black text-xs uppercase tracking-widest rounded-2xl mb-10 hover:bg-white transition-all shadow-xl shadow-accent-400/20">
+            <button className="w-full py-4 bg-accent-400 text-slate-950 font-black text-xs uppercase tracking-widest rounded-2xl mb-10 hover:bg-white transition-colors shadow-xl shadow-accent-400/20">
               Pilih Paket Pro
             </button>
 

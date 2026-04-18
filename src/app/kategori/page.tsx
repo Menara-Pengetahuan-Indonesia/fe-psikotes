@@ -140,7 +140,7 @@ export default function KategoriPage() {
                   key={cat.href}
                   href={cat.href}
                   className={cn(
-                    'group relative flex flex-col p-1 transition-all duration-500 overflow-hidden',
+                    'group relative flex flex-col p-1 transition-colors duration-300 overflow-hidden',
                     'bg-white border border-slate-200 hover:shadow-2xl hover:-translate-y-1.5',
                     'rounded-[2.5rem] shadow-sm',
                     cat.border, cat.shadow
@@ -159,7 +159,7 @@ export default function KategoriPage() {
                       <div className="relative">
                         <div className={cn('absolute inset-0 blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500', cat.glow)} />
                         <div className={cn(
-                          'relative w-14 h-14 rounded-2xl border flex items-center justify-center transition-all duration-500 shadow-inner',
+                          'relative w-14 h-14 rounded-2xl border flex items-center justify-center transition-colors duration-300 shadow-inner',
                           cat.iconBg, cat.iconColor, cat.iconHover,
                           'group-hover:text-white group-hover:border-transparent',
                           cat.borderColor
@@ -178,7 +178,7 @@ export default function KategoriPage() {
                   </div>
 
                   <div className="relative z-10 px-6 pt-4 pb-7">
-                    <div className="w-full py-3.5 bg-primary-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest shadow-lg shadow-primary-200 flex items-center justify-center gap-2 transition-all group-hover:bg-primary-700">
+                    <div className="w-full py-3.5 bg-primary-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest shadow-lg shadow-primary-200 flex items-center justify-center gap-2 transition-colors group-hover:bg-primary-700">
                       Lihat Tes
                       <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>

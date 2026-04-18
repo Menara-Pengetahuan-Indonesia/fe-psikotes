@@ -54,7 +54,7 @@ export function SuperAdminDashboard() {
   const { user } = useAuthStoreHydrated()
 
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="space-y-6">
       {/* HERO BANNER */}
       <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-rose-900 p-8 md:p-10 text-white">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -71,7 +71,7 @@ export function SuperAdminDashboard() {
           </div>
           <Button
             size="lg"
-            className="bg-white text-slate-900 hover:bg-rose-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
+            className="bg-white text-slate-900 hover:bg-rose-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-colors active:scale-95 group shrink-0"
             asChild
           >
             <Link href="/superadmin/users">
@@ -137,10 +137,10 @@ export function SuperAdminDashboard() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group bg-white rounded-[2rem] border border-slate-100 p-6 hover:shadow-md transition-all"
+                  className="group bg-white rounded-[2rem] border border-slate-100 p-6 hover:shadow-md transition-[box-shadow]"
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className={cn('size-12 rounded-2xl flex items-center justify-center text-white transition-all group-hover:scale-105 group-hover:shadow-md', item.color)}>
+                    <div className={cn('size-12 rounded-2xl flex items-center justify-center text-white transition-[transform,box-shadow] group-hover:scale-105 group-hover:shadow-md', item.color)}>
                       <Icon className="size-5" />
                     </div>
                     <div className="text-right">

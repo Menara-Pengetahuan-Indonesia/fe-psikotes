@@ -31,7 +31,7 @@ export function CareersPositionsSection() {
                 'bg-white border',
                 'border-slate-200',
                 'hover:border-secondary/30',
-                'hover:shadow-lg transition-all',
+                'hover:shadow-lg transition-[box-shadow]',
                 'duration-300 group',
               )}
             >
@@ -90,7 +90,7 @@ export function CareersPositionsSection() {
                     'w-5 h-5 text-slate-300',
                     'group-hover:text-secondary',
                     'group-hover:translate-x-1',
-                    'transition-all shrink-0',
+                    'transition-colors shrink-0',
                   )}
                 />
               </div>

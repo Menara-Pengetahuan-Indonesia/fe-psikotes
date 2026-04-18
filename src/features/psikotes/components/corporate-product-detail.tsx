@@ -134,7 +134,7 @@ export function CorporateProductDetail({ product, relatedProducts = [] }: Corpor
                 <div
                   key={tier.tier}
                   className={cn(
-                    'relative rounded-[2rem] p-8 border-2 transition-all',
+                    'relative rounded-[2rem] p-8 border-2 transition-colors',
                     isComprehensive
                       ? 'bg-slate-900 border-amber-500 shadow-2xl shadow-amber-500/10'
                       : 'bg-white border-slate-100 hover:border-slate-200 hover:shadow-lg'
@@ -251,7 +251,7 @@ export function CorporateProductDetail({ product, relatedProducts = [] }: Corpor
                 <Link
                   key={rel.id}
                   href={`${categoryHref}/${rel.slug}`}
-                  className="group bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-xl hover:border-amber-200 transition-all"
+                  className="group bg-white rounded-2xl border border-slate-100 p-5 hover:shadow-xl hover:border-amber-200 transition-[box-shadow,border-color]"
                 >
                   <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center mb-4">
                     <rel.icon className="w-5 h-5" />

@@ -35,7 +35,7 @@ export function FaqAccordion() {
               <div
                 key={i}
                 className={cn(
-                  "bg-white rounded-3xl border transition-all duration-500 overflow-hidden",
+                  "bg-white rounded-3xl border transition-colors duration-300 overflow-hidden",
                   isOpen
                     ? "border-primary-500 shadow-xl shadow-primary-900/5 ring-1 ring-primary-500/10"
                     : "border-slate-100 shadow-lg shadow-stone-200/50 hover:border-slate-200"
@@ -61,7 +61,7 @@ export function FaqAccordion() {
                   </div>
                   <span
                     className={cn(
-                      "ml-4 shrink-0 rounded-full p-2 transition-all",
+                      "ml-4 shrink-0 rounded-full p-2 transition-colors",
                       isOpen ? "bg-primary-50 text-primary-600" : "bg-slate-50 text-slate-300"
                     )}
                   >
@@ -70,7 +70,7 @@ export function FaqAccordion() {
                 </button>
 
                 <div className={cn(
-                  "grid transition-all duration-500 ease-in-out",
+                  "grid transition-[grid-template-rows] duration-300 ease-in-out",
                   isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                 )}>
                   <div className="overflow-hidden">

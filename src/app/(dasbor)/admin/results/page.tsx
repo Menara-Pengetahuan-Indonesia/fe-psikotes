@@ -151,7 +151,7 @@ function formatDate(dateStr: string) {
 
 const accentColors = [
   { bg: 'bg-gradient-to-br from-indigo-400 to-indigo-500', text: 'text-white' },
-  { bg: 'bg-gradient-to-br from-teal-400 to-teal-500', text: 'text-white' },
+  { bg: 'bg-gradient-to-br from-indigo-400 to-indigo-500', text: 'text-white' },
   { bg: 'bg-gradient-to-br from-violet-400 to-violet-500', text: 'text-white' },
   { bg: 'bg-gradient-to-br from-rose-400 to-rose-500', text: 'text-white' },
 ]
@@ -184,10 +184,10 @@ export default function AdminResultsPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <p className="text-teal-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+            <p className="text-indigo-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
               Laporan
             </p>
             <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
@@ -199,7 +199,7 @@ export default function AdminResultsPage() {
           </div>
           <Button
             size="lg"
-            className="bg-white text-slate-900 hover:bg-teal-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
+            className="bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
           >
             <Download className="w-5 h-5 mr-2 group-hover:translate-y-0.5 transition-transform" />
             Export Data
@@ -209,8 +209,8 @@ export default function AdminResultsPage() {
         {/* Stats inside banner */}
         <div className="relative z-10 grid grid-cols-3 gap-4 mt-8">
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-teal-500/30 flex items-center justify-center">
-              <Users className="size-5 text-teal-300" />
+            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
+              <Users className="size-5 text-indigo-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{dummyResults.length}</p>
@@ -287,7 +287,7 @@ export default function AdminResultsPage() {
             placeholder="Cari peserta, email, atau nama tes..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-11 h-11 bg-white border-slate-100 rounded-xl text-sm font-medium focus:ring-2 focus:ring-teal-500/10"
+            className="pl-11 h-11 bg-white border-slate-100 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500/10"
           />
         </div>
       </div>
@@ -295,8 +295,8 @@ export default function AdminResultsPage() {
       {/* RESULTS LIST */}
       {filteredResults.length === 0 ? (
         <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
-          <div className="size-16 rounded-2xl bg-teal-50 flex items-center justify-center mb-5">
-            <Users className="size-8 text-teal-400" />
+          <div className="size-16 rounded-2xl bg-indigo-50 flex items-center justify-center mb-5">
+            <Users className="size-8 text-indigo-400" />
           </div>
           <p className="text-slate-900 font-black text-lg mb-1">Tidak ditemukan.</p>
           <p className="text-slate-400 font-medium text-sm">
@@ -328,14 +328,14 @@ export default function AdminResultsPage() {
                 {/* Main info */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2.5 mb-0.5">
-                    <h3 className="text-base font-black text-slate-900 truncate group-hover:text-teal-600 transition-colors">
+                    <h3 className="text-base font-black text-slate-900 truncate group-hover:text-indigo-600 transition-colors">
                       {result.name}
                     </h3>
                     <span
                       className={cn(
                         'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
                         isCompleted
-                          ? 'bg-teal-50 text-teal-600'
+                          ? 'bg-indigo-50 text-indigo-600'
                           : 'bg-amber-50 text-amber-600'
                       )}
                     >
@@ -357,7 +357,7 @@ export default function AdminResultsPage() {
                 <div className="hidden lg:flex items-center gap-2 shrink-0">
                   {isCompleted && (
                     <>
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-teal-600 bg-teal-50 px-3 py-1.5 rounded-full">
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full">
                         <Award className="size-3.5" />
                         <span>{result.score}</span>
                       </div>
@@ -379,10 +379,10 @@ export default function AdminResultsPage() {
 
                 {/* Action */}
                 <div className="flex items-center gap-2 shrink-0">
-                  <button className="size-9 rounded-xl bg-white text-teal-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-teal-50 hover:border-teal-200 hover:text-teal-500">
+                  <button className="size-9 rounded-xl bg-white text-indigo-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-indigo-50 hover:border-indigo-200 hover:text-indigo-500">
                     <Eye className="size-4" />
                   </button>
-                  <div className="size-9 rounded-xl bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-teal-600 group-hover:text-white transition-all">
+                  <div className="size-9 rounded-xl bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all">
                     <ChevronRight className="size-4" />
                   </div>
                 </div>

@@ -31,7 +31,7 @@ export function Testimonials() {
             <div
               key={testi.name}
               className={cn(
-                "group bg-white/5 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/10 relative transition-all duration-500",
+                "group bg-white/5 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/10 relative transition-colors duration-300",
                 "hover:shadow-2xl hover:shadow-primary-900/40 hover:-translate-y-2",
                 "shadow-xl"
               )}

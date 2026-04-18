@@ -1,5 +1,3 @@
-'use client'
-
 import { DIRI_PRIBADI_PRODUCTS } from '../constants/diri-pribadi.constants'
 import { RELATIONSHIP_PRODUCTS } from '../constants/relationship.constants'
 import { ProductCardNew } from './product-card-new'

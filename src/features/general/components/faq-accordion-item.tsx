@@ -22,7 +22,7 @@ export function FaqAccordionItem({
     <div
       className={cn(
         'bg-white rounded-3xl border',
-        'transition-all duration-500 overflow-hidden',
+        'transition-[max-height,opacity] duration-500 overflow-hidden',
         isOpen
           ? cn(
               theme.activeBorder,
@@ -74,7 +74,7 @@ export function FaqAccordionItem({
         <span
           className={cn(
             'ml-4 shrink-0 rounded-full p-2',
-            'transition-all',
+            'transition-colors',
             isOpen
               ? theme.activeChevron
               : 'bg-slate-50 text-slate-300',
@@ -92,7 +92,7 @@ export function FaqAccordionItem({
 
       <div
         className={cn(
-          'grid transition-all',
+          'grid transition-[grid-template-rows]',
           'duration-500 ease-in-out',
           isOpen
             ? 'grid-rows-[1fr] opacity-100'

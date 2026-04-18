@@ -34,16 +34,12 @@ export function NavbarDesktopMenu({
             key={item.href || idx}
             href={item.href || '#'}
             className={cn(
-              'px-4 py-2 rounded-full text-[13px]',
-              'font-semibold tracking-wide transition-all duration-300',
+              'px-4 py-2 rounded-full text-[13px] whitespace-nowrap',
+              'font-bold tracking-wide transition-colors duration-300',
               'cursor-pointer',
               isActive
-                ? isScrolled
-                  ? 'bg-primary-50 text-primary-700'
-                  : 'bg-white/20 text-white'
-                : isScrolled
-                  ? 'text-slate-500 hover:bg-slate-50 hover:text-slate-800'
-                  : 'text-white/80 hover:bg-white/10 hover:text-white'
+                ? 'bg-primary-600 text-white font-black shadow-sm'
+                : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
             )}
           >
             {item.label}
@@ -66,10 +62,8 @@ export function NavbarDesktopCta({
         size="sm"
         className={cn(
           'rounded-full text-[13px] font-semibold tracking-wide',
-          'transition-all cursor-pointer',
-          isScrolled
-            ? 'text-slate-500 hover:text-primary-700 hover:bg-primary-50'
-            : 'text-white/80 hover:text-white hover:bg-white/10'
+          'transition-colors cursor-pointer',
+          'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
         )}
         asChild
       >
@@ -78,11 +72,9 @@ export function NavbarDesktopCta({
       <Button
         size="sm"
         className={cn(
-          'rounded-full text-[13px] font-semibold tracking-wide',
-          'shadow-sm hover:shadow-md transition-all cursor-pointer',
-          isScrolled
-            ? 'bg-primary-600 hover:bg-primary-700 text-white'
-            : 'bg-white hover:bg-white/90 text-primary-700'
+          'rounded-full text-[13px] font-bold tracking-wide',
+          'shadow-md hover:shadow-lg transition-colors cursor-pointer',
+          'bg-primary-600 hover:bg-primary-700 text-white'
         )}
         asChild
       >
@@ -107,11 +99,9 @@ function DesktopDropdown({
         href={item.href || '#'}
         className={cn(
           'flex items-center gap-1.5 px-4 py-2',
-          'rounded-full text-[13px] font-semibold tracking-wide',
-          'outline-none transition-all cursor-pointer',
-          isScrolled
-            ? 'text-slate-500 hover:bg-slate-50 hover:text-slate-800'
-            : 'text-white/80 hover:bg-white/10 hover:text-white'
+          'rounded-full text-[13px] font-bold tracking-wide whitespace-nowrap',
+          'outline-none transition-colors cursor-pointer',
+          'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
         )}
       >
         {item.label}
@@ -121,7 +111,8 @@ function DesktopDropdown({
         'absolute top-full left-1/2 -translate-x-1/2 pt-3',
         'opacity-0 invisible translate-y-2',
         'group-hover:opacity-100 group-hover:visible group-hover:translate-y-0',
-        'transition-all duration-300 ease-out z-50'
+        'transition-colors duration-300 ease-out',
+        'z-[9999]'
       )}>
         <div className={cn(
           'w-80 rounded-3xl p-3',
@@ -141,7 +132,7 @@ function DesktopDropdown({
                   className={cn(
                     'flex items-center gap-3.5',
                     'cursor-pointer rounded-2xl p-3',
-                    'transition-all duration-200',
+                    'transition-colors duration-200',
                     'hover:bg-primary-50/60 group/item'
                   )}
                 >
@@ -151,7 +142,7 @@ function DesktopDropdown({
                         'flex h-10 w-10 shrink-0',
                         'items-center justify-center',
                         'rounded-xl bg-slate-50',
-                        'transition-all duration-200',
+                        'transition-colors duration-200',
                         'group-hover/item:bg-primary-100',
                         'group-hover/item:shadow-sm'
                       )}

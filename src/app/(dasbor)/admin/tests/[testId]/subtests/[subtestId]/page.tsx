@@ -188,7 +188,7 @@ export default function SubTestDetailPage() {
                     className={cn(
                       'text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full',
                       subTest.isActive
-                        ? 'bg-teal-500/20 text-teal-300'
+                        ? 'bg-indigo-500/20 text-indigo-300'
                         : 'bg-slate-500/20 text-slate-300',
                     )}
                   >
@@ -320,7 +320,7 @@ export default function SubTestDetailPage() {
                           className={cn(
                             'text-[10px] font-bold px-2 py-0.5 rounded-lg',
                             opt.isCorrect
-                              ? 'bg-teal-50 text-teal-600'
+                              ? 'bg-indigo-50 text-indigo-600'
                               : 'bg-slate-50 text-slate-400',
                           )}
                         >

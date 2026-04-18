@@ -4,7 +4,7 @@ import {
 
 export const THEME_STYLES = {
   teal: {
-    gradient: 'from-primary-50 to-teal-50',
+    gradient: 'from-primary-50 to-primary-50',
     iconBg: 'bg-primary-100',
     iconColor: 'text-primary-600',
     subText: 'text-primary-600',

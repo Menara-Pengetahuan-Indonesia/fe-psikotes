@@ -1,25 +1,71 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowRight, Target, User, Heart, Briefcase, Zap } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowRight, User, Heart, Briefcase, Zap, Phone } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { DIRI_PRIBADI_PRODUCTS, RELATIONSHIP_PRODUCTS } from '../constants'
+import { DIRI_PRIBADI_PRODUCTS, RELATIONSHIP_PRODUCTS, CORPORATE_PRODUCTS } from '../constants'
+import type { CorporateProduct } from '../types'
 import { ProductCardNew } from './product-card-new'
 
-type ActiveTab = 'diri-pribadi' | 'relationship'
+type ActiveTab = 'diri-pribadi' | 'relationship' | 'bisnis'
+
+const TABS: { id: ActiveTab; label: string; icon: typeof User }[] = [
+  { id: 'diri-pribadi',  label: 'Diri Pribadi',       icon: User      },
+  { id: 'relationship',  label: 'Relationship',        icon: Heart     },
+  { id: 'bisnis',        label: 'Bisnis & Perusahaan', icon: Briefcase },
+]
+
+const TAB_HREF: Record<ActiveTab, string> = {
+  'diri-pribadi': '/diri-pribadi',
+  'relationship': '/relationship',
+  'bisnis':       '/bisnis',
+}
+
+function CorporateCard({ product }: { product: CorporateProduct }) {
+  return (
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:scale-[1.02] transition-transform duration-200 flex flex-col overflow-hidden">
+      <div className="flex flex-col gap-4 p-5 flex-1">
+        <div className="flex items-start gap-3">
+          <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center shrink-0">
+            <product.icon className="w-5 h-5 text-amber-600" aria-hidden="true" />
+          </div>
+          <h3 className="font-black text-[14px] text-gray-900 leading-snug flex-1">
+            {product.title}
+          </h3>
+        </div>
+        <p className="text-[12px] text-gray-500 leading-relaxed line-clamp-3 flex-1">
+          {product.description}
+        </p>
+        {product.callForDetail ? (
+          <a
+            href="https://wa.me/6281234567890"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full h-11 rounded-xl bg-amber-500 text-white flex items-center justify-center gap-2 text-[11px] font-black uppercase tracking-widest hover:bg-amber-600 transition-colors"
+          >
+            <Phone className="w-3.5 h-3.5" aria-hidden="true" />
+            Hubungi Kami
+          </a>
+        ) : (
+          <Link
+            href={`/bisnis/${product.slug}`}
+            className="w-full h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center gap-2 text-[11px] font-black uppercase tracking-widest hover:bg-emerald-700 transition-colors"
+          >
+            Lihat Detail
+            <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+          </Link>
+        )}
+      </div>
+    </div>
+  )
+}
 
 export function PsikotesProducts() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('diri-pribadi')
 
-  const tabs: { id: ActiveTab; label: string; icon: typeof User; count: number }[] = [
-    { id: 'diri-pribadi', label: 'Diri Pribadi', icon: User, count: DIRI_PRIBADI_PRODUCTS.length },
-    { id: 'relationship', label: 'Relationship', icon: Heart, count: RELATIONSHIP_PRODUCTS.length },
-  ]
-
-  const products = activeTab === 'diri-pribadi' ? DIRI_PRIBADI_PRODUCTS : RELATIONSHIP_PRODUCTS
-
   return (
-    <section id="masa-depan" className="py-12 md:py-16 bg-background relative overflow-hidden">
+    <section id="masa-depan" className="pt-12 md:pt-16 pb-28 md:pb-32 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* Header */}
@@ -39,60 +85,55 @@ export function PsikotesProducts() {
 
           {/* Tab Selector */}
           <div className="flex flex-wrap gap-3">
-            {tabs.map((tab) => (
+            {TABS.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={cn(
-                  'flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-black uppercase tracking-widest border transition-all duration-300',
+                  'flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-black uppercase tracking-widest border transition-colors duration-300',
                   activeTab === tab.id
-                    ? 'bg-primary-600 text-white border-primary-600 shadow-xl shadow-primary-900/20 -translate-y-0.5'
-                    : 'bg-white text-slate-400 border-slate-100 hover:border-primary-200 hover:text-primary-600 shadow-sm'
+                    ? 'bg-emerald-600 text-white border-emerald-600 shadow-md'
+                    : 'bg-white text-gray-400 border-gray-100 hover:border-emerald-200 hover:text-emerald-600 shadow-sm'
                 )}
               >
-                <tab.icon className="w-4 h-4" />
+                <tab.icon className="w-4 h-4" aria-hidden="true" />
                 {tab.label}
-                <span className="text-[10px] opacity-60">({tab.count})</span>
               </button>
             ))}
 
-            {/* Corporate CTA */}
-            <a
-              href="/bisnis"
-              className="flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-black uppercase tracking-widest border bg-white text-slate-400 border-slate-100 hover:border-amber-200 hover:text-amber-600 shadow-sm transition-all duration-300 ml-auto"
+            {/* Lihat Semua */}
+            <Link
+              href={TAB_HREF[activeTab]}
+              className="flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-black uppercase tracking-widest border bg-white text-gray-400 border-gray-100 hover:border-emerald-200 hover:text-emerald-600 shadow-sm transition-colors duration-300"
             >
-              <Briefcase className="w-4 h-4" />
-              Bisnis & Perusahaan
-              <ArrowRight className="w-3 h-3" />
-            </a>
+              Lihat Semua
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
           </div>
         </div>
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product) => (
-            <ProductCardNew key={product.id} product={product} />
+          {activeTab === 'diri-pribadi' && DIRI_PRIBADI_PRODUCTS.slice(0, 3).map((p) => (
+            <ProductCardNew key={p.id} product={p} />
+          ))}
+          {activeTab === 'relationship' && RELATIONSHIP_PRODUCTS.slice(0, 3).map((p) => (
+            <ProductCardNew key={p.id} product={p} />
+          ))}
+          {activeTab === 'bisnis' && CORPORATE_PRODUCTS.slice(0, 3).map((p) => (
+            <CorporateCard key={p.id} product={p} />
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-20 p-8 md:p-12 rounded-[3rem] bg-primary-600 shadow-2xl shadow-primary-900/20 relative overflow-hidden">
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="space-y-4 text-center md:text-left">
-              <h3 className="text-2xl md:text-4xl font-black text-white tracking-tight leading-none">
-                Masih Bingung Menentukan <span className="text-accent-300 italic">Titik Mula?</span>
-              </h3>
-              <p className="text-primary-50 font-medium text-sm md:text-base max-w-xl">
-                Ceritakan situasimu ke AI Counsellor kami — gratis, tanpa daftar, dan langsung dapat rekomendasi produk yang paling sesuai.
-              </p>
-            </div>
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="px-8 h-16 rounded-2xl bg-white text-primary-600 text-sm font-black uppercase tracking-widest shadow-xl hover:bg-slate-50 transition-colors flex items-center gap-3 shrink-0"
-            >
-              Mulai Analisis Sekarang <Target className="w-5 h-5" />
-            </button>
-          </div>
+        {/* See all button */}
+        <div className="mt-10">
+          <Link
+            href={TAB_HREF[activeTab]}
+            className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl border border-gray-200 text-sm font-black uppercase tracking-widest text-gray-500 hover:border-emerald-300 hover:text-emerald-600 transition-colors duration-200"
+          >
+            Lihat Semua {TABS.find(t => t.id === activeTab)?.label}
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </Link>
         </div>
 
       </div>

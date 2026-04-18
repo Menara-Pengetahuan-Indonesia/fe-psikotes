@@ -141,7 +141,7 @@ export const MAHASISWA_BENEFITS = [
       'Ketahui titik mulamu untuk'
       + ' memilih jalur karir yang'
       + ' benar-benar membuatmu sukses.',
-    theme: 'emerald' as const,
+    theme: 'primary' as const,
   },
   {
     icon: GraduationCap,
@@ -186,7 +186,7 @@ export const MAHASISWA_BENEFITS = [
       'Paket terjangkau untuk mahasiswa'
       + ' yang ingin mulai berdaya'
       + ' sedini mungkin.',
-    theme: 'emerald' as const,
+    theme: 'primary' as const,
   },
 ]
 

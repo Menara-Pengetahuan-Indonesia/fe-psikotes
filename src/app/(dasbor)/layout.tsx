@@ -49,7 +49,7 @@ const NAV_BY_ROLE: Record<UserRole, NavItem[]> = {
   ],
   ADMIN: [
     { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { href: '/admin/tests', label: 'Kelola Tes', icon: BookOpen },
+    { href: '/admin/kelola-tes', label: 'Kelola Tes', icon: BookOpen },
     { href: '/admin/packages', label: 'Paket', icon: Package },
     { href: '/admin/schedules', label: 'Jadwal', icon: CalendarClock },
     { href: '/admin/participants', label: 'Peserta', icon: Users },
@@ -60,7 +60,7 @@ const NAV_BY_ROLE: Record<UserRole, NavItem[]> = {
   SUPERADMIN: [
     { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/superadmin/users', label: 'Kelola User', icon: Users },
-    { href: '/admin/tests', label: 'Kelola Tes', icon: BookOpen },
+    { href: '/admin/kelola-tes', label: 'Kelola Tes', icon: BookOpen },
     { href: '/admin/analytics', label: 'Analitik', icon: BarChart3 },
     { href: '/superadmin/system', label: 'Sistem', icon: Settings },
     { href: '/admin/settings', label: 'Pengaturan', icon: Settings },

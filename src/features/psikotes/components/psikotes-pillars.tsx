@@ -89,7 +89,7 @@ export function PsikotesPillars() {
 
             {/* RIGHT: DETAIL DISPLAY */}
             <div className="w-full lg:flex-1 shrink-0">
-              <div className="bg-white rounded-[3rem] p-8 md:p-12 shadow-soft-xl border border-white/10 relative overflow-hidden min-h-[500px] flex flex-col animate-in fade-in duration-700 w-full">
+              <div className="bg-white rounded-[3rem] p-8 md:p-12 shadow-soft-xl border border-white/10 relative overflow-hidden min-h-[500px] flex flex-col w-full">
                 
                 <div className="flex items-center gap-3 mb-10 w-full">
                   <div className="px-4 py-1.5 rounded-full bg-primary-900 text-white text-xs font-black uppercase tracking-widest shrink-0">
@@ -123,7 +123,7 @@ export function PsikotesPillars() {
                       </p>
                     </div>
                     <div className="flex-1 space-y-3 p-6 bg-slate-50 rounded-[2rem] border border-slate-100 w-full shadow-sm">
-                      <div className="flex items-center gap-2 text-emerald-600">
+                      <div className="flex items-center gap-2 text-primary-600">
                         <CheckCircle2 className="w-4 h-4" />
                         <span className="text-xs font-black uppercase tracking-widest text-slate-400">Solusi</span>
                       </div>

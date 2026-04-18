@@ -89,7 +89,7 @@ export function AboutValuesSection() {
                 'border border-slate-100',
                 'shadow-lg shadow-stone-200/50',
                 'hover:-translate-y-1',
-                'hover:shadow-xl transition-all',
+                'hover:shadow-xl transition-[box-shadow]',
                 'duration-300 group',
               )}
             >

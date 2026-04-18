@@ -193,7 +193,7 @@ export default function PackageDetailPublicPage() {
             <div className="h-px bg-slate-200 grow hidden md:block mx-8 mb-4" />
             <Button
               size="lg"
-              className="h-14 px-8 bg-primary-600 hover:bg-primary-700 text-white rounded-2xl font-black text-sm shadow-lg shadow-primary-200 transition-all active:scale-95 shrink-0"
+              className="h-14 px-8 bg-primary-600 hover:bg-primary-700 text-white rounded-2xl font-black text-sm shadow-lg shadow-primary-200 transition-colors active:scale-95 shrink-0"
               onClick={() => {
                 if (firstTest?.test) router.push(`/tes/${(firstTest.test as { id: string }).id}`)
               }}
@@ -216,7 +216,7 @@ export default function PackageDetailPublicPage() {
                 <div
                   key={pt.id}
                   className={cn(
-                    'group relative flex flex-col p-1 transition-all duration-500 overflow-hidden',
+                    'group relative flex flex-col p-1 transition-colors duration-300 overflow-hidden',
                     'bg-white border border-slate-200 hover:shadow-2xl hover:-translate-y-1.5',
                     'rounded-[2.5rem] shadow-sm',
                     theme.border, theme.shadow
@@ -235,7 +235,7 @@ export default function PackageDetailPublicPage() {
                       <div className="relative">
                         <div className={cn('absolute inset-0 blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500', theme.glow)} />
                         <div className={cn(
-                          'relative w-14 h-14 rounded-2xl border flex items-center justify-center transition-all duration-500 shadow-inner',
+                          'relative w-14 h-14 rounded-2xl border flex items-center justify-center transition-colors duration-300 shadow-inner',
                           theme.iconBg, theme.iconColor, theme.iconHover,
                           'group-hover:text-white group-hover:border-transparent',
                           theme.borderColor
@@ -275,7 +275,7 @@ export default function PackageDetailPublicPage() {
                   <div className="relative z-10 px-6 pt-4 pb-7">
                     <button
                       onClick={() => router.push(`/tes/${test.id}`)}
-                      className="w-full py-3.5 bg-primary-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest shadow-lg shadow-primary-200 flex items-center justify-center gap-2 transition-all group-hover:bg-primary-700"
+                      className="w-full py-3.5 bg-primary-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest shadow-lg shadow-primary-200 flex items-center justify-center gap-2 transition-colors group-hover:bg-primary-700"
                     >
                       Mulai Tes
                       <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

@@ -120,7 +120,7 @@ export function AppSidebar(
                     isActive={isActive}
                     tooltip={item.label}
                     className={cn(
-                      "transition-all duration-300 py-6 px-5 rounded-2xl group/btn overflow-hidden relative",
+                      "transition-colors duration-300 py-6 px-5 rounded-2xl group/btn overflow-hidden relative",
                       isActive 
                         ? "bg-primary-500 text-white shadow-lg shadow-primary-500/20" 
                         : "text-slate-400 hover:bg-white/5 hover:text-white"
@@ -148,7 +148,7 @@ export function AppSidebar(
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton
                   size="lg"
-                  className="rounded-2xl hover:bg-white/5 group transition-all p-4 h-16"
+                  className="rounded-2xl hover:bg-white/5 group transition-colors p-4 h-16"
                 >
                   <Avatar className="size-10 rounded-xl border-2 border-white/10 shadow-lg shadow-black/20">
                     <AvatarFallback className="rounded-xl bg-gradient-to-br from-primary-600 to-primary-700 text-white font-black text-sm">
@@ -169,7 +169,7 @@ export function AppSidebar(
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent
-                className="w-64 rounded-3xl bg-slate-900 border-white/5 text-white shadow-2xl p-2 mb-4 animate-in slide-in-from-bottom-2 duration-300"
+                className="w-64 rounded-3xl bg-slate-900 border-white/5 text-white shadow-2xl p-2 mb-4"
                 side="top"
                 align="end"
                 sideOffset={12}
@@ -192,7 +192,7 @@ export function AppSidebar(
                 <DropdownMenuSeparator className="bg-white/5" />
                 <div className="p-1 space-y-1">
                   <DropdownMenuItem
-                    className="cursor-pointer rounded-2xl hover:bg-white/5 focus:bg-white/5 focus:text-primary-400 py-3.5 px-4 transition-all"
+                    className="cursor-pointer rounded-2xl hover:bg-white/5 focus:bg-white/5 focus:text-primary-400 py-3.5 px-4 transition-colors"
                     asChild
                   >
                     <Link href="/dashboard/profil" className="flex items-center gap-3">
@@ -203,7 +203,7 @@ export function AppSidebar(
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem
-                    className="cursor-pointer rounded-2xl hover:bg-white/5 focus:bg-white/5 focus:text-primary-400 py-3.5 px-4 transition-all"
+                    className="cursor-pointer rounded-2xl hover:bg-white/5 focus:bg-white/5 focus:text-primary-400 py-3.5 px-4 transition-colors"
                     asChild
                   >
                     <Link href="/" className="flex items-center gap-3">
@@ -216,7 +216,7 @@ export function AppSidebar(
                 </div>
                 <DropdownMenuSeparator className="bg-white/5" />
                 <DropdownMenuItem
-                  className="cursor-pointer rounded-2xl text-red-400 hover:bg-red-500/10 focus:bg-red-500/10 focus:text-red-400 py-3.5 px-4 mt-1 transition-all"
+                  className="cursor-pointer rounded-2xl text-red-400 hover:bg-red-500/10 focus:bg-red-500/10 focus:text-red-400 py-3.5 px-4 mt-1 transition-colors"
                   onClick={() =>
                     logoutMutation.mutate()
                   }

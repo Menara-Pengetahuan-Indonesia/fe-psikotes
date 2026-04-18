@@ -44,7 +44,7 @@ function formatDate(dateStr: string) {
 
 const accentColors = [
   { bg: 'bg-gradient-to-br from-indigo-400 to-indigo-500', text: 'text-white' },
-  { bg: 'bg-gradient-to-br from-teal-400 to-teal-500', text: 'text-white' },
+  { bg: 'bg-gradient-to-br from-indigo-400 to-indigo-500', text: 'text-white' },
   { bg: 'bg-gradient-to-br from-violet-400 to-violet-500', text: 'text-white' },
   { bg: 'bg-gradient-to-br from-rose-400 to-rose-500', text: 'text-white' },
 ]
@@ -96,8 +96,8 @@ export default function AdminParticipantsPage() {
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-teal-500/30 flex items-center justify-center">
-                <UserCheck className="size-5 text-teal-300" />
+              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
+                <UserCheck className="size-5 text-indigo-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{activeCount}</p>
@@ -191,7 +191,7 @@ export default function AdminParticipantsPage() {
                     </h3>
                     <span className={cn(
                       'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
-                      isActive ? 'bg-teal-50 text-teal-600' : 'bg-rose-50 text-rose-600'
+                      isActive ? 'bg-indigo-50 text-indigo-600' : 'bg-rose-50 text-rose-600'
                     )}>
                       {isActive ? 'Aktif' : 'Diblokir'}
                     </span>
@@ -222,7 +222,7 @@ export default function AdminParticipantsPage() {
                       'size-9 rounded-xl bg-white border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all',
                       isActive
                         ? 'text-rose-400 hover:bg-rose-50 hover:border-rose-200 hover:text-rose-500'
-                        : 'text-teal-400 hover:bg-teal-50 hover:border-teal-200 hover:text-teal-500'
+                        : 'text-indigo-400 hover:bg-indigo-50 hover:border-indigo-200 hover:text-indigo-500'
                     )}
                     title={isActive ? 'Blokir' : 'Aktifkan'}
                   >

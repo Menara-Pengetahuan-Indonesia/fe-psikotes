@@ -54,7 +54,7 @@ export function AdminDashboard() {
   }, [])
 
   return (
-    <div className="max-w-7xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-1000">
+    <div className="max-w-7xl mx-auto">
 
       {/* HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 px-2 gap-4">
@@ -117,7 +117,7 @@ export function AdminDashboard() {
           return (
             <div
               key={stat.label}
-              className={`lg:col-span-2 rounded-[2rem] p-6 shadow-sm group hover:shadow-md transition-all ${stat.bgColor}`}
+              className={`lg:col-span-2 rounded-[2rem] p-6 shadow-sm group hover:shadow-md transition-[box-shadow] ${stat.bgColor}`}
             >
               <div className="flex items-center justify-between mb-4">
                 <div className={`size-10 rounded-xl bg-white/80 ${stat.textColor} flex items-center justify-center`}>

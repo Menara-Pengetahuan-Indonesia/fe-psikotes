@@ -29,7 +29,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
               'w-10 h-10 bg-slate-900 rounded-xl',
               'flex items-center justify-center',
               'shadow-xl shadow-black/10 group-hover:scale-105',
-              'transition-all duration-300',
+              'transition-colors duration-300',
             )}>
               <Sparkles
                 className="w-5 h-5 text-white fill-white"
