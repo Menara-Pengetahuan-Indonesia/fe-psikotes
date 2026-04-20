@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { MessageCircle, X, Send, Loader2, Bot, User } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const CHATBOT_API = process.env.NEXT_PUBLIC_CHATBOT_URL || 'http://localhost:8000'
+const CHATBOT_API = process.env.NEXT_PUBLIC_CHATBOT_URL || 'http://localhost:8001'
 
 interface Message {
   role: 'user' | 'assistant'
