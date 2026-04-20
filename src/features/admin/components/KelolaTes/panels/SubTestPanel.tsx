@@ -9,7 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { cn } from '@/lib/utils'
 import { QuestionList } from '@/features/admin/components/QuestionManagement/QuestionList'
-import { BulkImportCSV } from '@/features/admin/components/QuestionManagement/BulkImportCSV'
+
 import { useSubTests, useUpdateSubTest } from '@/features/admin/hooks'
 
 interface SubTestPanelProps {
@@ -87,9 +87,6 @@ export function SubTestPanel({ subTestId }: SubTestPanelProps) {
         <h3 className="text-base font-black text-slate-900 tracking-tight">Soal</h3>
         <QuestionList subTestId={subTestId} />
       </div>
-
-      {/* Bulk import */}
-      <BulkImportCSV subTestId={subTestId} />
 
       {/* Edit dialog */}
       <Dialog open={formOpen} onOpenChange={setFormOpen}>

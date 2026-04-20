@@ -1,5 +1,6 @@
 'use client'
 
+import { Breadcrumb } from './Breadcrumb'
 import { PackagePanel } from './panels/PackagePanel'
 import { ChildPackagePanel } from './panels/ChildPackagePanel'
 import { PackageTypePanel } from './panels/PackageTypePanel'
@@ -16,23 +17,27 @@ interface ContentPanelProps {
 export function ContentPanel({ selectedNode, onSelect }: ContentPanelProps) {
   if (!selectedNode) return <EmptyState />
 
-  switch (selectedNode.type) {
-    case 'package':
-      return <PackagePanel packageId={selectedNode.id} onSelect={onSelect} />
-    case 'childPackage':
-      return <ChildPackagePanel childPackageId={selectedNode.id} onSelect={onSelect} />
-    case 'packageType':
-      return <PackageTypePanel packageTypeId={selectedNode.id} onSelect={onSelect} />
-    case 'test':
-      return (
-        <TestPanel
-          testId={selectedNode.id}
-          onSelect={onSelect}
-        />
-      )
-    case 'subTest':
-      return <SubTestPanel subTestId={selectedNode.id} />
-    default:
-      return <EmptyState />
-  }
+  const panel = (() => {
+    switch (selectedNode.type) {
+      case 'package':
+        return <PackagePanel packageId={selectedNode.id} onSelect={onSelect} />
+      case 'childPackage':
+        return <ChildPackagePanel childPackageId={selectedNode.id} onSelect={onSelect} />
+      case 'packageType':
+        return <PackageTypePanel packageTypeId={selectedNode.id} onSelect={onSelect} />
+      case 'test':
+        return <TestPanel testId={selectedNode.id} onSelect={onSelect} />
+      case 'subTest':
+        return <SubTestPanel subTestId={selectedNode.id} />
+      default:
+        return <EmptyState />
+    }
+  })()
+
+  return (
+    <div>
+      <Breadcrumb selectedNode={selectedNode} onSelect={onSelect} />
+      {panel}
+    </div>
+  )
 }

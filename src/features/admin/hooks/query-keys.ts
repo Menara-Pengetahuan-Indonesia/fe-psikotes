@@ -23,4 +23,7 @@ export const adminKeys = {
     all: ['admin', 'questions'] as const,
     detail: (id: string) => ['admin', 'questions', id] as const,
   },
+  users: {
+    all: ['admin', 'users'] as const,
+  },
 }

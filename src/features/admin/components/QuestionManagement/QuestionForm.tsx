@@ -103,11 +103,24 @@ export function QuestionForm({
             ],
       })
       setImagePreview(initialData?.imageUrl ?? null)
+      setEssayKeywords(initialData?.correctAnswer?.correctEssayKeywords ?? [])
+      setKeywordInput('')
+      setMinScale(initialData?.correctAnswer?.minScaleValue ?? 1)
+      setMaxScale(initialData?.correctAnswer?.maxScaleValue ?? 5)
+      setScaleWeights(initialData?.correctAnswer?.scaleWeights ?? {})
     }
   }, [open, initialData, isEditing, reset, subTestId])
 
   const questionType = watch('questionType')
   const showOptions = questionType === 'MULTIPLE_CHOICE' || questionType === 'CHECKBOX'
+  const showEssay = questionType === 'ESSAY'
+  const showScale = questionType === 'SCALE_RATING'
+
+  const [essayKeywords, setEssayKeywords] = useState<string[]>([])
+  const [keywordInput, setKeywordInput] = useState('')
+  const [minScale, setMinScale] = useState(1)
+  const [maxScale, setMaxScale] = useState(5)
+  const [scaleWeights, setScaleWeights] = useState<Record<string, number>>({})
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -121,6 +134,12 @@ export function QuestionForm({
   }
 
   const onSubmit = async (data: QuestionFormValues) => {
+    const correctAnswer = showEssay
+      ? { correctEssayKeywords: essayKeywords }
+      : showScale
+        ? { minScaleValue: minScale, maxScaleValue: maxScale, scaleWeights }
+        : undefined
+
     try {
       if (isEditing && initialData) {
         await updateQuestion.mutateAsync({
@@ -134,6 +153,7 @@ export function QuestionForm({
             options: showOptions
               ? data.options?.filter((o) => o.optionText.trim())
               : undefined,
+            correctAnswer,
           },
         })
       } else {
@@ -147,6 +167,7 @@ export function QuestionForm({
           options: showOptions
             ? data.options?.filter((o) => o.optionText.trim())
             : undefined,
+          correctAnswer,
         })
       }
       reset()
@@ -252,6 +273,97 @@ export function QuestionForm({
                 ))}
               </div>
               <p className="text-xs text-muted-foreground">Centang checkbox untuk menandai jawaban benar.</p>
+            </div>
+          )}
+
+          {/* Essay Keywords */}
+          {showEssay && (
+            <div className="space-y-3 border-t pt-4">
+              <label className="font-semibold text-sm">Kata Kunci Jawaban (Essay)</label>
+              <p className="text-xs text-muted-foreground">Tambahkan kata kunci yang digunakan untuk penilaian otomatis.</p>
+              <div className="flex gap-2">
+                <Input
+                  placeholder="Ketik kata kunci..."
+                  value={keywordInput}
+                  onChange={(e) => setKeywordInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault()
+                      if (keywordInput.trim()) {
+                        setEssayKeywords([...essayKeywords, keywordInput.trim()])
+                        setKeywordInput('')
+                      }
+                    }
+                  }}
+                  className="flex-1"
+                />
+                <Button type="button" size="sm" variant="outline"
+                  onClick={() => {
+                    if (keywordInput.trim()) {
+                      setEssayKeywords([...essayKeywords, keywordInput.trim()])
+                      setKeywordInput('')
+                    }
+                  }}>
+                  <Plus className="w-4 h-4" />
+                </Button>
+              </div>
+              {essayKeywords.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {essayKeywords.map((kw, i) => (
+                    <span key={i} className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-medium border border-blue-200">
+                      {kw}
+                      <button type="button" onClick={() => setEssayKeywords(essayKeywords.filter((_, idx) => idx !== i))}
+                        className="hover:text-red-500">
+                        <X className="w-3 h-3" />
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Scale Rating */}
+          {showScale && (
+            <div className="space-y-3 border-t pt-4">
+              <label className="font-semibold text-sm">Pengaturan Skala</label>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="text-xs text-muted-foreground">Nilai Minimum</label>
+                  <Input type="number" value={minScale} onChange={(e) => {
+                    const v = Number(e.target.value)
+                    setMinScale(v)
+                    const newWeights: Record<string, number> = {}
+                    for (let i = v; i <= maxScale; i++) newWeights[String(i)] = scaleWeights[String(i)] ?? i
+                    setScaleWeights(newWeights)
+                  }} />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs text-muted-foreground">Nilai Maksimum</label>
+                  <Input type="number" value={maxScale} onChange={(e) => {
+                    const v = Number(e.target.value)
+                    setMaxScale(v)
+                    const newWeights: Record<string, number> = {}
+                    for (let i = minScale; i <= v; i++) newWeights[String(i)] = scaleWeights[String(i)] ?? i
+                    setScaleWeights(newWeights)
+                  }} />
+                </div>
+              </div>
+              {minScale <= maxScale && (
+                <div className="space-y-2">
+                  <label className="text-xs text-muted-foreground">Bobot per Skala</label>
+                  <div className="grid grid-cols-5 gap-2">
+                    {Array.from({ length: maxScale - minScale + 1 }, (_, i) => minScale + i).map((val) => (
+                      <div key={val} className="space-y-1">
+                        <label className="text-xs font-medium text-center block">{val}</label>
+                        <Input type="number" className="text-center text-sm h-8"
+                          value={scaleWeights[String(val)] ?? val}
+                          onChange={(e) => setScaleWeights({ ...scaleWeights, [String(val)]: Number(e.target.value) })} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
