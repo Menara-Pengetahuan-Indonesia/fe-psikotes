@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server'
 const PROTECTED_ROUTES = ['/dashboard', '/pengguna', '/admin', '/superadmin']
 const AUTH_ROUTES = ['/masuk', '/daftar', '/forgot-password']
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   const isAuthenticated = request.cookies.get('auth-active')?.value === '1'
   const role = request.cookies.get('auth-role')?.value
