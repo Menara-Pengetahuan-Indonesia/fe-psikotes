@@ -1,12 +1,10 @@
 import type { Metadata } from "next"
-import dynamic from "next/dynamic"
 import { Plus_Jakarta_Sans } from "next/font/google"
 import { QueryProvider } from "@/shared/components/query-provider"
 import { Navbar } from "@/shared/components/layout/navbar"
 import { Footer } from "@/shared/components/layout/footer"
+import { ChatbotWidget } from "@/features/psikotes/components/chatbot-widget"
 import "./globals.css"
-
-const ChatbotWidget = dynamic(() => import("@/features/psikotes/components/chatbot-widget").then(m => m.ChatbotWidget), { ssr: false })
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
