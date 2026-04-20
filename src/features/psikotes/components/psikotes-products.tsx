@@ -2,17 +2,36 @@
 
 import { Target, Zap } from 'lucide-react'
 import { usePublicPackages } from '../hooks/use-public-packages'
-import { PackageCard, PackageGridSkeleton, PackageEmptyState } from './package-card'
+import { ChildPackageCard, PackageGridSkeleton, PackageEmptyState } from './package-card'
+
+const CATEGORY_SLUG_MAP: Record<string, string> = {
+  diri: 'diri-pribadi',
+  relationship: 'relationship',
+  bisnis: 'bisnis',
+}
+
+function getCategorySlug(packageName: string): string {
+  const lower = packageName.toLowerCase()
+  for (const [key, slug] of Object.entries(CATEGORY_SLUG_MAP)) {
+    if (lower.includes(key)) return slug
+  }
+  return 'diri-pribadi'
+}
 
 export function PsikotesProducts() {
   const { data: packages, isLoading } = usePublicPackages()
   const activePackages = packages?.filter(p => p.isActive) ?? []
+  const allChildren = activePackages.flatMap(pkg =>
+    (pkg.childPackages?.filter(c => c.isActive) ?? []).map(child => ({
+      ...child,
+      categorySlug: getCategorySlug(pkg.name),
+    }))
+  )
 
   return (
     <section id="masa-depan" className="py-12 md:py-16 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
-        {/* Header */}
         <div className="space-y-4 max-w-2xl mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-100 border border-accent-200 shadow-sm">
             <Zap className="w-3 h-3 text-accent-600 fill-accent-600" />
@@ -26,20 +45,18 @@ export function PsikotesProducts() {
           </p>
         </div>
 
-        {/* Product Grid */}
         {isLoading ? (
           <PackageGridSkeleton />
-        ) : activePackages.length === 0 ? (
+        ) : allChildren.length === 0 ? (
           <PackageEmptyState />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {activePackages.map((pkg) => (
-              <PackageCard key={pkg.id} pkg={pkg} />
+            {allChildren.map((child) => (
+              <ChildPackageCard key={child.id} child={child} categorySlug={child.categorySlug} />
             ))}
           </div>
         )}
 
-        {/* Bottom CTA */}
         <div className="mt-20 p-8 md:p-12 rounded-[3rem] bg-primary-600 shadow-2xl shadow-primary-900/20 relative overflow-hidden">
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="space-y-4 text-center md:text-left">

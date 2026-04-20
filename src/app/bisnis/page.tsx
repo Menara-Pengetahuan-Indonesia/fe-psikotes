@@ -2,11 +2,12 @@
 
 import { Building2, Phone } from 'lucide-react'
 import { usePublicPackages } from '@/features/psikotes/hooks/use-public-packages'
-import { PackageCard, PackageGridSkeleton, PackageEmptyState } from '@/features/psikotes/components/package-card'
+import { ChildPackageCard, PackageGridSkeleton, PackageEmptyState } from '@/features/psikotes/components/package-card'
 
 export default function BisnisPage() {
   const { data: packages, isLoading } = usePublicPackages()
-  const activePackages = packages?.filter(p => p.isActive) ?? []
+  const pkg = packages?.find(p => p.name.toLowerCase().includes('bisnis'))
+  const children = pkg?.childPackages?.filter(c => c.isActive) ?? []
 
   return (
     <main className="min-h-screen bg-background">
@@ -32,12 +33,12 @@ export default function BisnisPage() {
         <div className="max-w-7xl mx-auto px-6">
           {isLoading ? (
             <PackageGridSkeleton />
-          ) : activePackages.length === 0 ? (
+          ) : children.length === 0 ? (
             <PackageEmptyState message="Belum ada paket tes untuk kategori Bisnis & Perusahaan. Silakan cek kembali nanti." />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {activePackages.map((pkg) => (
-                <PackageCard key={pkg.id} pkg={pkg} />
+              {children.map((child) => (
+                <ChildPackageCard key={child.id} child={child} categorySlug="bisnis" />
               ))}
             </div>
           )}

@@ -1,50 +1,80 @@
 'use client'
 
 import Link from 'next/link'
-import { Package as PackageIcon, Loader2, Inbox } from 'lucide-react'
-import type { Package } from '@/features/admin/types'
+import { BookOpen, Loader2, Inbox, ArrowRight } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import type { ChildPackage } from '@/features/admin/types'
 
-interface PackageCardProps {
-  pkg: Package
+function formatPrice(price: number) {
+  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(price)
 }
 
-export function PackageCard({ pkg }: PackageCardProps) {
+interface ChildPackageCardProps {
+  child: ChildPackage
+  categorySlug: string
+}
+
+export function ChildPackageCard({ child, categorySlug }: ChildPackageCardProps) {
+  const tiers = child.packageTypes?.filter(pt => pt.isActive) ?? []
+  const lowestPrice = tiers.length > 0 ? Math.min(...tiers.map(t => t.price)) : null
+
   return (
     <Link
-      href={`/admin/packages/${pkg.id}`}
-      className="group bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col p-6 gap-4"
+      href={`/${categorySlug}/${child.id}`}
+      className="group bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
     >
-      <div className="flex items-start justify-between">
-        <div className="w-11 h-11 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center">
-          <PackageIcon className="w-5 h-5" />
+      <div className="p-6 flex-1 space-y-4">
+        <div className="flex items-start justify-between">
+          <div className="w-11 h-11 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center">
+            <BookOpen className="w-5 h-5" />
+          </div>
+          {lowestPrice !== null && (
+            <span className="text-xs font-bold text-primary-600">
+              Mulai {formatPrice(lowestPrice)}
+            </span>
+          )}
         </div>
-        {pkg.isActive ? (
-          <span className="px-2.5 py-1 rounded-full bg-emerald-50 text-[10px] font-bold text-emerald-600 uppercase tracking-wider border border-emerald-100">
-            Aktif
-          </span>
-        ) : (
-          <span className="px-2.5 py-1 rounded-full bg-slate-50 text-[10px] font-bold text-slate-400 uppercase tracking-wider border border-slate-100">
-            Nonaktif
-          </span>
+
+        <div className="space-y-1.5">
+          <h3 className="font-bold text-lg text-slate-900 leading-tight group-hover:text-primary-600 transition-colors">
+            {child.name}
+          </h3>
+          {child.description && (
+            <p className="text-sm text-slate-500 leading-relaxed line-clamp-2">
+              {child.description}
+            </p>
+          )}
+        </div>
+
+        {tiers.length > 0 && (
+          <div className="space-y-2">
+            {tiers.map((tier) => (
+              <div
+                key={tier.id}
+                className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100"
+              >
+                <div className="flex items-center gap-2">
+                  <div className={cn(
+                    'w-2 h-2 rounded-full',
+                    tier.name.toLowerCase().includes('dasar') ? 'bg-emerald-400' :
+                    tier.name.toLowerCase().includes('lengkap') ? 'bg-blue-400' :
+                    'bg-violet-400'
+                  )} />
+                  <span className="text-sm font-semibold text-slate-700">{tier.name}</span>
+                </div>
+                <span className="text-sm font-bold text-slate-900">{formatPrice(tier.price)}</span>
+              </div>
+            ))}
+          </div>
         )}
       </div>
 
-      <div className="flex-1 space-y-1.5">
-        <h3 className="font-bold text-base text-slate-900 leading-tight group-hover:text-primary-600 transition-colors">
-          {pkg.name}
-        </h3>
-        {pkg.description && (
-          <p className="text-sm text-slate-500 leading-relaxed line-clamp-2">
-            {pkg.description}
-          </p>
-        )}
-      </div>
-
-      {pkg.childPackages && pkg.childPackages.length > 0 && (
-        <div className="text-xs text-slate-400 font-medium">
-          {pkg.childPackages.length} sub-paket
+      <div className="px-6 pb-6">
+        <div className="flex items-center justify-center gap-2 h-11 rounded-xl bg-primary-600 text-white text-sm font-bold group-hover:bg-primary-700 transition-colors">
+          Lihat Detail
+          <ArrowRight className="w-4 h-4" />
         </div>
-      )}
+      </div>
     </Link>
   )
 }
@@ -52,16 +82,22 @@ export function PackageCard({ pkg }: PackageCardProps) {
 export function PackageGridSkeleton() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {Array.from({ length: 6 }).map((_, i) => (
+      {Array.from({ length: 3 }).map((_, i) => (
         <div key={i} className="bg-white rounded-2xl border border-slate-100 p-6 space-y-4 animate-pulse">
           <div className="flex justify-between">
             <div className="w-11 h-11 rounded-xl bg-slate-100" />
-            <div className="w-14 h-6 rounded-full bg-slate-100" />
+            <div className="w-24 h-5 rounded bg-slate-100" />
           </div>
           <div className="space-y-2">
-            <div className="h-5 bg-slate-100 rounded w-3/4" />
+            <div className="h-6 bg-slate-100 rounded w-3/4" />
             <div className="h-4 bg-slate-50 rounded w-full" />
           </div>
+          <div className="space-y-2">
+            <div className="h-10 bg-slate-50 rounded-xl" />
+            <div className="h-10 bg-slate-50 rounded-xl" />
+            <div className="h-10 bg-slate-50 rounded-xl" />
+          </div>
+          <div className="h-11 bg-slate-100 rounded-xl" />
         </div>
       ))}
     </div>

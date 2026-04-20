@@ -2,15 +2,15 @@
 
 import { User } from 'lucide-react'
 import { usePublicPackages } from '@/features/psikotes/hooks/use-public-packages'
-import { PackageCard, PackageGridSkeleton, PackageEmptyState } from '@/features/psikotes/components/package-card'
+import { ChildPackageCard, PackageGridSkeleton, PackageEmptyState } from '@/features/psikotes/components/package-card'
 
 export default function DiriPribadiPage() {
   const { data: packages, isLoading } = usePublicPackages()
-  const activePackages = packages?.filter(p => p.isActive) ?? []
+  const pkg = packages?.find(p => p.name.toLowerCase().includes('diri'))
+  const children = pkg?.childPackages?.filter(c => c.isActive) ?? []
 
   return (
     <main className="min-h-screen bg-background">
-      {/* Hero */}
       <section className="bg-linear-to-b from-primary-900 to-primary-700 pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-6 text-center space-y-6">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20">
@@ -26,17 +26,16 @@ export default function DiriPribadiPage() {
         </div>
       </section>
 
-      {/* Products */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
           {isLoading ? (
             <PackageGridSkeleton />
-          ) : activePackages.length === 0 ? (
+          ) : children.length === 0 ? (
             <PackageEmptyState message="Belum ada paket tes untuk kategori Diri Pribadi. Silakan cek kembali nanti." />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {activePackages.map((pkg) => (
-                <PackageCard key={pkg.id} pkg={pkg} />
+              {children.map((child) => (
+                <ChildPackageCard key={child.id} child={child} categorySlug="diri-pribadi" />
               ))}
             </div>
           )}
