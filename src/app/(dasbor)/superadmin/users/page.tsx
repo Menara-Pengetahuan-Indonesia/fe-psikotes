@@ -9,8 +9,10 @@ import {
   ShieldBan,
   UserPlus,
   Mail,
+  Phone,
   Calendar,
   Trash2,
+  Pencil,
   User,
   Crown,
   AlertCircle,
@@ -24,33 +26,14 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
 import { ConfirmDialog } from '@/features/admin/components/Common/ConfirmDialog'
+import { useUsers, useCreateUser, useUpdateUser, useDeleteUser } from '@/features/admin/hooks'
+import type { User as UserType } from '@/features/admin/services'
 
 type UserRole = 'USER' | 'ADMIN' | 'SUPERADMIN'
-type FilterType = 'all' | 'USER' | 'ADMIN' | 'SUPERADMIN'
-
-interface DummyUser {
-  id: string
-  name: string
-  email: string
-  role: UserRole
-  status: 'active' | 'blocked'
-  registeredAt: string
-}
-
-const dummyUsers: DummyUser[] = [
-  { id: '1', name: 'Super Admin', email: 'superadmin@example.com', role: 'SUPERADMIN', status: 'active', registeredAt: '2025-12-01T08:00:00Z' },
-  { id: '2', name: 'Admin Utama', email: 'admin@example.com', role: 'ADMIN', status: 'active', registeredAt: '2026-01-05T10:00:00Z' },
-  { id: '3', name: 'Rina Wati', email: 'rina.wati@email.com', role: 'ADMIN', status: 'active', registeredAt: '2026-01-20T09:00:00Z' },
-  { id: '4', name: 'Ahmad Fauzi', email: 'ahmad.fauzi@email.com', role: 'USER', status: 'active', registeredAt: '2026-01-15T08:00:00Z' },
-  { id: '5', name: 'Siti Nurhaliza', email: 'siti.nurhaliza@email.com', role: 'USER', status: 'active', registeredAt: '2026-01-20T10:30:00Z' },
-  { id: '6', name: 'Budi Santoso', email: 'budi.santoso@email.com', role: 'USER', status: 'active', registeredAt: '2026-02-01T14:00:00Z' },
-  { id: '7', name: 'Dewi Lestari', email: 'dewi.lestari@email.com', role: 'USER', status: 'active', registeredAt: '2026-02-10T09:15:00Z' },
-  { id: '8', name: 'Rizky Pratama', email: 'rizky.pratama@email.com', role: 'USER', status: 'blocked', registeredAt: '2026-02-14T11:00:00Z' },
-  { id: '9', name: 'Maya Putri', email: 'maya.putri@email.com', role: 'USER', status: 'blocked', registeredAt: '2026-03-05T13:20:00Z' },
-  { id: '10', name: 'Hendra Wijaya', email: 'hendra.wijaya@email.com', role: 'USER', status: 'active', registeredAt: '2026-03-10T10:00:00Z' },
-]
+type FilterType = 'all' | UserRole
 
 const roleConfig: Record<UserRole, { label: string; badge: string; icon: typeof Shield }> = {
   SUPERADMIN: { label: 'Super Admin', badge: 'bg-rose-50 text-rose-600', icon: Crown },
@@ -72,60 +55,102 @@ function formatDate(dateStr: string) {
 }
 
 export default function SuperAdminUsersPage() {
+  const { data: users, isLoading } = useUsers()
+  const createUser = useCreateUser()
+  const updateUser = useUpdateUser()
+  const deleteUser = useDeleteUser()
+
   const [filter, setFilter] = useState<FilterType>('all')
   const [search, setSearch] = useState('')
-  const [users, setUsers] = useState<DummyUser[]>(dummyUsers)
   const [deleteId, setDeleteId] = useState<string | null>(null)
   const [formOpen, setFormOpen] = useState(false)
+  const [editingUser, setEditingUser] = useState<UserType | null>(null)
 
-  // Form state
-  const [formName, setFormName] = useState('')
+  const [formFirstName, setFormFirstName] = useState('')
+  const [formLastName, setFormLastName] = useState('')
   const [formEmail, setFormEmail] = useState('')
+  const [formTelephone, setFormTelephone] = useState('')
+  const [formPassword, setFormPassword] = useState('')
   const [formRole, setFormRole] = useState<UserRole>('USER')
   const [formError, setFormError] = useState('')
 
-  const superadminCount = users.filter((u) => u.role === 'SUPERADMIN').length
-  const adminCount = users.filter((u) => u.role === 'ADMIN').length
-  const userCount = users.filter((u) => u.role === 'USER').length
+  const allUsers = users ?? []
+  const superadminCount = allUsers.filter(u => u.role === 'SUPERADMIN').length
+  const adminCount = allUsers.filter(u => u.role === 'ADMIN').length
+  const userCount = allUsers.filter(u => u.role === 'USER').length
 
-  const filtered = users.filter((u) => {
+  const filtered = allUsers.filter(u => {
     const matchesFilter = filter === 'all' || u.role === filter
-    const matchesSearch = !search || u.name.toLowerCase().includes(search.toLowerCase()) || u.email.toLowerCase().includes(search.toLowerCase())
+    const fullName = `${u.firstName} ${u.lastName}`.toLowerCase()
+    const matchesSearch = !search || fullName.includes(search.toLowerCase()) || u.email.toLowerCase().includes(search.toLowerCase())
     return matchesFilter && matchesSearch
   })
 
   const openCreate = () => {
-    setFormName('')
+    setEditingUser(null)
+    setFormFirstName('')
+    setFormLastName('')
     setFormEmail('')
+    setFormTelephone('')
+    setFormPassword('')
     setFormRole('USER')
     setFormError('')
     setFormOpen(true)
   }
 
-  const handleAddUser = () => {
-    if (!formName.trim()) { setFormError('Nama wajib diisi.'); return }
-    if (!formEmail.trim()) { setFormError('Email wajib diisi.'); return }
-    const newUser: DummyUser = {
-      id: String(Date.now()),
-      name: formName.trim(),
-      email: formEmail.trim(),
-      role: formRole,
-      status: 'active',
-      registeredAt: new Date().toISOString(),
-    }
-    setUsers((prev) => [newUser, ...prev])
-    setFormOpen(false)
+  const openEdit = (user: UserType) => {
+    setEditingUser(user)
+    setFormFirstName(user.firstName)
+    setFormLastName(user.lastName)
+    setFormEmail(user.email)
+    setFormTelephone(user.telephone ?? '')
+    setFormPassword('')
+    setFormRole(user.role)
+    setFormError('')
+    setFormOpen(true)
   }
 
-  const handleToggleStatus = (id: string) => {
-    setUsers((prev) => prev.map((u) => u.id === id ? { ...u, status: u.status === 'active' ? 'blocked' as const : 'active' as const } : u))
+  const handleSubmit = async () => {
+    if (!formFirstName.trim()) { setFormError('Nama depan wajib diisi.'); return }
+    if (!formEmail.trim()) { setFormError('Email wajib diisi.'); return }
+
+    try {
+      if (editingUser) {
+        await updateUser.mutateAsync({
+          id: editingUser.id,
+          dto: {
+            firstName: formFirstName.trim(),
+            lastName: formLastName.trim(),
+            email: formEmail.trim(),
+            telephone: formTelephone.trim() || undefined,
+            ...(formPassword ? { password: formPassword } : {}),
+            role: formRole,
+          },
+        })
+      } else {
+        if (!formPassword) { setFormError('Password wajib diisi.'); return }
+        await createUser.mutateAsync({
+          firstName: formFirstName.trim(),
+          lastName: formLastName.trim(),
+          email: formEmail.trim(),
+          telephone: formTelephone.trim() || undefined,
+          password: formPassword,
+          role: formRole,
+        })
+      }
+      setFormOpen(false)
+    } catch (err: unknown) {
+      const msg = (err as { response?: { data?: { message?: string | string[] } } })?.response?.data?.message
+      setFormError(Array.isArray(msg) ? msg[0] : msg || 'Terjadi kesalahan.')
+    }
   }
 
   const handleDelete = () => {
     if (!deleteId) return
-    setUsers((prev) => prev.filter((u) => u.id !== deleteId))
-    setDeleteId(null)
+    deleteUser.mutate(deleteId, { onSuccess: () => setDeleteId(null) })
   }
+
+  const isPending = createUser.isPending || updateUser.isPending
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -133,15 +158,9 @@ export default function SuperAdminUsersPage() {
       <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-rose-900 p-8 md:p-10 text-white">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <p className="text-rose-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
-              Super Admin
-            </p>
-            <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
-              Kelola User.
-            </h1>
-            <p className="text-slate-400 font-medium text-sm">
-              Manage semua akun pengguna, admin, dan super admin.
-            </p>
+            <p className="text-rose-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">User Management</p>
+            <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">Kelola User.</h1>
+            <p className="text-slate-400 font-medium text-sm">Manage semua akun pengguna, admin, dan super admin.</p>
           </div>
           <Button
             size="lg"
@@ -153,44 +172,30 @@ export default function SuperAdminUsersPage() {
           </Button>
         </div>
 
-        {/* Stats */}
         <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-rose-500/30 flex items-center justify-center">
-              <Users className="size-5 text-rose-300" />
-            </div>
-            <div>
-              <p className="text-2xl font-black leading-none">{dummyUsers.length}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total</p>
-            </div>
-          </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-violet-500/30 flex items-center justify-center">
-              <Crown className="size-5 text-violet-300" />
-            </div>
-            <div>
-              <p className="text-2xl font-black leading-none">{superadminCount}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Super Admin</p>
-            </div>
-          </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-              <Shield className="size-5 text-indigo-300" />
-            </div>
-            <div>
-              <p className="text-2xl font-black leading-none">{adminCount}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Admin</p>
-            </div>
-          </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-teal-500/30 flex items-center justify-center">
-              <User className="size-5 text-teal-300" />
-            </div>
-            <div>
-              <p className="text-2xl font-black leading-none">{userCount}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Pengguna</p>
-            </div>
-          </div>
+          {[
+            { count: allUsers.length, label: 'Total', icon: Users, color: 'bg-rose-500/30', iconColor: 'text-rose-300' },
+            { count: superadminCount, label: 'Super Admin', icon: Crown, color: 'bg-violet-500/30', iconColor: 'text-violet-300' },
+            { count: adminCount, label: 'Admin', icon: Shield, color: 'bg-indigo-500/30', iconColor: 'text-indigo-300' },
+            { count: userCount, label: 'Pengguna', icon: User, color: 'bg-teal-500/30', iconColor: 'text-teal-300' },
+          ].map(s => {
+            const Icon = s.icon
+            return (
+              <div key={s.label} className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+                <div className={cn('size-10 rounded-xl flex items-center justify-center', s.color)}>
+                  <Icon className={cn('size-5', s.iconColor)} />
+                </div>
+                <div>
+                  {isLoading ? (
+                    <Skeleton className="h-7 w-8 bg-white/20 rounded-lg" />
+                  ) : (
+                    <p className="text-2xl font-black leading-none">{s.count}</p>
+                  )}
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">{s.label}</p>
+                </div>
+              </div>
+            )
+          })}
         </div>
 
         <div className="absolute -right-10 -top-10 opacity-5 pointer-events-none">
@@ -202,11 +207,11 @@ export default function SuperAdminUsersPage() {
       <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3">
         <div className="flex items-center bg-white rounded-xl border border-slate-100 p-1 gap-1">
           {([
-            { key: 'all', label: 'Semua', count: dummyUsers.length },
-            { key: 'SUPERADMIN', label: 'Super Admin', count: superadminCount },
-            { key: 'ADMIN', label: 'Admin', count: adminCount },
-            { key: 'USER', label: 'Pengguna', count: userCount },
-          ] as const).map((f) => (
+            { key: 'all' as const, label: 'Semua', count: allUsers.length },
+            { key: 'SUPERADMIN' as const, label: 'Super Admin', count: superadminCount },
+            { key: 'ADMIN' as const, label: 'Admin', count: adminCount },
+            { key: 'USER' as const, label: 'Pengguna', count: userCount },
+          ]).map(f => (
             <button
               key={f.key}
               onClick={() => setFilter(f.key)}
@@ -219,7 +224,7 @@ export default function SuperAdminUsersPage() {
             >
               {f.label}{' '}
               <span className={cn('ml-1', filter === f.key ? 'text-slate-400' : 'text-slate-300')}>
-                {f.count}
+                {isLoading ? '…' : f.count}
               </span>
             </button>
           ))}
@@ -229,14 +234,26 @@ export default function SuperAdminUsersPage() {
           <Input
             placeholder="Cari nama atau email..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={e => setSearch(e.target.value)}
             className="pl-11 h-11 bg-white border-slate-100 rounded-xl text-sm font-medium focus:ring-2 focus:ring-rose-500/10"
           />
         </div>
       </div>
 
       {/* LIST */}
-      {filtered.length === 0 ? (
+      {isLoading ? (
+        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden divide-y divide-slate-50">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} className="flex items-center gap-5 px-8 py-5">
+              <Skeleton className="size-12 rounded-2xl" />
+              <div className="flex-1 space-y-2">
+                <Skeleton className="h-5 w-40" />
+                <Skeleton className="h-4 w-56" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : filtered.length === 0 ? (
         <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
           <div className="size-16 rounded-2xl bg-rose-50 flex items-center justify-center mb-5">
             <Users className="size-8 text-rose-400" />
@@ -250,61 +267,54 @@ export default function SuperAdminUsersPage() {
             const accent = accentColors[index % accentColors.length]
             const role = roleConfig[user.role]
             const RoleIcon = role.icon
-            const isActive = user.status === 'active'
 
             return (
               <div
                 key={user.id}
                 className="group flex items-center gap-5 px-6 md:px-8 py-5 hover:bg-slate-50/50 transition-all"
               >
-                {/* Avatar */}
                 <div className={cn('size-12 rounded-2xl flex items-center justify-center shrink-0 transition-all group-hover:scale-105 group-hover:shadow-md', accent.bg, accent.text)}>
-                  <RoleIcon className="size-5" />
+                  <span className="text-sm font-black">{user.firstName?.[0]}{user.lastName?.[0]}</span>
                 </div>
 
-                {/* Info */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2.5 mb-0.5">
-                    <h3 className="text-base font-black text-slate-900 truncate">{user.name}</h3>
+                    <h3 className="text-base font-black text-slate-900 truncate">{user.firstName} {user.lastName}</h3>
                     <span className={cn('text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0', role.badge)}>
                       {role.label}
                     </span>
-                    <span className={cn(
-                      'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
-                      isActive ? 'bg-teal-50 text-teal-600' : 'bg-rose-50 text-rose-600'
-                    )}>
-                      {isActive ? 'Aktif' : 'Diblokir'}
-                    </span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-sm text-slate-400 font-medium">
-                    <Mail className="size-3.5" />
-                    <span className="truncate">{user.email}</span>
+                  <div className="flex items-center gap-4 text-sm text-slate-400 font-medium">
+                    <span className="flex items-center gap-1.5 truncate">
+                      <Mail className="size-3.5" />
+                      {user.email}
+                    </span>
+                    {user.telephone && (
+                      <span className="hidden md:flex items-center gap-1.5">
+                        <Phone className="size-3.5" />
+                        {user.telephone}
+                      </span>
+                    )}
                   </div>
                 </div>
 
-                {/* Date */}
                 <div className="hidden lg:flex items-center gap-1.5 text-xs font-medium text-slate-400 shrink-0">
                   <Calendar className="size-3.5" />
-                  <span>{formatDate(user.registeredAt)}</span>
+                  <span>{formatDate(user.createdAt)}</span>
                 </div>
 
-                {/* Actions */}
                 <div className="flex items-center gap-2 shrink-0">
                   <button
-                    onClick={(e) => { e.stopPropagation(); handleToggleStatus(user.id) }}
-                    className={cn(
-                      'size-9 rounded-xl bg-white border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all',
-                      isActive
-                        ? 'text-rose-400 hover:bg-rose-50 hover:border-rose-200 hover:text-rose-500'
-                        : 'text-teal-400 hover:bg-teal-50 hover:border-teal-200 hover:text-teal-500'
-                    )}
-                    title={isActive ? 'Blokir' : 'Aktifkan'}
+                    onClick={() => openEdit(user)}
+                    className="size-9 rounded-xl bg-white border border-slate-100 flex items-center justify-center text-slate-400 opacity-0 group-hover:opacity-100 transition-all hover:bg-indigo-50 hover:border-indigo-200 hover:text-indigo-500"
+                    title="Edit"
                   >
-                    {isActive ? <ShieldBan className="size-4" /> : <ShieldCheck className="size-4" />}
+                    <Pencil className="size-4" />
                   </button>
                   <button
-                    onClick={(e) => { e.stopPropagation(); setDeleteId(user.id) }}
+                    onClick={() => setDeleteId(user.id)}
                     className="size-9 rounded-xl bg-white text-rose-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-rose-50 hover:border-rose-200 hover:text-rose-500"
+                    title="Hapus"
                   >
                     <Trash2 className="size-4" />
                   </button>
@@ -318,35 +328,51 @@ export default function SuperAdminUsersPage() {
       <ConfirmDialog
         open={!!deleteId}
         title="Hapus User"
-        description="Apakah Anda yakin ingin menghapus user ini? Semua data terkait akan ikut terhapus. Tindakan ini tidak dapat dibatalkan."
+        description="Apakah Anda yakin ingin menghapus user ini? Tindakan ini tidak dapat dibatalkan."
         onConfirm={handleDelete}
         onCancel={() => setDeleteId(null)}
+        isPending={deleteUser.isPending}
       />
 
-      {/* ADD USER DIALOG */}
+      {/* ADD / EDIT USER DIALOG */}
       <Dialog open={formOpen} onOpenChange={setFormOpen}>
-        <DialogContent className="max-w-[420px] p-0 border-0 rounded-2xl overflow-hidden bg-white shadow-2xl">
+        <DialogContent className="max-w-[440px] p-0 border-0 rounded-2xl overflow-hidden bg-white shadow-2xl">
           <div className="px-6 pt-6 pb-3">
             <div className="flex items-center gap-3 mb-2">
               <div className="size-9 rounded-xl bg-rose-500 text-white flex items-center justify-center">
-                <UserPlus className="size-4" />
+                {editingUser ? <Pencil className="size-4" /> : <UserPlus className="size-4" />}
               </div>
               <div>
-                <DialogTitle className="text-base font-black text-slate-900">Tambah User</DialogTitle>
-                <DialogDescription className="text-xs text-slate-400 font-medium">Buat akun pengguna baru.</DialogDescription>
+                <DialogTitle className="text-base font-black text-slate-900">
+                  {editingUser ? 'Edit User' : 'Tambah User'}
+                </DialogTitle>
+                <DialogDescription className="text-xs text-slate-400 font-medium">
+                  {editingUser ? 'Perbarui informasi user.' : 'Buat akun pengguna baru.'}
+                </DialogDescription>
               </div>
             </div>
           </div>
           <div className="px-6 pb-6 space-y-4">
             <div className="space-y-3">
-              <div className="space-y-1.5">
-                <Label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Nama Lengkap</Label>
-                <Input
-                  placeholder="Misal: Ahmad Fauzi"
-                  value={formName}
-                  onChange={(e) => { setFormName(e.target.value); setFormError('') }}
-                  className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-rose-500/10"
-                />
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <Label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Nama Depan</Label>
+                  <Input
+                    placeholder="John"
+                    value={formFirstName}
+                    onChange={e => { setFormFirstName(e.target.value); setFormError('') }}
+                    className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-rose-500/10"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <Label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Nama Belakang</Label>
+                  <Input
+                    placeholder="Doe"
+                    value={formLastName}
+                    onChange={e => { setFormLastName(e.target.value); setFormError('') }}
+                    className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-rose-500/10"
+                  />
+                </div>
               </div>
               <div className="space-y-1.5">
                 <Label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Email</Label>
@@ -354,16 +380,38 @@ export default function SuperAdminUsersPage() {
                   type="email"
                   placeholder="email@example.com"
                   value={formEmail}
-                  onChange={(e) => { setFormEmail(e.target.value); setFormError('') }}
+                  onChange={e => { setFormEmail(e.target.value); setFormError('') }}
+                  className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-rose-500/10"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Telepon</Label>
+                <Input
+                  placeholder="081234567890"
+                  value={formTelephone}
+                  onChange={e => { setFormTelephone(e.target.value); setFormError('') }}
+                  className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-rose-500/10"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                  Password {editingUser && <span className="normal-case text-slate-300">(kosongkan jika tidak diubah)</span>}
+                </Label>
+                <Input
+                  type="password"
+                  placeholder={editingUser ? '••••••••' : 'Min. 6 karakter, 1 huruf besar, 1 simbol'}
+                  value={formPassword}
+                  onChange={e => { setFormPassword(e.target.value); setFormError('') }}
                   className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-rose-500/10"
                 />
               </div>
               <div className="space-y-1.5">
                 <Label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Role</Label>
                 <div className="flex gap-2">
-                  {(['USER', 'ADMIN', 'SUPERADMIN'] as const).map((r) => (
+                  {(['USER', 'ADMIN', 'SUPERADMIN'] as const).map(r => (
                     <button
                       key={r}
+                      type="button"
                       onClick={() => setFormRole(r)}
                       className={cn(
                         'flex-1 h-10 rounded-xl text-xs font-black uppercase tracking-wider transition-all border',
@@ -385,10 +433,11 @@ export default function SuperAdminUsersPage() {
             </div>
             <div className="flex items-center gap-2 pt-2">
               <Button
-                onClick={handleAddUser}
+                onClick={handleSubmit}
+                disabled={isPending}
                 className="flex-1 h-11 rounded-xl bg-slate-900 hover:bg-slate-800 font-black text-sm shadow-md transition-all active:scale-95"
               >
-                Tambah
+                {isPending ? 'Menyimpan...' : editingUser ? 'Simpan' : 'Tambah'}
               </Button>
               <Button type="button" variant="ghost" className="h-11 rounded-xl px-4 font-bold text-slate-400 text-sm" onClick={() => setFormOpen(false)}>
                 Batal

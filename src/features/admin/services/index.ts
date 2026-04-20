@@ -163,6 +163,58 @@ export const uploadService = {
   },
 }
 
+// ── USER SERVICE ───────────────────────────────────
+export interface User {
+  id: string
+  email: string
+  firstName: string
+  lastName: string
+  telephone?: string
+  role: 'USER' | 'ADMIN' | 'SUPERADMIN'
+  createdAt: string
+  updatedAt: string
+}
+
+export interface CreateUserDto {
+  firstName: string
+  lastName: string
+  email: string
+  telephone?: string
+  password: string
+  role: 'USER' | 'ADMIN' | 'SUPERADMIN'
+}
+
+export interface UpdateUserDto {
+  firstName?: string
+  lastName?: string
+  email?: string
+  telephone?: string
+  password?: string
+  role?: 'USER' | 'ADMIN' | 'SUPERADMIN'
+}
+
+export const userService = {
+  getAll: async (): Promise<User[]> => {
+    const { data } = await api.get<User[] | ApiResponse<User[]>>('/users')
+    return Array.isArray(data) ? data : data.data
+  },
+  getById: async (id: string): Promise<User> => {
+    const { data } = await api.get<User | ApiResponse<User>>(`/users/${id}`)
+    return (data as ApiResponse<User>).data ?? data as User
+  },
+  create: async (dto: CreateUserDto): Promise<User> => {
+    const { data } = await api.post<User | ApiResponse<User>>('/users', dto)
+    return (data as ApiResponse<User>).data ?? data as User
+  },
+  update: async (id: string, dto: UpdateUserDto): Promise<User> => {
+    const { data } = await api.patch<User | ApiResponse<User>>(`/users/${id}`, dto)
+    return (data as ApiResponse<User>).data ?? data as User
+  },
+  delete: async (id: string): Promise<void> => {
+    await api.delete(`/users/${id}`)
+  },
+}
+
 // ── PUBLIC PACKAGE SERVICE (unauthenticated) ─────────
 export const publicPackageService = {
   getAll: async (): Promise<PublicPackage[]> => {

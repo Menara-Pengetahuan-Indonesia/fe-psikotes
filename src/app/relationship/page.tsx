@@ -38,7 +38,7 @@ export default function RelationshipPage() {
           {/* Stats strip */}
           <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 pt-8">
             <div className="flex flex-col items-center">
-              <span className="text-3xl md:text-4xl font-black text-white tracking-tight">4</span>
+              <span className="text-3xl md:text-4xl font-black text-white tracking-tight">10</span>
               <span className="text-[10px] font-black text-primary-200 uppercase tracking-widest mt-1">Assessment</span>
             </div>
             <div className="w-px h-10 bg-white/15 hidden sm:block" />
@@ -64,7 +64,7 @@ export default function RelationshipPage() {
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 border border-primary-100">
               <Sparkles className="w-3 h-3 text-primary-600 fill-primary-600" />
               <span className="text-[10px] font-black text-primary-700 uppercase tracking-widest">
-                {productCount} Assessment Tersedia
+                {RELATIONSHIP_PRODUCTS.length} Assessment Tersedia
               </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-none">
