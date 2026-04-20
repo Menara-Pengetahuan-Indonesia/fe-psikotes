@@ -34,20 +34,24 @@ type FooterCta = {
 // ─── Theme per section ──────────────────────────────────
 
 const EMERALD_THEME: FooterTheme = {
-  bg: 'bg-gradient-to-b from-emerald-50 to-white border-t border-emerald-100',
-  glowTop: 'bg-emerald-100/40',
-  glowBottom: 'bg-amber-100/20',
-  ornamentPlus: 'text-emerald-400/20',
-  ornamentStar: 'text-amber-400/20',
-  textMuted: 'text-gray-500',
-  ctaButton: 'bg-emerald-500 hover:bg-emerald-600 text-white',
-  logoBg: 'bg-emerald-500',
-  brandAccent: 'text-emerald-600',
-  socialIcon: 'text-gray-400 hover:bg-emerald-500 hover:text-white hover:border-emerald-500 border-gray-200 bg-white',
-  linkText: 'text-gray-500',
-  bullet: 'bg-gray-300 group-hover:bg-emerald-500',
-  copyright: 'text-gray-400',
-  madeWith: 'text-gray-400',
+  bg: 'bg-primary-950',
+  glowTop: 'bg-primary-800/30',
+  glowBottom: 'bg-amber-500/10',
+  ornamentPlus: 'text-primary-400/10',
+  ornamentStar: 'text-amber-400/10',
+  textMuted: 'text-primary-200/60',
+  ctaButton:
+    'bg-amber-500 hover:bg-amber-400 text-primary-950',
+  logoBg: 'bg-primary-500',
+  brandAccent: 'text-primary-400',
+  socialIcon:
+    'text-primary-200/60 hover:bg-primary-500'
+    + ' hover:text-white hover:border-primary-500',
+  linkText: 'text-primary-200/70',
+  bullet:
+    'bg-primary-700 group-hover:bg-amber-400',
+  copyright: 'text-primary-200/40',
+  madeWith: 'text-primary-200/30',
 }
 
 export function getFooterTheme(_pathname: string) {
