@@ -3,7 +3,7 @@ import { User, Heart, Briefcase } from 'lucide-react'
 export const NAV_CATEGORIES = [
   {
     id: 'personal',
-    title: 'Diri Pribadi',
+    title: 'Diri Sendiri',
     subtitle: 'Personal Growth',
     icon: User,
     theme: 'bg-white text-indigo-600 border-indigo-100',
@@ -363,7 +363,7 @@ export const NAV_CATEGORIES = [
   },
   {
     id: 'professional',
-    title: 'Bisnis & Perusahaan',
+    title: 'Karir & Bisnis',
     subtitle: 'Professional Path',
     icon: Briefcase,
     theme: 'bg-white text-amber-600 border-amber-100',
