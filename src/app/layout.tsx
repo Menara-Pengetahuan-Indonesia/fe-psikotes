@@ -1,9 +1,12 @@
 import type { Metadata } from "next"
+import dynamic from "next/dynamic"
 import { Plus_Jakarta_Sans } from "next/font/google"
 import { QueryProvider } from "@/shared/components/query-provider"
 import { Navbar } from "@/shared/components/layout/navbar"
 import { Footer } from "@/shared/components/layout/footer"
 import "./globals.css"
+
+const ChatbotWidget = dynamic(() => import("@/features/psikotes/components/chatbot-widget").then(m => m.ChatbotWidget), { ssr: false })
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
@@ -36,6 +39,7 @@ export default function RootLayout({
             {children}
           </MainContainer>
           <Footer />
+          <ChatbotWidget />
           <Toaster />
         </QueryProvider>
       </body>
