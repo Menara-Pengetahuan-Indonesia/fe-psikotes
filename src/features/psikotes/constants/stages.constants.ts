@@ -30,7 +30,7 @@ export const TRANSFORMATION_STAGES = [
       {
         label: 'Pendekatan Solusi',
         icon: CheckCircle2,
-        color: 'text-primary-500',
+        color: 'text-emerald-500',
         items: [
           'Memetakan kondisi mental health secara objektif',
           'Memahami pola attachment & relasi',
@@ -70,10 +70,10 @@ export const TRANSFORMATION_STAGES = [
     ageRange: '28-35 Tahun',
     description: 'Fase membangun fondasi kehidupan yang stabil, mematangkan hubungan, dan menyelaraskan ambisi karier dengan nilai pribadi.',
     colors: {
-      primary: 'text-primary-500',
-      bg: 'bg-primary-50/50',
-      border: 'border-primary-100',
-      accent: 'bg-primary-500',
+      primary: 'text-emerald-500',
+      bg: 'bg-emerald-50/50',
+      border: 'border-emerald-100',
+      accent: 'bg-emerald-500',
     },
     sections: [
       {
@@ -92,7 +92,7 @@ export const TRANSFORMATION_STAGES = [
       {
         label: 'Pendekatan Solusi',
         icon: CheckCircle2,
-        color: 'text-primary-500',
+        color: 'text-emerald-500',
         items: [
           'Memahami dinamika relasi secara objektif',
           'Mengelola konflik & komunikasi pasangan',
@@ -154,7 +154,7 @@ export const TRANSFORMATION_STAGES = [
       {
         label: 'Pendekatan Solusi',
         icon: CheckCircle2,
-        color: 'text-primary-500',
+        color: 'text-emerald-500',
         items: [
           'Memetakan emotional capacity',
           'Mengelola tekanan peran ganda',
