@@ -1,104 +1,83 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { Search, Sparkles, Plus, Hexagon, Diamond, Grid, BookOpen } from 'lucide-react'
-
-import { TestListingCard } from '@/features/psikotes/components'
-import { GRATIS_TESTS } from '@/features/psikotes/constants'
+import { Search, Sparkles, Users, Clock, Brain, X, Construction } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { TOPO_WHITE, TOPO_BG_SIZE, PLUS_CROSS_PATTERN } from '@/shared/constants/bg-patterns.constants'
-
+import { GRATIS_TESTS } from '@/features/psikotes/constants'
 import { GRATIS_FILTER_TABS } from '../constants'
+import type { PsikotesTest } from '@/features/psikotes/types'
 
 export function GratisListing() {
   const [search, setSearch] = useState('')
   const [activeTab, setActiveTab] = useState('Semua')
+  const [selectedTest, setSelectedTest] = useState<PsikotesTest | null>(null)
 
   const filtered = useMemo(() => {
     return GRATIS_TESTS.filter((test) => {
       const matchesSearch = test.title.toLowerCase().includes(search.toLowerCase())
-      const matchesTab = activeTab === 'Semua' || test.subCategory === activeTab
+      const matchesTab = activeTab === 'Semua'
+        || test.subCategory === activeTab
+        || (activeTab === 'Kesehatan Mental' && test.subCategory === 'Mental Health')
       return matchesSearch && matchesTab
     })
   }, [search, activeTab])
 
-  const popular = filtered.slice(0, 4)
-  const others = filtered.slice(4)
-
   return (
     <div className="min-h-screen bg-background">
-      {/* ── Vibrant Hero ───────────────────────────────────────── */}
-      <header className="relative overflow-hidden bg-linear-to-b from-primary-800 via-primary-700 to-primary-500 text-white pt-32 pb-20 md:pt-40 md:pb-32">
-        {/* --- RICH BACKGROUND ORNAMENTS --- */}
-        <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay"
-             style={{
-               backgroundImage: TOPO_WHITE,
-               backgroundSize: TOPO_BG_SIZE,
-             }}
-        />
 
-        {/* Ambient Glows (Subtle Transition) */}
-        <div className="absolute top-[-10%] left-[-10%] w-150 h-150 bg-primary-900/20 rounded-full blur-[80px] pointer-events-none" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-125 h-125 bg-primary-300/20 rounded-full blur-[80px] pointer-events-none" />
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-linear-to-b from-primary-900 via-primary-800 to-primary-600 pt-32 pb-24">
+        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary-500/10 rounded-full pointer-events-none" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-accent-500/5 rounded-full pointer-events-none" />
 
-        <Plus className="absolute top-[15%] left-[10%] text-primary-300/30 w-8 h-8" />
-        <Hexagon className="absolute top-[40%] right-[10%] text-white/5 w-24 h-24 -rotate-12" />
-        <Diamond className="absolute bottom-[10%] left-[20%] text-accent-400/20 w-16 h-16 rotate-12" />
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-700/50 border border-primary-400/30 shadow-lg backdrop-blur-md mb-8 mx-auto">
-            <Sparkles className="w-3.5 h-3.5 text-accent-400 fill-accent-400" />
-            <span className="text-[10px] font-black tracking-[0.2em] text-primary-50 uppercase">
-              Unlimited Learning
-            </span>
+        <div className="max-w-5xl mx-auto px-6 relative z-10 text-center space-y-8">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm">
+            <Sparkles className="w-4 h-4 text-accent-300 fill-accent-300" />
+            <span className="text-xs font-black text-white uppercase tracking-widest">Gratis & Tanpa Daftar</span>
           </div>
 
-          <h1 className="text-4xl md:text-7xl font-black tracking-tight leading-none mb-6 drop-shadow-lg">
-            Tes Psikologi{' '}<br />
-            <span className="text-accent-300">Gratis</span>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[0.95]">
+            Tes Psikologi <br className="hidden md:block" />
+            <span className="text-accent-300 italic">Gratis</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-primary-50/80 max-w-2xl mx-auto font-medium leading-relaxed mb-12 text-pretty">
-            Mulai kenali diri Anda melalui berbagai tes psikologi berbasis riset yang dapat Anda akses secara gratis.
+          <p className="text-primary-100/80 font-medium max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+            Mulai kenali dirimu melalui berbagai tes psikologi berbasis riset — gratis, tanpa batas waktu, dan bisa diakses kapan saja.
           </p>
 
-          {/* Refined Search Bar (Non-3D) */}
-          <div className="max-w-xl mx-auto relative group">
-            <div className="relative flex items-center bg-white rounded-3xl border border-slate-200 p-2 shadow-xl shadow-primary-900/20 focus-within:border-primary-500 transition-colors">
-              <div className="pl-4 pr-2">
-                <Search className="w-6 h-6 text-slate-400" />
+          {/* Search */}
+          <div className="max-w-xl mx-auto">
+            <div className="relative flex items-center bg-white rounded-2xl border border-slate-200 shadow-xl shadow-primary-900/20">
+              <div className="pl-5 pr-2">
+                <Search className="w-5 h-5 text-slate-400" />
               </div>
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Cari jenis tes (misal: Kepribadian, Karir...)"
-                className="w-full py-4 px-2 bg-transparent focus:outline-none text-slate-900 font-bold placeholder:text-slate-300"
+                placeholder="Cari tes (misal: Kepribadian, Karir...)"
+                className="w-full py-4 px-2 bg-transparent focus:outline-none text-slate-900 font-semibold placeholder:text-slate-300 text-sm"
               />
-              <button className="hidden md:block px-8 py-4 bg-primary-700 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-black transition-colors shadow-lg shadow-primary-700/20">
-                Cari Tes
-              </button>
             </div>
           </div>
         </div>
-      </header>
+      </section>
 
-      {/* ── Content Grid ──────────────────────────────────────── */}
-      <section className="py-20 px-6 relative z-10">
-        <div className="max-w-7xl mx-auto">
+      {/* Filter + Grid */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-6">
 
-          {/* Filter Tabs (Refined Pills) */}
-          <div className="flex flex-wrap gap-3 justify-center mb-20">
+          {/* Filter Tabs */}
+          <div className="flex flex-wrap gap-2 justify-center mb-12">
             {GRATIS_FILTER_TABS.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={cn(
-                  "px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-colors border",
+                  'px-5 py-2.5 rounded-full text-xs font-bold transition-all border',
                   activeTab === tab
-                    ? "bg-primary-600 border-primary-700 text-white shadow-lg shadow-primary-600/20 -translate-y-0.5"
-                    : "bg-white border-slate-200 text-slate-500 hover:border-primary-500 hover:text-primary-600 shadow-sm"
+                    ? 'bg-primary-600 border-primary-600 text-white shadow-lg shadow-primary-600/20'
+                    : 'bg-white border-slate-200 text-slate-500 hover:border-primary-300 hover:text-primary-600'
                 )}
               >
                 {tab}
@@ -106,68 +85,129 @@ export function GratisListing() {
             ))}
           </div>
 
-          {/* Tes Terpopuler Section */}
-          <div className="mb-24">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-              <div className="space-y-2">
-                <div className="inline-flex items-center gap-2 text-primary-600 font-black text-[10px] uppercase tracking-[0.3em]">
-                  <Grid className="w-3 h-3" /> Popular Choices
-                </div>
-                <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Tes Terpopuler</h2>
-              </div>
-              <div className="h-px bg-slate-200 grow hidden md:block mx-8 mb-4" />
-            </div>
+          {/* Results count */}
+          <p className="text-sm text-slate-400 font-medium mb-6">
+            {filtered.length} tes ditemukan
+          </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {popular.map((test) => (
-                <TestListingCard key={test.id} test={test} variant="teal" />
+          {/* Grid */}
+          {filtered.length === 0 ? (
+            <div className="text-center py-20">
+              <Brain className="w-12 h-12 text-slate-200 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-slate-900 mb-1">Tidak Ada Tes</h3>
+              <p className="text-sm text-slate-500">Coba ubah kata kunci atau filter kategori.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {filtered.map((test) => (
+                <GratisTestCard key={test.id} test={test} onSelect={() => setSelectedTest(test)} />
               ))}
             </div>
-          </div>
-
-          {/* Special Section Break (Dark Emerald) */}
-          <div className="my-32 p-12 md:p-20 rounded-[3.5rem] relative overflow-hidden text-center text-white"
-               style={{ background: 'linear-gradient(135deg, #134E4A 0%, #0F766E 100%)' }}>
-             <div className="absolute inset-0 opacity-10 pointer-events-none"
-                  style={{ backgroundImage: PLUS_CROSS_PATTERN }} />
-             <div className="relative z-10 space-y-6">
-                <Sparkles className="w-12 h-12 text-accent-300 mx-auto mb-4 animate-pulse" />
-                <h2 className="text-3xl md:text-5xl font-black tracking-tight">Buka Potensi Tak Terbatas</h2>
-                <p className="text-lg text-primary-100 max-w-xl mx-auto font-medium opacity-80">
-                   Ribuan orang telah mencoba tes gratis kami dan memulai perjalanan perubahan hidup. Jadilah salah satu dari mereka hari ini.
-                </p>
-             </div>
-          </div>
-
-          {/* Tes Lainnya Section */}
-          {others.length > 0 && (
-            <div className="mb-24">
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-                <div className="space-y-2">
-                  <div className="inline-flex items-center gap-2 text-primary-600 font-black text-[10px] uppercase tracking-[0.3em]">
-                    <BookOpen className="w-3 h-3" /> More Assessments
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Eksplorasi Lainnya</h2>
-                </div>
-                <div className="h-px bg-slate-200 grow hidden md:block mx-8 mb-4" />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {others.map((test) => (
-                  <TestListingCard key={test.id} test={test} variant="teal" />
-                ))}
-              </div>
-            </div>
           )}
+        </div>
+      </section>
 
-          {/* Clean Load More Button */}
-          <div className="mt-16 text-center">
-            <button className="px-12 py-5 bg-white border-2 border-primary-800 text-primary-800 rounded-2xl text-xs font-black uppercase tracking-[0.2em] hover:bg-primary-800 hover:text-white transition-colors shadow-xl shadow-primary-800/5">
-              Muat Lebih Banyak Assessments
-            </button>
+      {/* Motivational CTA */}
+      <section className="pb-20">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="relative p-8 md:p-12 rounded-[3rem] bg-primary-600 shadow-2xl shadow-primary-900/20 overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-accent-500/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-400/20 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 text-center space-y-6">
+              <Sparkles className="w-10 h-10 text-accent-300 mx-auto" />
+              <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight leading-tight">
+                Ingin Hasil Lebih <span className="text-accent-300 italic">Mendalam?</span>
+              </h2>
+              <p className="text-primary-50 font-medium text-sm md:text-base max-w-xl mx-auto">
+                Upgrade ke paket premium untuk mendapatkan laporan komprehensif, rekomendasi personal, dan konsultasi dengan psikolog berlisensi.
+              </p>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Popup Modal */}
+      {selectedTest && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setSelectedTest(null)} />
+          <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 text-center space-y-5">
+            <button
+              onClick={() => setSelectedTest(null)}
+              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 transition-colors"
+            >
+              <X className="w-4 h-4 text-slate-500" />
+            </button>
+
+            <div className="w-16 h-16 rounded-2xl bg-amber-50 flex items-center justify-center mx-auto">
+              <Construction className="w-8 h-8 text-amber-500" />
+            </div>
+
+            <h3 className="text-xl font-black text-slate-900">{selectedTest.title}</h3>
+
+            <p className="text-slate-500 text-sm leading-relaxed">
+              Tes ini sedang dalam tahap pengembangan dan belum tersedia untuk saat ini. Kami akan segera menghadirkannya untukmu.
+            </p>
+
+            <div className="pt-2">
+              <button
+                onClick={() => setSelectedTest(null)}
+                className="px-8 h-12 rounded-xl bg-primary-600 text-white text-sm font-bold hover:bg-primary-700 transition-colors"
+              >
+                Oke, Mengerti
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
+  )
+}
+
+function GratisTestCard({ test, onSelect }: { test: PsikotesTest; onSelect: () => void }) {
+  const Icon = test.icon
+
+  return (
+    <button
+      onClick={onSelect}
+      className="group bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col text-left"
+    >
+      <div className="p-6 flex-1 space-y-4">
+        <div className="flex items-start justify-between">
+          <div className="w-11 h-11 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-colors">
+            <Icon className="w-5 h-5" />
+          </div>
+          {test.subCategory && (
+            <span className="px-2.5 py-1 bg-slate-50 text-[10px] font-bold uppercase tracking-wider text-slate-400 rounded-full border border-slate-100">
+              {test.subCategory}
+            </span>
+          )}
+        </div>
+
+        <div className="space-y-1.5">
+          <h3 className="font-bold text-base text-slate-900 leading-tight group-hover:text-primary-600 transition-colors">
+            {test.title}
+          </h3>
+          <p className="text-xs text-slate-500 leading-relaxed line-clamp-2">
+            {test.description}
+          </p>
+        </div>
+
+        <div className="flex items-center gap-4 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+          <span className="flex items-center gap-1">
+            <Users className="w-3 h-3 text-primary-400" /> {test.users}
+          </span>
+          <span className="flex items-center gap-1">
+            <Clock className="w-3 h-3 text-slate-300" /> {test.duration}
+          </span>
+        </div>
+      </div>
+
+      <div className="px-6 pb-6">
+        <div className="flex items-center justify-center h-10 rounded-xl bg-primary-600 text-white text-xs font-bold group-hover:bg-primary-700 transition-colors">
+          Mulai Tes Gratis
+        </div>
+      </div>
+    </button>
   )
 }
