@@ -1,13 +1,13 @@
-import type { Metadata } from 'next'
-import { DiriPribadiProductGrid } from '@/features/psikotes/components'
-import { User } from 'lucide-react'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Diri Pribadi — Bermoela',
-  description: 'Assessment psikologis untuk trauma, anxiety, burnout, self-worth, dan perencanaan karir.',
-}
+import { User } from 'lucide-react'
+import { usePublicPackages } from '@/features/psikotes/hooks/use-public-packages'
+import { PackageCard, PackageGridSkeleton, PackageEmptyState } from '@/features/psikotes/components/package-card'
 
 export default function DiriPribadiPage() {
+  const { data: packages, isLoading } = usePublicPackages()
+  const activePackages = packages?.filter(p => p.isActive) ?? []
+
   return (
     <main className="min-h-screen bg-background">
       {/* Hero */}
@@ -29,7 +29,17 @@ export default function DiriPribadiPage() {
       {/* Products */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
-          <DiriPribadiProductGrid />
+          {isLoading ? (
+            <PackageGridSkeleton />
+          ) : activePackages.length === 0 ? (
+            <PackageEmptyState message="Belum ada paket tes untuk kategori Diri Pribadi. Silakan cek kembali nanti." />
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {activePackages.map((pkg) => (
+                <PackageCard key={pkg.id} pkg={pkg} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </main>
