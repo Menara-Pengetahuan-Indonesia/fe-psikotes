@@ -35,22 +35,19 @@ export function Footer() {
     <footer
       className={cn(
         'relative',
-        'overflow-visible',
+        'overflow-hidden',
         theme.bg,
       )}
     >
-      {/* CTA Banner — centered, elevated above footer content */}
-      <div className="max-w-4xl mx-auto px-6 pt-0 relative z-20 -mt-20">
-        <FooterCtaBanner cta={cta} theme={theme} />
-      </div>
-
       {/* Content */}
       <div
         className={cn(
           'max-w-7xl mx-auto px-6 relative z-10',
-          'pt-8 pb-12 gap-6',
+          'py-12 gap-6',
         )}
       >
+        {/* CTA Banner */}
+        <FooterCtaBanner cta={cta} theme={theme} />
 
         {/* Brand + Links Grid */}
         <div className="grid md:grid-cols-4 gap-8">
@@ -91,7 +88,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className={cn(
                     'w-9 h-9 rounded-full',
-                    'border',
+                    'bg-white/10 border border-white/10',
                     'flex items-center justify-center',
                     'transition-colors',
                     theme.socialIcon,
@@ -114,9 +111,8 @@ export function Footer() {
               <div key={section.title} className="space-y-3">
                 <h4
                   className={cn(
-                    'font-black text-xs',
+                    'font-black text-white text-xs',
                     'uppercase tracking-wider',
-                    theme.brandAccent,
                   )}
                 >
                   {section.title}
@@ -129,7 +125,7 @@ export function Footer() {
                         className={cn(
                           'text-sm font-medium',
                           'flex items-center gap-2 group',
-                          'hover:text-emerald-600 transition-colors',
+                          'hover:text-white transition-colors',
                           theme.linkText,
                         )}
                       >
@@ -153,7 +149,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div
           className={cn(
-            'pt-4 border-t border-gray-100',
+            'pt-4 border-t border-white/10',
             'flex flex-col sm:flex-row',
             'justify-between items-center gap-2',
           )}
