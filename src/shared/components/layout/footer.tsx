@@ -50,9 +50,9 @@ export function Footer() {
         <FooterCtaBanner cta={cta} theme={theme} />
 
         {/* Brand + Links Grid */}
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-5 gap-8">
           {/* Brand Column */}
-          <div className="md:col-span-1 space-y-4">
+          <div className="md:col-span-2 space-y-4">
             <Link
               href="/"
               className="flex items-center gap-2.5 group"
