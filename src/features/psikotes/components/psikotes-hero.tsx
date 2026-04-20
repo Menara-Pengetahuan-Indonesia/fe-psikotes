@@ -8,9 +8,9 @@ import { BermoelaText } from './bermoela-text'
 
 export function PsikotesHero() {
   return (
-    <section className="relative overflow-hidden bg-linear-to-b from-primary-900 via-primary-800 to-primary-600 pt-26 pb-8 md:pt-36 md:pb-12">
+    <section className="relative overflow-hidden bg-linear-to-b from-primary-900 via-primary-800 to-primary-600 pt-14 pb-8 md:pt-20 md:pb-12">
 
-      {/* Simple gradient orbs instead of heavy blurs */}
+      {/* Simple gradient orbs */}
       <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary-500/10 rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-accent-500/5 rounded-full pointer-events-none" />
 

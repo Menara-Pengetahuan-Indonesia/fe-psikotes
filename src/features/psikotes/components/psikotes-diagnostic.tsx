@@ -177,14 +177,14 @@ export function PsikotesDiagnostic() {
 
       {/* Label */}
       <div className="text-center">
-        <p className="text-sm font-black text-white/80 uppercase tracking-[0.2em]">
+        <p className="text-sm font-black text-white/70 uppercase tracking-[0.2em]">
           AI Counsellor — Ceritakan Masalahmu
         </p>
       </div>
 
       {/* Chat Container */}
       <div className="max-w-3xl mx-auto">
-        <div className="bg-white/10 backdrop-blur-sm rounded-3xl border border-white/20 overflow-hidden">
+        <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden">
 
           {/* Messages Area */}
           {hasMessages && (
@@ -192,20 +192,20 @@ export function PsikotesDiagnostic() {
               {messages.map((msg, i) => (
                 <div key={i} className={cn('flex gap-2.5', msg.role === 'user' ? 'justify-end' : 'justify-start')}>
                   {msg.role === 'assistant' && (
-                    <div className="w-7 h-7 rounded-full bg-accent-400 flex items-center justify-center shrink-0 mt-1">
-                      <Bot className="w-4 h-4 text-white" />
+                    <div className="w-7 h-7 rounded-full bg-primary-100 flex items-center justify-center shrink-0 mt-1">
+                      <Bot className="w-4 h-4 text-primary-600" />
                     </div>
                   )}
                   <div className={cn(
                     'max-w-[80%] px-4 py-3 rounded-2xl text-sm leading-relaxed',
                     msg.role === 'user'
-                      ? 'bg-primary-500 text-white rounded-br-md'
-                      : 'bg-white/90 text-slate-700 rounded-bl-md shadow-sm'
+                      ? 'bg-primary-600 text-white rounded-br-md'
+                      : 'bg-slate-100 text-slate-700 rounded-bl-md'
                   )}>
                     {msg.content}
                   </div>
                   {msg.role === 'user' && (
-                    <div className="w-7 h-7 rounded-full bg-primary-400 flex items-center justify-center shrink-0 mt-1">
+                    <div className="w-7 h-7 rounded-full bg-primary-600 flex items-center justify-center shrink-0 mt-1">
                       <User className="w-4 h-4 text-white" />
                     </div>
                   )}
@@ -213,10 +213,10 @@ export function PsikotesDiagnostic() {
               ))}
               {loading && (
                 <div className="flex gap-2.5 items-start">
-                  <div className="w-7 h-7 rounded-full bg-accent-400 flex items-center justify-center shrink-0">
-                    <Bot className="w-4 h-4 text-white" />
+                  <div className="w-7 h-7 rounded-full bg-primary-100 flex items-center justify-center shrink-0">
+                    <Bot className="w-4 h-4 text-primary-600" />
                   </div>
-                  <div className="bg-white/90 px-4 py-3 rounded-2xl rounded-bl-md shadow-sm">
+                  <div className="bg-slate-100 px-4 py-3 rounded-2xl rounded-bl-md">
                     <Loader2 className="w-4 h-4 text-primary-500 animate-spin" />
                   </div>
                 </div>
@@ -226,13 +226,13 @@ export function PsikotesDiagnostic() {
 
           {/* Guided Tabs */}
           {isGuided && !loading && (
-            <div className={cn('p-5', hasMessages && 'border-t border-white/10')}>
+            <div className={cn('p-5', hasMessages && 'border-t border-slate-100')}>
               <div className="flex items-center gap-2 mb-3">
-                <Sparkles className="w-3.5 h-3.5 text-accent-300" />
-                <span className="text-xs font-bold text-white/70">
+                <Sparkles className="w-3.5 h-3.5 text-primary-500" />
+                <span className="text-xs font-bold text-slate-600">
                   {STEP_LABELS[guidedStep]}
                 </span>
-                <span className="text-[10px] text-white/30 ml-auto">
+                <span className="text-[10px] text-slate-400 ml-auto">
                   {guidedStep + 1}/{GUIDED_STEPS.length}
                 </span>
               </div>
@@ -241,7 +241,7 @@ export function PsikotesDiagnostic() {
                   <button
                     key={option}
                     onClick={() => handleSelect(option)}
-                    className="px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-xs font-semibold hover:bg-white/20 hover:border-white/30 transition-all"
+                    className="px-4 py-2 rounded-full bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold hover:bg-primary-50 hover:border-primary-300 hover:text-primary-700 transition-all"
                   >
                     {option}
                   </button>
@@ -249,7 +249,7 @@ export function PsikotesDiagnostic() {
               </div>
               <button
                 onClick={switchToFreeMode}
-                className="mt-3 flex items-center gap-1.5 text-[10px] font-bold text-white/40 hover:text-white/70 transition-colors uppercase tracking-wider"
+                className="mt-3 flex items-center gap-1.5 text-[10px] font-bold text-slate-400 hover:text-slate-600 transition-colors uppercase tracking-wider"
               >
                 <Keyboard className="w-3 h-3" /> Atau ketik sendiri
               </button>
@@ -258,9 +258,9 @@ export function PsikotesDiagnostic() {
 
           {/* Free Mode / Post-Guided Input */}
           {(!isGuided || freeMode) && !loading && (
-            <div className={cn('p-4', hasMessages && 'border-t border-white/10')}>
+            <div className={cn('p-4', hasMessages && 'border-t border-slate-100')}>
               {!hasMessages && (
-                <p className="text-xs text-white/50 font-medium mb-3 text-center">
+                <p className="text-xs text-slate-400 font-medium mb-3 text-center">
                   Ceritakan apa yang sedang kamu rasakan...
                 </p>
               )}
@@ -277,12 +277,12 @@ export function PsikotesDiagnostic() {
                     }
                   }}
                   placeholder="Ketik ceritamu di sini..."
-                  className="flex-1 min-h-[44px] max-h-[120px] px-4 py-3 rounded-2xl bg-white/10 border border-white/20 text-white text-sm placeholder:text-white/30 focus:outline-none focus:bg-white/15 focus:border-white/30 transition-colors resize-none"
+                  className="flex-1 min-h-[44px] max-h-[120px] px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700 text-sm placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-primary-400 transition-colors resize-none"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim()}
-                  className="w-11 h-11 rounded-xl bg-accent-400 text-white flex items-center justify-center hover:bg-accent-500 transition-colors disabled:opacity-30 disabled:cursor-not-allowed shrink-0"
+                  className="w-11 h-11 rounded-xl bg-primary-600 text-white flex items-center justify-center hover:bg-primary-700 transition-colors disabled:opacity-30 disabled:cursor-not-allowed shrink-0"
                 >
                   <Send className="w-4 h-4" />
                 </button>
@@ -295,7 +295,7 @@ export function PsikotesDiagnostic() {
             <div className="px-5 pb-4">
               <button
                 onClick={reset}
-                className="flex items-center gap-1.5 text-[10px] font-bold text-white/30 hover:text-white/60 transition-colors uppercase tracking-wider"
+                className="flex items-center gap-1.5 text-[10px] font-bold text-slate-400 hover:text-slate-600 transition-colors uppercase tracking-wider"
               >
                 <RotateCcw className="w-3 h-3" /> Mulai dari awal
               </button>

@@ -3,7 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google"
 import { QueryProvider } from "@/shared/components/query-provider"
 import { Navbar } from "@/shared/components/layout/navbar"
 import { Footer } from "@/shared/components/layout/footer"
-import { ChatbotWidget } from "@/features/psikotes/components/chatbot-widget"
+
 import "./globals.css"
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -37,7 +37,6 @@ export default function RootLayout({
             {children}
           </MainContainer>
           <Footer />
-          <ChatbotWidget />
           <Toaster />
         </QueryProvider>
       </body>
