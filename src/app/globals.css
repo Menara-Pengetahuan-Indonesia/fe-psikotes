@@ -7,8 +7,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-plus-jakarta);
-  --font-mono: var(--font-plus-jakarta);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -43,30 +43,30 @@
   --color-muted: var(--muted);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
-  --color-secondary-50: #ECFDF5;
-  --color-secondary-100: #D1FAE5;
-  --color-secondary-200: #A7F3D0;
-  --color-secondary-300: #6EE7B7;
-  --color-secondary-400: #34D399;
-  --color-secondary-500: #064E3B;
-  --color-secondary-600: #053D2F;
-  --color-secondary-700: #042F24;
-  --color-secondary-800: #032219;
-  --color-secondary-900: #02160F;
-  --color-secondary-950: #010B08;
+  --color-secondary-50: #E6F5F4;
+  --color-secondary-100: #CDEBE9;
+  --color-secondary-200: #9BD7D3;
+  --color-secondary-300: #69C3BD;
+  --color-secondary-400: #37AFA7;
+  --color-secondary-500: #134E4A;
+  --color-secondary-600: #104240;
+  --color-secondary-700: #0D3633;
+  --color-secondary-800: #0A2A27;
+  --color-secondary-900: #071E1C;
+  --color-secondary-950: #041210;
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
-  --color-primary-50: #ECFDF5;
-  --color-primary-100: #D1FAE5;
-  --color-primary-200: #A7F3D0;
-  --color-primary-300: #6EE7B7;
-  --color-primary-400: #34D399;
-  --color-primary-500: #10B981;
-  --color-primary-600: #059669;
-  --color-primary-700: #047857;
-  --color-primary-800: #065F46;
-  --color-primary-900: #064E3B;
-  --color-primary-950: #022C22;
+  --color-primary-50: #F0FDFA;
+  --color-primary-100: #CCFBF1;
+  --color-primary-200: #99F6E4;
+  --color-primary-300: #5EEAD4;
+  --color-primary-400: #2DD4BF;
+  --color-primary-500: #14B8A6;
+  --color-primary-600: #0D9488;
+  --color-primary-700: #0F766E;
+  --color-primary-800: #115E59;
+  --color-primary-900: #134E4A;
+  --color-primary-950: #042F2E;
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -93,44 +93,44 @@
 :root {
   --radius: 0.625rem;
 
-  /* Base colors - EMERALD THEME */
-  --background: #F0FDF8; /* soft emerald-tinted white */
-  --foreground: #064E3B; /* dark emerald for text */
-  --card: #FFFFFF;
-  --card-foreground: #064E3B;
-  --popover: #FFFFFF;
-  --popover-foreground: #064E3B;
+  /* Base colors - TEAL THEME */
+  --background: #F0FDFA; /* primary-50 light teal */
+  --foreground: #134E4A; /* Dark teal for text */
+  --card: #F0FDFA;
+  --card-foreground: #134E4A;
+  --popover: #F0FDFA;
+  --popover-foreground: #134E4A;
 
   /* Brand colors from palette */
-  --primary: #10B981; /* Emerald */
+  --primary: #14B8A6; /* Teal */
   --primary-foreground: #FFFFFF;
-  --secondary: #064E3B; /* Dark Emerald */
+  --secondary: #134E4A; /* Dark Teal */
   --secondary-foreground: #FFFFFF;
   --accent: #F59E0B; /* Amber */
   --accent-foreground: #FFFFFF;
-  --muted: #D1FAE5; /* Emerald-100 */
-  --muted-foreground: #064E3B;
+  --muted: #CCFBF1; /* Light Teal */
+  --muted-foreground: #134E4A;
 
   --destructive: #EF4444;
-  --border: #D1FAE5;
-  --input: #D1FAE5;
-  --ring: #10B981; /* Emerald for focus */
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: #14B8A6; /* Primary teal for focus */
 
   /* Chart colors using palette */
-  --chart-1: #10B981; /* Emerald */
-  --chart-2: #064E3B; /* Dark Emerald */
+  --chart-1: #14B8A6; /* Teal */
+  --chart-2: #134E4A; /* Dark Teal */
   --chart-3: #F59E0B; /* Amber */
   --chart-4: #CCFBF1; /* Light Teal */
   --chart-5: #0D9488; /* Teal-600 */
 
   /* Sidebar - Dark Teal */
-  --sidebar: #134E4A;
-  --sidebar-foreground: #CCFBF1;
+  --sidebar: #042F2E;
+  --sidebar-foreground: #99F6E4;
   --sidebar-primary: #14B8A6;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #134E4A;
+  --sidebar-accent: #0A2A27;
   --sidebar-accent-foreground: #CCFBF1;
-  --sidebar-border: #134E4A;
+  --sidebar-border: #0A2A27;
   --sidebar-ring: #14B8A6;
 
   /* Psikotes - Teal palette */
@@ -140,8 +140,8 @@
   --ps-secondary-foreground: #FFFFFF;
   --ps-accent: #F59E0B;
   --ps-accent-foreground: #FFFFFF;
-  --ps-muted: #CCFBF1;
-  --ps-muted-foreground: #475569;
+  --ps-muted: #F0FDFA;
+  --ps-muted-foreground: #134E4A;
 }
 
 .dark {
@@ -240,7 +240,7 @@
     background-color: var(--background);
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased min-h-screen;
   }
 }
 

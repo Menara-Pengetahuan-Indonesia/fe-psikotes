@@ -12,34 +12,34 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Brand Color System - Emerald Green Palette
+        // Brand Color System - Teal & Amber Palette
         primary: {
-          DEFAULT: '#10B981', // Emerald - Main brand color
-          50: '#ECFDF5',
-          100: '#D1FAE5',
-          200: '#A7F3D0',
-          300: '#6EE7B7',
-          400: '#34D399',
-          500: '#10B981', // Base
-          600: '#059669',
-          700: '#047857',
-          800: '#065F46',
-          900: '#064E3B',
-          950: '#022C22',
+          DEFAULT: '#14B8A6', // Teal - Main brand color
+          50: '#F0FDFA',
+          100: '#CCFBF1',
+          200: '#99F6E4',
+          300: '#5EEAD4',
+          400: '#2DD4BF',
+          500: '#14B8A6', // Base
+          600: '#0D9488',
+          700: '#0F766E',
+          800: '#115E59',
+          900: '#134E4A',
+          950: '#042F2E',
         },
         secondary: {
-          DEFAULT: '#064E3B', // Dark Emerald - Professional
-          50: '#ECFDF5',
-          100: '#D1FAE5',
-          200: '#A7F3D0',
-          300: '#6EE7B7',
-          400: '#34D399',
-          500: '#064E3B', // Base
-          600: '#053D2F',
-          700: '#042F24',
-          800: '#032219',
-          900: '#02160F',
-          950: '#010B08',
+          DEFAULT: '#134E4A', // Dark Teal - Professional
+          50: '#E6F5F4',
+          100: '#CDEBE9',
+          200: '#9BD7D3',
+          300: '#69C3BD',
+          400: '#37AFA7',
+          500: '#134E4A', // Base
+          600: '#104240',
+          700: '#0D3633',
+          800: '#0A2A27',
+          900: '#071E1C',
+          950: '#041210',
         },
         accent: {
           DEFAULT: '#F59E0B', // Amber - CTAs, highlights
@@ -56,41 +56,41 @@ export default {
           950: '#451A03',
         },
         surface: {
-          DEFAULT: '#D1FAE5', // Light Emerald - Backgrounds, cards
-          50: '#ECFDF5',
-          100: '#D1FAE5',
-          200: '#C4F8DD',
-          300: '#A7F3D0',
-          400: '#6EE7B7',
-          500: '#D1FAE5', // Base
-          600: '#34D399',
-          700: '#10B981',
-          800: '#059669',
-          900: '#047857',
-          950: '#065F46',
+          DEFAULT: '#CCFBF1', // Light Teal - Backgrounds, cards
+          50: '#F0FDFA',
+          100: '#E6FBF5',
+          200: '#D9F9F0',
+          300: '#CCFBF1',
+          400: '#B2F5EA',
+          500: '#CCFBF1', // Base
+          600: '#81EDDD',
+          700: '#5EEAD4',
+          800: '#2DD4BF',
+          900: '#14B8A6',
+          950: '#0F766E',
         },
 
         // shadcn/ui system colors
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
-        ring: '#10B981', // Emerald for focus rings
-        background: '#F0FDF8', // Very soft emerald-tinted white
-        foreground: '#064E3B', // Dark emerald for text
+        ring: '#14B8A6', // Primary teal for focus rings
+        background: '#F0FDFA', // primary-50 light teal
+        foreground: '#134E4A', // Secondary dark teal for text
         muted: {
-          DEFAULT: '#D1FAE5', // Emerald-100
-          foreground: '#064E3B',
+          DEFAULT: '#CCFBF1', // Surface color
+          foreground: '#134E4A',
         },
         destructive: {
           DEFAULT: '#EF4444',
-          foreground: '#ECFDF5',
+          foreground: '#F0FDFA',
         },
         popover: {
-          DEFAULT: '#D1FAE5',
-          foreground: '#064E3B',
+          DEFAULT: '#CCFBF1', // primary-100
+          foreground: '#134E4A',
         },
         card: {
-          DEFAULT: '#D1FAE5',
-          foreground: '#064E3B',
+          DEFAULT: '#CCFBF1', // primary-100
+          foreground: '#134E4A',
         },
       },
       borderRadius: {
