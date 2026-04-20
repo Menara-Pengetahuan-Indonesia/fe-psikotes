@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import {
   GripVertical, Copy, Trash2, Check, X, Plus,
   CircleDot, Square, SlidersHorizontal, AlignLeft,
@@ -45,16 +45,22 @@ export function QuestionCard({
   const [maxScale, setMaxScale] = useState(question.correctAnswer?.maxScaleValue ?? 5)
   const [scaleWeights, setScaleWeights] = useState<Record<string, number>>(question.correctAnswer?.scaleWeights ?? {})
 
+  const questionRef = useRef(question)
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    setText(question.questionText)
-    setPoints(question.points)
-    setImageUrl(question.imageUrl ?? '')
-    setOptions((question.options ?? []).map(o => ({ optionText: o.optionText, isCorrect: o.isCorrect, points: o.points, order: o.order, imageUrl: o.imageUrl })))
-    setEssayKeywords(question.correctAnswer?.correctEssayKeywords ?? [])
-    setMinScale(question.correctAnswer?.minScaleValue ?? 1)
-    setMaxScale(question.correctAnswer?.maxScaleValue ?? 5)
-    setScaleWeights(question.correctAnswer?.scaleWeights ?? {})
-  }, [question])
+    if (!isEditing && questionRef.current !== question) {
+      questionRef.current = question
+      setText(question.questionText)
+      setPoints(question.points)
+      setImageUrl(question.imageUrl ?? '')
+      setOptions((question.options ?? []).map(o => ({ optionText: o.optionText, isCorrect: o.isCorrect, points: o.points, order: o.order, imageUrl: o.imageUrl })))
+      setEssayKeywords(question.correctAnswer?.correctEssayKeywords ?? [])
+      setMinScale(question.correctAnswer?.minScaleValue ?? 1)
+      setMaxScale(question.correctAnswer?.maxScaleValue ?? 5)
+      setScaleWeights(question.correctAnswer?.scaleWeights ?? {})
+    }
+  }, [question, isEditing])
 
   const showOptions = question.questionType === 'MULTIPLE_CHOICE' || question.questionType === 'CHECKBOX'
   const showEssay = question.questionType === 'ESSAY'
