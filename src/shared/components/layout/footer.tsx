@@ -14,9 +14,9 @@ import { FooterCtaBanner } from './footer-cta-banner'
 
 export function Footer() {
   const pathname = usePathname()
-  const theme = getFooterTheme(pathname)
-  const links = getFooterLinks(pathname)
-  const cta = getFooterCta(pathname)
+  const theme = getFooterTheme()
+  const links = getFooterLinks()
+  const cta = getFooterCta()
 
   const hidden = pathname === '/masuk'
     || pathname === '/daftar'
