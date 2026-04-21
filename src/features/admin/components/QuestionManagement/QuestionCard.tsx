@@ -8,7 +8,7 @@ import {
 import { cn } from '@/lib/utils'
 import { useUpdateQuestion } from '../../hooks'
 import { QUESTION_TYPE_LABELS, QUESTION_TYPE_COLORS } from '@features/admin/constants'
-import type { Question, QuestionOption, CorrectAnswer } from '../../types'
+import type { Question, QuestionOption, CorrectAnswer, ScaleWeight } from '../../types'
 
 interface QuestionCardProps {
   question: Question
@@ -26,7 +26,7 @@ export function QuestionCard({
   const updateQuestion = useUpdateQuestion()
 
   const [text, setText] = useState(question.questionText)
-  const [points, setPoints] = useState(question.points)
+  const [essayPoints, setEssayPoints] = useState(question.points ?? 1)
   const [imageUrl, setImageUrl] = useState(question.imageUrl ?? '')
   const [options, setOptions] = useState<Omit<QuestionOption, 'id'>[]>(
     (question.options ?? []).map(o => ({ optionText: o.optionText, isCorrect: o.isCorrect, points: o.points, order: o.order, imageUrl: o.imageUrl }))
@@ -35,7 +35,7 @@ export function QuestionCard({
   const [keywordInput, setKeywordInput] = useState('')
   const [minScale, setMinScale] = useState(question.correctAnswer?.minScaleValue ?? 1)
   const [maxScale, setMaxScale] = useState(question.correctAnswer?.maxScaleValue ?? 5)
-  const [scaleWeights, setScaleWeights] = useState<Record<string, number>>(question.correctAnswer?.scaleWeights ?? {})
+  const [scaleWeights, setScaleWeights] = useState<Record<string, ScaleWeight>>(question.correctAnswer?.scaleWeights ?? {})
 
   const questionRef = useRef(question)
 
@@ -44,7 +44,7 @@ export function QuestionCard({
     if (!isEditing && questionRef.current !== question) {
       questionRef.current = question
       setText(question.questionText)
-      setPoints(question.points)
+      setEssayPoints(question.points ?? 1)
       setImageUrl(question.imageUrl ?? '')
       setOptions((question.options ?? []).map(o => ({ optionText: o.optionText, isCorrect: o.isCorrect, points: o.points, order: o.order, imageUrl: o.imageUrl })))
       setEssayKeywords(question.correctAnswer?.correctEssayKeywords ?? [])
@@ -69,7 +69,7 @@ export function QuestionCard({
       id: question.id,
       dto: {
         questionText: text,
-        points: showOptions ? undefined : points,
+        points: showEssay ? essayPoints : undefined,
         imageUrl: imageUrl || undefined,
         options: showOptions
           ? options.filter(o => o.optionText.trim()).map((o, i) => ({
@@ -88,7 +88,7 @@ export function QuestionCard({
 
   const handleCancel = () => {
     setText(question.questionText)
-    setPoints(question.points)
+    setEssayPoints(question.points ?? 1)
     setImageUrl(question.imageUrl ?? '')
     setOptions((question.options ?? []).map(o => ({ optionText: o.optionText, isCorrect: o.isCorrect, points: o.points, order: o.order, imageUrl: o.imageUrl })))
     setEssayKeywords(question.correctAnswer?.correctEssayKeywords ?? [])
@@ -195,7 +195,13 @@ export function QuestionCard({
 
           {/* Footer */}
           <div className="flex items-center justify-between pt-2 border-t border-slate-50">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{question.points} poin</span>
+            {showEssay && <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{question.points ?? 0} poin</span>}
+            {showScale && (
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                Skala {question.correctAnswer?.minScaleValue ?? 1}–{question.correctAnswer?.maxScaleValue ?? 5}
+              </span>
+            )}
+            {!showEssay && !showScale && <span />}
           </div>
         </div>
       </div>
@@ -241,18 +247,20 @@ export function QuestionCard({
           />
         </div>
 
-        {/* Points */}
-        <div className="flex items-center gap-4">
-          <div className="space-y-1">
-            <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Poin</label>
-            <input
-              type="number"
-              value={points}
-              onChange={e => setPoints(Number(e.target.value))}
-              className="w-24 h-9 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-            />
+        {/* Points — essay only */}
+        {showEssay && (
+          <div className="flex items-center gap-4">
+            <div className="space-y-1">
+              <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Poin</label>
+              <input
+                type="number"
+                value={essayPoints}
+                onChange={e => setEssayPoints(Number(e.target.value))}
+                className="w-24 h-9 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Image */}
         <div className="space-y-2">
@@ -394,8 +402,8 @@ export function QuestionCard({
                   onChange={e => {
                     const v = Number(e.target.value)
                     setMinScale(v)
-                    const w: Record<string, number> = {}
-                    for (let i = v; i <= maxScale; i++) w[String(i)] = scaleWeights[String(i)] ?? i
+                    const w: Record<string, ScaleWeight> = {}
+                    for (let i = v; i <= maxScale; i++) w[String(i)] = scaleWeights[String(i)] ?? { label: String(i), points: i }
                     setScaleWeights(w)
                   }}
                   className="w-full h-9 rounded-lg border border-slate-200 bg-white px-3 text-sm font-bold text-center focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
@@ -407,8 +415,8 @@ export function QuestionCard({
                   onChange={e => {
                     const v = Number(e.target.value)
                     setMaxScale(v)
-                    const w: Record<string, number> = {}
-                    for (let i = minScale; i <= v; i++) w[String(i)] = scaleWeights[String(i)] ?? i
+                    const w: Record<string, ScaleWeight> = {}
+                    for (let i = minScale; i <= v; i++) w[String(i)] = scaleWeights[String(i)] ?? { label: String(i), points: i }
                     setScaleWeights(w)
                   }}
                   className="w-full h-9 rounded-lg border border-slate-200 bg-white px-3 text-sm font-bold text-center focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
@@ -417,14 +425,23 @@ export function QuestionCard({
             </div>
             {minScale <= maxScale && (
               <div className="space-y-2">
-                <label className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Bobot per Skala</label>
+                <label className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Label & Bobot per Skala</label>
                 <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-3">
-                  <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${Math.min(maxScale - minScale + 1, 10)}, 1fr)` }}>
+                  <div className="grid gap-3" style={{ gridTemplateColumns: `repeat(${Math.min(maxScale - minScale + 1, 5)}, 1fr)` }}>
                     {Array.from({ length: Math.min(maxScale - minScale + 1, 10) }, (_, i) => minScale + i).map(val => (
                       <div key={val} className="flex flex-col items-center gap-1.5">
                         <span className="size-7 rounded-full bg-violet-100 text-violet-700 text-xs font-black flex items-center justify-center">{val}</span>
-                        <input type="number" value={scaleWeights[String(val)] ?? val}
-                          onChange={e => setScaleWeights({ ...scaleWeights, [String(val)]: Number(e.target.value) })}
+                        <input
+                          placeholder="Label"
+                          value={scaleWeights[String(val)]?.label ?? String(val)}
+                          onChange={e => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { points: val }, label: e.target.value } })}
+                          className="w-full h-8 rounded-lg border border-slate-200 bg-white text-center text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                        />
+                        <input
+                          type="number"
+                          placeholder="Poin"
+                          value={scaleWeights[String(val)]?.points ?? val}
+                          onChange={e => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { label: String(val) }, points: Number(e.target.value) } })}
                           className="w-full h-8 rounded-lg border border-slate-200 bg-white text-center text-xs font-bold focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
                         />
                       </div>

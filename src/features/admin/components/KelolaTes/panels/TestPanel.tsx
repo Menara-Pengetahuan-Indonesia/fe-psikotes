@@ -10,6 +10,13 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { cn } from '@/lib/utils'
 import { ConfirmDialog } from '@/features/admin/components/Common/ConfirmDialog'
 import {
@@ -296,8 +303,16 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="test-edit-popularity" className="text-xs font-bold uppercase tracking-wider text-slate-500">Popularitas</Label>
-                        <Input id="test-edit-popularity" placeholder="Tinggi / Sedang / Rendah" value={formPopularity} onChange={e => setFormPopularity(e.target.value)}
-                          className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                        <Select value={formPopularity} onValueChange={setFormPopularity}>
+                          <SelectTrigger id="test-edit-popularity" className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus:ring-2 focus:ring-indigo-500">
+                            <SelectValue placeholder="Pilih popularitas" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="Rendah">Rendah</SelectItem>
+                            <SelectItem value="Sedang">Sedang</SelectItem>
+                            <SelectItem value="Tinggi">Tinggi</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
                     </div>
                   )}

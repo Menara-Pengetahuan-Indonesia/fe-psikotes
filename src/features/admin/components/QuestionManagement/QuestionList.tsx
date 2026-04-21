@@ -1,13 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { Plus, Lock, Info } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useQuestions, useCreateQuestion, useDeleteQuestion } from '../../hooks'
 import { ConfirmDialog } from '../Common/ConfirmDialog'
 import { QuestionCard } from './QuestionCard'
 import type { Question, QuestionType } from '../../types'
-import { QUESTION_TYPE_LABELS, QUESTION_TYPE_COLORS } from '@features/admin/constants'
+import { QUESTION_TYPE_LABELS } from '@features/admin/constants'
 import { cn } from '@/lib/utils'
 
 interface QuestionListProps {
@@ -27,10 +27,8 @@ export function QuestionList({ subTestId }: QuestionListProps) {
     .filter((q) => q.subTestId === subTestId)
     .sort((a, b) => a.order - b.order)
 
-  const lockedType: QuestionType | null = filtered.length > 0 ? filtered[0].questionType : null
-
   const handleAddQuestion = async () => {
-    const type = lockedType ?? selectedType
+    const type = selectedType
     const nextOrder = filtered.length > 0 ? Math.max(...filtered.map(q => q.order)) + 1 : 1
 
     const dto = {
@@ -48,7 +46,7 @@ export function QuestionList({ subTestId }: QuestionListProps) {
       correctAnswer: type === 'ESSAY'
         ? { correctEssayKeywords: [] }
         : type === 'SCALE_RATING'
-          ? { minScaleValue: 1, maxScaleValue: 5, scaleWeights: { '1': 1, '2': 2, '3': 3, '4': 4, '5': 5 } }
+          ? { minScaleValue: 1, maxScaleValue: 5, scaleWeights: { '1': { label: '1', points: 1 }, '2': { label: '2', points: 2 }, '3': { label: '3', points: 3 }, '4': { label: '4', points: 4 }, '5': { label: '5', points: 5 } } }
           : undefined,
     }
 
@@ -108,41 +106,24 @@ export function QuestionList({ subTestId }: QuestionListProps) {
 
   return (
     <div className="space-y-4">
-      {/* Type indicator / selector */}
-      {lockedType ? (
-        <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200">
-          <Lock className="size-3.5 text-slate-400" />
-          <span className="text-xs font-bold text-slate-500">Semua soal bertipe:</span>
-          <span className={cn('text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-lg', QUESTION_TYPE_COLORS[lockedType])}>
-            {QUESTION_TYPE_LABELS[lockedType]}
-          </span>
-          <span className="text-xs text-slate-400 ml-auto">{filtered.length} soal</span>
-        </div>
-      ) : (
-        <div className="space-y-2">
-          <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-            <Info className="size-3.5" />
-            Pilih tipe soal untuk sub tes ini (akan terkunci setelah soal pertama dibuat)
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {(Object.entries(QUESTION_TYPE_LABELS) as [QuestionType, string][]).map(([type, label]) => (
-              <button
-                key={type}
-                type="button"
-                onClick={() => setSelectedType(type)}
-                className={cn(
-                  'px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider border transition-all',
-                  selectedType === type
-                    ? 'border-indigo-400 bg-indigo-50 text-indigo-700 ring-2 ring-indigo-200'
-                    : 'border-slate-200 bg-white text-slate-500 hover:border-indigo-300 hover:text-indigo-600'
-                )}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+      {/* Type selector — always shown */}
+      <div className="flex flex-wrap gap-2">
+        {(Object.entries(QUESTION_TYPE_LABELS) as [QuestionType, string][]).map(([type, label]) => (
+          <button
+            key={type}
+            type="button"
+            onClick={() => setSelectedType(type)}
+            className={cn(
+              'px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider border transition-all',
+              selectedType === type
+                ? 'border-indigo-400 bg-indigo-50 text-indigo-700 ring-2 ring-indigo-200'
+                : 'border-slate-200 bg-white text-slate-500 hover:border-indigo-300 hover:text-indigo-600'
+            )}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
 
       {/* Question cards */}
       {filtered.length === 0 ? (

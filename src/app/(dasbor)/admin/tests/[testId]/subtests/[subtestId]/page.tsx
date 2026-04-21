@@ -96,7 +96,7 @@ export default function SubTestDetailPage() {
     setFormText(q.questionText)
     setFormType(q.questionType)
     setFormOrder(q.order)
-    setFormPoints(q.points)
+    setFormPoints(q.points ?? 0)
     setFormError('')
     setFormOpen(true)
   }
