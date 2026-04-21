@@ -4,19 +4,11 @@ import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 import {
   GripVertical, Copy, Trash2, Check, X, Plus,
-  CircleDot, Square, SlidersHorizontal, AlignLeft,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useUpdateQuestion } from '../../hooks'
 import { QUESTION_TYPE_LABELS, QUESTION_TYPE_COLORS } from '@features/admin/constants'
-import type { Question, QuestionType, QuestionOption, CorrectAnswer } from '../../types'
-
-const TYPE_ICONS: Record<string, React.ElementType> = {
-  MULTIPLE_CHOICE: CircleDot,
-  CHECKBOX: Square,
-  SCALE_RATING: SlidersHorizontal,
-  ESSAY: AlignLeft,
-}
+import type { Question, QuestionOption, CorrectAnswer } from '../../types'
 
 interface QuestionCardProps {
   question: Question
@@ -47,7 +39,7 @@ export function QuestionCard({
 
   const questionRef = useRef(question)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (!isEditing && questionRef.current !== question) {
       questionRef.current = question
@@ -61,11 +53,11 @@ export function QuestionCard({
       setScaleWeights(question.correctAnswer?.scaleWeights ?? {})
     }
   }, [question, isEditing])
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const showOptions = question.questionType === 'MULTIPLE_CHOICE' || question.questionType === 'CHECKBOX'
   const showEssay = question.questionType === 'ESSAY'
   const showScale = question.questionType === 'SCALE_RATING'
-  const TypeIcon = TYPE_ICONS[question.questionType] ?? CircleDot
   const colorClass = QUESTION_TYPE_COLORS[question.questionType] ?? ''
 
   const handleSave = async () => {

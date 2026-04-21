@@ -121,7 +121,7 @@ export function PackageDetailClient({ categorySlug, categoryLabel }: PackageDeta
   )
 }
 
-function TierCard({ tier, childId, categorySlug }: { tier: PackageType; childId: string; categorySlug: string }) {
+function TierCard({ tier }: { tier: PackageType }) {
   return (
     <div className={cn('rounded-2xl border-2 p-6 flex flex-col', getTierColor(tier.name))}>
       <div className="space-y-3 flex-1">

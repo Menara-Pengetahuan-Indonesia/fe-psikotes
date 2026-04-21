@@ -12,7 +12,6 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { cn } from '@/lib/utils'
 import { ConfirmDialog } from '@/features/admin/components/Common/ConfirmDialog'
-import { QuestionList } from '@/features/admin/components/QuestionManagement/QuestionList'
 import {
   useTests, useUpdateTest,
   useSubTests, useCreateSubTest, useUpdateSubTest, useDeleteSubTest,

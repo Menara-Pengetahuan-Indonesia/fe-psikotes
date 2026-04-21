@@ -7,13 +7,12 @@ import { ICON_MAP, type NavItem } from './navbar-constants'
 interface NavbarDesktopMenuProps {
   navItems: NavItem[]
   pathname: string
-  isScrolled: boolean
+  isScrolled?: boolean
 }
 
 export function NavbarDesktopMenu({
   navItems,
   pathname,
-  isScrolled,
 }: NavbarDesktopMenuProps) {
   return (
     <div className="hidden md:flex items-center gap-0.5">
@@ -23,7 +22,6 @@ export function NavbarDesktopMenu({
             <DesktopDropdown
               key={idx}
               item={item}
-              isScrolled={isScrolled}
             />
           )
         }
@@ -50,11 +48,7 @@ export function NavbarDesktopMenu({
   )
 }
 
-export function NavbarDesktopCta({
-  isScrolled,
-}: {
-  isScrolled: boolean
-}) {
+export function NavbarDesktopCta() {
   return (
     <div className="hidden md:flex items-center gap-2">
       <Button
@@ -88,10 +82,8 @@ export function NavbarDesktopCta({
 
 function DesktopDropdown({
   item,
-  isScrolled,
 }: {
   item: NavItem
-  isScrolled: boolean
 }) {
   return (
     <div className="relative group">

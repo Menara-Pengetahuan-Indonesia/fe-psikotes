@@ -54,7 +54,7 @@ const EMERALD_THEME: FooterTheme = {
   madeWith: 'text-primary-200/30',
 }
 
-export function getFooterTheme(_pathname: string) {
+export function getFooterTheme() {
   return EMERALD_THEME
 }
 
@@ -87,7 +87,7 @@ const PSIKOTES_LINKS: FooterSection[] = [
   },
 ]
 
-export function getFooterLinks(_pathname: string) {
+export function getFooterLinks() {
   return PSIKOTES_LINKS
 }
 
@@ -100,7 +100,7 @@ const FOOTER_CTA: FooterCta = {
   label: 'Mulai Sekarang',
 }
 
-export function getFooterCta(_pathname: string) {
+export function getFooterCta() {
   return FOOTER_CTA
 }
 

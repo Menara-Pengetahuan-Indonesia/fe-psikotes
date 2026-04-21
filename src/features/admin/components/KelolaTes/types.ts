@@ -1,4 +1,4 @@
-import type { Package, ChildPackage, PackageType, Test, SubTest, Question } from '../../types'
+import type { Package, ChildPackage, PackageType, Test, SubTest } from '../../types'
 
 export type TreeNodeType = 'package' | 'childPackage' | 'packageType' | 'test' | 'subTest'
 

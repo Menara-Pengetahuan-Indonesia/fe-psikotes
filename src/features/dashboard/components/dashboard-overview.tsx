@@ -6,7 +6,6 @@ import {
   CalendarDays,
   TrendingUp,
   Brain,
-  MessageCircle,
   BookOpen,
   Star,
   Target,

@@ -6,8 +6,6 @@ import {
   Rocket,
   Handshake,
   Brain,
-  HeartHandshake,
-  GraduationCap,
 } from 'lucide-react'
 
 export const VALUES = [
