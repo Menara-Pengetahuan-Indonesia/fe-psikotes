@@ -56,7 +56,7 @@ describe('ExamInterface (gratis)', () => {
 
   it('renders progress info', () => {
     render(<ExamInterface questions={mockQuestions} />)
-    expect(screen.getByText(/Soal 1/)).toBeInTheDocument()
+    expect(screen.getByText(/Pertanyaan 1/)).toBeInTheDocument()
   })
 
   it('disables back button on first question', () => {

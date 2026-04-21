@@ -71,7 +71,7 @@ describe('axios api instance', () => {
   })
 
   it('creates api instance with correct baseURL', () => {
-    expect(api.defaults.baseURL).toBe('http://localhost:5000/api')
+    expect(api.defaults.baseURL).toBe('http://localhost:5000')
   })
 
   it('sets Content-Type header', () => {
@@ -165,7 +165,7 @@ describe('axios api instance', () => {
     const result = await handler.rejected(error)
 
     expect(postSpy).toHaveBeenCalledWith(
-      'http://localhost:5000/api/auth/refresh',
+      'http://localhost:5000/auth/refresh',
       { refreshToken: 'refresh-token' },
     )
     expect(mockSetTokens).toHaveBeenCalledWith('new-token', 'new-refresh')

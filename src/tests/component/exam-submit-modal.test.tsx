@@ -23,11 +23,11 @@ describe('ExamSubmitModal', () => {
     expect(onCancel).toHaveBeenCalledOnce()
   })
 
-  it('calls onConfirm when Ya, Selesai clicked', async () => {
+  it('calls onConfirm when Ya, Kirim clicked', async () => {
     const onConfirm = vi.fn()
     const user = userEvent.setup()
     render(<ExamSubmitModal onCancel={vi.fn()} onConfirm={onConfirm} />)
-    await user.click(screen.getByText('Ya, Selesai'))
+    await user.click(screen.getByText('Ya, Kirim'))
     expect(onConfirm).toHaveBeenCalledOnce()
   })
 })

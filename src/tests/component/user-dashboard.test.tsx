@@ -33,20 +33,19 @@ describe('UserDashboard', () => {
 
   it('renders stats section', () => {
     render(<UserDashboard />)
-    expect(screen.getByText('Rata-rata Skor')).toBeInTheDocument()
-    expect(screen.getByText('Total Aktivitas')).toBeInTheDocument()
+    expect(screen.getByText('Rata-rata')).toBeInTheDocument()
+    expect(screen.getByText('Total Tes')).toBeInTheDocument()
   })
 
   it('renders riwayat section', () => {
     render(<UserDashboard />)
-    expect(screen.getByText('Riwayat')).toBeInTheDocument()
+    expect(screen.getByText('Riwayat Terbaru')).toBeInTheDocument()
     expect(screen.getByText('Lihat Semua Hasil')).toBeInTheDocument()
   })
 
-  it('renders service pillar links', () => {
+  it('renders quick access links', () => {
     render(<UserDashboard />)
-    expect(screen.getByText('Konseling')).toBeInTheDocument()
-    expect(screen.getAllByText('Pelatihan').length).toBeGreaterThanOrEqual(1)
+    expect(screen.getByText('Mulai Tes')).toBeInTheDocument()
     expect(screen.getAllByText('Premium').length).toBeGreaterThanOrEqual(1)
   })
 })

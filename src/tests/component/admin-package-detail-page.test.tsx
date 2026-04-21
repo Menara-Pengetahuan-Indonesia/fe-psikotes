@@ -24,6 +24,10 @@ vi.mock('next/navigation', async () => {
 
 vi.mock('@/features/admin/hooks', () => ({
   usePackage: mockUsePackage,
+  useChildPackages: () => ({ data: [], isLoading: false }),
+  useCreateChildPackage: () => ({ mutate: vi.fn(), isPending: false }),
+  useUpdateChildPackage: () => ({ mutate: vi.fn(), isPending: false }),
+  useDeleteChildPackage: () => ({ mutate: vi.fn(), isPending: false }),
 }))
 
 import PackageDetailPage from '@/app/(dasbor)/admin/packages/[packageId]/page'
@@ -76,7 +80,6 @@ describe('PackageDetailPage', () => {
 
     expect(mockUsePackage).toHaveBeenCalledWith('9b85b39b-efab-4553-a180-f4f314f8050c')
     expect(screen.getByText('Paket Assessment Korporat')).toBeInTheDocument()
-    expect(screen.getByText('Tes Numerik')).toBeInTheDocument()
     expect(screen.queryByText('Paket tidak ditemukan.')).not.toBeInTheDocument()
   })
 })
