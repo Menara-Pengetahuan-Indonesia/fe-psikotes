@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import {
-  Layers, Plus, Search, Pencil, Trash2, FlaskConical,
+  Layers, Plus, Search, Pencil, Trash2, FlaskConical, Copy,
   ToggleLeft, ToggleRight, CheckCircle2, XCircle,
 } from 'lucide-react'
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog'
@@ -15,7 +15,12 @@ import { ConfirmDialog } from '@/features/admin/components/Common/ConfirmDialog'
 import {
   useChildPackages, useUpdateChildPackage,
   usePackageTypes, useCreatePackageType, useUpdatePackageType, useDeletePackageType,
+  useTests, useSubTests, useQuestions,
 } from '@/features/admin/hooks'
+import { packageTypeService, testService, subTestService, questionService } from '@/features/admin/services'
+import { adminKeys } from '@/features/admin/hooks/query-keys'
+import { useQueryClient } from '@tanstack/react-query'
+import { toast } from 'sonner'
 import type { PackageType } from '@/features/admin/types'
 import type { TreeSelection } from '../types'
 
@@ -42,6 +47,89 @@ export function ChildPackagePanel({ childPackageId, onSelect }: ChildPackagePane
   const [formTestTool, setFormTestTool] = useState('')
   const [formActive, setFormActive] = useState(true)
   const [formError, setFormError] = useState('')
+
+  const [duplicateSourceId, setDuplicateSourceId] = useState<string | null>(null)
+  const [duplicateName, setDuplicateName] = useState('')
+  const [duplicateNameError, setDuplicateNameError] = useState('')
+  const [duplicating, setDuplicating] = useState(false)
+
+  const { data: allTests } = useTests()
+  const { data: allSubTests } = useSubTests()
+  const { data: allQuestions } = useQuestions()
+  const qc = useQueryClient()
+
+  const handleDuplicate = async () => {
+    if (!duplicateName.trim()) { setDuplicateNameError('Nama wajib diisi.'); return }
+    const source = (allPackageTypes ?? []).find(pt => pt.id === duplicateSourceId)
+    if (!source) return
+    setDuplicating(true)
+    try {
+      const newPt = await packageTypeService.create({
+        childPackageId: source.childPackageId,
+        name: duplicateName.trim(),
+        description: source.description,
+        price: source.price,
+        testTool: source.testTool,
+        isActive: source.isActive,
+      })
+      const tests = (allTests ?? []).filter(t => t.packageTypeId === source.id)
+      for (const test of tests) {
+        const newTest = await testService.create({
+          packageTypeId: newPt.id,
+          name: test.name,
+          description: test.description,
+          scoringType: test.scoringType,
+          order: test.order,
+          isActive: test.isActive,
+          originalYear: test.originalYear ?? undefined,
+          precision: test.precision ?? undefined,
+          adaptationYear: test.adaptationYear ?? undefined,
+          popularity: test.popularity ?? undefined,
+        })
+        const subTests = (allSubTests ?? []).filter(s => s.testId === test.id)
+        for (const sub of subTests) {
+          const newSub = await subTestService.create({
+            testId: newTest.id,
+            name: sub.name,
+            description: sub.description,
+            duration: sub.duration ?? undefined,
+            order: sub.order,
+            isActive: sub.isActive,
+          })
+          const questions = (allQuestions ?? []).filter(q => q.subTestId === sub.id)
+          for (const q of questions) {
+            await questionService.create({
+              subTestId: newSub.id,
+              questionType: q.questionType,
+              questionText: q.questionText,
+              imageUrl: q.imageUrl ?? undefined,
+              order: q.order,
+              points: q.points,
+              options: q.options?.map(o => ({
+                optionText: o.optionText,
+                imageUrl: o.imageUrl,
+                isCorrect: o.isCorrect,
+                points: o.points,
+                order: o.order,
+              })),
+              correctAnswer: q.correctAnswer ?? undefined,
+            })
+          }
+        }
+      }
+      qc.invalidateQueries({ queryKey: adminKeys.packageTypes.all })
+      qc.invalidateQueries({ queryKey: adminKeys.tests.all })
+      qc.invalidateQueries({ queryKey: adminKeys.subTests.all })
+      qc.invalidateQueries({ queryKey: adminKeys.questions.all })
+      toast.success(`Berhasil menduplikasi ke "${duplicateName.trim()}"`)
+      setDuplicateSourceId(null)
+      setDuplicateName('')
+    } catch {
+      toast.error('Gagal menduplikasi paket')
+    } finally {
+      setDuplicating(false)
+    }
+  }
 
   const updateCp = useUpdateChildPackage()
   const createType = useCreatePackageType()
@@ -218,6 +306,14 @@ export function ChildPackagePanel({ childPackageId, onSelect }: ChildPackagePane
                 </button>
                 <button
                   type="button"
+                  onClick={e => { e.stopPropagation(); setDuplicateSourceId(pt.id); setDuplicateName(''); setDuplicateNameError('') }}
+                  aria-label={`Duplikasi ${pt.name}`}
+                  className="size-8 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:text-indigo-600 hover:border-indigo-300 hover:bg-indigo-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                >
+                  <Copy className="size-3.5" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
                   onClick={e => { e.stopPropagation(); setDeleteId(pt.id) }}
                   aria-label={`Hapus ${pt.name}`}
                   className="size-8 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:text-rose-600 hover:border-rose-300 hover:bg-rose-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
@@ -304,6 +400,45 @@ export function ChildPackagePanel({ childPackageId, onSelect }: ChildPackagePane
         description="Semua tes di dalamnya juga akan terhapus."
         onConfirm={() => { if (deleteId) deleteType.mutate(deleteId, { onSuccess: () => setDeleteId(null) }) }}
         onCancel={() => setDeleteId(null)} />
+
+      {/* Duplicate dialog */}
+      <Dialog open={!!duplicateSourceId} onOpenChange={v => { if (!v) { setDuplicateSourceId(null); setDuplicateName('') } }}>
+        <DialogContent className="max-w-[400px] p-0 border-0 rounded-[1.5rem] overflow-hidden bg-white shadow-2xl">
+          <div className="px-6 pt-6 pb-3">
+            <DialogTitle className="text-lg font-black text-slate-900 tracking-tight">Duplikasi Tipe Paket</DialogTitle>
+            <DialogDescription className="text-sm text-slate-500 mt-1">
+              Masukkan nama untuk tipe paket baru. Semua tes, sub tes, dan soal akan disalin.
+            </DialogDescription>
+          </div>
+          <div className="px-6 pb-6 space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="dup-name" className="text-xs font-bold uppercase tracking-wider text-slate-500">Nama Baru</Label>
+              <Input
+                id="dup-name"
+                placeholder="Contoh: Paket Lengkap"
+                value={duplicateName}
+                onChange={e => { setDuplicateName(e.target.value); setDuplicateNameError('') }}
+                aria-invalid={!!duplicateNameError}
+                className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500"
+              />
+              {duplicateNameError && <p role="alert" className="text-rose-600 text-xs font-bold">{duplicateNameError}</p>}
+            </div>
+            <div className="flex gap-3 pt-1">
+              <Button
+                onClick={handleDuplicate}
+                disabled={duplicating}
+                className="flex-1 h-11 rounded-xl bg-slate-900 hover:bg-slate-800 text-sm font-black shadow-md transition-all active:scale-[0.98]"
+              >
+                {duplicating ? 'Menduplikasi...' : 'Duplikasi'}
+              </Button>
+              <Button variant="ghost" className="h-11 rounded-xl text-sm font-bold text-slate-500 hover:bg-slate-50"
+                onClick={() => { setDuplicateSourceId(null); setDuplicateName('') }}>
+                Batal
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
