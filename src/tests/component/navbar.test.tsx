@@ -24,7 +24,7 @@ describe('Navbar', () => {
   it('renders navigation items for psikotes route', () => {
     render(<Navbar />)
     expect(screen.getByText('Beranda')).toBeInTheDocument()
-    expect(screen.getByText('Membership')).toBeInTheDocument()
+    expect(screen.getByText('Asesmen')).toBeInTheDocument()
   })
 
   it('renders auth CTA buttons', () => {
@@ -33,9 +33,10 @@ describe('Navbar', () => {
     expect(screen.getByText('Daftar')).toBeInTheDocument()
   })
 
-  it('renders Paid Member link', () => {
+  it('renders Masuk and Daftar CTA buttons', () => {
     render(<Navbar />)
-    expect(screen.getByText('Paid Member')).toBeInTheDocument()
+    expect(screen.getAllByText('Masuk').length).toBeGreaterThanOrEqual(1)
+    expect(screen.getAllByText('Daftar').length).toBeGreaterThanOrEqual(1)
   })
 
   it('renders mobile menu toggle button', () => {

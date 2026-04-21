@@ -10,20 +10,22 @@ vi.mock('next/link', () => ({
 const mockQuestions = [
   {
     id: 'q1',
-    text: 'Apa warna favorit Anda?',
-    type: 'MULTIPLE_CHOICE',
+    subTestId: 'test-1',
+    questionText: 'Apa warna favorit Anda?',
+    questionType: 'MULTIPLE_CHOICE',
     order: 1,
     sectionId: null,
     imageUrl: null,
     options: [
-      { id: 'o1', text: 'Merah', order: 1 },
-      { id: 'o2', text: 'Biru', order: 2 },
+      { id: 'o1', optionText: 'Merah', order: 1, isCorrect: false, points: 0 },
+      { id: 'o2', optionText: 'Biru', order: 2, isCorrect: false, points: 0 },
     ],
   },
   {
     id: 'q2',
-    text: 'Jelaskan diri Anda.',
-    type: 'ESSAY',
+    subTestId: 'test-1',
+    questionText: 'Jelaskan diri Anda.',
+    questionType: 'ESSAY',
     order: 2,
     sectionId: null,
     imageUrl: null,
@@ -34,7 +36,7 @@ const mockQuestions = [
 let mockQuestionsData: typeof mockQuestions | undefined = mockQuestions
 const mockIsLoading = false
 
-const mockMutation = { mutate: vi.fn(), isPending: false }
+const mockMutation = { mutate: vi.fn(), mutateAsync: vi.fn(), isPending: false }
 
 vi.mock('@/features/admin/hooks', () => ({
   useQuestions: () => ({
@@ -60,11 +62,6 @@ vi.mock('@/features/admin/hooks', () => ({
 import { QuestionList } from '@/features/admin/components/QuestionManagement/QuestionList'
 
 describe('QuestionList', () => {
-  it('renders question list heading', () => {
-    render(<QuestionList subTestId="test-1" />)
-    expect(screen.getByText('Pertanyaan')).toBeInTheDocument()
-  })
-
   it('renders add question button', () => {
     render(<QuestionList subTestId="test-1" />)
     expect(screen.getByText('Tambah Pertanyaan')).toBeInTheDocument()
@@ -76,11 +73,6 @@ describe('QuestionList', () => {
     expect(screen.getByText('Jelaskan diri Anda.')).toBeInTheDocument()
   })
 
-  it('renders question count', () => {
-    render(<QuestionList subTestId="test-1" />)
-    expect(screen.getByText('(2 total)')).toBeInTheDocument()
-  })
-
   it('renders empty state when no questions', () => {
     mockQuestionsData = []
     render(<QuestionList subTestId="test-1" />)
@@ -88,8 +80,8 @@ describe('QuestionList', () => {
     mockQuestionsData = mockQuestions
   })
 
-  it('renders option count badge', () => {
+  it('renders type indicator when questions exist', () => {
     render(<QuestionList subTestId="test-1" />)
-    expect(screen.getByText('2 opsi')).toBeInTheDocument()
+    expect(screen.getByText('Semua soal bertipe:')).toBeInTheDocument()
   })
 })

@@ -47,9 +47,10 @@ describe('ConfirmDialog', () => {
     expect(onCancel).toHaveBeenCalledOnce()
   })
 
-  it('shows pending text when isPending', () => {
+  it('shows spinner and disables confirm button when isPending', () => {
     render(<ConfirmDialog {...defaultProps} isPending={true} />)
-    expect(screen.getByText('Menghapus...')).toBeInTheDocument()
+    const confirmBtn = screen.getByRole('button', { name: '' })
+    expect(confirmBtn).toBeDisabled()
   })
 
   it('does not render when closed', () => {

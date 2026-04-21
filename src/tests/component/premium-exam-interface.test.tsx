@@ -7,7 +7,7 @@ vi.mock('@/lib/axios', () => ({
 
 const mockUseExamState = vi.fn()
 
-vi.mock('@/features/hooks/useExamState', () => ({
+vi.mock('@/features/psikotes/hooks/useExamState', () => ({
   useExamState: (...args: unknown[]) => mockUseExamState(...args),
 }))
 

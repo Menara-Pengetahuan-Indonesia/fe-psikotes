@@ -6,12 +6,12 @@ import { ExamInterface } from '@/features/psikotes/gratis/components/exam-interf
 describe('ExamInterface', () => {
   it('renders first question', () => {
     render(<ExamInterface />)
-    expect(screen.getByText(/soal 1 dari/i)).toBeInTheDocument()
+    expect(screen.getByText(/Pertanyaan 1/i)).toBeInTheDocument()
   })
 
   it('progress bar starts at first step', () => {
     render(<ExamInterface />)
-    expect(screen.getByText(/soal 1 dari 3/i)).toBeInTheDocument()
+    expect(screen.getByText(/1\/3/i)).toBeInTheDocument()
   })
 
   it('next button is disabled without selecting answer', () => {
