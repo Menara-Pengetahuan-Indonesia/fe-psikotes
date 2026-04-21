@@ -62,6 +62,12 @@ export function ChildPackagePanel({ childPackageId, onSelect }: ChildPackagePane
     if (!duplicateName.trim()) { setDuplicateNameError('Nama wajib diisi.'); return }
     const source = (allPackageTypes ?? []).find(pt => pt.id === duplicateSourceId)
     if (!source) return
+
+    // Snapshot before any awaits — React Query can refetch mid-loop otherwise
+    const testsSnapshot = (allTests ?? []).filter(t => t.packageTypeId === source.id)
+    const subTestsSnapshot = allSubTests ?? []
+    const questionsSnapshot = allQuestions ?? []
+
     setDuplicating(true)
     try {
       const newPt = await packageTypeService.create({
@@ -72,8 +78,7 @@ export function ChildPackagePanel({ childPackageId, onSelect }: ChildPackagePane
         testTool: source.testTool,
         isActive: source.isActive,
       })
-      const tests = (allTests ?? []).filter(t => t.packageTypeId === source.id)
-      for (const test of tests) {
+      for (const test of testsSnapshot) {
         const newTest = await testService.create({
           packageTypeId: newPt.id,
           name: test.name,
@@ -86,7 +91,7 @@ export function ChildPackagePanel({ childPackageId, onSelect }: ChildPackagePane
           adaptationYear: test.adaptationYear ?? undefined,
           popularity: test.popularity ?? undefined,
         })
-        const subTests = (allSubTests ?? []).filter(s => s.testId === test.id)
+        const subTests = subTestsSnapshot.filter(s => s.testId === test.id)
         for (const sub of subTests) {
           const newSub = await subTestService.create({
             testId: newTest.id,
@@ -96,7 +101,7 @@ export function ChildPackagePanel({ childPackageId, onSelect }: ChildPackagePane
             order: sub.order,
             isActive: sub.isActive,
           })
-          const questions = (allQuestions ?? []).filter(q => q.subTestId === sub.id)
+          const questions = questionsSnapshot.filter(q => q.subTestId === sub.id)
           for (const q of questions) {
             await questionService.create({
               subTestId: newSub.id,
