@@ -80,8 +80,8 @@ describe('QuestionList', () => {
     mockQuestionsData = mockQuestions
   })
 
-  it('renders type indicator when questions exist', () => {
+  it('renders type selector buttons', () => {
     render(<QuestionList subTestId="test-1" />)
-    expect(screen.getByText('Semua soal bertipe:')).toBeInTheDocument()
+    expect(screen.getAllByText('Pilihan Ganda').length).toBeGreaterThan(0)
   })
 })

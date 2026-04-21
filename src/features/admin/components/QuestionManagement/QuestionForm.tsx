@@ -30,7 +30,7 @@ import {
 import { z } from 'zod'
 import { createQuestionSchema } from '../../schemas'
 import { FormField } from '../Common/FormField'
-import type { Question, QuestionType } from '../../types'
+import type { Question, QuestionType, ScaleWeight } from '../../types'
 import { QUESTION_TYPE_LABELS } from '@features/admin/constants/question-types.constants'
 import { cn } from '@/lib/utils'
 
@@ -121,7 +121,7 @@ export function QuestionForm({
   const [keywordInput, setKeywordInput] = useState('')
   const [minScale, setMinScale] = useState(1)
   const [maxScale, setMaxScale] = useState(5)
-  const [scaleWeights, setScaleWeights] = useState<Record<string, number>>({})
+  const [scaleWeights, setScaleWeights] = useState<Record<string, ScaleWeight>>({})
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -215,11 +215,11 @@ export function QuestionForm({
             </FormField>
           </div>
 
-          <FormField label="Poin" error={errors.points}>
-            <Input type="number" placeholder="1" className="w-32" {...register('points', { valueAsNumber: true })} />
-          </FormField>
-
-          {/* Image Upload */}
+          {showEssay && (
+            <FormField label="Poin" error={errors.points}>
+              <Input type="number" placeholder="1" className="w-32" {...register('points', { valueAsNumber: true })} />
+            </FormField>
+          )}
           <div className="space-y-2">
             <label className="text-sm font-medium">Gambar (Opsional)</label>
             {imagePreview ? (
@@ -334,8 +334,8 @@ export function QuestionForm({
                   <Input type="number" value={minScale} onChange={(e) => {
                     const v = Number(e.target.value)
                     setMinScale(v)
-                    const newWeights: Record<string, number> = {}
-                    for (let i = v; i <= maxScale; i++) newWeights[String(i)] = scaleWeights[String(i)] ?? i
+                    const newWeights: Record<string, ScaleWeight> = {}
+                    for (let i = v; i <= maxScale; i++) newWeights[String(i)] = scaleWeights[String(i)] ?? { label: String(i), points: i }
                     setScaleWeights(newWeights)
                   }} />
                 </div>
@@ -344,22 +344,25 @@ export function QuestionForm({
                   <Input type="number" value={maxScale} onChange={(e) => {
                     const v = Number(e.target.value)
                     setMaxScale(v)
-                    const newWeights: Record<string, number> = {}
-                    for (let i = minScale; i <= v; i++) newWeights[String(i)] = scaleWeights[String(i)] ?? i
+                    const newWeights: Record<string, ScaleWeight> = {}
+                    for (let i = minScale; i <= v; i++) newWeights[String(i)] = scaleWeights[String(i)] ?? { label: String(i), points: i }
                     setScaleWeights(newWeights)
                   }} />
                 </div>
               </div>
               {minScale <= maxScale && (
                 <div className="space-y-2">
-                  <label className="text-xs text-muted-foreground">Bobot per Skala</label>
+                  <label className="text-xs text-muted-foreground">Label & Bobot per Skala</label>
                   <div className="grid grid-cols-5 gap-2">
                     {Array.from({ length: maxScale - minScale + 1 }, (_, i) => minScale + i).map((val) => (
                       <div key={val} className="space-y-1">
                         <label className="text-xs font-medium text-center block">{val}</label>
-                        <Input type="number" className="text-center text-sm h-8"
-                          value={scaleWeights[String(val)] ?? val}
-                          onChange={(e) => setScaleWeights({ ...scaleWeights, [String(val)]: Number(e.target.value) })} />
+                        <Input placeholder="Label" className="text-center text-xs h-8"
+                          value={scaleWeights[String(val)]?.label ?? String(val)}
+                          onChange={(e) => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { points: val }, label: e.target.value } })} />
+                        <Input type="number" placeholder="Poin" className="text-center text-sm h-8"
+                          value={scaleWeights[String(val)]?.points ?? val}
+                          onChange={(e) => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { label: String(val) }, points: Number(e.target.value) } })} />
                       </div>
                     ))}
                   </div>

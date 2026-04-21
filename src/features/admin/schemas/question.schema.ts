@@ -20,7 +20,7 @@ export const createQuestionSchema = z.object({
     correctEssayKeywords: z.array(z.string()).optional(),
     minScaleValue: z.number().optional(),
     maxScaleValue: z.number().optional(),
-    scaleWeights: z.record(z.string(), z.number()).optional(),
+    scaleWeights: z.record(z.string(), z.object({ label: z.string(), points: z.number() })).optional(),
   }).optional(),
 })
 

@@ -3,19 +3,31 @@
 import { useState } from 'react'
 import {
   FlaskConical, Plus, Search, Pencil, Trash2, FileText,
-  ToggleLeft, ToggleRight, CheckCircle2, XCircle,
+  ToggleLeft, ToggleRight, CheckCircle2, XCircle, Copy,
 } from 'lucide-react'
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { cn } from '@/lib/utils'
 import { ConfirmDialog } from '@/features/admin/components/Common/ConfirmDialog'
 import {
   usePackageTypes, useUpdatePackageType,
   useTests, useCreateTest, useUpdateTest, useDeleteTest,
+  useSubTests, useQuestions,
 } from '@/features/admin/hooks'
+import { packageTypeService, testService, subTestService, questionService } from '@/features/admin/services'
+import { adminKeys } from '@/features/admin/hooks/query-keys'
+import { useQueryClient } from '@tanstack/react-query'
+import { toast } from 'sonner'
 import type { Test, ScoringType } from '@/features/admin/types'
 import type { TreeSelection } from '../types'
 
@@ -48,6 +60,90 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
   const [formPrecision, setFormPrecision] = useState<number | undefined>(undefined)
   const [formAdaptationYear, setFormAdaptationYear] = useState<number | undefined>(undefined)
   const [formPopularity, setFormPopularity] = useState('')
+
+  const { data: allSubTests } = useSubTests()
+  const { data: allQuestions } = useQuestions()
+  const qc = useQueryClient()
+  const [duplicating, setDuplicating] = useState(false)
+
+  const handleDuplicatePackageType = async () => {
+    if (!pt) return
+    setDuplicating(true)
+    try {
+      const tierNames = ['Lengkap', 'Komprehensif']
+      for (const tierName of tierNames) {
+        // Create new PackageType
+        const newPt = await packageTypeService.create({
+          childPackageId: pt.childPackageId,
+          name: tierName,
+          description: pt.description,
+          price: pt.price,
+          testTool: pt.testTool,
+          isActive: pt.isActive,
+        })
+
+        // Duplicate all tests into new PackageType
+        for (const test of tests) {
+          const newTest = await testService.create({
+            packageTypeId: newPt.id,
+            name: test.name,
+            description: test.description,
+            scoringType: test.scoringType,
+            order: test.order,
+            isActive: test.isActive,
+            originalYear: test.originalYear ?? undefined,
+            precision: test.precision ?? undefined,
+            adaptationYear: test.adaptationYear ?? undefined,
+            popularity: test.popularity ?? undefined,
+          })
+
+          // Duplicate subtests
+          const subTests = (allSubTests ?? []).filter(s => s.testId === test.id)
+          for (const sub of subTests) {
+            const newSub = await subTestService.create({
+              testId: newTest.id,
+              name: sub.name,
+              description: sub.description,
+              duration: sub.duration ?? undefined,
+              order: sub.order,
+              isActive: sub.isActive,
+            })
+
+            // Duplicate questions
+            const questions = (allQuestions ?? []).filter(q => q.subTestId === sub.id)
+            for (const q of questions) {
+              await questionService.create({
+                subTestId: newSub.id,
+                questionType: q.questionType,
+                questionText: q.questionText,
+                imageUrl: q.imageUrl ?? undefined,
+                order: q.order,
+                points: q.points,
+                options: q.options?.map(o => ({
+                  optionText: o.optionText,
+                  imageUrl: o.imageUrl,
+                  isCorrect: o.isCorrect,
+                  points: o.points,
+                  order: o.order,
+                })),
+                correctAnswer: q.correctAnswer ?? undefined,
+              })
+            }
+          }
+        }
+      }
+
+      qc.invalidateQueries({ queryKey: adminKeys.packageTypes.all })
+      qc.invalidateQueries({ queryKey: adminKeys.tests.all })
+      qc.invalidateQueries({ queryKey: adminKeys.subTests.all })
+      qc.invalidateQueries({ queryKey: adminKeys.questions.all })
+      toast.success('Berhasil menduplikasi ke Lengkap & Komprehensif')
+    } catch {
+      toast.error('Gagal menduplikasi paket')
+    } finally {
+      setDuplicating(false)
+    }
+  }
 
   const updatePt = useUpdatePackageType()
   const createTest = useCreateTest()
@@ -124,14 +220,27 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
             <p className="text-xs text-slate-400 font-bold mt-1.5 uppercase tracking-widest">Tipe Paket &middot; Rp {pt.price.toLocaleString('id-ID')}</p>
           </div>
         </div>
-        <button
-          type="button"
-          onClick={openEditPt}
-          aria-label={`Edit tipe paket ${pt.name}`}
-          className="size-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:text-violet-600 hover:border-violet-300 hover:bg-violet-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2"
-        >
-          <Pencil className="size-4" aria-hidden="true" />
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={handleDuplicatePackageType}
+            disabled={duplicating || tests.length === 0}
+            aria-label="Duplikasi ke Lengkap & Komprehensif"
+            title="Duplikasi ke Lengkap & Komprehensif"
+            className="h-10 px-3 rounded-xl border border-slate-200 flex items-center gap-2 text-slate-400 hover:text-indigo-600 hover:border-indigo-300 hover:bg-indigo-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 disabled:opacity-40 disabled:cursor-not-allowed text-xs font-bold"
+          >
+            <Copy className="size-4" aria-hidden="true" />
+            {duplicating ? 'Menduplikasi...' : 'Duplikasi'}
+          </button>
+          <button
+            type="button"
+            onClick={openEditPt}
+            aria-label={`Edit tipe paket ${pt.name}`}
+            className="size-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:text-violet-600 hover:border-violet-300 hover:bg-violet-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2"
+          >
+            <Pencil className="size-4" aria-hidden="true" />
+          </button>
+        </div>
       </div>
 
       {/* Stats */}
@@ -310,8 +419,16 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="pt-popularity" className="text-xs font-bold uppercase tracking-wider text-slate-500">Popularitas</Label>
-                    <Input id="pt-popularity" placeholder="Tinggi / Sedang / Rendah" value={formPopularity} onChange={e => setFormPopularity(e.target.value)}
-                      className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                    <Select value={formPopularity} onValueChange={setFormPopularity}>
+                      <SelectTrigger id="pt-popularity" className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus:ring-2 focus:ring-indigo-500">
+                        <SelectValue placeholder="Pilih popularitas" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Rendah">Rendah</SelectItem>
+                        <SelectItem value="Sedang">Sedang</SelectItem>
+                        <SelectItem value="Tinggi">Tinggi</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
               )}

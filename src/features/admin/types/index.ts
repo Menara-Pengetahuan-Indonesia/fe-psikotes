@@ -101,11 +101,16 @@ export interface QuestionOption {
   order: number
 }
 
+export interface ScaleWeight {
+  label: string
+  points: number
+}
+
 export interface CorrectAnswer {
   correctEssayKeywords?: string[]
   minScaleValue?: number
   maxScaleValue?: number
-  scaleWeights?: Record<string, number>
+  scaleWeights?: Record<string, ScaleWeight>
 }
 
 export interface Question {
@@ -115,7 +120,7 @@ export interface Question {
   questionText: string
   imageUrl?: string | null
   order: number
-  points: number
+  points?: number
   options?: QuestionOption[]
   correctAnswer?: CorrectAnswer | null
   createdAt: string
