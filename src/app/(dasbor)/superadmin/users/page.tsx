@@ -5,8 +5,6 @@ import {
   Users,
   Search,
   Shield,
-  ShieldCheck,
-  ShieldBan,
   UserPlus,
   Mail,
   Phone,
@@ -266,7 +264,6 @@ export default function SuperAdminUsersPage() {
           {filtered.map((user, index) => {
             const accent = accentColors[index % accentColors.length]
             const role = roleConfig[user.role]
-            const RoleIcon = role.icon
 
             return (
               <div

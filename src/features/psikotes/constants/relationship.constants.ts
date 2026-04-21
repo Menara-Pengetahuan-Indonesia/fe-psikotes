@@ -1,4 +1,4 @@
-import { Heart, AlertTriangle, Home, HeartCrack, UserX } from 'lucide-react'
+import { AlertTriangle, Home, HeartCrack, UserX } from 'lucide-react'
 import type { RelationshipProduct, TierPricing } from '../types'
 
 const STANDARD_RELATIONSHIP_PRICING: TierPricing[] = [

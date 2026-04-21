@@ -5,7 +5,6 @@ import {
   FileText,
   TrendingUp,
   Brain,
-  MessageCircle,
   BookOpen,
   Star,
   Target,

@@ -103,7 +103,7 @@ export function Navbar({
 
           {/* Right: CTA + mobile toggle */}
           <div className="flex items-center justify-end gap-2">
-            <NavbarDesktopCta isScrolled={isScrolled} />
+            <NavbarDesktopCta />
             <button
               className={cn(
                 'md:hidden p-2.5 rounded-xl',

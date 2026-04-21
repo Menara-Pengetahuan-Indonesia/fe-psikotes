@@ -111,6 +111,7 @@ export function QuestionForm({
     }
   }, [open, initialData, isEditing, reset, subTestId])
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const questionType = watch('questionType')
   const showOptions = questionType === 'MULTIPLE_CHOICE' || questionType === 'CHECKBOX'
   const showEssay = questionType === 'ESSAY'
