@@ -24,7 +24,7 @@ export function PsikotesHero() {
                 Mental Health untuk Tumbuh dan Sukses <br /> <span className="text-accent-500 italic text-4xl md:text-5xl">di Era Penuh Tekanan</span>
               </h1>
               <p className="text-sm md:text-base text-gray-500 max-w-xl mx-auto leading-relaxed font-medium text-pretty">
-                Assessment psikologis berbasis riset sebagai titik mula menuju <span className="text-primary-600 font-bold italic">&quot;The New You&quot;</span>..... dan masa depan yang lebih terarah
+                Jadikan assessment psikologis sebagai cara <span className="text-primary-600 font-bold italic">Bermoela</span> menuju dirimu yang baru dan masa depan yang lebih terarah
               </p>
             </div>
           </div>
