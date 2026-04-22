@@ -95,11 +95,12 @@ api.interceptors.response.use(
         { refreshToken },
       )
 
-      setTokens(data.accessToken, data.refreshToken)
-      processQueue(null, data.accessToken)
+      const tokens = data.data ?? data
+      setTokens(tokens.accessToken, tokens.refreshToken)
+      processQueue(null, tokens.accessToken)
 
       originalRequest.headers.Authorization =
-        `Bearer ${data.accessToken}`
+        `Bearer ${tokens.accessToken}`
       return api(originalRequest)
     } catch (refreshError) {
       processQueue(refreshError, null)
