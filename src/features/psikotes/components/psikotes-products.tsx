@@ -30,6 +30,10 @@ export function PsikotesProducts() {
 
   return (
     <section id="masa-depan" className="py-12 md:py-16 bg-background relative overflow-hidden">
+      {/* Decorative orbs */}
+      <div className="absolute top-[-6%] right-[-5%] w-[400px] h-[400px] bg-accent-100/50 rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-8%] w-[450px] h-[450px] bg-primary-100/40 rounded-full pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         <div className="space-y-4 max-w-2xl mb-12">
