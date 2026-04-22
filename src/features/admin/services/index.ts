@@ -151,15 +151,15 @@ export const questionService = {
 
 // ── UPLOAD SERVICE ──────────────────────────────────
 export const uploadService = {
-  uploadImage: async (file: File): Promise<{ url: string; filename: string }> => {
+  uploadImage: async (file: File): Promise<{ url: string }> => {
     const formData = new FormData()
     formData.append('file', file)
-    const { data } = await api.post<{ url: string; filename: string }>(
-      '/admin/upload/image',
+    const { data } = await api.post<ApiResponse<{ url: string }>>(
+      '/upload/image',
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } },
     )
-    return data
+    return data.data
   },
 }
 
