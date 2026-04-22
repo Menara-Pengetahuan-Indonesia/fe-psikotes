@@ -23,31 +23,30 @@ export function GratisListing() {
   }, [search, activeTab])
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-linear-to-b from-primary-900 via-primary-800 to-primary-600 pt-32 pb-24">
-        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary-500/10 rounded-full pointer-events-none" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-accent-500/5 rounded-full pointer-events-none" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-primary-50/50 via-white to-white pt-32 pb-20">
+        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary-100/50 rounded-full pointer-events-none" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] bg-accent-100/40 rounded-full pointer-events-none" />
 
         <div className="max-w-5xl mx-auto px-6 relative z-10 text-center space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm">
-            <Sparkles className="w-4 h-4 text-accent-300 fill-accent-300" />
-            <span className="text-xs font-black text-white uppercase tracking-widest">Gratis & Tanpa Daftar</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 border border-primary-100">
+            <Sparkles className="w-4 h-4 text-primary-600 fill-primary-600" />
+            <span className="text-xs font-black text-primary-700 uppercase tracking-widest">Gratis & Tanpa Daftar</span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[0.95]">
-            Tes Psikologi <br className="hidden md:block" />
-            <span className="text-accent-300 italic">Gratis</span>
+          <h1 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tight leading-[0.95]">
+            Tes Psikologi <span className="text-accent-500 italic">Gratis</span>
           </h1>
 
-          <p className="text-primary-100/80 font-medium max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+          <p className="text-gray-500 font-medium max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             Mulai kenali dirimu melalui berbagai tes psikologi berbasis riset — gratis, tanpa batas waktu, dan bisa diakses kapan saja.
           </p>
 
           {/* Search */}
           <div className="max-w-xl mx-auto">
-            <div className="relative flex items-center bg-white rounded-2xl border border-slate-200 shadow-xl shadow-primary-900/20">
+            <div className="relative flex items-center bg-white rounded-2xl border border-slate-200 shadow-lg">
               <div className="pl-5 pr-2">
                 <Search className="w-5 h-5 text-slate-400" />
               </div>
@@ -64,8 +63,10 @@ export function GratisListing() {
       </section>
 
       {/* Filter + Grid */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="relative overflow-hidden py-16">
+        <div className="absolute top-[-8%] right-[-6%] w-[350px] h-[350px] bg-accent-100/30 rounded-full pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
 
           {/* Filter Tabs */}
           <div className="flex flex-wrap gap-2 justify-center mb-12">
@@ -111,9 +112,6 @@ export function GratisListing() {
       <section className="pb-20">
         <div className="max-w-5xl mx-auto px-6">
           <div className="relative p-8 md:p-12 rounded-[3rem] bg-primary-600 shadow-2xl shadow-primary-900/20 overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-accent-500/20 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-400/20 rounded-full blur-3xl pointer-events-none" />
-
             <div className="relative z-10 text-center space-y-6">
               <Sparkles className="w-10 h-10 text-accent-300 mx-auto" />
               <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight leading-tight">
@@ -130,7 +128,7 @@ export function GratisListing() {
       {/* Popup Modal */}
       {selectedTest && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setSelectedTest(null)} />
+          <div className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" onClick={() => setSelectedTest(null)} />
           <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 text-center space-y-5">
             <button
               onClick={() => setSelectedTest(null)}

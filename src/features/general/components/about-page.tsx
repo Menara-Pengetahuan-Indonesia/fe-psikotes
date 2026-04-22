@@ -41,19 +41,19 @@ const SERVICES = [
     icon: Brain,
     title: 'Asesmen Psikologi',
     desc: 'Psikotes terstandar dengan hasil real-time dan laporan komprehensif untuk individu maupun organisasi.',
-    color: 'bg-primary-600',
+    color: 'bg-primary-50 text-primary-600',
   },
   {
     icon: Users,
     title: 'Konseling & Coaching',
     desc: 'Pendampingan personal oleh psikolog berlisensi untuk membantu kamu menavigasi tantangan hidup.',
-    color: 'bg-accent-500',
+    color: 'bg-accent-50 text-accent-600',
   },
   {
     icon: Building2,
     title: 'Corporate Assessment',
     desc: 'Solusi assessment berbasis kompetensi untuk rekrutmen, promosi, dan pengembangan SDM perusahaan.',
-    color: 'bg-slate-800',
+    color: 'bg-sky-50 text-sky-600',
   },
 ]
 
@@ -66,25 +66,25 @@ const JOURNEY = [
 
 export function AboutPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-white">
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-linear-to-b from-primary-900 via-primary-800 to-primary-600 pt-32 pb-24">
-        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary-500/10 rounded-full pointer-events-none" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-accent-500/5 rounded-full pointer-events-none" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-primary-50/50 via-white to-white pt-32 pb-24">
+        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary-100/40 rounded-full pointer-events-none" />
+        <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-accent-100/30 rounded-full pointer-events-none" />
 
         <div className="max-w-5xl mx-auto px-6 relative z-10 text-center space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm">
-            <Sparkles className="w-4 h-4 text-accent-300 fill-accent-300" />
-            <span className="text-xs font-black text-white uppercase tracking-widest">Tentang Kami</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 border border-primary-100">
+            <Sparkles className="w-4 h-4 text-primary-600 fill-primary-600" />
+            <span className="text-xs font-black text-primary-700 uppercase tracking-widest">Tentang Kami</span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[0.95]">
+          <h1 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tight leading-[0.95]">
             Platform Psikologi <br className="hidden md:block" />
-            <span className="text-accent-300 italic">untuk Indonesia</span>
+            <span className="text-primary-600 italic">untuk Indonesia</span>
           </h1>
 
-          <p className="text-primary-100/80 font-medium max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+          <p className="text-gray-500 font-medium max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             BERMOELA hadir sebagai platform pengembangan diri berbasis asesmen psikologi ilmiah — membantu individu dan organisasi memahami potensi terbaik mereka.
           </p>
         </div>
@@ -95,7 +95,7 @@ export function AboutPage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {STATS.map((s) => (
-              <div key={s.label} className="bg-white rounded-2xl p-6 text-center shadow-xl shadow-primary-900/5 border border-slate-100">
+              <div key={s.label} className="bg-white rounded-2xl p-6 text-center shadow-lg border border-slate-100">
                 <p className="text-3xl md:text-4xl font-black text-primary-600 mb-1">{s.value}</p>
                 <p className="text-xs md:text-sm text-slate-500 font-medium">{s.label}</p>
               </div>
@@ -112,7 +112,7 @@ export function AboutPage() {
               <Target className="w-3 h-3 text-primary-600" />
               <span className="text-[10px] font-black text-primary-700 uppercase tracking-widest">Tujuan Kami</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tight">
               Misi & <span className="text-primary-600 italic">Visi</span>
             </h2>
           </div>
@@ -144,17 +144,19 @@ export function AboutPage() {
       </section>
 
       {/* Layanan */}
-      <section className="py-20 md:py-28 bg-slate-50">
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="relative overflow-hidden py-20 md:py-28 bg-slate-50/50">
+        <div className="absolute top-[-5%] right-[-8%] w-[400px] h-[400px] bg-primary-100/30 rounded-full pointer-events-none" />
+
+        <div className="max-w-5xl mx-auto px-6 relative z-10">
           <div className="text-center mb-14 space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm">
               <Sparkles className="w-3 h-3 text-primary-600 fill-primary-600" />
               <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Layanan Kami</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tight">
               Tiga Pilar <span className="text-primary-600 italic">Utama</span>
             </h2>
-            <p className="text-slate-500 max-w-xl mx-auto leading-relaxed font-medium text-sm md:text-base">
+            <p className="text-gray-500 max-w-xl mx-auto leading-relaxed font-medium text-sm md:text-base">
               Solusi pengembangan diri komprehensif untuk setiap kebutuhan.
             </p>
           </div>
@@ -166,10 +168,10 @@ export function AboutPage() {
                 className="bg-white rounded-2xl border border-slate-100 p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
               >
                 <div className={cn('w-14 h-14 rounded-2xl flex items-center justify-center mb-6', s.color)}>
-                  <s.icon className="w-7 h-7 text-white" />
+                  <s.icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-xl font-black text-slate-900 mb-3">{s.title}</h3>
-                <p className="text-slate-500 leading-relaxed text-sm">{s.desc}</p>
+                <h3 className="text-xl font-black text-gray-900 mb-3">{s.title}</h3>
+                <p className="text-gray-500 leading-relaxed text-sm">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -177,17 +179,19 @@ export function AboutPage() {
       </section>
 
       {/* Cara Kerja */}
-      <section className="py-20 md:py-28">
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="relative overflow-hidden py-20 md:py-28">
+        <div className="absolute bottom-[-8%] left-[-6%] w-[350px] h-[350px] bg-accent-100/30 rounded-full pointer-events-none" />
+
+        <div className="max-w-5xl mx-auto px-6 relative z-10">
           <div className="text-center mb-14 space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 border border-primary-100">
               <GraduationCap className="w-3 h-3 text-primary-600" />
               <span className="text-[10px] font-black text-primary-700 uppercase tracking-widest">Cara Kerja</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tight">
               Mulai dalam <span className="text-primary-600 italic">4 Langkah</span>
             </h2>
-            <p className="text-slate-500 max-w-xl mx-auto leading-relaxed font-medium text-sm md:text-base">
+            <p className="text-gray-500 max-w-xl mx-auto leading-relaxed font-medium text-sm md:text-base">
               Proses yang simpel dan terarah dari awal hingga akhir.
             </p>
           </div>
@@ -197,8 +201,8 @@ export function AboutPage() {
               <div key={j.step} className="relative">
                 <div className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm hover:shadow-lg transition-shadow h-full">
                   <span className="text-5xl font-black text-primary-100 leading-none">{j.step}</span>
-                  <h3 className="text-lg font-black text-slate-900 mt-3 mb-2">{j.title}</h3>
-                  <p className="text-sm text-slate-500 leading-relaxed">{j.desc}</p>
+                  <h3 className="text-lg font-black text-gray-900 mt-3 mb-2">{j.title}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">{j.desc}</p>
                 </div>
                 {i < JOURNEY.length - 1 && (
                   <div className="hidden lg:flex absolute top-1/2 -right-3 z-10 w-6 h-6 rounded-full bg-primary-100 items-center justify-center">
@@ -212,17 +216,19 @@ export function AboutPage() {
       </section>
 
       {/* Nilai-Nilai */}
-      <section className="py-20 md:py-28 bg-slate-50">
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="relative overflow-hidden py-20 md:py-28 bg-slate-50/50">
+        <div className="absolute top-[-5%] left-[-8%] w-[400px] h-[400px] bg-accent-100/30 rounded-full pointer-events-none" />
+
+        <div className="max-w-5xl mx-auto px-6 relative z-10">
           <div className="text-center mb-14 space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm">
               <Sparkles className="w-3 h-3 text-primary-600 fill-primary-600" />
               <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Core Values</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tight">
               Nilai-Nilai <span className="text-primary-600 italic">Kami</span>
             </h2>
-            <p className="text-slate-500 max-w-xl mx-auto leading-relaxed font-medium text-sm md:text-base">
+            <p className="text-gray-500 max-w-xl mx-auto leading-relaxed font-medium text-sm md:text-base">
               Prinsip yang menjadi landasan setiap layanan dan keputusan di BERMOELA.
             </p>
           </div>
@@ -236,8 +242,8 @@ export function AboutPage() {
                 <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center mb-5 group-hover:bg-primary-600 transition-colors duration-300">
                   <v.icon className="w-6 h-6 text-primary-600 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <h3 className="text-lg font-black text-slate-900 mb-2">{v.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{v.desc}</p>
+                <h3 className="text-lg font-black text-gray-900 mb-2">{v.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{v.desc}</p>
               </div>
             ))}
           </div>
@@ -253,10 +259,10 @@ export function AboutPage() {
                 <CheckCircle2 className="w-3 h-3 text-primary-600" />
                 <span className="text-[10px] font-black text-primary-700 uppercase tracking-widest">Kenapa Kami</span>
               </div>
-              <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+              <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tight leading-tight">
                 Kenapa Memilih <span className="text-primary-600 italic">BERMOELA?</span>
               </h2>
-              <p className="text-slate-500 leading-relaxed font-medium">
+              <p className="text-gray-500 leading-relaxed font-medium">
                 Kami bukan sekadar platform tes online. BERMOELA adalah ekosistem pengembangan diri yang menggabungkan riset psikologi, teknologi, dan pendampingan profesional.
               </p>
             </div>
@@ -273,8 +279,8 @@ export function AboutPage() {
                     <CheckCircle2 className="w-4 h-4 text-primary-600" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 mb-1">{item.title}</h4>
-                    <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+                    <h4 className="font-bold text-gray-900 mb-1">{item.title}</h4>
+                    <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -287,9 +293,6 @@ export function AboutPage() {
       <section className="pb-20">
         <div className="max-w-5xl mx-auto px-6">
           <div className="relative p-8 md:p-12 rounded-[3rem] bg-primary-600 shadow-2xl shadow-primary-900/20 overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-accent-500/20 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-400/20 rounded-full blur-3xl pointer-events-none" />
-
             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="space-y-4 text-center md:text-left max-w-xl">
                 <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center backdrop-blur-sm">
@@ -307,14 +310,7 @@ export function AboutPage() {
                   href="/"
                   className="px-8 h-14 rounded-2xl bg-white text-primary-600 text-sm font-black uppercase tracking-widest shadow-xl hover:bg-slate-50 transition-colors flex items-center gap-3"
                 >
-                  Mulai Asesmen
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-                <Link
-                  href="/contact"
-                  className="px-8 h-14 rounded-2xl bg-white/10 border border-white/20 text-white text-sm font-black uppercase tracking-widest hover:bg-white/20 transition-colors flex items-center gap-3"
-                >
-                  Hubungi Kami
+                  Mulai Asesmen <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>
             </div>
