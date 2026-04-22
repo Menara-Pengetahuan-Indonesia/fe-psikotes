@@ -11,7 +11,7 @@ export function NavbarLogo(_props: NavbarLogoProps) {
   return (
     <Link href="/" className="flex items-center group mr-8">
       <Image
-        src="/logo/Logo_bermoela.png"
+        src="/logo/logo_bermoela.png"
         alt="Bermoela"
         width={72}
         height={72}
