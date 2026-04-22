@@ -16,7 +16,7 @@ export function NavbarLogo(_props: NavbarLogoProps) {
         width={200}
         height={50}
         className={cn(
-          'h-10 w-auto object-contain',
+          'h-8 w-auto object-contain',
           'group-hover:scale-110 transition-transform duration-300'
         )}
       />
