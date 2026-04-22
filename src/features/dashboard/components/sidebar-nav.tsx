@@ -93,7 +93,7 @@ export function AppSidebar(
             >
               <Link href="/">
                 <Image
-                  src="/logo/sayap4.png"
+                  src="/logo/Logo_bermoela.png"
                   alt="Bermoela"
                   width={44}
                   height={44}
