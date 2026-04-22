@@ -194,19 +194,25 @@ export function QuestionCard({
           {showOptions && (question.options ?? []).length > 0 && (
             <div className="space-y-1.5 pt-1">
               {(question.options ?? []).map((opt, i) => (
-                <div key={i} className="flex items-center gap-2.5 text-sm">
-                  {question.questionType === 'MULTIPLE_CHOICE' ? (
-                    <span className={cn(
-                      'size-6 rounded-full text-[10px] font-black flex items-center justify-center shrink-0',
-                      opt.isCorrect ? 'bg-indigo-500 text-white' : 'bg-slate-100 text-slate-500'
-                    )}>
-                      {String.fromCharCode(65 + i)}
-                    </span>
-                  ) : (
-                    <div className={cn('size-4 rounded-sm border-2 shrink-0', opt.isCorrect ? 'border-indigo-500 bg-indigo-500' : 'border-slate-300')} />
+                <div key={i} className="space-y-1">
+                  <div className="flex items-center gap-2.5 text-sm">
+                    {question.questionType === 'MULTIPLE_CHOICE' ? (
+                      <span className={cn(
+                        'size-6 rounded-full text-[10px] font-black flex items-center justify-center shrink-0',
+                        opt.isCorrect ? 'bg-indigo-500 text-white' : 'bg-slate-100 text-slate-500'
+                      )}>
+                        {String.fromCharCode(65 + i)}
+                      </span>
+                    ) : (
+                      <div className={cn('size-4 rounded-sm border-2 shrink-0', opt.isCorrect ? 'border-indigo-500 bg-indigo-500' : 'border-slate-300')} />
+                    )}
+                    <span className={cn('text-slate-600', opt.isCorrect && 'text-indigo-700 font-semibold')}>{opt.optionText}</span>
+                    {opt.points > 0 && <span className="text-[10px] text-slate-400 font-bold ml-auto">{opt.points} poin</span>}
+                  </div>
+                  {opt.imageUrl && (
+                    <Image src={opt.imageUrl} alt="" width={200} height={80}
+                      className="max-h-20 rounded-lg border object-contain ml-8" unoptimized />
                   )}
-                  <span className={cn('text-slate-600', opt.isCorrect && 'text-indigo-700 font-semibold')}>{opt.optionText}</span>
-                  {opt.points > 0 && <span className="text-[10px] text-slate-400 font-bold ml-auto">{opt.points} poin</span>}
                 </div>
               ))}
             </div>
@@ -395,12 +401,23 @@ export function QuestionCard({
                       <X className="size-3.5" />
                     </button>
                   </div>
-                  <input
-                    value={opt.imageUrl ?? ''}
-                    onChange={e => updateOption(idx, { imageUrl: e.target.value || null })}
-                    placeholder="URL gambar opsi (opsional)"
-                    className="w-full h-8 rounded-lg border border-slate-200 bg-white px-3 text-xs font-medium text-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                  />
+                  {opt.imageUrl ? (
+                    <div className="relative inline-block">
+                      <Image src={opt.imageUrl} alt="" width={300} height={120}
+                        className="max-h-28 rounded-lg border object-contain" unoptimized />
+                      <button type="button" onClick={() => updateOption(idx, { imageUrl: null })}
+                        className="absolute top-1 right-1 size-6 rounded-md bg-rose-500 text-white flex items-center justify-center hover:bg-rose-600 transition-colors">
+                        <X className="size-3" />
+                      </button>
+                    </div>
+                  ) : (
+                    <input
+                      value=""
+                      onChange={e => updateOption(idx, { imageUrl: e.target.value || null })}
+                      placeholder="URL gambar opsi (opsional)"
+                      className="w-full h-8 rounded-lg border border-slate-200 bg-white px-3 text-xs font-medium text-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                    />
+                  )}
                 </div>
               ))}
             </div>
