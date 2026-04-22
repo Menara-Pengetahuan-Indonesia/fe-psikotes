@@ -1,7 +1,7 @@
 'use client'
 
 import { Suspense, useState } from 'react'
-import { Loader2, FolderTree } from 'lucide-react'
+import { Loader2, FolderTree, PanelLeftClose, PanelLeftOpen } from 'lucide-react'
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -17,6 +17,7 @@ function KelolaTesContent() {
   const { selectedNode, selectNode, isExpanded, toggleExpand } = useTreeState()
 
   const [createPkgOpen, setCreatePkgOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [formName, setFormName] = useState('')
   const [formDesc, setFormDesc] = useState('')
   const [formActive, setFormActive] = useState(true)
@@ -40,15 +41,38 @@ function KelolaTesContent() {
     <div className="flex h-[calc(100vh-5rem)] -mx-4 sm:-mx-6 lg:-mx-8 -my-6 overflow-hidden">
       {/* Rounded container */}
       <div className="flex flex-1 bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden m-2">
-        <TreeSidebar
-          tree={tree}
-          isLoading={isLoading}
-          selectedNode={selectedNode}
-          isExpanded={isExpanded}
-          toggleExpand={toggleExpand}
-          selectNode={selectNode}
-          onCreateRoot={openCreatePkg}
-        />
+
+        {/* Mobile sidebar toggle */}
+        <button
+          type="button"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="lg:hidden fixed bottom-4 left-4 z-50 size-12 rounded-2xl bg-indigo-600 text-white shadow-lg flex items-center justify-center hover:bg-indigo-700 transition-colors"
+          aria-label={sidebarOpen ? 'Tutup sidebar' : 'Buka sidebar'}
+        >
+          {sidebarOpen ? <PanelLeftClose className="size-5" /> : <PanelLeftOpen className="size-5" />}
+        </button>
+
+        {/* Sidebar — overlay on mobile, static on desktop */}
+        <div className={cn(
+          'lg:block lg:relative lg:z-auto',
+          sidebarOpen
+            ? 'fixed inset-0 z-40 flex'
+            : 'hidden'
+        )}>
+          <div className="lg:hidden absolute inset-0 bg-slate-900/50" onClick={() => setSidebarOpen(false)} />
+          <div className="relative z-10 h-full">
+            <TreeSidebar
+              tree={tree}
+              isLoading={isLoading}
+              selectedNode={selectedNode}
+              isExpanded={isExpanded}
+              toggleExpand={toggleExpand}
+              selectNode={(sel) => { selectNode(sel); setSidebarOpen(false) }}
+              onCreateRoot={openCreatePkg}
+            />
+          </div>
+        </div>
+
         <main className="flex-1 overflow-y-auto bg-slate-50/50" role="main" aria-label="Detail konten">
           <ContentPanel
             selectedNode={selectedNode}

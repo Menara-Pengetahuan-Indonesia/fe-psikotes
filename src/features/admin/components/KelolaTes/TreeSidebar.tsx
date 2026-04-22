@@ -42,7 +42,7 @@ export function TreeSidebar({
   const filtered = filterTree(tree, search)
 
   return (
-    <aside className="w-80 shrink-0 bg-white border-r border-slate-200/80 flex flex-col h-full" role="navigation" aria-label="Navigasi pohon tes">
+    <aside className="w-full lg:w-80 shrink-0 bg-white border-r border-slate-200/80 flex flex-col h-full" role="navigation" aria-label="Navigasi pohon tes">
       {/* Header */}
       <div className="p-4 border-b border-slate-100">
         <div className="flex items-center justify-between mb-3">
