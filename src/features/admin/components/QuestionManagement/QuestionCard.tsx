@@ -19,10 +19,11 @@ interface QuestionCardProps {
   onDuplicate: () => void
   onDelete: () => void
   onChangeType: (type: QuestionType) => void
+  dragListeners?: Record<string, unknown>
 }
 
 export function QuestionCard({
-  question, index, isEditing, onStartEdit, onStopEdit, onDuplicate, onDelete, onChangeType,
+  question, index, isEditing, onStartEdit, onStopEdit, onDuplicate, onDelete, onChangeType, dragListeners,
 }: QuestionCardProps) {
   const updateQuestion = useUpdateQuestion()
   const uploadImage = useUploadImage()
@@ -128,23 +129,23 @@ export function QuestionCard({
     setOptions(options.map((o, i) => i === idx ? { ...o, ...patch } : o))
   }
 
-  // VIEW MODE
+  // VIEW MODE (collapsed)
   if (!isEditing) {
     return (
       <div
         onClick={onStartEdit}
         className="group bg-white rounded-2xl border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all cursor-pointer"
       >
-        {/* Card header */}
-        <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100">
-          <div className="flex items-center gap-3">
-            <GripVertical className="size-4 text-slate-300" />
-            <span className="text-xs font-black text-slate-400 tabular-nums">#{index + 1}</span>
-            <span className={cn('text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-lg', colorClass)}>
+        <div className="flex items-center justify-between px-5 py-3">
+          <div className="flex items-center gap-3 min-w-0">
+            <GripVertical className="size-4 text-slate-300 shrink-0 cursor-grab" {...dragListeners} />
+            <span className="text-xs font-black text-slate-400 tabular-nums shrink-0">#{index + 1}</span>
+            <span className={cn('text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-lg shrink-0', colorClass)}>
               {QUESTION_TYPE_LABELS[question.questionType]}
             </span>
+            <p className="text-sm font-medium text-slate-700 truncate">{question.questionText}</p>
           </div>
-          <div className="relative" ref={menuRef}>
+          <div className="relative shrink-0" ref={menuRef}>
             <button type="button" onClick={(e) => { e.stopPropagation(); setMenuOpen(!menuOpen) }}
               className="size-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors">
               <MoreVertical className="size-4" />
@@ -180,76 +181,6 @@ export function QuestionCard({
                 </div>
               </div>
             )}
-          </div>
-        </div>
-
-        {/* Card body */}
-        <div className="px-5 py-4 space-y-3">
-          <p className="text-sm font-medium text-slate-800 leading-relaxed">{question.questionText}</p>
-
-          {question.imageUrl && (
-            <Image src={question.imageUrl} alt="" width={400} height={160}
-              className="max-h-40 rounded-xl border object-contain" unoptimized />
-          )}
-
-          {/* Options preview */}
-          {showOptions && (question.options ?? []).length > 0 && (
-            <div className="space-y-1.5 pt-1">
-              {(question.options ?? []).map((opt, i) => (
-                <div key={i} className="space-y-1">
-                  <div className="flex items-center gap-2.5 text-sm">
-                    {question.questionType === 'MULTIPLE_CHOICE' ? (
-                      <span className={cn(
-                        'size-6 rounded-full text-[10px] font-black flex items-center justify-center shrink-0',
-                        opt.isCorrect ? 'bg-indigo-500 text-white' : 'bg-slate-100 text-slate-500'
-                      )}>
-                        {String.fromCharCode(65 + i)}
-                      </span>
-                    ) : (
-                      <div className={cn('size-4 rounded-sm border-2 shrink-0', opt.isCorrect ? 'border-indigo-500 bg-indigo-500' : 'border-slate-300')} />
-                    )}
-                    <span className={cn('text-slate-600', opt.isCorrect && 'text-indigo-700 font-semibold')}>{opt.optionText}</span>
-                    {opt.points > 0 && <span className="text-[10px] text-slate-400 font-bold ml-auto">{opt.points} poin</span>}
-                  </div>
-                  {opt.imageUrl && (
-                    <Image src={opt.imageUrl} alt="" width={200} height={80}
-                      className="max-h-20 rounded-lg border object-contain ml-8" unoptimized />
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Essay keywords preview */}
-          {showEssay && essayKeywords.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 pt-1">
-              {essayKeywords.map((kw, i) => (
-                <span key={i} className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">{kw}</span>
-              ))}
-            </div>
-          )}
-
-          {/* Scale preview */}
-          {showScale && (
-            <div className="flex items-center gap-2 pt-1">
-              <span className="text-xs text-slate-400 font-bold">Skala {minScale} - {maxScale}</span>
-              <div className="flex gap-1">
-                {Array.from({ length: Math.min(maxScale - minScale + 1, 10) }, (_, i) => minScale + i).map(v => (
-                  <div key={v} className="size-7 rounded-lg bg-violet-50 text-violet-600 text-[10px] font-bold flex items-center justify-center">{v}</div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Footer */}
-          <div className="flex items-center justify-between pt-2 border-t border-slate-50">
-            {showEssay && <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{question.points ?? 0} poin</span>}
-            {showScale && (
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                Skala {question.correctAnswer?.minScaleValue ?? 1}–{question.correctAnswer?.maxScaleValue ?? 5}
-              </span>
-            )}
-            {!showEssay && !showScale && <span />}
           </div>
         </div>
       </div>
