@@ -9,20 +9,17 @@ interface NavbarLogoProps {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function NavbarLogo(_props: NavbarLogoProps) {
   return (
-    <Link href="/" className="flex items-center gap-2 group mr-8">
+    <Link href="/" className="flex items-center group mr-8">
       <Image
         src="/logo/sayap4.png"
         alt="Bermoela"
-        width={40}
-        height={40}
+        width={56}
+        height={56}
         className={cn(
-          'w-10 h-10 object-contain',
+          'w-14 h-14 object-contain',
           'group-hover:scale-110 transition-transform duration-300'
         )}
       />
-      <span className="text-[15px] font-black tracking-tight text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
-        bermoela
-      </span>
     </Link>
   )
 }
