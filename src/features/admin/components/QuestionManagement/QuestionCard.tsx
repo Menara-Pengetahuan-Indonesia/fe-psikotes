@@ -6,7 +6,7 @@ import {
   GripVertical, Copy, Trash2, Check, X, Plus, MoreVertical, RefreshCw,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { useUpdateQuestion } from '../../hooks'
+import { useUpdateQuestion, useUploadImage } from '../../hooks'
 import { QUESTION_TYPE_LABELS, QUESTION_TYPE_COLORS } from '@features/admin/constants'
 import type { Question, QuestionOption, QuestionType, CorrectAnswer, ScaleWeight } from '../../types'
 
@@ -25,9 +25,11 @@ export function QuestionCard({
   question, index, isEditing, onStartEdit, onStopEdit, onDuplicate, onDelete, onChangeType,
 }: QuestionCardProps) {
   const updateQuestion = useUpdateQuestion()
+  const uploadImage = useUploadImage()
   const [menuOpen, setMenuOpen] = useState(false)
   const [typeMenuOpen, setTypeMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+  const questionFileRef = useRef<HTMLInputElement>(null)
 
   const [text, setText] = useState(question.questionText)
   const [essayPoints, setEssayPoints] = useState(question.points ?? 1)
@@ -335,25 +337,34 @@ export function QuestionCard({
 
         {/* Image */}
         <div className="space-y-2">
-          <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">URL Gambar (Opsional)</label>
+          <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Gambar Soal (Opsional)</label>
           {imageUrl ? (
-            <div className="space-y-2">
-              <div className="relative inline-block">
-                <Image src={imageUrl} alt="" width={400} height={160}
-                  className="max-h-40 rounded-xl border object-contain" unoptimized />
-                <button type="button" onClick={() => setImageUrl('')}
-                  className="absolute top-2 right-2 size-7 rounded-lg bg-rose-500 text-white flex items-center justify-center hover:bg-rose-600 transition-colors">
-                  <X className="size-3.5" />
-                </button>
-              </div>
+            <div className="relative inline-block">
+              <Image src={imageUrl} alt="" width={400} height={160}
+                className="max-h-40 rounded-xl border object-contain" unoptimized />
+              <button type="button" onClick={() => setImageUrl('')}
+                className="absolute top-2 right-2 size-7 rounded-lg bg-rose-500 text-white flex items-center justify-center hover:bg-rose-600 transition-colors">
+                <X className="size-3.5" />
+              </button>
             </div>
           ) : (
-            <input
-              value={imageUrl}
-              onChange={e => setImageUrl(e.target.value)}
-              placeholder="https://example.com/image.jpg"
-              className="w-full h-9 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-            />
+            <div>
+              <input ref={questionFileRef} type="file" accept="image/*" className="hidden"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0]
+                  if (!file) return
+                  const result = await uploadImage.mutateAsync(file)
+                  setImageUrl(result.url)
+                  e.target.value = ''
+                }}
+              />
+              <button type="button" onClick={() => questionFileRef.current?.click()}
+                disabled={uploadImage.isPending}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl border border-dashed border-slate-300 text-sm font-medium text-slate-500 hover:border-indigo-400 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all disabled:opacity-50">
+                <Plus className="size-4" />
+                {uploadImage.isPending ? 'Mengunggah...' : 'Upload Gambar'}
+              </button>
+            </div>
           )}
         </div>
 
@@ -411,12 +422,23 @@ export function QuestionCard({
                       </button>
                     </div>
                   ) : (
-                    <input
-                      value=""
-                      onChange={e => updateOption(idx, { imageUrl: e.target.value || null })}
-                      placeholder="URL gambar opsi (opsional)"
-                      className="w-full h-8 rounded-lg border border-slate-200 bg-white px-3 text-xs font-medium text-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                    />
+                    <div>
+                      <input type="file" accept="image/*" className="hidden" id={`opt-img-${question.id}-${idx}`}
+                        onChange={async (e) => {
+                          const file = e.target.files?.[0]
+                          if (!file) return
+                          const result = await uploadImage.mutateAsync(file)
+                          updateOption(idx, { imageUrl: result.url })
+                          e.target.value = ''
+                        }}
+                      />
+                      <button type="button" onClick={() => document.getElementById(`opt-img-${question.id}-${idx}`)?.click()}
+                        disabled={uploadImage.isPending}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-dashed border-slate-300 text-xs font-medium text-slate-400 hover:border-indigo-400 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all disabled:opacity-50">
+                        <Plus className="size-3" />
+                        {uploadImage.isPending ? 'Mengunggah...' : 'Upload Gambar Opsi'}
+                      </button>
+                    </div>
                   )}
                 </div>
               ))}
