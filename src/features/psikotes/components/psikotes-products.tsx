@@ -41,7 +41,7 @@ export function PsikotesProducts() {
             Pilih Bekal <span className="text-primary-600 italic">Transformasimu</span>
           </h2>
           <p className="text-slate-500 font-medium text-sm md:text-base">
-            Setiap alat tes dirancang untuk membongkar kebenaran yang kamu butuhkan.
+            Setiap alat tes dirancang khusus untuk membantumu menemukan kejelasan yang selama ini kamu cari.
           </p>
         </div>
 
