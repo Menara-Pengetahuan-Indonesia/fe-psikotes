@@ -7,8 +7,6 @@ import { useQuestions, useCreateQuestion, useDeleteQuestion, useUpdateQuestion }
 import { ConfirmDialog } from '../Common/ConfirmDialog'
 import { QuestionCard } from './QuestionCard'
 import type { Question, QuestionType } from '../../types'
-import { QUESTION_TYPE_LABELS } from '@features/admin/constants'
-import { cn } from '@/lib/utils'
 
 interface QuestionListProps {
   subTestId: string
