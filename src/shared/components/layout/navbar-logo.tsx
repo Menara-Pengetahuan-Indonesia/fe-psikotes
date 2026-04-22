@@ -13,10 +13,10 @@ export function NavbarLogo(_props: NavbarLogoProps) {
       <Image
         src="/logo/logo_bermoela.png"
         alt="Bermoela"
-        width={72}
-        height={72}
+        width={44}
+        height={44}
         className={cn(
-          'w-[72px] h-[72px] object-contain',
+          'w-11 h-11 object-contain',
           'group-hover:scale-110 transition-transform duration-300'
         )}
       />
