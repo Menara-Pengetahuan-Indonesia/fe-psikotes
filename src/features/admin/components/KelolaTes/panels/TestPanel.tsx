@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import {
   FileText, Plus, Search, Pencil, Trash2, BookOpen,
   ToggleLeft, ToggleRight, CheckCircle2, XCircle, ArrowRight,
@@ -30,10 +30,9 @@ import type { TreeSelection } from '../types'
 interface TestPanelProps {
   testId: string
   onSelect: (sel: TreeSelection) => void
-  noSubtest?: boolean
 }
 
-export function TestPanel({ testId, onSelect, noSubtest }: TestPanelProps) {
+export function TestPanel({ testId, onSelect }: TestPanelProps) {
   const { data: allTests } = useTests()
   const { data: allSubTests } = useSubTests()
   const test = (allTests ?? []).find(t => t.id === testId)
@@ -61,15 +60,6 @@ export function TestPanel({ testId, onSelect, noSubtest }: TestPanelProps) {
   const createSub = useCreateSubTest()
   const updateSub = useUpdateSubTest()
   const deleteSub = useDeleteSubTest()
-
-  const defaultCreated = useRef(false)
-
-  useEffect(() => {
-    if (noSubtest && subTests.length === 0 && !defaultCreated.current) {
-      defaultCreated.current = true
-      createSub.mutate({ testId, name: '_default', description: 'Auto-generated subtest', order: 1, isActive: true })
-    }
-  }, [noSubtest, subTests.length, testId, createSub])
 
   const filtered = subTests.filter(s =>
     !search || s.name.toLowerCase().includes(search.toLowerCase())
