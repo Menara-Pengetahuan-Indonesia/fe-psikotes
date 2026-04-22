@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Plus } from 'lucide-react'
 import { Skeleton } from '@/components/ui/skeleton'
-import { useQuestions, useCreateQuestion, useDeleteQuestion } from '../../hooks'
+import { useQuestions, useCreateQuestion, useDeleteQuestion, useUpdateQuestion } from '../../hooks'
 import { ConfirmDialog } from '../Common/ConfirmDialog'
 import { QuestionCard } from './QuestionCard'
 import type { Question, QuestionType } from '../../types'
@@ -18,6 +18,7 @@ export function QuestionList({ subTestId }: QuestionListProps) {
   const { data: questions, isLoading } = useQuestions()
   const createQuestion = useCreateQuestion()
   const deleteQuestion = useDeleteQuestion()
+  const updateQuestion = useUpdateQuestion()
 
   const [editingId, setEditingId] = useState<string | null>(null)
   const [deleteId, setDeleteId] = useState<string | null>(null)
@@ -89,6 +90,22 @@ export function QuestionList({ subTestId }: QuestionListProps) {
     })
   }
 
+  const handleChangeType = (questionId: string, newType: QuestionType) => {
+    const defaultOptions = (newType === 'MULTIPLE_CHOICE' || newType === 'CHECKBOX')
+      ? [
+          { optionText: 'Opsi 1', imageUrl: null, isCorrect: false, points: 0, order: 1 },
+          { optionText: 'Opsi 2', imageUrl: null, isCorrect: false, points: 0, order: 2 },
+        ]
+      : undefined
+    const correctAnswer = newType === 'ESSAY'
+      ? { correctEssayKeywords: [] }
+      : newType === 'SCALE_RATING'
+        ? { minScaleValue: 1, maxScaleValue: 5, scaleWeights: { '1': { label: '1', points: 1 }, '2': { label: '2', points: 2 }, '3': { label: '3', points: 3 }, '4': { label: '4', points: 4 }, '5': { label: '5', points: 5 } } }
+        : undefined
+
+    updateQuestion.mutate({ id: questionId, dto: { questionType: newType, options: defaultOptions, correctAnswer, points: (newType === 'ESSAY' || newType === 'SCALE_RATING') ? 1 : undefined } })
+  }
+
   const handleDelete = () => {
     if (!deleteId) return
     deleteQuestion.mutate(deleteId, { onSuccess: () => setDeleteId(null) })
@@ -143,6 +160,7 @@ export function QuestionList({ subTestId }: QuestionListProps) {
               onStopEdit={() => setEditingId(null)}
               onDuplicate={() => handleDuplicate(question)}
               onDelete={() => setDeleteId(question.id)}
+              onChangeType={(type) => handleChangeType(question.id, type)}
             />
           ))}
         </div>

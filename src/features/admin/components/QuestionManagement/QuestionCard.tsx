@@ -3,12 +3,12 @@
 import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react'
 import {
-  GripVertical, Copy, Trash2, Check, X, Plus,
+  GripVertical, Copy, Trash2, Check, X, Plus, MoreVertical, RefreshCw,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useUpdateQuestion } from '../../hooks'
 import { QUESTION_TYPE_LABELS, QUESTION_TYPE_COLORS } from '@features/admin/constants'
-import type { Question, QuestionOption, CorrectAnswer, ScaleWeight } from '../../types'
+import type { Question, QuestionOption, QuestionType, CorrectAnswer, ScaleWeight } from '../../types'
 
 interface QuestionCardProps {
   question: Question
@@ -18,12 +18,16 @@ interface QuestionCardProps {
   onStopEdit: () => void
   onDuplicate: () => void
   onDelete: () => void
+  onChangeType: (type: QuestionType) => void
 }
 
 export function QuestionCard({
-  question, index, isEditing, onStartEdit, onStopEdit, onDuplicate, onDelete,
+  question, index, isEditing, onStartEdit, onStopEdit, onDuplicate, onDelete, onChangeType,
 }: QuestionCardProps) {
   const updateQuestion = useUpdateQuestion()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [typeMenuOpen, setTypeMenuOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
 
   const [text, setText] = useState(question.questionText)
   const [essayPoints, setEssayPoints] = useState(question.points ?? 1)
@@ -54,6 +58,17 @@ export function QuestionCard({
     }
   }, [question, isEditing])
   /* eslint-enable react-hooks/set-state-in-effect */
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false)
+        setTypeMenuOpen(false)
+      }
+    }
+    if (menuOpen) document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [menuOpen])
 
   const showOptions = question.questionType === 'MULTIPLE_CHOICE' || question.questionType === 'CHECKBOX'
   const showEssay = question.questionType === 'ESSAY'
@@ -127,17 +142,42 @@ export function QuestionCard({
               {QUESTION_TYPE_LABELS[question.questionType]}
             </span>
           </div>
-          <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-            <button type="button" onClick={(e) => { e.stopPropagation(); onDuplicate() }}
-              className="size-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 transition-colors"
-              title="Duplikat">
-              <Copy className="size-3.5" />
+          <div className="relative" ref={menuRef}>
+            <button type="button" onClick={(e) => { e.stopPropagation(); setMenuOpen(!menuOpen) }}
+              className="size-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors">
+              <MoreVertical className="size-4" />
             </button>
-            <button type="button" onClick={(e) => { e.stopPropagation(); onDelete() }}
-              className="size-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
-              title="Hapus">
-              <Trash2 className="size-3.5" />
-            </button>
+            {menuOpen && (
+              <div className="absolute right-0 top-full mt-1 w-48 bg-white rounded-xl border border-slate-200 shadow-lg z-50 py-1">
+                <button type="button" onClick={(e) => { e.stopPropagation(); onDuplicate(); setMenuOpen(false) }}
+                  className="w-full flex items-center gap-2.5 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
+                  <Copy className="size-3.5 text-slate-400" /> Duplikasi
+                </button>
+                <button type="button" onClick={(e) => { e.stopPropagation(); setTypeMenuOpen(!typeMenuOpen) }}
+                  className="w-full flex items-center gap-2.5 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
+                  <RefreshCw className="size-3.5 text-slate-400" /> Ganti Jenis Soal
+                </button>
+                {typeMenuOpen && (
+                  <div className="border-t border-slate-100 py-1 mx-2">
+                    {(Object.entries(QUESTION_TYPE_LABELS) as [QuestionType, string][])
+                      .filter(([t]) => t !== question.questionType)
+                      .map(([type, label]) => (
+                        <button key={type} type="button"
+                          onClick={(e) => { e.stopPropagation(); onChangeType(type); setMenuOpen(false); setTypeMenuOpen(false) }}
+                          className={cn('w-full text-left px-3 py-1.5 text-xs font-bold rounded-lg transition-colors', QUESTION_TYPE_COLORS[type], 'hover:opacity-80')}>
+                          {label}
+                        </button>
+                      ))}
+                  </div>
+                )}
+                <div className="border-t border-slate-100 mt-1 pt-1">
+                  <button type="button" onClick={(e) => { e.stopPropagation(); onDelete(); setMenuOpen(false) }}
+                    className="w-full flex items-center gap-2.5 px-3 py-2 text-sm font-medium text-rose-600 hover:bg-rose-50 transition-colors">
+                    <Trash2 className="size-3.5" /> Hapus
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -219,18 +259,43 @@ export function QuestionCard({
             {QUESTION_TYPE_LABELS[question.questionType]}
           </span>
         </div>
-        <div className="flex items-center gap-1">
-          <button type="button" onClick={(e) => { e.stopPropagation(); onDuplicate() }}
-            className="size-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-indigo-600 hover:bg-indigo-100 transition-colors"
-            title="Duplikat">
-            <Copy className="size-3.5" />
-          </button>
-          <button type="button" onClick={(e) => { e.stopPropagation(); onDelete() }}
-            className="size-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
-            title="Hapus">
-            <Trash2 className="size-3.5" />
-          </button>
-        </div>
+        <div className="relative" ref={menuRef}>
+            <button type="button" onClick={(e) => { e.stopPropagation(); setMenuOpen(!menuOpen) }}
+              className="size-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-indigo-100 transition-colors">
+              <MoreVertical className="size-4" />
+            </button>
+            {menuOpen && (
+              <div className="absolute right-0 top-full mt-1 w-48 bg-white rounded-xl border border-slate-200 shadow-lg z-50 py-1">
+                <button type="button" onClick={(e) => { e.stopPropagation(); onDuplicate(); setMenuOpen(false) }}
+                  className="w-full flex items-center gap-2.5 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
+                  <Copy className="size-3.5 text-slate-400" /> Duplikasi
+                </button>
+                <button type="button" onClick={(e) => { e.stopPropagation(); setTypeMenuOpen(!typeMenuOpen) }}
+                  className="w-full flex items-center gap-2.5 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
+                  <RefreshCw className="size-3.5 text-slate-400" /> Ganti Jenis Soal
+                </button>
+                {typeMenuOpen && (
+                  <div className="border-t border-slate-100 py-1 mx-2">
+                    {(Object.entries(QUESTION_TYPE_LABELS) as [QuestionType, string][])
+                      .filter(([t]) => t !== question.questionType)
+                      .map(([type, label]) => (
+                        <button key={type} type="button"
+                          onClick={(e) => { e.stopPropagation(); onChangeType(type); setMenuOpen(false); setTypeMenuOpen(false) }}
+                          className={cn('w-full text-left px-3 py-1.5 text-xs font-bold rounded-lg transition-colors', QUESTION_TYPE_COLORS[type], 'hover:opacity-80')}>
+                          {label}
+                        </button>
+                      ))}
+                  </div>
+                )}
+                <div className="border-t border-slate-100 mt-1 pt-1">
+                  <button type="button" onClick={(e) => { e.stopPropagation(); onDelete(); setMenuOpen(false) }}
+                    className="w-full flex items-center gap-2.5 px-3 py-2 text-sm font-medium text-rose-600 hover:bg-rose-50 transition-colors">
+                    <Trash2 className="size-3.5" /> Hapus
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
       </div>
 
       {/* Edit body */}
