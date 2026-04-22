@@ -22,6 +22,7 @@ import { ConfirmDialog } from '@/features/admin/components/Common/ConfirmDialog'
 import {
   usePackageTypes, useUpdatePackageType,
   useTests, useCreateTest, useUpdateTest, useDeleteTest,
+  useCreateSubTest,
 } from '@/features/admin/hooks'
 import type { Test, ScoringType } from '@/features/admin/types'
 import type { TreeSelection } from '../types'
@@ -60,6 +61,9 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
   const createTest = useCreateTest()
   const updateTest = useUpdateTest()
   const deleteTest = useDeleteTest()
+  const createSubTest = useCreateSubTest()
+
+  const [formUseSubtest, setFormUseSubtest] = useState(true)
 
   const filtered = tests.filter(t =>
     !search || t.name.toLowerCase().includes(search.toLowerCase())
@@ -105,7 +109,14 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
     } else {
       createTest.mutate(
         { packageTypeId, name: formName.trim(), description: formDesc.trim() || undefined, scoringType: formScoring, order: formOrder, originalYear: formOriginalYear, precision: formPrecision, adaptationYear: formAdaptationYear, popularity: formPopularity.trim() || undefined, isActive: formActive },
-        { onSuccess: () => setFormOpen(false) },
+        {
+          onSuccess: (newTest) => {
+            setFormOpen(false)
+            if (!formUseSubtest && newTest?.id) {
+              createSubTest.mutate({ testId: newTest.id, name: '_default', description: 'Auto-generated subtest', order: 1, isActive: true })
+            }
+          },
+        },
       )
     }
   }
@@ -350,6 +361,35 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
                       className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
                   </div>
                 </div>
+              )}
+              {!editPt && !editTestId && (
+                <fieldset className="space-y-2">
+                  <legend className="text-xs font-bold uppercase tracking-wider text-slate-500">Struktur Soal</legend>
+                  <div className="flex gap-3">
+                    <button type="button" onClick={() => setFormUseSubtest(true)}
+                      aria-pressed={formUseSubtest}
+                      className={cn(
+                        'flex-1 h-10 rounded-xl text-xs font-bold border transition-all',
+                        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1',
+                        formUseSubtest
+                          ? 'bg-sky-50 border-sky-300 text-sky-700 ring-1 ring-sky-200'
+                          : 'bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-300'
+                      )}>
+                      Pakai Sub Tes
+                    </button>
+                    <button type="button" onClick={() => setFormUseSubtest(false)}
+                      aria-pressed={!formUseSubtest}
+                      className={cn(
+                        'flex-1 h-10 rounded-xl text-xs font-bold border transition-all',
+                        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1',
+                        !formUseSubtest
+                          ? 'bg-emerald-50 border-emerald-300 text-emerald-700 ring-1 ring-emerald-200'
+                          : 'bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-300'
+                      )}>
+                      Tanpa Sub Tes
+                    </button>
+                  </div>
+                </fieldset>
               )}
               <div className="flex items-center justify-between py-1">
                 <Label className="text-xs font-bold uppercase tracking-wider text-slate-500">Status</Label>

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import {
   FileText, Plus, Search, Pencil, Trash2, BookOpen,
-  ToggleLeft, ToggleRight, CheckCircle2, XCircle, ListChecks, ArrowRight,
+  ToggleLeft, ToggleRight, CheckCircle2, XCircle, ArrowRight,
 } from 'lucide-react'
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
@@ -43,7 +43,6 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
   const [editTest, setEditTest] = useState(false)
   const [editSubId, setEditSubId] = useState<string | null>(null)
   const [deleteId, setDeleteId] = useState<string | null>(null)
-  const [creatingDefault, setCreatingDefault] = useState(false)
 
   const [formName, setFormName] = useState('')
   const [formDesc, setFormDesc] = useState('')
@@ -106,14 +105,6 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
         { onSuccess: () => setFormOpen(false) },
       )
     }
-  }
-
-  const handleCreateDefaultSubTest = async () => {
-    setCreatingDefault(true)
-    createSub.mutate(
-      { testId, name: '_default', description: 'Auto-generated subtest', order: 1, isActive: true },
-      { onSuccess: () => setCreatingDefault(false), onError: () => setCreatingDefault(false) },
-    )
   }
 
   if (!test) return null
@@ -184,30 +175,20 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
 
           {/* Subtest content — depends on mode */}
           {subTests.length === 0 ? (
-            /* No subtests yet — show choice */
             <div className="space-y-4">
-              <h3 className="text-base font-black text-slate-900 tracking-tight">Struktur Soal</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <button type="button" onClick={openCreateSub}
-                  className="p-6 rounded-2xl border-2 border-slate-200 hover:border-sky-400 hover:bg-sky-50/50 transition-all text-left space-y-3 group">
-                  <div className="size-10 rounded-xl bg-sky-50 flex items-center justify-center group-hover:bg-sky-100 transition-colors">
-                    <BookOpen className="size-5 text-sky-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-black text-slate-900">Pakai Sub Tes</p>
-                    <p className="text-xs text-slate-500 mt-1">Kelompokkan soal ke dalam beberapa sub tes.</p>
-                  </div>
-                </button>
-                <button type="button" onClick={handleCreateDefaultSubTest} disabled={creatingDefault}
-                  className="p-6 rounded-2xl border-2 border-slate-200 hover:border-emerald-400 hover:bg-emerald-50/50 transition-all text-left space-y-3 group disabled:opacity-50">
-                  <div className="size-10 rounded-xl bg-emerald-50 flex items-center justify-center group-hover:bg-emerald-100 transition-colors">
-                    <ListChecks className="size-5 text-emerald-600" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-black text-slate-900">{creatingDefault ? 'Memproses...' : 'Tanpa Sub Tes'}</p>
-                    <p className="text-xs text-slate-500 mt-1">Langsung input soal tanpa pengelompokan.</p>
-                  </div>
-                </button>
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-black text-slate-900 tracking-tight">Sub Tes</h3>
+                <Button size="sm" onClick={openCreateSub}
+                  className="h-9 rounded-xl bg-sky-600 hover:bg-sky-700 text-xs font-bold shadow-sm focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
+                  <Plus className="size-4 mr-1.5" aria-hidden="true" /> Tambah
+                </Button>
+              </div>
+              <div className="text-center py-12">
+                <div className="size-12 rounded-2xl bg-slate-50 flex items-center justify-center mx-auto mb-3">
+                  <BookOpen className="size-6 text-slate-300" aria-hidden="true" />
+                </div>
+                <p className="text-sm font-bold text-slate-500">Belum ada sub tes</p>
+                <p className="text-xs text-slate-400 mt-1">Tambahkan sub tes untuk memulai.</p>
               </div>
             </div>
           ) : isDefaultOnly ? (
