@@ -335,13 +335,13 @@ export function QuestionCard({
 
         {/* Image */}
         <div className="space-y-3">
-          <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Gambar Soal (Opsional)</label>
+          <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Gambar Soal (Opsional)</label>
           {imageUrl ? (
-            <div className="relative inline-block max-w-sm">
-              <Image src={imageUrl} alt="" width={400} height={160}
-                className="max-h-48 w-auto rounded-xl border object-contain" unoptimized />
+            <div className="relative w-fit">
+              <Image src={imageUrl} alt="" width={400} height={200}
+                className="max-h-48 w-auto rounded-xl border border-slate-200 object-contain bg-white p-2" unoptimized />
               <button type="button" onClick={() => setImageUrl('')}
-                className="absolute top-2 right-2 size-7 rounded-lg bg-rose-500 text-white flex items-center justify-center hover:bg-rose-600 transition-colors">
+                className="absolute -top-2 -right-2 size-7 rounded-full bg-rose-500 text-white flex items-center justify-center hover:bg-rose-600 transition-colors shadow-md">
                 <X className="size-3.5" />
               </button>
             </div>
