@@ -142,7 +142,16 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
         </button>
       </div>
 
-      {/* Stats */}
+      {/* Conditional content based on subtest mode */}
+      {isDefaultOnly ? (
+        /* No subtest mode — directly show questions */
+        <div className="space-y-4">
+          <h3 className="text-base font-black text-slate-900 tracking-tight">Soal</h3>
+          <QuestionList subTestId={subTests[0].id} />
+        </div>
+      ) : (
+        <>
+          {/* Stats */}
           <div className="grid grid-cols-3 gap-4">
             <div className="bg-white rounded-2xl p-4 flex items-center gap-4 border border-slate-100 shadow-sm">
               <div className="size-10 rounded-xl bg-sky-50 flex items-center justify-center">
@@ -173,7 +182,7 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
             </div>
           </div>
 
-          {/* Subtest content — depends on mode */}
+          {/* Subtest content */}
           {subTests.length === 0 ? (
             <div className="space-y-4">
               <div className="flex items-center justify-between">
@@ -190,18 +199,6 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
                 <p className="text-sm font-bold text-slate-500">Belum ada sub tes</p>
                 <p className="text-xs text-slate-400 mt-1">Tambahkan sub tes untuk memulai.</p>
               </div>
-            </div>
-          ) : isDefaultOnly ? (
-            /* Default subtest — show questions directly */
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h3 className="text-base font-black text-slate-900 tracking-tight">Soal</h3>
-                <button type="button" onClick={() => onSelect({ type: 'subTest', id: subTests[0].id })}
-                  className="flex items-center gap-1.5 text-xs font-bold text-slate-400 hover:text-indigo-600 transition-colors">
-                  Kelola <ArrowRight className="size-3" />
-                </button>
-              </div>
-              <QuestionList subTestId={subTests[0].id} />
             </div>
           ) : (
             /* Normal subtests */
@@ -282,9 +279,11 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
           )}
             </>
           )}
+        </>
+      )}
 
-          {/* Dialog */}
-          <Dialog open={formOpen} onOpenChange={v => { setFormOpen(v); if (!v) { setEditSubId(null); setEditTest(false) } }}>
+      {/* Dialog */}
+      <Dialog open={formOpen} onOpenChange={v => { setFormOpen(v); if (!v) { setEditSubId(null); setEditTest(false) } }}>
             <DialogContent className="max-w-[440px] p-0 border-0 rounded-[1.5rem] overflow-hidden bg-white shadow-2xl">
               <div className="px-6 pt-6 pb-3">
                 <DialogTitle className="text-lg font-black text-slate-900 tracking-tight">
