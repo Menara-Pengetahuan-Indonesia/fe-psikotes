@@ -5,6 +5,7 @@ export type TreeNodeType = 'package' | 'childPackage' | 'packageType' | 'test' |
 export interface TreeSelection {
   type: TreeNodeType
   id: string
+  noSubtest?: boolean
 }
 
 export type ContentMode = 'view' | 'create' | 'edit'
