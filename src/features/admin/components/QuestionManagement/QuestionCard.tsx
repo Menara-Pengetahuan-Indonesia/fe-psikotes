@@ -322,21 +322,19 @@ export function QuestionCard({
 
         {/* Points — essay only */}
         {showEssay && (
-          <div className="flex items-center gap-4">
-            <div className="space-y-1">
-              <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Poin</label>
-              <input
-                type="number"
-                value={essayPoints}
-                onChange={e => setEssayPoints(Number(e.target.value))}
-                className="w-24 h-9 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-              />
-            </div>
+          <div className="space-y-2">
+            <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Poin</label>
+            <input
+              type="number"
+              value={essayPoints}
+              onChange={e => setEssayPoints(Number(e.target.value))}
+              className="w-24 h-9 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+            />
           </div>
         )}
 
         {/* Image */}
-        <div className="space-y-2">
+        <div className="space-y-3">
           <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Gambar Soal (Opsional)</label>
           {imageUrl ? (
             <div className="relative inline-block max-w-sm">
