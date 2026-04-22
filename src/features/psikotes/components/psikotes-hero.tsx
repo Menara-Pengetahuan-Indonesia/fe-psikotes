@@ -10,6 +10,10 @@ export function PsikotesHero() {
   return (
     <section className="relative overflow-hidden bg-white pt-14 pb-8 md:pt-20 md:pb-12">
 
+      {/* Decorative orbs */}
+      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary-100/60 rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] bg-accent-100/60 rounded-full pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center space-y-12">
 
