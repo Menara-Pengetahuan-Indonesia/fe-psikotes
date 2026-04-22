@@ -95,9 +95,9 @@ export function AppSidebar(
                 <Image
                   src="/logo/logo_bermoela.png"
                   alt="Bermoela"
-                  width={44}
-                  height={44}
-                  className="aspect-square size-11 object-contain transform transition-transform group-hover:scale-105"
+                  width={200}
+                  height={50}
+                  className="h-8 w-auto object-contain transform transition-transform group-hover:scale-105"
                 />
               </Link>
             </SidebarMenuButton>

@@ -60,10 +60,10 @@ export function Footer() {
               <Image
                 src="/logo/logo_bermoela.png"
                 alt="Bermoela"
-                width={40}
-                height={40}
+                width={200}
+                height={50}
                 className={cn(
-                  'w-10 h-10 object-contain',
+                  'h-8 w-auto object-contain',
                   'group-hover:rotate-12',
                   'transition-transform duration-300',
                 )}
