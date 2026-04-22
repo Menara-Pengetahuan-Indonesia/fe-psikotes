@@ -27,17 +27,13 @@ export function PsikotesCategoryNav() {
   return (
     <section id="pemetaan" className="py-16 pb-12 relative overflow-hidden bg-background">
 
-      {/* Decorative orbs */}
-      <div className="absolute top-[-8%] left-[-6%] w-[450px] h-[450px] bg-accent-100/40 rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-8%] right-[-6%] w-[350px] h-[350px] bg-primary-100/40 rounded-full pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
         <div className="text-center mb-10 space-y-6">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 border border-primary-100 shadow-sm">
              <Target className="w-4 h-4 text-primary-600" />
-             <span className="text-xs font-black text-primary-700 uppercase tracking-[0.2em]">Pilih Titik Mulamu</span>
+             <span className="text-xs font-black text-primary-700 uppercase tracking-[0.2em]">Bermoela dari sini</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black text-secondary-900 tracking-tight leading-none">
             Ke Mana Kamu Ingin <span className="text-primary-600 italic">Melangkah?</span>
@@ -258,7 +254,7 @@ export function PsikotesCategoryNav() {
         {/* Footer Tagline */}
         <div className="mt-20 text-center">
            <p className="text-slate-400 text-xs font-black uppercase tracking-[0.5em] leading-relaxed">
-              Titik mula perjalananmu untuk tumbuh dan menemukan kembali dirimu.
+              Bermoela di sini, bertumbuh dan temukan kembali dirimu.
            </p>
         </div>
 
