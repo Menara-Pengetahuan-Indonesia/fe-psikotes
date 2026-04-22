@@ -13,10 +13,6 @@ export function PsikotesStage() {
   return (
     <section id="transformation-stages" className="py-24 bg-background relative overflow-hidden">
 
-      {/* Decorative orbs */}
-      <div className="absolute top-[-5%] right-[-8%] w-[400px] h-[400px] bg-primary-100/40 rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-5%] w-[350px] h-[350px] bg-accent-100/40 rounded-full pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}

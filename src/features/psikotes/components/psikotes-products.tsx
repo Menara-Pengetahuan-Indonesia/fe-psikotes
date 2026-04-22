@@ -30,10 +30,6 @@ export function PsikotesProducts() {
 
   return (
     <section id="masa-depan" className="py-12 md:py-16 bg-background relative overflow-hidden">
-      {/* Decorative orbs */}
-      <div className="absolute top-[-6%] right-[-5%] w-[400px] h-[400px] bg-accent-100/50 rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-8%] w-[450px] h-[450px] bg-primary-100/40 rounded-full pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         <div className="space-y-4 max-w-2xl mb-12">
@@ -42,7 +38,7 @@ export function PsikotesProducts() {
             <span className="text-xs font-black text-accent-700 uppercase tracking-widest">Assessment & Solusi</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-none">
-            Ambil Senjata <span className="text-primary-600 italic">Transformasimu</span>
+            Pilih Bekal <span className="text-primary-600 italic">Transformasimu</span>
           </h2>
           <p className="text-slate-500 font-medium text-sm md:text-base">
             Setiap alat tes dirancang untuk membongkar kebenaran yang kamu butuhkan.
@@ -65,7 +61,7 @@ export function PsikotesProducts() {
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="space-y-4 text-center md:text-left">
               <h3 className="text-2xl md:text-4xl font-black text-white tracking-tight leading-none">
-                Masih Bingung Menentukan <span className="text-accent-300 italic">Titik Mula?</span>
+                Masih Bingung Menentukan <span className="text-accent-300 italic">Bermoela?</span>
               </h3>
               <p className="text-primary-50 font-medium text-sm md:text-base max-w-xl">
                 Ceritakan situasimu ke AI Counsellor kami — gratis, tanpa daftar, dan langsung dapat rekomendasi produk yang paling sesuai.
