@@ -136,7 +136,7 @@ export function QuestionCard({
         onClick={onStartEdit}
         className="group bg-white rounded-2xl border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all cursor-pointer"
       >
-        <div className="flex items-center justify-between px-5 py-3">
+        <div className="flex items-center justify-between px-3 sm:px-5 py-3">
           <div className="flex items-center gap-3 min-w-0">
             <GripVertical className="size-4 text-slate-300 shrink-0 cursor-grab" {...dragListeners} />
             <span className="text-xs font-black text-slate-400 tabular-nums shrink-0">#{index + 1}</span>
@@ -191,7 +191,7 @@ export function QuestionCard({
   return (
     <div className="bg-white rounded-2xl border-2 border-indigo-400 shadow-lg shadow-indigo-100/50">
       {/* Edit header — click to collapse */}
-      <div onClick={onStopEdit} className="flex items-center justify-between px-5 py-3 border-b border-indigo-100 bg-indigo-50/50 rounded-t-2xl cursor-pointer hover:bg-indigo-50 transition-colors">
+      <div onClick={onStopEdit} className="flex items-center justify-between px-3 sm:px-5 py-3 border-b border-indigo-100 bg-indigo-50/50 rounded-t-2xl cursor-pointer hover:bg-indigo-50 transition-colors">
         <div className="flex items-center gap-3">
           <span className="text-xs font-black text-indigo-400 tabular-nums">#{index + 1}</span>
           <span className={cn('text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-lg', colorClass)}>
@@ -238,7 +238,7 @@ export function QuestionCard({
       </div>
 
       {/* Edit body */}
-      <div className="px-5 py-5 space-y-6">
+      <div className="px-3 sm:px-5 py-5 space-y-6">
         {/* Question text */}
         <div className="space-y-2">
           <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Pertanyaan</label>
@@ -428,7 +428,7 @@ export function QuestionCard({
         {showScale && (
           <div className="space-y-4">
             <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Pengaturan Skala</label>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-3 space-y-1">
                 <label className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Nilai Minimum</label>
                 <input type="number" value={minScale}
