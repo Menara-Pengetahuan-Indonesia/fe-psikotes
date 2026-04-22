@@ -52,7 +52,7 @@ export function SubTestPanel({ subTestId }: SubTestPanelProps) {
   if (!st) return null
 
   return (
-    <div className="p-8 space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-400 max-w-4xl">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-400 max-w-4xl">
       {/* Header */}
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-4">

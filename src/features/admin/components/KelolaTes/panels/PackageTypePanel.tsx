@@ -131,7 +131,7 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
   if (!pt) return null
 
   return (
-    <div className="p-8 space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-400 max-w-4xl">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-400 max-w-4xl">
       {/* Header */}
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-4">
@@ -162,7 +162,7 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white rounded-2xl p-4 flex items-center gap-4 border border-slate-100 shadow-sm">
           <div className="size-10 rounded-xl bg-emerald-50 flex items-center justify-center">
             <FileText className="size-5 text-emerald-600" aria-hidden="true" />
@@ -351,7 +351,7 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
                 </div>
               )}
               {!editPt && (
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="pt-origyear" className="text-xs font-bold uppercase tracking-wider text-slate-500">Tahun Asli</Label>
                     <Input id="pt-origyear" type="number" placeholder="Opsional" value={formOriginalYear ?? ''} onChange={e => setFormOriginalYear(e.target.value ? Number(e.target.value) : undefined)}
