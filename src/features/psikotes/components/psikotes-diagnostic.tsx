@@ -94,7 +94,7 @@ export function PsikotesDiagnostic() {
     return (
       <div className="w-full space-y-4">
         <div className="text-center">
-          <p className="text-sm font-black text-white/70 uppercase tracking-[0.2em]">
+          <p className="text-sm font-black text-primary-600 uppercase tracking-[0.2em]">
             AI Counsellor — Ceritakan Masalahmu
           </p>
         </div>
@@ -144,7 +144,7 @@ export function PsikotesDiagnostic() {
   return (
     <div className="w-full space-y-4">
       <div className="text-center">
-        <p className="text-sm font-black text-white/70 uppercase tracking-[0.2em]">
+        <p className="text-sm font-black text-primary-600 uppercase tracking-[0.2em]">
           AI Counsellor — Ceritakan Masalahmu
         </p>
       </div>
