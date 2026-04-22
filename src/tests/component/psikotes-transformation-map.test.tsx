@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 
 vi.mock('next/link', () => ({
@@ -30,42 +30,33 @@ describe('PsikotesTransformationMap', () => {
     expect(screen.getByText(/Empat langkah kunci/)).toBeInTheDocument()
   })
 
-  it('renders all transformation steps', () => {
+  it('renders all 4 journey items', () => {
     render(<PsikotesTransformationMap />)
-    const eksplorasiButtons = screen.getAllByText('Eksplorasi')
-    expect(eksplorasiButtons.length).toBe(4)
+    expect(screen.getByText('Pemetaan Diri')).toBeInTheDocument()
+    expect(screen.getByText('Masa Depan')).toBeInTheDocument()
+    expect(screen.getByText('Konsultasi & Layanan')).toBeInTheDocument()
+    expect(screen.getByText('Bergabung Komunitas')).toBeInTheDocument()
   })
 
-  it('calls scrollIntoView when clicking Eksplorasi button', () => {
-    const mockElement = { scrollIntoView: vi.fn() }
-    vi.spyOn(document, 'getElementById').mockReturnValue(mockElement as unknown as HTMLElement)
-
+  it('renders solusi section with 6 items', () => {
     render(<PsikotesTransformationMap />)
-    const buttons = screen.getAllByText('Eksplorasi')
-    fireEvent.click(buttons[0])
-
-    expect(document.getElementById).toHaveBeenCalled()
-    expect(mockElement.scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' })
-
-    vi.restoreAllMocks()
+    expect(screen.getByText('Solusi')).toBeInTheDocument()
+    expect(screen.getByText('Psikotes & Asesmen')).toBeInTheDocument()
+    expect(screen.getByText('Konseling Psikologis')).toBeInTheDocument()
+    expect(screen.getByText('Live Coaching')).toBeInTheDocument()
+    expect(screen.getByText('Trauma & Support Group')).toBeInTheDocument()
+    expect(screen.getByText('Komunitas')).toBeInTheDocument()
+    expect(screen.getByText('Pelatihan')).toBeInTheDocument()
   })
 
-  it('handles scrollToSection when element not found', () => {
-    vi.spyOn(document, 'getElementById').mockReturnValue(null)
-
+  it('renders solusi heading', () => {
     render(<PsikotesTransformationMap />)
-    const buttons = screen.getAllByText('Eksplorasi')
-    // Should not crash when element not found
-    fireEvent.click(buttons[0])
-
-    expect(document.getElementById).toHaveBeenCalled()
-    vi.restoreAllMocks()
+    expect(screen.getByText(/Layanan/i, { selector: 'h2' })).toBeInTheDocument()
   })
 
   it('renders step titles', () => {
     render(<PsikotesTransformationMap />)
-    // Verify step titles are rendered (from TRANSFORMATION_STEPS constant)
     const headings = screen.getAllByRole('heading', { level: 4 })
-    expect(headings.length).toBe(4)
+    expect(headings.length).toBe(10)
   })
 })
