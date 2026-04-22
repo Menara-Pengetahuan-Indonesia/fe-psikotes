@@ -7,16 +7,13 @@ import { cn } from '@/lib/utils'
 import {
   getFooterTheme,
   getFooterLinks,
-  getFooterCta,
   SOCIAL_LINKS,
 } from '@/config/footer'
-import { FooterCtaBanner } from './footer-cta-banner'
 
 export function Footer() {
   const pathname = usePathname()
   const theme = getFooterTheme()
   const links = getFooterLinks()
-  const cta = getFooterCta()
 
   const hidden = pathname === '/masuk'
     || pathname === '/daftar'
@@ -46,9 +43,6 @@ export function Footer() {
           'py-12 gap-6',
         )}
       >
-        {/* CTA Banner */}
-        <FooterCtaBanner cta={cta} theme={theme} />
-
         {/* Brand + Links Grid */}
         <div className="grid md:grid-cols-5 gap-8">
           {/* Brand Column */}
