@@ -26,7 +26,7 @@ export function ContentPanel({ selectedNode, onSelect }: ContentPanelProps) {
       case 'packageType':
         return <PackageTypePanel packageTypeId={selectedNode.id} onSelect={onSelect} />
       case 'test':
-        return <TestPanel testId={selectedNode.id} onSelect={onSelect} />
+        return <TestPanel testId={selectedNode.id} onSelect={onSelect} noSubtest={selectedNode.noSubtest} />
       case 'subTest':
         return <SubTestPanel subTestId={selectedNode.id} />
       default:
