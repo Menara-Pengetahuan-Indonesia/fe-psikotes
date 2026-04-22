@@ -307,7 +307,7 @@ export function QuestionCard({
       </div>
 
       {/* Edit body */}
-      <div className="px-5 py-5 space-y-5">
+      <div className="px-5 py-5 space-y-6">
         {/* Question text */}
         <div className="space-y-2">
           <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Pertanyaan</label>
@@ -339,9 +339,9 @@ export function QuestionCard({
         <div className="space-y-2">
           <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Gambar Soal (Opsional)</label>
           {imageUrl ? (
-            <div className="relative inline-block">
+            <div className="relative inline-block max-w-sm">
               <Image src={imageUrl} alt="" width={400} height={160}
-                className="max-h-40 rounded-xl border object-contain" unoptimized />
+                className="max-h-48 w-auto rounded-xl border object-contain" unoptimized />
               <button type="button" onClick={() => setImageUrl('')}
                 className="absolute top-2 right-2 size-7 rounded-lg bg-rose-500 text-white flex items-center justify-center hover:bg-rose-600 transition-colors">
                 <X className="size-3.5" />
