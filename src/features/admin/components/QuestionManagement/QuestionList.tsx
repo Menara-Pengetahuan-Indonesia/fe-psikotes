@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Plus } from 'lucide-react'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useQueryClient } from '@tanstack/react-query'
 import {
   DndContext,
   closestCenter,
@@ -20,6 +21,7 @@ import {
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { useQuestions, useCreateQuestion, useDeleteQuestion, useUpdateQuestion } from '../../hooks'
+import { adminKeys } from '../../hooks/query-keys'
 import { ConfirmDialog } from '../Common/ConfirmDialog'
 import { QuestionCard } from './QuestionCard'
 import type { Question, QuestionType } from '../../types'
@@ -162,6 +164,8 @@ export function QuestionList({ subTestId }: QuestionListProps) {
     })
   }
 
+  const qc = useQueryClient()
+
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event
     if (!over || active.id === over.id) return
@@ -174,6 +178,17 @@ export function QuestionList({ subTestId }: QuestionListProps) {
     const [moved] = reordered.splice(oldIndex, 1)
     reordered.splice(newIndex, 0, moved)
 
+    // Optimistic update — instantly reorder in cache
+    qc.setQueryData<Question[]>(adminKeys.questions.all, (old) => {
+      if (!old) return old
+      return old.map(q => {
+        const idx = reordered.findIndex(r => r.id === q.id)
+        if (idx !== -1) return { ...q, order: idx + 1 }
+        return q
+      })
+    })
+
+    // Sync to backend in background
     reordered.forEach((q, i) => {
       const newOrder = i + 1
       if (q.order !== newOrder) {
