@@ -27,6 +27,10 @@ export function PsikotesCategoryNav() {
   return (
     <section id="pemetaan" className="py-16 pb-12 relative overflow-hidden bg-background">
 
+      {/* Decorative orbs */}
+      <div className="absolute top-[-8%] left-[-6%] w-[450px] h-[450px] bg-accent-100/40 rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-8%] right-[-6%] w-[350px] h-[350px] bg-primary-100/40 rounded-full pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Section Header */}
