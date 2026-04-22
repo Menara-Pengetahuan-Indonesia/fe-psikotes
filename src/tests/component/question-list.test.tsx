@@ -1,5 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import type { ReactNode } from 'react'
 
 vi.mock('next/link', () => ({
   default: ({ children, href, ...props }: React.PropsWithChildren<{ href: string }>) => (
@@ -59,29 +61,38 @@ vi.mock('@/features/admin/hooks', () => ({
   adminKeys: { questions: () => ['questions'] },
 }))
 
+vi.mock('../../hooks/query-keys', () => ({
+  adminKeys: { questions: { all: ['questions'] } },
+}))
+
 import { QuestionList } from '@/features/admin/components/QuestionManagement/QuestionList'
+
+const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
+const wrapper = ({ children }: { children: ReactNode }) => (
+  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+)
 
 describe('QuestionList', () => {
   it('renders add question button', () => {
-    render(<QuestionList subTestId="test-1" />)
+    render(<QuestionList subTestId="test-1" />, { wrapper })
     expect(screen.getByText('Tambah Pertanyaan')).toBeInTheDocument()
   })
 
   it('renders question texts', () => {
-    render(<QuestionList subTestId="test-1" />)
+    render(<QuestionList subTestId="test-1" />, { wrapper })
     expect(screen.getByText('Apa warna favorit Anda?')).toBeInTheDocument()
     expect(screen.getByText('Jelaskan diri Anda.')).toBeInTheDocument()
   })
 
   it('renders empty state when no questions', () => {
     mockQuestionsData = []
-    render(<QuestionList subTestId="test-1" />)
+    render(<QuestionList subTestId="test-1" />, { wrapper })
     expect(screen.getByText('Belum ada pertanyaan')).toBeInTheDocument()
     mockQuestionsData = mockQuestions
   })
 
-  it('renders type selector buttons', () => {
-    render(<QuestionList subTestId="test-1" />)
+  it('renders question type labels', () => {
+    render(<QuestionList subTestId="test-1" />, { wrapper })
     expect(screen.getAllByText('Pilihan Ganda').length).toBeGreaterThan(0)
   })
 })
