@@ -190,8 +190,8 @@ export function QuestionCard({
   // EDIT MODE
   return (
     <div className="bg-white rounded-2xl border-2 border-indigo-400 shadow-lg shadow-indigo-100/50">
-      {/* Edit header */}
-      <div className="flex items-center justify-between px-5 py-3 border-b border-indigo-100 bg-indigo-50/50 rounded-t-2xl">
+      {/* Edit header — click to collapse */}
+      <div onClick={onStopEdit} className="flex items-center justify-between px-5 py-3 border-b border-indigo-100 bg-indigo-50/50 rounded-t-2xl cursor-pointer hover:bg-indigo-50 transition-colors">
         <div className="flex items-center gap-3">
           <span className="text-xs font-black text-indigo-400 tabular-nums">#{index + 1}</span>
           <span className={cn('text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-lg', colorClass)}>
