@@ -16,32 +16,34 @@ export function BlogPage() {
     : BLOG_POSTS.filter(p => p.category === activeCategory)
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-white">
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-linear-to-b from-primary-900 via-primary-800 to-primary-600 pt-32 pb-24">
-        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-primary-500/10 rounded-full pointer-events-none" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-[500px] h-[500px] bg-accent-500/5 rounded-full pointer-events-none" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-sky-50/50 via-white to-white pt-32 pb-20">
+        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-sky-100/50 rounded-full pointer-events-none" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-accent-100/30 rounded-full pointer-events-none" />
 
         <div className="max-w-5xl mx-auto px-6 relative z-10 text-center space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm">
-            <BookOpen className="w-4 h-4 text-accent-300" />
-            <span className="text-xs font-black text-white uppercase tracking-widest">Blog</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-50 border border-sky-100">
+            <BookOpen className="w-4 h-4 text-sky-600" />
+            <span className="text-xs font-black text-sky-700 uppercase tracking-widest">Blog</span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[0.95]">
-            Blog & <span className="text-accent-300 italic">Artikel</span>
+          <h1 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tight leading-[0.95]">
+            Blog & <span className="text-sky-500 italic">Artikel</span>
           </h1>
 
-          <p className="text-primary-100/80 font-medium max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+          <p className="text-gray-500 font-medium max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
             Wawasan terbaru seputar psikologi, kesehatan mental, dan pengembangan diri dari para ahli kami.
           </p>
         </div>
       </section>
 
       {/* Filter + Grid */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="relative overflow-hidden py-16">
+        <div className="absolute top-[-8%] left-[-6%] w-[350px] h-[350px] bg-primary-100/30 rounded-full pointer-events-none" />
+
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
 
           {/* Category Filter */}
           <div className="flex flex-wrap gap-2 justify-center mb-12">
@@ -52,8 +54,8 @@ export function BlogPage() {
                 className={cn(
                   'px-5 py-2.5 rounded-full text-xs font-bold transition-all border',
                   activeCategory === cat
-                    ? 'bg-primary-600 border-primary-600 text-white shadow-lg shadow-primary-600/20'
-                    : 'bg-white border-slate-200 text-slate-500 hover:border-primary-300 hover:text-primary-600'
+                    ? 'bg-sky-500 border-sky-500 text-white shadow-lg shadow-sky-500/20'
+                    : 'bg-white border-slate-200 text-slate-500 hover:border-sky-300 hover:text-sky-600'
                 )}
               >
                 {cat}
@@ -69,17 +71,17 @@ export function BlogPage() {
                 onClick={() => setSelectedPost(post)}
                 className="group bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden text-left flex flex-col"
               >
-                <div className="aspect-[16/9] bg-slate-50 flex items-center justify-center">
-                  <div className="w-14 h-14 rounded-2xl bg-primary-50 flex items-center justify-center">
-                    <Sparkles className="w-6 h-6 text-primary-300" />
+                <div className="aspect-[16/9] bg-gradient-to-br from-sky-50 to-primary-50 flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-2xl bg-white/80 flex items-center justify-center shadow-sm">
+                    <Sparkles className="w-6 h-6 text-sky-400" />
                   </div>
                 </div>
 
                 <div className="p-6 flex-1 space-y-3">
-                  <span className="inline-block px-3 py-1 rounded-full bg-primary-50 text-primary-600 text-[10px] font-bold uppercase tracking-wider">
+                  <span className="inline-block px-3 py-1 rounded-full bg-sky-50 text-sky-600 text-[10px] font-bold uppercase tracking-wider">
                     {post.category}
                   </span>
-                  <h3 className="font-bold text-lg text-slate-900 leading-tight group-hover:text-primary-600 transition-colors line-clamp-2">
+                  <h3 className="font-bold text-lg text-slate-900 leading-tight group-hover:text-sky-600 transition-colors line-clamp-2">
                     {post.title}
                   </h3>
                   <p className="text-sm text-slate-500 leading-relaxed line-clamp-2">
@@ -103,16 +105,13 @@ export function BlogPage() {
       {/* CTA */}
       <section className="pb-20">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="relative p-8 md:p-12 rounded-[3rem] bg-primary-600 shadow-2xl shadow-primary-900/20 overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-accent-500/20 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-400/20 rounded-full blur-3xl pointer-events-none" />
-
+          <div className="relative p-8 md:p-12 rounded-[3rem] bg-gradient-to-r from-sky-500 to-primary-600 shadow-2xl overflow-hidden">
             <div className="relative z-10 text-center space-y-6">
               <Sparkles className="w-10 h-10 text-accent-300 mx-auto" />
               <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight leading-tight">
                 Punya Topik <span className="text-accent-300 italic">Menarik?</span>
               </h2>
-              <p className="text-primary-50 font-medium text-sm md:text-base max-w-xl mx-auto">
+              <p className="text-white/80 font-medium text-sm md:text-base max-w-xl mx-auto">
                 Kami terbuka untuk kolaborasi. Jika kamu seorang psikolog atau penulis yang ingin berbagi wawasan, hubungi tim editorial kami.
               </p>
             </div>
@@ -123,7 +122,7 @@ export function BlogPage() {
       {/* Popup Modal */}
       {selectedPost && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setSelectedPost(null)} />
+          <div className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" onClick={() => setSelectedPost(null)} />
           <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 text-center space-y-5">
             <button
               onClick={() => setSelectedPost(null)}

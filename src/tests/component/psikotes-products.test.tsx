@@ -22,7 +22,7 @@ function wrapper({ children }: { children: React.ReactNode }) {
 describe('PsikotesProducts', () => {
   it('renders section heading', () => {
     render(<PsikotesProducts />, { wrapper })
-    expect(screen.getByText(/Ambil Senjata/)).toBeInTheDocument()
+    expect(screen.getByText(/Pilih Bekal/)).toBeInTheDocument()
   })
 
   it('renders bottom CTA heading', () => {

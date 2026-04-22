@@ -17,7 +17,7 @@ describe('PsikotesCategoryNav', () => {
 
   it('renders badge text', () => {
     render(<PsikotesCategoryNav />)
-    expect(screen.getByText('Pilih Titik Mulamu')).toBeInTheDocument()
+    expect(screen.getByText('Bermoela dari sini')).toBeInTheDocument()
   })
 
   it('renders solution labels', () => {
@@ -29,6 +29,6 @@ describe('PsikotesCategoryNav', () => {
 
   it('renders footer tagline', () => {
     render(<PsikotesCategoryNav />)
-    expect(screen.getByText(/Titik mula perjalananmu/)).toBeInTheDocument()
+    expect(screen.getByText(/Bermoela di sini/)).toBeInTheDocument()
   })
 })
