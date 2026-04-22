@@ -189,9 +189,9 @@ export function QuestionCard({
 
   // EDIT MODE
   return (
-    <div className="bg-white rounded-2xl border-2 border-indigo-400 shadow-lg shadow-indigo-100/50">
+    <div className="bg-white rounded-2xl border-2 border-indigo-400 shadow-lg shadow-indigo-100/50 max-h-[80vh] flex flex-col">
       {/* Edit header — click to collapse */}
-      <div onClick={onStopEdit} className="flex items-center justify-between px-3 sm:px-5 py-3 border-b border-indigo-100 bg-indigo-50/50 rounded-t-2xl cursor-pointer hover:bg-indigo-50 transition-colors">
+      <div onClick={onStopEdit} className="flex items-center justify-between px-3 sm:px-5 py-3 border-b border-indigo-100 bg-indigo-50/50 rounded-t-2xl cursor-pointer hover:bg-indigo-50 transition-colors shrink-0">
         <div className="flex items-center gap-3">
           <span className="text-xs font-black text-indigo-400 tabular-nums">#{index + 1}</span>
           <span className={cn('text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-lg', colorClass)}>
@@ -238,7 +238,7 @@ export function QuestionCard({
       </div>
 
       {/* Edit body */}
-      <div className="px-3 sm:px-5 py-5 space-y-6">
+      <div className="px-3 sm:px-5 py-5 space-y-6 overflow-y-auto flex-1">
         {/* Question text */}
         <div className="space-y-2">
           <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Pertanyaan</label>
