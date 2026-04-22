@@ -47,3 +47,5 @@ ccswitch.sh
 
 # local reference copy — do not ship
 psikotest-ipsi/
+.playwright-mcp/
+.superpowers/
