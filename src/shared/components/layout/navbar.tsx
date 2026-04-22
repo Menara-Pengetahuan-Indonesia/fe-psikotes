@@ -80,7 +80,7 @@ export function Navbar({
       >
         <nav
           className={cn(
-            'grid grid-cols-3 items-center px-6 py-1',
+            'grid grid-cols-3 items-center px-6 py-3',
             'transition-colors duration-500 ease-out',
             isScrolled
               ? 'w-full max-w-6xl rounded-full bg-white/95 backdrop-blur-xl shadow-md shadow-gray-900/[0.06] border border-gray-200/50'
