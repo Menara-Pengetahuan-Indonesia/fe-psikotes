@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import {
   FileText, Plus, Search, Pencil, Trash2, BookOpen,
-  ToggleLeft, ToggleRight, CheckCircle2, XCircle,
+  ToggleLeft, ToggleRight, CheckCircle2, XCircle, ListChecks, ArrowRight,
 } from 'lucide-react'
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
@@ -23,6 +23,7 @@ import {
   useTests, useUpdateTest,
   useSubTests, useCreateSubTest, useUpdateSubTest, useDeleteSubTest,
 } from '@/features/admin/hooks'
+import { QuestionList } from '@/features/admin/components/QuestionManagement/QuestionList'
 import type { SubTest, ScoringType } from '@/features/admin/types'
 import type { TreeSelection } from '../types'
 
@@ -42,6 +43,7 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
   const [editTest, setEditTest] = useState(false)
   const [editSubId, setEditSubId] = useState<string | null>(null)
   const [deleteId, setDeleteId] = useState<string | null>(null)
+  const [creatingDefault, setCreatingDefault] = useState(false)
 
   const [formName, setFormName] = useState('')
   const [formDesc, setFormDesc] = useState('')
@@ -106,7 +108,17 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
     }
   }
 
+  const handleCreateDefaultSubTest = async () => {
+    setCreatingDefault(true)
+    createSub.mutate(
+      { testId, name: '_default', description: 'Auto-generated subtest', order: 1, isActive: true },
+      { onSuccess: () => setCreatingDefault(false), onError: () => setCreatingDefault(false) },
+    )
+  }
+
   if (!test) return null
+
+  const isDefaultOnly = subTests.length === 1 && subTests[0].name === '_default'
 
   return (
     <div className="p-8 space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-400 max-w-4xl">
@@ -170,41 +182,80 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
             </div>
           </div>
 
-          {/* Children header */}
-          <div className="flex items-center justify-between">
-            <h3 className="text-base font-black text-slate-900 tracking-tight">Sub Tes</h3>
-            <Button size="sm" onClick={openCreateSub}
-              className="h-9 rounded-xl bg-sky-600 hover:bg-sky-700 text-xs font-bold shadow-sm focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
-              <Plus className="size-4 mr-1.5" aria-hidden="true" /> Tambah
-            </Button>
-          </div>
-
-          {/* Search */}
-          {subTests.length > 0 && (
-            <div className="relative">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-slate-400" aria-hidden="true" />
-              <Input
-                placeholder="Cari sub tes..."
-                aria-label="Cari sub tes"
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                className="pl-10 h-10 bg-white border-slate-200 rounded-xl text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500"
-              />
-            </div>
-          )}
-
-          {/* List */}
-          {filtered.length === 0 ? (
-            <div className="text-center py-12">
-              <div className="size-12 rounded-2xl bg-slate-50 flex items-center justify-center mx-auto mb-3">
-                <BookOpen className="size-6 text-slate-300" aria-hidden="true" />
+          {/* Subtest content — depends on mode */}
+          {subTests.length === 0 ? (
+            /* No subtests yet — show choice */
+            <div className="space-y-4">
+              <h3 className="text-base font-black text-slate-900 tracking-tight">Struktur Soal</h3>
+              <div className="grid grid-cols-2 gap-4">
+                <button type="button" onClick={openCreateSub}
+                  className="p-6 rounded-2xl border-2 border-slate-200 hover:border-sky-400 hover:bg-sky-50/50 transition-all text-left space-y-3 group">
+                  <div className="size-10 rounded-xl bg-sky-50 flex items-center justify-center group-hover:bg-sky-100 transition-colors">
+                    <BookOpen className="size-5 text-sky-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-black text-slate-900">Pakai Sub Tes</p>
+                    <p className="text-xs text-slate-500 mt-1">Kelompokkan soal ke dalam beberapa sub tes.</p>
+                  </div>
+                </button>
+                <button type="button" onClick={handleCreateDefaultSubTest} disabled={creatingDefault}
+                  className="p-6 rounded-2xl border-2 border-slate-200 hover:border-emerald-400 hover:bg-emerald-50/50 transition-all text-left space-y-3 group disabled:opacity-50">
+                  <div className="size-10 rounded-xl bg-emerald-50 flex items-center justify-center group-hover:bg-emerald-100 transition-colors">
+                    <ListChecks className="size-5 text-emerald-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-black text-slate-900">{creatingDefault ? 'Memproses...' : 'Tanpa Sub Tes'}</p>
+                    <p className="text-xs text-slate-500 mt-1">Langsung input soal tanpa pengelompokan.</p>
+                  </div>
+                </button>
               </div>
-              <p className="text-sm font-bold text-slate-500">Belum ada sub tes</p>
-              <p className="text-xs text-slate-400 mt-1">Tambahkan sub tes untuk memulai.</p>
+            </div>
+          ) : isDefaultOnly ? (
+            /* Default subtest — show questions directly */
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-black text-slate-900 tracking-tight">Soal</h3>
+                <button type="button" onClick={() => onSelect({ type: 'subTest', id: subTests[0].id })}
+                  className="flex items-center gap-1.5 text-xs font-bold text-slate-400 hover:text-indigo-600 transition-colors">
+                  Kelola <ArrowRight className="size-3" />
+                </button>
+              </div>
+              <QuestionList subTestId={subTests[0].id} />
             </div>
           ) : (
-            <div className="space-y-2" role="list" aria-label="Daftar sub tes">
-              {filtered.map(s => (
+            /* Normal subtests */
+            <>
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-black text-slate-900 tracking-tight">Sub Tes</h3>
+                <Button size="sm" onClick={openCreateSub}
+                  className="h-9 rounded-xl bg-sky-600 hover:bg-sky-700 text-xs font-bold shadow-sm focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
+                  <Plus className="size-4 mr-1.5" aria-hidden="true" /> Tambah
+                </Button>
+              </div>
+
+              {subTests.length > 0 && (
+                <div className="relative">
+                  <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-slate-400" aria-hidden="true" />
+                  <Input
+                    placeholder="Cari sub tes..."
+                    aria-label="Cari sub tes"
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                    className="pl-10 h-10 bg-white border-slate-200 rounded-xl text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500"
+                  />
+                </div>
+              )}
+
+              {filtered.length === 0 ? (
+                <div className="text-center py-12">
+                  <div className="size-12 rounded-2xl bg-slate-50 flex items-center justify-center mx-auto mb-3">
+                    <BookOpen className="size-6 text-slate-300" aria-hidden="true" />
+                  </div>
+                  <p className="text-sm font-bold text-slate-500">Tidak ditemukan</p>
+                </div>
+              ) : (
+                <div className="space-y-2" role="list" aria-label="Daftar sub tes">
+                  {filtered.map(s => (
                 <div key={s.id} role="listitem"
                   className="group flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 hover:border-sky-200 hover:shadow-md cursor-pointer transition-all duration-200"
                   onClick={() => onSelect({ type: 'subTest', id: s.id })}
@@ -247,6 +298,8 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
                 </div>
               ))}
             </div>
+          )}
+            </>
           )}
 
           {/* Dialog */}
