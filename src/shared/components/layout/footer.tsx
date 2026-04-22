@@ -58,7 +58,7 @@ export function Footer() {
               className="flex items-center gap-2.5 group"
             >
               <Image
-                src="/logo/logo_bermoela.png"
+                src="/logo/sayap4.png"
                 alt="Bermoela"
                 width={40}
                 height={40}
