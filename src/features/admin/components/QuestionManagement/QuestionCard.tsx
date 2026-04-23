@@ -459,36 +459,33 @@ export function QuestionCard({
             {minScale <= maxScale && (
               <div className="space-y-2">
                 <label className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Label & Bobot per Skala</label>
-                <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-3">
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-                    {Array.from({ length: Math.min(maxScale - minScale + 1, 10) }, (_, i) => minScale + i).map(val => {
-                      const defaultLabels: Record<number, string> = { 1: 'Sangat Tidak Setuju', 2: 'Tidak Setuju', 3: 'Netral', 4: 'Setuju', 5: 'Sangat Setuju' }
-                      return (
-                        <div key={val} className="flex flex-col items-center gap-2 p-2 rounded-xl bg-white border border-slate-100">
-                          <span className="size-8 rounded-full bg-violet-100 text-violet-700 text-sm font-black flex items-center justify-center shrink-0">{val}</span>
-                          <div className="w-full space-y-1">
-                            <span className="text-[9px] text-slate-400 font-bold uppercase block text-center">Label</span>
-                            <input
-                              placeholder={defaultLabels[val] ?? `Label ${val}`}
-                              value={scaleWeights[String(val)]?.label ?? ''}
-                              onChange={e => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { points: val }, label: e.target.value } })}
-                              className="w-full h-8 rounded-lg border border-slate-200 bg-slate-50 text-center text-[11px] font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                            />
-                          </div>
-                          <div className="w-full space-y-1">
-                            <span className="text-[9px] text-slate-400 font-bold uppercase block text-center">Poin</span>
-                            <input
-                              type="number"
-                              placeholder="0"
-                              value={scaleWeights[String(val)]?.points ?? val}
-                              onChange={e => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { label: '' }, points: Number(e.target.value) } })}
-                              className="w-full h-8 rounded-lg border border-slate-200 bg-slate-50 text-center text-xs font-bold focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                            />
-                          </div>
-                        </div>
-                      )
-                    })}
+                <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-3 space-y-2">
+                  <div className="grid grid-cols-[2.5rem_1fr_5rem] gap-2 items-center px-1">
+                    <span className="text-[9px] text-slate-400 font-bold uppercase text-center">#</span>
+                    <span className="text-[9px] text-slate-400 font-bold uppercase">Label</span>
+                    <span className="text-[9px] text-slate-400 font-bold uppercase text-center">Poin</span>
                   </div>
+                  {Array.from({ length: Math.min(maxScale - minScale + 1, 10) }, (_, i) => minScale + i).map(val => {
+                    const defaultLabels: Record<number, string> = { 1: 'Sangat Tidak Setuju', 2: 'Tidak Setuju', 3: 'Netral', 4: 'Setuju', 5: 'Sangat Setuju' }
+                    return (
+                      <div key={val} className="grid grid-cols-[2.5rem_1fr_5rem] gap-2 items-center">
+                        <span className="size-8 rounded-full bg-violet-100 text-violet-700 text-sm font-black flex items-center justify-center mx-auto">{val}</span>
+                        <input
+                          placeholder={defaultLabels[val] ?? `Label ${val}`}
+                          value={scaleWeights[String(val)]?.label ?? ''}
+                          onChange={e => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { points: val }, label: e.target.value } })}
+                          className="w-full h-9 rounded-lg border border-slate-200 bg-white px-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                        />
+                        <input
+                          type="number"
+                          placeholder="0"
+                          value={scaleWeights[String(val)]?.points ?? val}
+                          onChange={e => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { label: '' }, points: Number(e.target.value) } })}
+                          className="w-full h-9 rounded-lg border border-slate-200 bg-white px-2 text-sm font-bold text-center focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                        />
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             )}
