@@ -257,8 +257,9 @@ export function QuestionCard({
             <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Poin</label>
             <input
               type="number"
-              value={essayPoints}
+              value={essayPoints || ''}
               onChange={e => setEssayPoints(Number(e.target.value))}
+              placeholder="0"
               className="w-24 h-9 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
             />
           </div>
@@ -330,9 +331,9 @@ export function QuestionCard({
                     />
                     <input
                       type="number"
-                      value={opt.points}
+                      value={opt.points || ''}
                       onChange={e => updateOption(idx, { points: Number(e.target.value) })}
-                      placeholder="Poin"
+                      placeholder="0"
                       className="w-20 h-9 rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-center text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
                     />
                     <button type="button" onClick={() => removeOption(idx)}
@@ -431,9 +432,9 @@ export function QuestionCard({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-3 space-y-1">
                 <label className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Nilai Minimum</label>
-                <input type="number" value={minScale}
+                <input type="number" value={minScale || ''}
                   onChange={e => {
-                    const v = Number(e.target.value)
+                    const v = e.target.value === '' ? 0 : Number(e.target.value)
                     setMinScale(v)
                     const w: Record<string, ScaleWeight> = {}
                     for (let i = v; i <= maxScale; i++) w[String(i)] = scaleWeights[String(i)] ?? { label: String(i), points: i }
@@ -444,9 +445,9 @@ export function QuestionCard({
               </div>
               <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-3 space-y-1">
                 <label className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Nilai Maksimum</label>
-                <input type="number" value={maxScale}
+                <input type="number" value={maxScale || ''}
                   onChange={e => {
-                    const v = Number(e.target.value)
+                    const v = e.target.value === '' ? 0 : Number(e.target.value)
                     setMaxScale(v)
                     const w: Record<string, ScaleWeight> = {}
                     for (let i = minScale; i <= v; i++) w[String(i)] = scaleWeights[String(i)] ?? { label: String(i), points: i }
@@ -474,9 +475,9 @@ export function QuestionCard({
                           />
                           <input
                             type="number"
-                            placeholder="Poin"
-                            value={scaleWeights[String(val)]?.points ?? val}
-                            onChange={e => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { label: '' }, points: Number(e.target.value) } })}
+                            placeholder="0"
+                            value={scaleWeights[String(val)]?.points ?? ''}
+                            onChange={e => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { label: '' }, points: e.target.value === '' ? 0 : Number(e.target.value) } })}
                             className="w-20 h-9 rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-center text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
                           />
                         </div>
