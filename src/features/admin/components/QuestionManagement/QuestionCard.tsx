@@ -460,7 +460,7 @@ export function QuestionCard({
               <div className="space-y-2">
                 <label className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Label & Bobot per Skala</label>
                 <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-3">
-                  <div className="grid gap-3" style={{ gridTemplateColumns: `repeat(${Math.min(maxScale - minScale + 1, 5)}, 1fr)` }}>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
                     {Array.from({ length: Math.min(maxScale - minScale + 1, 10) }, (_, i) => minScale + i).map(val => (
                       <div key={val} className="flex flex-col items-center gap-1.5">
                         <span className="size-7 rounded-full bg-violet-100 text-violet-700 text-xs font-black flex items-center justify-center">Skala {val}</span>
