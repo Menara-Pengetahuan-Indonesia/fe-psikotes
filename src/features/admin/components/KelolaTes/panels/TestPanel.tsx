@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import {
   FileText, Plus, Search, Pencil, Trash2, BookOpen,
-  ToggleLeft, ToggleRight, CheckCircle2, XCircle, ArrowRight,
+  ToggleLeft, ToggleRight, CheckCircle2, XCircle,
 } from 'lucide-react'
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'

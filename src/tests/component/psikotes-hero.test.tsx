@@ -27,7 +27,7 @@ describe('PsikotesHero', () => {
   it('renders the diagnostic input area', () => {
     render(<PsikotesHero />)
     expect(
-      screen.getByPlaceholderText(/Atau ceritakan langsung/)
+      screen.getByPlaceholderText(/Ceritakan masalahmu di sini/)
     ).toBeInTheDocument()
   })
 
