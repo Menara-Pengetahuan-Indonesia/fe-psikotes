@@ -25,6 +25,7 @@ export function useCreateTest() {
     mutationFn: (dto: CreateTestDto) => testService.create(dto),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: adminKeys.tests.all })
+      qc.invalidateQueries({ queryKey: adminKeys.subTests.all })
       toast.success('Tes berhasil dibuat')
     },
     onError: () => toast.error('Gagal membuat tes'),
