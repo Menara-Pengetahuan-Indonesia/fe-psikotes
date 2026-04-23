@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import {
   FileText, Plus, Search, Pencil, Trash2, BookOpen,
   ToggleLeft, ToggleRight, CheckCircle2, XCircle, ArrowRight,
@@ -60,6 +60,18 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
   const createSub = useCreateSubTest()
   const updateSub = useUpdateSubTest()
   const deleteSub = useDeleteSubTest()
+
+  const navigated = useRef(false)
+
+  useEffect(() => {
+    if (test && test.isSubtest === false && !navigated.current) {
+      const defaultSub = subTests.find(s => s.isDefault)
+      if (defaultSub) {
+        navigated.current = true
+        onSelect({ type: 'subTest', id: defaultSub.id })
+      }
+    }
+  }, [test, subTests, onSelect])
 
   const filtered = subTests.filter(s =>
     !search || s.name.toLowerCase().includes(search.toLowerCase())

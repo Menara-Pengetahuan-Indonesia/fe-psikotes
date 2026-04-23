@@ -22,7 +22,6 @@ import { ConfirmDialog } from '@/features/admin/components/Common/ConfirmDialog'
 import {
   usePackageTypes, useUpdatePackageType,
   useTests, useCreateTest, useUpdateTest, useDeleteTest,
-  useCreateSubTest,
 } from '@/features/admin/hooks'
 import type { Test, ScoringType } from '@/features/admin/types'
 import type { TreeSelection } from '../types'
@@ -61,7 +60,6 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
   const createTest = useCreateTest()
   const updateTest = useUpdateTest()
   const deleteTest = useDeleteTest()
-  const createSubTest = useCreateSubTest()
 
   const [formUseSubtest, setFormUseSubtest] = useState(true)
 
@@ -108,19 +106,13 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
       )
     } else {
       createTest.mutate(
-        { packageTypeId, name: formName.trim(), description: formDesc.trim() || undefined, scoringType: formScoring, order: formOrder, originalYear: formOriginalYear, precision: formPrecision, adaptationYear: formAdaptationYear, popularity: formPopularity.trim() || undefined, isActive: formActive },
+        { packageTypeId, name: formName.trim(), description: formDesc.trim() || undefined, scoringType: formScoring, isSubtest: formUseSubtest, order: formOrder, originalYear: formOriginalYear, precision: formPrecision, adaptationYear: formAdaptationYear, popularity: formPopularity.trim() || undefined, isActive: formActive },
         {
           onSuccess: (newTest) => {
             setFormOpen(false)
             if (newTest?.id) {
               if (!formUseSubtest) {
-                createSubTest.mutate(
-                  { testId: newTest.id, name: 'Default', description: 'Default subtest', duration: 0, order: 1, isActive: true },
-                  {
-                    onSuccess: (newSub) => { if (newSub?.id) onSelect({ type: 'subTest', id: newSub.id }) },
-                    onError: (err) => { console.error('Failed to create default subtest:', err); onSelect({ type: 'test', id: newTest.id }) },
-                  },
-                )
+                onSelect({ type: 'test', id: newTest.id, noSubtest: true })
               } else {
                 onSelect({ type: 'test', id: newTest.id })
               }
