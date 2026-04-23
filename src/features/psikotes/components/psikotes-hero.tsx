@@ -4,6 +4,7 @@ import {
   ArrowDown,
 } from 'lucide-react'
 import { PsikotesDiagnostic } from './psikotes-diagnostic'
+import { PsikotesServices } from './psikotes-layanan'
 import { BermoelaText } from './bermoela-text'
 
 export function PsikotesHero() {
@@ -28,6 +29,9 @@ export function PsikotesHero() {
               </p>
             </div>
           </div>
+
+          {/* Services */}
+          <PsikotesServices />
 
           {/* Diagnostic Area */}
           <div className="w-full max-w-4xl mx-auto">
