@@ -14,6 +14,9 @@ export function PsikotesHero() {
       {/* Decorative orbs */}
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary-100/60 rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] bg-accent-100/60 rounded-full pointer-events-none" />
+      <div className="absolute top-[15%] right-[5%] w-[180px] h-[180px] bg-amber-200/40 rounded-full pointer-events-none" />
+      <div className="absolute bottom-[20%] left-[3%] w-[120px] h-[120px] bg-amber-100/50 rounded-full pointer-events-none" />
+      <div className="absolute top-[50%] right-[-3%] w-[90px] h-[90px] bg-yellow-200/30 rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center space-y-12">
@@ -21,8 +24,8 @@ export function PsikotesHero() {
           {/* Header Content */}
           <div className="flex flex-col items-center space-y-6 max-w-5xl mx-auto">
             <div className="space-y-4">
-              <h1 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tighter leading-[1.1]">
-                Mental Health untuk Tumbuh dan Sukses <br /> <span className="text-accent-500 italic text-4xl md:text-5xl">di Era Penuh Tekanan</span>
+              <h1 className="text-3xl md:text-5xl font-bold text-gray-900 tracking-tight leading-[1.2] font-[family-name:var(--font-courgette)]">
+                Mental Health untuk Tumbuh dan Sukses <br /> <span className="text-accent-500">di Era Penuh Tekanan</span>
               </h1>
               <p className="text-sm md:text-base text-gray-500 max-w-xl mx-auto leading-relaxed font-medium text-pretty">
                 Jadikan assessment psikologis sebagai cara <span className="text-primary-600 font-bold italic">Bermoela</span> menuju dirimu yang baru dan masa depan yang lebih terarah

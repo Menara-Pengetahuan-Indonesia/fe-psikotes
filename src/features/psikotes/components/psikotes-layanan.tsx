@@ -234,18 +234,9 @@ const SERVICES: Service[] = [
   },
 ]
 
-const TAB_COLORS = [
-  { bg: 'bg-pink-100', border: 'border-pink-300', text: 'text-pink-700', activeBg: 'bg-pink-200', activeRing: 'ring-pink-300', panelBg: 'bg-pink-50', panelBorder: 'border-pink-300', colBg: 'bg-white', colHead: 'text-pink-700' },
-  { bg: 'bg-purple-100', border: 'border-purple-300', text: 'text-purple-700', activeBg: 'bg-purple-200', activeRing: 'ring-purple-300', panelBg: 'bg-purple-50', panelBorder: 'border-purple-300', colBg: 'bg-white', colHead: 'text-purple-700' },
-  { bg: 'bg-sky-100', border: 'border-sky-300', text: 'text-sky-700', activeBg: 'bg-sky-200', activeRing: 'ring-sky-300', panelBg: 'bg-sky-50', panelBorder: 'border-sky-300', colBg: 'bg-white', colHead: 'text-sky-700' },
-  { bg: 'bg-amber-100', border: 'border-amber-300', text: 'text-amber-700', activeBg: 'bg-amber-200', activeRing: 'ring-amber-300', panelBg: 'bg-amber-50', panelBorder: 'border-amber-300', colBg: 'bg-white', colHead: 'text-amber-700' },
-  { bg: 'bg-emerald-100', border: 'border-emerald-300', text: 'text-emerald-700', activeBg: 'bg-emerald-200', activeRing: 'ring-emerald-300', panelBg: 'bg-emerald-50', panelBorder: 'border-emerald-300', colBg: 'bg-white', colHead: 'text-emerald-700' },
-]
-
 export function PsikotesServices() {
   const [active, setActive] = useState(0)
   const current = SERVICES[active]
-  const color = TAB_COLORS[active]
 
   return (
     <div className="w-full max-w-5xl mx-auto font-[family-name:var(--font-quicksand)]">
@@ -254,7 +245,6 @@ export function PsikotesServices() {
         {SERVICES.map((service, idx) => {
           const Icon = service.icon
           const isActive = active === idx
-          const c = TAB_COLORS[idx]
           return (
             <button
               key={service.title}
@@ -263,8 +253,8 @@ export function PsikotesServices() {
                 flex flex-col items-center gap-1 md:gap-1.5 px-1 md:px-2 py-2 md:py-3 rounded-xl md:rounded-2xl border text-center
                 transition-all cursor-pointer
                 ${isActive
-                  ? `${c.activeBg} ${c.border} ring-2 ${c.activeRing} ${c.text} shadow-sm`
-                  : `${c.bg} ${c.border} ${c.text}`
+                  ? 'bg-primary-600 border-primary-600 text-white shadow-lg shadow-primary-200'
+                  : 'bg-primary-50 border-primary-200 text-primary-700 hover:bg-primary-100'
                 }
               `}
             >
@@ -276,8 +266,8 @@ export function PsikotesServices() {
       </div>
 
       {/* Panel */}
-      <div className={`${color.panelBg} ${color.panelBorder} border-2 rounded-2xl mt-3 p-4 md:p-5`}>
-        <h3 className={`${color.colHead} text-sm md:text-lg font-bold mb-4 text-center`}>
+      <div className="bg-white border-2 border-primary-200 rounded-2xl mt-3 p-4 md:p-6">
+        <h3 className="text-primary-700 text-sm md:text-lg font-bold mb-4 text-center">
           {current.title}
         </h3>
 
@@ -292,15 +282,15 @@ export function PsikotesServices() {
             {current.outputs.map((output) => (
               <div
                 key={output.heading}
-                className={`${color.colBg} border ${color.panelBorder} rounded-xl p-3 md:p-4 shadow-sm`}
+                className="bg-primary-50 border border-primary-200 rounded-xl p-3 md:p-4"
               >
-                <h4 className={`${color.colHead} text-sm font-bold mb-2 leading-tight`}>
+                <h4 className="text-primary-700 text-sm font-bold mb-2 leading-tight">
                   {output.heading}
                 </h4>
                 <ul className="space-y-1.5">
                   {output.items.map((item) => (
                     <li key={item} className="text-xs text-gray-900 leading-relaxed flex gap-1.5">
-                      <span className={`${color.colHead} shrink-0`}>•</span>
+                      <span className="text-primary-500 shrink-0">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -312,15 +302,15 @@ export function PsikotesServices() {
             {current.outputs.map((output) => (
               <div
                 key={output.heading}
-                className={`${color.colBg} border ${color.panelBorder} rounded-xl p-3 shadow-sm`}
+                className="bg-primary-50 border border-primary-200 rounded-xl p-3"
               >
-                <h4 className={`${color.colHead} text-xs font-bold mb-1.5 leading-tight`}>
+                <h4 className="text-primary-700 text-xs font-bold mb-1.5 leading-tight">
                   {output.heading}
                 </h4>
                 <ul className="space-y-1">
                   {output.items.map((item) => (
                     <li key={item} className="text-[11px] text-gray-900 leading-relaxed flex gap-1.5">
-                      <span className={`${color.colHead} shrink-0`}>•</span>
+                      <span className="text-primary-500 shrink-0">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
