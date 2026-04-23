@@ -463,20 +463,26 @@ export function QuestionCard({
                   <div className="grid gap-3" style={{ gridTemplateColumns: `repeat(${Math.min(maxScale - minScale + 1, 5)}, 1fr)` }}>
                     {Array.from({ length: Math.min(maxScale - minScale + 1, 10) }, (_, i) => minScale + i).map(val => (
                       <div key={val} className="flex flex-col items-center gap-1.5">
-                        <span className="size-7 rounded-full bg-violet-100 text-violet-700 text-xs font-black flex items-center justify-center">{val}</span>
-                        <input
-                          placeholder="Label"
-                          value={scaleWeights[String(val)]?.label ?? String(val)}
-                          onChange={e => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { points: val }, label: e.target.value } })}
-                          className="w-full h-8 rounded-lg border border-slate-200 bg-white text-center text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                        />
-                        <input
-                          type="number"
-                          placeholder="Poin"
-                          value={scaleWeights[String(val)]?.points ?? val}
-                          onChange={e => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { label: String(val) }, points: Number(e.target.value) } })}
-                          className="w-full h-8 rounded-lg border border-slate-200 bg-white text-center text-xs font-bold focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                        />
+                        <span className="size-7 rounded-full bg-violet-100 text-violet-700 text-xs font-black flex items-center justify-center">Skala {val}</span>
+                        <div className="w-full space-y-0.5">
+                          <span className="text-[9px] text-slate-400 font-bold uppercase">Label</span>
+                          <input
+                            placeholder={`misal: Sangat Tidak Setuju`}
+                            value={scaleWeights[String(val)]?.label ?? String(val)}
+                            onChange={e => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { points: val }, label: e.target.value } })}
+                            className="w-full h-8 rounded-lg border border-slate-200 bg-white text-center text-xs font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                          />
+                        </div>
+                        <div className="w-full space-y-0.5">
+                          <span className="text-[9px] text-slate-400 font-bold uppercase">Poin</span>
+                          <input
+                            type="number"
+                            placeholder="0"
+                            value={scaleWeights[String(val)]?.points ?? val}
+                            onChange={e => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { label: String(val) }, points: Number(e.target.value) } })}
+                            className="w-full h-8 rounded-lg border border-slate-200 bg-white text-center text-xs font-bold focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                          />
+                        </div>
                       </div>
                     ))}
                   </div>
