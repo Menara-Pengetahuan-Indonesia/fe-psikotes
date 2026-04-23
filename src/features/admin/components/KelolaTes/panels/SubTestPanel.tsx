@@ -117,7 +117,7 @@ export function SubTestPanel({ subTestId }: SubTestPanelProps) {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="st-order" className="text-xs font-bold uppercase tracking-wider text-slate-500">Urutan</Label>
-                  <Input id="st-order" type="number" value={formOrder} onChange={e => setFormOrder(Number(e.target.value))}
+                  <Input id="st-order" type="number" value={formOrder || ''} onChange={e => setFormOrder(e.target.value === '' ? 0 : Number(e.target.value))}
                     className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
                 </div>
               </div>

@@ -331,7 +331,7 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="test-edit-order" className="text-xs font-bold uppercase tracking-wider text-slate-500">Urutan</Label>
-                        <Input id="test-edit-order" type="number" value={formOrder} onChange={e => setFormOrder(Number(e.target.value))}
+                        <Input id="test-edit-order" type="number" value={formOrder || ''} onChange={e => setFormOrder(e.target.value === '' ? 0 : Number(e.target.value))}
                           className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
                       </div>
                       <div className="space-y-2">
@@ -377,7 +377,7 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="test-order" className="text-xs font-bold uppercase tracking-wider text-slate-500">Urutan</Label>
-                        <Input id="test-order" type="number" value={formOrder} onChange={e => setFormOrder(Number(e.target.value))}
+                        <Input id="test-order" type="number" value={formOrder || ''} onChange={e => setFormOrder(e.target.value === '' ? 0 : Number(e.target.value))}
                           className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
                       </div>
                     </div>

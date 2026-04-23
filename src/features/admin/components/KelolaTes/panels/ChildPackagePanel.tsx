@@ -359,7 +359,7 @@ export function ChildPackagePanel({ childPackageId, onSelect }: ChildPackagePane
               {!editCp && (
                 <div className="space-y-2">
                   <Label htmlFor="cp-price" className="text-xs font-bold uppercase tracking-wider text-slate-500">Harga (Rp)</Label>
-                  <Input id="cp-price" type="number" placeholder="0" value={formPrice} onChange={e => setFormPrice(Number(e.target.value))}
+                  <Input id="cp-price" type="number" placeholder="0" value={formPrice || ''} onChange={e => setFormPrice(e.target.value === '' ? 0 : Number(e.target.value))}
                     className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
                 </div>
               )}

@@ -298,7 +298,7 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="pt-price" className="text-xs font-bold uppercase tracking-wider text-slate-500">Harga (Rp)</Label>
-                    <Input id="pt-price" type="number" placeholder="0" value={formPrice} onChange={e => setFormPrice(Number(e.target.value))}
+                    <Input id="pt-price" type="number" placeholder="0" value={formPrice || ''} onChange={e => setFormPrice(e.target.value === '' ? 0 : Number(e.target.value))}
                       className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
                   </div>
                   <div className="space-y-2">
@@ -332,7 +332,7 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="pt-order" className="text-xs font-bold uppercase tracking-wider text-slate-500">Urutan</Label>
-                    <Input id="pt-order" type="number" value={formOrder} onChange={e => setFormOrder(Number(e.target.value))}
+                    <Input id="pt-order" type="number" value={formOrder || ''} onChange={e => setFormOrder(e.target.value === '' ? 0 : Number(e.target.value))}
                       className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
                   </div>
                   <div className="space-y-2">
