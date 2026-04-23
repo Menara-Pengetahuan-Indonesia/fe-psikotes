@@ -115,8 +115,11 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
             if (newTest?.id) {
               if (!formUseSubtest) {
                 createSubTest.mutate(
-                  { testId: newTest.id, name: 'Default', description: 'Default subtest', order: 1, isActive: true },
-                  { onSuccess: (newSub) => { if (newSub?.id) onSelect({ type: 'subTest', id: newSub.id }) } },
+                  { testId: newTest.id, name: 'Default', description: 'Default subtest', duration: 0, order: 1, isActive: true },
+                  {
+                    onSuccess: (newSub) => { if (newSub?.id) onSelect({ type: 'subTest', id: newSub.id }) },
+                    onError: (err) => { console.error('Failed to create default subtest:', err); onSelect({ type: 'test', id: newTest.id }) },
+                  },
                 )
               } else {
                 onSelect({ type: 'test', id: newTest.id })
