@@ -53,34 +53,36 @@ export function SubTestPanel({ subTestId }: SubTestPanelProps) {
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-400 max-w-4xl">
-      {/* Header */}
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <div className="size-14 rounded-2xl bg-gradient-to-br from-sky-400 to-sky-500 flex items-center justify-center text-white shadow-md shadow-sky-200/50">
-            <BookOpen className="size-7" aria-hidden="true" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2.5 flex-wrap">
-              <h2 className="text-2xl font-black text-slate-900 tracking-tight">{st.name}</h2>
-              <span className={cn('text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg',
-                st.isActive ? 'bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200' : 'bg-slate-100 text-slate-500 ring-1 ring-slate-200'
-              )} role="status">{st.isActive ? 'Aktif' : 'Nonaktif'}</span>
+      {/* Header — hidden for default subtest */}
+      {!st.isDefault && (
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="size-14 rounded-2xl bg-gradient-to-br from-sky-400 to-sky-500 flex items-center justify-center text-white shadow-md shadow-sky-200/50">
+              <BookOpen className="size-7" aria-hidden="true" />
             </div>
-            {st.description && <p className="text-sm text-slate-500 font-medium mt-1">{st.description}</p>}
-            <p className="text-xs text-slate-400 font-bold mt-1.5 uppercase tracking-widest">
-              Sub Tes &middot; Urutan #{st.order}{st.duration ? ` · ${st.duration} menit` : ''}
-            </p>
+            <div>
+              <div className="flex items-center gap-2.5 flex-wrap">
+                <h2 className="text-2xl font-black text-slate-900 tracking-tight">{st.name}</h2>
+                <span className={cn('text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg',
+                  st.isActive ? 'bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200' : 'bg-slate-100 text-slate-500 ring-1 ring-slate-200'
+                )} role="status">{st.isActive ? 'Aktif' : 'Nonaktif'}</span>
+              </div>
+              {st.description && <p className="text-sm text-slate-500 font-medium mt-1">{st.description}</p>}
+              <p className="text-xs text-slate-400 font-bold mt-1.5 uppercase tracking-widest">
+                Sub Tes &middot; Urutan #{st.order}{st.duration ? ` · ${st.duration} menit` : ''}
+              </p>
+            </div>
           </div>
+          <button
+            type="button"
+            onClick={openEdit}
+            aria-label={`Edit sub tes ${st.name}`}
+            className="size-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:text-sky-600 hover:border-sky-300 hover:bg-sky-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
+          >
+            <Pencil className="size-4" aria-hidden="true" />
+          </button>
         </div>
-        <button
-          type="button"
-          onClick={openEdit}
-          aria-label={`Edit sub tes ${st.name}`}
-          className="size-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:text-sky-600 hover:border-sky-300 hover:bg-sky-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2"
-        >
-          <Pencil className="size-4" aria-hidden="true" />
-        </button>
-      </div>
+      )}
 
       {/* Questions */}
       <div className="space-y-4">

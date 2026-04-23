@@ -45,7 +45,11 @@ export function Breadcrumb({ selectedNode, onSelect }: BreadcrumbProps) {
         }
         crumbs.push({ type: 'test', id: t.id, label: t.name })
       }
-      crumbs.push({ type: 'subTest', id: st.id, label: st.name })
+      if (!st.isDefault) {
+        crumbs.push({ type: 'subTest', id: st.id, label: st.name })
+      } else {
+        crumbs.push({ type: 'subTest', id: st.id, label: 'Soal' })
+      }
     }
   } else if (selectedNode.type === 'test') {
     const t = (tests ?? []).find(t => t.id === selectedNode.id)
