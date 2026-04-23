@@ -95,13 +95,30 @@ export function PsikotesDiagnostic() {
       <div className="w-full space-y-4">
         <div className="text-center">
           <p className="text-sm font-black text-primary-600 uppercase tracking-[0.2em]">
-            AI Counsellor — Ceritakan Masalahmu
+            AI Counsellor siap mendengarkanmu.
           </p>
         </div>
         <div className="max-w-3xl mx-auto">
           <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden">
             <div className="p-6 space-y-4">
-              <p className="text-sm text-slate-500">Pilih topik yang paling kamu rasakan, atau ceritakan langsung:</p>
+              <form onSubmit={handleSubmit} className="flex gap-2">
+                <textarea
+                  rows={2}
+                  value={input}
+                  onChange={e => setInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Ceritakan masalahmu di sini..."
+                  className="flex-1 px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700 text-sm placeholder:text-slate-400 focus:outline-none focus:border-primary-400 transition-colors resize-none"
+                />
+                <button
+                  type="submit"
+                  disabled={!input.trim()}
+                  className="w-10 h-10 self-end rounded-xl bg-primary-600 text-white flex items-center justify-center hover:bg-primary-700 transition-colors disabled:opacity-30 shrink-0"
+                >
+                  <Send className="w-4 h-4" />
+                </button>
+              </form>
+              <p className="text-xs text-slate-400 text-center pt-1">atau pilih topik yang paling kamu rasakan:</p>
               <div className="flex flex-wrap gap-2">
                 {INITIAL_BUBBLES.map((bubble) => (
                   <button
@@ -117,23 +134,6 @@ export function PsikotesDiagnostic() {
                   </button>
                 ))}
               </div>
-              <form onSubmit={handleSubmit} className="flex gap-2 pt-2">
-                <textarea
-                  rows={2}
-                  value={input}
-                  onChange={e => setInput(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  placeholder="Atau ceritakan langsung masalahmu..."
-                  className="flex-1 px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-slate-700 text-sm placeholder:text-slate-400 focus:outline-none focus:border-primary-400 transition-colors resize-none"
-                />
-                <button
-                  type="submit"
-                  disabled={!input.trim()}
-                  className="w-10 h-10 self-end rounded-xl bg-primary-600 text-white flex items-center justify-center hover:bg-primary-700 transition-colors disabled:opacity-30 shrink-0"
-                >
-                  <Send className="w-4 h-4" />
-                </button>
-              </form>
             </div>
           </div>
         </div>
