@@ -111,12 +111,7 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
           onSuccess: (newTest) => {
             setFormOpen(false)
             if (newTest?.id) {
-              if (!formUseSubtest && newTest.subTests?.length) {
-                const defaultSub = newTest.subTests.find(s => s.isDefault) ?? newTest.subTests[0]
-                onSelect({ type: 'subTest', id: defaultSub.id })
-              } else {
-                onSelect({ type: 'test', id: newTest.id })
-              }
+              onSelect({ type: 'test', id: newTest.id })
             }
           },
         },
