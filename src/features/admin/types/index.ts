@@ -68,6 +68,7 @@ export interface Test {
   name: string
   description?: string
   scoringType: ScoringType
+  isSubtest: boolean
   order: number
   isActive: boolean
   originalYear?: number | null
@@ -199,6 +200,7 @@ export interface CreateTestDto {
   name: string
   description?: string
   scoringType: ScoringType
+  isSubtest?: boolean
   order?: number
   isActive?: boolean
   originalYear?: number
