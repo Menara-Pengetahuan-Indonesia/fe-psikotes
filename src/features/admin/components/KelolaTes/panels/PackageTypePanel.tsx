@@ -412,7 +412,7 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
               <Button onClick={handleSubmit}
                 disabled={updatePt.isPending || createTest.isPending || updateTest.isPending}
                 className="flex-1 h-11 rounded-xl bg-slate-900 hover:bg-slate-800 text-sm font-black shadow-md transition-all active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2">
-                {editPt || editTestId ? 'Simpan' : 'Tambah'}
+                {(updatePt.isPending || createTest.isPending || updateTest.isPending) ? 'Menyimpan...' : editPt || editTestId ? 'Simpan' : 'Tambah'}
               </Button>
               <Button variant="ghost" className="h-11 rounded-xl text-sm font-bold text-slate-500 hover:bg-slate-50" onClick={() => setFormOpen(false)}>Batal</Button>
             </div>

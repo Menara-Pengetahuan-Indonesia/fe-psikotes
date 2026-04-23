@@ -144,7 +144,7 @@ export function SubTestPanel({ subTestId }: SubTestPanelProps) {
             </div>
             <div className="flex gap-3 pt-2">
               <Button onClick={handleSubmit} disabled={updateSub.isPending}
-                className="flex-1 h-11 rounded-xl bg-slate-900 hover:bg-slate-800 text-sm font-black shadow-md transition-all active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2">Simpan</Button>
+                className="flex-1 h-11 rounded-xl bg-slate-900 hover:bg-slate-800 text-sm font-black shadow-md transition-all active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2">{updateSub.isPending ? 'Menyimpan...' : 'Simpan'}</Button>
               <Button variant="ghost" className="h-11 rounded-xl text-sm font-bold text-slate-500 hover:bg-slate-50" onClick={() => setFormOpen(false)}>Batal</Button>
             </div>
           </div>

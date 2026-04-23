@@ -405,7 +405,7 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
                   <Button onClick={handleSubmit}
                     disabled={updateTest.isPending || createSub.isPending || updateSub.isPending}
                     className="flex-1 h-11 rounded-xl bg-slate-900 hover:bg-slate-800 text-sm font-black shadow-md transition-all active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2">
-                    {editTest || editSubId ? 'Simpan' : 'Tambah'}
+                    {(updateTest.isPending || createSub.isPending || updateSub.isPending) ? 'Menyimpan...' : editTest || editSubId ? 'Simpan' : 'Tambah'}
                   </Button>
                   <Button variant="ghost" className="h-11 rounded-xl text-sm font-bold text-slate-500 hover:bg-slate-50" onClick={() => setFormOpen(false)}>Batal</Button>
                 </div>
