@@ -40,7 +40,7 @@ describe('PsikotesDiagnostic', () => {
 
   it('renders textarea placeholder in initial phase', () => {
     render(<PsikotesDiagnostic />)
-    expect(screen.getByPlaceholderText(/Atau ceritakan langsung/)).toBeInTheDocument()
+    expect(screen.getByPlaceholderText(/Ceritakan masalahmu di sini/)).toBeInTheDocument()
   })
 
   it('clicking a bubble sends message and transitions to chatting', async () => {
@@ -79,7 +79,7 @@ describe('PsikotesDiagnostic', () => {
     mockApiResponse({ reply: 'Terima kasih ceritanya.', followUpBubbles: null, recommendations: null })
     render(<PsikotesDiagnostic />)
 
-    const textarea = screen.getByPlaceholderText(/Atau ceritakan langsung/)
+    const textarea = screen.getByPlaceholderText(/Ceritakan masalahmu di sini/)
     fireEvent.change(textarea, { target: { value: 'Saya merasa stres' } })
     fireEvent.submit(textarea.closest('form')!)
 
@@ -92,7 +92,7 @@ describe('PsikotesDiagnostic', () => {
     mockApiResponse({ reply: 'Oke.', followUpBubbles: null, recommendations: null })
     render(<PsikotesDiagnostic />)
 
-    const textarea = screen.getByPlaceholderText(/Atau ceritakan langsung/)
+    const textarea = screen.getByPlaceholderText(/Ceritakan masalahmu di sini/)
     fireEvent.change(textarea, { target: { value: 'Enter test' } })
     fireEvent.keyDown(textarea, { key: 'Enter', shiftKey: false })
 
@@ -103,7 +103,7 @@ describe('PsikotesDiagnostic', () => {
 
   it('does not submit on Shift+Enter', () => {
     render(<PsikotesDiagnostic />)
-    const textarea = screen.getByPlaceholderText(/Atau ceritakan langsung/)
+    const textarea = screen.getByPlaceholderText(/Ceritakan masalahmu di sini/)
     fireEvent.change(textarea, { target: { value: 'No submit' } })
     fireEvent.keyDown(textarea, { key: 'Enter', shiftKey: true })
 
@@ -112,7 +112,7 @@ describe('PsikotesDiagnostic', () => {
 
   it('does not submit when input is empty', () => {
     render(<PsikotesDiagnostic />)
-    const textarea = screen.getByPlaceholderText(/Atau ceritakan langsung/)
+    const textarea = screen.getByPlaceholderText(/Ceritakan masalahmu di sini/)
     fireEvent.submit(textarea.closest('form')!)
 
     expect(mockFetch).not.toHaveBeenCalled()
@@ -122,7 +122,7 @@ describe('PsikotesDiagnostic', () => {
     mockApiResponse({ reply: 'Ok.', followUpBubbles: null, recommendations: null })
     render(<PsikotesDiagnostic />)
 
-    const textarea = screen.getByPlaceholderText(/Atau ceritakan langsung/)
+    const textarea = screen.getByPlaceholderText(/Ceritakan masalahmu di sini/)
     fireEvent.change(textarea, { target: { value: 'Test message' } })
     fireEvent.submit(textarea.closest('form')!)
 
@@ -215,7 +215,7 @@ describe('PsikotesDiagnostic', () => {
 
     fireEvent.click(screen.getByText('Mulai Dari Awal'))
 
-    expect(screen.getByPlaceholderText(/Atau ceritakan langsung/)).toBeInTheDocument()
+    expect(screen.getByPlaceholderText(/Ceritakan masalahmu di sini/)).toBeInTheDocument()
     expect(screen.queryByText('Halo.')).not.toBeInTheDocument()
   })
 
