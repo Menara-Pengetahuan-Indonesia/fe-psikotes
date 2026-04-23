@@ -39,7 +39,7 @@ export function PsikotesCategoryNav() {
             Ke Mana Kamu Ingin <span className="text-primary-600 italic">Melangkah?</span>
           </h2>
           <p className="text-secondary-700/70 font-medium max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
-            Setiap perjalanan <span className="text-secondary-900 font-bold italic">&quot;The New You&quot;</span> bermula dari kesadaran di area yang paling penting bagimu saat ini.
+            Setiap perubahan diri <span className="text-secondary-900 font-bold italic">bermoela</span> dari hal yang paling penting bagimu saat ini.
           </p>
         </div>
 
