@@ -284,7 +284,7 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
 
       {/* Dialog */}
       <Dialog open={formOpen} onOpenChange={v => { setFormOpen(v); if (!v) { setEditSubId(null); setEditTest(false) } }}>
-            <DialogContent className="max-w-[440px] p-0 border-0 rounded-[1.5rem] overflow-hidden bg-white shadow-2xl">
+            <DialogContent className="max-w-[440px] p-0 border-0 rounded-[1.5rem] bg-white shadow-2xl">
               <div className="px-6 pt-6 pb-3">
                 <DialogTitle className="text-lg font-black text-slate-900 tracking-tight">
                   {editTest ? 'Edit Tes' : editSubId ? 'Edit Sub Tes' : 'Sub Tes Baru'}
