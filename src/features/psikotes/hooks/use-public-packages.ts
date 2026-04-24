@@ -5,6 +5,16 @@ import { api } from '@/lib/axios'
 import { useAuthStore } from '@/store/auth.store'
 import type { Package, ApiResponse } from '@/features/admin/types'
 
+async function fetchPackages(): Promise<Package[]> {
+  try {
+    const { data } = await api.get<ApiResponse<Package[]>>('/packages')
+    return data.data
+  } catch {
+    const { data } = await api.get<ApiResponse<Package[]>>('/admin/packages')
+    return data.data
+  }
+}
+
 export function usePublicPackages() {
   const accessToken = useAuthStore((s) => s.accessToken)
 
@@ -12,8 +22,7 @@ export function usePublicPackages() {
     queryKey: ['public', 'packages', accessToken ?? ''],
     queryFn: async (): Promise<Package[]> => {
       try {
-        const { data } = await api.get<ApiResponse<Package[]>>('/admin/packages')
-        return data.data
+        return await fetchPackages()
       } catch {
         return []
       }
@@ -28,10 +37,15 @@ export function usePublicPackage(id: string) {
     queryKey: ['public', 'packages', id, accessToken ?? ''],
     queryFn: async (): Promise<Package | null> => {
       try {
-        const { data } = await api.get<ApiResponse<Package>>(`/admin/packages/${id}`)
+        const { data } = await api.get<ApiResponse<Package>>(`/packages/${id}`)
         return data.data
       } catch {
-        return null
+        try {
+          const { data } = await api.get<ApiResponse<Package>>(`/admin/packages/${id}`)
+          return data.data
+        } catch {
+          return null
+        }
       }
     },
     enabled: !!id,
