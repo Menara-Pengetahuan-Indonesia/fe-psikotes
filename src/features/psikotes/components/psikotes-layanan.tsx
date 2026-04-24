@@ -23,7 +23,7 @@ interface Service {
 
 const SERVICES: Service[] = [
   {
-    title: 'Pemetaan, Asesmen & Blueprint',
+    title: 'Tes Pemetaan, Asesmen & Blueprint Pengembangan Diri Yang Anda dapatkan:',
     icon: Brain,
     outputs: [
       {
@@ -279,17 +279,17 @@ export function PsikotesServices() {
               gridTemplateColumns: `repeat(${current.outputs.length}, minmax(0, 1fr))`,
             }}
           >
-            {current.outputs.map((output) => (
+            {current.outputs.map((output, idx) => (
               <div
                 key={output.heading}
                 className="bg-primary-50 border border-primary-200 rounded-xl p-3 md:p-4"
               >
-                <h4 className="text-primary-700 text-sm font-bold mb-2 leading-tight">
-                  {output.heading}
+                <h4 className="text-primary-700 text-sm font-bold mb-2 leading-tight text-left">
+                  {idx + 1}. {output.heading}
                 </h4>
                 <ul className="space-y-1.5">
                   {output.items.map((item) => (
-                    <li key={item} className="text-xs text-gray-900 leading-relaxed flex gap-1.5">
+                    <li key={item} className="text-xs text-gray-900 leading-relaxed flex gap-1.5 text-left">
                       <span className="text-primary-500 shrink-0">•</span>
                       <span>{item}</span>
                     </li>
@@ -299,17 +299,17 @@ export function PsikotesServices() {
             ))}
           </div>
           <div className="grid grid-cols-1 gap-2 md:hidden">
-            {current.outputs.map((output) => (
+            {current.outputs.map((output, idx) => (
               <div
                 key={output.heading}
                 className="bg-primary-50 border border-primary-200 rounded-xl p-3"
               >
-                <h4 className="text-primary-700 text-xs font-bold mb-1.5 leading-tight">
-                  {output.heading}
+                <h4 className="text-primary-700 text-xs font-bold mb-1.5 leading-tight text-left">
+                  {idx + 1}. {output.heading}
                 </h4>
                 <ul className="space-y-1">
                   {output.items.map((item) => (
-                    <li key={item} className="text-[11px] text-gray-900 leading-relaxed flex gap-1.5">
+                    <li key={item} className="text-[11px] text-gray-900 leading-relaxed flex gap-1.5 text-left">
                       <span className="text-primary-500 shrink-0">•</span>
                       <span>{item}</span>
                     </li>
