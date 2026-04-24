@@ -18,7 +18,6 @@ export function usePublicPackages() {
         return []
       }
     },
-    enabled: !!accessToken,
   })
 }
 
@@ -35,7 +34,7 @@ export function usePublicPackage(id: string) {
         return null
       }
     },
-    enabled: !!id && !!accessToken,
+    enabled: !!id,
   })
 }
 
