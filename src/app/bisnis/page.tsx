@@ -3,7 +3,9 @@
 import Link from 'next/link'
 import { Building2, Sparkles, Phone, TrendingUp, Users, BarChart3, CheckCircle2 } from 'lucide-react'
 import { usePublicPackages } from '@/features/psikotes/hooks/use-public-packages'
+import { usePackageFilter } from '@/features/psikotes/hooks/use-package-filter'
 import { ChildPackageCard, PackageGridSkeleton, PackageEmptyState } from '@/features/psikotes/components/package-card'
+import { PackageFilterBar } from '@/features/psikotes/components/package-filter-bar'
 
 const USE_CASES = [
   { icon: Users, title: 'Rekrutmen', desc: 'Seleksi kandidat terbaik berbasis data psikometri' },
@@ -15,6 +17,10 @@ export default function BisnisPage() {
   const { data: packages, isLoading } = usePublicPackages()
   const pkg = packages?.find(p => p.name.toLowerCase().includes('bisnis'))
   const children = pkg?.childPackages?.filter(c => c.isActive) ?? []
+  const {
+    filtered, total, search, setSearch, tier, setTier,
+    priceRange, setPriceRange, resetFilters, hasActiveFilters,
+  } = usePackageFilter(children)
 
   return (
     <main className="min-h-screen bg-white">
@@ -88,14 +94,34 @@ export default function BisnisPage() {
 
           {isLoading ? (
             <PackageGridSkeleton />
-          ) : children.length === 0 ? (
-            <PackageEmptyState message="Belum ada paket tes untuk kategori Bisnis & Perusahaan. Silakan cek kembali nanti." />
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {children.map((child) => (
-                <ChildPackageCard key={child.id} child={child} categorySlug="bisnis" />
-              ))}
-            </div>
+            <>
+              <PackageFilterBar
+                search={search}
+                onSearchChange={setSearch}
+                tier={tier}
+                onTierChange={setTier}
+                priceRange={priceRange}
+                onPriceRangeChange={setPriceRange}
+                onReset={resetFilters}
+                hasActiveFilters={hasActiveFilters}
+                resultCount={filtered.length}
+                totalCount={total}
+                activeChipClass="bg-amber-500 text-white shadow-sm"
+              />
+
+              <div className="mt-8">
+                {filtered.length === 0 ? (
+                  <PackageEmptyState message={hasActiveFilters ? 'Tidak ada paket yang sesuai filter. Coba ubah kriteria pencarian.' : 'Belum ada paket tes untuk kategori Bisnis & Perusahaan. Silakan cek kembali nanti.'} />
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {filtered.map((child) => (
+                      <ChildPackageCard key={child.id} child={child} categorySlug="bisnis" />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </>
           )}
         </div>
       </section>

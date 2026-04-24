@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { BookOpen, Loader2, Inbox, ArrowRight } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import type { ChildPackage } from '@/features/admin/types'
 
 function formatPrice(price: number) {
@@ -54,12 +53,7 @@ export function ChildPackageCard({ child, categorySlug }: ChildPackageCardProps)
                 className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100"
               >
                 <div className="flex items-center gap-2">
-                  <div className={cn(
-                    'w-2 h-2 rounded-full',
-                    tier.name.toLowerCase().includes('dasar') ? 'bg-emerald-400' :
-                    tier.name.toLowerCase().includes('lengkap') ? 'bg-blue-400' :
-                    'bg-violet-400'
-                  )} />
+                  <div className="w-2 h-2 rounded-full bg-primary-400" />
                   <span className="text-sm font-semibold text-slate-700">{tier.name}</span>
                 </div>
                 <span className="text-sm font-bold text-slate-900">{formatPrice(tier.price)}</span>
