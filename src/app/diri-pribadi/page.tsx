@@ -3,7 +3,9 @@
 import { User, Sparkles, ArrowRight, Brain, Target, Compass } from 'lucide-react'
 import Link from 'next/link'
 import { usePublicPackages } from '@/features/psikotes/hooks/use-public-packages'
+import { usePackageFilter } from '@/features/psikotes/hooks/use-package-filter'
 import { ChildPackageCard, PackageGridSkeleton, PackageEmptyState } from '@/features/psikotes/components/package-card'
+import { PackageFilterBar } from '@/features/psikotes/components/package-filter-bar'
 
 const HIGHLIGHTS = [
   { icon: Brain, label: 'Kepribadian', desc: 'Pahami pola pikir & perilakumu' },
@@ -15,6 +17,10 @@ export default function DiriPribadiPage() {
   const { data: packages, isLoading } = usePublicPackages()
   const pkg = packages?.find(p => p.name.toLowerCase().includes('diri'))
   const children = pkg?.childPackages?.filter(c => c.isActive) ?? []
+  const {
+    filtered, total, search, setSearch, tier, setTier,
+    priceRange, setPriceRange, resetFilters, hasActiveFilters,
+  } = usePackageFilter(children)
 
   return (
     <main className="min-h-screen bg-white">
@@ -77,14 +83,33 @@ export default function DiriPribadiPage() {
 
           {isLoading ? (
             <PackageGridSkeleton />
-          ) : children.length === 0 ? (
-            <PackageEmptyState message="Belum ada paket tes untuk kategori Diri Pribadi. Silakan cek kembali nanti." />
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {children.map((child) => (
-                <ChildPackageCard key={child.id} child={child} categorySlug="diri-pribadi" />
-              ))}
-            </div>
+            <>
+              <PackageFilterBar
+                search={search}
+                onSearchChange={setSearch}
+                tier={tier}
+                onTierChange={setTier}
+                priceRange={priceRange}
+                onPriceRangeChange={setPriceRange}
+                onReset={resetFilters}
+                hasActiveFilters={hasActiveFilters}
+                resultCount={filtered.length}
+                totalCount={total}
+              />
+
+              <div className="mt-8">
+                {filtered.length === 0 ? (
+                  <PackageEmptyState message={hasActiveFilters ? 'Tidak ada paket yang sesuai filter. Coba ubah kriteria pencarian.' : 'Belum ada paket tes untuk kategori Diri Pribadi. Silakan cek kembali nanti.'} />
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {filtered.map((child) => (
+                      <ChildPackageCard key={child.id} child={child} categorySlug="diri-pribadi" />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </>
           )}
         </div>
       </section>
