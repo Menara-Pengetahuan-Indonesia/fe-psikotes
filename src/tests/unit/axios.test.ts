@@ -134,7 +134,7 @@ describe('axios api instance', () => {
     }
 
     await expect(handler.rejected(error)).rejects.toBe(error)
-    expect(mockLogout).toHaveBeenCalled()
+    expect(mockLogout).not.toHaveBeenCalled()
   })
 
   it('handles refresh token failure with logout', async () => {

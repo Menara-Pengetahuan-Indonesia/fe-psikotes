@@ -82,10 +82,6 @@ api.interceptors.response.use(
 
     if (!refreshToken) {
       isRefreshing = false
-      logout()
-      if (typeof window !== 'undefined') {
-        window.location.href = '/masuk'
-      }
       return Promise.reject(error)
     }
 
