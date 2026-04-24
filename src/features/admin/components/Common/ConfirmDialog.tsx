@@ -34,7 +34,7 @@ export function ConfirmDialog({
 }: ConfirmDialogProps) {
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onCancel()}>
-      <DialogContent className="max-w-[360px] p-0 border-0 rounded-[1.5rem] overflow-hidden bg-white shadow-2xl">
+      <DialogContent className="max-w-[360px] p-0 border-0 rounded-[1.5rem] bg-white shadow-2xl">
         <div className="px-6 pt-8 pb-2 flex flex-col items-center text-center">
           <div className={`size-14 rounded-2xl flex items-center justify-center mb-4 ${isDangerous ? 'bg-rose-50 text-rose-500' : 'bg-indigo-50 text-indigo-500'}`}>
             {isDangerous ? <Trash2 className="size-7" /> : <AlertTriangle className="size-7" />}

@@ -333,7 +333,7 @@ export function ChildPackagePanel({ childPackageId, onSelect }: ChildPackagePane
 
       {/* Dialog */}
       <Dialog open={formOpen} onOpenChange={v => { setFormOpen(v); if (!v) { setEditTypeId(null); setEditCp(false) } }}>
-        <DialogContent className="max-w-[440px] p-0 border-0 rounded-[1.5rem] overflow-hidden bg-white shadow-2xl">
+        <DialogContent className="max-w-[440px] p-0 border-0 rounded-[1.5rem] bg-white shadow-2xl">
           <div className="px-6 pt-6 pb-3">
             <DialogTitle className="text-lg font-black text-slate-900 tracking-tight">
               {editCp ? 'Edit Paket Kecil' : editTypeId ? 'Edit Tipe Paket' : 'Tipe Paket Baru'}
@@ -408,7 +408,7 @@ export function ChildPackagePanel({ childPackageId, onSelect }: ChildPackagePane
 
       {/* Duplicate dialog */}
       <Dialog open={!!duplicateSourceId} onOpenChange={v => { if (!v) { setDuplicateSourceId(null); setDuplicateName('') } }}>
-        <DialogContent className="max-w-[400px] p-0 border-0 rounded-[1.5rem] overflow-hidden bg-white shadow-2xl">
+        <DialogContent className="max-w-[400px] p-0 border-0 rounded-[1.5rem] bg-white shadow-2xl">
           <div className="px-6 pt-6 pb-3">
             <DialogTitle className="text-lg font-black text-slate-900 tracking-tight">Duplikasi Tipe Paket</DialogTitle>
             <DialogDescription className="text-sm text-slate-500 mt-1">

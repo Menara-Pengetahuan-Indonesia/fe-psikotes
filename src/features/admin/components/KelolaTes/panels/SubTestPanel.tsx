@@ -92,7 +92,7 @@ export function SubTestPanel({ subTestId }: SubTestPanelProps) {
 
       {/* Edit dialog */}
       <Dialog open={formOpen} onOpenChange={setFormOpen}>
-        <DialogContent className="max-w-[440px] p-0 border-0 rounded-[1.5rem] overflow-hidden bg-white shadow-2xl">
+        <DialogContent className="max-w-[440px] p-0 border-0 rounded-[1.5rem] bg-white shadow-2xl">
           <div className="px-6 pt-6 pb-3">
             <DialogTitle className="text-lg font-black text-slate-900 tracking-tight">Edit Sub Tes</DialogTitle>
             <DialogDescription className="text-sm text-slate-500 mt-1">Perbarui informasi sub tes.</DialogDescription>
