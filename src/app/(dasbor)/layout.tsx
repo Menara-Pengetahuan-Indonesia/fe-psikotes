@@ -92,9 +92,9 @@ export default function DashboardLayout({
               <Image
                 src="/logo/logo_bermoela.png"
                 alt="Bermoela"
-                width={32}
-                height={32}
-                className="size-8 object-contain group-hover:scale-105 transition-transform"
+                width={200}
+                height={50}
+                className="h-8 w-auto object-contain group-hover:scale-105 transition-transform"
               />
             </Link>
 
