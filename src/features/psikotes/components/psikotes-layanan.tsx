@@ -284,8 +284,11 @@ export function PsikotesServices() {
                 key={output.heading}
                 className="bg-primary-50 border border-primary-200 rounded-xl p-3 md:p-4"
               >
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary-600 text-white text-[10px] font-black mb-2">
+                  {idx + 1}
+                </span>
                 <h4 className="text-primary-700 text-sm font-bold mb-2 leading-tight text-left">
-                  {idx + 1}. {output.heading}
+                  {output.heading}
                 </h4>
                 <ul className="space-y-1.5">
                   {output.items.map((item) => (
@@ -304,8 +307,11 @@ export function PsikotesServices() {
                 key={output.heading}
                 className="bg-primary-50 border border-primary-200 rounded-xl p-3"
               >
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary-600 text-white text-[9px] font-black mb-1.5">
+                  {idx + 1}
+                </span>
                 <h4 className="text-primary-700 text-xs font-bold mb-1.5 leading-tight text-left">
-                  {idx + 1}. {output.heading}
+                  {output.heading}
                 </h4>
                 <ul className="space-y-1">
                   {output.items.map((item) => (
