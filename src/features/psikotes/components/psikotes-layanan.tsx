@@ -15,202 +15,100 @@ interface ServiceOutput {
   items: string[]
 }
 
-interface SubTab {
+interface TestCategory {
   label: string
-  outputs: ServiceOutput[]
+  tests: string[]
 }
 
 interface Service {
   title: string
   icon: LucideIcon
   outputs: ServiceOutput[]
-  subTabs?: SubTab[]
+  testCategories?: TestCategory[]
 }
 
 const SERVICES: Service[] = [
   {
     title: 'Tes Pemetaan, Asesmen, dan Blueprint yang digunakan:',
     icon: Brain,
-    outputs: [],
-    subTabs: [
+    testCategories: [
       {
         label: 'Anak',
-        outputs: [
-          {
-            heading: 'Profil Psikologis Terintegrasi',
-            items: [
-              'Kepribadian anak (pola temperamen, gaya belajar)',
-              'Pola emosi dan perilaku sehari-hari',
-              'Minat dan motivasi belajar',
-            ],
-          },
-          {
-            heading: 'Identifikasi Kekuatan & Area Pengembangan',
-            items: [
-              'Bakat dan potensi dominan anak',
-              'Area yang perlu pendampingan lebih',
-              'Gaya komunikasi dan interaksi sosial',
-            ],
-          },
-          {
-            heading: 'Trauma, Sabotase Diri, dan Anxiety',
-            items: [
-              'Tanda-tanda trauma atau ketakutan tersembunyi',
-              'Pola perilaku menghindar atau menarik diri',
-              'Risiko kecemasan atau tekanan emosional',
-            ],
-          },
-          {
-            heading: 'Goals & Metode Terapi',
-            items: [
-              'Tujuan perkembangan sesuai usia',
-              'Strategi pengembangan (belajar, sosial, emosional)',
-              'Metode intervensi (play therapy, konseling anak)',
-            ],
-          },
-          {
-            heading: 'Blueprint & Action Plan',
-            items: [
-              'Rencana pendampingan harian/mingguan',
-              'KPI perkembangan anak',
-              'Evaluasi berkala bersama orang tua',
-            ],
-          },
-        ],
+        tests: ['Tes Minat & Bakat', 'Tes IQ'],
       },
       {
         label: 'Dewasa',
-        outputs: [
-          {
-            heading: 'Profil Psikologis Terintegrasi',
-            items: [
-              'Kepribadian (misalnya ramah, tenang, atau suka mencoba hal baru)',
-              'Pola pikir, emosi, dan perilaku',
-              'Nilai hidup dan motivasi intrinsik',
-            ],
-          },
-          {
-            heading: 'Identifikasi Kekuatan & Area Pengembangan',
-            items: [
-              'Core strengths (hal-hal yang dikuasai dengan baik)',
-              'Development gaps (bagian yang masih sulit atau membuat progress terhambat)',
-              'Blind spots (hal tentang diri sendiri yang tidak disadari tapi bisa memengaruhi perilaku)',
-            ],
-          },
-          {
-            heading: 'Trauma, Sabotase Diri, dan Anxiety',
-            items: [
-              'Trauma atau limiting beliefs',
-              'Pola sabotase diri (self-sabotage)',
-              'Risiko burnout, kecemasan, atau stagnasi',
-            ],
-          },
-          {
-            heading: 'Goals & Metode Terapi',
-            items: [
-              'Tujuan jangka pendek, menengah, panjang',
-              'Strategi pengembangan (skill, mindset, habit)',
-              'Metode intervensi (coaching, terapi, learning path)',
-            ],
-          },
-          {
-            heading: 'Blueprint & Action Plan',
-            items: [
-              'Action plan (harian/mingguan)',
-              'KPI perkembangan diri',
-              'Mekanisme evaluasi (misalnya refleksi berkala atau reassessment)',
-            ],
-          },
+        tests: [
+          'Past Trauma & Depression Healing',
+          'Anxiety & Burnout',
+          'Body Image',
+          'Self Confidence & Self-Worth',
+          'Identity, Purpose, Quarter-Life Crisis & Perbandingan Sosial',
+          'Career Planning',
         ],
       },
       {
         label: 'Relationship',
-        outputs: [
-          {
-            heading: 'Profil Psikologis Terintegrasi',
-            items: [
-              'Pola kelekatan (attachment style) dalam relasi',
-              'Gaya komunikasi dan konflik pasangan',
-              'Nilai dan ekspektasi dalam hubungan',
-            ],
-          },
-          {
-            heading: 'Identifikasi Kekuatan & Area Pengembangan',
-            items: [
-              'Kekuatan relasi yang sudah terbangun',
-              'Area konflik berulang yang perlu diperbaiki',
-              'Pola interaksi yang tidak disadari',
-            ],
-          },
-          {
-            heading: 'Trauma, Sabotase Diri, dan Anxiety',
-            items: [
-              'Trauma relasi atau luka batin dari hubungan sebelumnya',
-              'Pola sabotase dalam hubungan (avoidance, jealousy)',
-              'Kecemasan dalam relasi (fear of abandonment)',
-            ],
-          },
-          {
-            heading: 'Goals & Metode Terapi',
-            items: [
-              'Tujuan hubungan jangka pendek dan panjang',
-              'Strategi perbaikan komunikasi dan keintiman',
-              'Metode intervensi (couple therapy, konseling relasi)',
-            ],
-          },
-          {
-            heading: 'Blueprint & Action Plan',
-            items: [
-              'Rencana aksi bersama pasangan',
-              'KPI kesehatan hubungan',
-              'Evaluasi berkala perkembangan relasi',
-            ],
-          },
+        tests: [
+          'Red Flag Test untuk Pasangan Baru (Pra Pernikahan)',
+          'Konflik dan Trauma Rumah Tangga',
+          'Nikah Tapi Kesepian',
+          'Kejenuhan Kronis & Hampa Emosional',
+          'Single & Tidak Happy',
         ],
       },
       {
         label: 'Perusahaan',
-        outputs: [
-          {
-            heading: 'Profil Psikologis Terintegrasi',
-            items: [
-              'Profil kompetensi dan kepribadian karyawan',
-              'Pola kerja, leadership style, dan team dynamics',
-              'Nilai organisasi vs nilai individu',
-            ],
-          },
-          {
-            heading: 'Identifikasi Kekuatan & Area Pengembangan',
-            items: [
-              'Talent mapping dan potensi leadership',
-              'Gap kompetensi per divisi/jabatan',
-              'Blind spots organisasi yang menghambat pertumbuhan',
-            ],
-          },
-          {
-            heading: 'Trauma, Sabotase Diri, dan Anxiety',
-            items: [
-              'Burnout dan stres kerja berlebihan',
-              'Pola toxic productivity atau disengagement',
-              'Risiko konflik internal dan turnover tinggi',
-            ],
-          },
-          {
-            heading: 'Goals & Metode Terapi',
-            items: [
-              'Target pengembangan SDM per periode',
-              'Strategi intervensi (coaching, training, mentoring)',
-              'Program wellbeing dan mental health karyawan',
-            ],
-          },
-          {
-            heading: 'Blueprint & Action Plan',
-            items: [
-              'Roadmap pengembangan SDM',
-              'KPI organisasi dan individual',
-              'Mekanisme evaluasi dan continuous improvement',
-            ],
-          },
+        tests: [
+          'Test untuk Promosi & Kenaikan Jabatan',
+          'Branch Manager Assessment',
+          'Leadership Competency Assessment',
+          'MT & MDP Assessment',
+          'Recruitment for Staff Level',
+          'Recruitment for Executive Level',
+          'Person, Organization & Cultural Fit',
+        ],
+      },
+    ],
+    outputs: [
+      {
+        heading: 'Profil Psikologis Terintegrasi',
+        items: [
+          'Kepribadian (misalnya ramah, tenang, atau suka mencoba hal baru)',
+          'Pola pikir, emosi, dan perilaku',
+          'Nilai hidup dan motivasi intrinsik',
+        ],
+      },
+      {
+        heading: 'Identifikasi Kekuatan & Area Pengembangan',
+        items: [
+          'Core strengths (hal-hal yang dikuasai dengan baik)',
+          'Development gaps (bagian yang masih sulit atau membuat progress terhambat)',
+          'Blind spots (hal tentang diri sendiri yang tidak disadari tapi bisa memengaruhi perilaku)',
+        ],
+      },
+      {
+        heading: 'Trauma, Sabotase Diri, dan Anxiety',
+        items: [
+          'Trauma atau limiting beliefs',
+          'Pola sabotase diri (self-sabotage)',
+          'Risiko burnout, kecemasan, atau stagnasi',
+        ],
+      },
+      {
+        heading: 'Goals & Metode Terapi',
+        items: [
+          'Tujuan jangka pendek, menengah, panjang',
+          'Strategi pengembangan (skill, mindset, habit)',
+          'Metode intervensi (coaching, terapi, learning path)',
+        ],
+      },
+      {
+        heading: 'Blueprint & Action Plan',
+        items: [
+          'Action plan (harian/mingguan)',
+          'KPI perkembangan diri',
+          'Mekanisme evaluasi (misalnya refleksi berkala atau reassessment)',
         ],
       },
     ],
@@ -383,10 +281,7 @@ const SERVICES: Service[] = [
 
 export function PsikotesServices() {
   const [active, setActive] = useState(0)
-  const [subTab, setSubTab] = useState(0)
   const current = SERVICES[active]
-  const hasSubTabs = current.subTabs && current.subTabs.length > 0
-  const displayOutputs = hasSubTabs ? current.subTabs![subTab].outputs : current.outputs
 
   return (
     <div className="w-full max-w-5xl mx-auto font-[family-name:var(--font-quicksand)]">
@@ -398,7 +293,7 @@ export function PsikotesServices() {
           return (
             <button
               key={service.title}
-              onClick={() => { setActive(idx); setSubTab(0) }}
+              onClick={() => setActive(idx)}
               className={`
                 flex flex-col items-center gap-1 md:gap-1.5 px-1 md:px-2 py-2 md:py-3 rounded-xl md:rounded-2xl border text-center
                 transition-all cursor-pointer
@@ -408,8 +303,8 @@ export function PsikotesServices() {
                 }
               `}
             >
-              <Icon className="w-5 h-5 md:w-6 md:h-6" />
-              <span className="text-[8px] md:text-xs font-bold leading-tight line-clamp-2">{service.title}</span>
+              <Icon className="w-5 h-5 md:w-7 md:h-7" />
+              <span className="text-[9px] md:text-sm font-bold leading-tight line-clamp-2">{service.title}</span>
             </button>
           )
         })}
@@ -421,36 +316,55 @@ export function PsikotesServices() {
           {current.title}
         </h3>
 
-        {/* Sub-tabs */}
-        {hasSubTabs && (
-          <div className="flex flex-wrap justify-center gap-2 mb-6">
-            {current.subTabs!.map((st, idx) => (
-              <button
-                key={st.label}
-                onClick={() => setSubTab(idx)}
-                className={`
-                  px-4 py-1.5 rounded-full text-xs font-bold tracking-wide transition-all cursor-pointer
-                  ${subTab === idx
-                    ? 'bg-primary-600 text-white shadow-sm'
-                    : 'bg-primary-50 text-primary-700 border border-primary-200 hover:bg-primary-100'
-                  }
-                `}
-              >
-                {st.label}
-              </button>
-            ))}
-          </div>
+        {/* Test Categories — 4 columns */}
+        {current.testCategories && (
+          <>
+            <div className="hidden md:grid grid-cols-4 gap-3 mb-6">
+              {current.testCategories.map((cat) => (
+                <div key={cat.label} className="bg-primary-50 border border-primary-200 rounded-xl p-3 md:p-4">
+                  <h4 className="text-primary-700 text-sm font-bold mb-2 leading-tight text-center">{cat.label}</h4>
+                  <ul className="space-y-1.5">
+                    {cat.tests.map((test) => (
+                      <li key={test} className="text-xs text-gray-900 leading-relaxed flex gap-1.5 text-left">
+                        <span className="text-primary-500 shrink-0">•</span>
+                        <span>{test}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div className="grid grid-cols-2 gap-2 mb-4 md:hidden">
+              {current.testCategories.map((cat) => (
+                <div key={cat.label} className="bg-primary-50 border border-primary-200 rounded-xl p-3">
+                  <h4 className="text-primary-700 text-xs font-bold mb-1.5 leading-tight text-center">{cat.label}</h4>
+                  <ul className="space-y-1">
+                    {cat.tests.map((test) => (
+                      <li key={test} className="text-[11px] text-gray-900 leading-relaxed flex gap-1.5 text-left">
+                        <span className="text-primary-500 shrink-0">•</span>
+                        <span>{test}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            <h4 className="text-primary-700 text-sm md:text-base font-bold mb-4 text-center">
+              Output yang didapatkan:
+            </h4>
+          </>
         )}
 
-        {/* Columns */}
+        {/* Output Columns */}
         <div className="contents">
           <div
             className="hidden md:grid gap-3"
             style={{
-              gridTemplateColumns: `repeat(${displayOutputs.length}, minmax(0, 1fr))`,
+              gridTemplateColumns: `repeat(${current.outputs.length}, minmax(0, 1fr))`,
             }}
           >
-            {displayOutputs.map((output, idx) => (
+            {current.outputs.map((output, idx) => (
               <div
                 key={output.heading}
                 className="bg-primary-50 border border-primary-200 rounded-xl p-3 md:p-4"
@@ -473,7 +387,7 @@ export function PsikotesServices() {
             ))}
           </div>
           <div className="grid grid-cols-1 gap-2 md:hidden">
-            {displayOutputs.map((output, idx) => (
+            {current.outputs.map((output, idx) => (
               <div
                 key={output.heading}
                 className="bg-primary-50 border border-primary-200 rounded-xl p-3"

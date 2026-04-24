@@ -25,7 +25,7 @@ export function PsikotesHero() {
           <div className="flex flex-col items-center space-y-6 max-w-5xl mx-auto">
             <div className="space-y-4">
               <h1 className="text-3xl md:text-5xl font-bold text-gray-900 tracking-tight leading-[1.2] font-[family-name:var(--font-courgette)]">
-                Mental Health untuk Tumbuh dan Sukses <br /> <span className="text-accent-500">di Era Penuh Tekanan</span>
+                Mental Health untuk Tumbuh dan Sukses <br /> <span className="text-accent-500">di Era Penuh Tekanan dan Kesepian</span>
               </h1>
               <p className="text-sm md:text-base text-gray-500 max-w-xl mx-auto leading-relaxed font-medium text-pretty">
                 Jadikan tes dan assessment psikologis sebagai cara <span className="text-primary-600 font-bold italic">Bermoela</span> menuju dirimu yang baru dan masa depan yang lebih terarah
