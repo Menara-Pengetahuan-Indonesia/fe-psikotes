@@ -23,27 +23,27 @@ interface Service {
 
 const SERVICES: Service[] = [
   {
-    title: 'Tes Pemetaan, Asesmen & Blueprint Pengembangan Diri Yang Anda dapatkan:',
+    title: 'Pemetaan, Asesmen, dan Blueprint',
     icon: Brain,
     outputs: [
       {
-        heading: 'Kepribadian & Pola Diri',
+        heading: 'Profil Psikologis Terintegrasi',
         items: [
-          'Kepribadian (misalnya berbasis Big Five Personality Traits)',
+          'Kepribadian (misalnya ramah, tenang, atau suka mencoba hal baru)',
           'Pola pikir, emosi, dan perilaku',
           'Nilai hidup dan motivasi intrinsik',
         ],
       },
       {
-        heading: 'Kekuatan & Titik Buta',
+        heading: 'Identifikasi Kekuatan & Area Pengembangan',
         items: [
-          'Core strengths (kekuatan dominan)',
-          'Development gaps (area yang menghambat)',
-          'Blind spots (titik buta psikologis)',
+          'Core strengths (hal-hal yang dikuasai dengan baik)',
+          'Development gaps (bagian yang masih sulit atau membuat progress terhambat)',
+          'Blind spots (hal tentang diri sendiri yang tidak disadari tapi bisa memengaruhi perilaku)',
         ],
       },
       {
-        heading: 'Risiko & Hambatan',
+        heading: 'Trauma, Sabotase Diri, dan Anxiety',
         items: [
           'Trauma atau limiting beliefs',
           'Pola sabotase diri (self-sabotage)',
@@ -51,7 +51,7 @@ const SERVICES: Service[] = [
         ],
       },
       {
-        heading: 'Strategi & Tujuan',
+        heading: 'Goals & Metode Terapi',
         items: [
           'Tujuan jangka pendek, menengah, panjang',
           'Strategi pengembangan (skill, mindset, habit)',
@@ -59,7 +59,7 @@ const SERVICES: Service[] = [
         ],
       },
       {
-        heading: 'Action Plan & Evaluasi',
+        heading: 'Blueprint & Action Plan',
         items: [
           'Action plan (harian/mingguan)',
           'KPI perkembangan diri',
@@ -69,11 +69,11 @@ const SERVICES: Service[] = [
     ],
   },
   {
-    title: 'Konsultasi, Konseling & Coaching',
+    title: 'Konsultasi, Konseling, Coaching',
     icon: HeartHandshake,
     outputs: [
       {
-        heading: 'Tujuan & Nilai Hidup',
+        heading: 'Kejelasan Arah Hidup & Tujuan (Clarity & Direction)',
         items: [
           'Tujuan hidup yang spesifik dan bermakna (personal & profesional)',
           'Nilai inti (core values) sebagai kompas keputusan',
@@ -81,7 +81,7 @@ const SERVICES: Service[] = [
         ],
       },
       {
-        heading: 'Pengelolaan Emosi',
+        heading: 'Manajemen Emosi & Kesehatan Mental',
         items: [
           'Kemampuan mengelola stres, kecemasan, dan emosi negatif',
           'Penyembuhan atau pengelolaan luka batin (inner healing)',
@@ -89,7 +89,7 @@ const SERVICES: Service[] = [
         ],
       },
       {
-        heading: 'Perubahan Mindset',
+        heading: 'Transformasi Pola Pikir & Keyakinan (Mindset Shift)',
         items: [
           'Perubahan dari limiting beliefs → empowering beliefs',
           'Growth mindset (adaptif, terbuka terhadap feedback)',
@@ -97,7 +97,7 @@ const SERVICES: Service[] = [
         ],
       },
       {
-        heading: 'Kebiasaan Baru',
+        heading: 'Perubahan Perilaku & Sistem Kebiasaan (Behavior & Habit System)',
         items: [
           'Kebiasaan baru yang mendukung tujuan (produktif, sehat, disiplin)',
           'Pengurangan perilaku destruktif',
@@ -105,7 +105,7 @@ const SERVICES: Service[] = [
         ],
       },
       {
-        heading: 'Kemandirian',
+        heading: 'Kemandirian untuk Tumbuh Berkelanjutan (Self-Leadership)',
         items: [
           'Mampu mengambil keputusan secara mandiri',
           'Memiliki sistem refleksi & evaluasi diri',
@@ -119,19 +119,19 @@ const SERVICES: Service[] = [
     icon: ShieldHalf,
     outputs: [
       {
-        heading: 'Rasa Aman & Pemulihan Emosional (Safety & Stabilization)',
+        heading: 'Rasa Aman & Stabilitas Emosional (Safety & Stabilization)',
         items: [
           'Penurunan intensitas reaksi trauma (panic, flashback, hypervigilance)',
           'Meningkatnya rasa aman (internal & dalam relasi)',
-          'Kemampuan grounding & self-regulation dasar',
+          'Kemampuan grounding & self-soothing',
         ],
       },
       {
-        heading: 'Pelepasan Trauma (Trauma Processing)',
+        heading: 'Pemrosesan & Pelepasan Trauma (Trauma Processing)',
         items: [
           'Mampu mengakses dan memproses pengalaman trauma secara aman',
           'Berkurangnya emotional charge terhadap memori traumatis',
-          'Integrasi pengalaman tanpa disasosiasi atau penghindaran',
+          'Integrasi pengalaman tanpa overwhelm',
         ],
       },
       {
@@ -151,11 +151,11 @@ const SERVICES: Service[] = [
         ],
       },
       {
-        heading: 'Integrasi Diri & Pertumbuhan Pasca Trauma (Post-Traumatic Growth)',
+        heading: 'Reintegrasi Diri & Pertumbuhan Pasca Trauma (Post-Traumatic Growth)',
         items: [
           'Identitas diri yang lebih utuh & kuat',
           'Muncul makna baru dari pengalaman trauma',
-          'Kemampuan menjalani hidup dengan lebih bermakna dan penuh harapan',
+          'Kemampuan menjalani hidup dengan lebih adaptif',
         ],
       },
     ],
@@ -181,7 +181,7 @@ const SERVICES: Service[] = [
           'Self-Awareness & Insight Psikologis: Mengidentifikasi pola klien; melakukan basic assessment (listening, empati, probing)',
           'Skill Healing & Coaching: Menguasai teknik coaching (questioning, reframing, intervention)',
           'Perubahan Perilaku & Implementasi: Membantu klien berubah; mampu menjalankan sesi coaching terstruktur',
-          'Kemandirian & Profesionalisme: Siap praktik profesional; memahami etika dan batasan profesi',
+          'Kemandirian & Profesionalisme: Siap praktik profesional; memahami etika, batasan, confidentiality',
         ],
       },
     ],
@@ -195,7 +195,7 @@ const SERVICES: Service[] = [
         items: [
           'Pemetaan kondisi organisasi (budaya kerja, mental health, leadership, produktivitas)',
           'Identifikasi akar masalah vs gejala (burnout, konflik, disengagement)',
-          'Data baseline (psikologis & organisasi) sebagai dasar intervensi',
+          'Data baseline (psikologis & kinerja) sebagai dasar intervensi',
         ],
       },
       {
@@ -215,19 +215,19 @@ const SERVICES: Service[] = [
         ],
       },
       {
-        heading: 'Coaching Capability',
+        heading: 'Leadership & Coaching Capability',
         items: [
           'Leader mampu melakukan coaching, komunikasi efektif, dan people development',
           'Peningkatan kemampuan handling konflik & performance management',
-          'Terbentuknya budaya feedback & growth',
+          'Terbentuknya budaya feedback & growth mindset',
         ],
       },
       {
-        heading: 'Culture Transformation',
+        heading: 'Performance & Improvement Culture',
         items: [
           'Peningkatan produktivitas & engagement karyawan',
           'Perubahan budaya kerja (lebih kolaboratif, adaptif, accountable)',
-          'Dampak bisnis terukur (retensi, output kerja, kepuasan karyawan)',
+          'Dampak bisnis terukur (retensi, output kerja, efektivitas tim)',
         ],
       },
     ],
