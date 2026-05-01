@@ -33,8 +33,12 @@ const SERVICES: Service[] = [
     icon: Brain,
     testCategories: [
       {
-        label: 'Anak',
-        tests: ['Tes Minat & Bakat', 'Tes IQ'],
+        label: 'Remaja',
+        tests: [
+          'Try Out (TKA, SNBT, SIMAK)',
+          'Pemilihan Program Studi dan Profesi Masa Depan',
+          'Kualitas Kepemimpinan dan Kematangan Emosi',
+        ],
       },
       {
         label: 'Dewasa',
