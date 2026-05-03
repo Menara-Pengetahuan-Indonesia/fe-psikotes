@@ -11,6 +11,7 @@ vi.mock('next/link', () => ({
 vi.mock('@/features/psikotes/hooks/use-catalog', () => ({
   useCatalogPackages: () => ({ data: [], isLoading: false }),
   useAllChildPackages: () => ({ data: [], isLoading: false }),
+  useAllPackageTypes: () => ({ priceMap: new Map(), isLoading: false }),
 }))
 
 import { PsikotesProducts } from '@/features/psikotes/components/psikotes-products'

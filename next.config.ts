@@ -17,6 +17,12 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'recharts', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-select', '@radix-ui/react-tabs', '@tanstack/react-query'],
   },
+  rewrites: async () => [
+    {
+      source: '/api-proxy/:path*',
+      destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*`,
+    },
+  ],
   headers: async () => [
     {
       source: '/_next/static/:path*',

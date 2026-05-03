@@ -9,7 +9,7 @@ const AUTH_ENDPOINTS = [
 ]
 
 export const api = axios.create({
-  baseURL: env.NEXT_PUBLIC_API_URL,
+  baseURL: '/api-proxy',
   headers: { 'Content-Type': 'application/json' },
 })
 
@@ -87,7 +87,7 @@ api.interceptors.response.use(
 
     try {
       const { data } = await axios.post(
-        `${env.NEXT_PUBLIC_API_URL}/auth/refresh`,
+        `/api-proxy/auth/refresh`,
         { refreshToken },
       )
 
