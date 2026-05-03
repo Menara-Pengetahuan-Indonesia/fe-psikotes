@@ -2,7 +2,7 @@
 
 import { User, Sparkles, ArrowRight, Brain, Target, Compass } from 'lucide-react'
 import Link from 'next/link'
-import { usePublicPackages } from '@/features/psikotes/hooks/use-public-packages'
+import { useCatalogPackages, useAllChildPackages } from '@/features/psikotes/hooks/use-catalog'
 import { usePackageFilter } from '@/features/psikotes/hooks/use-package-filter'
 import { ChildPackageCard, PackageGridSkeleton, PackageEmptyState } from '@/features/psikotes/components/package-card'
 import { PackageFilterBar } from '@/features/psikotes/components/package-filter-bar'
@@ -14,9 +14,12 @@ const HIGHLIGHTS = [
 ]
 
 export default function DiriPribadiPage() {
-  const { data: packages, isLoading } = usePublicPackages()
-  const pkg = packages?.find(p => p.name.toLowerCase().includes('diri'))
-  const children = pkg?.childPackages?.filter(c => c.isActive) ?? []
+  const { data: packages, isLoading: packagesLoading } = useCatalogPackages()
+  const packageIds = packages?.map((p) => p.id) ?? []
+  const { data: allChildren, isLoading: childrenLoading } = useAllChildPackages(packageIds)
+  const isLoading = packagesLoading || childrenLoading
+  const pkg = packages?.find(p => p.name.toLowerCase().includes('diri') || p.name.toLowerCase().includes('pribadi'))
+  const children = allChildren?.filter(c => c.packageId === pkg?.id) ?? []
   const {
     filtered, total, search, setSearch, tier, setTier,
     priceRange, setPriceRange, resetFilters, hasActiveFilters,
