@@ -1,32 +1,45 @@
 'use client'
 
 import { Target, Zap } from 'lucide-react'
-import { usePublicPackages } from '../hooks/use-public-packages'
+import { useCatalogPackages, useAllChildPackages, useAllPackageTypes } from '../hooks/use-catalog'
 import { ChildPackageCard, PackageGridSkeleton, PackageEmptyState } from './package-card'
-
-const CATEGORY_SLUG_MAP: Record<string, string> = {
-  diri: 'diri-pribadi',
-  relationship: 'relationship',
-  bisnis: 'bisnis',
-}
 
 function getCategorySlug(packageName: string): string {
   const lower = packageName.toLowerCase()
-  for (const [key, slug] of Object.entries(CATEGORY_SLUG_MAP)) {
-    if (lower.includes(key)) return slug
-  }
+  if (lower.includes('relationship')) return 'relationship'
+  if (lower.includes('bisnis') || lower.includes('perusahaan')) return 'bisnis'
+  if (lower.includes('diri') || lower.includes('pribadi')) return 'diri-pribadi'
   return 'diri-pribadi'
 }
 
+function getCategoryLabel(packageName: string): string {
+  const lower = packageName.toLowerCase()
+  if (lower.includes('relationship')) return 'Relationship'
+  if (lower.includes('bisnis') || lower.includes('perusahaan')) return 'Bisnis & Perusahaan'
+  if (lower.includes('anak') || lower.includes('remaja')) return 'Remaja'
+  if (lower.includes('dewasa')) return 'Dewasa'
+  if (lower.includes('diri') || lower.includes('pribadi')) return 'Diri Pribadi'
+  return 'Diri Pribadi'
+}
+
 export function PsikotesProducts() {
-  const { data: packages, isLoading } = usePublicPackages()
-  const activePackages = packages?.filter(p => p.isActive) ?? []
-  const allChildren = activePackages.flatMap(pkg =>
-    (pkg.childPackages?.filter(c => c.isActive) ?? []).map(child => ({
+  const { data: packages, isLoading: packagesLoading } = useCatalogPackages()
+  const activePackages = packages ?? []
+  const packageIds = activePackages.map((p) => p.id)
+  const { data: allChildren, isLoading: childrenLoading } = useAllChildPackages(packageIds)
+  const childIds = allChildren.map((c) => c.id)
+  const { priceMap, isLoading: pricesLoading } = useAllPackageTypes(childIds)
+
+  const isLoading = packagesLoading || childrenLoading
+
+  const childrenWithCategory = allChildren.map((child) => {
+    const parent = activePackages.find((p) => p.id === child.packageId)
+    return {
       ...child,
-      categorySlug: getCategorySlug(pkg.name),
-    }))
-  )
+      categorySlug: getCategorySlug(parent?.name ?? ''),
+      categoryLabel: getCategoryLabel(parent?.name ?? ''),
+    }
+  })
 
   return (
     <section id="masa-depan" className="py-12 md:py-16 bg-background relative overflow-hidden">
@@ -35,7 +48,7 @@ export function PsikotesProducts() {
         <div className="space-y-4 max-w-2xl mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-100 border border-accent-200 shadow-sm">
             <Zap className="w-3 h-3 text-accent-600 fill-accent-600" />
-            <span className="text-xs font-black text-accent-700 uppercase tracking-widest">Assessment & Solusi</span>
+            <span className="text-xs font-black text-accent-700 uppercase tracking-widest">Assessment &amp; Solusi</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-none">
             Pilih Bekal <span className="text-primary-600 italic">Transformasimu</span>
@@ -47,12 +60,12 @@ export function PsikotesProducts() {
 
         {isLoading ? (
           <PackageGridSkeleton />
-        ) : allChildren.length === 0 ? (
+        ) : childrenWithCategory.length === 0 ? (
           <PackageEmptyState />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {allChildren.map((child) => (
-              <ChildPackageCard key={child.id} child={child} categorySlug={child.categorySlug} />
+            {childrenWithCategory.map((child) => (
+              <ChildPackageCard key={child.id} child={child} categorySlug={child.categorySlug} categoryLabel={child.categoryLabel} lowestPrice={priceMap.get(child.id)} />
             ))}
           </div>
         )}

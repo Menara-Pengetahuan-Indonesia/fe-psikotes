@@ -2,30 +2,12 @@
 
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
-import { BookOpen, CheckCircle2, Loader2, ChevronRight, Clock, FileText, FlaskConical, ArrowRight, Inbox } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { usePublicChildPackage } from '../hooks/use-public-packages'
-import { usePublicPackageDetail } from '../hooks/use-public-package-detail'
-import type { PackageType } from '@/features/admin/types'
+import { BookOpen, Loader2, ChevronRight, FlaskConical, ArrowRight, Inbox } from 'lucide-react'
+import { useCatalogChildPackageById, useCatalogPackageTypes, usePurchasePackageType } from '../hooks/use-catalog'
+import type { CatalogPackageType } from '../types/catalog.types'
 
 function formatPrice(price: number) {
   return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(price)
-}
-
-function getTierColor() {
-  return 'border-slate-200 bg-white'
-}
-
-function getTierAccent() {
-  return 'text-gray-900'
-}
-
-function getTierBadge() {
-  return 'bg-primary-50 text-primary-700 border border-primary-100'
-}
-
-function getTierButton() {
-  return 'bg-primary-600 hover:bg-primary-700'
 }
 
 interface PackageDetailClientProps {
@@ -36,8 +18,8 @@ interface PackageDetailClientProps {
 export function PackageDetailClient({ categorySlug, categoryLabel }: PackageDetailClientProps) {
   const params = useParams()
   const childId = params.slug as string
-  const { data, isLoading } = usePublicChildPackage(childId)
-  const { data: packageDetail, isLoading: isLoadingDetail } = usePublicPackageDetail(data?.parentId ?? '')
+  const { data, isLoading } = useCatalogChildPackageById(childId)
+  const { data: packageTypes, isLoading: isLoadingTypes } = useCatalogPackageTypes(childId)
 
   if (isLoading) {
     return (
@@ -81,9 +63,7 @@ export function PackageDetailClient({ categorySlug, categoryLabel }: PackageDeta
   }
 
   const { child } = data
-  const tiers = child.packageTypes?.filter(pt => pt.isActive) ?? []
-  const tests = packageDetail?.tests?.sort((a, b) => a.order - b.order) ?? []
-  const totalDuration = tests.reduce((sum, t) => sum + (t.duration ?? 0), 0)
+  const tiers = packageTypes ?? []
 
   return (
     <main className="min-h-screen bg-white pb-24 md:pb-0">
@@ -118,18 +98,6 @@ export function PackageDetailClient({ categorySlug, categoryLabel }: PackageDeta
             )}
 
             <div className="flex flex-wrap gap-3 pt-2">
-              {tests.length > 0 && (
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-100 shadow-sm">
-                  <FileText className="w-4 h-4 text-primary-500" />
-                  <span className="text-xs font-bold text-slate-700">{tests.length} Tes</span>
-                </div>
-              )}
-              {totalDuration > 0 && (
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-100 shadow-sm">
-                  <Clock className="w-4 h-4 text-primary-500" />
-                  <span className="text-xs font-bold text-slate-700">~{totalDuration} menit</span>
-                </div>
-              )}
               {tiers.length > 0 && (
                 <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-100 shadow-sm">
                   <FlaskConical className="w-4 h-4 text-primary-500" />
@@ -171,54 +139,6 @@ export function PackageDetailClient({ categorySlug, categoryLabel }: PackageDeta
           )}
         </div>
       </section>
-
-      {/* Test list */}
-      {tests.length > 0 && (
-        <section className="relative overflow-hidden pb-16">
-          <div className="absolute bottom-[-10%] left-[-6%] w-[300px] h-[300px] bg-primary-100/30 rounded-full pointer-events-none" />
-
-          <div className="max-w-4xl mx-auto px-6 relative z-10">
-            <div className="space-y-3 mb-8">
-              <h2 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">
-                Tes yang Termasuk
-              </h2>
-              <p className="text-gray-500 font-medium text-sm">
-                Daftar instrumen tes dalam paket ini.
-              </p>
-            </div>
-
-            {isLoadingDetail ? (
-              <div className="space-y-3">
-                {Array.from({ length: 3 }).map((_, i) => (
-                  <div key={i} className="h-20 bg-slate-50 rounded-2xl animate-pulse" />
-                ))}
-              </div>
-            ) : (
-              <div className="space-y-3">
-                {tests.map((test, idx) => (
-                  <div key={test.id} className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-primary-200 transition-all">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary-50 text-primary-600 text-sm font-black shrink-0">
-                      {idx + 1}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-bold text-gray-900">{test.name}</h4>
-                      {test.description && (
-                        <p className="text-xs text-gray-400 mt-1 leading-relaxed line-clamp-2">{test.description}</p>
-                      )}
-                    </div>
-                    {test.duration && (
-                      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 text-xs font-medium text-slate-500 shrink-0">
-                        <Clock className="w-3.5 h-3.5" />
-                        {test.duration} min
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
-      )}
 
       {/* Bottom CTA */}
       <section className="pb-20">
@@ -269,45 +189,25 @@ export function PackageDetailClient({ categorySlug, categoryLabel }: PackageDeta
   )
 }
 
-function TierCard({ tier }: { tier: PackageType }) {
+function TierCard({ tier }: { tier: CatalogPackageType }) {
+  const { mutate: purchase, isPending } = usePurchasePackageType()
+
   return (
-    <div className={cn(
-      'rounded-2xl border-2 p-6 flex flex-col shadow-sm hover:shadow-lg transition-all',
-      getTierColor()
-    )}>
-      <div className="space-y-4 flex-1">
-        <span className={cn('inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider', getTierBadge())}>
-          {tier.name}
-        </span>
-        <div className={cn('text-3xl font-black tracking-tight', getTierAccent())}>
-          {formatPrice(tier.price)}
-        </div>
-        {tier.description && (
-          <p className="text-gray-500 text-sm leading-relaxed">{tier.description}</p>
-        )}
-        {tier.testTool && (
-          <div className="pt-2 space-y-2">
-            {tier.testTool.split(',').map((tool, i) => (
-              <div key={i} className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
-                <span className="text-sm text-gray-700 font-medium">{tool.trim()}</span>
-              </div>
-            ))}
-          </div>
-        )}
+    <div className="p-6 rounded-2xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition-shadow">
+      <div className="flex items-center justify-between mb-4">
+        <h4 className="font-bold text-slate-900">{tier.name}</h4>
+        <span className="text-lg font-black text-primary-600">{formatPrice(tier.price)}</span>
       </div>
+      {tier.description && (
+        <p className="text-sm text-slate-500 mb-4">{tier.description}</p>
+      )}
       <button
-        onClick={() => {
-          alert('Fitur pembayaran akan segera tersedia.')
-        }}
-        className={cn(
-          'mt-6 w-full h-12 rounded-xl text-sm font-bold transition-colors text-white',
-          getTierButton()
-        )}
+        onClick={() => purchase(tier.id)}
+        disabled={isPending}
+        className="w-full h-11 rounded-xl bg-primary-600 text-white text-sm font-bold hover:bg-primary-700 transition-colors disabled:opacity-50"
       >
-        Pilih Paket Ini
+        {isPending ? 'Memproses...' : 'Pilih Paket Ini'}
       </button>
-      <p className="text-[10px] text-slate-400 text-center mt-2">Pembayaran akan segera tersedia</p>
     </div>
   )
 }
