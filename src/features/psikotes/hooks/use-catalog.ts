@@ -68,7 +68,7 @@ export function usePurchasePackageType() {
         toast.info('Kamu sudah memiliki paket ini')
         router.push('/pengguna/paket-saya')
       } else if (status === 401) {
-        router.push('/login')
+        router.push('/masuk')
       } else {
         toast.error('Gagal membeli paket. Coba lagi.')
       }
