@@ -2,21 +2,14 @@
 
 import Link from 'next/link'
 import { BookOpen, Loader2, Inbox, ArrowRight } from 'lucide-react'
-import type { ChildPackage } from '@/features/admin/types'
-
-function formatPrice(price: number) {
-  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(price)
-}
+import type { CatalogChildPackage } from '../types/catalog.types'
 
 interface ChildPackageCardProps {
-  child: ChildPackage
+  child: CatalogChildPackage
   categorySlug: string
 }
 
 export function ChildPackageCard({ child, categorySlug }: ChildPackageCardProps) {
-  const tiers = child.packageTypes?.filter(pt => pt.isActive) ?? []
-  const lowestPrice = tiers.length > 0 ? Math.min(...tiers.map(t => t.price)) : null
-
   return (
     <Link
       href={`/${categorySlug}/${child.id}`}
@@ -27,11 +20,6 @@ export function ChildPackageCard({ child, categorySlug }: ChildPackageCardProps)
           <div className="w-11 h-11 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center">
             <BookOpen className="w-5 h-5" />
           </div>
-          {lowestPrice !== null && (
-            <span className="text-xs font-bold text-primary-600">
-              Mulai {formatPrice(lowestPrice)}
-            </span>
-          )}
         </div>
 
         <div className="space-y-1.5">
@@ -44,23 +32,6 @@ export function ChildPackageCard({ child, categorySlug }: ChildPackageCardProps)
             </p>
           )}
         </div>
-
-        {tiers.length > 0 && (
-          <div className="space-y-2">
-            {tiers.map((tier) => (
-              <div
-                key={tier.id}
-                className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100"
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-primary-400" />
-                  <span className="text-sm font-semibold text-slate-700">{tier.name}</span>
-                </div>
-                <span className="text-sm font-bold text-slate-900">{formatPrice(tier.price)}</span>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
 
       <div className="px-6 pb-6">
