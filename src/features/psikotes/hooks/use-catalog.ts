@@ -53,6 +53,28 @@ export function useCatalogPackageTypes(childPackageId: string) {
   })
 }
 
+export function useAllPackageTypes(childPackageIds: string[]) {
+  return useQueries({
+    queries: childPackageIds.map((id) => ({
+      queryKey: catalogKeys.packageTypes(id),
+      queryFn: () => catalogService.getPackageTypes(id),
+      enabled: !!id,
+    })),
+    combine: (results) => {
+      const isLoading = results.some((r) => r.isLoading)
+      const priceMap = new Map<string, number>()
+      results.forEach((r, i) => {
+        const types = r.data ?? []
+        if (types.length > 0) {
+          const lowest = Math.min(...types.map((t) => t.price))
+          priceMap.set(childPackageIds[i], lowest)
+        }
+      })
+      return { priceMap, isLoading }
+    },
+  })
+}
+
 export function usePurchasePackageType() {
   const qc = useQueryClient()
   const router = useRouter()
