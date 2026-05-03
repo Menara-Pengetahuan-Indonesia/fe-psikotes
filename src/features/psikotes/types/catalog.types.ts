@@ -7,7 +7,7 @@ export interface CatalogPackage {
 
 export interface CatalogChildPackage {
   id: string
-  packageId: string
+  packageId?: string
   name: string
   description?: string
 }
