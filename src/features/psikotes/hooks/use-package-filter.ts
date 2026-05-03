@@ -1,10 +1,17 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import type { ChildPackage } from '@/features/admin/types'
 
 export type TierFilter = 'all' | 'dasar' | 'lengkap' | 'komprehensif'
 export type PriceRange = 'all' | 'under100k' | '100k-500k' | '500k-1m' | 'over1m'
+
+// Minimal interface satisfied by both ChildPackage (admin) and CatalogChildPackage
+export interface FilterablePackage {
+  id: string
+  name: string
+  description?: string
+  packageTypes?: Array<{ isActive: boolean; name: string; price: number }>
+}
 
 const PRICE_RANGES: Record<PriceRange, [number, number]> = {
   all: [0, Infinity],
@@ -14,13 +21,13 @@ const PRICE_RANGES: Record<PriceRange, [number, number]> = {
   over1m: [1_000_000, Infinity],
 }
 
-function getLowestPrice(child: ChildPackage): number | null {
+function getLowestPrice(child: FilterablePackage): number | null {
   const activeTiers = child.packageTypes?.filter(pt => pt.isActive) ?? []
   if (activeTiers.length === 0) return null
   return Math.min(...activeTiers.map(t => t.price))
 }
 
-function matchesSearch(child: ChildPackage, query: string): boolean {
+function matchesSearch(child: FilterablePackage, query: string): boolean {
   if (!query) return true
   const q = query.toLowerCase()
   return (
@@ -29,13 +36,13 @@ function matchesSearch(child: ChildPackage, query: string): boolean {
   )
 }
 
-function matchesTier(child: ChildPackage, tier: TierFilter): boolean {
+function matchesTier(child: FilterablePackage, tier: TierFilter): boolean {
   if (tier === 'all') return true
   const activeTiers = child.packageTypes?.filter(pt => pt.isActive) ?? []
   return activeTiers.some(pt => pt.name.toLowerCase().includes(tier))
 }
 
-function matchesPrice(child: ChildPackage, range: PriceRange): boolean {
+function matchesPrice(child: FilterablePackage, range: PriceRange): boolean {
   if (range === 'all') return true
   const lowest = getLowestPrice(child)
   if (lowest === null) return false
@@ -43,7 +50,7 @@ function matchesPrice(child: ChildPackage, range: PriceRange): boolean {
   return lowest >= min && lowest < max
 }
 
-export function usePackageFilter(children: ChildPackage[]) {
+export function usePackageFilter<T extends FilterablePackage>(children: T[]) {
   const [search, setSearch] = useState('')
   const [tier, setTier] = useState<TierFilter>('all')
   const [priceRange, setPriceRange] = useState<PriceRange>('all')
