@@ -7,9 +7,15 @@ import type { CatalogChildPackage } from '../types/catalog.types'
 interface ChildPackageCardProps {
   child: CatalogChildPackage
   categorySlug: string
+  categoryLabel?: string
+  lowestPrice?: number
 }
 
-export function ChildPackageCard({ child, categorySlug }: ChildPackageCardProps) {
+function formatPrice(price: number) {
+  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(price)
+}
+
+export function ChildPackageCard({ child, categorySlug, categoryLabel, lowestPrice }: ChildPackageCardProps) {
   return (
     <Link
       href={`/${categorySlug}/${child.id}`}
@@ -20,6 +26,11 @@ export function ChildPackageCard({ child, categorySlug }: ChildPackageCardProps)
           <div className="w-11 h-11 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center">
             <BookOpen className="w-5 h-5" />
           </div>
+          {categoryLabel && (
+            <span className="text-[10px] font-bold uppercase tracking-wider text-primary-600 bg-primary-50 px-2.5 py-1 rounded-full">
+              {categoryLabel}
+            </span>
+          )}
         </div>
 
         <div className="space-y-1.5">
@@ -32,6 +43,19 @@ export function ChildPackageCard({ child, categorySlug }: ChildPackageCardProps)
             </p>
           )}
         </div>
+
+        {lowestPrice !== undefined && (
+          <div className="pt-1">
+            <span className="text-xs text-slate-400 font-medium">Mulai dari</span>
+            <p className="text-lg font-black text-slate-900">
+              {lowestPrice === 0 ? (
+                <span className="text-emerald-600">Gratis</span>
+              ) : (
+                formatPrice(lowestPrice)
+              )}
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="px-6 pb-6">

@@ -1,7 +1,7 @@
 'use client'
 
 import { Target, Zap } from 'lucide-react'
-import { useCatalogPackages, useAllChildPackages } from '../hooks/use-catalog'
+import { useCatalogPackages, useAllChildPackages, useAllPackageTypes } from '../hooks/use-catalog'
 import { ChildPackageCard, PackageGridSkeleton, PackageEmptyState } from './package-card'
 
 function getCategorySlug(packageName: string): string {
@@ -12,11 +12,23 @@ function getCategorySlug(packageName: string): string {
   return 'diri-pribadi'
 }
 
+function getCategoryLabel(packageName: string): string {
+  const lower = packageName.toLowerCase()
+  if (lower.includes('relationship')) return 'Relationship'
+  if (lower.includes('bisnis') || lower.includes('perusahaan')) return 'Bisnis & Perusahaan'
+  if (lower.includes('anak') || lower.includes('remaja')) return 'Remaja'
+  if (lower.includes('dewasa')) return 'Dewasa'
+  if (lower.includes('diri') || lower.includes('pribadi')) return 'Diri Pribadi'
+  return 'Diri Pribadi'
+}
+
 export function PsikotesProducts() {
   const { data: packages, isLoading: packagesLoading } = useCatalogPackages()
   const activePackages = packages ?? []
   const packageIds = activePackages.map((p) => p.id)
   const { data: allChildren, isLoading: childrenLoading } = useAllChildPackages(packageIds)
+  const childIds = allChildren.map((c) => c.id)
+  const { priceMap, isLoading: pricesLoading } = useAllPackageTypes(childIds)
 
   const isLoading = packagesLoading || childrenLoading
 
@@ -25,6 +37,7 @@ export function PsikotesProducts() {
     return {
       ...child,
       categorySlug: getCategorySlug(parent?.name ?? ''),
+      categoryLabel: getCategoryLabel(parent?.name ?? ''),
     }
   })
 
@@ -52,7 +65,7 @@ export function PsikotesProducts() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {childrenWithCategory.map((child) => (
-              <ChildPackageCard key={child.id} child={child} categorySlug={child.categorySlug} />
+              <ChildPackageCard key={child.id} child={child} categorySlug={child.categorySlug} categoryLabel={child.categoryLabel} lowestPrice={priceMap.get(child.id)} />
             ))}
           </div>
         )}
