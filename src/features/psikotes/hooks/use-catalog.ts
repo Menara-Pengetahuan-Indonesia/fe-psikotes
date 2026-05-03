@@ -37,7 +37,9 @@ export function useAllChildPackages(packageIds: string[]) {
     })),
     combine: (results) => {
       const isLoading = results.some((r) => r.isLoading)
-      const data = results.flatMap((r) => r.data ?? [])
+      const data = results.flatMap((r, i) =>
+        (r.data ?? []).map((child) => ({ ...child, packageId: packageIds[i] }))
+      )
       return { data, isLoading }
     },
   })
