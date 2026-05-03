@@ -41,7 +41,7 @@ export function useTokenRefresh() {
     timerRef.current = setTimeout(async () => {
       try {
         const { data } = await axios.post(
-          `${env.NEXT_PUBLIC_API_URL}/auth/refresh`,
+          `/api-proxy/auth/refresh`,
           { refreshToken: useAuthStore.getState().refreshToken },
         )
         const tokens = data.data ?? data
