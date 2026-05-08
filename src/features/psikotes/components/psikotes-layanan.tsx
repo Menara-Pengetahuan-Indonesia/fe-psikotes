@@ -46,12 +46,10 @@ const SERVICES: Service[] = [
       {
         label: 'Dewasa',
         tests: [
-          'Past Trauma & Depression Healing',
-          'Anxiety & Burnout',
-          'Body Image',
-          'Self Confidence & Self-Worth',
-          'Identity, Purpose, Quarter-Life Crisis & Perbandingan Sosial',
-          'Career Planning',
+          'Tes Luka Batin & Trauma',
+          'Tes Anxiety, Depresi & Burnout',
+          'Tes Citra Diri & Tingkat PeDe',
+          'Tes Eksistensi & Perbandingan Sosial',
         ],
       },
       {
