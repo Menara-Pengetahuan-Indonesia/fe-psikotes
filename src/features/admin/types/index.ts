@@ -60,6 +60,7 @@ export interface PackageType {
   isActive: boolean
   createdAt: string
   updatedAt: string
+  tests?: Test[]
 }
 
 export interface Test {

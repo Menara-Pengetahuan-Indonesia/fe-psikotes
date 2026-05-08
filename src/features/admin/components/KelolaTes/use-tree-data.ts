@@ -2,27 +2,16 @@
 
 import { useMemo } from 'react'
 import { usePackages } from '../../hooks/use-packages'
-import { useChildPackages } from '../../hooks/use-child-packages'
-import { usePackageTypes } from '../../hooks/use-package-types'
-import { useTests } from '../../hooks/use-tests'
-import { useSubTests } from '../../hooks/use-subtests'
 import type { TreeNode } from './types'
 
 export function useTreeData() {
-  const { data: packages, isLoading: loadingPkg } = usePackages()
-  const { data: childPackages, isLoading: loadingChild } = useChildPackages()
-  const { data: packageTypes, isLoading: loadingTypes } = usePackageTypes()
-  const { data: tests, isLoading: loadingTests } = useTests()
-  const { data: subTests, isLoading: loadingSub } = useSubTests()
-
-  const isLoading = loadingPkg || loadingChild || loadingTypes || loadingTests || loadingSub
+  const { data: packages, isLoading } = usePackages()
 
   const tree = useMemo<TreeNode[]>(() => {
     if (!packages) return []
 
     return packages.map((pkg): TreeNode => {
       const isRelationship = pkg.name.toLowerCase().includes('relationship')
-      const pkgChildren = (childPackages ?? []).filter(c => c.packageId === pkg.id)
 
       return {
         type: 'package',
@@ -30,54 +19,44 @@ export function useTreeData() {
         label: pkg.name,
         isActive: pkg.isActive,
         data: pkg,
-        children: pkgChildren.map((cp): TreeNode => {
-          const cpTypes = (packageTypes ?? []).filter(t => t.childPackageId === cp.id)
-
-          return {
-            type: 'childPackage',
-            id: cp.id,
-            label: cp.name,
-            parentId: pkg.id,
-            isActive: cp.isActive,
-            data: cp,
-            children: cpTypes.map((pt): TreeNode => {
-              const ptTests = (tests ?? []).filter(t => t.packageTypeId === pt.id)
-
-              return {
-                type: 'packageType',
-                id: pt.id,
-                label: pt.name,
-                parentId: cp.id,
-                isActive: pt.isActive,
-                data: pt,
-                children: ptTests.map((test): TreeNode => ({
-                  type: 'test',
-                  id: test.id,
-                  label: test.name,
-                  parentId: pt.id,
-                  isActive: test.isActive,
-                  data: test,
-                  children: isRelationship
-                    ? []
-                    : (subTests ?? [])
-                        .filter(s => s.testId === test.id)
-                        .map((st): TreeNode => ({
-                          type: 'subTest',
-                          id: st.id,
-                          label: st.name,
-                          parentId: test.id,
-                          isActive: st.isActive,
-                          data: st,
-                          children: [],
-                        })),
-                })),
-              }
-            }),
-          }
-        }),
+        children: (pkg.childPackages ?? []).map((cp): TreeNode => ({
+          type: 'childPackage',
+          id: cp.id,
+          label: cp.name,
+          parentId: pkg.id,
+          isActive: cp.isActive,
+          data: cp,
+          children: (cp.packageTypes ?? []).map((pt): TreeNode => ({
+            type: 'packageType',
+            id: pt.id,
+            label: pt.name,
+            parentId: cp.id,
+            isActive: pt.isActive,
+            data: pt,
+            children: (pt.tests ?? []).map((test): TreeNode => ({
+              type: 'test',
+              id: test.id,
+              label: test.name,
+              parentId: pt.id,
+              isActive: test.isActive,
+              data: test,
+              children: isRelationship
+                ? []
+                : (test.subTests ?? []).map((st): TreeNode => ({
+                    type: 'subTest',
+                    id: st.id,
+                    label: st.name,
+                    parentId: test.id,
+                    isActive: st.isActive,
+                    data: st,
+                    children: [],
+                  })),
+            })),
+          })),
+        })),
       }
     })
-  }, [packages, childPackages, packageTypes, tests, subTests])
+  }, [packages])
 
   const isRelationshipPackage = useMemo(() => {
     const set = new Set<string>()
@@ -114,3 +93,4 @@ export function useTreeData() {
 
   return { tree, isLoading, isRelationshipContext }
 }
+
