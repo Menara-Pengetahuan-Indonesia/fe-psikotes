@@ -32,7 +32,6 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { ConfirmDialog } from '@/features/admin/components/Common/ConfirmDialog'
 import {
   useTest,
-  useSubTests,
   useCreateSubTest,
   useUpdateSubTest,
   useDeleteSubTest,
@@ -52,11 +51,8 @@ export default function TestDetailPage() {
   const testId = params.testId as string
 
   const { data: test, isLoading: testLoading, error: testError } = useTest(testId)
-  const { data: allSubTests } = useSubTests()
 
-  const subTests = (allSubTests ?? [])
-    .filter((st) => st.testId === testId)
-    .sort((a, b) => a.order - b.order)
+  const subTests = (test?.subTests ?? []).sort((a, b) => a.order - b.order)
   const activeCount = subTests.filter((st) => st.isActive).length
 
   const [search, setSearch] = useState('')

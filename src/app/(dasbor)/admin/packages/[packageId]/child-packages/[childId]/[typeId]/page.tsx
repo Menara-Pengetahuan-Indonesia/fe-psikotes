@@ -38,7 +38,6 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { ConfirmDialog } from '@/features/admin/components/Common/ConfirmDialog'
 import {
   usePackageType,
-  useTests,
   useCreateTest,
   useUpdateTest,
   useDeleteTest,
@@ -60,9 +59,8 @@ export default function PackageTypeDetailPage() {
   const typeId = params.typeId as string
 
   const { data: pkgType, isLoading: typeLoading, error: typeError } = usePackageType(typeId)
-  const { data: allTests } = useTests()
 
-  const tests = (allTests ?? []).filter((t) => t.packageTypeId === typeId)
+  const tests = pkgType?.tests ?? []
   const activeCount = tests.filter((t) => t.isActive).length
 
   const [search, setSearch] = useState('')

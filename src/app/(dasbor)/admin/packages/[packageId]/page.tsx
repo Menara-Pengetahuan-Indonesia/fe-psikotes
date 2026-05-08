@@ -31,7 +31,6 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { ConfirmDialog } from '@/features/admin/components/Common/ConfirmDialog'
 import {
   usePackage,
-  useChildPackages,
   useCreateChildPackage,
   useUpdateChildPackage,
   useDeleteChildPackage,
@@ -51,11 +50,8 @@ export default function PackageDetailPage() {
   const packageId = params.packageId as string
 
   const { data: pkg, isLoading: pkgLoading, error: pkgError } = usePackage(packageId)
-  const { data: allChildPackages } = useChildPackages()
 
-  const childPackages = (allChildPackages ?? []).filter(
-    (cp) => cp.packageId === packageId,
-  )
+  const childPackages = pkg?.childPackages ?? []
   const activeCount = childPackages.filter((cp) => cp.isActive).length
 
   const [search, setSearch] = useState('')
