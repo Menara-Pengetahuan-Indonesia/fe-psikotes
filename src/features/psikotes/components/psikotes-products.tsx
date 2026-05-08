@@ -16,7 +16,7 @@ function getCategoryLabel(packageName: string): string {
   const lower = packageName.toLowerCase()
   if (lower.includes('relationship')) return 'Relationship'
   if (lower.includes('bisnis') || lower.includes('perusahaan')) return 'Bisnis & Perusahaan'
-  if (lower.includes('anak') || lower.includes('remaja')) return 'Remaja'
+  if (lower.includes('anak') || lower.includes('remaja')) return 'Anak, Remaja, dan Calon Mahasiswa'
   if (lower.includes('dewasa')) return 'Dewasa'
   if (lower.includes('diri') || lower.includes('pribadi')) return 'Diri Pribadi'
   return 'Diri Pribadi'
