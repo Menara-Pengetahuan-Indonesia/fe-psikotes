@@ -388,9 +388,9 @@ export function PsikotesServices({ initialTab = 0 }: { initialTab?: number }) {
                   {output.heading}
                 </h4>
                 <ul className="space-y-1.5">
-                  {output.items.map((item) => (
+                  {output.items.map((item, itemIdx) => (
                     <li key={item} className="text-xs text-gray-900 leading-relaxed flex gap-1.5 text-left">
-                      <span className="text-primary-500 shrink-0">•</span>
+                      <span className="text-primary-600 font-bold shrink-0">{itemIdx + 1}.</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -411,9 +411,9 @@ export function PsikotesServices({ initialTab = 0 }: { initialTab?: number }) {
                   {output.heading}
                 </h4>
                 <ul className="space-y-1">
-                  {output.items.map((item) => (
+                  {output.items.map((item, itemIdx) => (
                     <li key={item} className="text-[11px] text-gray-900 leading-relaxed flex gap-1.5 text-left">
-                      <span className="text-primary-500 shrink-0">•</span>
+                      <span className="text-primary-600 font-bold shrink-0">{itemIdx + 1}.</span>
                       <span>{item}</span>
                     </li>
                   ))}
