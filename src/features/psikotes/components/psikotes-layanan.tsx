@@ -334,35 +334,55 @@ export function PsikotesServices({ initialTab = 0 }: { initialTab?: number }) {
         {/* Test Categories — 4 columns */}
         {current.testCategories && (
           <>
-            <div className="hidden md:grid grid-cols-4 gap-3 mb-6">
-              {current.testCategories.map((cat) => (
-                <div key={cat.label} className="bg-primary-50 border border-primary-200 rounded-xl p-3 md:p-4">
-                  <h4 className="text-primary-700 text-sm font-bold mb-2 leading-tight text-center">{cat.label}</h4>
-                  <ul className="space-y-1.5">
-                    {cat.tests.map((test, i) => (
-                      <li key={test} className="text-xs text-gray-900 leading-relaxed flex gap-1.5 text-left">
-                        <span className="text-primary-500 shrink-0 font-bold">{i + 1}.</span>
-                        <span>{test}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            <div className="hidden md:grid grid-cols-4 gap-4 mb-6">
+              {current.testCategories.map((cat, catIdx) => {
+                const accents = [
+                  'from-primary-500 to-teal-600',
+                  'from-amber-500 to-orange-500',
+                  'from-rose-500 to-pink-500',
+                  'from-indigo-500 to-violet-500',
+                ];
+                return (
+                  <div key={cat.label} className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden">
+                    <div className={`bg-gradient-to-r ${accents[catIdx % accents.length]} px-4 py-2.5`}>
+                      <h4 className="text-white text-sm font-black leading-tight text-center">{cat.label}</h4>
+                    </div>
+                    <ul className="p-4 space-y-2">
+                      {cat.tests.map((test, i) => (
+                        <li key={test} className="text-xs text-gray-700 leading-relaxed flex gap-2 text-left">
+                          <span className="text-amber-500 shrink-0 font-black">{i + 1}.</span>
+                          <span>{test}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
             </div>
-            <div className="grid grid-cols-2 gap-2 mb-4 md:hidden">
-              {current.testCategories.map((cat) => (
-                <div key={cat.label} className="bg-primary-50 border border-primary-200 rounded-xl p-3">
-                  <h4 className="text-primary-700 text-xs font-bold mb-1.5 leading-tight text-center">{cat.label}</h4>
-                  <ul className="space-y-1">
-                    {cat.tests.map((test, i) => (
-                      <li key={test} className="text-[11px] text-gray-900 leading-relaxed flex gap-1.5 text-left">
-                        <span className="text-primary-500 shrink-0 font-bold">{i + 1}.</span>
-                        <span>{test}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            <div className="grid grid-cols-2 gap-3 mb-4 md:hidden">
+              {current.testCategories.map((cat, catIdx) => {
+                const accents = [
+                  'from-primary-500 to-teal-600',
+                  'from-amber-500 to-orange-500',
+                  'from-rose-500 to-pink-500',
+                  'from-indigo-500 to-violet-500',
+                ];
+                return (
+                  <div key={cat.label} className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden">
+                    <div className={`bg-gradient-to-r ${accents[catIdx % accents.length]} px-3 py-2`}>
+                      <h4 className="text-white text-xs font-black leading-tight text-center">{cat.label}</h4>
+                    </div>
+                    <ul className="p-3 space-y-1.5">
+                      {cat.tests.map((test, i) => (
+                        <li key={test} className="text-[11px] text-gray-700 leading-relaxed flex gap-1.5 text-left">
+                          <span className="text-amber-500 shrink-0 font-bold">{i + 1}.</span>
+                          <span>{test}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="flex flex-col items-center mb-4">
