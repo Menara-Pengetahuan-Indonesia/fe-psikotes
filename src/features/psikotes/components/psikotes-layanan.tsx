@@ -324,12 +324,11 @@ export function PsikotesServices({ initialTab = 0 }: { initialTab?: number }) {
 
       {/* Panel */}
       <div className="bg-white border-2 border-primary-200 rounded-2xl mt-3 p-4 md:p-6">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary-300 to-transparent" />
-          <h3 className="text-primary-800 text-sm md:text-lg font-black text-center shrink-0">
+        <div className="flex flex-col items-center mb-4">
+          <h3 className="text-primary-800 text-sm md:text-lg font-black text-center">
             {current.panelTitle ?? current.title}
           </h3>
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary-300 to-transparent" />
+          <div className="mt-1.5 h-1 w-16 rounded-full bg-amber-400" />
         </div>
 
         {/* Test Categories — 4 columns */}
@@ -366,12 +365,11 @@ export function PsikotesServices({ initialTab = 0 }: { initialTab?: number }) {
               ))}
             </div>
 
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary-300 to-transparent" />
-              <h4 className="text-primary-800 text-sm md:text-base font-black text-center shrink-0">
+            <div className="flex flex-col items-center mb-4">
+              <h4 className="text-primary-800 text-sm md:text-base font-black text-center">
                 Output yang didapatkan:
               </h4>
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary-300 to-transparent" />
+              <div className="mt-1.5 h-1 w-12 rounded-full bg-amber-400" />
             </div>
           </>
         )}
