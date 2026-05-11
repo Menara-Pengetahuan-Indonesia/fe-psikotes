@@ -87,7 +87,7 @@ export function ProductCardNew({ product, defaultTier = 'lengkap' }: ProductCard
           </div>
         )}
         <a
-          href={`/pembayaran?id=${product.id}&tier=${selectedTier}`}
+          href={`/pembayaran?packageTypeId=${selectedTier}`}
           className="w-full h-12 rounded-xl bg-primary-600 text-white flex items-center justify-center gap-2 text-xs font-black uppercase tracking-widest hover:bg-primary-700 transition-colors shadow-lg shadow-primary-100"
         >
           Mulai — {activePricing.priceLabel} <ArrowRight className="w-4 h-4" />

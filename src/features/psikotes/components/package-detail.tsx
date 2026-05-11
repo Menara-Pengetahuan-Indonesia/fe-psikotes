@@ -3,7 +3,7 @@
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { BookOpen, Loader2, ChevronRight, FlaskConical, ArrowRight, Inbox } from 'lucide-react'
-import { useCatalogChildPackageById, useCatalogPackageTypes, usePurchasePackageType } from '../hooks/use-catalog'
+import { useCatalogChildPackageById, useCatalogPackageTypes } from '../hooks/use-catalog'
 import type { CatalogPackageType } from '../types/catalog.types'
 
 function formatPrice(price: number) {
@@ -190,8 +190,6 @@ export function PackageDetailClient({ categorySlug, categoryLabel }: PackageDeta
 }
 
 function TierCard({ tier }: { tier: CatalogPackageType }) {
-  const { mutate: purchase, isPending } = usePurchasePackageType()
-
   return (
     <div className="p-6 rounded-2xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-center justify-between mb-4">
@@ -201,13 +199,12 @@ function TierCard({ tier }: { tier: CatalogPackageType }) {
       {tier.description && (
         <p className="text-sm text-slate-500 mb-4">{tier.description}</p>
       )}
-      <button
-        onClick={() => purchase(tier.id)}
-        disabled={isPending}
-        className="w-full h-11 rounded-xl bg-primary-600 text-white text-sm font-bold hover:bg-primary-700 transition-colors disabled:opacity-50"
+      <a
+        href={`/pembayaran?packageTypeId=${tier.id}`}
+        className="block w-full h-11 rounded-xl bg-primary-600 text-white text-sm font-bold hover:bg-primary-700 transition-colors text-center leading-[2.75rem]"
       >
-        {isPending ? 'Memproses...' : 'Pilih Paket Ini'}
-      </button>
+        Pilih Paket Ini
+      </a>
     </div>
   )
 }

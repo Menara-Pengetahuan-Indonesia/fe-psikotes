@@ -29,4 +29,12 @@ export interface MyPackageType {
   childPackageName?: string
   packageName?: string
   purchasedAt: string
+  tests?: {
+    id: string
+    name: string
+    description?: string
+    questionTypes: string[]
+    totalDuration: number
+    totalQuestions: number
+  }[]
 }

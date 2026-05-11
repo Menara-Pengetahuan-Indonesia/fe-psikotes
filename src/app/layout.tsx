@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Script from "next/script"
 import { Plus_Jakarta_Sans, Quicksand, Courgette } from "next/font/google"
 import { QueryProvider } from "@/shared/components/query-provider"
 import { Navbar } from "@/shared/components/layout/navbar"
@@ -42,6 +43,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" suppressHydrationWarning>
+      <head>
+        <Script
+          src="https://app.sandbox.midtrans.com/snap/snap.js"
+          data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY}
+          strategy="afterInteractive"
+        />
+      </head>
       <body className={`${plusJakarta.variable} ${quicksand.variable} ${courgette.variable} antialiased bg-background`}>
         <QueryProvider>
           <Navbar />

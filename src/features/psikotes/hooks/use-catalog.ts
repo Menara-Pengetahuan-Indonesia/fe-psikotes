@@ -91,7 +91,8 @@ export function usePurchasePackageType() {
         toast.info('Kamu sudah memiliki paket ini')
         router.push('/pengguna/paket-saya')
       } else if (status === 401) {
-        router.push('/masuk')
+        const currentPath = window.location.pathname
+        router.push(`/masuk?redirect=${encodeURIComponent(currentPath)}`)
       } else {
         toast.error('Gagal membeli paket. Coba lagi.')
       }

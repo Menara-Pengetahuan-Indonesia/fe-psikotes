@@ -35,7 +35,39 @@ export const catalogService = {
   },
 
   getMyPackages: async (): Promise<MyPackageType[]> => {
-    const { data } = await api.get<ApiResponse<MyPackageType[]>>('/catalog/my-packages')
-    return data.data
+    const { data } = await api.get<ApiResponse<any[]>>('/catalog/my-packages')
+    return (data.data ?? []).map((item) => {
+      const tests = (item.packageType?.tests ?? []).map((t: any) => {
+        const questionTypes = new Set<string>()
+        let totalDuration = 0
+        let totalQuestions = 0
+        for (const st of t.subTests ?? []) {
+          totalDuration += st.duration ?? 0
+          for (const q of st.questions ?? []) {
+            questionTypes.add(q.questionType)
+            totalQuestions++
+          }
+        }
+        return {
+          id: t.id,
+          name: t.name,
+          description: t.description ?? '',
+          questionTypes: Array.from(questionTypes),
+          totalDuration,
+          totalQuestions,
+        }
+      })
+
+      return {
+        id: item.packageType?.id ?? item.id,
+        name: item.packageType?.name ?? '',
+        description: item.packageType?.description ?? '',
+        price: item.packageType?.price ?? 0,
+        childPackageName: item.packageType?.childPackage?.name ?? '',
+        packageName: item.packageType?.childPackage?.package?.name ?? '',
+        purchasedAt: item.purchasedAt,
+        tests,
+      }
+    })
   },
 }

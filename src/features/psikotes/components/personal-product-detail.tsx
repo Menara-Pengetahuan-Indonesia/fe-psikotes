@@ -343,7 +343,7 @@ export function PersonalProductDetail({
             </div>
           </div>
           <Link
-            href={`/pembayaran?id=${product.id}&tier=${selectedTier}`}
+            href={`/pembayaran?packageTypeId=${selectedTier}`}
             className="h-12 md:h-14 px-5 md:px-8 rounded-xl md:rounded-2xl bg-primary-600 text-white text-xs md:text-sm font-black uppercase tracking-widest hover:bg-primary-700 transition-colors shadow-lg shadow-primary-900/20 flex items-center gap-2 shrink-0"
           >
             <span className="hidden sm:inline">Mulai Asesmen</span>

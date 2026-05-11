@@ -47,6 +47,7 @@ export function useLogin() {
 
 export function useRegister() {
   const router = useRouter()
+  const searchParams = useSearchParams()
 
   return useMutation({
     mutationFn: (data: RegisterFormData) =>
@@ -55,7 +56,12 @@ export function useRegister() {
       toast.success(
         'Registrasi berhasil! Silakan masuk.',
       )
-      router.push('/masuk')
+      const redirect = searchParams.get('redirect')
+      if (redirect && redirect.startsWith('/')) {
+        router.push(`/masuk?redirect=${encodeURIComponent(redirect)}`)
+      } else {
+        router.push('/masuk')
+      }
     },
     onError: (error) => {
       toast.error(extractErrorMessage(error))

@@ -62,8 +62,9 @@ export default function TesPage() {
   useEffect(() => {
     api.get(`/tests/${testId}/config`)
       .then(res => {
-        setConfig(res.data)
-        setTimeLeft(res.data.test.duration * 60)
+        const cfg = res.data.data
+        setConfig(cfg)
+        setTimeLeft(cfg.test.duration * 60)
       })
       .catch(() => setError('Tes tidak ditemukan atau belum dipublikasi'))
       .finally(() => setLoading(false))
@@ -176,7 +177,7 @@ export default function TesPage() {
       const res = await api.post(`/tests/${testId}/submit`, { answers })
       stopCamera()
       setShowSubmitModal(false)
-      router.push(`/tes/${testId}/result/${res.data.testResult.id}`)
+      router.push(`/tes/${testId}/result/${res.data.data.testResult.id}`)
     } catch {
       setError('Gagal mengirim jawaban. Coba lagi.')
       setSubmitting(false)
@@ -305,7 +306,68 @@ export default function TesPage() {
 
             {/* Options */}
             <div className="space-y-3">
-              {question.options.map((opt, idx) => {
+              {(question.type === 'RATING_SCALE' || (question.type as string) === 'SCALE_RATING') ? (
+                <div className="bg-white rounded-2xl border border-slate-100 p-6">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Pilih skala yang sesuai</p>
+                  {question.options.length > 0 ? (
+                    <div className="flex flex-col gap-2">
+                      {question.options.map((opt) => {
+                        const isSelected = answers[question.id] === opt.id
+                        return (
+                          <button
+                            key={opt.id}
+                            onClick={() => handleSelect(opt.id)}
+                            className={cn(
+                              'w-full text-left px-5 py-3.5 rounded-xl border-2 transition-all font-medium text-sm',
+                              isSelected
+                                ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
+                                : 'border-slate-100 bg-white text-slate-600 hover:border-indigo-200 hover:bg-slate-50'
+                            )}
+                          >
+                            {opt.text}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  ) : (
+                    <>
+                      <div className="flex items-center justify-center gap-3 flex-wrap">
+                        {[1, 2, 3, 4, 5].map((val) => {
+                          const isSelected = answers[question.id] === String(val)
+                          return (
+                            <button
+                              key={val}
+                              onClick={() => handleSelect(String(val))}
+                              className={cn(
+                                'size-14 rounded-xl font-black text-lg transition-all',
+                                isSelected
+                                  ? 'bg-indigo-600 text-white shadow-lg scale-110'
+                                  : 'bg-slate-50 text-slate-500 hover:bg-indigo-50 hover:text-indigo-600 border border-slate-200'
+                              )}
+                            >
+                              {val}
+                            </button>
+                          )
+                        })}
+                      </div>
+                      <div className="flex justify-between mt-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider px-2">
+                        <span>Sangat Tidak Setuju</span>
+                        <span>Sangat Setuju</span>
+                      </div>
+                    </>
+                  )}
+                </div>
+              ) : question.type === 'ESSAY' ? (
+                <div className="bg-white rounded-2xl border border-slate-100 p-6">
+                  <textarea
+                    value={answers[question.id] ?? ''}
+                    onChange={(e) => handleSelect(e.target.value)}
+                    placeholder="Tulis jawaban Anda di sini..."
+                    className="w-full h-40 p-4 rounded-xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400"
+                  />
+                </div>
+              ) : (
+                question.options.map((opt, idx) => {
                 const isSelected = answers[question.id] === opt.id
                 const label = String.fromCharCode(65 + idx) // A, B, C, D
                 return (
@@ -333,7 +395,8 @@ export default function TesPage() {
                     {isSelected && <CheckCircle2 className="size-5 text-indigo-600 shrink-0" />}
                   </button>
                 )
-              })}
+              })
+              )}
             </div>
 
             {/* Navigation */}

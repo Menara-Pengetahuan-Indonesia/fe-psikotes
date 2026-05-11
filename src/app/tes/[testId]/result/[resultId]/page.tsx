@@ -46,7 +46,7 @@ export default function ResultPage() {
 
   useEffect(() => {
     api.get(`/tests/${testId}/results/${resultId}`)
-      .then(res => setResult(res.data))
+      .then(res => setResult(res.data.data))
       .catch(() => setError('Hasil tidak ditemukan'))
       .finally(() => setLoading(false))
   }, [testId, resultId])

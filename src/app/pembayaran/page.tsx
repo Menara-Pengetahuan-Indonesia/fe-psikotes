@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import type { Metadata } from 'next'
 
 import { PembayaranLayout } from './pembayaran-layout'
@@ -11,7 +12,9 @@ export default function PembayaranPage() {
   return (
     <main className="min-h-screen bg-slate-50">
       <div className="max-w-6xl mx-auto px-6 py-16">
-        <PembayaranLayout />
+        <Suspense>
+          <PembayaranLayout />
+        </Suspense>
       </div>
     </main>
   )
