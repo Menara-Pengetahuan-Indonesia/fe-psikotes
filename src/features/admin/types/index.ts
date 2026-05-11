@@ -3,6 +3,7 @@
 // ============================================================
 
 export type QuestionType = 'MULTIPLE_CHOICE' | 'CHECKBOX' | 'SCALE_RATING' | 'ESSAY'
+export type OptionDisplayStyle = 'UPPERCASE' | 'LOWERCASE' | 'NUMBER' | 'RADIO'
 export type ScoringType = 'IMMEDIATE' | 'END_OF_TEST'
 
 export interface Package {
@@ -121,6 +122,8 @@ export interface Question {
   questionType: QuestionType
   questionText: string
   imageUrl?: string | null
+  displayStyle?: OptionDisplayStyle | null
+  optionImageEnabled?: boolean
   order: number
   points?: number
   options?: QuestionOption[]
@@ -246,6 +249,8 @@ export interface CreateQuestionDto {
   questionType: QuestionType
   questionText: string
   imageUrl?: string
+  displayStyle?: OptionDisplayStyle
+  optionImageEnabled?: boolean
   order: number
   points?: number
   options?: Omit<QuestionOption, 'id'>[]
@@ -257,6 +262,8 @@ export interface UpdateQuestionDto {
   questionType?: QuestionType
   questionText?: string
   imageUrl?: string
+  displayStyle?: OptionDisplayStyle
+  optionImageEnabled?: boolean
   order?: number
   points?: number
   options?: Omit<QuestionOption, 'id'>[]
