@@ -9,7 +9,7 @@ const PsikotesCategoryNav = dynamic(() => import('@/features/psikotes/components
 const PsikotesProducts = dynamic(() => import('@/features/psikotes/components/psikotes-products').then(m => m.PsikotesProducts))
 
 export const metadata: Metadata = {
-  title: 'BERMOELA — Platform Pengembangan Diri',
+  title: 'Bermoela — Kenali Dirimu, Mulai Perubahanmu',
   description:
     'Temukan potensi terbaikmu melalui'
     + ' psikotes profesional berbasis'
