@@ -22,6 +22,7 @@ interface TestCategory {
 
 interface Service {
   title: string
+  panelTitle?: string
   icon: LucideIcon
   outputs: ServiceOutput[]
   testCategories?: TestCategory[]
@@ -29,7 +30,8 @@ interface Service {
 
 const SERVICES: Service[] = [
   {
-    title: 'Tes Pemetaan, Asesmen, dan Blueprint yang digunakan:',
+    title: 'Tes Pemetaan, Asesmen, dan Blueprint',
+    panelTitle: 'Tes Pemetaan, Asesmen, dan Blueprint yang digunakan:',
     icon: Brain,
     testCategories: [
       {
@@ -65,13 +67,14 @@ const SERVICES: Service[] = [
       {
         label: 'Perusahaan',
         tests: [
-          'Test untuk Promosi & Kenaikan Jabatan',
-          'Branch Manager Assessment',
-          'Leadership Competency Assessment',
-          'MT & MDP Assessment',
-          'Recruitment for Staff Level',
-          'Recruitment for Executive Level',
-          'Person, Organization & Cultural Fit',
+          'Tes untuk Promosi & Kenaikan Jabatan',
+          'Tes Branch Manager Assessment',
+          'Tes Leadership Competency Assessment',
+          'Tes MT & MDP Assessment',
+          'Tes Recruitment for Staff & Specialist Level',
+          'Tes Recruitment for Executive Level',
+          'Tes Person, Organization & Cultural Fit',
+          'Tes Customized Competency Based Assessment',
         ],
       },
     ],
@@ -119,7 +122,7 @@ const SERVICES: Service[] = [
     ],
   },
   {
-    title: 'Konsultasi, Konseling, Coaching',
+    title: 'Konsultasi, Konseling, Live Coaching',
     icon: HeartHandshake,
     outputs: [
       {
@@ -237,7 +240,7 @@ const SERVICES: Service[] = [
     ],
   },
   {
-    title: 'Solusi Kustom bagi Perusahaan',
+    title: 'Solusi bagi Perusahaan',
     icon: Building2,
     outputs: [
       {
@@ -284,8 +287,12 @@ const SERVICES: Service[] = [
   },
 ]
 
-export function PsikotesServices() {
-  const [active, setActive] = useState(0)
+import { SERVICES_SLUGS } from '../constants/layanan-slugs.constants'
+
+export { SERVICES_SLUGS }
+
+export function PsikotesServices({ initialTab = 0 }: { initialTab?: number }) {
+  const [active, setActive] = useState(initialTab)
   const current = SERVICES[active]
 
   return (
@@ -318,7 +325,7 @@ export function PsikotesServices() {
       {/* Panel */}
       <div className="bg-white border-2 border-primary-200 rounded-2xl mt-3 p-4 md:p-6">
         <h3 className="text-primary-700 text-sm md:text-lg font-bold mb-4 text-center">
-          {current.title}
+          {current.panelTitle ?? current.title}
         </h3>
 
         {/* Test Categories — 4 columns */}
@@ -329,9 +336,9 @@ export function PsikotesServices() {
                 <div key={cat.label} className="bg-primary-50 border border-primary-200 rounded-xl p-3 md:p-4">
                   <h4 className="text-primary-700 text-sm font-bold mb-2 leading-tight text-center">{cat.label}</h4>
                   <ul className="space-y-1.5">
-                    {cat.tests.map((test) => (
+                    {cat.tests.map((test, i) => (
                       <li key={test} className="text-xs text-gray-900 leading-relaxed flex gap-1.5 text-left">
-                        <span className="text-primary-500 shrink-0">•</span>
+                        <span className="text-primary-500 shrink-0 font-bold">{i + 1}.</span>
                         <span>{test}</span>
                       </li>
                     ))}
@@ -344,9 +351,9 @@ export function PsikotesServices() {
                 <div key={cat.label} className="bg-primary-50 border border-primary-200 rounded-xl p-3">
                   <h4 className="text-primary-700 text-xs font-bold mb-1.5 leading-tight text-center">{cat.label}</h4>
                   <ul className="space-y-1">
-                    {cat.tests.map((test) => (
+                    {cat.tests.map((test, i) => (
                       <li key={test} className="text-[11px] text-gray-900 leading-relaxed flex gap-1.5 text-left">
-                        <span className="text-primary-500 shrink-0">•</span>
+                        <span className="text-primary-500 shrink-0 font-bold">{i + 1}.</span>
                         <span>{test}</span>
                       </li>
                     ))}

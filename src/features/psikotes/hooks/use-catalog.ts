@@ -4,7 +4,6 @@ import { useMutation, useQueries, useQuery, useQueryClient } from '@tanstack/rea
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import { catalogService } from '../services/catalog.service'
-import type { CatalogChildPackage } from '../types/catalog.types'
 
 export const catalogKeys = {
   packages: ['catalog', 'packages'] as const,
