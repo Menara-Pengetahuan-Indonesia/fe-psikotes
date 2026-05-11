@@ -26,7 +26,7 @@ const courgette = Courgette({
 })
 
 export const metadata: Metadata = {
-  title: "Bermoela — Life School",
+  title: "Bermoela — Kenali Dirimu, Mulai Perubahanmu",
   description: "Platform Psikotes & Asesmen Profesional",
 }
 
