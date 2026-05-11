@@ -35,8 +35,11 @@ export const catalogService = {
   },
 
   getMyPackages: async (): Promise<MyPackageType[]> => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data } = await api.get<ApiResponse<any[]>>('/catalog/my-packages')
-    return (data.data ?? []).map((item) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (data.data ?? []).map((item: any) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const tests = (item.packageType?.tests ?? []).map((t: any) => {
         const questionTypes = new Set<string>()
         let totalDuration = 0
