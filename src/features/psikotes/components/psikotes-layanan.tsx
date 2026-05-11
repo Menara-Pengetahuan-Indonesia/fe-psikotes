@@ -325,8 +325,9 @@ export function PsikotesServices({ initialTab = 0 }: { initialTab?: number }) {
       {/* Panel */}
       <div className="bg-white border-2 border-primary-200 rounded-2xl mt-3 p-4 md:p-6">
         <div className="flex flex-col items-center mb-4">
-          <h3 className="text-slate-800 text-sm md:text-lg font-black text-center">
-            {current.panelTitle ?? current.title}
+          <h3 className="text-sm md:text-lg font-black text-center">
+            <span className="text-slate-800">{(current.panelTitle ?? current.title).split(':')[0]}</span>
+            <span className="text-amber-500">:</span>
           </h3>
           <div className="mt-1.5 h-1 w-16 rounded-full bg-amber-400" />
         </div>
@@ -386,8 +387,9 @@ export function PsikotesServices({ initialTab = 0 }: { initialTab?: number }) {
             </div>
 
             <div className="flex flex-col items-center mb-4">
-              <h4 className="text-slate-800 text-sm md:text-base font-black text-center">
-                Output yang didapatkan:
+              <h4 className="text-sm md:text-base font-black text-center">
+                <span className="text-slate-800">Output yang didapatkan</span>
+                <span className="text-amber-500">:</span>
               </h4>
               <div className="mt-1.5 h-1 w-12 rounded-full bg-amber-400" />
             </div>
