@@ -28,7 +28,6 @@ export const psikotesNavItems: NavItem[] = [
   // },
   {
     label: 'Layanan',
-    href: '/layanan/tes-pemetaan',
     children: [
       {
         label: 'Tes Pemetaan, Asesmen, dan Blueprint',

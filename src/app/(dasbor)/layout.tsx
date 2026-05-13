@@ -11,9 +11,9 @@ import {
   FileText,
   History,
   Menu,
-  X,
   LogOut,
   ChevronLeft,
+  ChevronDown,
   Users,
   BookOpen,
   Package,
@@ -74,11 +74,24 @@ const NAV_BY_ROLE: Record<UserRole, NavGroup[]> = {
   ],
 }
 
-const PUBLIC_LINKS = [
+const PUBLIC_LINKS: Array<
+  | { href: string; label: string }
+  | { label: string; children: { href: string; label: string }[] }
+> = [
   { href: '/', label: 'Beranda' },
-  { href: '/layanan', label: 'Layanan' },
+  {
+    label: 'Layanan',
+    children: [
+      { href: '/layanan/tes-pemetaan', label: 'Tes Pemetaan, Asesmen, dan Blueprint' },
+      { href: '/layanan/konsultasi-konseling', label: 'Konsultasi, Konseling, Live Coaching' },
+      { href: '/layanan/trauma-therapy', label: 'Trauma Therapy & Support Group' },
+      { href: '/layanan/pelatihan', label: 'Pelatihan' },
+      { href: '/layanan/solusi-perusahaan', label: 'Solusi bagi Perusahaan' },
+    ],
+  },
   { href: '/gratis', label: 'Tes Gratis' },
   { href: '/about', label: 'Tentang' },
+  { href: '/blog', label: 'Artikel' },
 ]
 
 const ROLE_BADGE: Record<UserRole, { label: string; className: string }> = {
@@ -303,15 +316,33 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               </button>
 
               <nav className="hidden md:flex items-center gap-1">
-                {PUBLIC_LINKS.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="px-3 h-9 rounded-lg text-sm font-semibold text-slate-600 hover:text-primary-700 hover:bg-primary-50 transition-colors flex items-center"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+                {PUBLIC_LINKS.map((link) => {
+                  if ('children' in link) {
+                    return (
+                      <PublicDropdown
+                        key={link.label}
+                        label={link.label}
+                        children={link.children}
+                        pathname={pathname}
+                      />
+                    )
+                  }
+                  const active = pathname === link.href
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={cn(
+                        'px-3 h-9 rounded-lg text-sm font-semibold transition-colors flex items-center',
+                        active
+                          ? 'text-primary-700 bg-primary-50'
+                          : 'text-slate-600 hover:text-primary-700 hover:bg-primary-50',
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                  )
+                })}
               </nav>
             </div>
 
@@ -417,6 +448,99 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
           </div>
         </footer>
+      </div>
+    </div>
+  )
+}
+
+function PublicDropdown({
+  label,
+  children,
+  pathname,
+}: {
+  label: string
+  children: { href: string; label: string }[]
+  pathname: string
+}) {
+  const [open, setOpen] = React.useState(false)
+  const ref = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    if (!open) return
+    const handleClick = (e: MouseEvent) => {
+      if (!ref.current?.contains(e.target as Node)) setOpen(false)
+    }
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('mousedown', handleClick)
+    document.addEventListener('keydown', handleKey)
+    return () => {
+      document.removeEventListener('mousedown', handleClick)
+      document.removeEventListener('keydown', handleKey)
+    }
+  }, [open])
+
+  React.useEffect(() => {
+    setOpen(false)
+  }, [pathname])
+
+  const hasActiveChild = children.some(
+    (c) => pathname === c.href || pathname.startsWith(c.href + '/'),
+  )
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-haspopup="menu"
+        className={cn(
+          'flex items-center gap-1.5 px-3 h-9 rounded-lg text-sm font-semibold transition-colors',
+          hasActiveChild
+            ? 'text-primary-700 bg-primary-50'
+            : 'text-slate-600 hover:text-primary-700 hover:bg-primary-50',
+        )}
+      >
+        {label}
+        <ChevronDown
+          className={cn('w-3.5 h-3.5 transition-transform', open && 'rotate-180')}
+        />
+      </button>
+      <div
+        className={cn(
+          'absolute top-full left-0 pt-2 z-50 transition-all',
+          open
+            ? 'opacity-100 visible translate-y-0 pointer-events-auto'
+            : 'opacity-0 invisible translate-y-1 pointer-events-none',
+        )}
+      >
+        <div
+          role="menu"
+          className="min-w-[240px] bg-white rounded-2xl border border-slate-100 shadow-xl shadow-slate-900/10 p-1.5"
+        >
+          {children.map((child) => {
+            const active =
+              pathname === child.href || pathname.startsWith(child.href + '/')
+            return (
+              <Link
+                key={child.href}
+                href={child.href}
+                role="menuitem"
+                onClick={() => setOpen(false)}
+                className={cn(
+                  'block px-3 py-2 rounded-xl text-sm font-semibold transition-colors',
+                  active
+                    ? 'bg-primary-50 text-primary-700'
+                    : 'text-slate-600 hover:bg-primary-50 hover:text-primary-700',
+                )}
+              >
+                {child.label}
+              </Link>
+            )
+          })}
+        </div>
       </div>
     </div>
   )
