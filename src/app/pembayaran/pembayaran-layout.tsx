@@ -4,7 +4,6 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import {
   Loader2,
-  ChevronLeft,
   ChevronRight,
   FlaskConical,
   Sparkles,
@@ -43,6 +42,7 @@ interface PackageDetail {
   description?: string
   price: number
   testTool?: string
+  childId: string
   childName: string
   childDescription?: string
   parentName: string
@@ -69,6 +69,7 @@ export function PembayaranLayout() {
               description: found.description,
               price: found.price,
               testTool: found.testTool,
+              childId: child.id,
               childName: child.name,
               childDescription: child.description,
               parentName: pkg.name,
@@ -167,22 +168,38 @@ export function PembayaranLayout() {
     { icon: ShieldCheck, title: 'Privasi Terjaga', desc: 'Data kamu aman dan hanya untuk kamu' },
   ]
 
+  const parentRouteMap: Record<string, string> = {
+    'Paket Relationship': '/relationship',
+  }
+  const parentHref = parentRouteMap[packageDetail.parentName]
+
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <button
-          onClick={() => router.back()}
-          className="inline-flex items-center gap-1.5 text-sm text-slate-600 hover:text-slate-900 transition-colors font-medium bg-white/80 backdrop-blur border border-slate-200 rounded-full px-4 h-9"
+      <nav className="flex items-center gap-1.5 text-sm text-slate-500 flex-wrap">
+        <Link href="/" className="hover:text-primary-700 transition-colors font-medium">
+          Beranda
+        </Link>
+        <ChevronRight className="w-3.5 h-3.5" />
+        {parentHref ? (
+          <Link
+            href={parentHref}
+            className="hover:text-primary-700 transition-colors font-medium"
+          >
+            {packageDetail.parentName}
+          </Link>
+        ) : (
+          <span className="text-slate-600 font-medium">{packageDetail.parentName}</span>
+        )}
+        <ChevronRight className="w-3.5 h-3.5" />
+        <Link
+          href={`/produk/${packageDetail.childId}`}
+          className="hover:text-primary-700 transition-colors font-medium truncate max-w-[160px] md:max-w-none"
         >
-          <ChevronLeft className="w-4 h-4" />
-          Kembali
-        </button>
-        <nav className="hidden md:flex items-center gap-1.5 text-xs text-slate-500">
-          <span className="text-slate-400">Pembayaran</span>
-          <ChevronRight className="w-3 h-3" />
-          <span className="text-slate-900 font-semibold">{packageDetail.childName}</span>
-        </nav>
-      </div>
+          {packageDetail.childName}
+        </Link>
+        <ChevronRight className="w-3.5 h-3.5" />
+        <span className="text-slate-900 font-semibold">Pembayaran</span>
+      </nav>
 
       <div className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 rounded-3xl p-6 md:p-8 overflow-hidden shadow-lg shadow-primary-200/50">
         <div
