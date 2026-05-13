@@ -1,10 +1,19 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Award, ChevronRight, Calendar, Brain, History, CheckCircle2, FileText, TrendingUp, Loader2 } from 'lucide-react'
+import {
+  Award,
+  ChevronRight,
+  Calendar,
+  Brain,
+  CheckCircle2,
+  FileText,
+  TrendingUp,
+  Loader2,
+  Sparkles,
+} from 'lucide-react'
 import Link from 'next/link'
 
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { api } from '@/lib/axios'
 
@@ -19,20 +28,20 @@ interface TestHistoryItem {
   percentage: number
 }
 
-const accentColors = [
-  { bg: 'bg-gradient-to-br from-indigo-400 to-indigo-500', text: 'text-white' },
-  { bg: 'bg-gradient-to-br from-teal-400 to-teal-500', text: 'text-white' },
-  { bg: 'bg-gradient-to-br from-violet-400 to-violet-500', text: 'text-white' },
-  { bg: 'bg-gradient-to-br from-rose-400 to-rose-500', text: 'text-white' },
-  { bg: 'bg-gradient-to-br from-amber-400 to-amber-500', text: 'text-white' },
+const ACCENT_RING = [
+  'from-primary-500 to-primary-600 shadow-primary-200',
+  'from-amber-400 to-amber-500 shadow-amber-200',
+  'from-violet-500 to-violet-600 shadow-violet-200',
+  'from-rose-400 to-rose-500 shadow-rose-200',
+  'from-teal-400 to-teal-500 shadow-teal-200',
 ]
 
-const scoreColors = [
-  'text-indigo-600 bg-indigo-50',
-  'text-teal-600 bg-teal-50',
-  'text-violet-600 bg-violet-50',
-  'text-rose-600 bg-rose-50',
-  'text-amber-600 bg-amber-50',
+const SCORE_BADGE = [
+  'text-primary-700 bg-primary-50 border-primary-100',
+  'text-amber-700 bg-amber-50 border-amber-100',
+  'text-violet-700 bg-violet-50 border-violet-100',
+  'text-rose-700 bg-rose-50 border-rose-100',
+  'text-teal-700 bg-teal-50 border-teal-100',
 ]
 
 export function TestResults() {
@@ -40,8 +49,9 @@ export function TestResults() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    api.get('/tests/history')
-      .then(res => setHistory(res.data.data ?? []))
+    api
+      .get('/tests/history')
+      .then((res) => setHistory(res.data.data ?? []))
       .catch(() => {})
       .finally(() => setLoading(false))
   }, [])
@@ -52,7 +62,7 @@ export function TestResults() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-20">
+      <div className="flex items-center justify-center py-24">
         <Loader2 className="w-8 h-8 text-primary-500 animate-spin" />
       </div>
     )
@@ -60,115 +70,165 @@ export function TestResults() {
 
   return (
     <div className="space-y-6">
-      {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900 p-8 md:p-10 text-white">
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 rounded-3xl p-6 md:p-8 overflow-hidden shadow-lg shadow-primary-200/40">
+        <div
+          className="absolute inset-0 opacity-[0.08] pointer-events-none"
+          style={{
+            backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+            backgroundSize: '20px 20px',
+          }}
+        />
+        <div className="absolute top-[-70px] right-[-50px] w-56 h-56 bg-amber-400/25 rounded-full blur-3xl" />
+        <div className="absolute bottom-[-50px] left-[-40px] w-44 h-44 bg-accent-400/30 rounded-full blur-2xl" />
+
+        <svg
+          className="absolute top-6 right-10 w-24 h-24 text-white/10 pointer-events-none"
+          viewBox="0 0 100 100"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        >
+          <circle cx="50" cy="50" r="36" />
+          <circle cx="50" cy="50" r="23" />
+          <circle cx="50" cy="50" r="10" />
+        </svg>
+
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-5 mb-8">
           <div>
-            <p className="text-teal-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-400 text-amber-950 text-[10px] font-black uppercase tracking-wider mb-3">
+              <Sparkles className="w-3 h-3" />
               Riwayat
-            </p>
-            <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
-              Hasil Tes.
+            </div>
+            <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight leading-tight">
+              Hasil Tes
             </h1>
-            <p className="text-slate-400 font-medium text-sm">
+            <p className="text-sm text-primary-100/90 mt-1.5">
               Analisis mendalam dari setiap perjalanan pengembangan dirimu.
             </p>
           </div>
-          <Button
-            size="lg"
-            className="bg-white text-slate-900 hover:bg-teal-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-colors active:scale-95 group shrink-0"
-            asChild
+          <Link
+            href="/pengguna/paket-saya"
+            className="inline-flex items-center gap-2 px-5 h-11 rounded-xl bg-white text-primary-700 text-sm font-bold hover:bg-amber-50 transition-colors shadow-lg shadow-primary-900/20 shrink-0 self-start md:self-auto"
           >
-            <Link href="/pengguna/paket-saya">
-              <Brain className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-              Mulai Tes Baru
-            </Link>
-          </Button>
+            <Brain className="w-4 h-4" />
+            Mulai Tes Baru
+          </Link>
         </div>
 
-        {/* Stats */}
-        <div className="relative z-10 grid grid-cols-3 gap-4 mt-8">
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-teal-500/30 flex items-center justify-center">
-              <CheckCircle2 className="size-5 text-teal-300" />
+        <div className="relative z-10 grid grid-cols-3 gap-3 md:gap-4">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
+            <div className="w-10 h-10 rounded-xl bg-accent-400/30 flex items-center justify-center shrink-0">
+              <CheckCircle2 className="w-5 h-5 text-accent-200" />
             </div>
             <div>
-              <p className="text-2xl font-black leading-none">{history.length}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Selesai</p>
+              <p className="text-xl md:text-2xl font-black text-white leading-none">
+                {history.length}
+              </p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-1">
+                Selesai
+              </p>
             </div>
           </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-              <Award className="size-5 text-indigo-300" />
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
+            <div className="w-10 h-10 rounded-xl bg-amber-400/30 flex items-center justify-center shrink-0">
+              <Award className="w-5 h-5 text-amber-200" />
             </div>
             <div>
-              <p className="text-2xl font-black leading-none">{avgScore}%</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Rata-rata</p>
+              <p className="text-xl md:text-2xl font-black text-white leading-none">{avgScore}%</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-1">
+                Rata-rata
+              </p>
             </div>
           </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-violet-500/30 flex items-center justify-center">
-              <TrendingUp className="size-5 text-violet-300" />
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
+            <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center shrink-0">
+              <TrendingUp className="w-5 h-5 text-white" />
             </div>
             <div>
-              <p className="text-2xl font-black leading-none">{history.length}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total Tes</p>
+              <p className="text-xl md:text-2xl font-black text-white leading-none">
+                {history.length}
+              </p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-1">
+                Total Tes
+              </p>
             </div>
           </div>
-        </div>
-
-        <div className="absolute -right-10 -top-10 opacity-5 pointer-events-none">
-          <History className="size-72" />
         </div>
       </div>
 
-      {/* LIST */}
       {history.length === 0 ? (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
-          <div className="size-16 rounded-2xl bg-teal-50 flex items-center justify-center mb-5">
-            <FileText className="size-8 text-teal-400" />
+        <div className="relative bg-white rounded-3xl border border-primary-100/60 p-12 md:p-16 text-center overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-100/50 to-transparent rounded-bl-full pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-amber-100/50 to-transparent rounded-tr-full pointer-events-none" />
+          <div className="relative">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center mx-auto mb-4 shadow-sm shadow-primary-200">
+              <FileText className="w-7 h-7 text-white" />
+            </div>
+            <p className="text-slate-900 font-black text-lg mb-1">Belum ada hasil</p>
+            <p className="text-slate-500 font-medium text-sm mb-6 max-w-md mx-auto">
+              Selesaikan tes pertamamu untuk melihat hasilnya di sini.
+            </p>
+            <Link
+              href="/pengguna/paket-saya"
+              className="inline-flex items-center gap-2 px-5 h-11 rounded-xl bg-primary-600 text-white text-sm font-bold hover:bg-primary-700 transition-colors"
+            >
+              <Brain className="w-4 h-4" />
+              Mulai Tes Sekarang
+            </Link>
           </div>
-          <p className="text-slate-900 font-black text-lg mb-1">Belum ada hasil.</p>
-          <p className="text-slate-400 font-medium text-sm mb-6">Selesaikan tes pertamamu untuk melihat hasilnya di sini.</p>
-          <Button size="lg" className="rounded-2xl h-12 px-8 font-black bg-slate-900 hover:bg-slate-800" asChild>
-            <Link href="/pengguna/paket-saya">Mulai Tes Sekarang</Link>
-          </Button>
         </div>
       ) : (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden divide-y divide-slate-50">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden divide-y divide-slate-100 shadow-sm">
           {history.map((item, index) => {
-            const accent = accentColors[index % accentColors.length]
-            const scoreColor = scoreColors[index % scoreColors.length]
+            const accent = ACCENT_RING[index % ACCENT_RING.length]
+            const scoreBadge = SCORE_BADGE[index % SCORE_BADGE.length]
 
             return (
               <Link
                 key={item.id}
                 href={`/tes/${item.testId}/result/${item.id}`}
-                className="group flex items-center gap-5 px-6 md:px-8 py-5 hover:bg-slate-50/50 transition-colors"
+                className="group flex items-center gap-4 md:gap-5 px-5 md:px-7 py-4 md:py-5 hover:bg-primary-50/40 transition-colors"
               >
-                <div className={cn('size-12 rounded-2xl flex items-center justify-center shrink-0 transition-[transform,box-shadow] group-hover:scale-105 group-hover:shadow-md', accent.bg, accent.text)}>
-                  <Brain className="size-5" />
+                <div
+                  className={cn(
+                    'w-12 h-12 rounded-2xl bg-gradient-to-br flex items-center justify-center shrink-0 shadow-sm transition-transform group-hover:scale-105',
+                    accent,
+                  )}
+                >
+                  <Brain className="w-5 h-5 text-white" />
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-base font-black text-slate-900 truncate group-hover:text-teal-600 transition-colors">
+                  <h3 className="text-sm md:text-base font-black text-slate-900 truncate group-hover:text-primary-700 transition-colors">
                     {item.testName}
                   </h3>
-                  <div className="flex items-center gap-3 text-sm text-slate-400 font-medium">
+                  <div className="flex items-center gap-2.5 text-xs text-slate-500 font-medium flex-wrap mt-0.5">
                     <span className="flex items-center gap-1">
-                      <Calendar className="size-3.5" />
-                      {new Date(item.completedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
+                      <Calendar className="w-3.5 h-3.5" />
+                      {new Date(item.completedAt).toLocaleDateString('id-ID', {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric',
+                      })}
                     </span>
-                    <span className="text-xs">{item.totalScore}/{item.totalMax}</span>
+                    <span className="text-slate-400">·</span>
+                    <span className="text-xs">
+                      {item.totalScore}/{item.totalMax}
+                    </span>
                   </div>
                 </div>
 
-                <div className={cn('text-sm font-black px-3 py-1.5 rounded-full shrink-0', scoreColor)}>
+                <div
+                  className={cn(
+                    'text-sm font-black px-3 py-1.5 rounded-full border shrink-0',
+                    scoreBadge,
+                  )}
+                >
                   {item.percentage}%
                 </div>
 
-                <div className="size-9 rounded-xl bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-teal-600 group-hover:text-white transition-colors shrink-0">
-                  <ChevronRight className="size-4" />
+                <div className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-100 text-slate-400 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white group-hover:border-primary-600 transition-colors shrink-0">
+                  <ChevronRight className="w-4 h-4" />
                 </div>
               </Link>
             )
