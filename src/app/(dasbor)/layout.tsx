@@ -137,7 +137,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const initials = mounted && user?.name ? user.name.substring(0, 2).toUpperCase() : 'U'
 
   const isActiveLink = (href: string) =>
-    pathname === href || pathname.startsWith(href + '/')
+    mounted && (pathname === href || pathname.startsWith(href + '/'))
 
   const SidebarContent = ({ collapsed }: { collapsed: boolean }) => (
     <div className="flex flex-col h-full">
@@ -323,11 +323,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         key={link.label}
                         label={link.label}
                         children={link.children}
-                        pathname={pathname}
+                        pathname={mounted ? pathname : ''}
                       />
                     )
                   }
-                  const active = pathname === link.href
+                  const active = mounted && pathname === link.href
                   return (
                     <Link
                       key={link.href}
