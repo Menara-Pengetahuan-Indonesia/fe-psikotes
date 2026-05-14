@@ -17,7 +17,7 @@ export function ExamHeader({
   slug,
 }: ExamHeaderProps) {
   return (
-    <header className="sticky top-0 z-40 bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-900 text-white shadow-lg">
+    <header className="sticky top-0 z-40 bg-gradient-to-r from-slate-900 via-slate-800 to-primary-900 text-white shadow-lg">
       <div className="max-w-4xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between mb-3">
           <Link
@@ -32,7 +32,7 @@ export function ExamHeader({
 
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm">
-              <Brain className="size-4 text-indigo-300" />
+              <Brain className="size-4 text-primary-300" />
               <span className="text-[10px] font-black uppercase tracking-widest text-slate-300">
                 Soal {currentIdx + 1}/{questionsLength}
               </span>
@@ -43,7 +43,7 @@ export function ExamHeader({
         {/* Progress Bar */}
         <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-indigo-400 to-teal-400 transition-[width] duration-500 ease-out rounded-full"
+            className="h-full bg-gradient-to-r from-primary-400 to-teal-400 transition-[width] duration-500 ease-out rounded-full"
             style={{ width: `${progress}%` }}
           />
         </div>

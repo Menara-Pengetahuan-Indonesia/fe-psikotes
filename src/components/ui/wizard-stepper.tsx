@@ -36,7 +36,7 @@ export function WizardStepper({ steps, activeStep, onStepClick }: WizardStepperP
                   isCompleted
                     ? 'bg-teal-500 text-white shadow-sm'
                     : isActive
-                      ? 'bg-indigo-600 text-white shadow-md'
+                      ? 'bg-primary-600 text-white shadow-md'
                       : 'bg-slate-100 text-slate-400 group-hover:bg-slate-200'
                 )}
               >

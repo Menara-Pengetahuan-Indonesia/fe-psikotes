@@ -16,7 +16,7 @@ export function TestDetailPage({ slug }: TestDetailPageProps) {
   return (
     <div className="min-h-screen bg-[#F2F2F7]">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 pt-8 pb-10 md:pt-10 md:pb-12 text-white">
+      <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-primary-900 pt-8 pb-10 md:pt-10 md:pb-12 text-white">
         <div className="max-w-4xl mx-auto px-6 relative z-10">
           <Link
             href="/gratis"
@@ -29,7 +29,7 @@ export function TestDetailPage({ slug }: TestDetailPageProps) {
           </Link>
 
           <div className="flex items-start gap-6">
-            <div className="size-16 rounded-2xl bg-gradient-to-br from-indigo-400 to-indigo-500 flex items-center justify-center shrink-0 shadow-lg">
+            <div className="size-16 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-500 flex items-center justify-center shrink-0 shadow-lg">
               {Icon ? <Icon className="size-7 text-white" /> : <Brain className="size-7 text-white" />}
             </div>
             <div>
@@ -54,7 +54,7 @@ export function TestDetailPage({ slug }: TestDetailPageProps) {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mt-10">
             <div className="flex items-center gap-4">
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl px-5 py-3 flex items-center gap-2.5">
-                <Clock className="size-4 text-indigo-300" />
+                <Clock className="size-4 text-primary-300" />
                 <span className="text-sm font-bold">{test?.duration ?? '—'}</span>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl px-5 py-3 flex items-center gap-2.5">
@@ -72,7 +72,7 @@ export function TestDetailPage({ slug }: TestDetailPageProps) {
               </button>
               <Link
                 href={`/gratis/${slug}/exam`}
-                className="h-14 px-8 bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl font-black text-base shadow-xl transition-colors active:scale-95 flex items-center gap-2"
+                className="h-14 px-8 bg-white text-slate-900 hover:bg-primary-50 rounded-2xl font-black text-base shadow-xl transition-colors active:scale-95 flex items-center gap-2"
               >
                 <Play className="size-5 fill-current" />
                 Mulai Tes
@@ -91,8 +91,8 @@ export function TestDetailPage({ slug }: TestDetailPageProps) {
         {/* PANDUAN */}
         <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
           <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-              <Info className="size-5 text-indigo-600" />
+            <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+              <Info className="size-5 text-primary-600" />
             </div>
             <div>
               <h2 className="text-lg font-black text-slate-900">Panduan Pengisian</h2>
@@ -104,7 +104,7 @@ export function TestDetailPage({ slug }: TestDetailPageProps) {
               <div key={i} className="flex gap-4 items-start group">
                 <div className={cn(
                   'size-9 rounded-xl flex items-center justify-center shrink-0 text-sm font-black transition-colors',
-                  i === 0 ? 'bg-indigo-100 text-indigo-600' :
+                  i === 0 ? 'bg-primary-100 text-primary-600' :
                   i === 1 ? 'bg-teal-100 text-teal-600' :
                   i === 2 ? 'bg-violet-100 text-violet-600' :
                   i === 3 ? 'bg-rose-100 text-rose-600' :

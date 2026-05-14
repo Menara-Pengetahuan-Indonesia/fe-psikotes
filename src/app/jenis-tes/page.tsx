@@ -40,7 +40,7 @@ function formatPrice(price: number) {
 }
 
 const cardThemes = [
-  { iconBg: 'bg-indigo-50', iconColor: 'text-indigo-600', iconHover: 'group-hover:bg-indigo-600', border: 'hover:border-indigo-500', shadow: 'hover:shadow-indigo-900/10', titleHover: 'group-hover:text-indigo-700', glow: 'bg-indigo-400', aura: 'bg-indigo-50', borderColor: 'border-indigo-100' },
+  { iconBg: 'bg-primary-50', iconColor: 'text-primary-600', iconHover: 'group-hover:bg-primary-600', border: 'hover:border-primary-500', shadow: 'hover:shadow-primary-900/10', titleHover: 'group-hover:text-primary-700', glow: 'bg-primary-400', aura: 'bg-primary-50', borderColor: 'border-primary-100' },
   { iconBg: 'bg-primary-50', iconColor: 'text-primary-600', iconHover: 'group-hover:bg-primary-600', border: 'hover:border-primary-500', shadow: 'hover:shadow-primary-900/10', titleHover: 'group-hover:text-primary-700', glow: 'bg-primary-400', aura: 'bg-primary-50', borderColor: 'border-primary-100' },
   { iconBg: 'bg-violet-50', iconColor: 'text-violet-600', iconHover: 'group-hover:bg-violet-600', border: 'hover:border-violet-500', shadow: 'hover:shadow-violet-900/10', titleHover: 'group-hover:text-violet-700', glow: 'bg-violet-400', aura: 'bg-violet-50', borderColor: 'border-violet-100' },
   { iconBg: 'bg-rose-50', iconColor: 'text-rose-600', iconHover: 'group-hover:bg-rose-600', border: 'hover:border-rose-500', shadow: 'hover:shadow-rose-900/10', titleHover: 'group-hover:text-rose-700', glow: 'bg-rose-400', aura: 'bg-rose-50', borderColor: 'border-rose-100' },
@@ -50,7 +50,7 @@ const cardThemes = [
 
 const DUMMY_CATEGORIES = [
   { label: 'Kepribadian', icon: Smile, bg: 'bg-rose-50', color: 'text-rose-500' },
-  { label: 'Kecerdasan', icon: Brain, bg: 'bg-indigo-50', color: 'text-indigo-500' },
+  { label: 'Kecerdasan', icon: Brain, bg: 'bg-primary-50', color: 'text-primary-500' },
   { label: 'Minat & Bakat', icon: Compass, bg: 'bg-amber-50', color: 'text-amber-500' },
   { label: 'Kesehatan Mental', icon: Heart, bg: 'bg-pink-50', color: 'text-pink-500' },
   { label: 'Rekrutmen', icon: Briefcase, bg: 'bg-teal-50', color: 'text-teal-500' },

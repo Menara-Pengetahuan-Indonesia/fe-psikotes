@@ -13,7 +13,7 @@ import type { TestDetailProps } from './test-detail'
 
 const cardThemes = [
   { iconBg: 'bg-primary-50', iconColor: 'text-primary-600', selectedBg: 'bg-primary-50/60', checkBg: 'bg-primary-600' },
-  { iconBg: 'bg-indigo-50', iconColor: 'text-indigo-600', selectedBg: 'bg-indigo-50/60', checkBg: 'bg-indigo-600' },
+  { iconBg: 'bg-primary-50', iconColor: 'text-primary-600', selectedBg: 'bg-primary-50/60', checkBg: 'bg-primary-600' },
   { iconBg: 'bg-violet-50', iconColor: 'text-violet-600', selectedBg: 'bg-violet-50/60', checkBg: 'bg-violet-600' },
   { iconBg: 'bg-rose-50', iconColor: 'text-rose-600', selectedBg: 'bg-rose-50/60', checkBg: 'bg-rose-600' },
   { iconBg: 'bg-accent-50', iconColor: 'text-accent-600', selectedBg: 'bg-accent-50/60', checkBg: 'bg-accent-600' },

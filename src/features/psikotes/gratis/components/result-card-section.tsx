@@ -12,9 +12,9 @@ export function ResultCardSection({
   return (
     <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden shadow-sm">
       {/* Result Card */}
-      <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 overflow-hidden flex flex-col items-center justify-center text-center py-12 px-8 text-white">
+      <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-primary-900 overflow-hidden flex flex-col items-center justify-center text-center py-12 px-8 text-white">
         <div className="relative z-10 space-y-5">
-          <div className="inline-block px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-[10px] font-black uppercase tracking-[0.2em] text-indigo-300">
+          <div className="inline-block px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-[10px] font-black uppercase tracking-[0.2em] text-primary-300">
             Personality Type
           </div>
 

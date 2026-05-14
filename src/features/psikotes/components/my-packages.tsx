@@ -296,7 +296,7 @@ export function MyPackages() {
                     isPublished
                       ? 'bg-emerald-50 border border-emerald-100 text-emerald-700'
                       : isReviewed
-                        ? 'bg-indigo-50 border border-indigo-100 text-indigo-700'
+                        ? 'bg-primary-50 border border-primary-100 text-primary-700'
                         : 'bg-amber-50 border border-amber-100 text-amber-700',
                   )}>
                     {isPublished ? (
