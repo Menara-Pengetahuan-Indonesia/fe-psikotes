@@ -146,7 +146,7 @@ export function SuperAdminDashboard() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group bg-white rounded-[2rem] border border-slate-100 p-6 hover:shadow-md transition-[box-shadow]"
+                  className="group bg-white rounded-3xl border border-slate-100 p-6 hover:shadow-md transition-[box-shadow]"
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className={cn('size-12 rounded-2xl flex items-center justify-center text-white transition-[transform,box-shadow] group-hover:scale-105 group-hover:shadow-md', item.color)}>

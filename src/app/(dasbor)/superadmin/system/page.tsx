@@ -197,7 +197,7 @@ export default function SuperAdminSystemPage() {
 
       {/* QUICK ACTIONS */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white rounded-[2rem] border border-slate-100 p-6 group hover:shadow-md transition-all">
+        <div className="bg-white rounded-3xl border border-slate-100 p-6 group hover:shadow-md transition-all">
           <div className="size-12 rounded-2xl bg-gradient-to-br from-teal-400 to-teal-500 flex items-center justify-center text-white mb-4">
             <Download className="size-5" />
           </div>
@@ -207,7 +207,7 @@ export default function SuperAdminSystemPage() {
             Jalankan Backup
           </Button>
         </div>
-        <div className="bg-white rounded-[2rem] border border-slate-100 p-6 group hover:shadow-md transition-all">
+        <div className="bg-white rounded-3xl border border-slate-100 p-6 group hover:shadow-md transition-all">
           <div className="size-12 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-500 flex items-center justify-center text-white mb-4">
             <RefreshCw className="size-5" />
           </div>
@@ -217,7 +217,7 @@ export default function SuperAdminSystemPage() {
             Flush Sekarang
           </Button>
         </div>
-        <div className="bg-white rounded-[2rem] border border-slate-100 p-6 group hover:shadow-md transition-all">
+        <div className="bg-white rounded-3xl border border-slate-100 p-6 group hover:shadow-md transition-all">
           <div className="size-12 rounded-2xl bg-gradient-to-br from-rose-400 to-rose-500 flex items-center justify-center text-white mb-4">
             <Trash2 className="size-5" />
           </div>
