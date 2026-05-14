@@ -247,7 +247,7 @@ export default function ResultDetailPage() {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="size-8 text-indigo-400 animate-spin" />
+          <Loader2 className="size-8 text-primary-400 animate-spin" />
           <p className="text-sm font-bold text-slate-400">Memuat data...</p>
         </div>
       </div>
@@ -282,14 +282,14 @@ export default function ResultDetailPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-primary-900 p-8 md:p-10 text-white">
         {/* dot pattern */}
         <div
           className="absolute inset-0 opacity-[0.06] pointer-events-none"
           style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }}
         />
         {/* blur orbs */}
-        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-indigo-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-primary-500/30 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
 
         <div className="relative z-10">
@@ -304,7 +304,7 @@ export default function ResultDetailPage() {
           </button>
 
           <div className="flex items-start gap-5 mb-6">
-            <div className="size-16 rounded-2xl bg-gradient-to-br from-indigo-400 to-indigo-500 flex items-center justify-center shrink-0 shadow-lg">
+            <div className="size-16 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-500 flex items-center justify-center shrink-0 shadow-lg">
               <User className="size-7 text-white" />
             </div>
             <div>
@@ -314,7 +314,7 @@ export default function ResultDetailPage() {
                 <span>{pkg.user.email}</span>
               </div>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 inline-flex items-center gap-1.5">
+                <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-primary-500/20 text-primary-300 inline-flex items-center gap-1.5">
                   <Package className="size-3" />
                   {pkg.packageType.childPackage.package.name}
                   <span className="opacity-50">›</span>
@@ -334,8 +334,8 @@ export default function ResultDetailPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-                <FileBarChart className="size-5 text-indigo-300" />
+              <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+                <FileBarChart className="size-5 text-primary-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{pkg.tests.length}</p>
@@ -380,8 +380,8 @@ export default function ResultDetailPage() {
         {/* Header */}
         <div className="px-8 py-6 border-b border-slate-50 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className={cn('size-10 rounded-xl flex items-center justify-center', isPublished ? 'bg-emerald-100' : isReviewed ? 'bg-indigo-100' : 'bg-amber-100')}>
-              {isPublished ? <UserCheck className="size-5 text-emerald-600" /> : isReviewed ? <Bot className="size-5 text-indigo-600" /> : <MessageSquare className="size-5 text-amber-600" />}
+            <div className={cn('size-10 rounded-xl flex items-center justify-center', isPublished ? 'bg-emerald-100' : isReviewed ? 'bg-primary-100' : 'bg-amber-100')}>
+              {isPublished ? <UserCheck className="size-5 text-emerald-600" /> : isReviewed ? <Bot className="size-5 text-primary-600" /> : <MessageSquare className="size-5 text-amber-600" />}
             </div>
             <div>
               <h2 className="text-lg font-black text-slate-900">Laporan Psikologis</h2>
@@ -397,7 +397,7 @@ export default function ResultDetailPage() {
           <button
             onClick={handleGenerate}
             disabled={generating}
-            className="inline-flex items-center gap-2 h-10 px-5 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-sm font-bold hover:from-violet-700 hover:to-indigo-700 transition-all disabled:opacity-60 disabled:cursor-not-allowed shadow-sm shrink-0"
+            className="inline-flex items-center gap-2 h-10 px-5 rounded-xl bg-gradient-to-r from-violet-600 to-primary-600 text-white text-sm font-bold hover:from-violet-700 hover:to-primary-700 transition-all disabled:opacity-60 disabled:cursor-not-allowed shadow-sm shrink-0"
           >
             {generating ? (
               <><Loader2 className="size-4 animate-spin" /> Generating...</>
@@ -419,7 +419,7 @@ export default function ResultDetailPage() {
 
         {generating && (
           <div className="px-8 py-14 text-center">
-            <Loader2 className="size-8 text-indigo-400 animate-spin mx-auto mb-4" />
+            <Loader2 className="size-8 text-primary-400 animate-spin mx-auto mb-4" />
             <p className="text-sm font-bold text-slate-500">AI sedang menganalisis hasil tes...</p>
             <p className="text-xs text-slate-400 mt-1">Ini mungkin membutuhkan 15–30 detik</p>
           </div>
@@ -430,7 +430,7 @@ export default function ResultDetailPage() {
             {/* Model info */}
             {reviewData.modelUsed && (
               <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-100 w-fit">
-                <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+                <div className="w-1.5 h-1.5 rounded-full bg-primary-400" />
                 <p className="text-[11px] text-slate-500 font-medium">
                   Dibuat oleh <span className="font-black text-slate-700">{reviewData.modelUsed}</span>
                   {reviewData.generatedAt ? ` · ${new Date(reviewData.generatedAt).toLocaleString('id-ID')}` : ''}
@@ -445,7 +445,7 @@ export default function ResultDetailPage() {
                 value={reviewData.summary}
                 onChange={(e) => setReviewData((prev) => prev ? { ...prev, summary: e.target.value } : prev)}
                 rows={4}
-                className="w-full p-4 rounded-xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 font-medium text-slate-700 bg-white"
+                className="w-full p-4 rounded-xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-400 font-medium text-slate-700 bg-white"
               />
             </div>
 
@@ -461,7 +461,7 @@ export default function ResultDetailPage() {
                         value={a.level}
                         onChange={(e) => updateAssessment(idx, 'level', e.target.value)}
                         placeholder="Level"
-                        className="w-36 h-8 px-3 rounded-lg border border-slate-200 text-xs font-black text-indigo-700 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 text-center"
+                        className="w-36 h-8 px-3 rounded-lg border border-slate-200 text-xs font-black text-primary-700 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-400 text-center"
                       />
                     </div>
                     <textarea
@@ -469,7 +469,7 @@ export default function ResultDetailPage() {
                       onChange={(e) => updateAssessment(idx, 'interpretation', e.target.value)}
                       rows={3}
                       placeholder="Interpretasi..."
-                      className="w-full p-3 rounded-lg border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 font-medium text-slate-700 bg-slate-50"
+                      className="w-full p-3 rounded-lg border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-400 font-medium text-slate-700 bg-slate-50"
                     />
                   </div>
                 ))}
@@ -493,7 +493,7 @@ export default function ResultDetailPage() {
                         <input
                           value={s}
                           onChange={(e) => updateListItem(field, idx, e.target.value)}
-                          className="flex-1 h-9 px-3 rounded-lg border border-slate-200 text-sm font-medium text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400"
+                          className="flex-1 h-9 px-3 rounded-lg border border-slate-200 text-sm font-medium text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-400"
                         />
                         <button onClick={() => removeListItem(field, idx)} className="size-7 rounded-lg bg-rose-50 hover:bg-rose-100 flex items-center justify-center transition-colors shrink-0">
                           <Trash2 className="size-3 text-rose-500" />
@@ -506,7 +506,7 @@ export default function ResultDetailPage() {
                         'inline-flex items-center gap-1.5 text-xs font-bold mt-1 transition-colors',
                         color === 'emerald' ? 'text-emerald-600 hover:text-emerald-700' :
                         color === 'amber' ? 'text-amber-600 hover:text-amber-700' :
-                        'text-indigo-600 hover:text-indigo-700',
+                        'text-primary-600 hover:text-primary-700',
                       )}
                     >
                       <Plus className="size-3.5" /> Tambah
@@ -524,7 +524,7 @@ export default function ResultDetailPage() {
                 onChange={(e) => setReviewData((prev) => prev ? { ...prev, psychologistNotes: e.target.value } : prev)}
                 rows={3}
                 placeholder="Catatan tambahan dari psikolog..."
-                className="w-full p-4 rounded-xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 font-medium text-slate-700 bg-white"
+                className="w-full p-4 rounded-xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-400 font-medium text-slate-700 bg-white"
               />
             </div>
 
@@ -532,7 +532,7 @@ export default function ResultDetailPage() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2 border-t border-slate-100">
               <div>
                 {saveSuccess === 'draft' && (
-                  <div className="flex items-center gap-2 text-indigo-600 text-sm font-bold">
+                  <div className="flex items-center gap-2 text-primary-600 text-sm font-bold">
                     <CheckCircle2 className="size-4" /> Draft tersimpan
                   </div>
                 )}
@@ -580,9 +580,9 @@ export default function ResultDetailPage() {
               >
                 <div className={cn(
                   'size-10 rounded-xl flex items-center justify-center shrink-0',
-                  isCompleted ? 'bg-indigo-50 border border-indigo-100' : 'bg-slate-50 border border-slate-100',
+                  isCompleted ? 'bg-primary-50 border border-primary-100' : 'bg-slate-50 border border-slate-100',
                 )}>
-                  <FileBarChart className={cn('size-5', isCompleted ? 'text-indigo-600' : 'text-slate-400')} />
+                  <FileBarChart className={cn('size-5', isCompleted ? 'text-primary-600' : 'text-slate-400')} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3 className="font-black text-slate-900 text-sm">{test.name}</h3>
@@ -594,7 +594,7 @@ export default function ResultDetailPage() {
                 </div>
                 <span className={cn(
                   'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
-                  isCompleted ? 'bg-indigo-50 text-indigo-600' : 'bg-slate-100 text-slate-400',
+                  isCompleted ? 'bg-primary-50 text-primary-600' : 'bg-slate-100 text-slate-400',
                 )}>
                   {isCompleted ? 'Selesai' : 'Belum'}
                 </span>
@@ -649,7 +649,7 @@ export default function ResultDetailPage() {
                                       {answer.question.questionText}
                                     </p>
                                     <div className="flex flex-wrap items-center gap-2">
-                                      <span className="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
+                                      <span className="text-xs font-bold text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
                                         {getAnswerLabel(answer)}
                                       </span>
                                       {answer.isCorrect !== null && (

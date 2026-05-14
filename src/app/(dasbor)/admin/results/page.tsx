@@ -61,7 +61,7 @@ function formatDate(d: string | null) {
 }
 
 const accentColors = [
-  'bg-gradient-to-br from-indigo-400 to-indigo-500',
+  'bg-gradient-to-br from-primary-400 to-primary-500',
   'bg-gradient-to-br from-violet-400 to-violet-500',
   'bg-gradient-to-br from-rose-400 to-rose-500',
   'bg-gradient-to-br from-teal-400 to-teal-500',
@@ -116,19 +116,19 @@ export default function AdminResultsPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-primary-900 p-8 md:p-10 text-white">
         {/* dot pattern */}
         <div
           className="absolute inset-0 opacity-[0.06] pointer-events-none"
           style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }}
         />
         {/* blur orbs */}
-        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-indigo-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-primary-500/30 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <p className="text-indigo-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+            <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
               Laporan
             </p>
             <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
@@ -149,8 +149,8 @@ export default function AdminResultsPage() {
 
         <div className="relative z-10 grid grid-cols-3 gap-4 mt-8">
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-              <Users className="size-5 text-indigo-300" />
+            <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+              <Users className="size-5 text-primary-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{items.length}</p>
@@ -211,7 +211,7 @@ export default function AdminResultsPage() {
             placeholder="Cari nama, email, atau nama paket..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            className="pl-11 h-11 bg-white border-slate-100 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500/10"
+            className="pl-11 h-11 bg-white border-slate-100 rounded-xl text-sm font-medium focus:ring-2 focus:ring-primary-500/10"
           />
         </div>
       </div>
@@ -219,7 +219,7 @@ export default function AdminResultsPage() {
       {/* LIST */}
       {loading ? (
         <div className="bg-white rounded-3xl border border-slate-100 p-16 flex flex-col items-center gap-4">
-          <Loader2 className="size-8 text-indigo-400 animate-spin" />
+          <Loader2 className="size-8 text-primary-400 animate-spin" />
           <p className="text-sm font-bold text-slate-400">Memuat data...</p>
         </div>
       ) : error ? (
@@ -237,8 +237,8 @@ export default function AdminResultsPage() {
         </div>
       ) : filtered.length === 0 ? (
         <div className="bg-white rounded-3xl border border-slate-100 p-16 text-center flex flex-col items-center">
-          <div className="size-16 rounded-2xl bg-indigo-50 flex items-center justify-center mb-5">
-            <Users className="size-8 text-indigo-400" />
+          <div className="size-16 rounded-2xl bg-primary-50 flex items-center justify-center mb-5">
+            <Users className="size-8 text-primary-400" />
           </div>
           <p className="text-slate-900 font-black text-lg mb-1">Tidak ditemukan.</p>
           <p className="text-slate-400 font-medium text-sm">Coba ubah filter atau kata kunci pencarian.</p>
@@ -264,12 +264,12 @@ export default function AdminResultsPage() {
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2.5 mb-0.5">
-                    <h3 className="text-base font-black text-slate-900 truncate group-hover:text-indigo-600 transition-colors">
+                    <h3 className="text-base font-black text-slate-900 truncate group-hover:text-primary-600 transition-colors">
                       {fullName}
                     </h3>
                     <span className={cn(
                       'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
-                      isPublished ? 'bg-emerald-50 text-emerald-600' : isReviewed ? 'bg-indigo-50 text-indigo-600' : 'bg-amber-50 text-amber-600',
+                      isPublished ? 'bg-emerald-50 text-emerald-600' : isReviewed ? 'bg-primary-50 text-primary-600' : 'bg-amber-50 text-amber-600',
                     )}>
                       {isPublished ? 'Published' : isReviewed ? 'Draft' : 'Perlu Review'}
                     </span>
@@ -277,7 +277,7 @@ export default function AdminResultsPage() {
                   <p className="text-sm text-slate-400 font-medium truncate">{item.user.email}</p>
                 </div>
 
-                <div className="hidden md:flex items-center gap-1.5 text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1.5 rounded-full shrink-0">
+                <div className="hidden md:flex items-center gap-1.5 text-xs font-bold text-primary-500 bg-primary-50 px-3 py-1.5 rounded-full shrink-0">
                   <Package className="size-3.5" />
                   <span className="truncate max-w-[200px]">
                     {item.packageType.childPackage.package.name} › {item.packageType.childPackage.name} › {item.packageType.name}
@@ -303,10 +303,10 @@ export default function AdminResultsPage() {
                 </div>
 
                 <div className="flex items-center gap-2 shrink-0">
-                  <button className="size-9 rounded-xl bg-white text-indigo-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-indigo-50 hover:border-indigo-200 hover:text-indigo-500">
+                  <button className="size-9 rounded-xl bg-white text-primary-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-50 hover:border-primary-200 hover:text-primary-500">
                     <Eye className="size-4" />
                   </button>
-                  <div className="size-9 rounded-xl bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                  <div className="size-9 rounded-xl bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-all">
                     <ChevronRight className="size-4" />
                   </div>
                 </div>
