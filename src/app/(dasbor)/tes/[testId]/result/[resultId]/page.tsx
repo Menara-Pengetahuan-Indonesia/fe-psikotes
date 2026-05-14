@@ -32,17 +32,6 @@ interface TestAssessment {
   interpretation: string
 }
 
-interface ReviewData {
-  summary: string
-  assessments: TestAssessment[]
-  strengths: string[]
-  areasOfGrowth: string[]
-  recommendations: string[]
-  psychologistNotes: string
-  generatedAt: string
-  modelUsed: string
-}
-
 interface ResultData {
   id: string
   testId: string
@@ -77,7 +66,7 @@ export default function ResultPage() {
 
   const [result, setResult] = useState<ResultData | null>(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const [error] = useState<string | null>(null)
   const [expandedAssessments, setExpandedAssessments] = useState<Set<number>>(new Set([0]))
   const [downloadingPdf, setDownloadingPdf] = useState(false)
   const reportRef = useRef<HTMLDivElement>(null)
