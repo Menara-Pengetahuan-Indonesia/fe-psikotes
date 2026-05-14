@@ -206,7 +206,7 @@ export default function PackageDetailPage() {
                 <h1 className="text-2xl md:text-3xl font-black tracking-tight mb-2">
                   {pkg.name}
                 </h1>
-                <p className="text-slate-400 font-medium text-sm max-w-lg">
+                <p className="text-primary-100/90 font-medium text-sm max-w-lg">
                   {pkg.description}
                 </p>
               </div>
@@ -282,7 +282,7 @@ export default function PackageDetailPage() {
           <p className="text-slate-900 font-black text-lg mb-1">
             Belum ada sub-paket.
           </p>
-          <p className="text-slate-400 font-medium text-sm">
+          <p className="text-primary-100/90 font-medium text-sm">
             Klik tombol di atas untuk menambahkan.
           </p>
         </div>

@@ -64,7 +64,7 @@ export default function AdminAnalyticsPage() {
           <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
             Analitik.
           </h1>
-          <p className="text-slate-400 font-medium text-sm">
+          <p className="text-primary-100/90 font-medium text-sm">
             Insight dan statistik performa platform tes.
           </p>
 

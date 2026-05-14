@@ -218,7 +218,7 @@ export default function ScheduleDetailPage() {
                   </span>
                 </div>
                 <h1 className="text-2xl md:text-3xl font-black tracking-tight mb-2">{schedule.testName}</h1>
-                <p className="text-slate-400 font-medium text-sm max-w-lg">{schedule.description}</p>
+                <p className="text-primary-100/90 font-medium text-sm max-w-lg">{schedule.description}</p>
               </div>
             </div>
             <div className="flex items-center gap-2 shrink-0">

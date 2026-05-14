@@ -59,7 +59,7 @@ export default function AdminDashboardPage() {
             <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
               Selamat Datang, {_hasHydrated && user?.name ? user.name.split(' ')[0] : 'Admin'}.
             </h1>
-            <p className="text-slate-400 font-medium text-sm">
+            <p className="text-primary-100/90 font-medium text-sm">
               Kelola instrumen psikotes, pantau hasil, dan atur konfigurasi.
             </p>
           </div>

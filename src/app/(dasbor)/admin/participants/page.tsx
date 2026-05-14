@@ -89,7 +89,7 @@ export default function AdminParticipantsPage() {
           <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
             Peserta.
           </h1>
-          <p className="text-slate-400 font-medium text-sm">
+          <p className="text-primary-100/90 font-medium text-sm">
             Kelola dan pantau seluruh peserta yang terdaftar.
           </p>
 
@@ -169,7 +169,7 @@ export default function AdminParticipantsPage() {
             <Users className="size-8 text-primary-400" />
           </div>
           <p className="text-slate-900 font-black text-lg mb-1">Tidak ditemukan.</p>
-          <p className="text-slate-400 font-medium text-sm">Coba ubah filter atau kata kunci pencarian.</p>
+          <p className="text-primary-100/90 font-medium text-sm">Coba ubah filter atau kata kunci pencarian.</p>
         </div>
       ) : (
         <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden divide-y divide-slate-50">
