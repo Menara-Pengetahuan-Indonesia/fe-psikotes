@@ -19,7 +19,7 @@ export function PackageDetailClient({ categorySlug, categoryLabel }: PackageDeta
   const params = useParams()
   const childId = params.slug as string
   const { data, isLoading } = useCatalogChildPackageById(childId)
-  const { data: packageTypes, isLoading: isLoadingTypes } = useCatalogPackageTypes(childId)
+  const { data: packageTypes } = useCatalogPackageTypes(childId)
 
   if (isLoading) {
     return (

@@ -1,5 +1,4 @@
 import {
-  BarChart3,
   Users,
   CheckCircle2,
   TrendingUp,
