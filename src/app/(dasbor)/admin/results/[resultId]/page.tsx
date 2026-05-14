@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import {
   ArrowLeft,
@@ -23,6 +23,7 @@ import {
   Trash2,
   Send,
   Bot,
+  Download,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { api } from '@/lib/axios'
@@ -137,6 +138,8 @@ export default function ResultDetailPage() {
   const [generating, setGenerating] = useState(false)
   const [saving, setSaving] = useState(false)
   const [saveSuccess, setSaveSuccess] = useState<'draft' | 'published' | null>(null)
+  const [downloadingPdf, setDownloadingPdf] = useState(false)
+  const reportRef = useRef<HTMLDivElement>(null)
 
   const [expandedTests, setExpandedTests] = useState<Set<string>>(new Set())
   const [expandedSubTests, setExpandedSubTests] = useState<Set<string>>(new Set())
@@ -191,6 +194,58 @@ export default function ResultDetailPage() {
       setError('Gagal menyimpan review.')
     } finally {
       setSaving(false)
+    }
+  }
+
+  const handleDownloadPdf = async () => {
+    if (!reportRef.current || !reviewData) return
+    setDownloadingPdf(true)
+    try {
+      const [{ default: jsPDF }, { default: html2canvas }] = await Promise.all([
+        import('jspdf'),
+        import('html2canvas'),
+      ])
+      const COLOR_PROPS = ['color', 'background-color', 'border-color', 'border-top-color',
+        'border-right-color', 'border-bottom-color', 'border-left-color', 'outline-color',
+        'text-decoration-color', 'box-shadow', 'fill', 'stroke'] as const
+      const root = reportRef.current
+      const liveEls = [root, ...Array.from(root.querySelectorAll('*'))] as HTMLElement[]
+      const snapshots = liveEls.map((el) => {
+        const cs = window.getComputedStyle(el)
+        return COLOR_PROPS.reduce<Record<string, string>>((acc, p) => {
+          acc[p] = cs.getPropertyValue(p)
+          return acc
+        }, {})
+      })
+      const canvas = await html2canvas(root, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#f8fafc',
+        onclone: (_doc, clonedEl) => {
+          const clonedEls = [clonedEl, ...Array.from(clonedEl.querySelectorAll('*'))] as HTMLElement[]
+          clonedEls.forEach((el, i) => {
+            const snap = snapshots[i]
+            if (!snap) return
+            COLOR_PROPS.forEach((p) => { if (snap[p]) el.style.setProperty(p, snap[p]) })
+          })
+        },
+      })
+      const imgData = canvas.toDataURL('image/png')
+      const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
+      const pageW = pdf.internal.pageSize.getWidth()
+      const pageH = pdf.internal.pageSize.getHeight()
+      const imgW = pageW
+      const imgH = (canvas.height * imgW) / canvas.width
+      let y = 0
+      while (y < imgH) {
+        if (y > 0) pdf.addPage()
+        pdf.addImage(imgData, 'PNG', 0, -y, imgW, imgH)
+        y += pageH
+      }
+      const fullName = pkg ? `${pkg.user.firstName}_${pkg.user.lastName}` : 'laporan'
+      pdf.save(`Laporan_${fullName}.pdf`)
+    } finally {
+      setDownloadingPdf(false)
     }
   }
 
@@ -398,17 +453,32 @@ export default function ResultDetailPage() {
               </p>
             </div>
           </div>
-          <button
-            onClick={handleGenerate}
-            disabled={generating}
-            className="inline-flex items-center gap-2 h-10 px-5 rounded-xl bg-gradient-to-r from-violet-600 to-primary-600 text-white text-sm font-bold hover:from-violet-700 hover:to-primary-700 transition-all disabled:opacity-60 disabled:cursor-not-allowed shadow-sm shrink-0"
-          >
-            {generating ? (
-              <><Loader2 className="size-4 animate-spin" /> Generating...</>
-            ) : (
-              <><Sparkles className="size-4" /> {reviewData ? 'Regenerate AI' : 'Generate AI Review'}</>
+          <div className="flex items-center gap-2">
+            {reviewData && (
+              <button
+                onClick={handleDownloadPdf}
+                disabled={downloadingPdf}
+                className="inline-flex items-center gap-2 h-10 px-4 rounded-xl bg-slate-100 text-slate-700 text-sm font-bold hover:bg-slate-200 transition-colors disabled:opacity-60 shrink-0"
+              >
+                {downloadingPdf ? (
+                  <><Loader2 className="size-4 animate-spin" /> PDF...</>
+                ) : (
+                  <><Download className="size-4" /> Unduh PDF</>
+                )}
+              </button>
             )}
-          </button>
+            <button
+              onClick={handleGenerate}
+              disabled={generating}
+              className="inline-flex items-center gap-2 h-10 px-5 rounded-xl bg-gradient-to-r from-violet-600 to-primary-600 text-white text-sm font-bold hover:from-violet-700 hover:to-primary-700 transition-all disabled:opacity-60 disabled:cursor-not-allowed shadow-sm shrink-0"
+            >
+              {generating ? (
+                <><Loader2 className="size-4 animate-spin" /> Generating...</>
+              ) : (
+                <><Sparkles className="size-4" /> {reviewData ? 'Regenerate AI' : 'Generate AI Review'}</>
+              )}
+            </button>
+          </div>
         </div>
 
         {!reviewData && !generating && (
@@ -430,7 +500,7 @@ export default function ResultDetailPage() {
         )}
 
         {reviewData && !generating && (
-          <div className="p-6 md:p-8 space-y-6">
+          <div ref={reportRef} className="p-6 md:p-8 space-y-6">
             {/* Model info */}
             {reviewData.modelUsed && (
               <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-100 w-fit">
