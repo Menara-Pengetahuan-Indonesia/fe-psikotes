@@ -148,6 +148,7 @@ export function QuestionForm({
   }, [open, initialData, isEditing, reset, subTestId])
 
   const questionType = watch('questionType')
+  const displayStyle = watch('displayStyle')
   const showOptions = questionType === 'MULTIPLE_CHOICE' || questionType === 'CHECKBOX'
   const showEssay = questionType === 'ESSAY'
   const showScale = questionType === 'SCALE_RATING'
@@ -265,7 +266,7 @@ export function QuestionForm({
                     onClick={() => setValue('displayStyle', style.value as 'UPPERCASE')}
                     className={cn(
                       'flex-1 px-3 py-1.5 rounded-md text-xs font-bold transition-all',
-                      watch('displayStyle') === style.value
+                      displayStyle === style.value
                         ? 'bg-primary-500 text-white shadow-sm'
                         : 'text-slate-500 hover:text-slate-700 hover:bg-white'
                     )}
