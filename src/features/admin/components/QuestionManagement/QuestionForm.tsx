@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-import { useForm, useFieldArray } from 'react-hook-form'
+import { useForm, useFieldArray, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Dialog,
@@ -150,6 +150,7 @@ export function QuestionForm({
   const questionType = watch('questionType')
   const displayStyle = watch('displayStyle')
   const optionImageEnabled = watch('optionImageEnabled')
+  const watchedOptions = useWatch({ control, name: 'options' })
   const showOptions = questionType === 'MULTIPLE_CHOICE' || questionType === 'CHECKBOX'
   const showEssay = questionType === 'ESSAY'
   const showScale = questionType === 'SCALE_RATING'
@@ -349,9 +350,9 @@ export function QuestionForm({
                       title="Jawaban benar"
                     />
                     <Input placeholder={`Opsi ${index + 1}`} {...register(`options.${index}.optionText`)} className="flex-1" />
-                    {watch('optionImageEnabled') && (
+                    {optionImageEnabled && (
                       <OptionImageCell
-                        imageUrl={watch(`options.${index}.imageUrl`)}
+                        imageUrl={watchedOptions?.[index]?.imageUrl}
                         onUpload={async (file: File) => {
                           const result = await uploadImage.mutateAsync(file)
                           setValue(`options.${index}.imageUrl`, result.url)
