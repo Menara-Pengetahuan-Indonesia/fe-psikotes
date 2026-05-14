@@ -149,6 +149,7 @@ export function QuestionForm({
 
   const questionType = watch('questionType')
   const displayStyle = watch('displayStyle')
+  const optionImageEnabled = watch('optionImageEnabled')
   const showOptions = questionType === 'MULTIPLE_CHOICE' || questionType === 'CHECKBOX'
   const showEssay = questionType === 'ESSAY'
   const showScale = questionType === 'SCALE_RATING'
@@ -316,15 +317,14 @@ export function QuestionForm({
                   <button
                     type="button"
                     onClick={() => {
-                      const current = watch('optionImageEnabled')
-                      setValue('optionImageEnabled', !current)
-                      if (current) {
+                      setValue('optionImageEnabled', !optionImageEnabled)
+                      if (optionImageEnabled) {
                         fields.forEach((_, idx) => setValue(`options.${idx}.imageUrl`, undefined))
                       }
                     }}
                     className={cn(
                       'relative w-9 h-5 rounded-full transition-colors',
-                      watch('optionImageEnabled') ? 'bg-primary-500' : 'bg-slate-200'
+                      optionImageEnabled ? 'bg-primary-500' : 'bg-slate-200'
                     )}
                   >
                     <span className={cn(
