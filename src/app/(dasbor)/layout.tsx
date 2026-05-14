@@ -314,7 +314,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const initials = mounted && user?.name ? user.name.substring(0, 2).toUpperCase() : 'U'
 
   const isActiveLink = (href: string) =>
-    mounted && (pathname === href || pathname.startsWith(href + '/'))
+    mounted && (pathname === href || (href !== '/admin' && pathname.startsWith(href + '/')))
 
   const sidebarProps = {
     navGroups,
