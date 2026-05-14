@@ -163,10 +163,36 @@ export default function ResultPage() {
         import('jspdf'),
         import('html2canvas'),
       ])
-      const canvas = await html2canvas(reportRef.current, {
+
+      // html2canvas can't parse oklch() used by Tailwind v3+.
+      // Collect computed (rgb) styles from the live DOM before cloning.
+      const COLOR_PROPS = ['color', 'background-color', 'border-color', 'border-top-color',
+        'border-right-color', 'border-bottom-color', 'border-left-color', 'outline-color',
+        'text-decoration-color', 'box-shadow', 'fill', 'stroke'] as const
+      const root = reportRef.current
+      const liveEls = [root, ...Array.from(root.querySelectorAll('*'))] as HTMLElement[]
+      const snapshots = liveEls.map((el) => {
+        const cs = window.getComputedStyle(el)
+        return COLOR_PROPS.reduce<Record<string, string>>((acc, p) => {
+          acc[p] = cs.getPropertyValue(p)
+          return acc
+        }, {})
+      })
+
+      const canvas = await html2canvas(root, {
         scale: 2,
         useCORS: true,
         backgroundColor: '#f8fafc',
+        onclone: (_doc, clonedEl) => {
+          const clonedEls = [clonedEl, ...Array.from(clonedEl.querySelectorAll('*'))] as HTMLElement[]
+          clonedEls.forEach((el, i) => {
+            const snap = snapshots[i]
+            if (!snap) return
+            COLOR_PROPS.forEach((p) => {
+              if (snap[p]) el.style.setProperty(p, snap[p])
+            })
+          })
+        },
       })
       const imgData = canvas.toDataURL('image/png')
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
