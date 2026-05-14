@@ -225,7 +225,7 @@ export default function ParticipantDetailPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{participant.testsCompleted}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Tes Selesai</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Tes Selesai</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -234,7 +234,7 @@ export default function ParticipantDetailPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{participant.avgScore || '-'}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Rata-rata</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Rata-rata</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -243,7 +243,7 @@ export default function ParticipantDetailPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{participant.totalDuration || '-'}<span className="text-sm font-bold text-slate-400">m</span></p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total Durasi</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Total Durasi</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -252,7 +252,7 @@ export default function ParticipantDetailPage() {
               </div>
               <div>
                 <p className="text-sm font-black leading-tight">{formatShortDate(participant.registeredAt)}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Terdaftar</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Terdaftar</p>
               </div>
             </div>
           </div>

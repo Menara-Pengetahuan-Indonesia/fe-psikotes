@@ -154,7 +154,7 @@ export default function AdminResultsPage() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{items.length}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total Paket</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Total Paket</p>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -163,7 +163,7 @@ export default function AdminResultsPage() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{pendingCount}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Perlu Review</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Perlu Review</p>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -172,7 +172,7 @@ export default function AdminResultsPage() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{reviewedCount}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Sudah Direview</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Sudah Direview</p>
             </div>
           </div>
         </div>

@@ -195,7 +195,7 @@ export default function AdminPackagesPage() {
                 <p className="text-2xl font-black leading-none">
                   {allPackages.length}
                 </p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">
                   Total
                 </p>
               </div>
@@ -206,7 +206,7 @@ export default function AdminPackagesPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{activeCount}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">
                   Aktif
                 </p>
               </div>
@@ -219,7 +219,7 @@ export default function AdminPackagesPage() {
                 <p className="text-2xl font-black leading-none">
                   {inactiveCount}
                 </p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">
                   Nonaktif
                 </p>
               </div>

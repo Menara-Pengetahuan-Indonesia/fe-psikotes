@@ -237,7 +237,7 @@ export default function SubTestDetailPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{questions.length}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total Soal</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Total Soal</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -246,7 +246,7 @@ export default function SubTestDetailPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{typeCount('MULTIPLE_CHOICE')}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Pilgan</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Pilgan</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -255,7 +255,7 @@ export default function SubTestDetailPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{typeCount('ESSAY')}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Esai</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Esai</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -264,7 +264,7 @@ export default function SubTestDetailPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{typeCount('SCALE_RATING')}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Skala</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Skala</p>
               </div>
             </div>
           </div>

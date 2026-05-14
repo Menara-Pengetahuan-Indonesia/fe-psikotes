@@ -343,7 +343,7 @@ export default function ResultDetailPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{pkg.tests.length}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total Tes</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Total Tes</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -352,7 +352,7 @@ export default function ResultDetailPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{completedTests}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Selesai</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Selesai</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -363,7 +363,7 @@ export default function ResultDetailPage() {
                 <p className="text-2xl font-black leading-none">
                   {pkg.tests.reduce((s, t) => s + (t.session?.subTestResults.reduce((ss, r) => ss + r.userAnswers.length, 0) ?? 0), 0)}
                 </p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Jawaban</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Jawaban</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -372,7 +372,7 @@ export default function ResultDetailPage() {
               </div>
               <div>
                 <p className="text-sm font-black leading-tight">{formatDate(pkg.purchasedAt)}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Dibeli</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Dibeli</p>
               </div>
             </div>
           </div>

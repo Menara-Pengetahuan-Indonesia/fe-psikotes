@@ -233,7 +233,7 @@ export default function PackageDetailPage() {
                 <p className="text-2xl font-black leading-none">
                   {childPackages.length}
                 </p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">
                   Sub-Paket
                 </p>
               </div>
@@ -244,7 +244,7 @@ export default function PackageDetailPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{activeCount}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">
                   Aktif
                 </p>
               </div>
@@ -257,7 +257,7 @@ export default function PackageDetailPage() {
                 <p className="text-2xl font-black leading-none">
                   {childPackages.length - activeCount}
                 </p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">
                   Nonaktif
                 </p>
               </div>

@@ -83,7 +83,7 @@ export default function AdminDashboardPage() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">24</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total Tes</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Total Tes</p>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -92,7 +92,7 @@ export default function AdminDashboardPage() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">1,240</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Peserta</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Peserta</p>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -101,7 +101,7 @@ export default function AdminDashboardPage() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">6</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Paket</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Paket</p>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -110,7 +110,7 @@ export default function AdminDashboardPage() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">2</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Jadwal Aktif</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Jadwal Aktif</p>
             </div>
           </div>
         </div>

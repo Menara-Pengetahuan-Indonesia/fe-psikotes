@@ -76,7 +76,7 @@ export default function AdminAnalyticsPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">1,240</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total Peserta</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Total Peserta</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -85,7 +85,7 @@ export default function AdminAnalyticsPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">278</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Bulan Ini</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Bulan Ini</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -94,7 +94,7 @@ export default function AdminAnalyticsPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">76.4</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Rata-rata Skor</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Rata-rata Skor</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -103,7 +103,7 @@ export default function AdminAnalyticsPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">+18%</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">vs Bulan Lalu</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">vs Bulan Lalu</p>
               </div>
             </div>
           </div>

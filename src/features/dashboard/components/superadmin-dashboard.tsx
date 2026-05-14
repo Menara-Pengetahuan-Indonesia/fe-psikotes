@@ -98,7 +98,7 @@ export function SuperAdminDashboard() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">250</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total User</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Total User</p>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -107,7 +107,7 @@ export function SuperAdminDashboard() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">5</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Admin</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Admin</p>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -116,7 +116,7 @@ export function SuperAdminDashboard() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">99.8%</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Uptime</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Uptime</p>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -125,7 +125,7 @@ export function SuperAdminDashboard() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">3</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Alert</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Alert</p>
             </div>
           </div>
         </div>

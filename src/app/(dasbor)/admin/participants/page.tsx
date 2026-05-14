@@ -101,7 +101,7 @@ export default function AdminParticipantsPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{dummyParticipants.length}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Total</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -110,7 +110,7 @@ export default function AdminParticipantsPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{activeCount}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Aktif</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Aktif</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -119,7 +119,7 @@ export default function AdminParticipantsPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{blockedCount}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Diblokir</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Diblokir</p>
               </div>
             </div>
           </div>

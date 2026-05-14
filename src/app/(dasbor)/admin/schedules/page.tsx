@@ -196,7 +196,7 @@ export default function AdminSchedulesPage() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{activeCount}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Aktif</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Aktif</p>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -205,7 +205,7 @@ export default function AdminSchedulesPage() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{upcomingCount}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Mendatang</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Mendatang</p>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -214,7 +214,7 @@ export default function AdminSchedulesPage() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{completedCount}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Selesai</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Selesai</p>
             </div>
           </div>
         </div>

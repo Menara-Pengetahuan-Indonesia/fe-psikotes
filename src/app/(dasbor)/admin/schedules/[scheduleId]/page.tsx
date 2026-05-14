@@ -258,7 +258,7 @@ export default function ScheduleDetailPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{schedule.participants}<span className="text-sm font-bold text-slate-400">/{schedule.maxParticipants}</span></p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Peserta</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Peserta</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -267,7 +267,7 @@ export default function ScheduleDetailPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{completedUsers}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Selesai</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Selesai</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -276,7 +276,7 @@ export default function ScheduleDetailPage() {
               </div>
               <div>
                 <p className="text-sm font-black leading-tight">{formatShortDate(schedule.startDate)}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Mulai</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Mulai</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -285,7 +285,7 @@ export default function ScheduleDetailPage() {
               </div>
               <div>
                 <p className="text-sm font-black leading-tight">{formatShortDate(schedule.endDate)}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Selesai</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Selesai</p>
               </div>
             </div>
           </div>

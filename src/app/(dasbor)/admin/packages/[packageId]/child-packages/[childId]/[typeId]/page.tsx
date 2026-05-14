@@ -239,7 +239,7 @@ export default function PackageTypeDetailPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{tests.length}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Tes</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Tes</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -248,7 +248,7 @@ export default function PackageTypeDetailPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{activeCount}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Aktif</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Aktif</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
@@ -257,7 +257,7 @@ export default function PackageTypeDetailPage() {
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{tests.length - activeCount}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Nonaktif</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Nonaktif</p>
               </div>
             </div>
           </div>
