@@ -257,7 +257,7 @@ export default function ResultDetailPage() {
   if (error || !pkg) {
     return (
       <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-        <div className="bg-white rounded-[2.5rem] border border-rose-100 p-16 text-center flex flex-col items-center">
+        <div className="bg-white rounded-3xl border border-rose-100 p-16 text-center flex flex-col items-center">
           <div className="size-16 rounded-2xl bg-rose-50 flex items-center justify-center mb-5">
             <AlertTriangle className="size-8 text-rose-400" />
           </div>
@@ -282,7 +282,16 @@ export default function ResultDetailPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
+        {/* dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }}
+        />
+        {/* blur orbs */}
+        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-indigo-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
+
         <div className="relative z-10">
           <button
             onClick={() => router.push('/admin/results')}
@@ -364,13 +373,10 @@ export default function ResultDetailPage() {
             </div>
           </div>
         </div>
-        <div className="absolute -right-10 -top-10 opacity-5 pointer-events-none">
-          <FileBarChart className="size-72" />
-        </div>
       </div>
 
       {/* AI REVIEW SECTION */}
-      <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+      <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
         {/* Header */}
         <div className="px-8 py-6 border-b border-slate-50 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
@@ -420,38 +426,42 @@ export default function ResultDetailPage() {
         )}
 
         {reviewData && !generating && (
-          <div className="p-6 md:p-8 space-y-8">
+          <div className="p-6 md:p-8 space-y-6">
             {/* Model info */}
             {reviewData.modelUsed && (
-              <p className="text-[10px] text-slate-400 font-medium">
-                Dibuat oleh <span className="font-black text-slate-500">{reviewData.modelUsed}</span> · {reviewData.generatedAt ? new Date(reviewData.generatedAt).toLocaleString('id-ID') : ''}
-              </p>
+              <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-100 w-fit">
+                <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+                <p className="text-[11px] text-slate-500 font-medium">
+                  Dibuat oleh <span className="font-black text-slate-700">{reviewData.modelUsed}</span>
+                  {reviewData.generatedAt ? ` · ${new Date(reviewData.generatedAt).toLocaleString('id-ID')}` : ''}
+                </p>
+              </div>
             )}
 
             {/* Ringkasan */}
-            <div>
-              <label className="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Ringkasan Eksekutif</label>
+            <div className="bg-slate-50 rounded-2xl border border-slate-100 p-5">
+              <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">Ringkasan Eksekutif</label>
               <textarea
                 value={reviewData.summary}
                 onChange={(e) => setReviewData((prev) => prev ? { ...prev, summary: e.target.value } : prev)}
                 rows={4}
-                className="w-full p-4 rounded-2xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 font-medium text-slate-700"
+                className="w-full p-4 rounded-xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 font-medium text-slate-700 bg-white"
               />
             </div>
 
             {/* Penilaian per Tes */}
-            <div>
-              <label className="block text-xs font-black uppercase tracking-widest text-slate-500 mb-3">Penilaian per Tes</label>
-              <div className="space-y-4">
+            <div className="bg-slate-50 rounded-2xl border border-slate-100 p-5">
+              <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4">Penilaian per Tes</label>
+              <div className="space-y-3">
                 {reviewData.assessments.map((a, idx) => (
-                  <div key={idx} className="bg-slate-50 rounded-2xl border border-slate-100 p-5 space-y-3">
+                  <div key={idx} className="bg-white rounded-xl border border-slate-200 p-4 space-y-3">
                     <div className="flex items-center gap-3">
                       <span className="text-sm font-black text-slate-900 flex-1">{a.testName}</span>
                       <input
                         value={a.level}
                         onChange={(e) => updateAssessment(idx, 'level', e.target.value)}
                         placeholder="Level"
-                        className="w-36 h-8 px-3 rounded-xl border border-slate-200 text-xs font-black text-indigo-700 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 text-center"
+                        className="w-36 h-8 px-3 rounded-lg border border-slate-200 text-xs font-black text-indigo-700 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 text-center"
                       />
                     </div>
                     <textarea
@@ -459,88 +469,62 @@ export default function ResultDetailPage() {
                       onChange={(e) => updateAssessment(idx, 'interpretation', e.target.value)}
                       rows={3}
                       placeholder="Interpretasi..."
-                      className="w-full p-3 rounded-xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 font-medium text-slate-700 bg-white"
+                      className="w-full p-3 rounded-lg border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 font-medium text-slate-700 bg-slate-50"
                     />
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Kekuatan */}
-            <div>
-              <label className="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Kekuatan yang Teridentifikasi</label>
-              <div className="space-y-2">
-                {reviewData.strengths.map((s, idx) => (
-                  <div key={idx} className="flex items-center gap-2">
-                    <input
-                      value={s}
-                      onChange={(e) => updateListItem('strengths', idx, e.target.value)}
-                      className="flex-1 h-10 px-4 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400"
-                    />
-                    <button onClick={() => removeListItem('strengths', idx)} className="size-8 rounded-lg bg-rose-50 hover:bg-rose-100 flex items-center justify-center transition-colors shrink-0">
-                      <Trash2 className="size-3.5 text-rose-500" />
+            {/* Kekuatan + Area Pertumbuhan + Rekomendasi */}
+            <div className="grid md:grid-cols-3 gap-4">
+              {(
+                [
+                  { field: 'strengths', label: 'Kekuatan', color: 'emerald' },
+                  { field: 'areasOfGrowth', label: 'Area Perhatian', color: 'amber' },
+                  { field: 'recommendations', label: 'Rekomendasi', color: 'indigo' },
+                ] as const
+              ).map(({ field, label, color }) => (
+                <div key={field} className="bg-slate-50 rounded-2xl border border-slate-100 p-5">
+                  <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">{label}</label>
+                  <div className="space-y-2">
+                    {reviewData[field].map((s, idx) => (
+                      <div key={idx} className="flex items-center gap-2">
+                        <input
+                          value={s}
+                          onChange={(e) => updateListItem(field, idx, e.target.value)}
+                          className="flex-1 h-9 px-3 rounded-lg border border-slate-200 text-sm font-medium text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400"
+                        />
+                        <button onClick={() => removeListItem(field, idx)} className="size-7 rounded-lg bg-rose-50 hover:bg-rose-100 flex items-center justify-center transition-colors shrink-0">
+                          <Trash2 className="size-3 text-rose-500" />
+                        </button>
+                      </div>
+                    ))}
+                    <button
+                      onClick={() => addListItem(field)}
+                      className={cn(
+                        'inline-flex items-center gap-1.5 text-xs font-bold mt-1 transition-colors',
+                        color === 'emerald' ? 'text-emerald-600 hover:text-emerald-700' :
+                        color === 'amber' ? 'text-amber-600 hover:text-amber-700' :
+                        'text-indigo-600 hover:text-indigo-700',
+                      )}
+                    >
+                      <Plus className="size-3.5" /> Tambah
                     </button>
                   </div>
-                ))}
-                <button onClick={() => addListItem('strengths')} className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-700 mt-1">
-                  <Plus className="size-3.5" /> Tambah
-                </button>
-              </div>
-            </div>
-
-            {/* Area Pertumbuhan */}
-            <div>
-              <label className="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Area yang Perlu Perhatian</label>
-              <div className="space-y-2">
-                {reviewData.areasOfGrowth.map((s, idx) => (
-                  <div key={idx} className="flex items-center gap-2">
-                    <input
-                      value={s}
-                      onChange={(e) => updateListItem('areasOfGrowth', idx, e.target.value)}
-                      className="flex-1 h-10 px-4 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400"
-                    />
-                    <button onClick={() => removeListItem('areasOfGrowth', idx)} className="size-8 rounded-lg bg-rose-50 hover:bg-rose-100 flex items-center justify-center transition-colors shrink-0">
-                      <Trash2 className="size-3.5 text-rose-500" />
-                    </button>
-                  </div>
-                ))}
-                <button onClick={() => addListItem('areasOfGrowth')} className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-700 mt-1">
-                  <Plus className="size-3.5" /> Tambah
-                </button>
-              </div>
-            </div>
-
-            {/* Rekomendasi */}
-            <div>
-              <label className="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Rekomendasi</label>
-              <div className="space-y-2">
-                {reviewData.recommendations.map((s, idx) => (
-                  <div key={idx} className="flex items-center gap-2">
-                    <input
-                      value={s}
-                      onChange={(e) => updateListItem('recommendations', idx, e.target.value)}
-                      className="flex-1 h-10 px-4 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400"
-                    />
-                    <button onClick={() => removeListItem('recommendations', idx)} className="size-8 rounded-lg bg-rose-50 hover:bg-rose-100 flex items-center justify-center transition-colors shrink-0">
-                      <Trash2 className="size-3.5 text-rose-500" />
-                    </button>
-                  </div>
-                ))}
-                <button onClick={() => addListItem('recommendations')} className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-700 mt-1">
-                  <Plus className="size-3.5" /> Tambah
-                </button>
-              </div>
+                </div>
+              ))}
             </div>
 
             {/* Catatan Psikolog */}
-            <div>
-              <label className="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Catatan Psikolog (opsional)</label>
+            <div className="bg-slate-50 rounded-2xl border border-slate-100 p-5">
+              <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">Catatan Psikolog <span className="normal-case font-medium text-slate-300">(opsional)</span></label>
               <textarea
                 value={reviewData.psychologistNotes}
                 onChange={(e) => setReviewData((prev) => prev ? { ...prev, psychologistNotes: e.target.value } : prev)}
                 rows={3}
                 placeholder="Catatan tambahan dari psikolog..."
-                className="w-full p-4 rounded-2xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 font-medium text-slate-700"
+                className="w-full p-4 rounded-xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 font-medium text-slate-700 bg-white"
               />
             </div>
 
@@ -589,7 +573,7 @@ export default function ResultDetailPage() {
           const isCompleted = test.session?.status === 'COMPLETED'
 
           return (
-            <div key={test.id} className="bg-white rounded-[2rem] border border-slate-100 overflow-hidden">
+            <div key={test.id} className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
               <button
                 onClick={() => toggleTest(test.id)}
                 className="w-full px-6 md:px-8 py-5 flex items-center gap-4 hover:bg-slate-50/50 transition-colors text-left"

@@ -116,7 +116,16 @@ export default function AdminResultsPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
+        {/* dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }}
+        />
+        {/* blur orbs */}
+        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-indigo-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
+
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
             <p className="text-indigo-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
@@ -167,10 +176,6 @@ export default function AdminResultsPage() {
             </div>
           </div>
         </div>
-
-        <div className="absolute -right-10 -top-10 opacity-5 pointer-events-none">
-          <FileBarChart className="size-72" />
-        </div>
       </div>
 
       {/* FILTER + SEARCH */}
@@ -213,12 +218,12 @@ export default function AdminResultsPage() {
 
       {/* LIST */}
       {loading ? (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 flex flex-col items-center gap-4">
+        <div className="bg-white rounded-3xl border border-slate-100 p-16 flex flex-col items-center gap-4">
           <Loader2 className="size-8 text-indigo-400 animate-spin" />
           <p className="text-sm font-bold text-slate-400">Memuat data...</p>
         </div>
       ) : error ? (
-        <div className="bg-white rounded-[2.5rem] border border-rose-100 p-16 flex flex-col items-center gap-4">
+        <div className="bg-white rounded-3xl border border-rose-100 p-16 flex flex-col items-center gap-4">
           <div className="size-14 rounded-2xl bg-rose-50 flex items-center justify-center">
             <AlertTriangle className="size-7 text-rose-400" />
           </div>
@@ -231,7 +236,7 @@ export default function AdminResultsPage() {
           </button>
         </div>
       ) : filtered.length === 0 ? (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
+        <div className="bg-white rounded-3xl border border-slate-100 p-16 text-center flex flex-col items-center">
           <div className="size-16 rounded-2xl bg-indigo-50 flex items-center justify-center mb-5">
             <Users className="size-8 text-indigo-400" />
           </div>
@@ -239,7 +244,7 @@ export default function AdminResultsPage() {
           <p className="text-slate-400 font-medium text-sm">Coba ubah filter atau kata kunci pencarian.</p>
         </div>
       ) : (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden divide-y divide-slate-50">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden divide-y divide-slate-50">
           {filtered.map((item, index) => {
             const isReviewed = !!item.reviewedAt
             const isPublished = item.isPublished
