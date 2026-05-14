@@ -32,6 +32,17 @@ export interface MyPackageType {
   reviewNotes?: string | null
   reviewedAt?: string | null
   reviewedBy?: string | null
+  isPublished?: boolean
+  reviewData?: {
+    summary: string
+    assessments: { testId: string; testName: string; level: string; interpretation: string }[]
+    strengths: string[]
+    areasOfGrowth: string[]
+    recommendations: string[]
+    psychologistNotes: string
+    generatedAt: string
+    modelUsed: string
+  } | null
   tests?: {
     id: string
     name: string

@@ -32,11 +32,16 @@ export function useLogin() {
       // Get redirect from URL params
       const redirect = searchParams.get('redirect')
 
-      // If redirect exists and is valid, use it; otherwise go to dashboard
+      // If redirect exists and is valid, use it; otherwise route by role
       if (redirect && redirect.startsWith('/')) {
         router.push(redirect)
       } else {
-        router.push('/dashboard')
+        const role = res.user.role
+        if (role === 'ADMIN' || role === 'SUPERADMIN') {
+          router.push('/admin')
+        } else {
+          router.push('/dashboard')
+        }
       }
     },
     onError: (error) => {

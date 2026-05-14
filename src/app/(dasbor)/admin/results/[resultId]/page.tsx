@@ -18,9 +18,32 @@ import {
   MessageSquare,
   CheckCircle2,
   Package,
+  Sparkles,
+  Plus,
+  Trash2,
+  Send,
+  Bot,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { api } from '@/lib/axios'
+
+interface TestAssessment {
+  testId: string
+  testName: string
+  level: string
+  interpretation: string
+}
+
+interface ReviewData {
+  summary: string
+  assessments: TestAssessment[]
+  strengths: string[]
+  areasOfGrowth: string[]
+  recommendations: string[]
+  psychologistNotes: string
+  generatedAt: string
+  modelUsed: string
+}
 
 interface Answer {
   id: string
@@ -64,9 +87,20 @@ interface TestItem {
 interface PackageDetail {
   id: string
   user: { id: string; firstName: string; lastName: string; email: string }
-  packageType: { id: string; name: string; description: string }
+  packageType: {
+    id: string
+    name: string
+    description: string
+    childPackage: {
+      id: string
+      name: string
+      package: { id: string; name: string }
+    }
+  }
   purchasedAt: string
   reviewNotes: string | null
+  reviewData: ReviewData | null
+  isPublished: boolean
   reviewedAt: string | null
   reviewedBy: string | null
   tests: TestItem[]
@@ -99,9 +133,10 @@ export default function ResultDetailPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const [reviewNotes, setReviewNotes] = useState('')
+  const [reviewData, setReviewData] = useState<ReviewData | null>(null)
+  const [generating, setGenerating] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [saveSuccess, setSaveSuccess] = useState(false)
+  const [saveSuccess, setSaveSuccess] = useState<'draft' | 'published' | null>(null)
 
   const [expandedTests, setExpandedTests] = useState<Set<string>>(new Set())
   const [expandedSubTests, setExpandedSubTests] = useState<Set<string>>(new Set())
@@ -112,8 +147,7 @@ export default function ResultDetailPage() {
       .then((res) => {
         const data: PackageDetail = res.data.data
         setPkg(data)
-        setReviewNotes(data.reviewNotes ?? '')
-        // expand first test by default
+        if (data.reviewData) setReviewData(data.reviewData)
         if (data.tests.length > 0) {
           setExpandedTests(new Set([data.tests[0].id]))
           const firstSubResults = data.tests[0].session?.subTestResults ?? []
@@ -126,29 +160,69 @@ export default function ResultDetailPage() {
       .finally(() => setLoading(false))
   }, [userPackageId])
 
-  const handleSaveReview = async () => {
-    if (!pkg) return
-    setSaving(true)
-    setSaveSuccess(false)
+  const handleGenerate = async () => {
+    setGenerating(true)
     try {
-      const res = await api.patch(`/admin/sessions/${userPackageId}/review`, { reviewNotes })
+      const res = await api.post(`/admin/sessions/${userPackageId}/generate-review`)
+      setReviewData(res.data.data)
+    } catch {
+      setError('Gagal generate review AI. Coba lagi.')
+    } finally {
+      setGenerating(false)
+    }
+  }
+
+  const handleSave = async (publish: boolean) => {
+    if (!reviewData) return
+    setSaving(true)
+    setSaveSuccess(null)
+    try {
+      const res = await api.patch(`/admin/sessions/${userPackageId}/review`, {
+        reviewData,
+        reviewNotes: reviewData.psychologistNotes,
+        isPublished: publish,
+      })
       setPkg((prev) =>
-        prev
-          ? {
-              ...prev,
-              reviewNotes: res.data.data.reviewNotes,
-              reviewedAt: res.data.data.reviewedAt,
-              reviewedBy: res.data.data.reviewedBy,
-            }
-          : prev,
+        prev ? { ...prev, ...res.data.data, reviewData } : prev,
       )
-      setSaveSuccess(true)
-      setTimeout(() => setSaveSuccess(false), 3000)
+      setSaveSuccess(publish ? 'published' : 'draft')
+      setTimeout(() => setSaveSuccess(null), 4000)
     } catch {
       setError('Gagal menyimpan review.')
     } finally {
       setSaving(false)
     }
+  }
+
+  const updateAssessment = (idx: number, field: keyof TestAssessment, value: string) => {
+    setReviewData((prev) =>
+      prev
+        ? {
+            ...prev,
+            assessments: prev.assessments.map((a, i) =>
+              i === idx ? { ...a, [field]: value } : a,
+            ),
+          }
+        : prev,
+    )
+  }
+
+  const updateListItem = (field: 'strengths' | 'areasOfGrowth' | 'recommendations', idx: number, value: string) => {
+    setReviewData((prev) =>
+      prev ? { ...prev, [field]: prev[field].map((v, i) => (i === idx ? value : v)) } : prev,
+    )
+  }
+
+  const addListItem = (field: 'strengths' | 'areasOfGrowth' | 'recommendations') => {
+    setReviewData((prev) =>
+      prev ? { ...prev, [field]: [...prev[field], ''] } : prev,
+    )
+  }
+
+  const removeListItem = (field: 'strengths' | 'areasOfGrowth' | 'recommendations', idx: number) => {
+    setReviewData((prev) =>
+      prev ? { ...prev, [field]: prev[field].filter((_, i) => i !== idx) } : prev,
+    )
   }
 
   const toggleTest = (id: string) => {
@@ -201,6 +275,7 @@ export default function ResultDetailPage() {
   }
 
   const isReviewed = !!pkg.reviewedAt
+  const isPublished = pkg.isPublished
   const fullName = `${pkg.user.firstName} ${pkg.user.lastName}`
   const completedTests = pkg.tests.filter((t) => t.session?.status === 'COMPLETED').length
 
@@ -232,6 +307,10 @@ export default function ResultDetailPage() {
               <div className="flex flex-wrap items-center gap-2">
                 <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 inline-flex items-center gap-1.5">
                   <Package className="size-3" />
+                  {pkg.packageType.childPackage.package.name}
+                  <span className="opacity-50">›</span>
+                  {pkg.packageType.childPackage.name}
+                  <span className="opacity-50">›</span>
                   {pkg.packageType.name}
                 </span>
                 <span className={cn(
@@ -290,53 +369,216 @@ export default function ResultDetailPage() {
         </div>
       </div>
 
-      {/* REVIEW FORM */}
+      {/* AI REVIEW SECTION */}
       <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
-        <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
-          <div className={cn('size-10 rounded-xl flex items-center justify-center', isReviewed ? 'bg-emerald-100' : 'bg-amber-100')}>
-            {isReviewed ? (
-              <UserCheck className="size-5 text-emerald-600" />
+        {/* Header */}
+        <div className="px-8 py-6 border-b border-slate-50 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className={cn('size-10 rounded-xl flex items-center justify-center', isPublished ? 'bg-emerald-100' : isReviewed ? 'bg-indigo-100' : 'bg-amber-100')}>
+              {isPublished ? <UserCheck className="size-5 text-emerald-600" /> : isReviewed ? <Bot className="size-5 text-indigo-600" /> : <MessageSquare className="size-5 text-amber-600" />}
+            </div>
+            <div>
+              <h2 className="text-lg font-black text-slate-900">Laporan Psikologis</h2>
+              <p className="text-xs text-slate-400 font-medium">
+                {isPublished
+                  ? `Dipublish oleh ${pkg.reviewedBy ?? 'Admin'} · ${formatDate(pkg.reviewedAt)}`
+                  : isReviewed
+                    ? `Draft tersimpan · ${formatDate(pkg.reviewedAt)}`
+                    : 'Generate laporan AI, edit jika perlu, lalu publish ke peserta'}
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={handleGenerate}
+            disabled={generating}
+            className="inline-flex items-center gap-2 h-10 px-5 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-sm font-bold hover:from-violet-700 hover:to-indigo-700 transition-all disabled:opacity-60 disabled:cursor-not-allowed shadow-sm shrink-0"
+          >
+            {generating ? (
+              <><Loader2 className="size-4 animate-spin" /> Generating...</>
             ) : (
-              <MessageSquare className="size-5 text-amber-600" />
+              <><Sparkles className="size-4" /> {reviewData ? 'Regenerate AI' : 'Generate AI Review'}</>
             )}
-          </div>
-          <div>
-            <h2 className="text-lg font-black text-slate-900">Catatan Review Psikolog</h2>
-            <p className="text-xs text-slate-400 font-medium">
-              {isReviewed
-                ? `Direview oleh ${pkg.reviewedBy ?? 'Admin'} · ${formatDate(pkg.reviewedAt)}`
-                : 'Catatan ini akan terlihat oleh peserta setelah disimpan'}
-            </p>
-          </div>
+          </button>
         </div>
-        <div className="p-6 md:p-8 space-y-4">
-          <textarea
-            value={reviewNotes}
-            onChange={(e) => setReviewNotes(e.target.value)}
-            placeholder="Tulis catatan review untuk peserta ini... (interpretasi hasil, rekomendasi, dll)"
-            rows={6}
-            className="w-full p-4 rounded-2xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 font-medium text-slate-700 placeholder:text-slate-300"
-          />
-          <div className="flex items-center justify-between gap-4">
-            {saveSuccess ? (
-              <div className="flex items-center gap-2 text-emerald-600 text-sm font-bold">
-                <CheckCircle2 className="size-4" />
-                Review berhasil disimpan
+
+        {!reviewData && !generating && (
+          <div className="px-8 py-14 text-center">
+            <div className="size-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mx-auto mb-4">
+              <Bot className="size-7 text-slate-300" />
+            </div>
+            <p className="text-sm font-bold text-slate-400">Belum ada laporan.</p>
+            <p className="text-xs text-slate-300 mt-1">Klik &quot;Generate AI Review&quot; untuk membuat draft laporan otomatis.</p>
+          </div>
+        )}
+
+        {generating && (
+          <div className="px-8 py-14 text-center">
+            <Loader2 className="size-8 text-indigo-400 animate-spin mx-auto mb-4" />
+            <p className="text-sm font-bold text-slate-500">AI sedang menganalisis hasil tes...</p>
+            <p className="text-xs text-slate-400 mt-1">Ini mungkin membutuhkan 15–30 detik</p>
+          </div>
+        )}
+
+        {reviewData && !generating && (
+          <div className="p-6 md:p-8 space-y-8">
+            {/* Model info */}
+            {reviewData.modelUsed && (
+              <p className="text-[10px] text-slate-400 font-medium">
+                Dibuat oleh <span className="font-black text-slate-500">{reviewData.modelUsed}</span> · {reviewData.generatedAt ? new Date(reviewData.generatedAt).toLocaleString('id-ID') : ''}
+              </p>
+            )}
+
+            {/* Ringkasan */}
+            <div>
+              <label className="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Ringkasan Eksekutif</label>
+              <textarea
+                value={reviewData.summary}
+                onChange={(e) => setReviewData((prev) => prev ? { ...prev, summary: e.target.value } : prev)}
+                rows={4}
+                className="w-full p-4 rounded-2xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 font-medium text-slate-700"
+              />
+            </div>
+
+            {/* Penilaian per Tes */}
+            <div>
+              <label className="block text-xs font-black uppercase tracking-widest text-slate-500 mb-3">Penilaian per Tes</label>
+              <div className="space-y-4">
+                {reviewData.assessments.map((a, idx) => (
+                  <div key={idx} className="bg-slate-50 rounded-2xl border border-slate-100 p-5 space-y-3">
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm font-black text-slate-900 flex-1">{a.testName}</span>
+                      <input
+                        value={a.level}
+                        onChange={(e) => updateAssessment(idx, 'level', e.target.value)}
+                        placeholder="Level"
+                        className="w-36 h-8 px-3 rounded-xl border border-slate-200 text-xs font-black text-indigo-700 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 text-center"
+                      />
+                    </div>
+                    <textarea
+                      value={a.interpretation}
+                      onChange={(e) => updateAssessment(idx, 'interpretation', e.target.value)}
+                      rows={3}
+                      placeholder="Interpretasi..."
+                      className="w-full p-3 rounded-xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 font-medium text-slate-700 bg-white"
+                    />
+                  </div>
+                ))}
               </div>
-            ) : <div />}
-            <button
-              onClick={handleSaveReview}
-              disabled={saving || !reviewNotes.trim()}
-              className="inline-flex items-center gap-2 h-11 px-6 rounded-xl bg-indigo-600 text-white text-sm font-bold hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {saving ? (
-                <><Loader2 className="size-4 animate-spin" /> Menyimpan...</>
-              ) : (
-                <><Save className="size-4" /> Simpan Review</>
-              )}
-            </button>
+            </div>
+
+            {/* Kekuatan */}
+            <div>
+              <label className="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Kekuatan yang Teridentifikasi</label>
+              <div className="space-y-2">
+                {reviewData.strengths.map((s, idx) => (
+                  <div key={idx} className="flex items-center gap-2">
+                    <input
+                      value={s}
+                      onChange={(e) => updateListItem('strengths', idx, e.target.value)}
+                      className="flex-1 h-10 px-4 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400"
+                    />
+                    <button onClick={() => removeListItem('strengths', idx)} className="size-8 rounded-lg bg-rose-50 hover:bg-rose-100 flex items-center justify-center transition-colors shrink-0">
+                      <Trash2 className="size-3.5 text-rose-500" />
+                    </button>
+                  </div>
+                ))}
+                <button onClick={() => addListItem('strengths')} className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-700 mt-1">
+                  <Plus className="size-3.5" /> Tambah
+                </button>
+              </div>
+            </div>
+
+            {/* Area Pertumbuhan */}
+            <div>
+              <label className="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Area yang Perlu Perhatian</label>
+              <div className="space-y-2">
+                {reviewData.areasOfGrowth.map((s, idx) => (
+                  <div key={idx} className="flex items-center gap-2">
+                    <input
+                      value={s}
+                      onChange={(e) => updateListItem('areasOfGrowth', idx, e.target.value)}
+                      className="flex-1 h-10 px-4 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400"
+                    />
+                    <button onClick={() => removeListItem('areasOfGrowth', idx)} className="size-8 rounded-lg bg-rose-50 hover:bg-rose-100 flex items-center justify-center transition-colors shrink-0">
+                      <Trash2 className="size-3.5 text-rose-500" />
+                    </button>
+                  </div>
+                ))}
+                <button onClick={() => addListItem('areasOfGrowth')} className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-700 mt-1">
+                  <Plus className="size-3.5" /> Tambah
+                </button>
+              </div>
+            </div>
+
+            {/* Rekomendasi */}
+            <div>
+              <label className="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Rekomendasi</label>
+              <div className="space-y-2">
+                {reviewData.recommendations.map((s, idx) => (
+                  <div key={idx} className="flex items-center gap-2">
+                    <input
+                      value={s}
+                      onChange={(e) => updateListItem('recommendations', idx, e.target.value)}
+                      className="flex-1 h-10 px-4 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400"
+                    />
+                    <button onClick={() => removeListItem('recommendations', idx)} className="size-8 rounded-lg bg-rose-50 hover:bg-rose-100 flex items-center justify-center transition-colors shrink-0">
+                      <Trash2 className="size-3.5 text-rose-500" />
+                    </button>
+                  </div>
+                ))}
+                <button onClick={() => addListItem('recommendations')} className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-700 mt-1">
+                  <Plus className="size-3.5" /> Tambah
+                </button>
+              </div>
+            </div>
+
+            {/* Catatan Psikolog */}
+            <div>
+              <label className="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Catatan Psikolog (opsional)</label>
+              <textarea
+                value={reviewData.psychologistNotes}
+                onChange={(e) => setReviewData((prev) => prev ? { ...prev, psychologistNotes: e.target.value } : prev)}
+                rows={3}
+                placeholder="Catatan tambahan dari psikolog..."
+                className="w-full p-4 rounded-2xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 font-medium text-slate-700"
+              />
+            </div>
+
+            {/* Actions */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2 border-t border-slate-100">
+              <div>
+                {saveSuccess === 'draft' && (
+                  <div className="flex items-center gap-2 text-indigo-600 text-sm font-bold">
+                    <CheckCircle2 className="size-4" /> Draft tersimpan
+                  </div>
+                )}
+                {saveSuccess === 'published' && (
+                  <div className="flex items-center gap-2 text-emerald-600 text-sm font-bold">
+                    <CheckCircle2 className="size-4" /> Laporan dipublish ke peserta
+                  </div>
+                )}
+              </div>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => handleSave(false)}
+                  disabled={saving}
+                  className="inline-flex items-center gap-2 h-11 px-5 rounded-xl bg-slate-100 text-slate-700 text-sm font-bold hover:bg-slate-200 transition-colors disabled:opacity-50"
+                >
+                  {saving ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
+                  Simpan Draft
+                </button>
+                <button
+                  onClick={() => handleSave(true)}
+                  disabled={saving}
+                  className="inline-flex items-center gap-2 h-11 px-5 rounded-xl bg-emerald-600 text-white text-sm font-bold hover:bg-emerald-700 transition-colors disabled:opacity-50 shadow-sm"
+                >
+                  {saving ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" />}
+                  Publish ke Peserta
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* TESTS */}

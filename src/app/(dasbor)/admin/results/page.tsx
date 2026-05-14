@@ -25,11 +25,20 @@ import { api } from '@/lib/axios'
 interface UserPackageItem {
   id: string
   user: { id: string; firstName: string; lastName: string; email: string }
-  packageType: { id: string; name: string }
+  packageType: {
+    id: string
+    name: string
+    childPackage: {
+      id: string
+      name: string
+      package: { id: string; name: string }
+    }
+  }
   purchasedAt: string
   reviewNotes: string | null
   reviewedAt: string | null
   reviewedBy: string | null
+  isPublished: boolean
   allCompleted: boolean
   anyCompleted: boolean
   lastCompletedAt: string | null
@@ -233,6 +242,7 @@ export default function AdminResultsPage() {
         <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden divide-y divide-slate-50">
           {filtered.map((item, index) => {
             const isReviewed = !!item.reviewedAt
+            const isPublished = item.isPublished
             const accent = accentColors[index % accentColors.length]
             const fullName = `${item.user.firstName} ${item.user.lastName}`
             const completedTests = item.tests.filter((t) => t.session?.status === 'COMPLETED').length
@@ -254,9 +264,9 @@ export default function AdminResultsPage() {
                     </h3>
                     <span className={cn(
                       'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
-                      isReviewed ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600',
+                      isPublished ? 'bg-emerald-50 text-emerald-600' : isReviewed ? 'bg-indigo-50 text-indigo-600' : 'bg-amber-50 text-amber-600',
                     )}>
-                      {isReviewed ? 'Sudah Direview' : 'Perlu Review'}
+                      {isPublished ? 'Published' : isReviewed ? 'Draft' : 'Perlu Review'}
                     </span>
                   </div>
                   <p className="text-sm text-slate-400 font-medium truncate">{item.user.email}</p>
@@ -264,7 +274,9 @@ export default function AdminResultsPage() {
 
                 <div className="hidden md:flex items-center gap-1.5 text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1.5 rounded-full shrink-0">
                   <Package className="size-3.5" />
-                  <span className="truncate max-w-[140px]">{item.packageType.name}</span>
+                  <span className="truncate max-w-[200px]">
+                    {item.packageType.childPackage.package.name} › {item.packageType.childPackage.name} › {item.packageType.name}
+                  </span>
                 </div>
 
                 <div className="hidden lg:flex items-center gap-2 shrink-0">

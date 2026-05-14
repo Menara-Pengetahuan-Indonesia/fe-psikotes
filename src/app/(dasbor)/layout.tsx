@@ -61,7 +61,7 @@ const NAV_BY_ROLE: Record<UserRole, NavGroup[]> = {
   ADMIN: [
     {
       items: [
-        { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+        { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
         { href: '/admin/kelola-tes', label: 'Kelola Tes', icon: BookOpen },
         { href: '/admin/results', label: 'Hasil Peserta', icon: ClipboardList },
       ],
@@ -70,7 +70,7 @@ const NAV_BY_ROLE: Record<UserRole, NavGroup[]> = {
   SUPERADMIN: [
     {
       items: [
-        { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+        { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
         { href: '/admin/kelola-tes', label: 'Kelola Tes', icon: BookOpen },
         { href: '/admin/results', label: 'Hasil Peserta', icon: ClipboardList },
       ],
@@ -126,43 +126,30 @@ const ROLE_BADGE: Record<UserRole, { label: string; className: string }> = {
   },
 }
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const [isMobileOpen, setIsMobileOpen] = React.useState(false)
-  const [isCollapsed, setIsCollapsed] = React.useState(false)
-  const [mounted, setMounted] = React.useState(false)
-  const pathname = usePathname()
-  const { user } = useAuthStoreHydrated()
-  const logoutMutation = useLogout()
+type SidebarContentProps = {
+  collapsed: boolean
+  navGroups: NavGroup[]
+  isActiveLink: (href: string) => boolean
+  toggleCollapse: () => void
+  mounted: boolean
+  initials: string
+  displayName: string | undefined
+  displayEmail: string | undefined
+  onLogout: () => void
+}
 
-  React.useEffect(() => {
-    setMounted(true)
-    const stored = localStorage.getItem('sidebar-collapsed')
-    if (stored === '1') setIsCollapsed(true)
-  }, [])
-
-  React.useEffect(() => {
-    setIsMobileOpen(false)
-  }, [pathname])
-
-  const toggleCollapse = () => {
-    setIsCollapsed((prev) => {
-      const next = !prev
-      localStorage.setItem('sidebar-collapsed', next ? '1' : '0')
-      return next
-    })
-  }
-
-  const role: UserRole = (mounted && user?.role) || 'USER'
-  const navGroups = NAV_BY_ROLE[role]
-  const badge = ROLE_BADGE[role]
-  const displayName = mounted ? user?.name : ''
-  const displayEmail = mounted ? user?.email : ''
-  const initials = mounted && user?.name ? user.name.substring(0, 2).toUpperCase() : 'U'
-
-  const isActiveLink = (href: string) =>
-    mounted && (pathname === href || pathname.startsWith(href + '/'))
-
-  const SidebarContent = ({ collapsed }: { collapsed: boolean }) => (
+function SidebarContent({
+  collapsed,
+  navGroups,
+  isActiveLink,
+  toggleCollapse,
+  mounted,
+  initials,
+  displayName,
+  displayEmail,
+  onLogout,
+}: SidebarContentProps) {
+  return (
     <div className="flex flex-col h-full">
       <div className="flex items-center justify-between px-4 h-16 border-b border-slate-100 shrink-0">
         <Link href="/" className={cn('flex items-center gap-2', collapsed && 'justify-center w-full')}>
@@ -279,7 +266,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <p className="text-[10px] text-slate-500 truncate">{displayEmail}</p>
               </div>
               <button
-                onClick={() => logoutMutation.mutate()}
+                onClick={onLogout}
                 className="w-8 h-8 rounded-lg text-slate-400 hover:bg-red-50 hover:text-red-600 flex items-center justify-center transition-colors"
                 title="Keluar"
               >
@@ -291,6 +278,54 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </div>
     </div>
   )
+}
+
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const [isMobileOpen, setIsMobileOpen] = React.useState(false)
+  const [isCollapsed, setIsCollapsed] = React.useState(false)
+  const [mounted, setMounted] = React.useState(false)
+  const pathname = usePathname()
+  const { user } = useAuthStoreHydrated()
+  const logoutMutation = useLogout()
+
+  React.useEffect(() => {
+    setMounted(true)
+    const stored = localStorage.getItem('sidebar-collapsed')
+    if (stored === '1') setIsCollapsed(true)
+  }, [])
+
+  React.useEffect(() => {
+    setIsMobileOpen(false)
+  }, [pathname])
+
+  const toggleCollapse = () => {
+    setIsCollapsed((prev) => {
+      const next = !prev
+      localStorage.setItem('sidebar-collapsed', next ? '1' : '0')
+      return next
+    })
+  }
+
+  const role: UserRole = (mounted && user?.role) || 'USER'
+  const navGroups = NAV_BY_ROLE[role]
+  const badge = ROLE_BADGE[role]
+  const displayName = mounted ? user?.name : ''
+  const displayEmail = mounted ? user?.email : ''
+  const initials = mounted && user?.name ? user.name.substring(0, 2).toUpperCase() : 'U'
+
+  const isActiveLink = (href: string) =>
+    mounted && (pathname === href || pathname.startsWith(href + '/'))
+
+  const sidebarProps = {
+    navGroups,
+    isActiveLink,
+    toggleCollapse,
+    mounted,
+    initials,
+    displayName,
+    displayEmail,
+    onLogout: () => logoutMutation.mutate(),
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-primary-100 selection:text-primary-900">
@@ -300,7 +335,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           isCollapsed ? 'w-[76px]' : 'w-[260px]',
         )}
       >
-        <SidebarContent collapsed={isCollapsed} />
+        <SidebarContent collapsed={isCollapsed} {...sidebarProps} />
       </aside>
 
       {isMobileOpen && (
@@ -315,7 +350,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           isMobileOpen ? 'translate-x-0' : '-translate-x-full',
         )}
       >
-        <SidebarContent collapsed={false} />
+        <SidebarContent collapsed={false} {...sidebarProps} />
       </aside>
 
       <div

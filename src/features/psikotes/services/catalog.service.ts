@@ -80,6 +80,8 @@ export const catalogService = {
         reviewNotes: item.reviewNotes ?? null,
         reviewedAt: item.reviewedAt ?? null,
         reviewedBy: item.reviewedBy ?? null,
+        reviewData: item.reviewData ?? null,
+        isPublished: item.isPublished ?? false,
         tests,
       }
     })

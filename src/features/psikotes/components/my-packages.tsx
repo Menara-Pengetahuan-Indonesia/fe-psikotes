@@ -18,7 +18,6 @@ import {
   Coffee,
   ShieldCheck,
   CheckCircle2,
-  Eye,
   RotateCw,
   ChevronDown,
   UserCheck,
@@ -204,6 +203,7 @@ export function MyPackages() {
             : 0
           const allCompleted = hasTests && completedCount === (pkg.tests?.length ?? 0)
           const isReviewed = !!pkg.reviewedAt
+          const isPublished = !!pkg.isPublished
 
           return (
             <div
@@ -293,12 +293,16 @@ export function MyPackages() {
                 {allCompleted && (
                   <div className={cn(
                     'flex items-center gap-2 px-3 py-2 rounded-xl mb-4 text-xs font-bold',
-                    isReviewed
+                    isPublished
                       ? 'bg-emerald-50 border border-emerald-100 text-emerald-700'
-                      : 'bg-amber-50 border border-amber-100 text-amber-700',
+                      : isReviewed
+                        ? 'bg-indigo-50 border border-indigo-100 text-indigo-700'
+                        : 'bg-amber-50 border border-amber-100 text-amber-700',
                   )}>
-                    {isReviewed ? (
-                      <><UserCheck className="w-3.5 h-3.5 shrink-0" /> Sudah direview oleh psikolog</>
+                    {isPublished ? (
+                      <><UserCheck className="w-3.5 h-3.5 shrink-0" /> Laporan psikologis tersedia</>
+                    ) : isReviewed ? (
+                      <><ClipboardList className="w-3.5 h-3.5 shrink-0" /> Sedang diproses psikolog</>
                     ) : (
                       <><ClipboardList className="w-3.5 h-3.5 shrink-0" /> Menunggu review psikolog</>
                     )}
@@ -314,24 +318,39 @@ export function MyPackages() {
                       year: 'numeric',
                     })}
                   </span>
-                  {hasTests ? (
-                    <button
-                      onClick={() => setExpandedId(isExpanded ? null : pkg.id)}
-                      className="inline-flex items-center gap-1.5 px-4 h-10 rounded-xl bg-slate-900 text-white text-sm font-bold hover:bg-slate-800 transition-colors"
-                    >
-                      {isExpanded ? 'Sembunyikan' : 'Lihat Tes'}
-                      <ChevronDown
-                        className={cn(
-                          'w-4 h-4 transition-transform',
-                          isExpanded && 'rotate-180',
-                        )}
-                      />
-                    </button>
-                  ) : (
-                    <span className="text-[11px] font-bold text-amber-800 bg-amber-50 border border-amber-100 px-2.5 py-1 rounded-lg">
-                      Segera hadir
-                    </span>
-                  )}
+                  <div className="flex items-center gap-2">
+                    {isPublished && (() => {
+                      const firstCompleted = pkg.tests?.find((t) => t.session?.status === 'COMPLETED')
+                      if (!firstCompleted?.session) return null
+                      return (
+                        <button
+                          onClick={() => router.push(`/tes/${firstCompleted.id}/result/${firstCompleted.session!.id}`)}
+                          className="inline-flex items-center gap-1.5 px-4 h-10 rounded-xl bg-emerald-600 text-white text-sm font-bold hover:bg-emerald-700 transition-colors"
+                        >
+                          <UserCheck className="w-4 h-4" />
+                          Lihat Laporan
+                        </button>
+                      )
+                    })()}
+                    {hasTests ? (
+                      <button
+                        onClick={() => setExpandedId(isExpanded ? null : pkg.id)}
+                        className="inline-flex items-center gap-1.5 px-4 h-10 rounded-xl bg-slate-900 text-white text-sm font-bold hover:bg-slate-800 transition-colors"
+                      >
+                        {isExpanded ? 'Sembunyikan' : 'Lihat Tes'}
+                        <ChevronDown
+                          className={cn(
+                            'w-4 h-4 transition-transform',
+                            isExpanded && 'rotate-180',
+                          )}
+                        />
+                      </button>
+                    ) : (
+                      <span className="text-[11px] font-bold text-amber-800 bg-amber-50 border border-amber-100 px-2.5 py-1 rounded-lg">
+                        Segera hadir
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -341,21 +360,6 @@ export function MyPackages() {
                     const status = getTestStatus(test)
                     const isCompleted = status === 'COMPLETED'
                     const isInProgress = status === 'IN_PROGRESS'
-                    const buttonLabel = isCompleted
-                      ? 'Lihat Hasil'
-                      : isInProgress
-                        ? 'Lanjut'
-                        : 'Mulai'
-                    const ButtonIcon = isCompleted
-                      ? Eye
-                      : isInProgress
-                        ? RotateCw
-                        : PlayCircle
-                    const buttonClass = isCompleted
-                      ? 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-100'
-                      : isInProgress
-                        ? 'bg-amber-500 hover:bg-amber-600 shadow-amber-100'
-                        : 'bg-primary-600 hover:bg-primary-700 shadow-primary-100'
 
                     return (
                       <div
@@ -392,17 +396,25 @@ export function MyPackages() {
                           </div>
                         </div>
 
-                        <button
-                          onClick={() => handleTestAction(test)}
-                          className={cn(
-                            'inline-flex items-center justify-center gap-1.5 px-4 h-10 rounded-xl text-white text-sm font-bold transition-all shadow-sm whitespace-nowrap',
-                            buttonClass,
-                          )}
-                        >
-                          <ButtonIcon className="w-4 h-4" />
-                          {buttonLabel}
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
+                        {!isCompleted && (
+                          <button
+                            onClick={() => handleTestAction(test)}
+                            className={cn(
+                              'inline-flex items-center justify-center gap-1.5 px-4 h-10 rounded-xl text-white text-sm font-bold transition-all shadow-sm whitespace-nowrap',
+                              isInProgress
+                                ? 'bg-amber-500 hover:bg-amber-600 shadow-amber-100'
+                                : 'bg-primary-600 hover:bg-primary-700 shadow-primary-100',
+                            )}
+                          >
+                            {isInProgress ? (
+                              <RotateCw className="w-4 h-4" />
+                            ) : (
+                              <PlayCircle className="w-4 h-4" />
+                            )}
+                            {isInProgress ? 'Lanjut' : 'Mulai'}
+                            <ArrowRight className="w-3.5 h-3.5" />
+                          </button>
+                        )}
                       </div>
                     )
                   })}
