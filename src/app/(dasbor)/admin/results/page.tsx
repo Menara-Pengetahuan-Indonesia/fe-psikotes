@@ -7,7 +7,6 @@ import {
   ChevronRight,
   Users,
   CheckCircle2,
-  Clock,
   Eye,
   Calendar,
   User,
@@ -17,27 +16,35 @@ import {
   Loader2,
   AlertTriangle,
   RefreshCw,
+  Package,
 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 import { api } from '@/lib/axios'
 
-interface Session {
+interface UserPackageItem {
   id: string
   user: { id: string; firstName: string; lastName: string; email: string }
-  test: { id: string; name: string }
-  status: string
-  completedAt: string | null
+  packageType: { id: string; name: string }
+  purchasedAt: string
   reviewNotes: string | null
   reviewedAt: string | null
   reviewedBy: string | null
+  allCompleted: boolean
+  anyCompleted: boolean
+  lastCompletedAt: string | null
+  tests: {
+    id: string
+    name: string
+    session: { id: string; status: string; completedAt: string | null } | null
+  }[]
 }
 
 type FilterType = 'all' | 'pending' | 'reviewed'
 
-function formatDate(dateStr: string | null) {
-  if (!dateStr) return '-'
-  return new Date(dateStr).toLocaleDateString('id-ID', {
+function formatDate(d: string | null) {
+  if (!d) return '-'
+  return new Date(d).toLocaleDateString('id-ID', {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
@@ -53,14 +60,14 @@ const accentColors = [
 
 export default function AdminResultsPage() {
   const router = useRouter()
-  const [sessions, setSessions] = useState<Session[]>([])
+  const [items, setItems] = useState<UserPackageItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [filter, setFilter] = useState<FilterType>('all')
-  const [search, setSearch] = useState('')
   const [searchInput, setSearchInput] = useState('')
+  const [search, setSearch] = useState('')
 
-  const fetchSessions = useCallback(async (q?: string, reviewed?: string) => {
+  const fetchItems = useCallback(async (q?: string, reviewed?: string) => {
     setLoading(true)
     setError(null)
     try {
@@ -68,7 +75,7 @@ export default function AdminResultsPage() {
       if (q) params.set('search', q)
       if (reviewed) params.set('reviewed', reviewed)
       const res = await api.get(`/admin/sessions?${params.toString()}`)
-      setSessions(res.data.data ?? [])
+      setItems(res.data.data ?? [])
     } catch {
       setError('Gagal memuat data. Coba refresh.')
     } finally {
@@ -79,28 +86,27 @@ export default function AdminResultsPage() {
   useEffect(() => {
     const reviewed =
       filter === 'reviewed' ? 'true' : filter === 'pending' ? 'false' : undefined
-    fetchSessions(search || undefined, reviewed)
-  }, [filter, search, fetchSessions])
+    fetchItems(search || undefined, reviewed)
+  }, [filter, search, fetchItems])
 
-  // Debounce search input
   useEffect(() => {
     const t = setTimeout(() => setSearch(searchInput), 400)
     return () => clearTimeout(t)
   }, [searchInput])
 
-  const reviewedCount = sessions.filter((s) => s.reviewedAt).length
-  const pendingCount = sessions.filter((s) => !s.reviewedAt).length
+  const reviewedCount = items.filter((i) => i.reviewedAt).length
+  const pendingCount = items.filter((i) => !i.reviewedAt).length
 
-  const filteredSessions =
+  const filtered =
     filter === 'all'
-      ? sessions
+      ? items
       : filter === 'reviewed'
-        ? sessions.filter((s) => s.reviewedAt)
-        : sessions.filter((s) => !s.reviewedAt)
+        ? items.filter((i) => i.reviewedAt)
+        : items.filter((i) => !i.reviewedAt)
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      {/* HERO BANNER */}
+      {/* HERO */}
       <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
@@ -111,11 +117,11 @@ export default function AdminResultsPage() {
               Hasil Peserta.
             </h1>
             <p className="text-slate-400 font-medium text-sm">
-              Review dan beri catatan untuk setiap peserta yang telah menyelesaikan tes.
+              Review hasil per paket — satu catatan psikolog untuk semua tes dalam paket.
             </p>
           </div>
           <button
-            onClick={() => fetchSessions(search || undefined, filter === 'reviewed' ? 'true' : filter === 'pending' ? 'false' : undefined)}
+            onClick={() => fetchItems(search || undefined, filter === 'reviewed' ? 'true' : filter === 'pending' ? 'false' : undefined)}
             className="inline-flex items-center gap-2 h-12 px-6 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-sm font-bold transition-colors shrink-0"
           >
             <RefreshCw className="w-4 h-4" />
@@ -129,10 +135,8 @@ export default function AdminResultsPage() {
               <Users className="size-5 text-indigo-300" />
             </div>
             <div>
-              <p className="text-2xl font-black leading-none">{sessions.length}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
-                Total Sesi
-              </p>
+              <p className="text-2xl font-black leading-none">{items.length}</p>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total Paket</p>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
@@ -141,9 +145,7 @@ export default function AdminResultsPage() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{pendingCount}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
-                Perlu Review
-              </p>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Perlu Review</p>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
@@ -152,9 +154,7 @@ export default function AdminResultsPage() {
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{reviewedCount}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
-                Sudah Direview
-              </p>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Sudah Direview</p>
             </div>
           </div>
         </div>
@@ -169,7 +169,7 @@ export default function AdminResultsPage() {
         <div className="flex items-center bg-white rounded-xl border border-slate-100 p-1 gap-1">
           {(
             [
-              { key: 'all', label: 'Semua', count: sessions.length },
+              { key: 'all', label: 'Semua', count: items.length },
               { key: 'pending', label: 'Perlu Review', count: pendingCount },
               { key: 'reviewed', label: 'Sudah Direview', count: reviewedCount },
             ] as const
@@ -194,7 +194,7 @@ export default function AdminResultsPage() {
         <div className="flex-1 relative">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
           <Input
-            placeholder="Cari nama, email, atau nama tes..."
+            placeholder="Cari nama, email, atau nama paket..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             className="pl-11 h-11 bg-white border-slate-100 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500/10"
@@ -215,41 +215,35 @@ export default function AdminResultsPage() {
           </div>
           <p className="text-sm font-bold text-slate-500">{error}</p>
           <button
-            onClick={() => fetchSessions()}
+            onClick={() => fetchItems()}
             className="h-10 px-5 rounded-xl bg-rose-600 text-white text-sm font-bold hover:bg-rose-700 transition-colors"
           >
             Coba Lagi
           </button>
         </div>
-      ) : filteredSessions.length === 0 ? (
+      ) : filtered.length === 0 ? (
         <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
           <div className="size-16 rounded-2xl bg-indigo-50 flex items-center justify-center mb-5">
             <Users className="size-8 text-indigo-400" />
           </div>
           <p className="text-slate-900 font-black text-lg mb-1">Tidak ditemukan.</p>
-          <p className="text-slate-400 font-medium text-sm">
-            Coba ubah filter atau kata kunci pencarian.
-          </p>
+          <p className="text-slate-400 font-medium text-sm">Coba ubah filter atau kata kunci pencarian.</p>
         </div>
       ) : (
         <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden divide-y divide-slate-50">
-          {filteredSessions.map((session, index) => {
-            const isReviewed = !!session.reviewedAt
+          {filtered.map((item, index) => {
+            const isReviewed = !!item.reviewedAt
             const accent = accentColors[index % accentColors.length]
-            const fullName = `${session.user.firstName} ${session.user.lastName}`
+            const fullName = `${item.user.firstName} ${item.user.lastName}`
+            const completedTests = item.tests.filter((t) => t.session?.status === 'COMPLETED').length
 
             return (
               <div
-                key={session.id}
-                onClick={() => router.push(`/admin/results/${session.id}`)}
+                key={item.id}
+                onClick={() => router.push(`/admin/results/${item.id}`)}
                 className="group flex items-center gap-5 px-6 md:px-8 py-5 cursor-pointer hover:bg-slate-50/50 transition-all"
               >
-                <div
-                  className={cn(
-                    'size-12 rounded-2xl flex items-center justify-center shrink-0 transition-all group-hover:scale-105 group-hover:shadow-md text-white',
-                    accent,
-                  )}
-                >
+                <div className={cn('size-12 rounded-2xl flex items-center justify-center shrink-0 transition-all group-hover:scale-105 group-hover:shadow-md text-white', accent)}>
                   <User className="size-5" />
                 </div>
 
@@ -258,43 +252,37 @@ export default function AdminResultsPage() {
                     <h3 className="text-base font-black text-slate-900 truncate group-hover:text-indigo-600 transition-colors">
                       {fullName}
                     </h3>
-                    <span
-                      className={cn(
-                        'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
-                        isReviewed
-                          ? 'bg-emerald-50 text-emerald-600'
-                          : 'bg-amber-50 text-amber-600',
-                      )}
-                    >
+                    <span className={cn(
+                      'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
+                      isReviewed ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600',
+                    )}>
                       {isReviewed ? 'Sudah Direview' : 'Perlu Review'}
                     </span>
                   </div>
-                  <p className="text-sm text-slate-400 font-medium truncate">
-                    {session.user.email}
-                  </p>
+                  <p className="text-sm text-slate-400 font-medium truncate">{item.user.email}</p>
                 </div>
 
                 <div className="hidden md:flex items-center gap-1.5 text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1.5 rounded-full shrink-0">
-                  <FileBarChart className="size-3.5" />
-                  <span className="truncate max-w-[140px]">{session.test.name}</span>
+                  <Package className="size-3.5" />
+                  <span className="truncate max-w-[140px]">{item.packageType.name}</span>
                 </div>
 
                 <div className="hidden lg:flex items-center gap-2 shrink-0">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 bg-slate-50 px-3 py-1.5 rounded-full">
+                    <FileBarChart className="size-3.5" />
+                    <span>{completedTests}/{item.tests.length} tes selesai</span>
+                  </div>
                   {isReviewed ? (
                     <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full">
                       <UserCheck className="size-3.5" />
-                      <span>{session.reviewedBy ?? 'Admin'}</span>
+                      <span>{item.reviewedBy ?? 'Admin'}</span>
                     </div>
                   ) : (
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-amber-600 bg-amber-50 px-3 py-1.5 rounded-full">
-                      <ClipboardList className="size-3.5" />
-                      <span>Belum direview</span>
+                    <div className="flex items-center gap-1.5 text-xs font-medium text-slate-400">
+                      <Calendar className="size-3.5" />
+                      <span>{formatDate(item.lastCompletedAt)}</span>
                     </div>
                   )}
-                  <div className="flex items-center gap-1.5 text-xs font-medium text-slate-400">
-                    <Calendar className="size-3.5" />
-                    <span>{formatDate(session.completedAt)}</span>
-                  </div>
                 </div>
 
                 <div className="flex items-center gap-2 shrink-0">

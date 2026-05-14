@@ -29,6 +29,9 @@ export interface MyPackageType {
   childPackageName?: string
   packageName?: string
   purchasedAt: string
+  reviewNotes?: string | null
+  reviewedAt?: string | null
+  reviewedBy?: string | null
   tests?: {
     id: string
     name: string

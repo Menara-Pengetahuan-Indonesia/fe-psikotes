@@ -77,6 +77,9 @@ export const catalogService = {
         childPackageName: item.packageType?.childPackage?.name ?? '',
         packageName: item.packageType?.childPackage?.package?.name ?? '',
         purchasedAt: item.purchasedAt,
+        reviewNotes: item.reviewNotes ?? null,
+        reviewedAt: item.reviewedAt ?? null,
+        reviewedBy: item.reviewedBy ?? null,
         tests,
       }
     })

@@ -8,8 +8,6 @@ import {
   Mail,
   Calendar,
   FileBarChart,
-  Clock,
-  CheckCircle2,
   Loader2,
   AlertTriangle,
   ClipboardList,
@@ -18,6 +16,8 @@ import {
   ChevronDown,
   ChevronUp,
   MessageSquare,
+  CheckCircle2,
+  Package,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { api } from '@/lib/axios'
@@ -45,20 +45,31 @@ interface SubTestResult {
   score: number | null
   maxScore: number | null
   subTest: { id: string; name: string; order: number }
-  answers: Answer[]
+  userAnswers: Answer[]
 }
 
-interface SessionDetail {
+interface TestItem {
+  id: string
+  name: string
+  order: number
+  session: {
+    id: string
+    status: string
+    startedAt: string | null
+    completedAt: string | null
+    subTestResults: SubTestResult[]
+  } | null
+}
+
+interface PackageDetail {
   id: string
   user: { id: string; firstName: string; lastName: string; email: string }
-  test: { id: string; name: string; description: string }
-  status: string
-  startedAt: string | null
-  completedAt: string | null
+  packageType: { id: string; name: string; description: string }
+  purchasedAt: string
   reviewNotes: string | null
   reviewedAt: string | null
   reviewedBy: string | null
-  subTestResults: SubTestResult[]
+  tests: TestItem[]
 }
 
 function formatDate(d: string | null) {
@@ -68,11 +79,6 @@ function formatDate(d: string | null) {
     month: 'long',
     year: 'numeric',
   })
-}
-
-function formatTime(d: string | null) {
-  if (!d) return ''
-  return new Date(d).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })
 }
 
 function getAnswerLabel(answer: Answer): string {
@@ -87,9 +93,9 @@ function getAnswerLabel(answer: Answer): string {
 export default function ResultDetailPage() {
   const params = useParams()
   const router = useRouter()
-  const resultId = params.resultId as string
+  const userPackageId = params.resultId as string
 
-  const [session, setSession] = useState<SessionDetail | null>(null)
+  const [pkg, setPkg] = useState<PackageDetail | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -97,31 +103,36 @@ export default function ResultDetailPage() {
   const [saving, setSaving] = useState(false)
   const [saveSuccess, setSaveSuccess] = useState(false)
 
+  const [expandedTests, setExpandedTests] = useState<Set<string>>(new Set())
   const [expandedSubTests, setExpandedSubTests] = useState<Set<string>>(new Set())
 
   useEffect(() => {
     api
-      .get(`/admin/sessions/${resultId}`)
+      .get(`/admin/sessions/${userPackageId}`)
       .then((res) => {
-        const data: SessionDetail = res.data.data
-        setSession(data)
+        const data: PackageDetail = res.data.data
+        setPkg(data)
         setReviewNotes(data.reviewNotes ?? '')
-        // expand first subtest by default
-        if (data.subTestResults.length > 0) {
-          setExpandedSubTests(new Set([data.subTestResults[0].id]))
+        // expand first test by default
+        if (data.tests.length > 0) {
+          setExpandedTests(new Set([data.tests[0].id]))
+          const firstSubResults = data.tests[0].session?.subTestResults ?? []
+          if (firstSubResults.length > 0) {
+            setExpandedSubTests(new Set([firstSubResults[0].id]))
+          }
         }
       })
-      .catch(() => setError('Gagal memuat data sesi.'))
+      .catch(() => setError('Gagal memuat data.'))
       .finally(() => setLoading(false))
-  }, [resultId])
+  }, [userPackageId])
 
   const handleSaveReview = async () => {
-    if (!session) return
+    if (!pkg) return
     setSaving(true)
     setSaveSuccess(false)
     try {
-      const res = await api.patch(`/admin/sessions/${resultId}/review`, { reviewNotes })
-      setSession((prev) =>
+      const res = await api.patch(`/admin/sessions/${userPackageId}/review`, { reviewNotes })
+      setPkg((prev) =>
         prev
           ? {
               ...prev,
@@ -140,6 +151,15 @@ export default function ResultDetailPage() {
     }
   }
 
+  const toggleTest = (id: string) => {
+    setExpandedTests((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+
   const toggleSubTest = (id: string) => {
     setExpandedSubTests((prev) => {
       const next = new Set(prev)
@@ -154,13 +174,13 @@ export default function ResultDetailPage() {
       <div className="min-h-[60vh] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <Loader2 className="size-8 text-indigo-400 animate-spin" />
-          <p className="text-sm font-bold text-slate-400">Memuat data sesi...</p>
+          <p className="text-sm font-bold text-slate-400">Memuat data...</p>
         </div>
       </div>
     )
   }
 
-  if (error || !session) {
+  if (error || !pkg) {
     return (
       <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
         <div className="bg-white rounded-[2.5rem] border border-rose-100 p-16 text-center flex flex-col items-center">
@@ -180,9 +200,9 @@ export default function ResultDetailPage() {
     )
   }
 
-  const isReviewed = !!session.reviewedAt
-  const fullName = `${session.user.firstName} ${session.user.lastName}`
-  const totalAnswers = session.subTestResults.reduce((s, r) => s + r.answers.length, 0)
+  const isReviewed = !!pkg.reviewedAt
+  const fullName = `${pkg.user.firstName} ${pkg.user.lastName}`
+  const completedTests = pkg.tests.filter((t) => t.session?.status === 'COMPLETED').length
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -207,20 +227,17 @@ export default function ResultDetailPage() {
               <h1 className="text-2xl md:text-3xl font-black tracking-tight mb-1">{fullName}</h1>
               <div className="flex items-center gap-1.5 text-slate-400 text-sm font-medium mb-3">
                 <Mail className="size-3.5" />
-                <span>{session.user.email}</span>
+                <span>{pkg.user.email}</span>
               </div>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300">
-                  {session.test.name}
+                <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 inline-flex items-center gap-1.5">
+                  <Package className="size-3" />
+                  {pkg.packageType.name}
                 </span>
-                <span
-                  className={cn(
-                    'text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full',
-                    isReviewed
-                      ? 'bg-emerald-500/20 text-emerald-300'
-                      : 'bg-amber-500/20 text-amber-300',
-                  )}
-                >
+                <span className={cn(
+                  'text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full',
+                  isReviewed ? 'bg-emerald-500/20 text-emerald-300' : 'bg-amber-500/20 text-amber-300',
+                )}>
                   {isReviewed ? 'Sudah Direview' : 'Perlu Review'}
                 </span>
               </div>
@@ -230,24 +247,31 @@ export default function ResultDetailPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
               <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-                <ClipboardList className="size-5 text-indigo-300" />
+                <FileBarChart className="size-5 text-indigo-300" />
               </div>
               <div>
-                <p className="text-2xl font-black leading-none">{totalAnswers}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
-                  Jawaban
-                </p>
+                <p className="text-2xl font-black leading-none">{pkg.tests.length}</p>
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total Tes</p>
+              </div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+              <div className="size-10 rounded-xl bg-emerald-500/30 flex items-center justify-center">
+                <CheckCircle2 className="size-5 text-emerald-300" />
+              </div>
+              <div>
+                <p className="text-2xl font-black leading-none">{completedTests}</p>
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Selesai</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
               <div className="size-10 rounded-xl bg-violet-500/30 flex items-center justify-center">
-                <FileBarChart className="size-5 text-violet-300" />
+                <ClipboardList className="size-5 text-violet-300" />
               </div>
               <div>
-                <p className="text-2xl font-black leading-none">{session.subTestResults.length}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
-                  Subtes
+                <p className="text-2xl font-black leading-none">
+                  {pkg.tests.reduce((s, t) => s + (t.session?.subTestResults.reduce((ss, r) => ss + r.userAnswers.length, 0) ?? 0), 0)}
                 </p>
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Jawaban</p>
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
@@ -255,21 +279,8 @@ export default function ResultDetailPage() {
                 <Calendar className="size-5 text-rose-300" />
               </div>
               <div>
-                <p className="text-sm font-black leading-tight">{formatDate(session.completedAt)}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
-                  {formatTime(session.completedAt)}
-                </p>
-              </div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-teal-500/30 flex items-center justify-center">
-                <Clock className="size-5 text-teal-300" />
-              </div>
-              <div>
-                <p className="text-sm font-black leading-tight">{formatDate(session.startedAt)}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
-                  Mulai
-                </p>
+                <p className="text-sm font-black leading-tight">{formatDate(pkg.purchasedAt)}</p>
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Dibeli</p>
               </div>
             </div>
           </div>
@@ -282,12 +293,7 @@ export default function ResultDetailPage() {
       {/* REVIEW FORM */}
       <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
         <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
-          <div
-            className={cn(
-              'size-10 rounded-xl flex items-center justify-center',
-              isReviewed ? 'bg-emerald-100' : 'bg-amber-100',
-            )}
-          >
+          <div className={cn('size-10 rounded-xl flex items-center justify-center', isReviewed ? 'bg-emerald-100' : 'bg-amber-100')}>
             {isReviewed ? (
               <UserCheck className="size-5 text-emerald-600" />
             ) : (
@@ -298,8 +304,8 @@ export default function ResultDetailPage() {
             <h2 className="text-lg font-black text-slate-900">Catatan Review Psikolog</h2>
             <p className="text-xs text-slate-400 font-medium">
               {isReviewed
-                ? `Direview oleh ${session.reviewedBy ?? 'Admin'} · ${formatDate(session.reviewedAt)}`
-                : 'Belum ada catatan review'}
+                ? `Direview oleh ${pkg.reviewedBy ?? 'Admin'} · ${formatDate(pkg.reviewedAt)}`
+                : 'Catatan ini akan terlihat oleh peserta setelah disimpan'}
             </p>
           </div>
         </div>
@@ -312,13 +318,12 @@ export default function ResultDetailPage() {
             className="w-full p-4 rounded-2xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 font-medium text-slate-700 placeholder:text-slate-300"
           />
           <div className="flex items-center justify-between gap-4">
-            {saveSuccess && (
+            {saveSuccess ? (
               <div className="flex items-center gap-2 text-emerald-600 text-sm font-bold">
                 <CheckCircle2 className="size-4" />
                 Review berhasil disimpan
               </div>
-            )}
-            {!saveSuccess && <div />}
+            ) : <div />}
             <button
               onClick={handleSaveReview}
               disabled={saving || !reviewNotes.trim()}
@@ -334,88 +339,125 @@ export default function ResultDetailPage() {
         </div>
       </div>
 
-      {/* ANSWERS PER SUBTEST */}
+      {/* TESTS */}
       <div className="space-y-3">
-        <h2 className="text-lg font-black text-slate-900 px-1">Jawaban Peserta</h2>
-        {session.subTestResults.length === 0 ? (
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 p-12 text-center">
-            <p className="text-slate-400 font-medium text-sm">Tidak ada jawaban tercatat.</p>
-          </div>
-        ) : (
-          session.subTestResults.map((subResult) => {
-            const isExpanded = expandedSubTests.has(subResult.id)
-            return (
-              <div
-                key={subResult.id}
-                className="bg-white rounded-[2rem] border border-slate-100 overflow-hidden"
-              >
-                <button
-                  onClick={() => toggleSubTest(subResult.id)}
-                  className="w-full px-6 md:px-8 py-5 flex items-center gap-4 hover:bg-slate-50/50 transition-colors text-left"
-                >
-                  <div className="size-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center shrink-0">
-                    <FileBarChart className="size-5 text-indigo-600" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-black text-slate-900 text-sm">{subResult.subTest.name}</h3>
-                    <p className="text-[11px] text-slate-400 font-medium mt-0.5">
-                      {subResult.answers.length} jawaban
-                      {subResult.score !== null && ` · Skor: ${subResult.score}`}
-                    </p>
-                  </div>
-                  {isExpanded ? (
-                    <ChevronUp className="size-4 text-slate-400 shrink-0" />
-                  ) : (
-                    <ChevronDown className="size-4 text-slate-400 shrink-0" />
-                  )}
-                </button>
+        <h2 className="text-lg font-black text-slate-900 px-1">Jawaban per Tes</h2>
+        {pkg.tests.map((test) => {
+          const isTestExpanded = expandedTests.has(test.id)
+          const isCompleted = test.session?.status === 'COMPLETED'
 
-                {isExpanded && (
-                  <div className="border-t border-slate-50 divide-y divide-slate-50">
-                    {subResult.answers.length === 0 ? (
-                      <div className="px-8 py-6 text-center text-sm text-slate-400 font-medium">
-                        Tidak ada jawaban.
-                      </div>
-                    ) : (
-                      subResult.answers.map((answer, idx) => (
-                        <div key={answer.id} className="px-6 md:px-8 py-4 flex items-start gap-4">
-                          <div className="size-8 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 text-xs font-black text-slate-500 mt-0.5">
-                            {idx + 1}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-bold text-slate-900 leading-snug mb-2">
-                              {answer.question.questionText}
-                            </p>
-                            <div className="flex flex-wrap items-center gap-2">
-                              <span className="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
-                                {getAnswerLabel(answer)}
-                              </span>
-                              {answer.isCorrect !== null && (
-                                <span
-                                  className={cn(
-                                    'text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full',
-                                    answer.isCorrect
-                                      ? 'bg-emerald-50 text-emerald-600'
-                                      : 'bg-rose-50 text-rose-600',
-                                  )}
-                                >
-                                  {answer.isCorrect ? 'Benar' : 'Salah'}
-                                </span>
-                              )}
-                              <span className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">
-                                {answer.question.questionType}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      ))
-                    )}
-                  </div>
+          return (
+            <div key={test.id} className="bg-white rounded-[2rem] border border-slate-100 overflow-hidden">
+              <button
+                onClick={() => toggleTest(test.id)}
+                className="w-full px-6 md:px-8 py-5 flex items-center gap-4 hover:bg-slate-50/50 transition-colors text-left"
+              >
+                <div className={cn(
+                  'size-10 rounded-xl flex items-center justify-center shrink-0',
+                  isCompleted ? 'bg-indigo-50 border border-indigo-100' : 'bg-slate-50 border border-slate-100',
+                )}>
+                  <FileBarChart className={cn('size-5', isCompleted ? 'text-indigo-600' : 'text-slate-400')} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-black text-slate-900 text-sm">{test.name}</h3>
+                  <p className="text-[11px] text-slate-400 font-medium mt-0.5">
+                    {isCompleted
+                      ? `${test.session?.subTestResults.length ?? 0} subtes · ${test.session?.subTestResults.reduce((s, r) => s + r.userAnswers.length, 0) ?? 0} jawaban`
+                      : 'Belum dikerjakan'}
+                  </p>
+                </div>
+                <span className={cn(
+                  'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
+                  isCompleted ? 'bg-indigo-50 text-indigo-600' : 'bg-slate-100 text-slate-400',
+                )}>
+                  {isCompleted ? 'Selesai' : 'Belum'}
+                </span>
+                {isTestExpanded ? (
+                  <ChevronUp className="size-4 text-slate-400 shrink-0" />
+                ) : (
+                  <ChevronDown className="size-4 text-slate-400 shrink-0" />
                 )}
-              </div>
-            )
-          })
-        )}
+              </button>
+
+              {isTestExpanded && test.session && (
+                <div className="border-t border-slate-50 space-y-0">
+                  {test.session.subTestResults.length === 0 ? (
+                    <div className="px-8 py-6 text-center text-sm text-slate-400 font-medium">
+                      Tidak ada jawaban.
+                    </div>
+                  ) : (
+                    test.session.subTestResults.map((subResult) => {
+                      const isSubExpanded = expandedSubTests.has(subResult.id)
+                      return (
+                        <div key={subResult.id} className="border-t border-slate-50">
+                          <button
+                            onClick={() => toggleSubTest(subResult.id)}
+                            className="w-full px-8 py-4 flex items-center gap-3 hover:bg-slate-50/50 transition-colors text-left"
+                          >
+                            <div className="size-7 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 text-xs font-black text-slate-500">
+                              {subResult.subTest.order}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-black text-slate-700">{subResult.subTest.name}</p>
+                              <p className="text-[11px] text-slate-400 font-medium">
+                                {subResult.userAnswers.length} jawaban
+                                {subResult.score !== null && ` · Skor: ${subResult.score}`}
+                              </p>
+                            </div>
+                            {isSubExpanded ? (
+                              <ChevronUp className="size-3.5 text-slate-400 shrink-0" />
+                            ) : (
+                              <ChevronDown className="size-3.5 text-slate-400 shrink-0" />
+                            )}
+                          </button>
+
+                          {isSubExpanded && (
+                            <div className="border-t border-slate-50 divide-y divide-slate-50">
+                              {subResult.userAnswers.map((answer, idx) => (
+                                <div key={answer.id} className="px-8 py-4 flex items-start gap-4">
+                                  <div className="size-7 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 text-xs font-black text-slate-500 mt-0.5">
+                                    {idx + 1}
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <p className="text-sm font-bold text-slate-900 leading-snug mb-2">
+                                      {answer.question.questionText}
+                                    </p>
+                                    <div className="flex flex-wrap items-center gap-2">
+                                      <span className="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
+                                        {getAnswerLabel(answer)}
+                                      </span>
+                                      {answer.isCorrect !== null && (
+                                        <span className={cn(
+                                          'text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full',
+                                          answer.isCorrect ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600',
+                                        )}>
+                                          {answer.isCorrect ? 'Benar' : 'Salah'}
+                                        </span>
+                                      )}
+                                      <span className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">
+                                        {answer.question.questionType}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )
+                    })
+                  )}
+                </div>
+              )}
+
+              {isTestExpanded && !test.session && (
+                <div className="border-t border-slate-50 px-8 py-6 text-center text-sm text-slate-400 font-medium">
+                  Peserta belum mengerjakan tes ini.
+                </div>
+              )}
+            </div>
+          )
+        })}
       </div>
     </div>
   )

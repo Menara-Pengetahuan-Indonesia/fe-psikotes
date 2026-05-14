@@ -29,13 +29,9 @@ interface ResultData {
   id: string
   testId: string
   completedAt: string
-  reviewNotes: string | null
-  reviewedAt: string | null
-  reviewedBy: string | null
   test: {
     id: string
     name: string
-    description: string
   }
 }
 
@@ -69,22 +65,15 @@ export default function ResultPage() {
           id: resultId,
           testId,
           completedAt: state.completedAt ?? new Date().toISOString(),
-          reviewNotes: state.reviewNotes ?? null,
-          reviewedAt: state.reviewedAt ?? null,
-          reviewedBy: state.reviewedBy ?? null,
-          test: { id: testId, name: state.testName ?? '', description: '' },
+          test: { id: testId, name: state.testName ?? '' },
         })
       })
       .catch(() => {
-        // fallback: just show the page with minimal info
         setResult({
           id: resultId,
           testId,
           completedAt: new Date().toISOString(),
-          reviewNotes: null,
-          reviewedAt: null,
-          reviewedBy: null,
-          test: { id: testId, name: '', description: '' },
+          test: { id: testId, name: '' },
         })
       })
       .finally(() => setLoading(false))
@@ -125,7 +114,10 @@ export default function ResultPage() {
   }
 
   const completedAt = new Date(result.completedAt)
-  const isReviewed = !!result.reviewedAt
+  const isReviewed = !!parentPackage?.reviewedAt
+  const reviewNotes = parentPackage?.reviewNotes ?? null
+  const reviewedAt = parentPackage?.reviewedAt ?? null
+  const reviewedBy = parentPackage?.reviewedBy ?? null
 
   return (
     <div className="space-y-6">
@@ -221,8 +213,8 @@ export default function ResultPage() {
               <div className="flex-1 min-w-0">
                 <h2 className="font-black text-slate-900 leading-tight">Catatan Psikolog</h2>
                 <p className="text-[11px] text-slate-500 font-semibold mt-0.5">
-                  Direview oleh {result.reviewedBy ?? 'Psikolog'} ·{' '}
-                  {new Date(result.reviewedAt!).toLocaleDateString('id-ID', {
+                  Direview oleh {reviewedBy ?? 'Psikolog'} ·{' '}
+                  {new Date(reviewedAt!).toLocaleDateString('id-ID', {
                     day: 'numeric',
                     month: 'short',
                     year: 'numeric',
@@ -232,7 +224,7 @@ export default function ResultPage() {
             </div>
             <div className="bg-emerald-50/60 border border-emerald-100 rounded-2xl p-4">
               <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap">
-                {result.reviewNotes}
+                {reviewNotes}
               </p>
             </div>
           </div>
