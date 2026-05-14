@@ -2,9 +2,10 @@
 
 import * as React from 'react'
 import Link from 'next/link'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, LayoutDashboard } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import { useAuthStoreHydrated } from '@/store/auth.store'
 import { ICON_MAP, type NavItem } from './navbar-constants'
 
 interface NavbarDesktopMenuProps {
@@ -47,6 +48,33 @@ export function NavbarDesktopMenu({
 }
 
 export function NavbarDesktopCta() {
+  const { user, isAuthenticated, _hasHydrated } = useAuthStoreHydrated()
+  const loggedIn = _hasHydrated && isAuthenticated && !!user
+
+  if (loggedIn) {
+    const dashboardHref =
+      user.role === 'ADMIN' || user.role === 'SUPERADMIN' ? '/dashboard' : '/dashboard'
+    return (
+      <div className="hidden md:flex items-center gap-2">
+        <Button
+          size="sm"
+          className={cn(
+            'rounded-full text-[13px] font-bold tracking-wide h-10 px-5',
+            'shadow-md hover:shadow-lg transition-colors cursor-pointer',
+            'bg-primary-600 hover:bg-primary-700 text-white',
+            'inline-flex items-center gap-2',
+          )}
+          asChild
+        >
+          <Link href={dashboardHref}>
+            <LayoutDashboard className="w-4 h-4" />
+            Dashboard
+          </Link>
+        </Button>
+      </div>
+    )
+  }
+
   return (
     <div className="hidden md:flex items-center gap-2">
       <Button

@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
@@ -12,8 +13,28 @@ import {
   Sparkles,
   ArrowRight,
   ShoppingBag,
+  Wifi,
+  BatteryCharging,
+  Coffee,
+  ShieldCheck,
+  CheckCircle2,
+  Eye,
+  RotateCw,
+  ChevronDown,
 } from 'lucide-react'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from '@/components/ui/dialog'
+import { cn } from '@/lib/utils'
 import { useMyPackages } from '../hooks/use-catalog'
+
+type MyPackage = NonNullable<ReturnType<typeof useMyPackages>['data']>[number]
+type MyTest = NonNullable<MyPackage['tests']>[number]
 
 const TYPE_LABELS: Record<string, string> = {
   MULTIPLE_CHOICE: 'Pilihan Ganda',
@@ -30,9 +51,39 @@ const ACCENT_RING = [
   'from-violet-400 to-violet-500 shadow-violet-200',
 ]
 
+type TestStatus = 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED'
+
+function getTestStatus(test: MyTest): TestStatus {
+  return test.session?.status ?? 'NOT_STARTED'
+}
+
+function StatusBadge({ status }: { status: TestStatus }) {
+  if (status === 'COMPLETED') {
+    return (
+      <span className="inline-flex items-center gap-1 text-[10px] font-black text-emerald-700 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-md uppercase tracking-wider">
+        <CheckCircle2 className="w-3 h-3" /> Selesai
+      </span>
+    )
+  }
+  if (status === 'IN_PROGRESS') {
+    return (
+      <span className="inline-flex items-center gap-1 text-[10px] font-black text-amber-700 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded-md uppercase tracking-wider">
+        <RotateCw className="w-3 h-3" /> Berjalan
+      </span>
+    )
+  }
+  return (
+    <span className="inline-flex items-center gap-1 text-[10px] font-black text-slate-600 bg-slate-50 border border-slate-100 px-2 py-0.5 rounded-md uppercase tracking-wider">
+      Belum Mulai
+    </span>
+  )
+}
+
 export function MyPackages() {
   const router = useRouter()
   const { data: packages, isLoading } = useMyPackages()
+  const [expandedId, setExpandedId] = useState<string | null>(null)
+  const [confirmTest, setConfirmTest] = useState<MyTest | null>(null)
 
   if (isLoading) {
     return (
@@ -67,9 +118,25 @@ export function MyPackages() {
     )
   }
 
-  const handleStartTest = (pkg: (typeof packages)[0]) => {
-    if (!pkg.tests || pkg.tests.length === 0) return
-    router.push(`/tes/${pkg.tests[0].id}`)
+  const handleTestAction = (test: MyTest) => {
+    const status = getTestStatus(test)
+    if (status === 'COMPLETED' && test.session) {
+      router.push(`/tes/${test.id}/result/${test.session.id}`)
+      return
+    }
+    if (status === 'IN_PROGRESS') {
+      router.push(`/tes/${test.id}`)
+      return
+    }
+    // NOT_STARTED → show pre-test confirm dialog
+    setConfirmTest(test)
+  }
+
+  const handleStartConfirmed = () => {
+    if (!confirmTest) return
+    const id = confirmTest.id
+    setConfirmTest(null)
+    router.push(`/tes/${id}`)
   }
 
   const totalTests = packages.reduce((acc, pkg) => acc + (pkg.tests?.length ?? 0), 0)
@@ -86,17 +153,6 @@ export function MyPackages() {
         />
         <div className="absolute top-[-60px] right-[-60px] w-52 h-52 bg-amber-400/25 rounded-full blur-2xl" />
         <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-accent-400/30 rounded-full blur-2xl" />
-        <svg
-          className="absolute top-6 right-8 w-24 h-24 text-white/10 pointer-events-none"
-          viewBox="0 0 100 100"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        >
-          <circle cx="50" cy="50" r="35" />
-          <circle cx="50" cy="50" r="22" />
-          <circle cx="50" cy="50" r="9" />
-        </svg>
 
         <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
@@ -122,30 +178,38 @@ export function MyPackages() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+      <div className="grid grid-cols-1 gap-4 md:gap-5">
         {packages.map((pkg, idx) => {
           const allTypes = new Set<string>()
           let totalDuration = 0
           let totalQuestions = 0
+          let completedCount = 0
+          let inProgressCount = 0
           for (const t of pkg.tests ?? []) {
             t.questionTypes.forEach((qt) => allTypes.add(qt))
             totalDuration += t.totalDuration
             totalQuestions += t.totalQuestions
+            const st = getTestStatus(t)
+            if (st === 'COMPLETED') completedCount++
+            else if (st === 'IN_PROGRESS') inProgressCount++
           }
 
           const hasTests = pkg.tests && pkg.tests.length > 0
           const accent = ACCENT_RING[idx % ACCENT_RING.length]
+          const isExpanded = expandedId === pkg.id
+          const progressPct = hasTests
+            ? Math.round((completedCount / (pkg.tests?.length ?? 1)) * 100)
+            : 0
 
           return (
             <div
               key={pkg.id}
-              className="group relative bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg hover:border-primary-100 transition-all overflow-hidden"
+              className="group relative bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-md hover:border-primary-100 transition-all overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary-50 to-transparent rounded-bl-full pointer-events-none opacity-60" />
-              <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-amber-50 to-transparent rounded-tr-full pointer-events-none opacity-60" />
 
-              <div className="relative p-5 md:p-6 flex flex-col h-full">
-                <div className="flex items-start gap-3 mb-3">
+              <div className="relative p-5 md:p-6">
+                <div className="flex items-start gap-3 mb-4">
                   <div
                     className={`w-11 h-11 rounded-2xl bg-gradient-to-br ${accent} flex items-center justify-center shadow-sm shrink-0`}
                   >
@@ -198,7 +262,31 @@ export function MyPackages() {
                   )}
                 </div>
 
-                <div className="mt-auto pt-4 border-t border-dashed border-slate-200 flex items-center justify-between gap-3">
+                {hasTests && (
+                  <div className="mb-4">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-[11px] font-bold text-slate-500">
+                        Progress tes
+                      </span>
+                      <span className="text-[11px] font-black text-slate-700">
+                        {completedCount}/{pkg.tests?.length ?? 0}
+                      </span>
+                    </div>
+                    <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full transition-all duration-500"
+                        style={{ width: `${progressPct}%` }}
+                      />
+                    </div>
+                    {inProgressCount > 0 && (
+                      <p className="text-[11px] text-amber-700 font-semibold mt-1.5 inline-flex items-center gap-1">
+                        <RotateCw className="w-3 h-3" /> {inProgressCount} tes sedang dikerjakan
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                <div className="flex items-center justify-between gap-3 pt-4 border-t border-dashed border-slate-200">
                   <span className="text-[11px] text-slate-500 font-medium">
                     Dibeli{' '}
                     {new Date(pkg.purchasedAt).toLocaleDateString('id-ID', {
@@ -209,12 +297,16 @@ export function MyPackages() {
                   </span>
                   {hasTests ? (
                     <button
-                      onClick={() => handleStartTest(pkg)}
-                      className="inline-flex items-center gap-1.5 px-4 h-10 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 text-white text-sm font-bold hover:from-primary-700 hover:to-primary-800 transition-all shadow-sm shadow-primary-200 hover:shadow-md"
+                      onClick={() => setExpandedId(isExpanded ? null : pkg.id)}
+                      className="inline-flex items-center gap-1.5 px-4 h-10 rounded-xl bg-slate-900 text-white text-sm font-bold hover:bg-slate-800 transition-colors"
                     >
-                      <PlayCircle className="w-4 h-4" />
-                      Mulai Tes
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      {isExpanded ? 'Sembunyikan' : 'Lihat Tes'}
+                      <ChevronDown
+                        className={cn(
+                          'w-4 h-4 transition-transform',
+                          isExpanded && 'rotate-180',
+                        )}
+                      />
                     </button>
                   ) : (
                     <span className="text-[11px] font-bold text-amber-800 bg-amber-50 border border-amber-100 px-2.5 py-1 rounded-lg">
@@ -223,10 +315,175 @@ export function MyPackages() {
                   )}
                 </div>
               </div>
+
+              {isExpanded && hasTests && (
+                <div className="relative border-t border-slate-100 bg-slate-50/50 p-4 md:p-5 space-y-2.5">
+                  {pkg.tests?.map((test) => {
+                    const status = getTestStatus(test)
+                    const isCompleted = status === 'COMPLETED'
+                    const isInProgress = status === 'IN_PROGRESS'
+                    const buttonLabel = isCompleted
+                      ? 'Lihat Hasil'
+                      : isInProgress
+                        ? 'Lanjut'
+                        : 'Mulai'
+                    const ButtonIcon = isCompleted
+                      ? Eye
+                      : isInProgress
+                        ? RotateCw
+                        : PlayCircle
+                    const buttonClass = isCompleted
+                      ? 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-100'
+                      : isInProgress
+                        ? 'bg-amber-500 hover:bg-amber-600 shadow-amber-100'
+                        : 'bg-primary-600 hover:bg-primary-700 shadow-primary-100'
+
+                    return (
+                      <div
+                        key={test.id}
+                        className="bg-white rounded-2xl border border-slate-100 p-4 flex flex-col sm:flex-row sm:items-center gap-3 hover:border-primary-100 transition-colors"
+                      >
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start gap-2 mb-1.5">
+                            <h4 className="font-bold text-sm text-slate-900 leading-snug flex-1">
+                              {test.name}
+                            </h4>
+                            <StatusBadge status={status} />
+                          </div>
+                          <div className="flex flex-wrap gap-1.5">
+                            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-slate-600 bg-slate-50 border border-slate-100 px-2 py-0.5 rounded-md">
+                              <FileText className="w-3 h-3 text-primary-500" />
+                              {test.totalQuestions} soal
+                            </span>
+                            {test.totalDuration > 0 && (
+                              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-slate-600 bg-slate-50 border border-slate-100 px-2 py-0.5 rounded-md">
+                                <Clock className="w-3 h-3 text-primary-500" />
+                                {test.totalDuration} mnt
+                              </span>
+                            )}
+                            {isCompleted && test.session?.completedAt && (
+                              <span className="inline-flex items-center text-[10px] font-medium text-slate-500 px-1">
+                                Selesai{' '}
+                                {new Date(test.session.completedAt).toLocaleDateString(
+                                  'id-ID',
+                                  { day: 'numeric', month: 'short' },
+                                )}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={() => handleTestAction(test)}
+                          className={cn(
+                            'inline-flex items-center justify-center gap-1.5 px-4 h-10 rounded-xl text-white text-sm font-bold transition-all shadow-sm whitespace-nowrap',
+                            buttonClass,
+                          )}
+                        >
+                          <ButtonIcon className="w-4 h-4" />
+                          {buttonLabel}
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
             </div>
           )
         })}
       </div>
+
+      <Dialog
+        open={!!confirmTest}
+        onOpenChange={(open) => {
+          if (!open) setConfirmTest(null)
+        }}
+      >
+        <DialogContent className="sm:max-w-md p-0 overflow-hidden rounded-3xl flex flex-col max-h-[90vh]">
+          <div className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 px-6 pt-7 pb-6 text-white overflow-hidden shrink-0">
+            <div
+              className="absolute inset-0 opacity-[0.08] pointer-events-none"
+              style={{
+                backgroundImage:
+                  'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+                backgroundSize: '20px 20px',
+              }}
+            />
+            <div className="absolute top-[-40px] right-[-30px] w-40 h-40 bg-amber-400/25 rounded-full blur-2xl" />
+
+            <div className="relative">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-400 text-amber-950 text-[10px] font-black uppercase tracking-wider mb-3">
+                <Sparkles className="w-3 h-3" />
+                Konfirmasi
+              </div>
+              <DialogHeader className="text-left">
+                <DialogTitle className="text-xl md:text-2xl font-black text-white leading-tight">
+                  Siap memulai tes?
+                </DialogTitle>
+                <DialogDescription className="text-sm text-primary-100/90 mt-1.5">
+                  {confirmTest?.name}
+                </DialogDescription>
+              </DialogHeader>
+            </div>
+          </div>
+
+          <div className="px-6 py-5 overflow-y-auto styled-scrollbar flex-1 min-h-0">
+            <p className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-3">
+              Pastikan sebelum memulai
+            </p>
+            <ul className="space-y-2.5">
+              {[
+                { icon: Wifi, text: 'Koneksi internet stabil' },
+                {
+                  icon: BatteryCharging,
+                  text: 'Perangkat cukup daya atau terhubung charger',
+                },
+                {
+                  icon: Coffee,
+                  text: 'Kondisi fisik & pikiran siap, bebas gangguan',
+                },
+                {
+                  icon: ShieldCheck,
+                  text: 'Jawab dengan jujur — hasilnya untuk kamu sendiri',
+                },
+              ].map((item, i) => {
+                const Icon = item.icon
+                return (
+                  <li
+                    key={i}
+                    className="flex items-center gap-3 text-sm text-slate-700"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-primary-50 border border-primary-100 flex items-center justify-center shrink-0">
+                      <Icon className="w-4 h-4 text-primary-700" />
+                    </div>
+                    <span className="font-medium leading-snug">{item.text}</span>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+
+          <DialogFooter className="px-6 py-4 bg-slate-50/60 border-t border-slate-100 flex-col-reverse sm:flex-row gap-2 shrink-0">
+            <button
+              type="button"
+              onClick={() => setConfirmTest(null)}
+              className="w-full sm:flex-1 h-11 px-5 rounded-xl bg-white border border-slate-200 text-slate-700 text-sm font-bold hover:bg-slate-50 hover:text-slate-900 transition-colors"
+            >
+              Kembali
+            </button>
+            <button
+              type="button"
+              onClick={handleStartConfirmed}
+              className="w-full sm:flex-1 h-11 px-5 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 text-white text-sm font-bold hover:from-primary-700 hover:to-primary-800 transition-all shadow-sm shadow-primary-200 hover:shadow-md inline-flex items-center justify-center gap-2"
+            >
+              <PlayCircle className="w-4 h-4" />
+              Mulai
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

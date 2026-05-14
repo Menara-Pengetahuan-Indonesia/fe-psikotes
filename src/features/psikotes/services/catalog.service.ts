@@ -58,6 +58,14 @@ export const catalogService = {
           questionTypes: Array.from(questionTypes),
           totalDuration,
           totalQuestions,
+          session: t.session
+            ? {
+                id: t.session.id,
+                status: t.session.status,
+                startedAt: t.session.startedAt,
+                completedAt: t.session.completedAt,
+              }
+            : null,
         }
       })
 

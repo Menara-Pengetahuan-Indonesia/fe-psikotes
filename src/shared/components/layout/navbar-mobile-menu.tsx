@@ -1,6 +1,10 @@
+'use client'
+
 import Link from 'next/link'
+import { LayoutDashboard } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import { useAuthStoreHydrated } from '@/store/auth.store'
 import { ICON_MAP, type NavItem } from './navbar-constants'
 
 interface NavbarMobileMenuProps {
@@ -12,6 +16,9 @@ export function NavbarMobileMenu({
   navItems,
   onClose,
 }: NavbarMobileMenuProps) {
+  const { user, isAuthenticated, _hasHydrated } = useAuthStoreHydrated()
+  const loggedIn = _hasHydrated && isAuthenticated && !!user
+
   return (
     <div
       className={cn(
@@ -52,29 +59,49 @@ export function NavbarMobileMenu({
         ))}
 
         <div className="flex flex-col gap-3 mt-8 pb-10">
-          <Button
-            variant="outline"
-            className={cn(
-              'w-full h-12 rounded-2xl text-[13px] font-semibold',
-              'border-slate-200 text-slate-600',
-              'hover:bg-primary-50 hover:border-primary-200 hover:text-primary-700',
-              'transition-colors cursor-pointer'
-            )}
-            asChild
-          >
-            <Link href="/masuk">Masuk</Link>
-          </Button>
-          <Button
-            className={cn(
-              'w-full h-12 rounded-2xl text-[13px] font-semibold',
-              'bg-primary-600 hover:bg-primary-700 text-white',
-              'shadow-lg shadow-primary-600/20',
-              'transition-colors cursor-pointer'
-            )}
-            asChild
-          >
-            <Link href="/daftar">Daftar Sekarang</Link>
-          </Button>
+          {loggedIn ? (
+            <Button
+              className={cn(
+                'w-full h-12 rounded-2xl text-[13px] font-bold',
+                'bg-primary-600 hover:bg-primary-700 text-white',
+                'shadow-lg shadow-primary-600/20',
+                'transition-colors cursor-pointer',
+                'inline-flex items-center gap-2',
+              )}
+              asChild
+            >
+              <Link href="/dashboard" onClick={onClose}>
+                <LayoutDashboard className="w-4 h-4" />
+                Dashboard
+              </Link>
+            </Button>
+          ) : (
+            <>
+              <Button
+                variant="outline"
+                className={cn(
+                  'w-full h-12 rounded-2xl text-[13px] font-semibold',
+                  'border-slate-200 text-slate-600',
+                  'hover:bg-primary-50 hover:border-primary-200 hover:text-primary-700',
+                  'transition-colors cursor-pointer'
+                )}
+                asChild
+              >
+                <Link href="/masuk" onClick={onClose}>Masuk</Link>
+              </Button>
+              <Button
+                className={cn(
+                  'w-full h-12 rounded-2xl text-[13px] font-semibold',
+                  'bg-primary-600 hover:bg-primary-700 text-white',
+                  'shadow-lg shadow-primary-600/20',
+                  'transition-colors cursor-pointer'
+                )}
+                asChild
+              >
+                <Link href="/daftar" onClick={onClose}>Daftar Sekarang</Link>
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </div>

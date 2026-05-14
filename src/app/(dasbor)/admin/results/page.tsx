@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import {
   Search,
@@ -8,178 +8,95 @@ import {
   Users,
   CheckCircle2,
   Clock,
-  TrendingUp,
-  Award,
   Eye,
   Calendar,
   User,
   FileBarChart,
-  Download,
+  ClipboardList,
+  UserCheck,
+  Loader2,
+  AlertTriangle,
+  RefreshCw,
 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { api } from '@/lib/axios'
 
-// Dummy data - 10 peserta
-const dummyResults = [
-  {
-    id: '1',
-    name: 'Ahmad Fauzi',
-    email: 'ahmad.fauzi@email.com',
-    testName: 'Tes Kepribadian MBTI',
-    score: 87,
-    resultType: 'INTJ - Architect',
-    status: 'completed' as const,
-    completedAt: '2026-03-24T14:30:00Z',
-    duration: 42,
-  },
-  {
-    id: '2',
-    name: 'Siti Nurhaliza',
-    email: 'siti.nurhaliza@email.com',
-    testName: 'Tes Minat Bakat RIASEC',
-    score: 92,
-    resultType: 'Investigative',
-    status: 'completed' as const,
-    completedAt: '2026-03-24T10:15:00Z',
-    duration: 35,
-  },
-  {
-    id: '3',
-    name: 'Budi Santoso',
-    email: 'budi.santoso@email.com',
-    testName: 'Tes Kepribadian MBTI',
-    score: 74,
-    resultType: 'ENFP - Campaigner',
-    status: 'completed' as const,
-    completedAt: '2026-03-23T16:45:00Z',
-    duration: 38,
-  },
-  {
-    id: '4',
-    name: 'Dewi Lestari',
-    email: 'dewi.lestari@email.com',
-    testName: 'Tes Intelegensi IST',
-    score: 95,
-    resultType: 'Superior',
-    status: 'completed' as const,
-    completedAt: '2026-03-23T09:20:00Z',
-    duration: 55,
-  },
-  {
-    id: '5',
-    name: 'Rizky Pratama',
-    email: 'rizky.pratama@email.com',
-    testName: 'Tes Minat Bakat RIASEC',
-    score: 68,
-    resultType: 'Artistic',
-    status: 'in_progress' as const,
-    completedAt: '',
-    duration: 0,
-  },
-  {
-    id: '6',
-    name: 'Anisa Rahma',
-    email: 'anisa.rahma@email.com',
-    testName: 'Tes Kepribadian MBTI',
-    score: 81,
-    resultType: 'ISFJ - Defender',
-    status: 'completed' as const,
-    completedAt: '2026-03-22T13:10:00Z',
-    duration: 40,
-  },
-  {
-    id: '7',
-    name: 'Fajar Nugroho',
-    email: 'fajar.nugroho@email.com',
-    testName: 'Tes Intelegensi IST',
-    score: 78,
-    resultType: 'Above Average',
-    status: 'completed' as const,
-    completedAt: '2026-03-22T11:00:00Z',
-    duration: 50,
-  },
-  {
-    id: '8',
-    name: 'Maya Putri',
-    email: 'maya.putri@email.com',
-    testName: 'Tes Kepribadian MBTI',
-    score: 89,
-    resultType: 'ENTP - Debater',
-    status: 'completed' as const,
-    completedAt: '2026-03-21T15:30:00Z',
-    duration: 36,
-  },
-  {
-    id: '9',
-    name: 'Hendra Wijaya',
-    email: 'hendra.wijaya@email.com',
-    testName: 'Tes Minat Bakat RIASEC',
-    score: 0,
-    resultType: '-',
-    status: 'in_progress' as const,
-    completedAt: '',
-    duration: 0,
-  },
-  {
-    id: '10',
-    name: 'Putri Amelia',
-    email: 'putri.amelia@email.com',
-    testName: 'Tes Intelegensi IST',
-    score: 83,
-    resultType: 'Above Average',
-    status: 'completed' as const,
-    completedAt: '2026-03-20T10:45:00Z',
-    duration: 48,
-  },
-]
+interface Session {
+  id: string
+  user: { id: string; firstName: string; lastName: string; email: string }
+  test: { id: string; name: string }
+  status: string
+  completedAt: string | null
+  reviewNotes: string | null
+  reviewedAt: string | null
+  reviewedBy: string | null
+}
 
-type FilterType = 'all' | 'completed' | 'in_progress'
+type FilterType = 'all' | 'pending' | 'reviewed'
 
-function formatDate(dateStr: string) {
+function formatDate(dateStr: string | null) {
   if (!dateStr) return '-'
-  try {
-    return new Date(dateStr).toLocaleDateString('id-ID', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    })
-  } catch {
-    return '-'
-  }
+  return new Date(dateStr).toLocaleDateString('id-ID', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  })
 }
 
 const accentColors = [
-  { bg: 'bg-gradient-to-br from-indigo-400 to-indigo-500', text: 'text-white' },
-  { bg: 'bg-gradient-to-br from-indigo-400 to-indigo-500', text: 'text-white' },
-  { bg: 'bg-gradient-to-br from-violet-400 to-violet-500', text: 'text-white' },
-  { bg: 'bg-gradient-to-br from-rose-400 to-rose-500', text: 'text-white' },
+  'bg-gradient-to-br from-indigo-400 to-indigo-500',
+  'bg-gradient-to-br from-violet-400 to-violet-500',
+  'bg-gradient-to-br from-rose-400 to-rose-500',
+  'bg-gradient-to-br from-teal-400 to-teal-500',
 ]
 
 export default function AdminResultsPage() {
   const router = useRouter()
+  const [sessions, setSessions] = useState<Session[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [filter, setFilter] = useState<FilterType>('all')
   const [search, setSearch] = useState('')
+  const [searchInput, setSearchInput] = useState('')
 
-  const completedCount = dummyResults.filter((r) => r.status === 'completed').length
-  const inProgressCount = dummyResults.filter((r) => r.status === 'in_progress').length
-  const avgScore = Math.round(
-    dummyResults.filter((r) => r.status === 'completed').reduce((sum, r) => sum + r.score, 0) /
-      completedCount
-  )
+  const fetchSessions = useCallback(async (q?: string, reviewed?: string) => {
+    setLoading(true)
+    setError(null)
+    try {
+      const params = new URLSearchParams()
+      if (q) params.set('search', q)
+      if (reviewed) params.set('reviewed', reviewed)
+      const res = await api.get(`/admin/sessions?${params.toString()}`)
+      setSessions(res.data.data ?? [])
+    } catch {
+      setError('Gagal memuat data. Coba refresh.')
+    } finally {
+      setLoading(false)
+    }
+  }, [])
 
-  const filteredResults = dummyResults.filter((result) => {
-    const matchesFilter =
-      filter === 'all' ||
-      (filter === 'completed' && result.status === 'completed') ||
-      (filter === 'in_progress' && result.status === 'in_progress')
-    const matchesSearch =
-      !search ||
-      result.name.toLowerCase().includes(search.toLowerCase()) ||
-      result.email.toLowerCase().includes(search.toLowerCase()) ||
-      result.testName.toLowerCase().includes(search.toLowerCase())
-    return matchesFilter && matchesSearch
-  })
+  useEffect(() => {
+    const reviewed =
+      filter === 'reviewed' ? 'true' : filter === 'pending' ? 'false' : undefined
+    fetchSessions(search || undefined, reviewed)
+  }, [filter, search, fetchSessions])
+
+  // Debounce search input
+  useEffect(() => {
+    const t = setTimeout(() => setSearch(searchInput), 400)
+    return () => clearTimeout(t)
+  }, [searchInput])
+
+  const reviewedCount = sessions.filter((s) => s.reviewedAt).length
+  const pendingCount = sessions.filter((s) => !s.reviewedAt).length
+
+  const filteredSessions =
+    filter === 'all'
+      ? sessions
+      : filter === 'reviewed'
+        ? sessions.filter((s) => s.reviewedAt)
+        : sessions.filter((s) => !s.reviewedAt)
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -194,69 +111,67 @@ export default function AdminResultsPage() {
               Hasil Peserta.
             </h1>
             <p className="text-slate-400 font-medium text-sm">
-              Pantau dan analisis hasil tes seluruh peserta.
+              Review dan beri catatan untuk setiap peserta yang telah menyelesaikan tes.
             </p>
           </div>
-          <Button
-            size="lg"
-            className="bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
+          <button
+            onClick={() => fetchSessions(search || undefined, filter === 'reviewed' ? 'true' : filter === 'pending' ? 'false' : undefined)}
+            className="inline-flex items-center gap-2 h-12 px-6 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-sm font-bold transition-colors shrink-0"
           >
-            <Download className="w-5 h-5 mr-2 group-hover:translate-y-0.5 transition-transform" />
-            Export Data
-          </Button>
+            <RefreshCw className="w-4 h-4" />
+            Refresh
+          </button>
         </div>
 
-        {/* Stats inside banner */}
         <div className="relative z-10 grid grid-cols-3 gap-4 mt-8">
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
             <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
               <Users className="size-5 text-indigo-300" />
             </div>
             <div>
-              <p className="text-2xl font-black leading-none">{dummyResults.length}</p>
+              <p className="text-2xl font-black leading-none">{sessions.length}</p>
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
-                Total Peserta
+                Total Sesi
               </p>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-              <CheckCircle2 className="size-5 text-indigo-300" />
+            <div className="size-10 rounded-xl bg-amber-500/30 flex items-center justify-center">
+              <ClipboardList className="size-5 text-amber-300" />
             </div>
             <div>
-              <p className="text-2xl font-black leading-none">{completedCount}</p>
+              <p className="text-2xl font-black leading-none">{pendingCount}</p>
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
-                Selesai
+                Perlu Review
               </p>
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-violet-500/30 flex items-center justify-center">
-              <TrendingUp className="size-5 text-violet-300" />
+            <div className="size-10 rounded-xl bg-emerald-500/30 flex items-center justify-center">
+              <CheckCircle2 className="size-5 text-emerald-300" />
             </div>
             <div>
-              <p className="text-2xl font-black leading-none">{avgScore}</p>
+              <p className="text-2xl font-black leading-none">{reviewedCount}</p>
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
-                Rata-rata Skor
+                Sudah Direview
               </p>
             </div>
           </div>
         </div>
 
-        {/* Decorative */}
         <div className="absolute -right-10 -top-10 opacity-5 pointer-events-none">
           <FileBarChart className="size-72" />
         </div>
       </div>
 
-      {/* FILTER + SEARCH BAR */}
+      {/* FILTER + SEARCH */}
       <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3">
         <div className="flex items-center bg-white rounded-xl border border-slate-100 p-1 gap-1">
           {(
             [
-              { key: 'all', label: 'Semua', count: dummyResults.length },
-              { key: 'completed', label: 'Selesai', count: completedCount },
-              { key: 'in_progress', label: 'Berlangsung', count: inProgressCount },
+              { key: 'all', label: 'Semua', count: sessions.length },
+              { key: 'pending', label: 'Perlu Review', count: pendingCount },
+              { key: 'reviewed', label: 'Sudah Direview', count: reviewedCount },
             ] as const
           ).map((f) => (
             <button
@@ -266,16 +181,11 @@ export default function AdminResultsPage() {
                 'px-4 py-2 rounded-lg text-xs font-black uppercase tracking-wider transition-all',
                 filter === f.key
                   ? 'bg-slate-900 text-white shadow-sm'
-                  : 'text-slate-400 hover:text-slate-900 hover:bg-slate-50'
+                  : 'text-slate-400 hover:text-slate-900 hover:bg-slate-50',
               )}
             >
               {f.label}{' '}
-              <span
-                className={cn(
-                  'ml-1',
-                  filter === f.key ? 'text-slate-400' : 'text-slate-300'
-                )}
-              >
+              <span className={cn('ml-1', filter === f.key ? 'text-slate-400' : 'text-slate-300')}>
                 {f.count}
               </span>
             </button>
@@ -284,16 +194,34 @@ export default function AdminResultsPage() {
         <div className="flex-1 relative">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-slate-400" />
           <Input
-            placeholder="Cari peserta, email, atau nama tes..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Cari nama, email, atau nama tes..."
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
             className="pl-11 h-11 bg-white border-slate-100 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500/10"
           />
         </div>
       </div>
 
-      {/* RESULTS LIST */}
-      {filteredResults.length === 0 ? (
+      {/* LIST */}
+      {loading ? (
+        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 flex flex-col items-center gap-4">
+          <Loader2 className="size-8 text-indigo-400 animate-spin" />
+          <p className="text-sm font-bold text-slate-400">Memuat data...</p>
+        </div>
+      ) : error ? (
+        <div className="bg-white rounded-[2.5rem] border border-rose-100 p-16 flex flex-col items-center gap-4">
+          <div className="size-14 rounded-2xl bg-rose-50 flex items-center justify-center">
+            <AlertTriangle className="size-7 text-rose-400" />
+          </div>
+          <p className="text-sm font-bold text-slate-500">{error}</p>
+          <button
+            onClick={() => fetchSessions()}
+            className="h-10 px-5 rounded-xl bg-rose-600 text-white text-sm font-bold hover:bg-rose-700 transition-colors"
+          >
+            Coba Lagi
+          </button>
+        </div>
+      ) : filteredSessions.length === 0 ? (
         <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
           <div className="size-16 rounded-2xl bg-indigo-50 flex items-center justify-center mb-5">
             <Users className="size-8 text-indigo-400" />
@@ -305,79 +233,70 @@ export default function AdminResultsPage() {
         </div>
       ) : (
         <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden divide-y divide-slate-50">
-          {filteredResults.map((result, index) => {
+          {filteredSessions.map((session, index) => {
+            const isReviewed = !!session.reviewedAt
             const accent = accentColors[index % accentColors.length]
-            const isCompleted = result.status === 'completed'
+            const fullName = `${session.user.firstName} ${session.user.lastName}`
 
             return (
               <div
-                key={result.id}
-                onClick={() => router.push(`/admin/results/${result.id}`)}
+                key={session.id}
+                onClick={() => router.push(`/admin/results/${session.id}`)}
                 className="group flex items-center gap-5 px-6 md:px-8 py-5 cursor-pointer hover:bg-slate-50/50 transition-all"
               >
-                {/* Avatar */}
                 <div
                   className={cn(
-                    'size-12 rounded-2xl flex items-center justify-center shrink-0 transition-all group-hover:scale-105 group-hover:shadow-md',
-                    accent.bg, accent.text
+                    'size-12 rounded-2xl flex items-center justify-center shrink-0 transition-all group-hover:scale-105 group-hover:shadow-md text-white',
+                    accent,
                   )}
                 >
                   <User className="size-5" />
                 </div>
 
-                {/* Main info */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2.5 mb-0.5">
                     <h3 className="text-base font-black text-slate-900 truncate group-hover:text-indigo-600 transition-colors">
-                      {result.name}
+                      {fullName}
                     </h3>
                     <span
                       className={cn(
                         'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
-                        isCompleted
-                          ? 'bg-indigo-50 text-indigo-600'
-                          : 'bg-amber-50 text-amber-600'
+                        isReviewed
+                          ? 'bg-emerald-50 text-emerald-600'
+                          : 'bg-amber-50 text-amber-600',
                       )}
                     >
-                      {isCompleted ? 'Selesai' : 'Berlangsung'}
+                      {isReviewed ? 'Sudah Direview' : 'Perlu Review'}
                     </span>
                   </div>
                   <p className="text-sm text-slate-400 font-medium truncate">
-                    {result.email}
+                    {session.user.email}
                   </p>
                 </div>
 
-                {/* Test name pill */}
                 <div className="hidden md:flex items-center gap-1.5 text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1.5 rounded-full shrink-0">
                   <FileBarChart className="size-3.5" />
-                  <span className="truncate max-w-[140px]">{result.testName}</span>
+                  <span className="truncate max-w-[140px]">{session.test.name}</span>
                 </div>
 
-                {/* Meta pills */}
                 <div className="hidden lg:flex items-center gap-2 shrink-0">
-                  {isCompleted && (
-                    <>
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-full">
-                        <Award className="size-3.5" />
-                        <span>{result.score}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-violet-500 bg-violet-50 px-3 py-1.5 rounded-full">
-                        <TrendingUp className="size-3.5" />
-                        <span className="truncate max-w-[100px]">{result.resultType}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 bg-slate-50 px-3 py-1.5 rounded-full">
-                        <Clock className="size-3.5" />
-                        <span>{result.duration}m</span>
-                      </div>
-                    </>
+                  {isReviewed ? (
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full">
+                      <UserCheck className="size-3.5" />
+                      <span>{session.reviewedBy ?? 'Admin'}</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-amber-600 bg-amber-50 px-3 py-1.5 rounded-full">
+                      <ClipboardList className="size-3.5" />
+                      <span>Belum direview</span>
+                    </div>
                   )}
                   <div className="flex items-center gap-1.5 text-xs font-medium text-slate-400">
                     <Calendar className="size-3.5" />
-                    <span>{isCompleted ? formatDate(result.completedAt) : 'Sedang mengerjakan'}</span>
+                    <span>{formatDate(session.completedAt)}</span>
                   </div>
                 </div>
 
-                {/* Action */}
                 <div className="flex items-center gap-2 shrink-0">
                   <button className="size-9 rounded-xl bg-white text-indigo-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-indigo-50 hover:border-indigo-200 hover:text-indigo-500">
                     <Eye className="size-4" />

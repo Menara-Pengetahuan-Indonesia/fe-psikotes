@@ -36,5 +36,11 @@ export interface MyPackageType {
     questionTypes: string[]
     totalDuration: number
     totalQuestions: number
+    session: {
+      id: string
+      status: 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED'
+      startedAt?: string | null
+      completedAt?: string | null
+    } | null
   }[]
 }

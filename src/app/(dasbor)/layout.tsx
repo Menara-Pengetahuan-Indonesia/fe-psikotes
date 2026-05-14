@@ -13,11 +13,13 @@ import {
   Menu,
   LogOut,
   ChevronLeft,
-  ChevronDown,
+  ChevronRight,
+  Home,
   Users,
   BookOpen,
   Package,
   Sparkles,
+  ClipboardList,
 } from 'lucide-react'
 
 import { useAuthStoreHydrated } from '@/store/auth.store'
@@ -61,6 +63,7 @@ const NAV_BY_ROLE: Record<UserRole, NavGroup[]> = {
       items: [
         { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
         { href: '/admin/kelola-tes', label: 'Kelola Tes', icon: BookOpen },
+        { href: '/admin/results', label: 'Hasil Peserta', icon: ClipboardList },
       ],
     },
   ],
@@ -69,30 +72,50 @@ const NAV_BY_ROLE: Record<UserRole, NavGroup[]> = {
       items: [
         { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
         { href: '/admin/kelola-tes', label: 'Kelola Tes', icon: BookOpen },
+        { href: '/admin/results', label: 'Hasil Peserta', icon: ClipboardList },
       ],
     },
   ],
 }
 
-const PUBLIC_LINKS: Array<
-  | { href: string; label: string }
-  | { label: string; children: { href: string; label: string }[] }
-> = [
-  { href: '/', label: 'Beranda' },
-  {
-    label: 'Layanan',
-    children: [
-      { href: '/layanan/tes-pemetaan', label: 'Tes Pemetaan, Asesmen, dan Blueprint' },
-      { href: '/layanan/konsultasi-konseling', label: 'Konsultasi, Konseling, Live Coaching' },
-      { href: '/layanan/trauma-therapy', label: 'Trauma Therapy & Support Group' },
-      { href: '/layanan/pelatihan', label: 'Pelatihan' },
-      { href: '/layanan/solusi-perusahaan', label: 'Solusi bagi Perusahaan' },
-    ],
-  },
-  { href: '/gratis', label: 'Tes Gratis' },
-  { href: '/about', label: 'Tentang' },
-  { href: '/blog', label: 'Artikel' },
-]
+const BREADCRUMB_LABELS: Record<string, string> = {
+  '/dashboard': 'Dashboard',
+  '/pengguna/paket-saya': 'Paket Saya',
+  '/pengguna/tes': 'Tes Saya',
+  '/pengguna/riwayat': 'Riwayat',
+  '/pengguna/profil': 'Profil',
+  '/admin/kelola-tes': 'Kelola Tes',
+  '/admin/results': 'Hasil Peserta',
+  '/admin/kelola-pengguna': 'Kelola Pengguna',
+  '/admin/kelola-paket': 'Kelola Paket',
+  '/admin/kelola-produk': 'Kelola Produk',
+  '/admin/kelola-artikel': 'Kelola Artikel',
+  '/admin/kelola-kategori': 'Kelola Kategori',
+  '/admin/kelola-layanan': 'Kelola Layanan',
+  '/admin/notifications': 'Notifikasi',
+  '/perusahaan': 'Perusahaan',
+  '/perusahaan/karyawan': 'Karyawan',
+  '/perusahaan/laporan': 'Laporan',
+  '/superadmin': 'Superadmin',
+}
+
+function buildBreadcrumbs(pathname: string): Array<{ href: string; label: string }> {
+  if (!pathname || pathname === '/dashboard') return []
+  const segments = pathname.split('/').filter(Boolean)
+  const crumbs: Array<{ href: string; label: string }> = []
+  let acc = ''
+  for (const seg of segments) {
+    acc += `/${seg}`
+    const label =
+      BREADCRUMB_LABELS[acc] ??
+      seg
+        .split('-')
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(' ')
+    crumbs.push({ href: acc, label })
+  }
+  return crumbs
+}
 
 const ROLE_BADGE: Record<UserRole, { label: string; className: string }> = {
   USER: { label: 'User', className: 'bg-primary-50 text-primary-700 border border-primary-100' },
@@ -306,44 +329,25 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           suppressHydrationWarning
         >
           <div className="h-16 px-4 sm:px-6 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 min-w-0 flex-1">
               <button
                 onClick={() => setIsMobileOpen(true)}
-                className="lg:hidden w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-700 hover:bg-primary-50 hover:text-primary-700 transition-colors"
+                className="lg:hidden w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-700 hover:bg-primary-50 hover:text-primary-700 transition-colors shrink-0"
                 aria-label="Open menu"
               >
                 <Menu className="w-5 h-5" />
               </button>
 
-              <nav className="hidden md:flex items-center gap-1">
-                {PUBLIC_LINKS.map((link) => {
-                  if ('children' in link) {
-                    return (
-                      <PublicDropdown
-                        key={link.label}
-                        label={link.label}
-                        children={link.children}
-                        pathname={mounted ? pathname : ''}
-                      />
-                    )
-                  }
-                  const active = mounted && pathname === link.href
-                  return (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className={cn(
-                        'px-3 h-9 rounded-lg text-sm font-semibold transition-colors flex items-center',
-                        active
-                          ? 'text-primary-700 bg-primary-50'
-                          : 'text-slate-600 hover:text-primary-700 hover:bg-primary-50',
-                      )}
-                    >
-                      {link.label}
-                    </Link>
-                  )
-                })}
-              </nav>
+              <Link
+                href="/"
+                className="h-9 px-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-600 hover:bg-primary-50 hover:border-primary-100 hover:text-primary-700 transition-colors inline-flex items-center gap-1.5 shrink-0"
+                title="Ke halaman utama"
+              >
+                <Home className="w-4 h-4" />
+                <span className="hidden sm:inline text-xs font-bold">Beranda</span>
+              </Link>
+
+              <Breadcrumbs pathname={mounted ? pathname : ''} />
             </div>
 
             <div className="flex items-center gap-2">
@@ -453,95 +457,52 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   )
 }
 
-function PublicDropdown({
-  label,
-  children,
-  pathname,
-}: {
-  label: string
-  children: { href: string; label: string }[]
-  pathname: string
-}) {
-  const [open, setOpen] = React.useState(false)
-  const ref = React.useRef<HTMLDivElement>(null)
+function Breadcrumbs({ pathname }: { pathname: string }) {
+  const crumbs = React.useMemo(() => buildBreadcrumbs(pathname), [pathname])
 
-  React.useEffect(() => {
-    if (!open) return
-    const handleClick = (e: MouseEvent) => {
-      if (!ref.current?.contains(e.target as Node)) setOpen(false)
-    }
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false)
-    }
-    document.addEventListener('mousedown', handleClick)
-    document.addEventListener('keydown', handleKey)
-    return () => {
-      document.removeEventListener('mousedown', handleClick)
-      document.removeEventListener('keydown', handleKey)
-    }
-  }, [open])
-
-  React.useEffect(() => {
-    setOpen(false)
-  }, [pathname])
-
-  const hasActiveChild = children.some(
-    (c) => pathname === c.href || pathname.startsWith(c.href + '/'),
-  )
+  if (crumbs.length === 0) {
+    return (
+      <nav aria-label="breadcrumb" className="hidden md:flex items-center gap-1.5 min-w-0">
+        <span className="text-sm font-bold text-slate-900">Dashboard</span>
+      </nav>
+    )
+  }
 
   return (
-    <div className="relative" ref={ref}>
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        aria-haspopup="menu"
-        className={cn(
-          'flex items-center gap-1.5 px-3 h-9 rounded-lg text-sm font-semibold transition-colors',
-          hasActiveChild
-            ? 'text-primary-700 bg-primary-50'
-            : 'text-slate-600 hover:text-primary-700 hover:bg-primary-50',
-        )}
+    <nav
+      aria-label="breadcrumb"
+      className="hidden md:flex items-center gap-1.5 min-w-0 overflow-hidden"
+    >
+      <Link
+        href="/dashboard"
+        className="text-xs font-bold text-slate-500 hover:text-primary-700 transition-colors whitespace-nowrap"
       >
-        {label}
-        <ChevronDown
-          className={cn('w-3.5 h-3.5 transition-transform', open && 'rotate-180')}
-        />
-      </button>
-      <div
-        className={cn(
-          'absolute top-full left-0 pt-2 z-50 transition-all',
-          open
-            ? 'opacity-100 visible translate-y-0 pointer-events-auto'
-            : 'opacity-0 invisible translate-y-1 pointer-events-none',
-        )}
-      >
-        <div
-          role="menu"
-          className="min-w-[240px] bg-white rounded-2xl border border-slate-100 shadow-xl shadow-slate-900/10 p-1.5"
-        >
-          {children.map((child) => {
-            const active =
-              pathname === child.href || pathname.startsWith(child.href + '/')
-            return (
-              <Link
-                key={child.href}
-                href={child.href}
-                role="menuitem"
-                onClick={() => setOpen(false)}
-                className={cn(
-                  'block px-3 py-2 rounded-xl text-sm font-semibold transition-colors',
-                  active
-                    ? 'bg-primary-50 text-primary-700'
-                    : 'text-slate-600 hover:bg-primary-50 hover:text-primary-700',
-                )}
+        Dashboard
+      </Link>
+      {crumbs.map((c, i) => {
+        const isLast = i === crumbs.length - 1
+        return (
+          <React.Fragment key={c.href}>
+            <ChevronRight className="w-3.5 h-3.5 text-slate-300 shrink-0" />
+            {isLast ? (
+              <span
+                aria-current="page"
+                className="text-sm font-black text-slate-900 truncate"
+                title={c.label}
               >
-                {child.label}
+                {c.label}
+              </span>
+            ) : (
+              <Link
+                href={c.href}
+                className="text-xs font-bold text-slate-500 hover:text-primary-700 transition-colors whitespace-nowrap truncate"
+              >
+                {c.label}
               </Link>
-            )
-          })}
-        </div>
-      </div>
-    </div>
+            )}
+          </React.Fragment>
+        )
+      })}
+    </nav>
   )
 }

@@ -29,7 +29,7 @@ const tfQuestion = {
 const ratingQuestion = {
   id: 'q3',
   text: 'Seberapa puas Anda?',
-  type: 'RATING_SCALE' as const,
+  type: 'SCALE_RATING' as const,
   order: 3,
   options: [],
 }
