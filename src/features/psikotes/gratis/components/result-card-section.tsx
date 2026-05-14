@@ -55,8 +55,7 @@ export function ResultCardSection({ result }: ResultCardSectionProps) {
       })
 
       const imgData = canvas.toDataURL('image/png')
-      const { default: JsPDF } = await import('jspdf')
-      const pdf = new JsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
+      const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
       const pageW = pdf.internal.pageSize.getWidth()
       const pageH = pdf.internal.pageSize.getHeight()
       const imgW = pageW
