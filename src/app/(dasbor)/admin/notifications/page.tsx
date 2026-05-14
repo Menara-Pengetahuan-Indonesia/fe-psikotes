@@ -106,7 +106,7 @@ export default function AdminNotificationsPage() {
             <Button
               size="lg"
               onClick={markAllRead}
-              className="bg-white text-slate-900 hover:bg-rose-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
+              className="bg-white text-slate-900 hover:bg-primary-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
             >
               <CheckCheck className="w-5 h-5 mr-2" />
               Tandai Semua Dibaca
