@@ -56,7 +56,16 @@ export function SuperAdminDashboard() {
   return (
     <div className="space-y-6">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-rose-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-8 md:p-10 text-white">
+        {/* dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }}
+        />
+        {/* blur orbs */}
+        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-primary-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
+
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
             <p className="text-rose-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
@@ -65,7 +74,7 @@ export function SuperAdminDashboard() {
             <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
               Halo, {user?.name?.split(' ')[0] || 'SuperAdmin'}.
             </h1>
-            <p className="text-slate-400 font-medium text-sm">
+            <p className="text-primary-100/90 font-medium text-sm">
               Kontrol penuh atas sistem, pengguna, dan konfigurasi platform.
             </p>
           </div>
@@ -162,7 +171,7 @@ export function SuperAdminDashboard() {
 
         {/* RIGHT: System Status */}
         <div className="lg:col-span-4">
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden h-full flex flex-col">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden h-full flex flex-col">
             <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
               <div className="size-10 rounded-xl bg-rose-100 flex items-center justify-center">
                 <Activity className="size-5 text-rose-600" />
@@ -207,7 +216,7 @@ export function SuperAdminDashboard() {
       </div>
 
       {/* AKTIVITAS TERBARU */}
-      <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+      <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
         <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
           <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
             <Clock className="size-5 text-primary-600" />
