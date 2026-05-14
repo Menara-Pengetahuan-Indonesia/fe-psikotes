@@ -554,7 +554,7 @@ export default function TesPage() {
                   <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">
                     Pilih skala yang sesuai
                   </p>
-                  {question.options.length > 0 ? (
+                  {question.options.length > 0 && question.options.some((o) => o.text?.trim()) ? (
                     <div className="flex flex-col gap-2">
                       {question.options.map((opt) => {
                         const isSelected = String(currentAns?.scaleValue ?? '') === opt.id
