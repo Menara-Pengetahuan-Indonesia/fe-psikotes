@@ -25,13 +25,6 @@ import { cn } from '@/lib/utils'
 import { api } from '@/lib/axios'
 import { useMyPackages } from '@/features/psikotes/hooks/use-catalog'
 
-interface TestAssessment {
-  testId: string
-  testName: string
-  level: string
-  interpretation: string
-}
-
 interface ResultData {
   id: string
   testId: string
