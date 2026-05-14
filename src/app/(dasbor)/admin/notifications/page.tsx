@@ -80,7 +80,16 @@ export default function AdminNotificationsPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-rose-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-8 md:p-10 text-white">
+        {/* dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }}
+        />
+        {/* blur orbs */}
+        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-primary-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
+
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
             <p className="text-rose-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
@@ -89,7 +98,7 @@ export default function AdminNotificationsPage() {
             <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
               Notifikasi.
             </h1>
-            <p className="text-slate-400 font-medium text-sm">
+            <p className="text-primary-100/90 font-medium text-sm">
               Pantau semua aktivitas dan pemberitahuan platform.
             </p>
           </div>
@@ -173,7 +182,7 @@ export default function AdminNotificationsPage() {
             <Bell className="size-8 text-rose-400" />
           </div>
           <p className="text-slate-900 font-black text-lg mb-1">Tidak ada notifikasi.</p>
-          <p className="text-slate-400 font-medium text-sm">Semua sudah bersih.</p>
+          <p className="text-primary-100/90 font-medium text-sm">Semua sudah bersih.</p>
         </div>
       ) : (
         <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden divide-y divide-slate-50">
