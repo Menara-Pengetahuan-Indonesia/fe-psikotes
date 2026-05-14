@@ -77,7 +77,7 @@ export default function AdminTestsPage() {
         <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
 
         <div className="relative z-10">
-          <p className="text-sky-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+          <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
             Manajemen
           </p>
           <div>

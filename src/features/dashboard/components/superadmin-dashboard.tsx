@@ -68,7 +68,7 @@ export function SuperAdminDashboard() {
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <p className="text-rose-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+            <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
               Super Admin
             </p>
             <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
