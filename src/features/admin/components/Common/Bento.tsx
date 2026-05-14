@@ -47,7 +47,7 @@ export function BentoCard({
     <div
       onClick={onClick}
       className={cn(
-        'group relative flex flex-col justify-between overflow-hidden rounded-[2.5rem] bg-white border border-slate-100 p-8 shadow-sm transition-all hover:shadow-xl hover:border-indigo-100 cursor-pointer',
+        'group relative flex flex-col justify-between overflow-hidden rounded-[2.5rem] bg-white border border-slate-100 p-8 shadow-sm transition-all hover:shadow-xl hover:border-primary-100 cursor-pointer',
         className
       )}
     >
@@ -59,7 +59,7 @@ export function BentoCard({
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center gap-4">
             {icon && (
-              <div className="size-12 rounded-2xl bg-slate-50 text-slate-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-inner">
+              <div className="size-12 rounded-2xl bg-slate-50 text-slate-600 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-all shadow-inner">
                 {icon}
               </div>
             )}

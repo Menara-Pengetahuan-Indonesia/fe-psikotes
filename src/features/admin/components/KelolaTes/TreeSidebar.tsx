@@ -47,7 +47,7 @@ export function TreeSidebar({
       <div className="p-4 border-b border-slate-100">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2.5">
-            <div className="size-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center shadow-sm">
+            <div className="size-8 rounded-xl bg-gradient-to-br from-primary-500 to-violet-500 flex items-center justify-center shadow-sm">
               <FolderTree className="size-4 text-white" aria-hidden="true" />
             </div>
             <h2 className="text-sm font-black text-slate-900 tracking-tight">Kelola Tes</h2>
@@ -58,8 +58,8 @@ export function TreeSidebar({
             aria-label="Buat paket baru"
             className={cn(
               'flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg transition-all',
-              'bg-indigo-50 text-indigo-600 hover:bg-indigo-100 hover:text-indigo-700',
-              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1',
+              'bg-primary-50 text-primary-600 hover:bg-primary-100 hover:text-primary-700',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1',
               'active:scale-95'
             )}
           >
@@ -81,7 +81,7 @@ export function TreeSidebar({
               className={cn(
                 'w-full h-8 pl-8 pr-3 rounded-lg text-xs font-medium',
                 'bg-slate-50 border border-slate-200 text-slate-700 placeholder:text-slate-400',
-                'focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent',
+                'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent',
                 'transition-colors'
               )}
             />
@@ -112,7 +112,7 @@ export function TreeSidebar({
                 <button
                   type="button"
                   onClick={onCreateRoot}
-                  className="mt-2 text-xs font-bold text-indigo-600 hover:text-indigo-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded"
+                  className="mt-2 text-xs font-bold text-primary-600 hover:text-primary-700 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded"
                 >
                   Buat paket pertama
                 </button>

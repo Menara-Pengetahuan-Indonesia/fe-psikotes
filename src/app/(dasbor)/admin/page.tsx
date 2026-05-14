@@ -19,19 +19,19 @@ import { useAuthStoreHydrated } from '@/store/auth.store'
 import { cn } from '@/lib/utils'
 
 const quickAccess = [
-  { href: '/admin/kelola-tes', label: 'Kelola Tes', desc: 'Buat dan atur instrumen tes', icon: BookOpen, stat: '24', statLabel: 'Tes', color: 'bg-gradient-to-br from-indigo-400 to-indigo-500', iconBg: 'bg-indigo-100 text-indigo-600' },
+  { href: '/admin/kelola-tes', label: 'Kelola Tes', desc: 'Buat dan atur instrumen tes', icon: BookOpen, stat: '24', statLabel: 'Tes', color: 'bg-gradient-to-br from-primary-400 to-primary-500', iconBg: 'bg-primary-100 text-primary-600' },
   { href: '/admin/packages', label: 'Paket', desc: 'Kelola bundel paket tes', icon: Package, stat: '6', statLabel: 'Paket', color: 'bg-gradient-to-br from-violet-400 to-violet-500', iconBg: 'bg-violet-100 text-violet-600' },
-  { href: '/admin/schedules', label: 'Jadwal', desc: 'Atur jadwal akses tes', icon: CalendarClock, stat: '2', statLabel: 'Aktif', color: 'bg-gradient-to-br from-indigo-400 to-indigo-500', iconBg: 'bg-indigo-100 text-indigo-600' },
-  { href: '/admin/participants', label: 'Peserta', desc: 'Kelola peserta terdaftar', icon: Users, stat: '1,240', statLabel: 'Peserta', color: 'bg-gradient-to-br from-indigo-400 to-indigo-500', iconBg: 'bg-indigo-100 text-indigo-600' },
-  { href: '/admin/results', label: 'Hasil', desc: 'Lihat hasil tes peserta', icon: FileBarChart, stat: '840', statLabel: 'Selesai', color: 'bg-gradient-to-br from-indigo-400 to-indigo-500', iconBg: 'bg-indigo-100 text-indigo-600' },
+  { href: '/admin/schedules', label: 'Jadwal', desc: 'Atur jadwal akses tes', icon: CalendarClock, stat: '2', statLabel: 'Aktif', color: 'bg-gradient-to-br from-primary-400 to-primary-500', iconBg: 'bg-primary-100 text-primary-600' },
+  { href: '/admin/participants', label: 'Peserta', desc: 'Kelola peserta terdaftar', icon: Users, stat: '1,240', statLabel: 'Peserta', color: 'bg-gradient-to-br from-primary-400 to-primary-500', iconBg: 'bg-primary-100 text-primary-600' },
+  { href: '/admin/results', label: 'Hasil', desc: 'Lihat hasil tes peserta', icon: FileBarChart, stat: '840', statLabel: 'Selesai', color: 'bg-gradient-to-br from-primary-400 to-primary-500', iconBg: 'bg-primary-100 text-primary-600' },
   { href: '/admin/analytics', label: 'Analitik', desc: 'Insight dan statistik platform', icon: BarChart3, stat: '+18%', statLabel: 'Tren', color: 'bg-gradient-to-br from-violet-400 to-violet-500', iconBg: 'bg-violet-100 text-violet-600' },
 ]
 
 const recentActivities = [
-  { text: 'Ahmad Fauzi menyelesaikan Tes Kepribadian MBTI', time: '5 menit lalu', icon: CheckCircle2, color: 'bg-indigo-100 text-indigo-600' },
-  { text: 'Siti Nurhaliza mendaftar sebagai peserta baru', time: '12 menit lalu', icon: User, color: 'bg-indigo-100 text-indigo-600' },
+  { text: 'Ahmad Fauzi menyelesaikan Tes Kepribadian MBTI', time: '5 menit lalu', icon: CheckCircle2, color: 'bg-primary-100 text-primary-600' },
+  { text: 'Siti Nurhaliza mendaftar sebagai peserta baru', time: '12 menit lalu', icon: User, color: 'bg-primary-100 text-primary-600' },
   { text: 'Tes Intelegensi IST diperbarui', time: '1 jam lalu', icon: BookOpen, color: 'bg-violet-100 text-violet-600' },
-  { text: 'Dewi Lestari menyelesaikan Tes Minat Bakat RIASEC', time: '2 jam lalu', icon: CheckCircle2, color: 'bg-indigo-100 text-indigo-600' },
+  { text: 'Dewi Lestari menyelesaikan Tes Minat Bakat RIASEC', time: '2 jam lalu', icon: CheckCircle2, color: 'bg-primary-100 text-primary-600' },
   { text: 'Jadwal Rekrutmen Batch 5 dibuat', time: '3 jam lalu', icon: CalendarClock, color: 'bg-rose-100 text-rose-600' },
 ]
 
@@ -41,10 +41,10 @@ export default function AdminDashboardPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-primary-900 p-8 md:p-10 text-white">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <p className="text-indigo-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+            <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
               Dashboard
             </p>
             <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
@@ -56,7 +56,7 @@ export default function AdminDashboardPage() {
           </div>
           <Button
             size="lg"
-            className="bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
+            className="bg-white text-slate-900 hover:bg-primary-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
             asChild
           >
             <Link href="/admin/kelola-tes">
@@ -69,8 +69,8 @@ export default function AdminDashboardPage() {
         {/* Stats */}
         <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-              <BookOpen className="size-5 text-indigo-300" />
+            <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+              <BookOpen className="size-5 text-primary-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">24</p>
@@ -78,8 +78,8 @@ export default function AdminDashboardPage() {
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-              <Users className="size-5 text-indigo-300" />
+            <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+              <Users className="size-5 text-primary-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">1,240</p>
@@ -130,9 +130,9 @@ export default function AdminDashboardPage() {
                   <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{item.statLabel}</p>
                 </div>
               </div>
-              <h3 className="text-base font-black text-slate-900 mb-0.5 group-hover:text-indigo-600 transition-colors">{item.label}</h3>
+              <h3 className="text-base font-black text-slate-900 mb-0.5 group-hover:text-primary-600 transition-colors">{item.label}</h3>
               <p className="text-sm text-slate-400 font-medium">{item.desc}</p>
-              <div className="mt-4 flex items-center gap-2 text-xs font-black text-slate-400 group-hover:text-indigo-600 transition-colors">
+              <div className="mt-4 flex items-center gap-2 text-xs font-black text-slate-400 group-hover:text-primary-600 transition-colors">
                 <span>Buka</span>
                 <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
@@ -144,8 +144,8 @@ export default function AdminDashboardPage() {
       {/* AKTIVITAS TERBARU */}
       <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
         <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
-          <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-            <Clock className="size-5 text-indigo-600" />
+          <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+            <Clock className="size-5 text-primary-600" />
           </div>
           <div>
             <h2 className="text-lg font-black text-slate-900">Aktivitas Terbaru</h2>

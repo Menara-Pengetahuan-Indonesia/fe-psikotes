@@ -60,8 +60,8 @@ function OptionImageCell({ imageUrl, onUpload, onRemove, uploading }: {
         onChange={(e) => { const f = e.target.files?.[0]; if (f) onUpload(f); if (ref.current) ref.current.value = '' }}
         className="hidden" />
       <button type="button" onClick={() => ref.current?.click()} disabled={uploading}
-        className="shrink-0 w-12 h-9 rounded-lg border border-dashed border-slate-300 flex items-center justify-center text-slate-400 hover:border-indigo-400 hover:text-indigo-500 transition-all">
-        {uploading ? <div className="size-3 border-2 border-slate-300 border-t-indigo-500 rounded-full animate-spin" /> : <Plus className="size-3.5" />}
+        className="shrink-0 w-12 h-9 rounded-lg border border-dashed border-slate-300 flex items-center justify-center text-slate-400 hover:border-primary-400 hover:text-primary-500 transition-all">
+        {uploading ? <div className="size-3 border-2 border-slate-300 border-t-primary-500 rounded-full animate-spin" /> : <Plus className="size-3.5" />}
       </button>
     </>
   )
@@ -267,7 +267,7 @@ export function QuestionForm({
                     className={cn(
                       'flex-1 px-3 py-1.5 rounded-md text-xs font-bold transition-all',
                       watch('displayStyle') === style.value
-                        ? 'bg-indigo-500 text-white shadow-sm'
+                        ? 'bg-primary-500 text-white shadow-sm'
                         : 'text-slate-500 hover:text-slate-700 hover:bg-white'
                     )}
                   >
@@ -324,7 +324,7 @@ export function QuestionForm({
                     }}
                     className={cn(
                       'relative w-9 h-5 rounded-full transition-colors',
-                      watch('optionImageEnabled') ? 'bg-indigo-500' : 'bg-slate-200'
+                      watch('optionImageEnabled') ? 'bg-primary-500' : 'bg-slate-200'
                     )}
                   >
                     <span className={cn(
