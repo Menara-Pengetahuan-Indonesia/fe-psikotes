@@ -156,7 +156,7 @@ export default function AdminSchedulesPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-primary-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-8 md:p-10 text-white">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
             <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
@@ -254,7 +254,7 @@ export default function AdminSchedulesPage() {
 
       {/* LIST */}
       {filtered.length === 0 ? (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
+        <div className="bg-white rounded-3xl border border-slate-100 p-16 text-center flex flex-col items-center">
           <div className="size-16 rounded-2xl bg-primary-50 flex items-center justify-center mb-5">
             <CalendarClock className="size-8 text-primary-400" />
           </div>
@@ -262,7 +262,7 @@ export default function AdminSchedulesPage() {
           <p className="text-slate-400 font-medium text-sm">Coba ubah filter atau kata kunci pencarian.</p>
         </div>
       ) : (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden divide-y divide-slate-50">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden divide-y divide-slate-50">
           {filtered.map((schedule) => {
             const config = statusConfig[schedule.status]
             const pct = Math.round((schedule.participants / schedule.maxParticipants) * 100)

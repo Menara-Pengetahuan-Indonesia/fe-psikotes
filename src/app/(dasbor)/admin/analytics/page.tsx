@@ -47,7 +47,7 @@ export default function AdminAnalyticsPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-primary-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-8 md:p-10 text-white">
         <div className="relative z-10">
           <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
             Laporan
@@ -108,7 +108,7 @@ export default function AdminAnalyticsPage() {
       {/* 2x2 GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* TES POPULER */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
             <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
               <FileBarChart className="size-5 text-primary-600" />
@@ -137,7 +137,7 @@ export default function AdminAnalyticsPage() {
         </div>
 
         {/* DISTRIBUSI SKOR */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
             <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
               <Target className="size-5 text-primary-600" />
@@ -166,7 +166,7 @@ export default function AdminAnalyticsPage() {
         </div>
 
         {/* TREN PESERTA */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
             <div className="size-10 rounded-xl bg-violet-100 flex items-center justify-center">
               <TrendingUp className="size-5 text-violet-600" />
@@ -195,7 +195,7 @@ export default function AdminAnalyticsPage() {
         </div>
 
         {/* COMPLETION RATE */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
             <div className="size-10 rounded-xl bg-rose-100 flex items-center justify-center">
               <CheckCircle2 className="size-5 text-rose-600" />

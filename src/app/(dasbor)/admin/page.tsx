@@ -41,7 +41,7 @@ export default function AdminDashboardPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-primary-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-8 md:p-10 text-white">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
             <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
@@ -119,7 +119,7 @@ export default function AdminDashboardPage() {
             <Link
               key={item.href}
               href={item.href}
-              className="group bg-white rounded-[2rem] border border-slate-100 p-6 hover:shadow-md transition-all cursor-pointer"
+              className="group bg-white rounded-3xl border border-slate-100 p-6 hover:shadow-md transition-all cursor-pointer"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className={cn('size-12 rounded-2xl flex items-center justify-center text-white transition-all group-hover:scale-105 group-hover:shadow-md', item.color)}>
@@ -142,7 +142,7 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* AKTIVITAS TERBARU */}
-      <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+      <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
         <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
           <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
             <Clock className="size-5 text-primary-600" />

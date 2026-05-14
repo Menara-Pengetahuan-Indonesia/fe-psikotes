@@ -54,7 +54,7 @@ export default function AdminSettingsPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-violet-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-violet-900 p-8 md:p-10 text-white">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-5">
             <Avatar className="size-16 rounded-2xl shadow-xl border-2 border-white/10">
@@ -88,7 +88,7 @@ export default function AdminSettingsPage() {
       {/* 2x2 GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* INFORMASI AKUN */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
             <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
               <User className="size-5 text-primary-600" />
@@ -122,7 +122,7 @@ export default function AdminSettingsPage() {
         </div>
 
         {/* KEAMANAN */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
             <div className="size-10 rounded-xl bg-rose-100 flex items-center justify-center">
               <Lock className="size-5 text-rose-600" />
@@ -167,7 +167,7 @@ export default function AdminSettingsPage() {
         </div>
 
         {/* PREFERENSI */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
             <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
               <Palette className="size-5 text-primary-600" />
@@ -218,7 +218,7 @@ export default function AdminSettingsPage() {
         </div>
 
         {/* TENTANG APLIKASI */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
             <div className="size-10 rounded-xl bg-slate-100 flex items-center justify-center">
               <Info className="size-5 text-slate-600" />

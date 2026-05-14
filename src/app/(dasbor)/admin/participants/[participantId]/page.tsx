@@ -147,7 +147,7 @@ export default function ParticipantDetailPage() {
   if (!participant) {
     return (
       <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
+        <div className="bg-white rounded-3xl border border-slate-100 p-16 text-center flex flex-col items-center">
           <div className="size-16 rounded-2xl bg-rose-50 flex items-center justify-center mb-5">
             <User className="size-8 text-rose-400" />
           </div>
@@ -166,7 +166,7 @@ export default function ParticipantDetailPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-primary-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-8 md:p-10 text-white">
         <div className="relative z-10">
           <button
             onClick={() => router.push('/admin/participants')}
@@ -255,7 +255,7 @@ export default function ParticipantDetailPage() {
         {/* LEFT: Profile + Test History */}
         <div className="md:col-span-7 space-y-6">
           {/* Profile Info */}
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
             <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
               <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
                 <User className="size-5 text-primary-600" />
@@ -287,7 +287,7 @@ export default function ParticipantDetailPage() {
           </div>
 
           {/* Test History */}
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
             <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
               <div className="size-10 rounded-xl bg-violet-100 flex items-center justify-center">
                 <BarChart3 className="size-5 text-violet-600" />
@@ -339,7 +339,7 @@ export default function ParticipantDetailPage() {
         {/* RIGHT: Stats + Quick Actions */}
         <div className="md:col-span-5 space-y-6">
           {/* Stats */}
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
             <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
               <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
                 <TrendingUp className="size-5 text-primary-600" />
@@ -370,7 +370,7 @@ export default function ParticipantDetailPage() {
           </div>
 
           {/* Quick Actions */}
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
             <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
               <div className="size-10 rounded-xl bg-rose-100 flex items-center justify-center">
                 <Shield className="size-5 text-rose-600" />

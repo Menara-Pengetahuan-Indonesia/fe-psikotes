@@ -52,7 +52,7 @@ export default function AdminTestsPage() {
   if (isLoading) {
     return (
       <div className="space-y-6 animate-in fade-in duration-500">
-        <Skeleton className="h-52 rounded-[2.5rem]" />
+        <Skeleton className="h-52 rounded-3xl" />
         <Skeleton className="h-11 rounded-xl" />
         <div className="space-y-3">
           {Array.from({ length: 4 }).map((_, i) => (
@@ -66,7 +66,7 @@ export default function AdminTestsPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-sky-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-sky-900 p-8 md:p-10 text-white">
         <div className="relative z-10">
           <p className="text-sky-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
             Manajemen
@@ -154,7 +154,7 @@ export default function AdminTestsPage() {
 
       {/* LIST */}
       {filtered.length === 0 ? (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
+        <div className="bg-white rounded-3xl border border-slate-100 p-16 text-center flex flex-col items-center">
           <div className="size-16 rounded-2xl bg-sky-50 flex items-center justify-center mb-5">
             <FileText className="size-8 text-sky-400" />
           </div>
@@ -164,7 +164,7 @@ export default function AdminTestsPage() {
           </p>
         </div>
       ) : (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden divide-y divide-slate-50">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden divide-y divide-slate-50">
           {filtered.map((test, index) => {
             const color = accentColors[index % accentColors.length]
             const subTestCount = test.subTests?.length ?? 0

@@ -141,7 +141,7 @@ export default function PackageTypeDetailPage() {
   if (typeLoading) {
     return (
       <div className="space-y-6 animate-in fade-in duration-500">
-        <Skeleton className="h-52 rounded-[2.5rem]" />
+        <Skeleton className="h-52 rounded-3xl" />
         <div className="space-y-3">
           {Array.from({ length: 3 }).map((_, i) => (
             <Skeleton key={i} className="h-20 rounded-2xl" />
@@ -154,7 +154,7 @@ export default function PackageTypeDetailPage() {
   if (typeError || !pkgType) {
     return (
       <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
+        <div className="bg-white rounded-3xl border border-slate-100 p-16 text-center flex flex-col items-center">
           <div className="size-16 rounded-2xl bg-rose-50 flex items-center justify-center mb-5">
             <Layers className="size-8 text-rose-400" />
           </div>
@@ -173,7 +173,7 @@ export default function PackageTypeDetailPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 p-8 md:p-10 text-white">
         <div className="relative z-10">
           <button
             onClick={() => router.push(`/admin/packages/${packageId}/child-packages/${childId}`)}
@@ -267,7 +267,7 @@ export default function PackageTypeDetailPage() {
 
       {/* LIST */}
       {filtered.length === 0 ? (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
+        <div className="bg-white rounded-3xl border border-slate-100 p-16 text-center flex flex-col items-center">
           <div className="size-16 rounded-2xl bg-emerald-50 flex items-center justify-center mb-5">
             <FileText className="size-8 text-emerald-400" />
           </div>
@@ -275,7 +275,7 @@ export default function PackageTypeDetailPage() {
           <p className="text-slate-400 font-medium text-sm">Klik tombol di atas untuk menambahkan.</p>
         </div>
       ) : (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden divide-y divide-slate-50">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden divide-y divide-slate-50">
           {filtered.map((test, index) => {
             const color = accentColors[index % accentColors.length]
             return (

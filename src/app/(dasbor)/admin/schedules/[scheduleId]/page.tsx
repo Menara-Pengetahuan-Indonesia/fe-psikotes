@@ -35,8 +35,8 @@ import { ConfirmDialog } from '@/features/admin/components/Common/ConfirmDialog'
 type ScheduleStatus = 'active' | 'upcoming' | 'completed'
 
 const statusConfig: Record<ScheduleStatus, { label: string; badge: string; bannerGrad: string; iconBg: string }> = {
-  active: { label: 'Aktif', badge: 'bg-primary-500/20 text-primary-300', bannerGrad: 'from-slate-900 via-slate-800 to-primary-900', iconBg: 'from-primary-400 to-primary-500' },
-  upcoming: { label: 'Mendatang', badge: 'bg-primary-500/20 text-primary-300', bannerGrad: 'from-slate-900 via-slate-800 to-primary-900', iconBg: 'from-primary-400 to-primary-500' },
+  active: { label: 'Aktif', badge: 'bg-primary-500/20 text-primary-300', bannerGrad: 'from-primary-600 via-primary-700 to-primary-800', iconBg: 'from-primary-400 to-primary-500' },
+  upcoming: { label: 'Mendatang', badge: 'bg-primary-500/20 text-primary-300', bannerGrad: 'from-primary-600 via-primary-700 to-primary-800', iconBg: 'from-primary-400 to-primary-500' },
   completed: { label: 'Selesai', badge: 'bg-slate-500/20 text-slate-300', bannerGrad: 'from-slate-900 via-slate-800 to-slate-700', iconBg: 'from-slate-400 to-slate-500' },
 }
 
@@ -164,7 +164,7 @@ export default function ScheduleDetailPage() {
   if (!schedule) {
     return (
       <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
+        <div className="bg-white rounded-3xl border border-slate-100 p-16 text-center flex flex-col items-center">
           <div className="size-16 rounded-2xl bg-rose-50 flex items-center justify-center mb-5">
             <CalendarClock className="size-8 text-rose-400" />
           </div>
@@ -185,7 +185,7 @@ export default function ScheduleDetailPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className={cn('relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br p-8 md:p-10 text-white', config.bannerGrad)}>
+      <div className={cn('relative overflow-hidden rounded-3xl bg-gradient-to-br p-8 md:p-10 text-white', config.bannerGrad)}>
         <div className="relative z-10">
           <button
             onClick={() => router.push('/admin/schedules')}
@@ -287,7 +287,7 @@ export default function ScheduleDetailPage() {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         {/* LEFT: Peserta Terdaftar */}
         <div className="md:col-span-7">
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
             <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
               <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
                 <Users className="size-5 text-primary-600" />
@@ -343,7 +343,7 @@ export default function ScheduleDetailPage() {
         {/* RIGHT: Info Jadwal + Progress */}
         <div className="md:col-span-5 space-y-6">
           {/* Info */}
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
             <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
               <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
                 <FileText className="size-5 text-primary-600" />
@@ -374,7 +374,7 @@ export default function ScheduleDetailPage() {
           </div>
 
           {/* Progress */}
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
             <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
               <div className="size-10 rounded-xl bg-violet-100 flex items-center justify-center">
                 <Hourglass className="size-5 text-violet-600" />
