@@ -231,7 +231,7 @@ export default function SubTestDetailPage() {
             </Button>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-fuchsia-500/30 flex items-center justify-center">
                 <HelpCircle className="size-5 text-fuchsia-300" />
               </div>
@@ -240,7 +240,7 @@ export default function SubTestDetailPage() {
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total Soal</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-sky-500/30 flex items-center justify-center">
                 <CheckCircle2 className="size-5 text-sky-300" />
               </div>
@@ -249,7 +249,7 @@ export default function SubTestDetailPage() {
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Pilgan</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-amber-500/30 flex items-center justify-center">
                 <FileText className="size-5 text-amber-300" />
               </div>
@@ -258,7 +258,7 @@ export default function SubTestDetailPage() {
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Esai</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-emerald-500/30 flex items-center justify-center">
                 <GripVertical className="size-5 text-emerald-300" />
               </div>

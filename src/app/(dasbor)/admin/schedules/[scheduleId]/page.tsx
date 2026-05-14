@@ -252,7 +252,7 @@ export default function ScheduleDetailPage() {
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
                 <Users className="size-5 text-primary-300" />
               </div>
@@ -261,7 +261,7 @@ export default function ScheduleDetailPage() {
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Peserta</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
                 <CheckCircle2 className="size-5 text-primary-300" />
               </div>
@@ -270,7 +270,7 @@ export default function ScheduleDetailPage() {
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Selesai</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-violet-500/30 flex items-center justify-center">
                 <Clock className="size-5 text-violet-300" />
               </div>
@@ -279,7 +279,7 @@ export default function ScheduleDetailPage() {
                 <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Mulai</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-rose-500/30 flex items-center justify-center">
                 <CalendarDays className="size-5 text-rose-300" />
               </div>
