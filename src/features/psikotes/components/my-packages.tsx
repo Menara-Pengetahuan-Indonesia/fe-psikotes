@@ -21,6 +21,8 @@ import {
   Eye,
   RotateCw,
   ChevronDown,
+  UserCheck,
+  ClipboardList,
 } from 'lucide-react'
 import {
   Dialog,
@@ -200,6 +202,8 @@ export function MyPackages() {
           const progressPct = hasTests
             ? Math.round((completedCount / (pkg.tests?.length ?? 1)) * 100)
             : 0
+          const allCompleted = hasTests && completedCount === (pkg.tests?.length ?? 0)
+          const isReviewed = !!pkg.reviewedAt
 
           return (
             <div
@@ -282,6 +286,21 @@ export function MyPackages() {
                       <p className="text-[11px] text-amber-700 font-semibold mt-1.5 inline-flex items-center gap-1">
                         <RotateCw className="w-3 h-3" /> {inProgressCount} tes sedang dikerjakan
                       </p>
+                    )}
+                  </div>
+                )}
+
+                {allCompleted && (
+                  <div className={cn(
+                    'flex items-center gap-2 px-3 py-2 rounded-xl mb-4 text-xs font-bold',
+                    isReviewed
+                      ? 'bg-emerald-50 border border-emerald-100 text-emerald-700'
+                      : 'bg-amber-50 border border-amber-100 text-amber-700',
+                  )}>
+                    {isReviewed ? (
+                      <><UserCheck className="w-3.5 h-3.5 shrink-0" /> Sudah direview oleh psikolog</>
+                    ) : (
+                      <><ClipboardList className="w-3.5 h-3.5 shrink-0" /> Menunggu review psikolog</>
                     )}
                   </div>
                 )}
