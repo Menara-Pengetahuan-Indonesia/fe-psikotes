@@ -66,7 +66,7 @@ const LEVEL_COLORS: Record<string, string> = {
 }
 
 function getLevelColor(level: string) {
-  return LEVEL_COLORS[level.toLowerCase()] ?? 'bg-indigo-100 text-indigo-700 border-indigo-200'
+  return LEVEL_COLORS[level.toLowerCase()] ?? 'bg-primary-100 text-primary-700 border-primary-200'
 }
 
 export default function ResultPage() {
@@ -301,7 +301,7 @@ export default function ResultPage() {
           {/* Ringkasan */}
           <div className="bg-white rounded-3xl border border-slate-100 p-6 md:p-8">
             <div className="flex items-center gap-3 mb-4">
-              <div className="size-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center shadow-sm">
+              <div className="size-10 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-sm">
                 <Star className="size-5 text-white" />
               </div>
               <h2 className="text-base font-black text-slate-900">Ringkasan Profil</h2>
@@ -399,18 +399,18 @@ export default function ResultPage() {
 
           {/* Rekomendasi */}
           {reviewData.recommendations.length > 0 && (
-            <div className="bg-gradient-to-br from-indigo-50 to-violet-50 rounded-3xl border border-indigo-100 p-6 md:p-8">
+            <div className="bg-gradient-to-br from-primary-50 to-violet-50 rounded-3xl border border-primary-100 p-6 md:p-8">
               <div className="flex items-center gap-3 mb-4">
-                <div className="size-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-sm">
+                <div className="size-10 rounded-2xl bg-gradient-to-br from-primary-500 to-violet-600 flex items-center justify-center shadow-sm">
                   <Sparkles className="size-5 text-white" />
                 </div>
                 <h2 className="text-base font-black text-slate-900">Rekomendasi</h2>
               </div>
               <ul className="space-y-3">
                 {reviewData.recommendations.map((s, idx) => (
-                  <li key={idx} className="flex items-start gap-3 bg-white/70 rounded-2xl p-4 border border-indigo-100/60">
-                    <div className="size-6 rounded-xl bg-indigo-100 flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="text-[10px] font-black text-indigo-600">{idx + 1}</span>
+                  <li key={idx} className="flex items-start gap-3 bg-white/70 rounded-2xl p-4 border border-primary-100/60">
+                    <div className="size-6 rounded-xl bg-primary-100 flex items-center justify-center shrink-0 mt-0.5">
+                      <span className="text-[10px] font-black text-primary-600">{idx + 1}</span>
                     </div>
                     <span className="text-sm text-slate-700 leading-relaxed">{s}</span>
                   </li>

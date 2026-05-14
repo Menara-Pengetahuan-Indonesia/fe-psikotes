@@ -89,9 +89,9 @@ export function DashboardOverview() {
               </div>
             </div>
 
-            <div className="rounded-[2.5rem] bg-white border border-slate-100 p-8 shadow-sm flex flex-col justify-between group hover:border-indigo-100 transition-colors">
+            <div className="rounded-[2.5rem] bg-white border border-slate-100 p-8 shadow-sm flex flex-col justify-between group hover:border-primary-100 transition-colors">
               <div className="flex items-center justify-between">
-                <div className="size-12 rounded-2xl bg-slate-50 text-slate-900 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                <div className="size-12 rounded-2xl bg-slate-50 text-slate-900 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-colors">
                   <FileText className="size-6" />
                 </div>
               </div>

@@ -82,8 +82,8 @@ export default function SuperAdminSystemPage() {
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-              <Users className="size-5 text-indigo-300" />
+            <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+              <Users className="size-5 text-primary-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">42</p>
@@ -159,8 +159,8 @@ export default function SuperAdminSystemPage() {
         <div className="lg:col-span-7">
           <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden h-full">
             <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-                <FileText className="size-5 text-indigo-600" />
+              <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+                <FileText className="size-5 text-primary-600" />
               </div>
               <div>
                 <h2 className="text-base font-black text-slate-900">System Logs</h2>
@@ -199,12 +199,12 @@ export default function SuperAdminSystemPage() {
           </Button>
         </div>
         <div className="bg-white rounded-[2rem] border border-slate-100 p-6 group hover:shadow-md transition-all">
-          <div className="size-12 rounded-2xl bg-gradient-to-br from-indigo-400 to-indigo-500 flex items-center justify-center text-white mb-4">
+          <div className="size-12 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-500 flex items-center justify-center text-white mb-4">
             <RefreshCw className="size-5" />
           </div>
           <h3 className="text-base font-black text-slate-900 mb-1">Flush Cache</h3>
           <p className="text-xs text-slate-400 font-medium mb-4">Bersihkan cache Redis dan CDN</p>
-          <Button variant="outline" className="w-full rounded-xl h-10 font-bold text-xs border-slate-200 hover:bg-indigo-50 hover:text-indigo-600 hover:border-indigo-200">
+          <Button variant="outline" className="w-full rounded-xl h-10 font-bold text-xs border-slate-200 hover:bg-primary-50 hover:text-primary-600 hover:border-primary-200">
             Flush Sekarang
           </Button>
         </div>

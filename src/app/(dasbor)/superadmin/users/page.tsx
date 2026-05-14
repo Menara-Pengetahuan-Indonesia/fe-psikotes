@@ -36,12 +36,12 @@ type FilterType = 'all' | UserRole
 const roleConfig: Record<UserRole, { label: string; badge: string; icon: typeof Shield }> = {
   SUPERADMIN: { label: 'Super Admin', badge: 'bg-rose-50 text-rose-600', icon: Crown },
   ADMIN: { label: 'Admin', badge: 'bg-violet-50 text-violet-600', icon: Shield },
-  USER: { label: 'Pengguna', badge: 'bg-indigo-50 text-indigo-600', icon: User },
+  USER: { label: 'Pengguna', badge: 'bg-primary-50 text-primary-600', icon: User },
 }
 
 const accentColors = [
   { bg: 'bg-gradient-to-br from-rose-400 to-rose-500', text: 'text-white' },
-  { bg: 'bg-gradient-to-br from-indigo-400 to-indigo-500', text: 'text-white' },
+  { bg: 'bg-gradient-to-br from-primary-400 to-primary-500', text: 'text-white' },
   { bg: 'bg-gradient-to-br from-teal-400 to-teal-500', text: 'text-white' },
   { bg: 'bg-gradient-to-br from-violet-400 to-violet-500', text: 'text-white' },
 ]
@@ -174,7 +174,7 @@ export default function SuperAdminUsersPage() {
           {[
             { count: allUsers.length, label: 'Total', icon: Users, color: 'bg-rose-500/30', iconColor: 'text-rose-300' },
             { count: superadminCount, label: 'Super Admin', icon: Crown, color: 'bg-violet-500/30', iconColor: 'text-violet-300' },
-            { count: adminCount, label: 'Admin', icon: Shield, color: 'bg-indigo-500/30', iconColor: 'text-indigo-300' },
+            { count: adminCount, label: 'Admin', icon: Shield, color: 'bg-primary-500/30', iconColor: 'text-primary-300' },
             { count: userCount, label: 'Pengguna', icon: User, color: 'bg-teal-500/30', iconColor: 'text-teal-300' },
           ].map(s => {
             const Icon = s.icon
@@ -303,7 +303,7 @@ export default function SuperAdminUsersPage() {
                 <div className="flex items-center gap-2 shrink-0">
                   <button
                     onClick={() => openEdit(user)}
-                    className="size-9 rounded-xl bg-white border border-slate-100 flex items-center justify-center text-slate-400 opacity-0 group-hover:opacity-100 transition-all hover:bg-indigo-50 hover:border-indigo-200 hover:text-indigo-500"
+                    className="size-9 rounded-xl bg-white border border-slate-100 flex items-center justify-center text-slate-400 opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-50 hover:border-primary-200 hover:text-primary-500"
                     title="Edit"
                   >
                     <Pencil className="size-4" />
