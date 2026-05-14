@@ -166,6 +166,10 @@ export default function AdminPackagesPage() {
           </p>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
+            <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+              Paket
+            </p>
+
               <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
                 Paket Psikotes.
               </h1>

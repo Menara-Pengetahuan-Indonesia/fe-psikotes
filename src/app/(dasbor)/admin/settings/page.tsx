@@ -72,7 +72,7 @@ export default function AdminSettingsPage() {
               </AvatarFallback>
             </Avatar>
             <div>
-              <p className="text-violet-300 font-black text-[10px] uppercase tracking-[0.3em] mb-1">
+              <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-1">
                 Pengaturan
               </p>
               <h1 className="text-2xl md:text-3xl font-black tracking-tight mb-1">

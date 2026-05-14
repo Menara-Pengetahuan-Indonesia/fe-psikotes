@@ -81,6 +81,10 @@ export default function AdminTestsPage() {
             Manajemen
           </p>
           <div>
+            <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+              Tes
+            </p>
+
             <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
               Semua Tes.
             </h1>

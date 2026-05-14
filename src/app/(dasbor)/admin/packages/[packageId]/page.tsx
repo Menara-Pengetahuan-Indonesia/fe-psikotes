@@ -203,6 +203,10 @@ export default function PackageDetailPage() {
                     {pkg.isActive ? 'Aktif' : 'Nonaktif'}
                   </span>
                 </div>
+            <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+              Paket
+            </p>
+
                 <h1 className="text-2xl md:text-3xl font-black tracking-tight mb-2">
                   {pkg.name}
                 </h1>

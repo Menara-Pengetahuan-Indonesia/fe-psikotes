@@ -206,6 +206,10 @@ export default function TestDetailPage() {
                     {test.scoringType === 'IMMEDIATE' ? 'Skor Langsung' : 'Skor Akhir'}
                   </span>
                 </div>
+            <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+              Tes
+            </p>
+
                 <h1 className="text-2xl md:text-3xl font-black tracking-tight mb-2">
                   {test.name}
                 </h1>

@@ -193,6 +193,10 @@ export default function ParticipantDetailPage() {
                 <User className="size-7 text-white" />
               </div>
               <div>
+            <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+              Peserta
+            </p>
+
                 <h1 className="text-2xl md:text-3xl font-black tracking-tight mb-1">{participant.name}</h1>
                 <div className="flex items-center gap-1.5 text-slate-400 text-sm font-medium">
                   <Mail className="size-3.5" />
