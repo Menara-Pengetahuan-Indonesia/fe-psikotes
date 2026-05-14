@@ -38,7 +38,7 @@ import {
 import type { ChildPackage } from '@/features/admin/types'
 
 const accentColors = [
-  'from-indigo-400 to-indigo-500',
+  'from-primary-400 to-primary-500',
   'from-emerald-400 to-emerald-500',
   'from-rose-400 to-rose-500',
   'from-amber-400 to-amber-500',
@@ -165,7 +165,7 @@ export default function PackageDetailPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-primary-900 p-8 md:p-10 text-white">
         <div className="relative z-10">
           <button
             onClick={() => router.push('/admin/packages')}
@@ -178,7 +178,7 @@ export default function PackageDetailPage() {
           </button>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="flex items-start gap-5">
-              <div className="size-16 rounded-2xl bg-gradient-to-br from-indigo-400 to-indigo-500 flex items-center justify-center shrink-0 shadow-lg">
+              <div className="size-16 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-500 flex items-center justify-center shrink-0 shadow-lg">
                 <Package className="size-7 text-white" />
               </div>
               <div>
@@ -187,7 +187,7 @@ export default function PackageDetailPage() {
                     className={cn(
                       'text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full',
                       pkg.isActive
-                        ? 'bg-indigo-500/20 text-indigo-300'
+                        ? 'bg-primary-500/20 text-primary-300'
                         : 'bg-slate-500/20 text-slate-300',
                     )}
                   >
@@ -205,7 +205,7 @@ export default function PackageDetailPage() {
             <Button
               size="lg"
               onClick={openCreate}
-              className="bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
+              className="bg-white text-slate-900 hover:bg-primary-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
             >
               <Plus className="w-5 h-5 mr-2 group-hover:rotate-90 transition-transform" />
               Tambah Sub-Paket
@@ -213,8 +213,8 @@ export default function PackageDetailPage() {
           </div>
           <div className="grid grid-cols-3 gap-4 mt-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-                <Layers className="size-5 text-indigo-300" />
+              <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+                <Layers className="size-5 text-primary-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">
@@ -226,8 +226,8 @@ export default function PackageDetailPage() {
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-                <CheckCircle2 className="size-5 text-indigo-300" />
+              <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+                <CheckCircle2 className="size-5 text-primary-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{activeCount}</p>
@@ -263,15 +263,15 @@ export default function PackageDetailPage() {
           placeholder="Cari sub-paket..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-11 h-11 bg-white border-slate-100 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500/10"
+          className="pl-11 h-11 bg-white border-slate-100 rounded-xl text-sm font-medium focus:ring-2 focus:ring-primary-500/10"
         />
       </div>
 
       {/* LIST */}
       {filtered.length === 0 ? (
         <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
-          <div className="size-16 rounded-2xl bg-indigo-50 flex items-center justify-center mb-5">
-            <Layers className="size-8 text-indigo-400" />
+          <div className="size-16 rounded-2xl bg-primary-50 flex items-center justify-center mb-5">
+            <Layers className="size-8 text-primary-400" />
           </div>
           <p className="text-slate-900 font-black text-lg mb-1">
             Belum ada sub-paket.
@@ -305,14 +305,14 @@ export default function PackageDetailPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2.5 mb-0.5">
-                    <h3 className="text-base font-black text-slate-900 truncate group-hover:text-indigo-600 transition-colors">
+                    <h3 className="text-base font-black text-slate-900 truncate group-hover:text-primary-600 transition-colors">
                       {cp.name}
                     </h3>
                     <span
                       className={cn(
                         'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
                         cp.isActive
-                          ? 'bg-indigo-50 text-indigo-600'
+                          ? 'bg-primary-50 text-primary-600'
                           : 'bg-slate-100 text-slate-400',
                       )}
                     >
@@ -335,7 +335,7 @@ export default function PackageDetailPage() {
                       e.stopPropagation()
                       openEdit(cp)
                     }}
-                    className="size-9 rounded-xl bg-white text-indigo-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-indigo-50 hover:border-indigo-200 hover:text-indigo-500"
+                    className="size-9 rounded-xl bg-white text-primary-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-50 hover:border-primary-200 hover:text-primary-500"
                   >
                     <Pencil className="size-4" />
                   </button>
@@ -348,7 +348,7 @@ export default function PackageDetailPage() {
                   >
                     <Trash2 className="size-4" />
                   </button>
-                  <div className="size-9 rounded-xl bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                  <div className="size-9 rounded-xl bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-primary-600 group-hover:text-white transition-all">
                     <ChevronRight className="size-4" />
                   </div>
                 </div>
@@ -363,7 +363,7 @@ export default function PackageDetailPage() {
         <DialogContent className="max-w-[460px] p-0 border-0 rounded-2xl overflow-hidden bg-white shadow-2xl">
           <div className="px-6 pt-6 pb-3">
             <div className="flex items-center gap-3 mb-2">
-              <div className="size-9 rounded-xl bg-indigo-500 text-white flex items-center justify-center">
+              <div className="size-9 rounded-xl bg-primary-500 text-white flex items-center justify-center">
                 <Layers className="size-4" />
               </div>
               <div>
@@ -391,7 +391,7 @@ export default function PackageDetailPage() {
                     setFormName(e.target.value)
                     setFormError('')
                   }}
-                  className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500/10"
+                  className="h-10 rounded-xl bg-slate-50 border-slate-200 px-4 font-bold text-sm focus:bg-white focus:ring-2 focus:ring-primary-500/10"
                 />
                 {formError && (
                   <p className="text-rose-500 text-[10px] font-bold">
@@ -407,7 +407,7 @@ export default function PackageDetailPage() {
                   placeholder="Penjelasan singkat..."
                   value={formDesc}
                   onChange={(e) => setFormDesc(e.target.value)}
-                  className="rounded-xl bg-slate-50 border-slate-200 p-4 font-medium text-sm min-h-[70px] resize-none focus:bg-white focus:ring-2 focus:ring-indigo-500/10"
+                  className="rounded-xl bg-slate-50 border-slate-200 p-4 font-medium text-sm min-h-[70px] resize-none focus:bg-white focus:ring-2 focus:ring-primary-500/10"
                 />
               </div>
               <div className="flex items-center justify-between">
@@ -419,7 +419,7 @@ export default function PackageDetailPage() {
                   onClick={() => setFormActive(!formActive)}
                   className={cn(
                     'flex items-center gap-2 text-sm font-bold transition-colors',
-                    formActive ? 'text-indigo-600' : 'text-slate-400',
+                    formActive ? 'text-primary-600' : 'text-slate-400',
                   )}
                 >
                   {formActive ? (

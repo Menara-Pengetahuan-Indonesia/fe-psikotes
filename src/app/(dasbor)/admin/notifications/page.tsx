@@ -43,8 +43,8 @@ const initialNotifications: Notification[] = [
 ]
 
 const typeConfig: Record<NotifType, { icon: typeof Bell; color: string }> = {
-  test_completed: { icon: CheckCircle2, color: 'bg-indigo-100 text-indigo-600' },
-  new_user: { icon: UserPlus, color: 'bg-indigo-100 text-indigo-600' },
+  test_completed: { icon: CheckCircle2, color: 'bg-primary-100 text-primary-600' },
+  new_user: { icon: UserPlus, color: 'bg-primary-100 text-primary-600' },
   test_updated: { icon: FileText, color: 'bg-violet-100 text-violet-600' },
   schedule_created: { icon: CalendarClock, color: 'bg-rose-100 text-rose-600' },
   warning: { icon: AlertTriangle, color: 'bg-amber-100 text-amber-600' },
@@ -117,8 +117,8 @@ export default function AdminNotificationsPage() {
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-              <Clock className="size-5 text-indigo-300" />
+            <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+              <Clock className="size-5 text-primary-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{unreadCount}</p>
@@ -126,8 +126,8 @@ export default function AdminNotificationsPage() {
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-              <CheckCircle2 className="size-5 text-indigo-300" />
+            <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+              <CheckCircle2 className="size-5 text-primary-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{readCount}</p>
@@ -186,7 +186,7 @@ export default function AdminNotificationsPage() {
                 key={notif.id}
                 className={cn(
                   'group flex items-center gap-5 px-6 md:px-8 py-5 transition-all',
-                  !notif.read && 'bg-indigo-50/30'
+                  !notif.read && 'bg-primary-50/30'
                 )}
               >
                 {/* Icon */}
@@ -201,7 +201,7 @@ export default function AdminNotificationsPage() {
                       {notif.title}
                     </h3>
                     {!notif.read && (
-                      <span className="size-2 rounded-full bg-indigo-500 shrink-0" />
+                      <span className="size-2 rounded-full bg-primary-500 shrink-0" />
                     )}
                   </div>
                   <p className="text-sm text-slate-400 font-medium truncate">{notif.description}</p>
@@ -215,7 +215,7 @@ export default function AdminNotificationsPage() {
                   {!notif.read && (
                     <button
                       onClick={() => markAsRead(notif.id)}
-                      className="size-8 rounded-lg bg-white text-indigo-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-indigo-50 hover:border-indigo-200 hover:text-indigo-500"
+                      className="size-8 rounded-lg bg-white text-primary-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-50 hover:border-primary-200 hover:text-primary-500"
                       title="Tandai dibaca"
                     >
                       <Check className="size-3.5" />

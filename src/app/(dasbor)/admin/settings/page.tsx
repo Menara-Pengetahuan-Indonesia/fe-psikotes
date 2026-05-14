@@ -28,7 +28,7 @@ const ROLE_CONFIG = {
   },
   ADMIN: {
     label: 'Admin',
-    bg: 'bg-indigo-500/20 text-indigo-300',
+    bg: 'bg-primary-500/20 text-primary-300',
     desc: 'Kelola tes, indikator, dan hasil peserta',
   },
   USER: {
@@ -58,7 +58,7 @@ export default function AdminSettingsPage() {
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-5">
             <Avatar className="size-16 rounded-2xl shadow-xl border-2 border-white/10">
-              <AvatarFallback className="rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-500 text-white text-xl font-black">
+              <AvatarFallback className="rounded-2xl bg-gradient-to-br from-primary-500 to-violet-500 text-white text-xl font-black">
                 {initials}
               </AvatarFallback>
             </Avatar>
@@ -90,8 +90,8 @@ export default function AdminSettingsPage() {
         {/* INFORMASI AKUN */}
         <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
           <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-              <User className="size-5 text-indigo-600" />
+            <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+              <User className="size-5 text-primary-600" />
             </div>
             <div>
               <h2 className="text-base font-black text-slate-900">Informasi Akun</h2>
@@ -101,13 +101,13 @@ export default function AdminSettingsPage() {
           <div className="divide-y divide-slate-50">
             <SettingRow
               icon={<User className="size-4" />}
-              iconColor="bg-indigo-100 text-indigo-600"
+              iconColor="bg-primary-100 text-primary-600"
               label="Nama Lengkap"
               value={user?.name ?? '—'}
             />
             <SettingRow
               icon={<Mail className="size-4" />}
-              iconColor="bg-indigo-100 text-indigo-600"
+              iconColor="bg-primary-100 text-primary-600"
               label="Email"
               value={user?.email ?? '—'}
             />
@@ -169,8 +169,8 @@ export default function AdminSettingsPage() {
         {/* PREFERENSI */}
         <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
           <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-              <Palette className="size-5 text-indigo-600" />
+            <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+              <Palette className="size-5 text-primary-600" />
             </div>
             <div>
               <h2 className="text-base font-black text-slate-900">Preferensi</h2>
@@ -179,14 +179,14 @@ export default function AdminSettingsPage() {
           </div>
           <div className="divide-y divide-slate-50">
             <div className="px-7 py-4 flex items-center gap-4 group hover:bg-slate-50/50 transition-all">
-              <div className="size-9 rounded-xl bg-indigo-100 flex items-center justify-center shrink-0">
-                <Bell className="size-4 text-indigo-600" />
+              <div className="size-9 rounded-xl bg-primary-100 flex items-center justify-center shrink-0">
+                <Bell className="size-4 text-primary-600" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-black text-slate-900">Notifikasi</p>
                 <p className="text-xs text-slate-400 font-medium">Email & push notification</p>
               </div>
-              <span className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-600">
+              <span className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-primary-50 text-primary-600">
                 Aktif
               </span>
             </div>
@@ -203,14 +203,14 @@ export default function AdminSettingsPage() {
               </span>
             </div>
             <div className="px-7 py-4 flex items-center gap-4 group hover:bg-slate-50/50 transition-all">
-              <div className="size-9 rounded-xl bg-indigo-100 flex items-center justify-center shrink-0">
-                <Globe className="size-4 text-indigo-600" />
+              <div className="size-9 rounded-xl bg-primary-100 flex items-center justify-center shrink-0">
+                <Globe className="size-4 text-primary-600" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-black text-slate-900">Bahasa</p>
                 <p className="text-xs text-slate-400 font-medium">Bahasa tampilan</p>
               </div>
-              <span className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-600">
+              <span className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-primary-50 text-primary-600">
                 Indonesia
               </span>
             </div>

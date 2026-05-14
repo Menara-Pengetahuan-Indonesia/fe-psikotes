@@ -11,8 +11,8 @@ import { cn } from '@/lib/utils'
 
 // Dummy data
 const popularTests = [
-  { name: 'Tes Kepribadian MBTI', participants: 890, color: 'bg-indigo-500' },
-  { name: 'Tes Intelegensi IST', participants: 654, color: 'bg-indigo-500' },
+  { name: 'Tes Kepribadian MBTI', participants: 890, color: 'bg-primary-500' },
+  { name: 'Tes Intelegensi IST', participants: 654, color: 'bg-primary-500' },
   { name: 'Tes Minat Bakat RIASEC', participants: 523, color: 'bg-violet-500' },
   { name: 'Tes Kecerdasan Emosional', participants: 412, color: 'bg-rose-500' },
   { name: 'Tes Tingkat Stres', participants: 387, color: 'bg-amber-500' },
@@ -21,8 +21,8 @@ const popularTests = [
 const scoreDistribution = [
   { range: '0-20', count: 12, color: 'bg-rose-500' },
   { range: '21-40', count: 45, color: 'bg-amber-500' },
-  { range: '41-60', count: 156, color: 'bg-indigo-500' },
-  { range: '61-80', count: 342, color: 'bg-indigo-500' },
+  { range: '41-60', count: 156, color: 'bg-primary-500' },
+  { range: '61-80', count: 342, color: 'bg-primary-500' },
   { range: '81-100', count: 285, color: 'bg-violet-500' },
 ]
 
@@ -47,9 +47,9 @@ export default function AdminAnalyticsPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-primary-900 p-8 md:p-10 text-white">
         <div className="relative z-10">
-          <p className="text-indigo-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+          <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
             Laporan
           </p>
           <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
@@ -62,8 +62,8 @@ export default function AdminAnalyticsPage() {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-                <Users className="size-5 text-indigo-300" />
+              <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+                <Users className="size-5 text-primary-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">1,240</p>
@@ -71,8 +71,8 @@ export default function AdminAnalyticsPage() {
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-                <CheckCircle2 className="size-5 text-indigo-300" />
+              <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+                <CheckCircle2 className="size-5 text-primary-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">278</p>
@@ -110,8 +110,8 @@ export default function AdminAnalyticsPage() {
         {/* TES POPULER */}
         <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
           <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-              <FileBarChart className="size-5 text-indigo-600" />
+            <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+              <FileBarChart className="size-5 text-primary-600" />
             </div>
             <div>
               <h2 className="text-lg font-black text-slate-900">Tes Populer</h2>
@@ -139,8 +139,8 @@ export default function AdminAnalyticsPage() {
         {/* DISTRIBUSI SKOR */}
         <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
           <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-              <Target className="size-5 text-indigo-600" />
+            <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+              <Target className="size-5 text-primary-600" />
             </div>
             <div>
               <h2 className="text-lg font-black text-slate-900">Distribusi Skor</h2>
@@ -229,9 +229,9 @@ export default function AdminAnalyticsPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-4 w-full">
-              <div className="p-4 rounded-2xl bg-indigo-50 text-center">
-                <p className="text-xl font-black text-indigo-600">{totalCompleted}</p>
-                <p className="text-[10px] font-bold text-indigo-500 uppercase tracking-widest">Selesai</p>
+              <div className="p-4 rounded-2xl bg-primary-50 text-center">
+                <p className="text-xl font-black text-primary-600">{totalCompleted}</p>
+                <p className="text-[10px] font-bold text-primary-500 uppercase tracking-widest">Selesai</p>
               </div>
               <div className="p-4 rounded-2xl bg-amber-50 text-center">
                 <p className="text-xl font-black text-amber-600">{totalInProgress}</p>

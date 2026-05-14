@@ -22,8 +22,8 @@ const accentColors = [
   'from-fuchsia-400 to-fuchsia-500',
   'from-lime-400 to-lime-500',
   'from-orange-400 to-orange-500',
-  'from-indigo-400 to-indigo-500',
-  'from-indigo-400 to-indigo-500',
+  'from-primary-400 to-primary-500',
+  'from-primary-400 to-primary-500',
 ]
 
 export default function AdminTestsPage() {
@@ -90,8 +90,8 @@ export default function AdminTestsPage() {
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-                <CheckCircle2 className="size-5 text-indigo-300" />
+              <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+                <CheckCircle2 className="size-5 text-primary-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{activeCount}</p>
@@ -191,7 +191,7 @@ export default function AdminTestsPage() {
                       className={cn(
                         'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
                         test.isActive
-                          ? 'bg-indigo-50 text-indigo-600'
+                          ? 'bg-primary-50 text-primary-600'
                           : 'bg-slate-100 text-slate-400',
                       )}
                     >

@@ -187,7 +187,7 @@ export default function SubTestDetailPage() {
                     className={cn(
                       'text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full',
                       subTest.isActive
-                        ? 'bg-indigo-500/20 text-indigo-300'
+                        ? 'bg-primary-500/20 text-primary-300'
                         : 'bg-slate-500/20 text-slate-300',
                     )}
                   >
@@ -319,7 +319,7 @@ export default function SubTestDetailPage() {
                           className={cn(
                             'text-[10px] font-bold px-2 py-0.5 rounded-lg',
                             opt.isCorrect
-                              ? 'bg-indigo-50 text-indigo-600'
+                              ? 'bg-primary-50 text-primary-600'
                               : 'bg-slate-50 text-slate-400',
                           )}
                         >
@@ -339,7 +339,7 @@ export default function SubTestDetailPage() {
                 <div className="flex items-center gap-2 shrink-0 pt-0.5">
                   <button
                     onClick={() => openEdit(q)}
-                    className="size-9 rounded-xl bg-white text-indigo-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-indigo-50 hover:border-indigo-200 hover:text-indigo-500"
+                    className="size-9 rounded-xl bg-white text-primary-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-50 hover:border-primary-200 hover:text-primary-500"
                   >
                     <Pencil className="size-4" />
                   </button>
