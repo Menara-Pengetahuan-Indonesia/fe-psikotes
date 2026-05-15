@@ -134,7 +134,7 @@ export function QuestionCard({
     return (
       <div
         onClick={onStartEdit}
-        className="group bg-white rounded-2xl border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all cursor-pointer"
+        className="group bg-white rounded-2xl border border-slate-200 hover:border-primary-300 hover:shadow-md transition-all cursor-pointer"
       >
         <div className="flex items-center justify-between px-3 sm:px-5 py-3">
           <div className="flex items-center gap-3 min-w-0">
@@ -189,18 +189,18 @@ export function QuestionCard({
 
   // EDIT MODE
   return (
-    <div className="bg-white rounded-2xl border-2 border-indigo-400 shadow-lg shadow-indigo-100/50 max-h-[80vh] flex flex-col">
+    <div className="bg-white rounded-2xl border-2 border-primary-400 shadow-lg shadow-primary-100/50 max-h-[80vh] flex flex-col">
       {/* Edit header — click to collapse */}
-      <div onClick={onStopEdit} className="flex items-center justify-between px-3 sm:px-5 py-3 border-b border-indigo-100 bg-indigo-50/50 rounded-t-2xl cursor-pointer hover:bg-indigo-50 transition-colors shrink-0">
+      <div onClick={onStopEdit} className="flex items-center justify-between px-3 sm:px-5 py-3 border-b border-primary-100 bg-primary-50/50 rounded-t-2xl cursor-pointer hover:bg-primary-50 transition-colors shrink-0">
         <div className="flex items-center gap-3">
-          <span className="text-xs font-black text-indigo-400 tabular-nums">#{index + 1}</span>
+          <span className="text-xs font-black text-primary-400 tabular-nums">#{index + 1}</span>
           <span className={cn('text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-lg', colorClass)}>
             {QUESTION_TYPE_LABELS[question.questionType]}
           </span>
         </div>
         <div className="relative" ref={menuRef}>
             <button type="button" onClick={(e) => { e.stopPropagation(); setMenuOpen(!menuOpen) }}
-              className="size-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-indigo-100 transition-colors">
+              className="size-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-600 hover:bg-primary-100 transition-colors">
               <MoreVertical className="size-4" />
             </button>
             {menuOpen && (
@@ -246,7 +246,7 @@ export function QuestionCard({
             value={text}
             onChange={e => setText(e.target.value)}
             rows={3}
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-800 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-800 resize-none focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
             placeholder="Tulis pertanyaan..."
           />
         </div>
@@ -260,7 +260,7 @@ export function QuestionCard({
               value={essayPoints || ''}
               onChange={e => setEssayPoints(Number(e.target.value))}
               placeholder="0"
-              className="w-24 h-9 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+              className="w-24 h-9 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
             />
           </div>
         )}
@@ -290,7 +290,7 @@ export function QuestionCard({
               />
               <button type="button" onClick={() => questionFileRef.current?.click()}
                 disabled={uploadImage.isPending}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl border border-dashed border-slate-300 text-sm font-medium text-slate-500 hover:border-indigo-400 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all disabled:opacity-50">
+                className="flex items-center gap-2 px-4 py-2 rounded-xl border border-dashed border-slate-300 text-sm font-medium text-slate-500 hover:border-primary-400 hover:text-primary-600 hover:bg-primary-50/50 transition-all disabled:opacity-50">
                 <Plus className="size-4" />
                 {uploadImage.isPending ? 'Mengunggah...' : 'Upload Gambar'}
               </button>
@@ -309,7 +309,7 @@ export function QuestionCard({
                     {question.questionType === 'MULTIPLE_CHOICE' && (
                       <span className={cn(
                         'size-6 rounded-full text-[10px] font-black flex items-center justify-center shrink-0',
-                        opt.isCorrect ? 'bg-indigo-500 text-white' : 'bg-slate-200 text-slate-500'
+                        opt.isCorrect ? 'bg-primary-500 text-white' : 'bg-slate-200 text-slate-500'
                       )}>
                         {String.fromCharCode(65 + idx)}
                       </span>
@@ -319,7 +319,7 @@ export function QuestionCard({
                       className={cn(
                         'size-5 shrink-0 rounded-md border-2 flex items-center justify-center transition-colors',
                         question.questionType === 'MULTIPLE_CHOICE' ? 'rounded-full' : '',
-                        opt.isCorrect ? 'border-indigo-500 bg-indigo-500 text-white' : 'border-slate-300 hover:border-indigo-400'
+                        opt.isCorrect ? 'border-primary-500 bg-primary-500 text-white' : 'border-slate-300 hover:border-primary-400'
                       )}>
                       {opt.isCorrect && <Check className="size-3" />}
                     </button>
@@ -327,14 +327,14 @@ export function QuestionCard({
                       value={opt.optionText}
                       onChange={e => updateOption(idx, { optionText: e.target.value })}
                       placeholder={`Opsi ${idx + 1}`}
-                      className="flex-1 h-9 rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                      className="flex-1 h-9 rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
                     />
                     <input
                       type="number"
                       value={opt.points || ''}
                       onChange={e => updateOption(idx, { points: Number(e.target.value) })}
                       placeholder="0"
-                      className="w-20 h-9 rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-center text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                      className="w-20 h-9 rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-center text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
                     />
                     <button type="button" onClick={() => removeOption(idx)}
                       disabled={options.length <= 1}
@@ -364,7 +364,7 @@ export function QuestionCard({
                       />
                       <button type="button" onClick={() => document.getElementById(`opt-img-${question.id}-${idx}`)?.click()}
                         disabled={uploadImage.isPending}
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-dashed border-slate-300 text-xs font-medium text-slate-400 hover:border-indigo-400 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all disabled:opacity-50">
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-dashed border-slate-300 text-xs font-medium text-slate-400 hover:border-primary-400 hover:text-primary-600 hover:bg-primary-50/50 transition-all disabled:opacity-50">
                         <Plus className="size-3" />
                         {uploadImage.isPending ? 'Mengunggah...' : 'Upload Gambar Opsi'}
                       </button>
@@ -374,7 +374,7 @@ export function QuestionCard({
               ))}
             </div>
             <button type="button" onClick={addOption}
-              className="flex items-center gap-2 text-sm font-bold text-indigo-600 hover:text-indigo-700 transition-colors">
+              className="flex items-center gap-2 text-sm font-bold text-primary-600 hover:text-primary-700 transition-colors">
               <Plus className="size-4" /> Tambah Opsi
             </button>
           </div>
@@ -398,14 +398,14 @@ export function QuestionCard({
                   }
                 }}
                 placeholder="Ketik kata kunci, tekan Enter..."
-                className="flex-1 h-9 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                className="flex-1 h-9 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
               />
               <button type="button" onClick={() => {
                 if (keywordInput.trim()) {
                   setEssayKeywords([...essayKeywords, keywordInput.trim()])
                   setKeywordInput('')
                 }
-              }} className="size-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center hover:bg-indigo-100 transition-colors">
+              }} className="size-9 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center hover:bg-primary-100 transition-colors">
                 <Plus className="size-4" />
               </button>
             </div>
@@ -440,7 +440,7 @@ export function QuestionCard({
                     for (let i = v; i <= maxScale; i++) w[String(i)] = scaleWeights[String(i)] ?? { label: String(i), points: i }
                     setScaleWeights(w)
                   }}
-                  className="w-full h-9 rounded-lg border border-slate-200 bg-white px-3 text-sm font-bold text-center focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                  className="w-full h-9 rounded-lg border border-slate-200 bg-white px-3 text-sm font-bold text-center focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
                 />
               </div>
               <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-3 space-y-1">
@@ -453,7 +453,7 @@ export function QuestionCard({
                     for (let i = minScale; i <= v; i++) w[String(i)] = scaleWeights[String(i)] ?? { label: String(i), points: i }
                     setScaleWeights(w)
                   }}
-                  className="w-full h-9 rounded-lg border border-slate-200 bg-white px-3 text-sm font-bold text-center focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                  className="w-full h-9 rounded-lg border border-slate-200 bg-white px-3 text-sm font-bold text-center focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
                 />
               </div>
             </div>
@@ -471,14 +471,14 @@ export function QuestionCard({
                             placeholder={defaultLabels[val] ?? `Label ${val}`}
                             value={scaleWeights[String(val)]?.label ?? ''}
                             onChange={e => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { points: val }, label: e.target.value } })}
-                            className="flex-1 h-9 rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                            className="flex-1 h-9 rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
                           />
                           <input
                             type="number"
                             placeholder="0"
                             value={scaleWeights[String(val)]?.points ?? ''}
                             onChange={e => setScaleWeights({ ...scaleWeights, [String(val)]: { ...scaleWeights[String(val)] ?? { label: '' }, points: e.target.value === '' ? 0 : Number(e.target.value) } })}
-                            className="w-20 h-9 rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-center text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                            className="w-20 h-9 rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-center text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all"
                           />
                         </div>
                       </div>
@@ -498,7 +498,7 @@ export function QuestionCard({
           </button>
           <button type="button" onClick={handleSave}
             disabled={updateQuestion.isPending || !text.trim()}
-            className="px-5 py-2 rounded-xl bg-indigo-600 text-white text-sm font-bold hover:bg-indigo-700 transition-colors disabled:opacity-50">
+            className="px-5 py-2 rounded-xl bg-primary-600 text-white text-sm font-bold hover:bg-primary-700 transition-colors disabled:opacity-50">
             {updateQuestion.isPending ? 'Menyimpan...' : 'Simpan'}
           </button>
         </div>

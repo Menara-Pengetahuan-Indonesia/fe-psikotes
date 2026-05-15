@@ -13,7 +13,7 @@ export const QUESTION_TYPE_SHORT_LABELS: Record<string, string> = {
 }
 
 export const QUESTION_TYPE_COLORS: Record<string, string> = {
-  MULTIPLE_CHOICE: 'bg-indigo-50 text-indigo-600',
+  MULTIPLE_CHOICE: 'bg-primary-50 text-primary-600',
   CHECKBOX: 'bg-sky-50 text-sky-600',
   SCALE_RATING: 'bg-violet-50 text-violet-600',
   ESSAY: 'bg-amber-50 text-amber-600',

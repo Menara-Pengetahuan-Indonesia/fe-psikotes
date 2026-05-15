@@ -1,5 +1,4 @@
 import {
-  BarChart3,
   Users,
   CheckCircle2,
   TrendingUp,
@@ -11,8 +10,8 @@ import { cn } from '@/lib/utils'
 
 // Dummy data
 const popularTests = [
-  { name: 'Tes Kepribadian MBTI', participants: 890, color: 'bg-indigo-500' },
-  { name: 'Tes Intelegensi IST', participants: 654, color: 'bg-indigo-500' },
+  { name: 'Tes Kepribadian MBTI', participants: 890, color: 'bg-primary-500' },
+  { name: 'Tes Intelegensi IST', participants: 654, color: 'bg-primary-500' },
   { name: 'Tes Minat Bakat RIASEC', participants: 523, color: 'bg-violet-500' },
   { name: 'Tes Kecerdasan Emosional', participants: 412, color: 'bg-rose-500' },
   { name: 'Tes Tingkat Stres', participants: 387, color: 'bg-amber-500' },
@@ -21,8 +20,8 @@ const popularTests = [
 const scoreDistribution = [
   { range: '0-20', count: 12, color: 'bg-rose-500' },
   { range: '21-40', count: 45, color: 'bg-amber-500' },
-  { range: '41-60', count: 156, color: 'bg-indigo-500' },
-  { range: '61-80', count: 342, color: 'bg-indigo-500' },
+  { range: '41-60', count: 156, color: 'bg-primary-500' },
+  { range: '61-80', count: 342, color: 'bg-primary-500' },
   { range: '81-100', count: 285, color: 'bg-violet-500' },
 ]
 
@@ -47,71 +46,76 @@ export default function AdminAnalyticsPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-8 md:p-10 text-white shadow-lg shadow-primary-200/40">
+        {/* dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }}
+        />
+        {/* blur orbs */}
+        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-primary-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
+
         <div className="relative z-10">
-          <p className="text-indigo-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+          <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
             Laporan
           </p>
           <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
             Analitik.
           </h1>
-          <p className="text-slate-400 font-medium text-sm">
+          <p className="text-primary-100/90 font-medium text-sm">
             Insight dan statistik performa platform tes.
           </p>
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-                <Users className="size-5 text-indigo-300" />
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
+              <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+                <Users className="size-5 text-primary-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">1,240</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total Peserta</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Total Peserta</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-                <CheckCircle2 className="size-5 text-indigo-300" />
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
+              <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+                <CheckCircle2 className="size-5 text-primary-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">278</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Bulan Ini</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Bulan Ini</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-violet-500/30 flex items-center justify-center">
                 <Award className="size-5 text-violet-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">76.4</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Rata-rata Skor</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Rata-rata Skor</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-rose-500/30 flex items-center justify-center">
                 <TrendingUp className="size-5 text-rose-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">+18%</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">vs Bulan Lalu</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">vs Bulan Lalu</p>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="absolute -right-10 -top-10 opacity-5 pointer-events-none">
-          <BarChart3 className="size-72" />
         </div>
       </div>
 
       {/* 2x2 GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* TES POPULER */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-              <FileBarChart className="size-5 text-indigo-600" />
+            <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+              <FileBarChart className="size-5 text-primary-600" />
             </div>
             <div>
               <h2 className="text-lg font-black text-slate-900">Tes Populer</h2>
@@ -137,10 +141,10 @@ export default function AdminAnalyticsPage() {
         </div>
 
         {/* DISTRIBUSI SKOR */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-              <Target className="size-5 text-indigo-600" />
+            <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+              <Target className="size-5 text-primary-600" />
             </div>
             <div>
               <h2 className="text-lg font-black text-slate-900">Distribusi Skor</h2>
@@ -166,7 +170,7 @@ export default function AdminAnalyticsPage() {
         </div>
 
         {/* TREN PESERTA */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
             <div className="size-10 rounded-xl bg-violet-100 flex items-center justify-center">
               <TrendingUp className="size-5 text-violet-600" />
@@ -195,7 +199,7 @@ export default function AdminAnalyticsPage() {
         </div>
 
         {/* COMPLETION RATE */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
             <div className="size-10 rounded-xl bg-rose-100 flex items-center justify-center">
               <CheckCircle2 className="size-5 text-rose-600" />
@@ -229,9 +233,9 @@ export default function AdminAnalyticsPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-4 w-full">
-              <div className="p-4 rounded-2xl bg-indigo-50 text-center">
-                <p className="text-xl font-black text-indigo-600">{totalCompleted}</p>
-                <p className="text-[10px] font-bold text-indigo-500 uppercase tracking-widest">Selesai</p>
+              <div className="p-4 rounded-2xl bg-primary-50 text-center">
+                <p className="text-xl font-black text-primary-600">{totalCompleted}</p>
+                <p className="text-[10px] font-bold text-primary-500 uppercase tracking-widest">Selesai</p>
               </div>
               <div className="p-4 rounded-2xl bg-amber-50 text-center">
                 <p className="text-xl font-black text-amber-600">{totalInProgress}</p>

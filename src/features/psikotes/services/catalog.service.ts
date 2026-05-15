@@ -58,6 +58,14 @@ export const catalogService = {
           questionTypes: Array.from(questionTypes),
           totalDuration,
           totalQuestions,
+          session: t.session
+            ? {
+                id: t.session.id,
+                status: t.session.status,
+                startedAt: t.session.startedAt,
+                completedAt: t.session.completedAt,
+              }
+            : null,
         }
       })
 
@@ -69,6 +77,11 @@ export const catalogService = {
         childPackageName: item.packageType?.childPackage?.name ?? '',
         packageName: item.packageType?.childPackage?.package?.name ?? '',
         purchasedAt: item.purchasedAt,
+        reviewNotes: item.reviewNotes ?? null,
+        reviewedAt: item.reviewedAt ?? null,
+        reviewedBy: item.reviewedBy ?? null,
+        reviewData: item.reviewData ?? null,
+        isPublished: item.isPublished ?? false,
         tests,
       }
     })

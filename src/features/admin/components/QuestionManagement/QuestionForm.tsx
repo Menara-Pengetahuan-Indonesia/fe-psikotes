@@ -1,8 +1,9 @@
 'use client'
+/* eslint-disable react-hooks/incompatible-library */
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-import { useForm, useFieldArray } from 'react-hook-form'
+import { useForm, useFieldArray, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Dialog,
@@ -60,8 +61,8 @@ function OptionImageCell({ imageUrl, onUpload, onRemove, uploading }: {
         onChange={(e) => { const f = e.target.files?.[0]; if (f) onUpload(f); if (ref.current) ref.current.value = '' }}
         className="hidden" />
       <button type="button" onClick={() => ref.current?.click()} disabled={uploading}
-        className="shrink-0 w-12 h-9 rounded-lg border border-dashed border-slate-300 flex items-center justify-center text-slate-400 hover:border-indigo-400 hover:text-indigo-500 transition-all">
-        {uploading ? <div className="size-3 border-2 border-slate-300 border-t-indigo-500 rounded-full animate-spin" /> : <Plus className="size-3.5" />}
+        className="shrink-0 w-12 h-9 rounded-lg border border-dashed border-slate-300 flex items-center justify-center text-slate-400 hover:border-primary-400 hover:text-primary-500 transition-all">
+        {uploading ? <div className="size-3 border-2 border-slate-300 border-t-primary-500 rounded-full animate-spin" /> : <Plus className="size-3.5" />}
       </button>
     </>
   )
@@ -147,8 +148,10 @@ export function QuestionForm({
     }
   }, [open, initialData, isEditing, reset, subTestId])
 
-  // eslint-disable-next-line react-hooks/incompatible-library
   const questionType = watch('questionType')
+  const displayStyle = watch('displayStyle')
+  const optionImageEnabled = watch('optionImageEnabled')
+  const watchedOptions = useWatch({ control, name: 'options' })
   const showOptions = questionType === 'MULTIPLE_CHOICE' || questionType === 'CHECKBOX'
   const showEssay = questionType === 'ESSAY'
   const showScale = questionType === 'SCALE_RATING'
@@ -266,8 +269,8 @@ export function QuestionForm({
                     onClick={() => setValue('displayStyle', style.value as 'UPPERCASE')}
                     className={cn(
                       'flex-1 px-3 py-1.5 rounded-md text-xs font-bold transition-all',
-                      watch('displayStyle') === style.value
-                        ? 'bg-indigo-500 text-white shadow-sm'
+                      displayStyle === style.value
+                        ? 'bg-primary-500 text-white shadow-sm'
                         : 'text-slate-500 hover:text-slate-700 hover:bg-white'
                     )}
                   >
@@ -316,15 +319,14 @@ export function QuestionForm({
                   <button
                     type="button"
                     onClick={() => {
-                      const current = watch('optionImageEnabled')
-                      setValue('optionImageEnabled', !current)
-                      if (current) {
+                      setValue('optionImageEnabled', !optionImageEnabled)
+                      if (optionImageEnabled) {
                         fields.forEach((_, idx) => setValue(`options.${idx}.imageUrl`, undefined))
                       }
                     }}
                     className={cn(
                       'relative w-9 h-5 rounded-full transition-colors',
-                      watch('optionImageEnabled') ? 'bg-indigo-500' : 'bg-slate-200'
+                      optionImageEnabled ? 'bg-primary-500' : 'bg-slate-200'
                     )}
                   >
                     <span className={cn(
@@ -349,9 +351,9 @@ export function QuestionForm({
                       title="Jawaban benar"
                     />
                     <Input placeholder={`Opsi ${index + 1}`} {...register(`options.${index}.optionText`)} className="flex-1" />
-                    {watch('optionImageEnabled') && (
+                    {optionImageEnabled && (
                       <OptionImageCell
-                        imageUrl={watch(`options.${index}.imageUrl`)}
+                        imageUrl={watchedOptions?.[index]?.imageUrl}
                         onUpload={async (file: File) => {
                           const result = await uploadImage.mutateAsync(file)
                           setValue(`options.${index}.imageUrl`, result.url)

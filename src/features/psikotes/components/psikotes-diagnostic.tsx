@@ -154,7 +154,7 @@ export function PsikotesDiagnostic() {
             {messages.map((msg, i) => (
               <div key={i} className={cn('flex gap-2', msg.role === 'user' ? 'justify-end' : 'justify-start')}>
                 <div className={cn(
-                  'max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed',
+                  'max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed text-left whitespace-pre-wrap',
                   msg.role === 'user'
                     ? 'bg-primary-600 text-white rounded-br-md'
                     : 'bg-slate-100 text-slate-700 rounded-bl-md'

@@ -30,7 +30,7 @@ export const LEVEL_LABELS: Record<TreeNodeType, string> = {
 
 export const LEVEL_COLORS: Record<TreeNodeType, string> = {
   package: 'text-teal-600',
-  childPackage: 'text-indigo-600',
+  childPackage: 'text-primary-600',
   packageType: 'text-violet-600',
   test: 'text-emerald-600',
   subTest: 'text-sky-600',

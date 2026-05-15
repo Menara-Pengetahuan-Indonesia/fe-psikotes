@@ -38,7 +38,7 @@ export function AdminDashboard() {
   const isLoading = loadPkg || loadCp || loadPt || loadTest || loadSt || loadQ || loadU
 
   const stats = [
-    { label: 'Paket', value: packages?.length ?? 0, icon: Package, color: 'bg-indigo-50 text-indigo-600' },
+    { label: 'Paket', value: packages?.length ?? 0, icon: Package, color: 'bg-primary-50 text-primary-600' },
     { label: 'Paket Kecil', value: childPackages?.length ?? 0, icon: Layers, color: 'bg-violet-50 text-violet-600' },
     { label: 'Tipe Paket', value: packageTypes?.length ?? 0, icon: Layers, color: 'bg-purple-50 text-purple-600' },
     { label: 'Tes', value: tests?.length ?? 0, icon: FileText, color: 'bg-emerald-50 text-emerald-600' },
@@ -76,7 +76,7 @@ export function AdminDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
 
         {/* Hero */}
-        <div className="md:col-span-2 lg:col-span-8 relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-indigo-600 to-indigo-700 p-10 text-white shadow-2xl group">
+        <div className="md:col-span-2 lg:col-span-8 relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 to-primary-700 p-10 text-white shadow-2xl group">
           <div className="relative z-10 space-y-4">
             <div className="size-12 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
               <BarChart3 className="size-6" />
@@ -84,7 +84,7 @@ export function AdminDashboard() {
             <h2 className="text-3xl font-black tracking-tight leading-tight">
               Selamat Datang, {user?.name?.split(' ')[0] || 'Admin'}.
             </h2>
-            <p className="max-w-md text-indigo-100 font-medium leading-relaxed">
+            <p className="max-w-md text-primary-100 font-medium leading-relaxed">
               Kelola tes psikotes dan pantau perkembangan peserta Anda.
             </p>
           </div>
@@ -94,14 +94,14 @@ export function AdminDashboard() {
         </div>
 
         {/* Quick Actions */}
-        <div className="md:col-span-2 lg:col-span-4 rounded-[2.5rem] bg-slate-900 p-8 shadow-sm flex flex-col justify-center gap-3">
+        <div className="md:col-span-2 lg:col-span-4 rounded-3xl bg-slate-900 p-8 shadow-sm flex flex-col justify-center gap-3">
           <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-2">Quick Actions</h3>
           <Link href="/admin/kelola-tes"
-            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl h-11 font-black text-sm flex items-center justify-center gap-2 transition-colors">
+            className="w-full bg-primary-600 hover:bg-primary-500 text-white rounded-xl h-11 font-black text-sm flex items-center justify-center gap-2 transition-colors">
             <BookOpen className="size-4" /> Kelola Tes
           </Link>
           <Link href="/superadmin/users"
-            className="w-full bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white border border-slate-700 hover:border-indigo-600 rounded-xl h-11 font-black text-sm flex items-center justify-center gap-2 transition-colors">
+            className="w-full bg-slate-800 hover:bg-primary-600 text-slate-300 hover:text-white border border-slate-700 hover:border-primary-600 rounded-xl h-11 font-black text-sm flex items-center justify-center gap-2 transition-colors">
             <Users className="size-4" /> Kelola User
           </Link>
         </div>
@@ -110,7 +110,7 @@ export function AdminDashboard() {
         {stats.map((stat) => {
           const Icon = stat.icon
           return (
-            <div key={stat.label} className="lg:col-span-3 rounded-[2rem] bg-white border border-slate-100 p-6 shadow-sm hover:shadow-md transition-shadow">
+            <div key={stat.label} className="lg:col-span-3 rounded-3xl bg-white border border-slate-100 p-6 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center justify-between mb-4">
                 <div className={`size-10 rounded-xl flex items-center justify-center ${stat.color}`}>
                   <Icon className="size-5" />
@@ -127,11 +127,11 @@ export function AdminDashboard() {
         })}
 
         {/* Summary Card */}
-        <div className="lg:col-span-5 rounded-[2.5rem] bg-gradient-to-br from-indigo-600 to-violet-600 p-8 shadow-sm text-white">
-          <h3 className="text-sm font-black text-indigo-200 uppercase tracking-widest mb-6">Ringkasan</h3>
+        <div className="lg:col-span-5 rounded-3xl bg-gradient-to-br from-primary-600 to-violet-600 p-8 shadow-sm text-white">
+          <h3 className="text-sm font-black text-primary-200 uppercase tracking-widest mb-6">Ringkasan</h3>
           <div className="grid grid-cols-2 gap-4">
             <div className="p-4 rounded-xl bg-white/10 backdrop-blur-sm">
-              <p className="text-[10px] font-bold text-indigo-200 uppercase tracking-wider">Paket Aktif</p>
+              <p className="text-[10px] font-bold text-primary-200 uppercase tracking-wider">Paket Aktif</p>
               {isLoading ? (
                 <div className="h-8 w-10 bg-white/20 rounded-lg animate-pulse mt-1" />
               ) : (
@@ -139,7 +139,7 @@ export function AdminDashboard() {
               )}
             </div>
             <div className="p-4 rounded-xl bg-white/10 backdrop-blur-sm">
-              <p className="text-[10px] font-bold text-indigo-200 uppercase tracking-wider">Tes Aktif</p>
+              <p className="text-[10px] font-bold text-primary-200 uppercase tracking-wider">Tes Aktif</p>
               {isLoading ? (
                 <div className="h-8 w-10 bg-white/20 rounded-lg animate-pulse mt-1" />
               ) : (
@@ -147,7 +147,7 @@ export function AdminDashboard() {
               )}
             </div>
             <div className="p-4 rounded-xl bg-white/10 backdrop-blur-sm">
-              <p className="text-[10px] font-bold text-indigo-200 uppercase tracking-wider">Total Soal</p>
+              <p className="text-[10px] font-bold text-primary-200 uppercase tracking-wider">Total Soal</p>
               {isLoading ? (
                 <div className="h-8 w-10 bg-white/20 rounded-lg animate-pulse mt-1" />
               ) : (
@@ -155,7 +155,7 @@ export function AdminDashboard() {
               )}
             </div>
             <div className="p-4 rounded-xl bg-white/10 backdrop-blur-sm">
-              <p className="text-[10px] font-bold text-indigo-200 uppercase tracking-wider">Total User</p>
+              <p className="text-[10px] font-bold text-primary-200 uppercase tracking-wider">Total User</p>
               {isLoading ? (
                 <div className="h-8 w-10 bg-white/20 rounded-lg animate-pulse mt-1" />
               ) : (
@@ -166,7 +166,7 @@ export function AdminDashboard() {
         </div>
 
         {/* Recent Tests */}
-        <div className="lg:col-span-4 rounded-[2.5rem] bg-white border border-slate-100 p-8 shadow-sm">
+        <div className="lg:col-span-4 rounded-3xl bg-white border border-slate-100 p-8 shadow-sm">
           <div className="flex items-center gap-2 mb-6">
             <FileText className="size-5 text-emerald-500" />
             <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest">Tes Terbaru</h3>
@@ -201,7 +201,7 @@ export function AdminDashboard() {
         </div>
 
         {/* Recent Users */}
-        <div className="lg:col-span-3 rounded-[2.5rem] bg-gradient-to-b from-teal-50 to-white border border-teal-100/50 p-8 shadow-sm">
+        <div className="lg:col-span-3 rounded-3xl bg-gradient-to-b from-teal-50 to-white border border-teal-100/50 p-8 shadow-sm">
           <div className="flex items-center gap-2 mb-6">
             <Users className="size-5 text-teal-500" />
             <h3 className="text-sm font-black text-slate-900 uppercase tracking-widest">User Terbaru</h3>
@@ -226,7 +226,7 @@ export function AdminDashboard() {
                     <p className="text-[10px] text-slate-400 font-medium truncate">{u.email}</p>
                   </div>
                   <span className={`text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full shrink-0 ${
-                    u.role === 'ADMIN' ? 'bg-indigo-50 text-indigo-600' : u.role === 'SUPERADMIN' ? 'bg-violet-50 text-violet-600' : 'bg-slate-100 text-slate-500'
+                    u.role === 'ADMIN' ? 'bg-primary-50 text-primary-600' : u.role === 'SUPERADMIN' ? 'bg-violet-50 text-violet-600' : 'bg-slate-100 text-slate-500'
                   }`}>
                     {u.role}
                   </span>

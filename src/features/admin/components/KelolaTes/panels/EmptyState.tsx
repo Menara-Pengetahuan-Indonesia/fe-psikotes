@@ -20,7 +20,7 @@ export function EmptyState() {
   const loading = lp || lcp || lpt || lt || lst || lq
 
   const stats = [
-    { label: 'Paket', value: packages?.length ?? 0, icon: Package, color: 'bg-indigo-50 text-indigo-600' },
+    { label: 'Paket', value: packages?.length ?? 0, icon: Package, color: 'bg-primary-50 text-primary-600' },
     { label: 'Paket Kecil', value: childPackages?.length ?? 0, icon: Layers, color: 'bg-violet-50 text-violet-600' },
     { label: 'Tipe Paket', value: packageTypes?.length ?? 0, icon: Layers, color: 'bg-purple-50 text-purple-600' },
     { label: 'Tes', value: tests?.length ?? 0, icon: FileText, color: 'bg-emerald-50 text-emerald-600' },
@@ -127,7 +127,7 @@ export function EmptyState() {
 
       {/* Hint */}
       <div className="flex items-center justify-center gap-2 text-xs font-bold text-slate-400 pt-2">
-        <MousePointerClick className="size-4 text-indigo-400" />
+        <MousePointerClick className="size-4 text-primary-400" />
         Pilih item dari pohon navigasi untuk mengelola detail
       </div>
     </div>

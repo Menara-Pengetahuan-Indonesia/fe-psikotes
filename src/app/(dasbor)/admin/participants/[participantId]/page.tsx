@@ -133,8 +133,8 @@ function formatShortDate(dateStr: string) {
 }
 
 const historyColors = [
-  { icon: 'bg-indigo-100 text-indigo-600', badge: 'bg-indigo-50 text-indigo-600' },
-  { icon: 'bg-indigo-100 text-indigo-600', badge: 'bg-indigo-50 text-indigo-600' },
+  { icon: 'bg-primary-100 text-primary-600', badge: 'bg-primary-50 text-primary-600' },
+  { icon: 'bg-primary-100 text-primary-600', badge: 'bg-primary-50 text-primary-600' },
   { icon: 'bg-violet-100 text-violet-600', badge: 'bg-violet-50 text-violet-600' },
   { icon: 'bg-rose-100 text-rose-600', badge: 'bg-rose-50 text-rose-600' },
 ]
@@ -147,7 +147,7 @@ export default function ParticipantDetailPage() {
   if (!participant) {
     return (
       <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
+        <div className="bg-white rounded-3xl border border-slate-100 p-16 text-center flex flex-col items-center">
           <div className="size-16 rounded-2xl bg-rose-50 flex items-center justify-center mb-5">
             <User className="size-8 text-rose-400" />
           </div>
@@ -166,7 +166,16 @@ export default function ParticipantDetailPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-8 md:p-10 text-white shadow-lg shadow-primary-200/40">
+        {/* dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }}
+        />
+        {/* blur orbs */}
+        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-primary-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
+
         <div className="relative z-10">
           <button
             onClick={() => router.push('/admin/participants')}
@@ -180,10 +189,14 @@ export default function ParticipantDetailPage() {
 
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
             <div className="flex items-start gap-5">
-              <div className="size-16 rounded-2xl bg-gradient-to-br from-indigo-400 to-indigo-500 flex items-center justify-center shrink-0 shadow-lg">
+              <div className="size-16 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-500 flex items-center justify-center shrink-0 shadow-lg">
                 <User className="size-7 text-white" />
               </div>
               <div>
+            <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+              Peserta
+            </p>
+
                 <h1 className="text-2xl md:text-3xl font-black tracking-tight mb-1">{participant.name}</h1>
                 <div className="flex items-center gap-1.5 text-slate-400 text-sm font-medium">
                   <Mail className="size-3.5" />
@@ -192,7 +205,7 @@ export default function ParticipantDetailPage() {
                 <div className="flex items-center gap-3 mt-3">
                   <span className={cn(
                     'text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full',
-                    isActive ? 'bg-indigo-500/20 text-indigo-300' : 'bg-rose-500/20 text-rose-300'
+                    isActive ? 'bg-primary-500/20 text-primary-300' : 'bg-rose-500/20 text-rose-300'
                   )}>
                     {isActive ? 'Aktif' : 'Diblokir'}
                   </span>
@@ -206,47 +219,43 @@ export default function ParticipantDetailPage() {
 
           {/* Quick stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-                <FileBarChart className="size-5 text-indigo-300" />
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
+              <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+                <FileBarChart className="size-5 text-primary-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{participant.testsCompleted}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Tes Selesai</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Tes Selesai</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-                <Award className="size-5 text-indigo-300" />
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
+              <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+                <Award className="size-5 text-primary-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{participant.avgScore || '-'}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Rata-rata</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Rata-rata</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-violet-500/30 flex items-center justify-center">
                 <Clock className="size-5 text-violet-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{participant.totalDuration || '-'}<span className="text-sm font-bold text-slate-400">m</span></p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total Durasi</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Total Durasi</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-rose-500/30 flex items-center justify-center">
                 <Calendar className="size-5 text-rose-300" />
               </div>
               <div>
                 <p className="text-sm font-black leading-tight">{formatShortDate(participant.registeredAt)}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Terdaftar</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Terdaftar</p>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="absolute -right-10 -top-10 opacity-5 pointer-events-none">
-          <User className="size-72" />
         </div>
       </div>
 
@@ -255,10 +264,10 @@ export default function ParticipantDetailPage() {
         {/* LEFT: Profile + Test History */}
         <div className="md:col-span-7 space-y-6">
           {/* Profile Info */}
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
             <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-                <User className="size-5 text-indigo-600" />
+              <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+                <User className="size-5 text-primary-600" />
               </div>
               <div>
                 <h2 className="text-lg font-black text-slate-900">Informasi Profil</h2>
@@ -267,8 +276,8 @@ export default function ParticipantDetailPage() {
             </div>
             <div className="divide-y divide-slate-50">
               {[
-                { label: 'Nama Lengkap', value: participant.name, icon: <User className="size-4" />, color: 'bg-indigo-100 text-indigo-600' },
-                { label: 'Email', value: participant.email, icon: <Mail className="size-4" />, color: 'bg-indigo-100 text-indigo-600' },
+                { label: 'Nama Lengkap', value: participant.name, icon: <User className="size-4" />, color: 'bg-primary-100 text-primary-600' },
+                { label: 'Email', value: participant.email, icon: <Mail className="size-4" />, color: 'bg-primary-100 text-primary-600' },
                 { label: 'No. Telepon', value: participant.phone, icon: <Shield className="size-4" />, color: 'bg-violet-100 text-violet-600' },
                 { label: 'Jenis Kelamin', value: participant.gender, icon: <User className="size-4" />, color: 'bg-rose-100 text-rose-600' },
                 { label: 'Tanggal Lahir', value: formatDate(participant.birthDate), icon: <Calendar className="size-4" />, color: 'bg-amber-100 text-amber-600' },
@@ -287,7 +296,7 @@ export default function ParticipantDetailPage() {
           </div>
 
           {/* Test History */}
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
             <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
               <div className="size-10 rounded-xl bg-violet-100 flex items-center justify-center">
                 <BarChart3 className="size-5 text-violet-600" />
@@ -339,10 +348,10 @@ export default function ParticipantDetailPage() {
         {/* RIGHT: Stats + Quick Actions */}
         <div className="md:col-span-5 space-y-6">
           {/* Stats */}
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
             <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-                <TrendingUp className="size-5 text-indigo-600" />
+              <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+                <TrendingUp className="size-5 text-primary-600" />
               </div>
               <div>
                 <h2 className="text-lg font-black text-slate-900">Statistik</h2>
@@ -351,8 +360,8 @@ export default function ParticipantDetailPage() {
             </div>
             <div className="p-8 space-y-5">
               {[
-                { label: 'Tes Diselesaikan', value: `${participant.testsCompleted}`, sub: 'dari total tes', color: 'bg-indigo-500', pct: Math.min(participant.testsCompleted * 25, 100) },
-                { label: 'Rata-rata Skor', value: `${participant.avgScore || 0}`, sub: 'dari 100', color: 'bg-indigo-500', pct: participant.avgScore },
+                { label: 'Tes Diselesaikan', value: `${participant.testsCompleted}`, sub: 'dari total tes', color: 'bg-primary-500', pct: Math.min(participant.testsCompleted * 25, 100) },
+                { label: 'Rata-rata Skor', value: `${participant.avgScore || 0}`, sub: 'dari 100', color: 'bg-primary-500', pct: participant.avgScore },
                 { label: 'Total Waktu', value: `${participant.totalDuration}m`, sub: 'total pengerjaan', color: 'bg-violet-500', pct: Math.min(participant.totalDuration / 2, 100) },
               ].map((stat, i) => (
                 <div key={i}>
@@ -370,7 +379,7 @@ export default function ParticipantDetailPage() {
           </div>
 
           {/* Quick Actions */}
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
             <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
               <div className="size-10 rounded-xl bg-rose-100 flex items-center justify-center">
                 <Shield className="size-5 text-rose-600" />
@@ -387,7 +396,7 @@ export default function ParticipantDetailPage() {
                   'w-full h-12 rounded-xl font-black justify-start gap-3 transition-all',
                   isActive
                     ? 'border-rose-200 text-rose-600 hover:bg-rose-50 hover:border-rose-300'
-                    : 'border-indigo-200 text-indigo-600 hover:bg-indigo-50 hover:border-indigo-300'
+                    : 'border-primary-200 text-primary-600 hover:bg-primary-50 hover:border-primary-300'
                 )}
               >
                 {isActive ? <ShieldBan className="size-5" /> : <ShieldCheck className="size-5" />}

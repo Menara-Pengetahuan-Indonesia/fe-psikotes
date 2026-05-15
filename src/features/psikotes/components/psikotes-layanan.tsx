@@ -96,7 +96,7 @@ const SERVICES: Service[] = [
         ],
       },
       {
-        heading: 'Trauma, Sabotase Diri, dan Anxiety',
+        heading: 'Peta Jalan Penyembuhan',
         items: [
           'Trauma atau limiting beliefs',
           'Pola sabotase diri (self-sabotage)',
@@ -104,11 +104,11 @@ const SERVICES: Service[] = [
         ],
       },
       {
-        heading: 'Goals & Metode Terapi',
+        heading: 'Penentuan Goals & Alur Terapi',
         items: [
           'Tujuan jangka pendek, menengah, panjang',
+          'Metode intervensi (terapi, counseling, coaching, learning path)',
           'Strategi pengembangan (skill, mindset, habit)',
-          'Metode intervensi (coaching, terapi, learning path)',
         ],
       },
       {
