@@ -245,7 +245,7 @@ export function QuestionList({ subTestId }: QuestionListProps) {
         type="button"
         onClick={handleAddQuestion}
         disabled={createQuestion.isPending}
-        className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl border-2 border-dashed border-slate-200 text-sm font-bold text-slate-400 hover:border-indigo-400 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all disabled:opacity-50"
+        className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl border-2 border-dashed border-slate-200 text-sm font-bold text-slate-400 hover:border-primary-400 hover:text-primary-600 hover:bg-primary-50/50 transition-all disabled:opacity-50"
       >
         <Plus className="size-4" />
         {createQuestion.isPending ? 'Menambahkan...' : 'Tambah Pertanyaan'}

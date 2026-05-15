@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import {
   FileText, Plus, Search, Pencil, Trash2, BookOpen,
-  ToggleLeft, ToggleRight, CheckCircle2, XCircle, ArrowRight,
+  ToggleLeft, ToggleRight, CheckCircle2, XCircle,
 } from 'lucide-react'
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
@@ -123,7 +123,7 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
             <div className="flex items-center gap-2.5 flex-wrap">
               <h2 className="text-2xl font-black text-slate-900 tracking-tight">{test.name}</h2>
               <span className={cn('text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg',
-                test.isActive ? 'bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200' : 'bg-slate-100 text-slate-500 ring-1 ring-slate-200'
+                test.isActive ? 'bg-primary-50 text-primary-700 ring-1 ring-primary-200' : 'bg-slate-100 text-slate-500 ring-1 ring-slate-200'
               )} role="status">{test.isActive ? 'Aktif' : 'Nonaktif'}</span>
             </div>
             {test.description && <p className="text-sm text-slate-500 font-medium mt-1">{test.description}</p>}
@@ -163,8 +163,8 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
               </div>
             </div>
             <div className="bg-white rounded-2xl p-4 flex items-center gap-4 border border-slate-100 shadow-sm">
-              <div className="size-10 rounded-xl bg-indigo-50 flex items-center justify-center">
-                <CheckCircle2 className="size-5 text-indigo-600" aria-hidden="true" />
+              <div className="size-10 rounded-xl bg-primary-50 flex items-center justify-center">
+                <CheckCircle2 className="size-5 text-primary-600" aria-hidden="true" />
               </div>
               <div>
                 <p className="text-2xl font-black text-slate-900">{subTests.filter(s => s.isActive).length}</p>
@@ -219,7 +219,7 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
                     aria-label="Cari sub tes"
                     value={search}
                     onChange={e => setSearch(e.target.value)}
-                    className="pl-10 h-10 bg-white border-slate-200 rounded-xl text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500"
+                    className="pl-10 h-10 bg-white border-slate-200 rounded-xl text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500"
                   />
                 </div>
               )}
@@ -248,7 +248,7 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
                     <div className="flex items-center gap-2.5">
                       <span className="text-sm font-black text-slate-900 truncate">{s.name}</span>
                       <span className={cn('text-xs font-bold uppercase px-2 py-0.5 rounded-md',
-                        s.isActive ? 'bg-indigo-50 text-indigo-700' : 'bg-slate-100 text-slate-500'
+                        s.isActive ? 'bg-primary-50 text-primary-700' : 'bg-slate-100 text-slate-500'
                       )}>{s.isActive ? 'Aktif' : 'Nonaktif'}</span>
                     </div>
                     <p className="text-xs text-slate-500 mt-0.5">
@@ -284,7 +284,7 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
 
       {/* Dialog */}
       <Dialog open={formOpen} onOpenChange={v => { setFormOpen(v); if (!v) { setEditSubId(null); setEditTest(false) } }}>
-            <DialogContent className="max-w-[440px] p-0 border-0 rounded-[1.5rem] overflow-hidden bg-white shadow-2xl">
+            <DialogContent className="max-w-[440px] p-0 border-0 rounded-[1.5rem] bg-white shadow-2xl">
               <div className="px-6 pt-6 pb-3">
                 <DialogTitle className="text-lg font-black text-slate-900 tracking-tight">
                   {editTest ? 'Edit Tes' : editSubId ? 'Edit Sub Tes' : 'Sub Tes Baru'}
@@ -298,14 +298,14 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
                   <div className="space-y-2">
                     <Label htmlFor="test-name" className="text-xs font-bold uppercase tracking-wider text-slate-500">Nama</Label>
                     <Input id="test-name" placeholder="Nama..." value={formName} onChange={e => { setFormName(e.target.value); setFormError('') }}
-                      className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500"
+                      className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500"
                       aria-invalid={!!formError} aria-describedby={formError ? 'test-name-error' : undefined} />
                     {formError && <p id="test-name-error" role="alert" className="text-rose-600 text-xs font-bold">{formError}</p>}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="test-desc" className="text-xs font-bold uppercase tracking-wider text-slate-500">Deskripsi</Label>
                     <Textarea id="test-desc" placeholder="Deskripsi..." value={formDesc} onChange={e => setFormDesc(e.target.value)}
-                      className="rounded-xl bg-slate-50 border-slate-200 text-sm font-medium min-h-[80px] resize-none focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                      className="rounded-xl bg-slate-50 border-slate-200 text-sm font-medium min-h-[80px] resize-none focus-visible:ring-2 focus-visible:ring-primary-500" />
                   </div>
                   {editTest && (
                     <fieldset className="space-y-2">
@@ -316,7 +316,7 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
                             aria-pressed={formScoring === s}
                             className={cn(
                               'flex-1 h-10 rounded-xl text-xs font-bold border transition-all',
-                              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1',
+                              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1',
                               formScoring === s
                                 ? 'bg-emerald-50 border-emerald-300 text-emerald-700 ring-1 ring-emerald-200'
                                 : 'bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-300'
@@ -332,12 +332,12 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
                       <div className="space-y-2">
                         <Label htmlFor="test-edit-order" className="text-xs font-bold uppercase tracking-wider text-slate-500">Urutan</Label>
                         <Input id="test-edit-order" type="number" value={formOrder || ''} onChange={e => setFormOrder(e.target.value === '' ? 0 : Number(e.target.value))}
-                          className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                          className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="test-edit-popularity" className="text-xs font-bold uppercase tracking-wider text-slate-500">Popularitas</Label>
                         <Select value={formPopularity} onValueChange={setFormPopularity}>
-                          <SelectTrigger id="test-edit-popularity" className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus:ring-2 focus:ring-indigo-500">
+                          <SelectTrigger id="test-edit-popularity" className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus:ring-2 focus:ring-primary-500">
                             <SelectValue placeholder="Pilih popularitas" />
                           </SelectTrigger>
                           <SelectContent>
@@ -354,17 +354,17 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
                       <div className="space-y-2">
                         <Label htmlFor="test-edit-origyear" className="text-xs font-bold uppercase tracking-wider text-slate-500">Tahun Asli</Label>
                         <Input id="test-edit-origyear" type="number" placeholder="Opsional" value={formOriginalYear ?? ''} onChange={e => setFormOriginalYear(e.target.value ? Number(e.target.value) : undefined)}
-                          className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                          className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="test-edit-adaptyear" className="text-xs font-bold uppercase tracking-wider text-slate-500">Tahun Adaptasi</Label>
                         <Input id="test-edit-adaptyear" type="number" placeholder="Opsional" value={formAdaptationYear ?? ''} onChange={e => setFormAdaptationYear(e.target.value ? Number(e.target.value) : undefined)}
-                          className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                          className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="test-edit-precision" className="text-xs font-bold uppercase tracking-wider text-slate-500">Presisi</Label>
                         <Input id="test-edit-precision" type="number" step="0.01" placeholder="Opsional" value={formPrecision ?? ''} onChange={e => setFormPrecision(e.target.value ? Number(e.target.value) : undefined)}
-                          className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                          className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500" />
                       </div>
                     </div>
                   )}
@@ -373,12 +373,12 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
                       <div className="space-y-2">
                         <Label htmlFor="test-dur" className="text-xs font-bold uppercase tracking-wider text-slate-500">Durasi (menit)</Label>
                         <Input id="test-dur" type="number" placeholder="Opsional" value={formDuration ?? ''} onChange={e => setFormDuration(e.target.value ? Number(e.target.value) : undefined)}
-                          className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                          className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="test-order" className="text-xs font-bold uppercase tracking-wider text-slate-500">Urutan</Label>
                         <Input id="test-order" type="number" value={formOrder || ''} onChange={e => setFormOrder(e.target.value === '' ? 0 : Number(e.target.value))}
-                          className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                          className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500" />
                       </div>
                     </div>
                   )}
@@ -392,8 +392,8 @@ export function TestPanel({ testId, onSelect }: TestPanelProps) {
                       onClick={() => setFormActive(!formActive)}
                       className={cn(
                         'flex items-center gap-2 text-sm font-bold transition-colors rounded-lg px-2 py-1',
-                        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1',
-                        formActive ? 'text-indigo-700' : 'text-slate-500'
+                        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1',
+                        formActive ? 'text-primary-700' : 'text-slate-500'
                       )}
                     >
                       {formActive ? <ToggleRight className="size-5" aria-hidden="true" /> : <ToggleLeft className="size-5" aria-hidden="true" />}

@@ -1,305 +1,353 @@
 'use client'
 
+import { useState, useEffect, useRef } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import {
   ArrowLeft,
   User,
   Mail,
   Calendar,
-  Award,
-  TrendingUp,
   FileBarChart,
-  Clock,
+  Loader2,
+  AlertTriangle,
+  ClipboardList,
+  UserCheck,
+  Save,
+  ChevronDown,
+  ChevronUp,
+  MessageSquare,
   CheckCircle2,
-  BarChart3,
+  Package,
+  Sparkles,
+  Plus,
+  Trash2,
+  Send,
+  Bot,
   Download,
-  Target,
-  Brain,
 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { api } from '@/lib/axios'
 
-// Same dummy data as list page
-const dummyResults: Record<string, {
+interface TestAssessment {
+  testId: string
+  testName: string
+  level: string
+  interpretation: string
+}
+
+interface ReviewData {
+  summary: string
+  assessments: TestAssessment[]
+  strengths: string[]
+  areasOfGrowth: string[]
+  recommendations: string[]
+  psychologistNotes: string
+  generatedAt: string
+  modelUsed: string
+}
+
+interface Answer {
+  id: string
+  selectedOptionIds: string[]
+  essayAnswer: string | null
+  scaleValue: number | null
+  isCorrect: boolean | null
+  pointsEarned: number
+  answeredAt: string
+  question: {
+    id: string
+    questionText: string
+    questionType: string
+    order: number
+    options: { id: string; optionText: string; order: number }[]
+  }
+}
+
+interface SubTestResult {
+  id: string
+  status: string
+  score: number | null
+  maxScore: number | null
+  subTest: { id: string; name: string; order: number }
+  userAnswers: Answer[]
+}
+
+interface TestItem {
   id: string
   name: string
-  email: string
-  testName: string
-  score: number
-  resultType: string
-  status: 'completed' | 'in_progress'
-  completedAt: string
-  duration: number
-  indicators: { name: string; score: number; maxScore: number; resultType: string }[]
-  answers: { question: string; answer: string; isCorrect: boolean }[]
-}> = {
-  '1': {
-    id: '1',
-    name: 'Ahmad Fauzi',
-    email: 'ahmad.fauzi@email.com',
-    testName: 'Tes Kepribadian MBTI',
-    score: 87,
-    resultType: 'INTJ - Architect',
-    status: 'completed',
-    completedAt: '2026-03-24T14:30:00Z',
-    duration: 42,
-    indicators: [
-      { name: 'Introversion (I)', score: 78, maxScore: 100, resultType: 'Dominan' },
-      { name: 'Intuition (N)', score: 85, maxScore: 100, resultType: 'Dominan' },
-      { name: 'Thinking (T)', score: 92, maxScore: 100, resultType: 'Sangat Dominan' },
-      { name: 'Judging (J)', score: 88, maxScore: 100, resultType: 'Dominan' },
-    ],
-    answers: [
-      { question: 'Saya lebih suka menghabiskan waktu sendiri', answer: 'Sangat Setuju', isCorrect: true },
-      { question: 'Saya sering memikirkan masa depan', answer: 'Setuju', isCorrect: true },
-      { question: 'Keputusan saya berdasarkan logika', answer: 'Sangat Setuju', isCorrect: true },
-      { question: 'Saya suka membuat rencana terlebih dahulu', answer: 'Setuju', isCorrect: true },
-      { question: 'Saya mudah bergaul dengan orang baru', answer: 'Tidak Setuju', isCorrect: true },
-    ],
-  },
-  '2': {
-    id: '2',
-    name: 'Siti Nurhaliza',
-    email: 'siti.nurhaliza@email.com',
-    testName: 'Tes Minat Bakat RIASEC',
-    score: 92,
-    resultType: 'Investigative',
-    status: 'completed',
-    completedAt: '2026-03-24T10:15:00Z',
-    duration: 35,
-    indicators: [
-      { name: 'Realistic', score: 45, maxScore: 100, resultType: 'Rendah' },
-      { name: 'Investigative', score: 92, maxScore: 100, resultType: 'Sangat Tinggi' },
-      { name: 'Artistic', score: 78, maxScore: 100, resultType: 'Tinggi' },
-      { name: 'Social', score: 65, maxScore: 100, resultType: 'Sedang' },
-      { name: 'Enterprising', score: 55, maxScore: 100, resultType: 'Sedang' },
-      { name: 'Conventional', score: 40, maxScore: 100, resultType: 'Rendah' },
-    ],
-    answers: [
-      { question: 'Saya suka memecahkan masalah kompleks', answer: 'Sangat Setuju', isCorrect: true },
-      { question: 'Saya tertarik dengan penelitian ilmiah', answer: 'Sangat Setuju', isCorrect: true },
-      { question: 'Saya suka bekerja dengan tangan', answer: 'Tidak Setuju', isCorrect: true },
-      { question: 'Saya suka memimpin kelompok', answer: 'Netral', isCorrect: true },
-      { question: 'Saya suka kegiatan seni dan kreatif', answer: 'Setuju', isCorrect: true },
-    ],
-  },
-  '3': {
-    id: '3',
-    name: 'Budi Santoso',
-    email: 'budi.santoso@email.com',
-    testName: 'Tes Kepribadian MBTI',
-    score: 74,
-    resultType: 'ENFP - Campaigner',
-    status: 'completed',
-    completedAt: '2026-03-23T16:45:00Z',
-    duration: 38,
-    indicators: [
-      { name: 'Extraversion (E)', score: 82, maxScore: 100, resultType: 'Dominan' },
-      { name: 'Intuition (N)', score: 75, maxScore: 100, resultType: 'Dominan' },
-      { name: 'Feeling (F)', score: 70, maxScore: 100, resultType: 'Moderat' },
-      { name: 'Perceiving (P)', score: 68, maxScore: 100, resultType: 'Moderat' },
-    ],
-    answers: [
-      { question: 'Saya lebih suka menghabiskan waktu sendiri', answer: 'Tidak Setuju', isCorrect: true },
-      { question: 'Saya sering memikirkan masa depan', answer: 'Setuju', isCorrect: true },
-      { question: 'Keputusan saya berdasarkan perasaan', answer: 'Setuju', isCorrect: true },
-      { question: 'Saya fleksibel dan spontan', answer: 'Setuju', isCorrect: true },
-      { question: 'Saya mudah bergaul dengan orang baru', answer: 'Sangat Setuju', isCorrect: true },
-    ],
-  },
-  '4': {
-    id: '4',
-    name: 'Dewi Lestari',
-    email: 'dewi.lestari@email.com',
-    testName: 'Tes Intelegensi IST',
-    score: 95,
-    resultType: 'Superior',
-    status: 'completed',
-    completedAt: '2026-03-23T09:20:00Z',
-    duration: 55,
-    indicators: [
-      { name: 'Verbal Comprehension', score: 96, maxScore: 100, resultType: 'Superior' },
-      { name: 'Numerical Ability', score: 90, maxScore: 100, resultType: 'Above Average' },
-      { name: 'Spatial Reasoning', score: 94, maxScore: 100, resultType: 'Superior' },
-      { name: 'Logical Thinking', score: 98, maxScore: 100, resultType: 'Superior' },
-    ],
-    answers: [
-      { question: 'Apel : Buah = Mawar : ?', answer: 'Bunga', isCorrect: true },
-      { question: '12, 15, 19, 24, ?', answer: '30', isCorrect: true },
-      { question: 'Sinonim dari "Ambiguitas"', answer: 'Ketidakjelasan', isCorrect: true },
-      { question: 'Jika A > B dan B > C, maka...', answer: 'A > C', isCorrect: true },
-      { question: 'Lawan kata dari "Abstrak"', answer: 'Konkret', isCorrect: true },
-    ],
-  },
-  '6': {
-    id: '6',
-    name: 'Anisa Rahma',
-    email: 'anisa.rahma@email.com',
-    testName: 'Tes Kepribadian MBTI',
-    score: 81,
-    resultType: 'ISFJ - Defender',
-    status: 'completed',
-    completedAt: '2026-03-22T13:10:00Z',
-    duration: 40,
-    indicators: [
-      { name: 'Introversion (I)', score: 72, maxScore: 100, resultType: 'Dominan' },
-      { name: 'Sensing (S)', score: 80, maxScore: 100, resultType: 'Dominan' },
-      { name: 'Feeling (F)', score: 85, maxScore: 100, resultType: 'Dominan' },
-      { name: 'Judging (J)', score: 78, maxScore: 100, resultType: 'Dominan' },
-    ],
-    answers: [
-      { question: 'Saya lebih suka menghabiskan waktu sendiri', answer: 'Setuju', isCorrect: true },
-      { question: 'Saya fokus pada detail dan fakta', answer: 'Sangat Setuju', isCorrect: true },
-      { question: 'Keputusan saya berdasarkan perasaan', answer: 'Sangat Setuju', isCorrect: true },
-      { question: 'Saya suka membuat rencana terlebih dahulu', answer: 'Setuju', isCorrect: true },
-      { question: 'Saya peduli dengan perasaan orang lain', answer: 'Sangat Setuju', isCorrect: true },
-    ],
-  },
-  '7': {
-    id: '7',
-    name: 'Fajar Nugroho',
-    email: 'fajar.nugroho@email.com',
-    testName: 'Tes Intelegensi IST',
-    score: 78,
-    resultType: 'Above Average',
-    status: 'completed',
-    completedAt: '2026-03-22T11:00:00Z',
-    duration: 50,
-    indicators: [
-      { name: 'Verbal Comprehension', score: 75, maxScore: 100, resultType: 'Above Average' },
-      { name: 'Numerical Ability', score: 82, maxScore: 100, resultType: 'Above Average' },
-      { name: 'Spatial Reasoning', score: 70, maxScore: 100, resultType: 'Average' },
-      { name: 'Logical Thinking', score: 84, maxScore: 100, resultType: 'Above Average' },
-    ],
-    answers: [
-      { question: 'Apel : Buah = Mawar : ?', answer: 'Bunga', isCorrect: true },
-      { question: '12, 15, 19, 24, ?', answer: '30', isCorrect: true },
-      { question: 'Sinonim dari "Ambiguitas"', answer: 'Ketidakjelasan', isCorrect: true },
-      { question: 'Jika A > B dan B > C, maka...', answer: 'A > C', isCorrect: true },
-      { question: 'Lawan kata dari "Abstrak"', answer: 'Konkret', isCorrect: true },
-    ],
-  },
-  '8': {
-    id: '8',
-    name: 'Maya Putri',
-    email: 'maya.putri@email.com',
-    testName: 'Tes Kepribadian MBTI',
-    score: 89,
-    resultType: 'ENTP - Debater',
-    status: 'completed',
-    completedAt: '2026-03-21T15:30:00Z',
-    duration: 36,
-    indicators: [
-      { name: 'Extraversion (E)', score: 88, maxScore: 100, resultType: 'Dominan' },
-      { name: 'Intuition (N)', score: 90, maxScore: 100, resultType: 'Sangat Dominan' },
-      { name: 'Thinking (T)', score: 85, maxScore: 100, resultType: 'Dominan' },
-      { name: 'Perceiving (P)', score: 82, maxScore: 100, resultType: 'Dominan' },
-    ],
-    answers: [
-      { question: 'Saya lebih suka menghabiskan waktu sendiri', answer: 'Tidak Setuju', isCorrect: true },
-      { question: 'Saya sering memikirkan masa depan', answer: 'Sangat Setuju', isCorrect: true },
-      { question: 'Keputusan saya berdasarkan logika', answer: 'Setuju', isCorrect: true },
-      { question: 'Saya fleksibel dan spontan', answer: 'Sangat Setuju', isCorrect: true },
-      { question: 'Saya suka berdebat dan diskusi', answer: 'Sangat Setuju', isCorrect: true },
-    ],
-  },
-  '10': {
-    id: '10',
-    name: 'Putri Amelia',
-    email: 'putri.amelia@email.com',
-    testName: 'Tes Intelegensi IST',
-    score: 83,
-    resultType: 'Above Average',
-    status: 'completed',
-    completedAt: '2026-03-20T10:45:00Z',
-    duration: 48,
-    indicators: [
-      { name: 'Verbal Comprehension', score: 80, maxScore: 100, resultType: 'Above Average' },
-      { name: 'Numerical Ability', score: 85, maxScore: 100, resultType: 'Above Average' },
-      { name: 'Spatial Reasoning', score: 78, maxScore: 100, resultType: 'Above Average' },
-      { name: 'Logical Thinking', score: 88, maxScore: 100, resultType: 'Above Average' },
-    ],
-    answers: [
-      { question: 'Apel : Buah = Mawar : ?', answer: 'Bunga', isCorrect: true },
-      { question: '12, 15, 19, 24, ?', answer: '30', isCorrect: true },
-      { question: 'Sinonim dari "Ambiguitas"', answer: 'Ketidakjelasan', isCorrect: true },
-      { question: 'Jika A > B dan B > C, maka...', answer: 'A > C', isCorrect: true },
-      { question: 'Lawan kata dari "Abstrak"', answer: 'Konkret', isCorrect: true },
-    ],
-  },
+  order: number
+  session: {
+    id: string
+    status: string
+    startedAt: string | null
+    completedAt: string | null
+    subTestResults: SubTestResult[]
+  } | null
 }
 
-function formatDate(dateStr: string) {
-  if (!dateStr) return '-'
-  try {
-    return new Date(dateStr).toLocaleDateString('id-ID', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    })
-  } catch {
-    return '-'
+interface PackageDetail {
+  id: string
+  user: { id: string; firstName: string; lastName: string; email: string }
+  packageType: {
+    id: string
+    name: string
+    description: string
+    childPackage: {
+      id: string
+      name: string
+      package: { id: string; name: string }
+    }
   }
+  purchasedAt: string
+  reviewNotes: string | null
+  reviewData: ReviewData | null
+  isPublished: boolean
+  reviewedAt: string | null
+  reviewedBy: string | null
+  tests: TestItem[]
 }
 
-function formatTime(dateStr: string) {
-  if (!dateStr) return ''
-  try {
-    return new Date(dateStr).toLocaleTimeString('id-ID', {
-      hour: '2-digit',
-      minute: '2-digit',
-    })
-  } catch {
-    return ''
-  }
+function formatDate(d: string | null) {
+  if (!d) return '-'
+  return new Date(d).toLocaleDateString('id-ID', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
 }
 
-const indicatorColors = [
-  { bar: 'bg-indigo-500', bg: 'bg-indigo-50', text: 'text-indigo-600', icon: 'bg-indigo-100' },
-  { bar: 'bg-indigo-500', bg: 'bg-indigo-50', text: 'text-indigo-600', icon: 'bg-indigo-100' },
-  { bar: 'bg-violet-500', bg: 'bg-violet-50', text: 'text-violet-600', icon: 'bg-violet-100' },
-  { bar: 'bg-rose-500', bg: 'bg-rose-50', text: 'text-rose-600', icon: 'bg-rose-100' },
-  { bar: 'bg-amber-500', bg: 'bg-amber-50', text: 'text-amber-600', icon: 'bg-amber-100' },
-  { bar: 'bg-cyan-500', bg: 'bg-cyan-50', text: 'text-cyan-600', icon: 'bg-cyan-100' },
-]
+function getAnswerLabel(answer: Answer): string {
+  if (answer.question.questionType === 'ESSAY') return answer.essayAnswer ?? '-'
+  if (answer.question.questionType === 'SCALE_RATING')
+    return answer.scaleValue !== null ? String(answer.scaleValue) : '-'
+  if (!answer.selectedOptionIds.length) return '-'
+  const opts = answer.question.options.filter((o) => answer.selectedOptionIds.includes(o.id))
+  return opts.map((o) => o.optionText).join(', ') || answer.selectedOptionIds.join(', ')
+}
 
 export default function ResultDetailPage() {
   const params = useParams()
   const router = useRouter()
-  const resultId = params.resultId as string
-  const result = dummyResults[resultId]
+  const userPackageId = params.resultId as string
 
-  if (!result) {
+  const [pkg, setPkg] = useState<PackageDetail | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  const [reviewData, setReviewData] = useState<ReviewData | null>(null)
+  const [generating, setGenerating] = useState(false)
+  const [saving, setSaving] = useState(false)
+  const [saveSuccess, setSaveSuccess] = useState<'draft' | 'published' | null>(null)
+  const [downloadingPdf, setDownloadingPdf] = useState(false)
+  const reportRef = useRef<HTMLDivElement>(null)
+
+  const [expandedTests, setExpandedTests] = useState<Set<string>>(new Set())
+  const [expandedSubTests, setExpandedSubTests] = useState<Set<string>>(new Set())
+
+  useEffect(() => {
+    api
+      .get(`/admin/sessions/${userPackageId}`)
+      .then((res) => {
+        const data: PackageDetail = res.data.data
+        setPkg(data)
+        if (data.reviewData) setReviewData(data.reviewData)
+        if (data.tests.length > 0) {
+          setExpandedTests(new Set([data.tests[0].id]))
+          const firstSubResults = data.tests[0].session?.subTestResults ?? []
+          if (firstSubResults.length > 0) {
+            setExpandedSubTests(new Set([firstSubResults[0].id]))
+          }
+        }
+      })
+      .catch(() => setError('Gagal memuat data.'))
+      .finally(() => setLoading(false))
+  }, [userPackageId])
+
+  const handleGenerate = async () => {
+    setGenerating(true)
+    try {
+      const res = await api.post(`/admin/sessions/${userPackageId}/generate-review`)
+      setReviewData(res.data.data)
+    } catch {
+      setError('Gagal generate review AI. Coba lagi.')
+    } finally {
+      setGenerating(false)
+    }
+  }
+
+  const handleSave = async (publish: boolean) => {
+    if (!reviewData) return
+    setSaving(true)
+    setSaveSuccess(null)
+    try {
+      const res = await api.patch(`/admin/sessions/${userPackageId}/review`, {
+        reviewData,
+        reviewNotes: reviewData.psychologistNotes,
+        isPublished: publish,
+      })
+      setPkg((prev) =>
+        prev ? { ...prev, ...res.data.data, reviewData } : prev,
+      )
+      setSaveSuccess(publish ? 'published' : 'draft')
+      setTimeout(() => setSaveSuccess(null), 4000)
+    } catch {
+      setError('Gagal menyimpan review.')
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  const handleDownloadPdf = async () => {
+    if (!reportRef.current || !reviewData) return
+    setDownloadingPdf(true)
+    try {
+      const [{ default: jsPDF }, { default: html2canvas }] = await Promise.all([
+        import('jspdf'),
+        import('html2canvas'),
+      ])
+      const COLOR_PROPS = ['color', 'background-color', 'border-color', 'border-top-color',
+        'border-right-color', 'border-bottom-color', 'border-left-color', 'outline-color',
+        'text-decoration-color', 'box-shadow', 'fill', 'stroke'] as const
+      const root = reportRef.current
+      const liveEls = [root, ...Array.from(root.querySelectorAll('*'))] as HTMLElement[]
+      const snapshots = liveEls.map((el) => {
+        const cs = window.getComputedStyle(el)
+        return COLOR_PROPS.reduce<Record<string, string>>((acc, p) => {
+          acc[p] = cs.getPropertyValue(p)
+          return acc
+        }, {})
+      })
+      const canvas = await html2canvas(root, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#f8fafc',
+        onclone: (_doc, clonedEl) => {
+          const clonedEls = [clonedEl, ...Array.from(clonedEl.querySelectorAll('*'))] as HTMLElement[]
+          clonedEls.forEach((el, i) => {
+            const snap = snapshots[i]
+            if (!snap) return
+            COLOR_PROPS.forEach((p) => { if (snap[p]) el.style.setProperty(p, snap[p]) })
+          })
+        },
+      })
+      const imgData = canvas.toDataURL('image/png')
+      const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
+      const pageW = pdf.internal.pageSize.getWidth()
+      const pageH = pdf.internal.pageSize.getHeight()
+      const imgW = pageW
+      const imgH = (canvas.height * imgW) / canvas.width
+      let y = 0
+      while (y < imgH) {
+        if (y > 0) pdf.addPage()
+        pdf.addImage(imgData, 'PNG', 0, -y, imgW, imgH)
+        y += pageH
+      }
+      const fullName = pkg ? `${pkg.user.firstName}_${pkg.user.lastName}` : 'laporan'
+      pdf.save(`Laporan_${fullName}.pdf`)
+    } finally {
+      setDownloadingPdf(false)
+    }
+  }
+
+  const updateAssessment = (idx: number, field: keyof TestAssessment, value: string) => {
+    setReviewData((prev) =>
+      prev
+        ? {
+            ...prev,
+            assessments: prev.assessments.map((a, i) =>
+              i === idx ? { ...a, [field]: value } : a,
+            ),
+          }
+        : prev,
+    )
+  }
+
+  const updateListItem = (field: 'strengths' | 'areasOfGrowth' | 'recommendations', idx: number, value: string) => {
+    setReviewData((prev) =>
+      prev ? { ...prev, [field]: prev[field].map((v, i) => (i === idx ? value : v)) } : prev,
+    )
+  }
+
+  const addListItem = (field: 'strengths' | 'areasOfGrowth' | 'recommendations') => {
+    setReviewData((prev) =>
+      prev ? { ...prev, [field]: [...prev[field], ''] } : prev,
+    )
+  }
+
+  const removeListItem = (field: 'strengths' | 'areasOfGrowth' | 'recommendations', idx: number) => {
+    setReviewData((prev) =>
+      prev ? { ...prev, [field]: prev[field].filter((_, i) => i !== idx) } : prev,
+    )
+  }
+
+  const toggleTest = (id: string) => {
+    setExpandedTests((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+
+  const toggleSubTest = (id: string) => {
+    setExpandedSubTests((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+
+  if (loading) {
     return (
-      <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
-          <div className="size-16 rounded-2xl bg-rose-50 flex items-center justify-center mb-5">
-            <FileBarChart className="size-8 text-rose-400" />
-          </div>
-          <p className="text-slate-900 font-black text-lg mb-1">Data tidak ditemukan.</p>
-          <p className="text-slate-400 font-medium text-sm mb-6">
-            Hasil peserta dengan ID ini tidak tersedia.
-          </p>
-          <Button
-            onClick={() => router.push('/admin/results')}
-            className="rounded-2xl h-12 px-8 font-black bg-slate-900 hover:bg-slate-800"
-          >
-            <ArrowLeft className="size-4 mr-2" />
-            Kembali
-          </Button>
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="size-8 text-primary-400 animate-spin" />
+          <p className="text-sm font-bold text-slate-400">Memuat data...</p>
         </div>
       </div>
     )
   }
 
-  const isCompleted = result.status === 'completed'
+  if (error || !pkg) {
+    return (
+      <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="bg-white rounded-3xl border border-rose-100 p-16 text-center flex flex-col items-center">
+          <div className="size-16 rounded-2xl bg-rose-50 flex items-center justify-center mb-5">
+            <AlertTriangle className="size-8 text-rose-400" />
+          </div>
+          <p className="text-slate-900 font-black text-lg mb-1">{error ?? 'Data tidak ditemukan.'}</p>
+          <button
+            onClick={() => router.push('/admin/results')}
+            className="mt-6 h-12 px-8 rounded-2xl bg-slate-900 text-white text-sm font-black hover:bg-slate-800 transition-colors inline-flex items-center gap-2"
+          >
+            <ArrowLeft className="size-4" />
+            Kembali
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  const isReviewed = !!pkg.reviewedAt
+  const isPublished = pkg.isPublished
+  const fullName = `${pkg.user.firstName} ${pkg.user.lastName}`
+  const completedTests = pkg.tests.filter((t) => t.session?.status === 'COMPLETED').length
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 p-8 md:p-10 text-white">
+      {/* HERO */}
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-8 md:p-10 text-white shadow-lg shadow-primary-200/40">
+        {/* dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }}
+        />
+        {/* blur orbs */}
+        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-primary-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
+
         <div className="relative z-10">
-          {/* Back button */}
           <button
             onClick={() => router.push('/admin/results')}
             className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-6 group"
@@ -310,167 +358,406 @@ export default function ResultDetailPage() {
             <span className="text-sm font-bold">Kembali ke Hasil Peserta</span>
           </button>
 
-          <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-            <div className="flex items-start gap-5">
-              {/* Avatar */}
-              <div className="size-16 rounded-2xl bg-gradient-to-br from-indigo-400 to-indigo-500 flex items-center justify-center shrink-0 shadow-lg">
-                <User className="size-7 text-white" />
+          <div className="flex items-start gap-5 mb-6">
+            <div className="size-16 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-500 flex items-center justify-center shrink-0 shadow-lg">
+              <User className="size-7 text-white" />
+            </div>
+            <div>
+            <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+              Laporan
+            </p>
+
+              <h1 className="text-2xl md:text-3xl font-black tracking-tight mb-1">{fullName}</h1>
+              <div className="flex items-center gap-1.5 text-slate-400 text-sm font-medium mb-3">
+                <Mail className="size-3.5" />
+                <span>{pkg.user.email}</span>
               </div>
-              <div>
-                <h1 className="text-2xl md:text-3xl font-black tracking-tight mb-1">
-                  {result.name}
-                </h1>
-                <div className="flex items-center gap-3 text-slate-400 text-sm font-medium">
-                  <div className="flex items-center gap-1.5">
-                    <Mail className="size-3.5" />
-                    <span>{result.email}</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 mt-3">
-                  <span className={cn(
-                    'text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full',
-                    isCompleted ? 'bg-indigo-500/20 text-indigo-300' : 'bg-amber-500/20 text-amber-300'
-                  )}>
-                    {isCompleted ? 'Selesai' : 'Berlangsung'}
-                  </span>
-                  <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-white/10 text-slate-300">
-                    {result.testName}
-                  </span>
-                </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-primary-500/20 text-primary-300 inline-flex items-center gap-1.5">
+                  <Package className="size-3" />
+                  {pkg.packageType.childPackage.package.name}
+                  <span className="opacity-50">›</span>
+                  {pkg.packageType.childPackage.name}
+                  <span className="opacity-50">›</span>
+                  {pkg.packageType.name}
+                </span>
+                <span className={cn(
+                  'text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full',
+                  isReviewed ? 'bg-emerald-500/20 text-emerald-300' : 'bg-amber-500/20 text-amber-300',
+                )}>
+                  {isReviewed ? 'Sudah Direview' : 'Perlu Review'}
+                </span>
               </div>
             </div>
-
-            <Button
-              size="lg"
-              className="bg-white text-slate-900 hover:bg-indigo-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
-            >
-              <Download className="w-5 h-5 mr-2 group-hover:translate-y-0.5 transition-transform" />
-              Export PDF
-            </Button>
           </div>
 
-          {/* Quick stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-                <Award className="size-5 text-indigo-300" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
+              <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+                <FileBarChart className="size-5 text-primary-300" />
               </div>
               <div>
-                <p className="text-2xl font-black leading-none">{result.score}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Skor</p>
+                <p className="text-2xl font-black leading-none">{pkg.tests.length}</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Total Tes</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-                <TrendingUp className="size-5 text-indigo-300" />
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
+              <div className="size-10 rounded-xl bg-emerald-500/30 flex items-center justify-center">
+                <CheckCircle2 className="size-5 text-emerald-300" />
               </div>
               <div>
-                <p className="text-lg font-black leading-none truncate">{result.resultType}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Hasil</p>
+                <p className="text-2xl font-black leading-none">{completedTests}</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Selesai</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-violet-500/30 flex items-center justify-center">
-                <Clock className="size-5 text-violet-300" />
+                <ClipboardList className="size-5 text-violet-300" />
               </div>
               <div>
-                <p className="text-2xl font-black leading-none">{result.duration}<span className="text-sm font-bold text-slate-400">m</span></p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Durasi</p>
+                <p className="text-2xl font-black leading-none">
+                  {pkg.tests.reduce((s, t) => s + (t.session?.subTestResults.reduce((ss, r) => ss + r.userAnswers.length, 0) ?? 0), 0)}
+                </p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Jawaban</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-rose-500/30 flex items-center justify-center">
                 <Calendar className="size-5 text-rose-300" />
               </div>
               <div>
-                <p className="text-sm font-black leading-tight">{formatDate(result.completedAt)}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">{formatTime(result.completedAt)}</p>
+                <p className="text-sm font-black leading-tight">{formatDate(pkg.purchasedAt)}</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Dibeli</p>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Decorative */}
-        <div className="absolute -right-10 -top-10 opacity-5 pointer-events-none">
-          <FileBarChart className="size-72" />
-        </div>
       </div>
 
-      {/* INDICATOR SCORES */}
-      <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
-        <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
-          <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-            <BarChart3 className="size-5 text-indigo-600" />
+      {/* AI REVIEW SECTION */}
+      <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
+        {/* Header */}
+        <div className="px-8 py-6 border-b border-slate-50 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className={cn('size-10 rounded-xl flex items-center justify-center', isPublished ? 'bg-emerald-100' : isReviewed ? 'bg-primary-100' : 'bg-amber-100')}>
+              {isPublished ? <UserCheck className="size-5 text-emerald-600" /> : isReviewed ? <Bot className="size-5 text-primary-600" /> : <MessageSquare className="size-5 text-amber-600" />}
+            </div>
+            <div>
+              <h2 className="text-lg font-black text-slate-900">Laporan Psikologis</h2>
+              <p className="text-xs text-slate-400 font-medium">
+                {isPublished
+                  ? `Dipublish oleh ${pkg.reviewedBy ?? 'Admin'} · ${formatDate(pkg.reviewedAt)}`
+                  : isReviewed
+                    ? `Draft tersimpan · ${formatDate(pkg.reviewedAt)}`
+                    : 'Generate laporan AI, edit jika perlu, lalu publish ke peserta'}
+              </p>
+            </div>
           </div>
-          <div>
-            <h2 className="text-lg font-black text-slate-900">Skor per Indikator</h2>
-            <p className="text-xs text-slate-400 font-medium">Breakdown skor berdasarkan indikator tes</p>
+          <div className="flex items-center gap-2">
+            {reviewData && (
+              <button
+                onClick={handleDownloadPdf}
+                disabled={downloadingPdf}
+                className="inline-flex items-center gap-2 h-10 px-4 rounded-xl bg-slate-100 text-slate-700 text-sm font-bold hover:bg-slate-200 transition-colors disabled:opacity-60 shrink-0"
+              >
+                {downloadingPdf ? (
+                  <><Loader2 className="size-4 animate-spin" /> PDF...</>
+                ) : (
+                  <><Download className="size-4" /> Unduh PDF</>
+                )}
+              </button>
+            )}
+            <button
+              onClick={handleGenerate}
+              disabled={generating}
+              className="inline-flex items-center gap-2 h-10 px-5 rounded-xl bg-gradient-to-r from-violet-600 to-primary-600 text-white text-sm font-bold hover:from-violet-700 hover:to-primary-700 transition-all disabled:opacity-60 disabled:cursor-not-allowed shadow-sm shrink-0"
+            >
+              {generating ? (
+                <><Loader2 className="size-4 animate-spin" /> Generating...</>
+              ) : (
+                <><Sparkles className="size-4" /> {reviewData ? 'Regenerate AI' : 'Generate AI Review'}</>
+              )}
+            </button>
           </div>
         </div>
-        <div className="divide-y divide-slate-50">
-          {result.indicators.map((indicator, index) => {
-            const color = indicatorColors[index % indicatorColors.length]
-            const percentage = Math.round((indicator.score / indicator.maxScore) * 100)
 
-            return (
-              <div key={index} className="px-8 py-5 flex items-center gap-5">
-                <div className={cn('size-10 rounded-xl flex items-center justify-center shrink-0', color.icon)}>
-                  <Target className={cn('size-5', color.text)} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className="text-sm font-black text-slate-900">{indicator.name}</h4>
+        {!reviewData && !generating && (
+          <div className="px-8 py-14 text-center">
+            <div className="size-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mx-auto mb-4">
+              <Bot className="size-7 text-slate-300" />
+            </div>
+            <p className="text-sm font-bold text-slate-400">Belum ada laporan.</p>
+            <p className="text-xs text-slate-300 mt-1">Klik &quot;Generate AI Review&quot; untuk membuat draft laporan otomatis.</p>
+          </div>
+        )}
+
+        {generating && (
+          <div className="px-8 py-14 text-center">
+            <Loader2 className="size-8 text-primary-400 animate-spin mx-auto mb-4" />
+            <p className="text-sm font-bold text-slate-500">AI sedang menganalisis hasil tes...</p>
+            <p className="text-xs text-slate-400 mt-1">Ini mungkin membutuhkan 15–30 detik</p>
+          </div>
+        )}
+
+        {reviewData && !generating && (
+          <div ref={reportRef} className="p-6 md:p-8 space-y-6">
+            {/* Model info */}
+            {reviewData.modelUsed && (
+              <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-100 w-fit">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary-400" />
+                <p className="text-[11px] text-slate-500 font-medium">
+                  Dibuat oleh <span className="font-black text-slate-700">{reviewData.modelUsed}</span>
+                  {reviewData.generatedAt ? ` · ${new Date(reviewData.generatedAt).toLocaleString('id-ID')}` : ''}
+                </p>
+              </div>
+            )}
+
+            {/* Ringkasan */}
+            <div className="bg-slate-50 rounded-2xl border border-slate-100 p-5">
+              <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">Ringkasan Eksekutif</label>
+              <textarea
+                value={reviewData.summary}
+                onChange={(e) => setReviewData((prev) => prev ? { ...prev, summary: e.target.value } : prev)}
+                rows={4}
+                className="w-full p-4 rounded-xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-400 font-medium text-slate-700 bg-white"
+              />
+            </div>
+
+            {/* Penilaian per Tes */}
+            <div className="bg-slate-50 rounded-2xl border border-slate-100 p-5">
+              <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4">Penilaian per Tes</label>
+              <div className="space-y-3">
+                {reviewData.assessments.map((a, idx) => (
+                  <div key={idx} className="bg-white rounded-xl border border-slate-200 p-4 space-y-3">
                     <div className="flex items-center gap-3">
-                      <span className={cn('text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full', color.bg, color.text)}>
-                        {indicator.resultType}
-                      </span>
-                      <span className="text-sm font-black text-slate-900">{indicator.score}<span className="text-slate-400 font-bold">/{indicator.maxScore}</span></span>
+                      <span className="text-sm font-black text-slate-900 flex-1">{a.testName}</span>
+                      <input
+                        value={a.level}
+                        onChange={(e) => updateAssessment(idx, 'level', e.target.value)}
+                        placeholder="Level"
+                        className="w-36 h-8 px-3 rounded-lg border border-slate-200 text-xs font-black text-primary-700 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-400 text-center"
+                      />
                     </div>
-                  </div>
-                  <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                    <div
-                      className={cn('h-full rounded-full transition-all duration-1000', color.bar)}
-                      style={{ width: `${percentage}%` }}
+                    <textarea
+                      value={a.interpretation}
+                      onChange={(e) => updateAssessment(idx, 'interpretation', e.target.value)}
+                      rows={3}
+                      placeholder="Interpretasi..."
+                      className="w-full p-3 rounded-lg border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-400 font-medium text-slate-700 bg-slate-50"
                     />
                   </div>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-
-      {/* ANSWER HISTORY */}
-      <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
-        <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
-          <div className="size-10 rounded-xl bg-violet-100 flex items-center justify-center">
-            <Brain className="size-5 text-violet-600" />
-          </div>
-          <div>
-            <h2 className="text-lg font-black text-slate-900">Riwayat Jawaban</h2>
-            <p className="text-xs text-slate-400 font-medium">Sampel jawaban peserta ({result.answers.length} dari total soal)</p>
-          </div>
-        </div>
-        <div className="divide-y divide-slate-50">
-          {result.answers.map((answer, index) => (
-            <div key={index} className="px-8 py-4 flex items-center gap-5">
-              <div className="size-8 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 text-xs font-black text-slate-500">
-                {index + 1}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-bold text-slate-900 truncate">{answer.question}</p>
-              </div>
-              <div className="flex items-center gap-3 shrink-0">
-                <span className="text-sm font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
-                  {answer.answer}
-                </span>
-                <div className="size-7 rounded-lg bg-indigo-50 flex items-center justify-center">
-                  <CheckCircle2 className="size-4 text-indigo-500" />
-                </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
+
+            {/* Kekuatan + Area Pertumbuhan + Rekomendasi */}
+            <div className="grid md:grid-cols-3 gap-4">
+              {(
+                [
+                  { field: 'strengths', label: 'Kekuatan', color: 'emerald' },
+                  { field: 'areasOfGrowth', label: 'Area Perhatian', color: 'amber' },
+                  { field: 'recommendations', label: 'Rekomendasi', color: 'indigo' },
+                ] as const
+              ).map(({ field, label, color }) => (
+                <div key={field} className="bg-slate-50 rounded-2xl border border-slate-100 p-5">
+                  <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">{label}</label>
+                  <div className="space-y-2">
+                    {reviewData[field].map((s, idx) => (
+                      <div key={idx} className="flex items-center gap-2">
+                        <input
+                          value={s}
+                          onChange={(e) => updateListItem(field, idx, e.target.value)}
+                          className="flex-1 h-9 px-3 rounded-lg border border-slate-200 text-sm font-medium text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-400"
+                        />
+                        <button onClick={() => removeListItem(field, idx)} className="size-7 rounded-lg bg-rose-50 hover:bg-rose-100 flex items-center justify-center transition-colors shrink-0">
+                          <Trash2 className="size-3 text-rose-500" />
+                        </button>
+                      </div>
+                    ))}
+                    <button
+                      onClick={() => addListItem(field)}
+                      className={cn(
+                        'inline-flex items-center gap-1.5 text-xs font-bold mt-1 transition-colors',
+                        color === 'emerald' ? 'text-emerald-600 hover:text-emerald-700' :
+                        color === 'amber' ? 'text-amber-600 hover:text-amber-700' :
+                        'text-primary-600 hover:text-primary-700',
+                      )}
+                    >
+                      <Plus className="size-3.5" /> Tambah
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Catatan Psikolog */}
+            <div className="bg-slate-50 rounded-2xl border border-slate-100 p-5">
+              <label className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">Catatan Psikolog <span className="normal-case font-medium text-slate-300">(opsional)</span></label>
+              <textarea
+                value={reviewData.psychologistNotes}
+                onChange={(e) => setReviewData((prev) => prev ? { ...prev, psychologistNotes: e.target.value } : prev)}
+                rows={3}
+                placeholder="Catatan tambahan dari psikolog..."
+                className="w-full p-4 rounded-xl border border-slate-200 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-400 font-medium text-slate-700 bg-white"
+              />
+            </div>
+
+            {/* Actions */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2 border-t border-slate-100">
+              <div>
+                {saveSuccess === 'draft' && (
+                  <div className="flex items-center gap-2 text-primary-600 text-sm font-bold">
+                    <CheckCircle2 className="size-4" /> Draft tersimpan
+                  </div>
+                )}
+                {saveSuccess === 'published' && (
+                  <div className="flex items-center gap-2 text-emerald-600 text-sm font-bold">
+                    <CheckCircle2 className="size-4" /> Laporan dipublish ke peserta
+                  </div>
+                )}
+              </div>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => handleSave(false)}
+                  disabled={saving}
+                  className="inline-flex items-center gap-2 h-11 px-5 rounded-xl bg-slate-100 text-slate-700 text-sm font-bold hover:bg-slate-200 transition-colors disabled:opacity-50"
+                >
+                  {saving ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
+                  Simpan Draft
+                </button>
+                <button
+                  onClick={() => handleSave(true)}
+                  disabled={saving}
+                  className="inline-flex items-center gap-2 h-11 px-5 rounded-xl bg-emerald-600 text-white text-sm font-bold hover:bg-emerald-700 transition-colors disabled:opacity-50 shadow-sm"
+                >
+                  {saving ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" />}
+                  Publish ke Peserta
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* TESTS */}
+      <div className="space-y-3">
+        <h2 className="text-lg font-black text-slate-900 px-1">Jawaban per Tes</h2>
+        {pkg.tests.map((test) => {
+          const isTestExpanded = expandedTests.has(test.id)
+          const isCompleted = test.session?.status === 'COMPLETED'
+
+          return (
+            <div key={test.id} className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
+              <button
+                onClick={() => toggleTest(test.id)}
+                className="w-full px-6 md:px-8 py-5 flex items-center gap-4 hover:bg-slate-50/50 transition-colors text-left"
+              >
+                <div className={cn(
+                  'size-10 rounded-xl flex items-center justify-center shrink-0',
+                  isCompleted ? 'bg-primary-50 border border-primary-100' : 'bg-slate-50 border border-slate-100',
+                )}>
+                  <FileBarChart className={cn('size-5', isCompleted ? 'text-primary-600' : 'text-slate-400')} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-black text-slate-900 text-sm">{test.name}</h3>
+                  <p className="text-[11px] text-slate-400 font-medium mt-0.5">
+                    {isCompleted
+                      ? `${test.session?.subTestResults.length ?? 0} subtes · ${test.session?.subTestResults.reduce((s, r) => s + r.userAnswers.length, 0) ?? 0} jawaban`
+                      : 'Belum dikerjakan'}
+                  </p>
+                </div>
+                <span className={cn(
+                  'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
+                  isCompleted ? 'bg-primary-50 text-primary-600' : 'bg-slate-100 text-slate-400',
+                )}>
+                  {isCompleted ? 'Selesai' : 'Belum'}
+                </span>
+                {isTestExpanded ? (
+                  <ChevronUp className="size-4 text-slate-400 shrink-0" />
+                ) : (
+                  <ChevronDown className="size-4 text-slate-400 shrink-0" />
+                )}
+              </button>
+
+              {isTestExpanded && test.session && (
+                <div className="border-t border-slate-50 space-y-0">
+                  {test.session.subTestResults.length === 0 ? (
+                    <div className="px-8 py-6 text-center text-sm text-slate-400 font-medium">
+                      Tidak ada jawaban.
+                    </div>
+                  ) : (
+                    test.session.subTestResults.map((subResult) => {
+                      const isSubExpanded = expandedSubTests.has(subResult.id)
+                      return (
+                        <div key={subResult.id} className="border-t border-slate-50">
+                          <button
+                            onClick={() => toggleSubTest(subResult.id)}
+                            className="w-full px-8 py-4 flex items-center gap-3 hover:bg-slate-50/50 transition-colors text-left"
+                          >
+                            <div className="size-7 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 text-xs font-black text-slate-500">
+                              {subResult.subTest.order}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-black text-slate-700">{subResult.subTest.name}</p>
+                              <p className="text-[11px] text-slate-400 font-medium">
+                                {subResult.userAnswers.length} jawaban
+                                {subResult.score !== null && ` · Skor: ${subResult.score}`}
+                              </p>
+                            </div>
+                            {isSubExpanded ? (
+                              <ChevronUp className="size-3.5 text-slate-400 shrink-0" />
+                            ) : (
+                              <ChevronDown className="size-3.5 text-slate-400 shrink-0" />
+                            )}
+                          </button>
+
+                          {isSubExpanded && (
+                            <div className="border-t border-slate-50 divide-y divide-slate-50">
+                              {subResult.userAnswers.map((answer, idx) => (
+                                <div key={answer.id} className="px-8 py-4 flex items-start gap-4">
+                                  <div className="size-7 rounded-lg bg-slate-100 flex items-center justify-center shrink-0 text-xs font-black text-slate-500 mt-0.5">
+                                    {idx + 1}
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <p className="text-sm font-bold text-slate-900 leading-snug mb-2">
+                                      {answer.question.questionText}
+                                    </p>
+                                    <div className="flex flex-wrap items-center gap-2">
+                                      <span className="text-xs font-bold text-primary-600 bg-primary-50 px-3 py-1 rounded-full">
+                                        {getAnswerLabel(answer)}
+                                      </span>
+                                      {answer.isCorrect !== null && (
+                                        <span className={cn(
+                                          'text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full',
+                                          answer.isCorrect ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600',
+                                        )}>
+                                          {answer.isCorrect ? 'Benar' : 'Salah'}
+                                        </span>
+                                      )}
+                                      <span className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">
+                                        {answer.question.questionType}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )
+                    })
+                  )}
+                </div>
+              )}
+
+              {isTestExpanded && !test.session && (
+                <div className="border-t border-slate-50 px-8 py-6 text-center text-sm text-slate-400 font-medium">
+                  Peserta belum mengerjakan tes ini.
+                </div>
+              )}
+            </div>
+          )
+        })}
       </div>
     </div>
   )

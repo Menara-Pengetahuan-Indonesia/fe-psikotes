@@ -64,7 +64,7 @@ export function SubTestPanel({ subTestId }: SubTestPanelProps) {
               <div className="flex items-center gap-2.5 flex-wrap">
                 <h2 className="text-2xl font-black text-slate-900 tracking-tight">{st.name}</h2>
                 <span className={cn('text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg',
-                  st.isActive ? 'bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200' : 'bg-slate-100 text-slate-500 ring-1 ring-slate-200'
+                  st.isActive ? 'bg-primary-50 text-primary-700 ring-1 ring-primary-200' : 'bg-slate-100 text-slate-500 ring-1 ring-slate-200'
                 )} role="status">{st.isActive ? 'Aktif' : 'Nonaktif'}</span>
               </div>
               {st.description && <p className="text-sm text-slate-500 font-medium mt-1">{st.description}</p>}
@@ -92,7 +92,7 @@ export function SubTestPanel({ subTestId }: SubTestPanelProps) {
 
       {/* Edit dialog */}
       <Dialog open={formOpen} onOpenChange={setFormOpen}>
-        <DialogContent className="max-w-[440px] p-0 border-0 rounded-[1.5rem] overflow-hidden bg-white shadow-2xl">
+        <DialogContent className="max-w-[440px] p-0 border-0 rounded-[1.5rem] bg-white shadow-2xl">
           <div className="px-6 pt-6 pb-3">
             <DialogTitle className="text-lg font-black text-slate-900 tracking-tight">Edit Sub Tes</DialogTitle>
             <DialogDescription className="text-sm text-slate-500 mt-1">Perbarui informasi sub tes.</DialogDescription>
@@ -102,25 +102,25 @@ export function SubTestPanel({ subTestId }: SubTestPanelProps) {
               <div className="space-y-2">
                 <Label htmlFor="st-name" className="text-xs font-bold uppercase tracking-wider text-slate-500">Nama</Label>
                 <Input id="st-name" placeholder="Nama..." value={formName} onChange={e => { setFormName(e.target.value); setFormError('') }}
-                  className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500"
+                  className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500"
                   aria-invalid={!!formError} aria-describedby={formError ? 'st-name-error' : undefined} />
                 {formError && <p id="st-name-error" role="alert" className="text-rose-600 text-xs font-bold">{formError}</p>}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="st-desc" className="text-xs font-bold uppercase tracking-wider text-slate-500">Deskripsi</Label>
                 <Textarea id="st-desc" placeholder="Deskripsi..." value={formDesc} onChange={e => setFormDesc(e.target.value)}
-                  className="rounded-xl bg-slate-50 border-slate-200 text-sm font-medium min-h-[80px] resize-none focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                  className="rounded-xl bg-slate-50 border-slate-200 text-sm font-medium min-h-[80px] resize-none focus-visible:ring-2 focus-visible:ring-primary-500" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="st-dur" className="text-xs font-bold uppercase tracking-wider text-slate-500">Durasi (menit)</Label>
                   <Input id="st-dur" type="number" placeholder="Opsional" value={formDuration ?? ''} onChange={e => setFormDuration(e.target.value ? Number(e.target.value) : undefined)}
-                    className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                    className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="st-order" className="text-xs font-bold uppercase tracking-wider text-slate-500">Urutan</Label>
                   <Input id="st-order" type="number" value={formOrder || ''} onChange={e => setFormOrder(e.target.value === '' ? 0 : Number(e.target.value))}
-                    className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                    className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500" />
                 </div>
               </div>
               <div className="flex items-center justify-between py-1">
@@ -133,8 +133,8 @@ export function SubTestPanel({ subTestId }: SubTestPanelProps) {
                   onClick={() => setFormActive(!formActive)}
                   className={cn(
                     'flex items-center gap-2 text-sm font-bold transition-colors rounded-lg px-2 py-1',
-                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1',
-                    formActive ? 'text-indigo-700' : 'text-slate-500'
+                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1',
+                    formActive ? 'text-primary-700' : 'text-slate-500'
                   )}
                 >
                   {formActive ? <ToggleRight className="size-5" aria-hidden="true" /> : <ToggleLeft className="size-5" aria-hidden="true" />}

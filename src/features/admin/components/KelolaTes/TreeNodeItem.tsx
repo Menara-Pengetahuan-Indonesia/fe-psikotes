@@ -13,16 +13,16 @@ const LEVEL_ICONS: Record<TreeNodeType, React.ElementType> = {
 }
 
 const ICON_COLORS: Record<TreeNodeType, string> = {
-  package: 'text-indigo-600',
-  childPackage: 'text-indigo-600',
+  package: 'text-primary-600',
+  childPackage: 'text-primary-600',
   packageType: 'text-violet-600',
   test: 'text-emerald-600',
   subTest: 'text-sky-600',
 }
 
 const SELECTED_BG: Record<TreeNodeType, string> = {
-  package: 'bg-indigo-50 text-indigo-800 ring-1 ring-indigo-200/60',
-  childPackage: 'bg-indigo-50 text-indigo-800 ring-1 ring-indigo-200/60',
+  package: 'bg-primary-50 text-primary-800 ring-1 ring-primary-200/60',
+  childPackage: 'bg-primary-50 text-primary-800 ring-1 ring-primary-200/60',
   packageType: 'bg-violet-50 text-violet-800 ring-1 ring-violet-200/60',
   test: 'bg-emerald-50 text-emerald-800 ring-1 ring-emerald-200/60',
   subTest: 'bg-sky-50 text-sky-800 ring-1 ring-sky-200/60',
@@ -60,7 +60,7 @@ export function TreeNodeItem({ node, selectedNode, isExpanded, toggleExpand, sel
             type="button"
             aria-expanded={expanded}
             aria-label={expanded ? `Tutup ${node.label}` : `Buka ${node.label}`}
-            className="size-7 shrink-0 rounded-lg flex items-center justify-center text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1"
+            className="size-7 shrink-0 rounded-lg flex items-center justify-center text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1"
             onClick={() => toggleExpand(node.type, node.id)}
           >
             <ChevronRight className={cn('size-3.5 transition-transform duration-200', expanded && 'rotate-90')} />
@@ -76,7 +76,7 @@ export function TreeNodeItem({ node, selectedNode, isExpanded, toggleExpand, sel
           aria-label={`${node.label}${!node.isActive ? ' (nonaktif)' : ''}`}
           className={cn(
             'flex-1 flex items-center gap-2 py-2 px-2.5 rounded-xl text-sm font-bold transition-all duration-150 min-w-0',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1',
             isSelected
               ? SELECTED_BG[node.type]
               : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900',

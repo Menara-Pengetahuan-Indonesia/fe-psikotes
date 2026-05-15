@@ -46,7 +46,7 @@ function KelolaTesContent() {
         <button
           type="button"
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="lg:hidden fixed bottom-4 left-4 z-50 size-12 rounded-2xl bg-indigo-600 text-white shadow-lg flex items-center justify-center hover:bg-indigo-700 transition-colors"
+          className="lg:hidden fixed bottom-4 left-4 z-50 size-12 rounded-2xl bg-primary-600 text-white shadow-lg flex items-center justify-center hover:bg-primary-700 transition-colors"
           aria-label={sidebarOpen ? 'Tutup sidebar' : 'Buka sidebar'}
         >
           {sidebarOpen ? <PanelLeftClose className="size-5" /> : <PanelLeftOpen className="size-5" />}
@@ -97,7 +97,7 @@ function KelolaTesContent() {
                   placeholder="Misal: Paket Rekrutmen"
                   value={formName}
                   onChange={e => { setFormName(e.target.value); setFormError('') }}
-                  className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500"
+                  className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500"
                   aria-invalid={!!formError}
                   aria-describedby={formError ? 'new-pkg-error' : undefined}
                 />
@@ -110,7 +110,7 @@ function KelolaTesContent() {
                   placeholder="Penjelasan singkat..."
                   value={formDesc}
                   onChange={e => setFormDesc(e.target.value)}
-                  className="rounded-xl bg-slate-50 border-slate-200 text-sm font-medium min-h-[80px] resize-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                  className="rounded-xl bg-slate-50 border-slate-200 text-sm font-medium min-h-[80px] resize-none focus-visible:ring-2 focus-visible:ring-primary-500"
                 />
               </div>
               <div className="flex items-center justify-between py-1">
@@ -123,8 +123,8 @@ function KelolaTesContent() {
                   onClick={() => setFormActive(!formActive)}
                   className={cn(
                     'flex items-center gap-2 text-sm font-bold transition-colors rounded-lg px-2 py-1',
-                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1',
-                    formActive ? 'text-indigo-700' : 'text-slate-500'
+                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1',
+                    formActive ? 'text-primary-700' : 'text-slate-500'
                   )}
                 >
                   {formActive ? <ToggleRight className="size-5" aria-hidden="true" /> : <ToggleLeft className="size-5" aria-hidden="true" />}

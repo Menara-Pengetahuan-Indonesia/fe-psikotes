@@ -28,14 +28,14 @@ export const TRANSFORMATION_STAGES = [
         ]
       },
       {
-        label: 'Pendekatan Solusi',
+        label: 'Solusi Kami',
         icon: CheckCircle2,
         color: 'text-emerald-500',
         items: [
-          'Memetakan kondisi mental health secara objektif',
-          'Memahami pola attachment & relasi',
-          'Mengidentifikasi nilai hidup & arah karier',
-          'Mengelola emosi & overthinking'
+          'Pemetaan kondisi mental health secara objektif',
+          'Pemahaman pola attachment & relasi',
+          'Pengenalan nilai hidup & arah karier',
+          'Pengelolaan emosi & overthinking'
         ]
       },
       {
@@ -90,7 +90,7 @@ export const TRANSFORMATION_STAGES = [
         ]
       },
       {
-        label: 'Pendekatan Solusi',
+        label: 'Solusi Kami',
         icon: CheckCircle2,
         color: 'text-emerald-500',
         items: [
@@ -152,7 +152,7 @@ export const TRANSFORMATION_STAGES = [
         ]
       },
       {
-        label: 'Pendekatan Solusi',
+        label: 'Solusi Kami',
         icon: CheckCircle2,
         color: 'text-emerald-500',
         items: [

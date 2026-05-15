@@ -8,8 +8,11 @@ vi.mock('next/link', () => ({
   ),
 }))
 
-vi.mock('@/features/psikotes/hooks/use-public-packages', () => ({
-  usePublicPackages: () => ({ data: [], isLoading: false }),
+vi.mock('@/features/psikotes/hooks/use-catalog', () => ({
+  useCatalogPackages: () => ({ data: [], isLoading: false }),
+  useCatalogChildPackages: () => ({ data: [], isLoading: false }),
+  useAllChildPackages: () => ({ data: [], isLoading: false }),
+  useAllPackageTypes: () => ({ priceMap: new Map(), isLoading: false }),
 }))
 
 import { PsikotesProducts } from '@/features/psikotes/components/psikotes-products'
@@ -22,7 +25,7 @@ function wrapper({ children }: { children: React.ReactNode }) {
 describe('PsikotesProducts', () => {
   it('renders section heading', () => {
     render(<PsikotesProducts />, { wrapper })
-    expect(screen.getByText(/Pilih Bekal/)).toBeInTheDocument()
+    expect(screen.getByText(/Ambil Senjata/)).toBeInTheDocument()
   })
 
   it('renders bottom CTA heading', () => {

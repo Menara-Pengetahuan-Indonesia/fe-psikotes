@@ -26,10 +26,10 @@ import { cn } from '@/lib/utils'
 
 const quickAccess = [
   { href: '/superadmin/users', label: 'Kelola User', desc: 'Manage semua akun pengguna', icon: Users, stat: '250', statLabel: 'Users', color: 'bg-gradient-to-br from-rose-400 to-rose-500' },
-  { href: '/admin/tests', label: 'Kelola Tes', desc: 'Buat dan atur instrumen tes', icon: BookOpen, stat: '24', statLabel: 'Tes', color: 'bg-gradient-to-br from-indigo-400 to-indigo-500' },
+  { href: '/admin/tests', label: 'Kelola Tes', desc: 'Buat dan atur instrumen tes', icon: BookOpen, stat: '24', statLabel: 'Tes', color: 'bg-gradient-to-br from-primary-400 to-primary-500' },
   { href: '/admin/categories', label: 'Kategori', desc: 'Kelompokkan tes berdasarkan jenis', icon: Tag, stat: '6', statLabel: 'Kategori', color: 'bg-gradient-to-br from-violet-400 to-violet-500' },
   { href: '/admin/participants', label: 'Peserta', desc: 'Kelola peserta terdaftar', icon: Users, stat: '1,240', statLabel: 'Peserta', color: 'bg-gradient-to-br from-teal-400 to-teal-500' },
-  { href: '/admin/analytics', label: 'Analitik', desc: 'Insight dan statistik platform', icon: BarChart3, stat: '+18%', statLabel: 'Tren', color: 'bg-gradient-to-br from-indigo-400 to-indigo-500' },
+  { href: '/admin/analytics', label: 'Analitik', desc: 'Insight dan statistik platform', icon: BarChart3, stat: '+18%', statLabel: 'Tren', color: 'bg-gradient-to-br from-primary-400 to-primary-500' },
   { href: '/admin/settings', label: 'Pengaturan', desc: 'Konfigurasi sistem & aplikasi', icon: Settings, stat: '—', statLabel: 'Config', color: 'bg-gradient-to-br from-slate-400 to-slate-500' },
 ]
 
@@ -44,7 +44,7 @@ const recentActivities = [
   { text: 'Admin baru ditambahkan: Rina Wati', time: '10 menit lalu', icon: UserPlus, color: 'bg-rose-100 text-rose-600' },
   { text: 'Ahmad Fauzi menyelesaikan Tes MBTI', time: '15 menit lalu', icon: CheckCircle2, color: 'bg-teal-100 text-teal-600' },
   { text: 'Tes Intelegensi IST diperbarui', time: '1 jam lalu', icon: BookOpen, color: 'bg-violet-100 text-violet-600' },
-  { text: 'Jadwal Rekrutmen Batch 5 dibuat', time: '2 jam lalu', icon: CalendarClock, color: 'bg-indigo-100 text-indigo-600' },
+  { text: 'Jadwal Rekrutmen Batch 5 dibuat', time: '2 jam lalu', icon: CalendarClock, color: 'bg-primary-100 text-primary-600' },
   { text: '3 alert keamanan terdeteksi', time: '3 jam lalu', icon: AlertTriangle, color: 'bg-amber-100 text-amber-600' },
 ]
 
@@ -56,16 +56,25 @@ export function SuperAdminDashboard() {
   return (
     <div className="space-y-6">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-rose-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-8 md:p-10 text-white shadow-lg shadow-primary-200/40">
+        {/* dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }}
+        />
+        {/* blur orbs */}
+        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-primary-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
+
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <p className="text-rose-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+            <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
               Super Admin
             </p>
             <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
               Halo, {user?.name?.split(' ')[0] || 'SuperAdmin'}.
             </h1>
-            <p className="text-slate-400 font-medium text-sm">
+            <p className="text-primary-100/90 font-medium text-sm">
               Kontrol penuh atas sistem, pengguna, dan konfigurasi platform.
             </p>
           </div>
@@ -83,40 +92,40 @@ export function SuperAdminDashboard() {
 
         {/* Stats */}
         <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
             <div className="size-10 rounded-xl bg-rose-500/30 flex items-center justify-center">
               <Users className="size-5 text-rose-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">250</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total User</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Total User</p>
             </div>
           </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-              <Shield className="size-5 text-indigo-300" />
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
+            <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+              <Shield className="size-5 text-primary-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">5</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Admin</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Admin</p>
             </div>
           </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
             <div className="size-10 rounded-xl bg-teal-500/30 flex items-center justify-center">
               <TrendingUp className="size-5 text-teal-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">99.8%</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Uptime</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Uptime</p>
             </div>
           </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
             <div className="size-10 rounded-xl bg-amber-500/30 flex items-center justify-center">
               <AlertTriangle className="size-5 text-amber-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">3</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Alert</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Alert</p>
             </div>
           </div>
         </div>
@@ -137,7 +146,7 @@ export function SuperAdminDashboard() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group bg-white rounded-[2rem] border border-slate-100 p-6 hover:shadow-md transition-[box-shadow]"
+                  className="group bg-white rounded-3xl border border-slate-100 p-6 hover:shadow-md transition-[box-shadow]"
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className={cn('size-12 rounded-2xl flex items-center justify-center text-white transition-[transform,box-shadow] group-hover:scale-105 group-hover:shadow-md', item.color)}>
@@ -162,7 +171,7 @@ export function SuperAdminDashboard() {
 
         {/* RIGHT: System Status */}
         <div className="lg:col-span-4">
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden h-full flex flex-col">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden h-full flex flex-col">
             <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
               <div className="size-10 rounded-xl bg-rose-100 flex items-center justify-center">
                 <Activity className="size-5 text-rose-600" />
@@ -192,9 +201,9 @@ export function SuperAdminDashboard() {
               })}
 
               <div className="pt-3 grid grid-cols-2 gap-3">
-                <div className="p-4 rounded-xl bg-indigo-50 text-center">
-                  <p className="text-xl font-black text-indigo-600">42</p>
-                  <p className="text-[9px] font-bold text-indigo-500 uppercase tracking-widest">Active Now</p>
+                <div className="p-4 rounded-xl bg-primary-50 text-center">
+                  <p className="text-xl font-black text-primary-600">42</p>
+                  <p className="text-[9px] font-bold text-primary-500 uppercase tracking-widest">Active Now</p>
                 </div>
                 <div className="p-4 rounded-xl bg-teal-50 text-center">
                   <p className="text-xl font-black text-teal-600">99.8%</p>
@@ -207,10 +216,10 @@ export function SuperAdminDashboard() {
       </div>
 
       {/* AKTIVITAS TERBARU */}
-      <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+      <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
         <div className="px-8 py-6 border-b border-slate-50 flex items-center gap-3">
-          <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-            <Clock className="size-5 text-indigo-600" />
+          <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+            <Clock className="size-5 text-primary-600" />
           </div>
           <div>
             <h2 className="text-lg font-black text-slate-900">Aktivitas Terbaru</h2>

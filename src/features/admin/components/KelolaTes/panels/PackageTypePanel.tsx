@@ -133,7 +133,7 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
             <div className="flex items-center gap-2.5 flex-wrap">
               <h2 className="text-2xl font-black text-slate-900 tracking-tight">{pt.name}</h2>
               <span className={cn('text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg',
-                pt.isActive ? 'bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200' : 'bg-slate-100 text-slate-500 ring-1 ring-slate-200'
+                pt.isActive ? 'bg-primary-50 text-primary-700 ring-1 ring-primary-200' : 'bg-slate-100 text-slate-500 ring-1 ring-slate-200'
               )} role="status">{pt.isActive ? 'Aktif' : 'Nonaktif'}</span>
             </div>
             {pt.description && <p className="text-sm text-slate-500 font-medium mt-1">{pt.description}</p>}
@@ -164,8 +164,8 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
           </div>
         </div>
         <div className="bg-white rounded-2xl p-4 flex items-center gap-4 border border-slate-100 shadow-sm">
-          <div className="size-10 rounded-xl bg-indigo-50 flex items-center justify-center">
-            <CheckCircle2 className="size-5 text-indigo-600" aria-hidden="true" />
+          <div className="size-10 rounded-xl bg-primary-50 flex items-center justify-center">
+            <CheckCircle2 className="size-5 text-primary-600" aria-hidden="true" />
           </div>
           <div>
             <p className="text-2xl font-black text-slate-900">{tests.filter(t => t.isActive).length}</p>
@@ -201,7 +201,7 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
             aria-label="Cari tes"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="pl-10 h-10 bg-white border-slate-200 rounded-xl text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500"
+            className="pl-10 h-10 bg-white border-slate-200 rounded-xl text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500"
           />
         </div>
       )}
@@ -232,7 +232,7 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
                 <div className="flex items-center gap-2.5">
                   <span className="text-sm font-black text-slate-900 truncate">{t.name}</span>
                   <span className={cn('text-xs font-bold uppercase px-2 py-0.5 rounded-md',
-                    t.isActive ? 'bg-indigo-50 text-indigo-700' : 'bg-slate-100 text-slate-500'
+                    t.isActive ? 'bg-primary-50 text-primary-700' : 'bg-slate-100 text-slate-500'
                   )}>{t.isActive ? 'Aktif' : 'Nonaktif'}</span>
                 </div>
                 <p className="text-xs text-slate-500 mt-0.5">{t.scoringType === 'IMMEDIATE' ? 'Skor Langsung' : 'Skor Akhir'}</p>
@@ -262,7 +262,7 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
 
       {/* Dialog */}
       <Dialog open={formOpen} onOpenChange={v => { setFormOpen(v); if (!v) { setEditTestId(null); setEditPt(false) } }}>
-        <DialogContent className="max-w-[440px] p-0 border-0 rounded-[1.5rem] overflow-hidden bg-white shadow-2xl">
+        <DialogContent className="max-w-[440px] p-0 border-0 rounded-[1.5rem] bg-white shadow-2xl">
           <div className="px-6 pt-6 pb-3">
             <DialogTitle className="text-lg font-black text-slate-900 tracking-tight">
               {editPt ? 'Edit Tipe Paket' : editTestId ? 'Edit Tes' : 'Tes Baru'}
@@ -276,26 +276,26 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
               <div className="space-y-2">
                 <Label htmlFor="pt-name" className="text-xs font-bold uppercase tracking-wider text-slate-500">Nama</Label>
                 <Input id="pt-name" placeholder="Nama..." value={formName} onChange={e => { setFormName(e.target.value); setFormError('') }}
-                  className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500"
+                  className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500"
                   aria-invalid={!!formError} aria-describedby={formError ? 'pt-name-error' : undefined} />
                 {formError && <p id="pt-name-error" role="alert" className="text-rose-600 text-xs font-bold">{formError}</p>}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="pt-desc" className="text-xs font-bold uppercase tracking-wider text-slate-500">Deskripsi</Label>
                 <Textarea id="pt-desc" placeholder="Deskripsi..." value={formDesc} onChange={e => setFormDesc(e.target.value)}
-                  className="rounded-xl bg-slate-50 border-slate-200 text-sm font-medium min-h-[80px] resize-none focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                  className="rounded-xl bg-slate-50 border-slate-200 text-sm font-medium min-h-[80px] resize-none focus-visible:ring-2 focus-visible:ring-primary-500" />
               </div>
               {editPt && (
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="pt-price" className="text-xs font-bold uppercase tracking-wider text-slate-500">Harga (Rp)</Label>
                     <Input id="pt-price" type="number" placeholder="0" value={formPrice || ''} onChange={e => setFormPrice(e.target.value === '' ? 0 : Number(e.target.value))}
-                      className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                      className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="pt-testtool" className="text-xs font-bold uppercase tracking-wider text-slate-500">Alat Tes</Label>
                     <Input id="pt-testtool" placeholder="Nama alat tes..." value={formTestTool} onChange={e => setFormTestTool(e.target.value)}
-                      className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                      className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500" />
                   </div>
                 </div>
               )}
@@ -308,7 +308,7 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
                         aria-pressed={formScoring === s}
                         className={cn(
                           'flex-1 h-10 rounded-xl text-xs font-bold border transition-all',
-                          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1',
+                          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1',
                           formScoring === s
                             ? 'bg-emerald-50 border-emerald-300 text-emerald-700 ring-1 ring-emerald-200'
                             : 'bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-300'
@@ -324,12 +324,12 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
                   <div className="space-y-2">
                     <Label htmlFor="pt-order" className="text-xs font-bold uppercase tracking-wider text-slate-500">Urutan</Label>
                     <Input id="pt-order" type="number" value={formOrder || ''} onChange={e => setFormOrder(e.target.value === '' ? 0 : Number(e.target.value))}
-                      className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                      className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="pt-popularity" className="text-xs font-bold uppercase tracking-wider text-slate-500">Popularitas</Label>
                     <Select value={formPopularity} onValueChange={setFormPopularity}>
-                      <SelectTrigger id="pt-popularity" className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus:ring-2 focus:ring-indigo-500">
+                      <SelectTrigger id="pt-popularity" className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus:ring-2 focus:ring-primary-500">
                         <SelectValue placeholder="Pilih popularitas" />
                       </SelectTrigger>
                       <SelectContent>
@@ -346,17 +346,17 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
                   <div className="space-y-2">
                     <Label htmlFor="pt-origyear" className="text-xs font-bold uppercase tracking-wider text-slate-500">Tahun Asli</Label>
                     <Input id="pt-origyear" type="number" placeholder="Opsional" value={formOriginalYear ?? ''} onChange={e => setFormOriginalYear(e.target.value ? Number(e.target.value) : undefined)}
-                      className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                      className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="pt-adaptyear" className="text-xs font-bold uppercase tracking-wider text-slate-500">Tahun Adaptasi</Label>
                     <Input id="pt-adaptyear" type="number" placeholder="Opsional" value={formAdaptationYear ?? ''} onChange={e => setFormAdaptationYear(e.target.value ? Number(e.target.value) : undefined)}
-                      className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                      className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="pt-precision" className="text-xs font-bold uppercase tracking-wider text-slate-500">Presisi</Label>
                     <Input id="pt-precision" type="number" step="0.01" placeholder="Opsional" value={formPrecision ?? ''} onChange={e => setFormPrecision(e.target.value ? Number(e.target.value) : undefined)}
-                      className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                      className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500" />
                   </div>
                 </div>
               )}
@@ -368,7 +368,7 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
                       aria-pressed={formUseSubtest}
                       className={cn(
                         'flex-1 h-10 rounded-xl text-xs font-bold border transition-all',
-                        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1',
+                        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1',
                         formUseSubtest
                           ? 'bg-sky-50 border-sky-300 text-sky-700 ring-1 ring-sky-200'
                           : 'bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-300'
@@ -379,7 +379,7 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
                       aria-pressed={!formUseSubtest}
                       className={cn(
                         'flex-1 h-10 rounded-xl text-xs font-bold border transition-all',
-                        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1',
+                        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1',
                         !formUseSubtest
                           ? 'bg-emerald-50 border-emerald-300 text-emerald-700 ring-1 ring-emerald-200'
                           : 'bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-300'
@@ -399,8 +399,8 @@ export function PackageTypePanel({ packageTypeId, onSelect }: PackageTypePanelPr
                   onClick={() => setFormActive(!formActive)}
                   className={cn(
                     'flex items-center gap-2 text-sm font-bold transition-colors rounded-lg px-2 py-1',
-                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1',
-                    formActive ? 'text-indigo-700' : 'text-slate-500'
+                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1',
+                    formActive ? 'text-primary-700' : 'text-slate-500'
                   )}
                 >
                   {formActive ? <ToggleRight className="size-5" aria-hidden="true" /> : <ToggleLeft className="size-5" aria-hidden="true" />}

@@ -116,7 +116,7 @@ export function Breadcrumb({ selectedNode, onSelect }: BreadcrumbProps) {
                   <button
                     type="button"
                     onClick={() => onSelect({ type: crumb.type, id: crumb.id })}
-                    className="text-slate-400 hover:text-indigo-600 font-medium transition-colors truncate max-w-[200px]"
+                    className="text-slate-400 hover:text-primary-600 font-medium transition-colors truncate max-w-[200px]"
                   >
                     {crumb.label}
                   </button>

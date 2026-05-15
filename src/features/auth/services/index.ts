@@ -69,11 +69,14 @@ export const authService = {
 
   register: async (data: RegisterFormData) => {
     try {
+      const phone = (data.telp || '').replace(/\D/g, '')
       const response = await api.post('/auth/register', {
+        firstName: data.firstName,
+        lastName: data.lastName,
         email: data.email,
+        telephone: phone,
         password: data.password,
-        name: `${data.firstName} ${data.lastName}`,
-        telp: data.telp || '',
+        confirmPassword: data.confirmPassword,
       })
 
       const u = response.data.user

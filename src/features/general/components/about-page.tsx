@@ -45,7 +45,7 @@ const SERVICES = [
   },
   {
     icon: Users,
-    title: 'Konseling & Coaching',
+    title: 'Konseling & Live Coaching',
     desc: 'Pendampingan personal oleh psikolog berlisensi untuk membantu kamu menavigasi tantangan hidup.',
     color: 'bg-accent-50 text-accent-600',
   },

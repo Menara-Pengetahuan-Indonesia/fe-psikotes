@@ -1,8 +1,10 @@
 import { z } from 'zod'
 
+const displayStyleEnum = z.enum(['UPPERCASE', 'LOWERCASE', 'NUMBER', 'RADIO'])
+
 export const questionOptionSchema = z.object({
   optionText: z.string().min(1, 'Teks opsi wajib diisi'),
-  imageUrl: z.string().optional(),
+  imageUrl: z.string().optional().nullable(),
   isCorrect: z.boolean(),
   points: z.number().int(),
   order: z.number().int(),
@@ -13,6 +15,8 @@ export const createQuestionSchema = z.object({
   questionType: z.enum(['MULTIPLE_CHOICE', 'CHECKBOX', 'SCALE_RATING', 'ESSAY']),
   questionText: z.string().min(1, 'Teks soal wajib diisi'),
   imageUrl: z.string().optional(),
+  displayStyle: displayStyleEnum.optional().nullable(),
+  optionImageEnabled: z.boolean().optional(),
   order: z.number().int().min(0),
   points: z.number().int().min(0).optional(),
   options: z.array(questionOptionSchema).optional(),

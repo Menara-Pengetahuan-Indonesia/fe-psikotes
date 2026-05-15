@@ -31,7 +31,7 @@ export function QuestionRenderer({
           onChange={onChange}
         />
       )
-    case 'RATING_SCALE':
+    case 'SCALE_RATING':
       return (
         <RatingScaleQuestion
           question={question}

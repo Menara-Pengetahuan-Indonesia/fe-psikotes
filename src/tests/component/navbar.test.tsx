@@ -24,7 +24,7 @@ describe('Navbar', () => {
   it('renders navigation items for psikotes route', () => {
     render(<Navbar />)
     expect(screen.getByText('Beranda')).toBeInTheDocument()
-    expect(screen.getByText('Asesmen')).toBeInTheDocument()
+    expect(screen.getByText('Layanan')).toBeInTheDocument()
   })
 
   it('renders auth CTA buttons', () => {

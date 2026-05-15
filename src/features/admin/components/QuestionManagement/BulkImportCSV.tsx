@@ -28,6 +28,7 @@ interface ParsedRow {
   index: number
   text: string
   type: string
+  displayStyle: string
   options: string[]
   valid: boolean
   errors: string[]
@@ -48,9 +49,9 @@ export function BulkImportCSV({ subTestId }: BulkImportCSVProps) {
   const invalidRows = parsedRows.filter((r) => !r.valid)
 
   const handleDownloadTemplate = useCallback(() => {
-    const headers = ['text', 'type', 'option1', 'option2', 'option3', 'option4']
+    const headers = ['text', 'type', 'display_style', 'option1', 'option2', 'option3', 'option4']
     const exampleRows = [
-      ['Apa ibu kota Indonesia?', 'MULTIPLE_CHOICE', 'Jakarta', 'Bandung', 'Surabaya', 'Medan'],
+      ['Apa ibu kota Indonesia?', 'MULTIPLE_CHOICE', 'UPPERCASE', 'Jakarta', 'Bandung', 'Surabaya', 'Medan'],
     ]
     const csvContent = [
       headers.join(','),
@@ -71,17 +72,21 @@ export function BulkImportCSV({ subTestId }: BulkImportCSVProps) {
     const errors: string[] = []
     const text = (row['text'] ?? '').trim()
     const type = (row['type'] ?? '').trim().toUpperCase()
+    const displayStyle = (row['display_style'] ?? '').trim().toUpperCase()
     const options: string[] = []
     for (let i = 1; i <= 4; i++) options.push((row[`option${i}`] ?? '').trim())
 
     if (!text) errors.push('Teks soal tidak boleh kosong')
     if (!VALID_QUESTION_TYPES.includes(type as QuestionType))
       errors.push(`Tipe "${type}" tidak valid.`)
+    const validDisplayStyles = ['UPPERCASE', 'LOWERCASE', 'NUMBER', 'RADIO', '']
+    if (!validDisplayStyles.includes(displayStyle))
+      errors.push(`Display style "${displayStyle}" tidak valid.`)
     const nonEmptyOptions = options.filter((o) => o !== '')
     if ((type === 'MULTIPLE_CHOICE' || type === 'CHECKBOX') && nonEmptyOptions.length < 2)
       errors.push('Butuh minimal 2 opsi')
 
-    return { index: rowIndex, text, type, options, valid: errors.length === 0, errors }
+    return { index: rowIndex, text, type, displayStyle, options, valid: errors.length === 0, errors }
   }, [])
 
   const parseFile = useCallback((file: File) => {
@@ -114,6 +119,7 @@ export function BulkImportCSV({ subTestId }: BulkImportCSVProps) {
           questionText: row.text,
           order: i + 1,
           points: 1,
+          displayStyle: (row.displayStyle || undefined) as 'UPPERCASE' | undefined,
           options: nonEmptyOptions.length > 0
             ? nonEmptyOptions.map((o) => ({ optionText: o.optionText, isCorrect: false, points: 0, order: o.order }))
             : undefined,
@@ -174,7 +180,7 @@ export function BulkImportCSV({ subTestId }: BulkImportCSVProps) {
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-6">
           <div className="flex items-center justify-between px-2">
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 bg-indigo-50 text-indigo-600 px-4 py-2 rounded-full border border-indigo-100">
+              <div className="flex items-center gap-2 bg-primary-50 text-primary-600 px-4 py-2 rounded-full border border-primary-100">
                 <CheckCircle2 className="size-4" />
                 <span className="text-xs font-black uppercase tracking-widest">{validRows.length} Valid</span>
               </div>
@@ -237,7 +243,7 @@ export function BulkImportCSV({ subTestId }: BulkImportCSVProps) {
                       </td>
                       <td className="px-8 py-4 text-center">
                         {row.valid ? (
-                          <div className="size-6 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto shadow-inner">
+                          <div className="size-6 rounded-full bg-primary-50 text-primary-600 flex items-center justify-center mx-auto shadow-inner">
                             <CheckCircle2 className="size-3" />
                           </div>
                         ) : (

@@ -43,8 +43,8 @@ const accentColors = [
   'from-fuchsia-400 to-fuchsia-500',
   'from-lime-400 to-lime-500',
   'from-orange-400 to-orange-500',
-  'from-indigo-400 to-indigo-500',
-  'from-indigo-400 to-indigo-500',
+  'from-primary-400 to-primary-500',
+  'from-primary-400 to-primary-500',
 ]
 
 export default function AdminPackagesPage() {
@@ -136,7 +136,7 @@ export default function AdminPackagesPage() {
   if (isLoading) {
     return (
       <div className="space-y-6 animate-in fade-in duration-500">
-        <Skeleton className="h-52 rounded-[2.5rem]" />
+        <Skeleton className="h-52 rounded-3xl" />
         <Skeleton className="h-11 rounded-xl" />
         <div className="space-y-3">
           {Array.from({ length: 4 }).map((_, i) => (
@@ -150,31 +150,44 @@ export default function AdminPackagesPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-sky-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-8 md:p-10 text-white shadow-lg shadow-primary-200/40">
+        {/* dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }}
+        />
+        {/* blur orbs */}
+        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-primary-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
+
         <div className="relative z-10">
-          <p className="text-sky-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+          <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
             Manajemen
           </p>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
+            <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+              Paket
+            </p>
+
               <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
                 Paket Psikotes.
               </h1>
-              <p className="text-slate-400 font-medium text-sm">
+              <p className="text-primary-100/90 font-medium text-sm">
                 Kelola paket, sub-paket, dan tipe paket.
               </p>
             </div>
             <Button
               size="lg"
               onClick={openCreate}
-              className="bg-white text-slate-900 hover:bg-sky-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
+              className="bg-white text-slate-900 hover:bg-primary-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
             >
               <Plus className="w-5 h-5 mr-2 group-hover:rotate-90 transition-transform" />
               Buat Paket
             </Button>
           </div>
           <div className="grid grid-cols-3 gap-4 mt-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-sky-500/30 flex items-center justify-center">
                 <Package className="size-5 text-sky-300" />
               </div>
@@ -182,23 +195,23 @@ export default function AdminPackagesPage() {
                 <p className="text-2xl font-black leading-none">
                   {allPackages.length}
                 </p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">
                   Total
                 </p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-                <CheckCircle2 className="size-5 text-indigo-300" />
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
+              <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+                <CheckCircle2 className="size-5 text-primary-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{activeCount}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">
                   Aktif
                 </p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-rose-500/30 flex items-center justify-center">
                 <XCircle className="size-5 text-rose-300" />
               </div>
@@ -206,7 +219,7 @@ export default function AdminPackagesPage() {
                 <p className="text-2xl font-black leading-none">
                   {inactiveCount}
                 </p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">
                   Nonaktif
                 </p>
               </div>
@@ -263,19 +276,19 @@ export default function AdminPackagesPage() {
 
       {/* LIST */}
       {filtered.length === 0 ? (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
+        <div className="bg-white rounded-3xl border border-slate-100 p-16 text-center flex flex-col items-center">
           <div className="size-16 rounded-2xl bg-sky-50 flex items-center justify-center mb-5">
             <Package className="size-8 text-sky-400" />
           </div>
           <p className="text-slate-900 font-black text-lg mb-1">
             Belum ada paket.
           </p>
-          <p className="text-slate-400 font-medium text-sm">
+          <p className="text-primary-100/90 font-medium text-sm">
             Klik tombol di atas untuk membuat paket baru.
           </p>
         </div>
       ) : (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden divide-y divide-slate-50">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden divide-y divide-slate-50">
           {filtered.map((pkg, index) => {
             const color = accentColors[index % accentColors.length]
             const childCount = pkg.childPackages?.length ?? 0
@@ -302,7 +315,7 @@ export default function AdminPackagesPage() {
                       className={cn(
                         'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
                         pkg.isActive
-                          ? 'bg-indigo-50 text-indigo-600'
+                          ? 'bg-primary-50 text-primary-600'
                           : 'bg-slate-100 text-slate-400',
                       )}
                     >
@@ -325,7 +338,7 @@ export default function AdminPackagesPage() {
                       e.stopPropagation()
                       openEdit(pkg)
                     }}
-                    className="size-9 rounded-xl bg-white text-indigo-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-indigo-50 hover:border-indigo-200 hover:text-indigo-500"
+                    className="size-9 rounded-xl bg-white text-primary-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-50 hover:border-primary-200 hover:text-primary-500"
                   >
                     <Pencil className="size-4" />
                   </button>
@@ -409,7 +422,7 @@ export default function AdminPackagesPage() {
                   onClick={() => setFormActive(!formActive)}
                   className={cn(
                     'flex items-center gap-2 text-sm font-bold transition-colors',
-                    formActive ? 'text-indigo-600' : 'text-slate-400',
+                    formActive ? 'text-primary-600' : 'text-slate-400',
                   )}
                 >
                   {formActive ? (

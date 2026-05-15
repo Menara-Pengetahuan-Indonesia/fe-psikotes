@@ -1,8 +1,9 @@
 'use client'
+/* eslint-disable react-hooks/incompatible-library */
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-import { useForm, useFieldArray } from 'react-hook-form'
+import { useForm, useFieldArray, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Dialog,
@@ -31,10 +32,41 @@ import { z } from 'zod'
 import { createQuestionSchema } from '../../schemas'
 import { FormField } from '../Common/FormField'
 import type { Question, QuestionType, ScaleWeight } from '../../types'
-import { QUESTION_TYPE_LABELS } from '@features/admin/constants/question-types.constants'
+import { QUESTION_TYPE_LABELS, DISPLAY_STYLE_OPTIONS } from '@features/admin/constants/question-types.constants'
 import { cn } from '@/lib/utils'
 
 type QuestionFormValues = z.infer<typeof createQuestionSchema>
+
+function OptionImageCell({ imageUrl, onUpload, onRemove, uploading }: {
+  imageUrl?: string | null
+  onUpload: (file: File) => void
+  onRemove: () => void
+  uploading: boolean
+}) {
+  const ref = useRef<HTMLInputElement>(null)
+  if (imageUrl) {
+    return (
+      <div className="relative group shrink-0">
+        <Image src={imageUrl} alt="" width={48} height={36} className="rounded-lg border border-slate-200 object-cover w-12 h-9" unoptimized />
+        <button type="button" onClick={onRemove}
+          className="absolute -top-1.5 -right-1.5 size-4 rounded-full bg-rose-500 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+          <X className="size-2.5" />
+        </button>
+      </div>
+    )
+  }
+  return (
+    <>
+      <input ref={ref} type="file" accept="image/*"
+        onChange={(e) => { const f = e.target.files?.[0]; if (f) onUpload(f); if (ref.current) ref.current.value = '' }}
+        className="hidden" />
+      <button type="button" onClick={() => ref.current?.click()} disabled={uploading}
+        className="shrink-0 w-12 h-9 rounded-lg border border-dashed border-slate-300 flex items-center justify-center text-slate-400 hover:border-primary-400 hover:text-primary-500 transition-all">
+        {uploading ? <div className="size-3 border-2 border-slate-300 border-t-primary-500 rounded-full animate-spin" /> : <Plus className="size-3.5" />}
+      </button>
+    </>
+  )
+}
 
 interface QuestionFormProps {
   subTestId: string
@@ -72,6 +104,8 @@ export function QuestionForm({
       questionText: '',
       order: 1,
       points: 1,
+      displayStyle: 'UPPERCASE' as const,
+      optionImageEnabled: false,
       options: [
         { optionText: '', isCorrect: false, points: 0, order: 1 },
         { optionText: '', isCorrect: false, points: 0, order: 2 },
@@ -90,12 +124,15 @@ export function QuestionForm({
         order: initialData?.order ?? 1,
         points: initialData?.points ?? 1,
         imageUrl: initialData?.imageUrl ?? undefined,
+        displayStyle: (initialData?.displayStyle ?? 'UPPERCASE') as 'UPPERCASE',
+        optionImageEnabled: initialData?.optionImageEnabled ?? false,
         options: isEditing
           ? (initialData?.options ?? []).map((o) => ({
               optionText: o.optionText,
               isCorrect: o.isCorrect,
               points: o.points,
               order: o.order,
+              imageUrl: o.imageUrl ?? undefined,
             }))
           : [
               { optionText: '', isCorrect: false, points: 0, order: 1 },
@@ -111,8 +148,10 @@ export function QuestionForm({
     }
   }, [open, initialData, isEditing, reset, subTestId])
 
-  // eslint-disable-next-line react-hooks/incompatible-library
   const questionType = watch('questionType')
+  const displayStyle = watch('displayStyle')
+  const optionImageEnabled = watch('optionImageEnabled')
+  const watchedOptions = useWatch({ control, name: 'options' })
   const showOptions = questionType === 'MULTIPLE_CHOICE' || questionType === 'CHECKBOX'
   const showEssay = questionType === 'ESSAY'
   const showScale = questionType === 'SCALE_RATING'
@@ -151,6 +190,8 @@ export function QuestionForm({
             order: data.order,
             points: data.points,
             imageUrl: data.imageUrl,
+            displayStyle: data.questionType === 'MULTIPLE_CHOICE' ? (data.displayStyle ?? undefined) : undefined,
+            optionImageEnabled: data.optionImageEnabled ?? false,
             options: showOptions
               ? data.options?.filter((o) => o.optionText.trim())
               : undefined,
@@ -165,6 +206,8 @@ export function QuestionForm({
           order: data.order,
           points: data.points,
           imageUrl: data.imageUrl,
+          displayStyle: data.questionType === 'MULTIPLE_CHOICE' ? (data.displayStyle ?? undefined) : undefined,
+          optionImageEnabled: data.optionImageEnabled ?? false,
           options: showOptions
             ? data.options?.filter((o) => o.optionText.trim())
             : undefined,
@@ -215,6 +258,29 @@ export function QuestionForm({
             </FormField>
           </div>
 
+          {questionType === 'MULTIPLE_CHOICE' && (
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium">Gaya Tampilan Opsi</label>
+              <div className="flex gap-1 bg-slate-50 border rounded-lg p-1">
+                {DISPLAY_STYLE_OPTIONS.map((style) => (
+                  <button
+                    key={style.value}
+                    type="button"
+                    onClick={() => setValue('displayStyle', style.value as 'UPPERCASE')}
+                    className={cn(
+                      'flex-1 px-3 py-1.5 rounded-md text-xs font-bold transition-all',
+                      displayStyle === style.value
+                        ? 'bg-primary-500 text-white shadow-sm'
+                        : 'text-slate-500 hover:text-slate-700 hover:bg-white'
+                    )}
+                  >
+                    {style.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {showEssay && (
             <FormField label="Poin" error={errors.points}>
               <Input type="number" placeholder="1" className="w-32" {...register('points', { valueAsNumber: true })} />
@@ -249,10 +315,31 @@ export function QuestionForm({
             <div className="space-y-3 border-t pt-4">
               <div className="flex justify-between items-center">
                 <label className="font-semibold text-sm">Opsi Jawaban</label>
-                <Button type="button" size="sm" variant="outline"
-                  onClick={() => append({ optionText: '', isCorrect: false, points: 0, order: fields.length + 1 })}>
-                  <Plus className="w-4 h-4 mr-2" /> Tambah Opsi
-                </Button>
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setValue('optionImageEnabled', !optionImageEnabled)
+                      if (optionImageEnabled) {
+                        fields.forEach((_, idx) => setValue(`options.${idx}.imageUrl`, undefined))
+                      }
+                    }}
+                    className={cn(
+                      'relative w-9 h-5 rounded-full transition-colors',
+                      optionImageEnabled ? 'bg-primary-500' : 'bg-slate-200'
+                    )}
+                  >
+                    <span className={cn(
+                      'absolute top-[2px] size-4 rounded-full bg-white shadow-sm transition-all',
+                      watch('optionImageEnabled') ? 'left-[18px]' : 'left-[2px]'
+                    )} />
+                  </button>
+                  <span className="text-xs font-medium text-slate-500">Opsi Bergambar</span>
+                  <Button type="button" size="sm" variant="outline"
+                    onClick={() => append({ optionText: '', isCorrect: false, points: 0, order: fields.length + 1 })}>
+                    <Plus className="w-4 h-4 mr-2" /> Tambah Opsi
+                  </Button>
+                </div>
               </div>
               <div className="space-y-2">
                 {fields.map((field, index) => (
@@ -264,6 +351,17 @@ export function QuestionForm({
                       title="Jawaban benar"
                     />
                     <Input placeholder={`Opsi ${index + 1}`} {...register(`options.${index}.optionText`)} className="flex-1" />
+                    {optionImageEnabled && (
+                      <OptionImageCell
+                        imageUrl={watchedOptions?.[index]?.imageUrl}
+                        onUpload={async (file: File) => {
+                          const result = await uploadImage.mutateAsync(file)
+                          setValue(`options.${index}.imageUrl`, result.url)
+                        }}
+                        onRemove={() => setValue(`options.${index}.imageUrl`, undefined)}
+                        uploading={uploadImage.isPending}
+                      />
+                    )}
                     <Input type="number" placeholder="Poin" className="w-20"
                       {...register(`options.${index}.points`, { valueAsNumber: true })} />
                     <Button type="button" variant="outline" size="sm"

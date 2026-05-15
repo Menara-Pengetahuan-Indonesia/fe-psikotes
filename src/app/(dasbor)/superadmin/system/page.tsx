@@ -47,7 +47,16 @@ export default function SuperAdminSystemPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-rose-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-8 md:p-10 text-white">
+        {/* dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }}
+        />
+        {/* blur orbs */}
+        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-primary-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
+
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
             <p className="text-rose-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
@@ -56,7 +65,7 @@ export default function SuperAdminSystemPage() {
             <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
               Sistem.
             </h1>
-            <p className="text-slate-400 font-medium text-sm">
+            <p className="text-primary-100/90 font-medium text-sm">
               Monitoring, logs, dan maintenance platform.
             </p>
           </div>
@@ -82,8 +91,8 @@ export default function SuperAdminSystemPage() {
             </div>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-              <Users className="size-5 text-indigo-300" />
+            <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+              <Users className="size-5 text-primary-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">42</p>
@@ -119,7 +128,7 @@ export default function SuperAdminSystemPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* LEFT: Services */}
         <div className="lg:col-span-5">
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden h-full">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden h-full">
             <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
               <div className="size-10 rounded-xl bg-teal-100 flex items-center justify-center">
                 <Server className="size-5 text-teal-600" />
@@ -157,10 +166,10 @@ export default function SuperAdminSystemPage() {
 
         {/* RIGHT: Logs */}
         <div className="lg:col-span-7">
-          <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden h-full">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden h-full">
             <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-                <FileText className="size-5 text-indigo-600" />
+              <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+                <FileText className="size-5 text-primary-600" />
               </div>
               <div>
                 <h2 className="text-base font-black text-slate-900">System Logs</h2>
@@ -188,7 +197,7 @@ export default function SuperAdminSystemPage() {
 
       {/* QUICK ACTIONS */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white rounded-[2rem] border border-slate-100 p-6 group hover:shadow-md transition-all">
+        <div className="bg-white rounded-3xl border border-slate-100 p-6 group hover:shadow-md transition-all">
           <div className="size-12 rounded-2xl bg-gradient-to-br from-teal-400 to-teal-500 flex items-center justify-center text-white mb-4">
             <Download className="size-5" />
           </div>
@@ -198,17 +207,17 @@ export default function SuperAdminSystemPage() {
             Jalankan Backup
           </Button>
         </div>
-        <div className="bg-white rounded-[2rem] border border-slate-100 p-6 group hover:shadow-md transition-all">
-          <div className="size-12 rounded-2xl bg-gradient-to-br from-indigo-400 to-indigo-500 flex items-center justify-center text-white mb-4">
+        <div className="bg-white rounded-3xl border border-slate-100 p-6 group hover:shadow-md transition-all">
+          <div className="size-12 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-500 flex items-center justify-center text-white mb-4">
             <RefreshCw className="size-5" />
           </div>
           <h3 className="text-base font-black text-slate-900 mb-1">Flush Cache</h3>
           <p className="text-xs text-slate-400 font-medium mb-4">Bersihkan cache Redis dan CDN</p>
-          <Button variant="outline" className="w-full rounded-xl h-10 font-bold text-xs border-slate-200 hover:bg-indigo-50 hover:text-indigo-600 hover:border-indigo-200">
+          <Button variant="outline" className="w-full rounded-xl h-10 font-bold text-xs border-slate-200 hover:bg-primary-50 hover:text-primary-600 hover:border-primary-200">
             Flush Sekarang
           </Button>
         </div>
-        <div className="bg-white rounded-[2rem] border border-slate-100 p-6 group hover:shadow-md transition-all">
+        <div className="bg-white rounded-3xl border border-slate-100 p-6 group hover:shadow-md transition-all">
           <div className="size-12 rounded-2xl bg-gradient-to-br from-rose-400 to-rose-500 flex items-center justify-center text-white mb-4">
             <Trash2 className="size-5" />
           </div>

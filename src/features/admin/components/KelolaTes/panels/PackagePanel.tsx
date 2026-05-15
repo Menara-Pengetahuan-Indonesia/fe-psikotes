@@ -99,14 +99,14 @@ export function PackagePanel({ packageId, onSelect }: PackagePanelProps) {
       {/* Header */}
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="size-14 rounded-2xl bg-gradient-to-br from-indigo-400 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-indigo-200/50">
+          <div className="size-14 rounded-2xl bg-gradient-to-br from-primary-400 to-primary-500 flex items-center justify-center text-white shadow-md shadow-primary-200/50">
             <PackageIcon className="size-7" aria-hidden="true" />
           </div>
           <div>
             <div className="flex items-center gap-2.5 flex-wrap">
               <h2 className="text-2xl font-black text-slate-900 tracking-tight">{pkg.name}</h2>
               <span className={cn('text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg',
-                pkg.isActive ? 'bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200' : 'bg-slate-100 text-slate-500 ring-1 ring-slate-200'
+                pkg.isActive ? 'bg-primary-50 text-primary-700 ring-1 ring-primary-200' : 'bg-slate-100 text-slate-500 ring-1 ring-slate-200'
               )} role="status">{pkg.isActive ? 'Aktif' : 'Nonaktif'}</span>
             </div>
             {pkg.description && <p className="text-sm text-slate-500 font-medium mt-1">{pkg.description}</p>}
@@ -118,7 +118,7 @@ export function PackagePanel({ packageId, onSelect }: PackagePanelProps) {
             type="button"
             onClick={openEditPkg}
             aria-label={`Edit paket ${pkg.name}`}
-            className="size-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:text-indigo-600 hover:border-indigo-300 hover:bg-indigo-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+            className="size-10 rounded-xl border border-slate-200 flex items-center justify-center text-slate-400 hover:text-primary-600 hover:border-primary-300 hover:bg-primary-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
           >
             <Pencil className="size-4" aria-hidden="true" />
           </button>
@@ -136,8 +136,8 @@ export function PackagePanel({ packageId, onSelect }: PackagePanelProps) {
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white rounded-2xl p-4 flex items-center gap-4 border border-slate-100 shadow-sm">
-          <div className="size-10 rounded-xl bg-indigo-50 flex items-center justify-center">
-            <Layers className="size-5 text-indigo-600" aria-hidden="true" />
+          <div className="size-10 rounded-xl bg-primary-50 flex items-center justify-center">
+            <Layers className="size-5 text-primary-600" aria-hidden="true" />
           </div>
           <div>
             <p className="text-2xl font-black text-slate-900">{childPackages.length}</p>
@@ -145,8 +145,8 @@ export function PackagePanel({ packageId, onSelect }: PackagePanelProps) {
           </div>
         </div>
         <div className="bg-white rounded-2xl p-4 flex items-center gap-4 border border-slate-100 shadow-sm">
-          <div className="size-10 rounded-xl bg-indigo-50 flex items-center justify-center">
-            <CheckCircle2 className="size-5 text-indigo-600" aria-hidden="true" />
+          <div className="size-10 rounded-xl bg-primary-50 flex items-center justify-center">
+            <CheckCircle2 className="size-5 text-primary-600" aria-hidden="true" />
           </div>
           <div>
             <p className="text-2xl font-black text-slate-900">{childPackages.filter(c => c.isActive).length}</p>
@@ -168,7 +168,7 @@ export function PackagePanel({ packageId, onSelect }: PackagePanelProps) {
       <div className="flex items-center justify-between">
         <h3 className="text-base font-black text-slate-900 tracking-tight">Paket Kecil</h3>
         <Button size="sm" onClick={openCreateChild}
-          className="h-9 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-xs font-bold shadow-sm focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2">
+          className="h-9 rounded-xl bg-primary-600 hover:bg-primary-700 text-xs font-bold shadow-sm focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2">
           <Plus className="size-4 mr-1.5" aria-hidden="true" /> Tambah
         </Button>
       </div>
@@ -182,7 +182,7 @@ export function PackagePanel({ packageId, onSelect }: PackagePanelProps) {
             aria-label="Cari paket kecil"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="pl-10 h-10 bg-white border-slate-200 rounded-xl text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500"
+            className="pl-10 h-10 bg-white border-slate-200 rounded-xl text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500"
           />
         </div>
       )}
@@ -200,20 +200,20 @@ export function PackagePanel({ packageId, onSelect }: PackagePanelProps) {
         <div className="space-y-2" role="list" aria-label="Daftar paket kecil">
           {filtered.map(cp => (
             <div key={cp.id} role="listitem"
-              className="group flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 hover:border-indigo-200 hover:shadow-md cursor-pointer transition-all duration-200"
+              className="group flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 hover:border-primary-200 hover:shadow-md cursor-pointer transition-all duration-200"
               onClick={() => onSelect({ type: 'childPackage', id: cp.id })}
               onKeyDown={e => e.key === 'Enter' && onSelect({ type: 'childPackage', id: cp.id })}
               tabIndex={0}
               aria-label={`Paket kecil: ${cp.name}`}
             >
-              <div className="size-10 rounded-xl bg-gradient-to-br from-indigo-400 to-indigo-500 flex items-center justify-center text-white shadow-sm shrink-0">
+              <div className="size-10 rounded-xl bg-gradient-to-br from-primary-400 to-primary-500 flex items-center justify-center text-white shadow-sm shrink-0">
                 <Layers className="size-5" aria-hidden="true" />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2.5">
                   <span className="text-sm font-black text-slate-900 truncate">{cp.name}</span>
                   <span className={cn('text-xs font-bold uppercase px-2 py-0.5 rounded-md',
-                    cp.isActive ? 'bg-indigo-50 text-indigo-700' : 'bg-slate-100 text-slate-500'
+                    cp.isActive ? 'bg-primary-50 text-primary-700' : 'bg-slate-100 text-slate-500'
                   )}>{cp.isActive ? 'Aktif' : 'Nonaktif'}</span>
                 </div>
                 {cp.description && <p className="text-xs text-slate-500 truncate mt-0.5">{cp.description}</p>}
@@ -223,7 +223,7 @@ export function PackagePanel({ packageId, onSelect }: PackagePanelProps) {
                   type="button"
                   onClick={e => { e.stopPropagation(); openEditChild(cp) }}
                   aria-label={`Edit ${cp.name}`}
-                  className="size-8 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:text-indigo-600 hover:border-indigo-300 hover:bg-indigo-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                  className="size-8 rounded-lg border border-slate-200 flex items-center justify-center text-slate-400 hover:text-primary-600 hover:border-primary-300 hover:bg-primary-50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                 >
                   <Pencil className="size-3.5" aria-hidden="true" />
                 </button>
@@ -243,7 +243,7 @@ export function PackagePanel({ packageId, onSelect }: PackagePanelProps) {
 
       {/* Dialog */}
       <Dialog open={formOpen} onOpenChange={v => { setFormOpen(v); if (!v) { setEditChildId(null); setEditPkg(false) } }}>
-        <DialogContent className="max-w-[440px] p-0 border-0 rounded-[1.5rem] overflow-hidden bg-white shadow-2xl">
+        <DialogContent className="max-w-[440px] p-0 border-0 rounded-[1.5rem] bg-white shadow-2xl">
           <div className="px-6 pt-6 pb-3">
             <DialogTitle className="text-lg font-black text-slate-900 tracking-tight">
               {editPkg ? 'Edit Paket' : editChildId ? 'Edit Paket Kecil' : 'Paket Kecil Baru'}
@@ -257,14 +257,14 @@ export function PackagePanel({ packageId, onSelect }: PackagePanelProps) {
               <div className="space-y-2">
                 <Label htmlFor="pkg-name" className="text-xs font-bold uppercase tracking-wider text-slate-500">Nama</Label>
                 <Input id="pkg-name" placeholder="Nama..." value={formName} onChange={e => { setFormName(e.target.value); setFormError('') }}
-                  className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-indigo-500"
+                  className="h-10 rounded-xl bg-slate-50 border-slate-200 text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500"
                   aria-invalid={!!formError} aria-describedby={formError ? 'pkg-name-error' : undefined} />
                 {formError && <p id="pkg-name-error" role="alert" className="text-rose-600 text-xs font-bold">{formError}</p>}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="pkg-desc" className="text-xs font-bold uppercase tracking-wider text-slate-500">Deskripsi</Label>
                 <Textarea id="pkg-desc" placeholder="Deskripsi..." value={formDesc} onChange={e => setFormDesc(e.target.value)}
-                  className="rounded-xl bg-slate-50 border-slate-200 text-sm font-medium min-h-[80px] resize-none focus-visible:ring-2 focus-visible:ring-indigo-500" />
+                  className="rounded-xl bg-slate-50 border-slate-200 text-sm font-medium min-h-[80px] resize-none focus-visible:ring-2 focus-visible:ring-primary-500" />
               </div>
               <div className="flex items-center justify-between py-1">
                 <Label className="text-xs font-bold uppercase tracking-wider text-slate-500">Status</Label>
@@ -276,8 +276,8 @@ export function PackagePanel({ packageId, onSelect }: PackagePanelProps) {
                   onClick={() => setFormActive(!formActive)}
                   className={cn(
                     'flex items-center gap-2 text-sm font-bold transition-colors rounded-lg px-2 py-1',
-                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1',
-                    formActive ? 'text-indigo-700' : 'text-slate-500'
+                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-1',
+                    formActive ? 'text-primary-700' : 'text-slate-500'
                   )}
                 >
                   {formActive ? <ToggleRight className="size-5" aria-hidden="true" /> : <ToggleLeft className="size-5" aria-hidden="true" />}

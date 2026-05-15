@@ -28,7 +28,7 @@ const ROLE_CONFIG = {
   },
   ADMIN: {
     label: 'Admin',
-    bg: 'bg-indigo-500/20 text-indigo-300',
+    bg: 'bg-primary-500/20 text-primary-300',
     desc: 'Kelola tes, indikator, dan hasil peserta',
   },
   USER: {
@@ -54,16 +54,25 @@ export default function AdminSettingsPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-violet-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-8 md:p-10 text-white shadow-lg shadow-primary-200/40">
+        {/* dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }}
+        />
+        {/* blur orbs */}
+        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-primary-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
+
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-5">
             <Avatar className="size-16 rounded-2xl shadow-xl border-2 border-white/10">
-              <AvatarFallback className="rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-500 text-white text-xl font-black">
+              <AvatarFallback className="rounded-2xl bg-gradient-to-br from-primary-500 to-violet-500 text-white text-xl font-black">
                 {initials}
               </AvatarFallback>
             </Avatar>
             <div>
-              <p className="text-violet-300 font-black text-[10px] uppercase tracking-[0.3em] mb-1">
+              <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-1">
                 Pengaturan
               </p>
               <h1 className="text-2xl md:text-3xl font-black tracking-tight mb-1">
@@ -88,10 +97,10 @@ export default function AdminSettingsPage() {
       {/* 2x2 GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* INFORMASI AKUN */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-              <User className="size-5 text-indigo-600" />
+            <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+              <User className="size-5 text-primary-600" />
             </div>
             <div>
               <h2 className="text-base font-black text-slate-900">Informasi Akun</h2>
@@ -101,13 +110,13 @@ export default function AdminSettingsPage() {
           <div className="divide-y divide-slate-50">
             <SettingRow
               icon={<User className="size-4" />}
-              iconColor="bg-indigo-100 text-indigo-600"
+              iconColor="bg-primary-100 text-primary-600"
               label="Nama Lengkap"
               value={user?.name ?? '—'}
             />
             <SettingRow
               icon={<Mail className="size-4" />}
-              iconColor="bg-indigo-100 text-indigo-600"
+              iconColor="bg-primary-100 text-primary-600"
               label="Email"
               value={user?.email ?? '—'}
             />
@@ -122,7 +131,7 @@ export default function AdminSettingsPage() {
         </div>
 
         {/* KEAMANAN */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
             <div className="size-10 rounded-xl bg-rose-100 flex items-center justify-center">
               <Lock className="size-5 text-rose-600" />
@@ -167,10 +176,10 @@ export default function AdminSettingsPage() {
         </div>
 
         {/* PREFERENSI */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-              <Palette className="size-5 text-indigo-600" />
+            <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+              <Palette className="size-5 text-primary-600" />
             </div>
             <div>
               <h2 className="text-base font-black text-slate-900">Preferensi</h2>
@@ -179,14 +188,14 @@ export default function AdminSettingsPage() {
           </div>
           <div className="divide-y divide-slate-50">
             <div className="px-7 py-4 flex items-center gap-4 group hover:bg-slate-50/50 transition-all">
-              <div className="size-9 rounded-xl bg-indigo-100 flex items-center justify-center shrink-0">
-                <Bell className="size-4 text-indigo-600" />
+              <div className="size-9 rounded-xl bg-primary-100 flex items-center justify-center shrink-0">
+                <Bell className="size-4 text-primary-600" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-black text-slate-900">Notifikasi</p>
                 <p className="text-xs text-slate-400 font-medium">Email & push notification</p>
               </div>
-              <span className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-600">
+              <span className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-primary-50 text-primary-600">
                 Aktif
               </span>
             </div>
@@ -203,14 +212,14 @@ export default function AdminSettingsPage() {
               </span>
             </div>
             <div className="px-7 py-4 flex items-center gap-4 group hover:bg-slate-50/50 transition-all">
-              <div className="size-9 rounded-xl bg-indigo-100 flex items-center justify-center shrink-0">
-                <Globe className="size-4 text-indigo-600" />
+              <div className="size-9 rounded-xl bg-primary-100 flex items-center justify-center shrink-0">
+                <Globe className="size-4 text-primary-600" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-black text-slate-900">Bahasa</p>
                 <p className="text-xs text-slate-400 font-medium">Bahasa tampilan</p>
               </div>
-              <span className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-600">
+              <span className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full bg-primary-50 text-primary-600">
                 Indonesia
               </span>
             </div>
@@ -218,7 +227,7 @@ export default function AdminSettingsPage() {
         </div>
 
         {/* TENTANG APLIKASI */}
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
           <div className="px-7 py-5 border-b border-slate-50 flex items-center gap-3">
             <div className="size-10 rounded-xl bg-slate-100 flex items-center justify-center">
               <Info className="size-5 text-slate-600" />

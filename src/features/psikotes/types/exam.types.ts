@@ -35,7 +35,7 @@ export interface Section {
 export interface ExamQuestion {
   id: string
   text: string
-  type: 'MULTIPLE_CHOICE' | 'TRUE_FALSE' | 'RATING_SCALE' | 'ESSAY'
+  type: 'MULTIPLE_CHOICE' | 'CHECKBOX' | 'TRUE_FALSE' | 'SCALE_RATING' | 'ESSAY'
   sectionId?: string
   order: number
   options: QuestionOption[]

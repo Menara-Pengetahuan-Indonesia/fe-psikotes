@@ -1,9 +1,12 @@
-'use client'
-
+import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Building2, Sparkles, Phone, TrendingUp, Users, BarChart3, CheckCircle2 } from 'lucide-react'
-import { usePublicPackages } from '@/features/psikotes/hooks/use-public-packages'
-import { ChildPackageCard, PackageGridSkeleton, PackageEmptyState } from '@/features/psikotes/components/package-card'
+import { Building2, Phone, TrendingUp, Users, BarChart3, CheckCircle2 } from 'lucide-react'
+import { CorporateProductGrid } from '@/features/psikotes/components/product-grid'
+
+export const metadata: Metadata = {
+  title: 'Bisnis & Perusahaan — Bermoela',
+  description: 'Assessment psikologi organisasi berbasis data — dari rekrutmen staf hingga audit kesiapan AI.',
+}
 
 const USE_CASES = [
   { icon: Users, title: 'Rekrutmen', desc: 'Seleksi kandidat terbaik berbasis data psikometri' },
@@ -12,14 +15,9 @@ const USE_CASES = [
 ]
 
 export default function BisnisPage() {
-  const { data: packages, isLoading } = usePublicPackages()
-  const pkg = packages?.find(p => p.name.toLowerCase().includes('bisnis'))
-  const children = pkg?.childPackages?.filter(c => c.isActive) ?? []
-
   return (
     <main className="min-h-screen bg-white">
 
-      {/* Hero — light with amber accent, 2-column layout */}
       <section className="relative overflow-hidden bg-gradient-to-br from-amber-50/50 via-white to-white pt-32 pb-20">
         <div className="absolute top-[-10%] left-[-8%] w-[500px] h-[500px] bg-amber-100/50 rounded-full pointer-events-none" />
         <div className="absolute bottom-[-15%] right-[-5%] w-[400px] h-[400px] bg-primary-100/30 rounded-full pointer-events-none" />
@@ -49,7 +47,6 @@ export default function BisnisPage() {
               </div>
             </div>
 
-            {/* Use case cards */}
             <div className="space-y-4">
               {USE_CASES.map((uc) => (
                 <div key={uc.title} className="flex items-center gap-4 p-5 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-amber-200 transition-all">
@@ -67,40 +64,28 @@ export default function BisnisPage() {
         </div>
       </section>
 
-      {/* Products Section */}
       <section className="relative overflow-hidden py-20">
         <div className="absolute bottom-[-8%] left-[-6%] w-[350px] h-[350px] bg-accent-100/40 rounded-full pointer-events-none" />
         <div className="absolute top-[-5%] right-[-8%] w-[300px] h-[300px] bg-primary-100/30 rounded-full pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="max-w-2xl mb-14 space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-50 border border-primary-100">
-              <Sparkles className="w-3 h-3 text-primary-600 fill-primary-600" />
-              <span className="text-[10px] font-black text-primary-700 uppercase tracking-widest">Paket Assessment</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-100">
+              <Building2 className="w-3 h-3 text-amber-600" />
+              <span className="text-[10px] font-black text-amber-700 uppercase tracking-widest">10 Solusi Assessment</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-black text-gray-900 tracking-tight leading-none">
               Solusi untuk <span className="text-amber-500 italic">Setiap Kebutuhan</span>
             </h2>
             <p className="text-gray-500 font-medium text-sm md:text-base leading-relaxed">
-              Pilih paket assessment yang sesuai dengan kebutuhan organisasimu.
+              Tersedia dalam 2 tier: <strong>Mandatory</strong> untuk kebutuhan standar seleksi, dan <strong>Comprehensive</strong> untuk laporan mendalam dengan rekomendasi strategis.
             </p>
           </div>
 
-          {isLoading ? (
-            <PackageGridSkeleton />
-          ) : children.length === 0 ? (
-            <PackageEmptyState message="Belum ada paket tes untuk kategori Bisnis & Perusahaan. Silakan cek kembali nanti." />
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {children.map((child) => (
-                <ChildPackageCard key={child.id} child={child} categorySlug="bisnis" />
-              ))}
-            </div>
-          )}
+          <CorporateProductGrid />
         </div>
       </section>
 
-      {/* Bottom CTA */}
       <section className="pb-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="p-8 md:p-12 rounded-[3rem] bg-gradient-to-r from-amber-500 to-primary-600 shadow-2xl relative overflow-hidden">

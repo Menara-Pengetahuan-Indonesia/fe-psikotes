@@ -43,8 +43,8 @@ const initialNotifications: Notification[] = [
 ]
 
 const typeConfig: Record<NotifType, { icon: typeof Bell; color: string }> = {
-  test_completed: { icon: CheckCircle2, color: 'bg-indigo-100 text-indigo-600' },
-  new_user: { icon: UserPlus, color: 'bg-indigo-100 text-indigo-600' },
+  test_completed: { icon: CheckCircle2, color: 'bg-primary-100 text-primary-600' },
+  new_user: { icon: UserPlus, color: 'bg-primary-100 text-primary-600' },
   test_updated: { icon: FileText, color: 'bg-violet-100 text-violet-600' },
   schedule_created: { icon: CalendarClock, color: 'bg-rose-100 text-rose-600' },
   warning: { icon: AlertTriangle, color: 'bg-amber-100 text-amber-600' },
@@ -80,16 +80,25 @@ export default function AdminNotificationsPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-rose-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-8 md:p-10 text-white shadow-lg shadow-primary-200/40">
+        {/* dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }}
+        />
+        {/* blur orbs */}
+        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-primary-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
+
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <p className="text-rose-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
-              Pusat
+            <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+              Notifikasi
             </p>
             <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
               Notifikasi.
             </h1>
-            <p className="text-slate-400 font-medium text-sm">
+            <p className="text-primary-100/90 font-medium text-sm">
               Pantau semua aktivitas dan pemberitahuan platform.
             </p>
           </div>
@@ -97,7 +106,7 @@ export default function AdminNotificationsPage() {
             <Button
               size="lg"
               onClick={markAllRead}
-              className="bg-white text-slate-900 hover:bg-rose-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
+              className="bg-white text-slate-900 hover:bg-primary-50 rounded-2xl h-14 px-8 font-black text-base shadow-xl transition-all active:scale-95 group shrink-0"
             >
               <CheckCheck className="w-5 h-5 mr-2" />
               Tandai Semua Dibaca
@@ -107,31 +116,31 @@ export default function AdminNotificationsPage() {
 
         {/* Stats */}
         <div className="relative z-10 grid grid-cols-3 gap-4 mt-8">
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
             <div className="size-10 rounded-xl bg-rose-500/30 flex items-center justify-center">
               <Bell className="size-5 text-rose-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{notifications.length}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Total</p>
             </div>
           </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-              <Clock className="size-5 text-indigo-300" />
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
+            <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+              <Clock className="size-5 text-primary-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{unreadCount}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Belum Dibaca</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Belum Dibaca</p>
             </div>
           </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-            <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-              <CheckCircle2 className="size-5 text-indigo-300" />
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
+            <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+              <CheckCircle2 className="size-5 text-primary-300" />
             </div>
             <div>
               <p className="text-2xl font-black leading-none">{readCount}</p>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Sudah Dibaca</p>
+              <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Sudah Dibaca</p>
             </div>
           </div>
         </div>
@@ -168,15 +177,15 @@ export default function AdminNotificationsPage() {
 
       {/* LIST */}
       {filtered.length === 0 ? (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
+        <div className="bg-white rounded-3xl border border-slate-100 p-16 text-center flex flex-col items-center">
           <div className="size-16 rounded-2xl bg-rose-50 flex items-center justify-center mb-5">
             <Bell className="size-8 text-rose-400" />
           </div>
           <p className="text-slate-900 font-black text-lg mb-1">Tidak ada notifikasi.</p>
-          <p className="text-slate-400 font-medium text-sm">Semua sudah bersih.</p>
+          <p className="text-primary-100/90 font-medium text-sm">Semua sudah bersih.</p>
         </div>
       ) : (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden divide-y divide-slate-50">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden divide-y divide-slate-50">
           {filtered.map((notif) => {
             const config = typeConfig[notif.type]
             const Icon = config.icon
@@ -186,7 +195,7 @@ export default function AdminNotificationsPage() {
                 key={notif.id}
                 className={cn(
                   'group flex items-center gap-5 px-6 md:px-8 py-5 transition-all',
-                  !notif.read && 'bg-indigo-50/30'
+                  !notif.read && 'bg-primary-50/30'
                 )}
               >
                 {/* Icon */}
@@ -201,7 +210,7 @@ export default function AdminNotificationsPage() {
                       {notif.title}
                     </h3>
                     {!notif.read && (
-                      <span className="size-2 rounded-full bg-indigo-500 shrink-0" />
+                      <span className="size-2 rounded-full bg-primary-500 shrink-0" />
                     )}
                   </div>
                   <p className="text-sm text-slate-400 font-medium truncate">{notif.description}</p>
@@ -215,7 +224,7 @@ export default function AdminNotificationsPage() {
                   {!notif.read && (
                     <button
                       onClick={() => markAsRead(notif.id)}
-                      className="size-8 rounded-lg bg-white text-indigo-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-indigo-50 hover:border-indigo-200 hover:text-indigo-500"
+                      className="size-8 rounded-lg bg-white text-primary-400 border border-slate-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-primary-50 hover:border-primary-200 hover:text-primary-500"
                       title="Tandai dibaca"
                     >
                       <Check className="size-3.5" />

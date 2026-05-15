@@ -22,7 +22,7 @@ export function proxy(request: NextRequest) {
   const isAuthRoute = AUTH_ROUTES.some((route) => pathname.startsWith(route))
   if (isAuthRoute && isAuthenticated) {
     const url = request.nextUrl.clone()
-    url.pathname = '/dashboard'
+    url.pathname = role === 'ADMIN' || role === 'SUPERADMIN' ? '/admin' : '/dashboard'
     return NextResponse.redirect(url)
   }
 

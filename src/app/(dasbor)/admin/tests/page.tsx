@@ -22,8 +22,8 @@ const accentColors = [
   'from-fuchsia-400 to-fuchsia-500',
   'from-lime-400 to-lime-500',
   'from-orange-400 to-orange-500',
-  'from-indigo-400 to-indigo-500',
-  'from-indigo-400 to-indigo-500',
+  'from-primary-400 to-primary-500',
+  'from-primary-400 to-primary-500',
 ]
 
 export default function AdminTestsPage() {
@@ -52,7 +52,7 @@ export default function AdminTestsPage() {
   if (isLoading) {
     return (
       <div className="space-y-6 animate-in fade-in duration-500">
-        <Skeleton className="h-52 rounded-[2.5rem]" />
+        <Skeleton className="h-52 rounded-3xl" />
         <Skeleton className="h-11 rounded-xl" />
         <div className="space-y-3">
           {Array.from({ length: 4 }).map((_, i) => (
@@ -66,45 +66,58 @@ export default function AdminTestsPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* HERO BANNER */}
-      <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-800 to-sky-900 p-8 md:p-10 text-white">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-8 md:p-10 text-white shadow-lg shadow-primary-200/40">
+        {/* dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '20px 20px' }}
+        />
+        {/* blur orbs */}
+        <div className="absolute top-[-60px] right-[-60px] w-56 h-56 bg-primary-500/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-[-40px] left-[-40px] w-40 h-40 bg-amber-400/20 rounded-full blur-2xl pointer-events-none" />
+
         <div className="relative z-10">
-          <p className="text-sky-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+          <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
             Manajemen
           </p>
           <div>
+            <p className="text-primary-300 font-black text-[10px] uppercase tracking-[0.3em] mb-2">
+              Tes
+            </p>
+
             <h1 className="text-3xl md:text-4xl font-black tracking-tight mb-1">
               Semua Tes.
             </h1>
-            <p className="text-slate-400 font-medium text-sm">
+            <p className="text-primary-100/90 font-medium text-sm">
               Daftar semua tes dari seluruh paket. Klik untuk mengelola sub-tes dan soal.
             </p>
           </div>
           <div className="grid grid-cols-3 gap-4 mt-8">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-sky-500/30 flex items-center justify-center">
                 <FileText className="size-5 text-sky-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{allTests.length}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Total</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Total</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-indigo-500/30 flex items-center justify-center">
-                <CheckCircle2 className="size-5 text-indigo-300" />
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
+              <div className="size-10 rounded-xl bg-primary-500/30 flex items-center justify-center">
+                <CheckCircle2 className="size-5 text-primary-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{activeCount}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Aktif</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Aktif</p>
               </div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 flex items-center gap-3 border border-white/10">
               <div className="size-10 rounded-xl bg-rose-500/30 flex items-center justify-center">
                 <XCircle className="size-5 text-rose-300" />
               </div>
               <div>
                 <p className="text-2xl font-black leading-none">{inactiveCount}</p>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Nonaktif</p>
+                <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Nonaktif</p>
               </div>
             </div>
           </div>
@@ -154,17 +167,17 @@ export default function AdminTestsPage() {
 
       {/* LIST */}
       {filtered.length === 0 ? (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 p-16 text-center flex flex-col items-center">
+        <div className="bg-white rounded-3xl border border-slate-100 p-16 text-center flex flex-col items-center">
           <div className="size-16 rounded-2xl bg-sky-50 flex items-center justify-center mb-5">
             <FileText className="size-8 text-sky-400" />
           </div>
           <p className="text-slate-900 font-black text-lg mb-1">Belum ada tes.</p>
-          <p className="text-slate-400 font-medium text-sm">
+          <p className="text-primary-100/90 font-medium text-sm">
             Tes dibuat dari halaman tipe paket.
           </p>
         </div>
       ) : (
-        <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden divide-y divide-slate-50">
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden divide-y divide-slate-50">
           {filtered.map((test, index) => {
             const color = accentColors[index % accentColors.length]
             const subTestCount = test.subTests?.length ?? 0
@@ -191,7 +204,7 @@ export default function AdminTestsPage() {
                       className={cn(
                         'text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shrink-0',
                         test.isActive
-                          ? 'bg-indigo-50 text-indigo-600'
+                          ? 'bg-primary-50 text-primary-600'
                           : 'bg-slate-100 text-slate-400',
                       )}
                     >

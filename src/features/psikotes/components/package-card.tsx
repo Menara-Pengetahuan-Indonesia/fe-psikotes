@@ -2,22 +2,20 @@
 
 import Link from 'next/link'
 import { BookOpen, Loader2, Inbox, ArrowRight } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import type { ChildPackage } from '@/features/admin/types'
+import type { CatalogChildPackage } from '../types/catalog.types'
+
+interface ChildPackageCardProps {
+  child: CatalogChildPackage
+  categorySlug: string
+  categoryLabel?: string
+  lowestPrice?: number
+}
 
 function formatPrice(price: number) {
   return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(price)
 }
 
-interface ChildPackageCardProps {
-  child: ChildPackage
-  categorySlug: string
-}
-
-export function ChildPackageCard({ child, categorySlug }: ChildPackageCardProps) {
-  const tiers = child.packageTypes?.filter(pt => pt.isActive) ?? []
-  const lowestPrice = tiers.length > 0 ? Math.min(...tiers.map(t => t.price)) : null
-
+export function ChildPackageCard({ child, categorySlug, categoryLabel, lowestPrice }: ChildPackageCardProps) {
   return (
     <Link
       href={`/${categorySlug}/${child.id}`}
@@ -28,9 +26,9 @@ export function ChildPackageCard({ child, categorySlug }: ChildPackageCardProps)
           <div className="w-11 h-11 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center">
             <BookOpen className="w-5 h-5" />
           </div>
-          {lowestPrice !== null && (
-            <span className="text-xs font-bold text-primary-600">
-              Mulai {formatPrice(lowestPrice)}
+          {categoryLabel && (
+            <span className="text-[10px] font-bold uppercase tracking-wider text-primary-600 bg-primary-50 px-2.5 py-1 rounded-full">
+              {categoryLabel}
             </span>
           )}
         </div>
@@ -46,25 +44,16 @@ export function ChildPackageCard({ child, categorySlug }: ChildPackageCardProps)
           )}
         </div>
 
-        {tiers.length > 0 && (
-          <div className="space-y-2">
-            {tiers.map((tier) => (
-              <div
-                key={tier.id}
-                className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100"
-              >
-                <div className="flex items-center gap-2">
-                  <div className={cn(
-                    'w-2 h-2 rounded-full',
-                    tier.name.toLowerCase().includes('dasar') ? 'bg-emerald-400' :
-                    tier.name.toLowerCase().includes('lengkap') ? 'bg-blue-400' :
-                    'bg-violet-400'
-                  )} />
-                  <span className="text-sm font-semibold text-slate-700">{tier.name}</span>
-                </div>
-                <span className="text-sm font-bold text-slate-900">{formatPrice(tier.price)}</span>
-              </div>
-            ))}
+        {lowestPrice !== undefined && (
+          <div className="pt-1">
+            <span className="text-xs text-slate-400 font-medium">Mulai dari</span>
+            <p className="text-lg font-black text-slate-900">
+              {lowestPrice === 0 ? (
+                <span className="text-emerald-600">Gratis</span>
+              ) : (
+                formatPrice(lowestPrice)
+              )}
+            </p>
           </div>
         )}
       </div>

@@ -211,7 +211,7 @@ export function ExamInterface({
   return (
     <div className="min-h-screen bg-[#F2F2F7] flex flex-col">
       {/* STICKY HEADER */}
-      <header className="sticky top-0 z-40 bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-900 text-white shadow-lg">
+      <header className="sticky top-0 z-40 bg-gradient-to-r from-slate-900 via-slate-800 to-primary-900 text-white shadow-lg">
         <div className="max-w-5xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between mb-3">
             <button
@@ -244,7 +244,7 @@ export function ExamInterface({
                 </div>
               )}
               <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm">
-                <Brain className="size-4 text-indigo-300" />
+                <Brain className="size-4 text-primary-300" />
                 <span className="text-[10px] font-black uppercase tracking-widest text-slate-300">
                   {currentIdx + 1}/{questions.length}
                 </span>
@@ -255,7 +255,7 @@ export function ExamInterface({
           {/* Progress Bar */}
           <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-indigo-400 to-teal-400 transition-[width] duration-500 ease-out rounded-full"
+              className="h-full bg-gradient-to-r from-primary-400 to-teal-400 transition-[width] duration-500 ease-out rounded-full"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -270,8 +270,8 @@ export function ExamInterface({
             <div className="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden">
               <div className="px-8 py-6 border-b border-slate-50 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="size-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-                    <Hash className="size-5 text-indigo-600" />
+                  <div className="size-10 rounded-xl bg-primary-100 flex items-center justify-center">
+                    <Hash className="size-5 text-primary-600" />
                   </div>
                   <div>
                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Pertanyaan {currentIdx + 1}</p>
@@ -304,16 +304,16 @@ export function ExamInterface({
                     className={cn(
                       'w-full text-left p-5 rounded-2xl border-2 transition-colors duration-300 group flex items-center gap-4',
                       isSelected
-                        ? 'border-indigo-500 bg-white shadow-md'
-                        : 'border-slate-100 bg-white hover:border-indigo-200 hover:shadow-sm'
+                        ? 'border-primary-500 bg-white shadow-md'
+                        : 'border-slate-100 bg-white hover:border-primary-200 hover:shadow-sm'
                     )}
                   >
                     <span
                       className={cn(
                         'size-10 rounded-xl flex items-center justify-center text-sm font-black transition-colors shrink-0',
                         isSelected
-                          ? 'bg-indigo-600 text-white'
-                          : 'bg-slate-50 text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600'
+                          ? 'bg-primary-600 text-white'
+                          : 'bg-slate-50 text-slate-400 group-hover:bg-primary-50 group-hover:text-primary-600'
                       )}
                     >
                       {opt.label}
@@ -322,7 +322,7 @@ export function ExamInterface({
                       {opt.text}
                     </span>
                     {isSelected && (
-                      <CheckCircle2 className="size-5 text-indigo-600 shrink-0" />
+                      <CheckCircle2 className="size-5 text-primary-600 shrink-0" />
                     )}
                   </button>
                 )
@@ -383,12 +383,12 @@ export function ExamInterface({
                 <div className="divide-y divide-slate-50 max-h-60 overflow-y-auto">
                   {activityLog.map((log, i) => (
                     <div key={i} className="px-8 py-3 flex items-center gap-4">
-                      <div className="size-8 rounded-lg bg-indigo-50 flex items-center justify-center shrink-0">
-                        <Lock className="size-3.5 text-indigo-500" />
+                      <div className="size-8 rounded-lg bg-primary-50 flex items-center justify-center shrink-0">
+                        <Lock className="size-3.5 text-primary-500" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
-                          <span className="text-[10px] font-black text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full">
+                          <span className="text-[10px] font-black text-primary-600 bg-primary-50 px-2 py-0.5 rounded-full">
                             Soal {log.questionNum}
                           </span>
                           <span className="text-xs font-bold text-slate-900 truncate">{log.label}</span>
@@ -447,7 +447,7 @@ export function ExamInterface({
                       {cameraError && (
                         <button
                           onClick={startCamera}
-                          className="mt-3 text-[10px] font-black text-indigo-400 hover:text-indigo-300 uppercase tracking-widest"
+                          className="mt-3 text-[10px] font-black text-primary-400 hover:text-primary-300 uppercase tracking-widest"
                         >
                           Coba Lagi
                         </button>
@@ -499,7 +499,7 @@ export function ExamInterface({
                             className={cn(
                               'size-10 rounded-xl text-xs font-black transition-colors relative',
                               isCurrent
-                                ? 'bg-indigo-600 text-white shadow-md scale-110'
+                                ? 'bg-primary-600 text-white shadow-md scale-110'
                                 : isAnswered
                                   ? 'bg-teal-50 text-teal-600 border border-teal-100 hover:bg-teal-100'
                                   : 'bg-slate-50 text-slate-400 border border-slate-100 hover:bg-slate-100'
@@ -516,7 +516,7 @@ export function ExamInterface({
                 {/* Legend */}
                 <div className="pt-4 border-t border-slate-50 flex flex-wrap gap-4">
                   <div className="flex items-center gap-2">
-                    <div className="size-3 rounded bg-indigo-600" />
+                    <div className="size-3 rounded bg-primary-600" />
                     <span className="text-[10px] font-bold text-slate-400">Saat ini</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -554,7 +554,7 @@ export function ExamInterface({
             <h3 className="text-xl font-black text-slate-900 mb-2">{introSection.name}</h3>
             <p className="text-sm text-slate-400 font-medium mb-6">{introSection.description}</p>
             <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1.5 rounded-full">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-primary-500 bg-primary-50 px-3 py-1.5 rounded-full">
                 <Hash className="size-3.5" />
                 <span>{questions.filter((q) => q.sectionId === introSection.id).length} soal</span>
               </div>

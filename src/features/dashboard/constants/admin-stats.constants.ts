@@ -6,8 +6,8 @@ export const ADMIN_STATS = [
     value: 24,
     icon: FileText,
     color: 'indigo',
-    bgColor: 'bg-indigo-50',
-    textColor: 'text-indigo-600',
+    bgColor: 'bg-primary-50',
+    textColor: 'text-primary-600',
   },
   {
     label: 'Total Peserta',
@@ -31,8 +31,8 @@ export const ADMIN_STATS = [
     value: 87,
     icon: TrendingUp,
     color: 'indigo',
-    bgColor: 'bg-indigo-50',
-    textColor: 'text-indigo-600',
+    bgColor: 'bg-primary-50',
+    textColor: 'text-primary-600',
     suffix: '%',
   },
 ] as const;

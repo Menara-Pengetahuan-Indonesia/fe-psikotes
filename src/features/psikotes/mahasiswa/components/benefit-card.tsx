@@ -6,7 +6,7 @@ const THEME_BG: Record<string, string> = {
   teal: 'bg-primary-600',
   amber: 'bg-accent-500',
   sky: 'bg-sky-500',
-  indigo: 'bg-indigo-500',
+  indigo: 'bg-primary-500',
   rose: 'bg-rose-500',
 }
 

@@ -33,8 +33,8 @@ export function ExamResultScreen({
           <div className="grid grid-cols-1 gap-6">
             <StatCard
               icon={<Clock className="size-5" />}
-              iconBg="bg-indigo-50 text-indigo-600"
-              hoverBorder="hover:border-indigo-100"
+              iconBg="bg-primary-50 text-primary-600"
+              hoverBorder="hover:border-primary-100"
               value={timeSpent}
               label="Durasi Pengerjaan"
             />

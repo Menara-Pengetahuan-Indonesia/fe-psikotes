@@ -32,11 +32,16 @@ export function useLogin() {
       // Get redirect from URL params
       const redirect = searchParams.get('redirect')
 
-      // If redirect exists and is valid, use it; otherwise go to dashboard
+      // If redirect exists and is valid, use it; otherwise route by role
       if (redirect && redirect.startsWith('/')) {
         router.push(redirect)
       } else {
-        router.push('/dashboard')
+        const role = res.user.role
+        if (role === 'ADMIN' || role === 'SUPERADMIN') {
+          router.push('/admin')
+        } else {
+          router.push('/dashboard')
+        }
       }
     },
     onError: (error) => {
@@ -47,6 +52,7 @@ export function useLogin() {
 
 export function useRegister() {
   const router = useRouter()
+  const searchParams = useSearchParams()
 
   return useMutation({
     mutationFn: (data: RegisterFormData) =>
@@ -55,7 +61,12 @@ export function useRegister() {
       toast.success(
         'Registrasi berhasil! Silakan masuk.',
       )
-      router.push('/masuk')
+      const redirect = searchParams.get('redirect')
+      if (redirect && redirect.startsWith('/')) {
+        router.push(`/masuk?redirect=${encodeURIComponent(redirect)}`)
+      } else {
+        router.push('/masuk')
+      }
     },
     onError: (error) => {
       toast.error(extractErrorMessage(error))

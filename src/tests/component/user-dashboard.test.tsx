@@ -45,7 +45,7 @@ describe('UserDashboard', () => {
 
   it('renders quick access links', () => {
     render(<UserDashboard />)
-    expect(screen.getByText('Mulai Tes')).toBeInTheDocument()
-    expect(screen.getAllByText('Premium').length).toBeGreaterThanOrEqual(1)
+    expect(screen.getByText('Paket Saya')).toBeInTheDocument()
+    expect(screen.getByText('Tes Saya')).toBeInTheDocument()
   })
 })
