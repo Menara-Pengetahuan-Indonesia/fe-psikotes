@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { Send, Loader2, RotateCcw, ExternalLink } from 'lucide-react'
+import ReactMarkdown from 'react-markdown'
 import { cn } from '@/lib/utils'
 import { INITIAL_BUBBLES } from '../constants/diagnostic-bubbles.constants'
 
@@ -41,7 +42,7 @@ export function PsikotesDiagnostic() {
     }
   }, [messages, loading])
 
-  async function sendMessage(text: string) {
+  const sendMessage = useCallback(async (text: string) => {
     if (!text.trim() || loading) return
 
     const userMsg: Message = { role: 'user', content: text }
@@ -53,22 +54,62 @@ export function PsikotesDiagnostic() {
     setPhase('chatting')
 
     try {
-      const res = await fetch(`${CHATBOT_URL}/diagnostic/chat`, {
+      const res = await fetch(`${CHATBOT_URL}/diagnostic/chat/stream`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: newMessages }),
       })
-      if (!res.ok) throw new Error('API error')
-      const data: DiagnosticApiResponse = await res.json()
-      setMessages([...newMessages, { role: 'assistant', content: data.reply }])
-      setFollowUpBubbles(data.followUpBubbles ?? [])
-      if (data.recommendations) setRecommendations(data.recommendations)
+
+      if (!res.ok) {
+        const fallback = await fetch(`${CHATBOT_URL}/diagnostic/chat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages: newMessages }),
+        })
+        if (!fallback.ok) throw new Error('API error')
+        const data: DiagnosticApiResponse = await fallback.json()
+        setMessages([...newMessages, { role: 'assistant', content: data.reply }])
+        setFollowUpBubbles(data.followUpBubbles ?? [])
+        if (data.recommendations) setRecommendations(data.recommendations)
+        return
+      }
+
+      const reader = res.body?.getReader()
+      if (!reader) throw new Error('No reader')
+      const decoder = new TextDecoder()
+      let accumulated = ''
+
+      setMessages([...newMessages, { role: 'assistant', content: '' }])
+
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        const chunk = decoder.decode(value, { stream: true })
+        for (const line of chunk.split('\n')) {
+          if (!line.startsWith('data: ')) continue
+          const payload = line.slice(6)
+          if (payload === '[DONE]') break
+          try {
+            const parsed = JSON.parse(payload)
+            if (parsed.token) {
+              accumulated += parsed.token
+              setMessages([...newMessages, { role: 'assistant', content: accumulated }])
+            }
+            if (parsed.followUpBubbles) setFollowUpBubbles(parsed.followUpBubbles)
+            if (parsed.recommendations) setRecommendations(parsed.recommendations)
+          } catch { /* skip malformed lines */ }
+        }
+      }
     } catch {
-      setMessages([...newMessages, { role: 'assistant', content: 'Maaf, ada gangguan koneksi. Coba lagi ya.' }])
+      setMessages(prev => {
+        const last = prev[prev.length - 1]
+        if (last?.role === 'assistant' && last.content) return prev
+        return [...newMessages, { role: 'assistant', content: 'Maaf, ada gangguan koneksi. Coba lagi ya.' }]
+      })
     } finally {
       setLoading(false)
     }
-  }
+  }, [messages, loading])
 
   function handleSubmit(e?: React.FormEvent) {
     e?.preventDefault()
@@ -154,12 +195,27 @@ export function PsikotesDiagnostic() {
             {messages.map((msg, i) => (
               <div key={i} className={cn('flex gap-2', msg.role === 'user' ? 'justify-end' : 'justify-start')}>
                 <div className={cn(
-                  'max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed text-left whitespace-pre-wrap',
+                  'max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed text-left',
                   msg.role === 'user'
                     ? 'bg-primary-600 text-white rounded-br-md'
                     : 'bg-slate-100 text-slate-700 rounded-bl-md'
                 )}>
-                  {msg.content}
+                  {msg.role === 'assistant' ? (
+                    <ReactMarkdown
+                      components={{
+                        p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                        strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+                        em: ({ children }) => <em className="italic">{children}</em>,
+                        ul: ({ children }) => <ul className="list-disc pl-4 mb-2">{children}</ul>,
+                        ol: ({ children }) => <ol className="list-decimal pl-4 mb-2">{children}</ol>,
+                        li: ({ children }) => <li className="mb-0.5">{children}</li>,
+                      }}
+                    >
+                      {msg.content}
+                    </ReactMarkdown>
+                  ) : (
+                    <span className="whitespace-pre-wrap">{msg.content}</span>
+                  )}
                 </div>
               </div>
             ))}
