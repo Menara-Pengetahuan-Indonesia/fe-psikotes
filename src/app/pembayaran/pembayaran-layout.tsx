@@ -3,7 +3,6 @@
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import {
-  Loader2,
   ChevronRight,
   FlaskConical,
   Sparkles,
@@ -13,6 +12,7 @@ import {
   FileCheck2,
   HeartHandshake,
 } from 'lucide-react'
+import { Skeleton } from '@/components/ui/skeleton'
 import Link from 'next/link'
 import { toast } from 'sonner'
 
@@ -149,9 +149,83 @@ export function PembayaranLayout() {
 
   if (isLoading || !packageDetail) {
     return (
-      <div className="flex items-center justify-center py-32">
-        <Loader2 className="w-6 h-6 text-primary-500 animate-spin" />
-        <span className="ml-3 text-sm font-medium text-slate-500">Memuat detail paket...</span>
+      <div className="space-y-6">
+        {/* Breadcrumb skeleton */}
+        <div className="flex items-center gap-2">
+          <Skeleton className="h-4 w-16 rounded" />
+          <Skeleton className="h-4 w-4 rounded" />
+          <Skeleton className="h-4 w-24 rounded" />
+          <Skeleton className="h-4 w-4 rounded" />
+          <Skeleton className="h-4 w-32 rounded" />
+          <Skeleton className="h-4 w-4 rounded" />
+          <Skeleton className="h-4 w-20 rounded" />
+        </div>
+
+        {/* Hero card skeleton */}
+        <div className="bg-slate-100 animate-pulse rounded-3xl p-6 md:p-8 space-y-3">
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-6 w-20 rounded-full bg-slate-200" />
+            <Skeleton className="h-4 w-40 rounded bg-slate-200" />
+          </div>
+          <Skeleton className="h-9 w-2/3 rounded-xl bg-slate-200" />
+          <Skeleton className="h-4 w-full rounded-lg bg-slate-200" />
+          <Skeleton className="h-4 w-4/5 rounded-lg bg-slate-200" />
+        </div>
+
+        {/* Body skeleton */}
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="lg:col-span-2 space-y-6">
+            {/* Benefits card */}
+            <div className="bg-white rounded-3xl border border-slate-100 p-6 md:p-7 space-y-5">
+              <div className="flex items-center gap-2.5">
+                <Skeleton className="w-9 h-9 rounded-xl" />
+                <div className="space-y-1.5">
+                  <Skeleton className="h-5 w-44 rounded-lg" />
+                  <Skeleton className="h-3 w-36 rounded" />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} className="flex items-start gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-100">
+                    <Skeleton className="w-9 h-9 rounded-xl shrink-0" />
+                    <div className="flex-1 space-y-1.5">
+                      <Skeleton className="h-4 w-28 rounded-lg" />
+                      <Skeleton className="h-3 w-full rounded" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Info bar skeleton */}
+            <div className="flex items-center justify-between gap-3 bg-white rounded-2xl border border-slate-100 px-5 py-4">
+              <Skeleton className="h-4 w-48 rounded-lg" />
+              <Skeleton className="h-4 w-44 rounded-lg" />
+            </div>
+          </div>
+
+          {/* Order summary skeleton */}
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-3xl border border-slate-100 p-6 space-y-4">
+              <Skeleton className="h-6 w-32 rounded-lg" />
+              <div className="space-y-3 py-3 border-y border-slate-100">
+                <div className="flex justify-between">
+                  <Skeleton className="h-4 w-24 rounded" />
+                  <Skeleton className="h-4 w-20 rounded" />
+                </div>
+                <div className="flex justify-between">
+                  <Skeleton className="h-4 w-16 rounded" />
+                  <Skeleton className="h-4 w-24 rounded" />
+                </div>
+              </div>
+              <div className="flex justify-between">
+                <Skeleton className="h-5 w-12 rounded" />
+                <Skeleton className="h-6 w-28 rounded-lg" />
+              </div>
+              <Skeleton className="h-12 w-full rounded-xl" />
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

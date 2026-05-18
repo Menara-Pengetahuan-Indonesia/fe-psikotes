@@ -28,6 +28,8 @@ export interface Section {
   id: string
   name: string
   description?: string
+  /** Optional per-section duration in minutes (info only — global timer is used). */
+  duration?: number
   order: number
   questions: ExamQuestion[]
 }

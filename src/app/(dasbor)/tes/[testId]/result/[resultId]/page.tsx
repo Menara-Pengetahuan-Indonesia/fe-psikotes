@@ -5,8 +5,8 @@ import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
   ArrowLeft,
+  ArrowRight,
   Trophy,
-  Loader2,
   AlertTriangle,
   Sparkles,
   Package,
@@ -20,7 +20,9 @@ import {
   ChevronDown,
   ChevronUp,
   Download,
+  Loader2,
 } from 'lucide-react'
+import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
 import { api } from '@/lib/axios'
 import { useMyPackages } from '@/features/psikotes/hooks/use-catalog'
@@ -92,10 +94,58 @@ export default function ResultPage() {
 
   if (loading) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <Loader2 className="w-8 h-8 text-primary-500 animate-spin" />
-          <p className="text-sm font-bold text-slate-500">Memuat hasil...</p>
+      <div className="space-y-6">
+        {/* Hero skeleton */}
+        <div className="bg-slate-100 animate-pulse rounded-3xl p-6 md:p-8 space-y-4">
+          <div className="flex items-center gap-2 mb-5">
+            <Skeleton className="w-8 h-8 rounded-xl bg-slate-200" />
+            <Skeleton className="h-4 w-36 rounded-lg bg-slate-200" />
+          </div>
+          <div className="flex items-center gap-4">
+            <Skeleton className="w-14 h-14 rounded-2xl bg-slate-200 shrink-0" />
+            <div className="space-y-2 flex-1">
+              <Skeleton className="h-4 w-24 rounded-full bg-slate-200" />
+              <Skeleton className="h-7 w-2/3 rounded-xl bg-slate-200" />
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <Skeleton className="h-6 w-36 rounded-lg bg-slate-200" />
+            <Skeleton className="h-6 w-20 rounded-lg bg-slate-200" />
+            <Skeleton className="h-6 w-32 rounded-lg bg-slate-200" />
+          </div>
+        </div>
+
+        {/* Content skeleton */}
+        <div className="bg-white rounded-3xl border border-slate-100 p-6 md:p-8 space-y-4">
+          <div className="flex items-center gap-3 mb-2">
+            <Skeleton className="w-10 h-10 rounded-2xl" />
+            <Skeleton className="h-5 w-40 rounded-lg" />
+          </div>
+          <Skeleton className="h-4 w-full rounded-lg" />
+          <Skeleton className="h-4 w-5/6 rounded-lg" />
+          <Skeleton className="h-4 w-4/5 rounded-lg" />
+          <Skeleton className="h-4 w-full rounded-lg" />
+          <Skeleton className="h-4 w-3/4 rounded-lg" />
+        </div>
+
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
+          <div className="px-6 md:px-8 py-5 border-b border-slate-50 flex items-center gap-3">
+            <Skeleton className="w-10 h-10 rounded-2xl" />
+            <Skeleton className="h-5 w-36 rounded-lg" />
+          </div>
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div key={i} className="px-6 md:px-8 py-4 border-b border-slate-50 flex items-center gap-4">
+              <Skeleton className="h-4 flex-1 rounded-lg" />
+              <Skeleton className="h-6 w-20 rounded-full" />
+              <Skeleton className="w-4 h-4 rounded" />
+            </div>
+          ))}
+        </div>
+
+        {/* Action buttons skeleton */}
+        <div className="flex flex-col sm:flex-row gap-3 pt-2">
+          <Skeleton className="flex-1 h-12 rounded-xl" />
+          <Skeleton className="flex-1 h-12 rounded-xl" />
         </div>
       </div>
     )
@@ -127,6 +177,10 @@ export default function ResultPage() {
   const reviewData = parentPackage?.reviewData ?? null
   const reviewedAt = parentPackage?.reviewedAt ?? null
   const reviewedBy = parentPackage?.reviewedBy ?? null
+
+  const allTestsCompleted = !!parentPackage?.tests?.length &&
+    parentPackage.tests.every((t) => t.session?.status === 'COMPLETED')
+  const remainingTests = parentPackage?.tests?.filter((t) => t.session?.status !== 'COMPLETED') ?? []
 
   const toggleAssessment = (idx: number) => {
     setExpandedAssessments((prev) => {
@@ -243,20 +297,22 @@ export default function ResultPage() {
             </span>
             <span className={cn(
               'inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-1 rounded-lg',
-              isPublished ? 'text-emerald-950 bg-emerald-300' : 'text-amber-950 bg-amber-300',
+              isPublished ? 'text-emerald-950 bg-emerald-300' : allTestsCompleted ? 'text-amber-950 bg-amber-300' : 'text-slate-900 bg-slate-200',
             )}>
               {isPublished ? (
                 <><UserCheck className="w-3 h-3" /> Laporan Tersedia</>
-              ) : (
+              ) : allTestsCompleted ? (
                 <><ClipboardList className="w-3 h-3" /> Menunggu Review</>
+              ) : (
+                <><ArrowRight className="w-3 h-3" /> Lanjutkan Tes Lainnya</>
               )}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Waiting state */}
-      {!isPublished && (
+      {/* Waiting state — only shown when ALL tests in package are done */}
+      {!isPublished && allTestsCompleted && (
         <div className="relative bg-white rounded-3xl border border-amber-100 shadow-sm overflow-hidden">
           <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-amber-50 to-transparent rounded-bl-full pointer-events-none opacity-60" />
           <div className="relative p-6 md:p-8 flex flex-col items-center text-center">
@@ -265,11 +321,43 @@ export default function ResultPage() {
             </div>
             <h2 className="text-lg font-black text-slate-900 mb-2">Menunggu Review Psikolog</h2>
             <p className="text-sm text-slate-500 max-w-sm leading-relaxed">
-              Jawaban kamu sudah kami terima. Psikolog kami sedang menganalisis hasilnya dan akan memberikan laporan secepatnya.
+              Semua tes dalam paket ini sudah selesai. Psikolog kami sedang menganalisis hasilnya dan akan memberikan laporan secepatnya.
             </p>
             <div className="mt-5 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-50 border border-amber-100">
               <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
               <span className="text-xs font-bold text-amber-700">Dalam proses review</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Continue other tests — shown when package still has incomplete tests */}
+      {!isPublished && !allTestsCompleted && remainingTests.length > 0 && (
+        <div className="relative bg-white rounded-3xl border border-primary-100 shadow-sm overflow-hidden">
+          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary-50 to-transparent rounded-bl-full pointer-events-none opacity-60" />
+          <div className="relative p-6 md:p-8">
+            <div className="flex items-start gap-4 mb-5">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-sm shadow-primary-200 shrink-0">
+                <Sparkles className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-base font-black text-slate-900 mb-1">Tes ini selesai!</h2>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  Masih ada {remainingTests.length} tes lain yang perlu diselesaikan sebelum laporan psikologis bisa dibuat.
+                </p>
+              </div>
+            </div>
+            <div className="space-y-2">
+              {remainingTests.map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => router.push(`/tes/${t.id}`)}
+                  className="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-2xl bg-primary-50 border border-primary-100 hover:bg-primary-100 transition-colors text-left"
+                >
+                  <span className="text-sm font-bold text-slate-900">{t.name}</span>
+                  <ArrowRight className="w-4 h-4 text-primary-600 shrink-0" />
+                </button>
+              ))}
             </div>
           </div>
         </div>

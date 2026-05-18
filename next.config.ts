@@ -24,26 +24,34 @@ const nextConfig: NextConfig = {
       destination: `${process.env.NEXT_PUBLIC_API_URL}/:path*`,
     },
   ],
-  headers: async () => [
-    {
-      source: '/_next/static/:path*',
-      headers: [
-        {
-          key: 'Cache-Control',
-          value: 'public, max-age=31536000, immutable',
-        },
-      ],
-    },
-    {
-      source: '/fonts/:path*',
-      headers: [
-        {
-          key: 'Cache-Control',
-          value: 'public, max-age=31536000, immutable',
-        },
-      ],
-    },
-  ],
+  // Custom Cache-Control hanya untuk production build.
+  // Di dev (Turbopack), header `immutable` membuat browser menahan chunk lama
+  // sehingga sering muncul error "module factory is not available" saat HMR.
+  headers: async () => {
+    if (process.env.NODE_ENV !== 'production') {
+      return []
+    }
+    return [
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/fonts/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ]
+  },
 };
 
 export default analyzer(nextConfig);

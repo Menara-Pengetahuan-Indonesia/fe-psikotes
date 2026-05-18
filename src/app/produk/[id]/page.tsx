@@ -3,7 +3,6 @@
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
-  Loader2,
   ChevronRight,
   ArrowRight,
   Inbox,
@@ -12,6 +11,7 @@ import {
   Clock,
   ShieldCheck,
 } from 'lucide-react'
+import { Skeleton } from '@/components/ui/skeleton'
 import { useCatalogChildPackageById, useCatalogPackageTypes } from '@/features/psikotes/hooks/use-catalog'
 import { parseDescription, type DescriptionBlock } from '@/features/psikotes/utils/parse-description'
 import type { CatalogPackageType } from '@/features/psikotes/types/catalog.types'
@@ -150,11 +150,69 @@ export default function ProdukDetailPage() {
 
   if (isLoading) {
     return (
-      <main className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="flex flex-col items-center gap-3">
-          <Loader2 className="w-8 h-8 text-primary-500 animate-spin" />
-          <p className="text-sm font-medium text-slate-400">Memuat paket...</p>
-        </div>
+      <main className="min-h-screen bg-slate-50 pb-24 md:pb-0">
+        {/* Hero skeleton */}
+        <section className="relative overflow-hidden pt-20 md:pt-24 pb-10 md:pb-12 bg-gradient-to-br from-primary-50 via-primary-50/60 to-amber-50/40">
+          <div className="relative max-w-6xl mx-auto px-6">
+            <div className="flex items-center gap-2 mb-5">
+              <Skeleton className="h-4 w-16 rounded" />
+              <Skeleton className="h-4 w-4 rounded" />
+              <Skeleton className="h-4 w-32 rounded" />
+            </div>
+            <div className="max-w-3xl space-y-4">
+              <Skeleton className="h-12 w-3/4 rounded-xl" />
+              <Skeleton className="h-8 w-1/2 rounded-xl" />
+              <div className="flex gap-2 pt-1">
+                <Skeleton className="h-7 w-32 rounded-full" />
+                <Skeleton className="h-7 w-28 rounded-full" />
+                <Skeleton className="h-7 w-24 rounded-full" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Body skeleton */}
+        <section className="relative max-w-6xl mx-auto px-6 py-8 md:py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr,380px] gap-8 lg:gap-10">
+            {/* Left: description */}
+            <div className="order-2 lg:order-1 space-y-6">
+              <div className="bg-white rounded-3xl border border-slate-100 p-6 md:p-8 space-y-4">
+                <div className="flex items-center gap-2.5 mb-2">
+                  <Skeleton className="w-9 h-9 rounded-xl" />
+                  <div className="space-y-1.5">
+                    <Skeleton className="h-5 w-36 rounded-lg" />
+                    <Skeleton className="h-3 w-48 rounded" />
+                  </div>
+                </div>
+                <Skeleton className="h-4 w-full rounded-lg" />
+                <Skeleton className="h-4 w-5/6 rounded-lg" />
+                <Skeleton className="h-4 w-4/5 rounded-lg" />
+                <Skeleton className="h-4 w-full rounded-lg" />
+                <Skeleton className="h-4 w-3/4 rounded-lg" />
+              </div>
+              <div className="bg-slate-100 rounded-3xl h-48 animate-pulse" />
+            </div>
+
+            {/* Right: tier cards */}
+            <div className="order-1 lg:order-2 space-y-4">
+              <div className="flex items-center justify-between">
+                <Skeleton className="h-7 w-28 rounded-lg" />
+                <Skeleton className="h-4 w-12 rounded" />
+              </div>
+              {Array.from({ length: 2 }).map((_, i) => (
+                <div key={i} className="bg-white rounded-2xl border border-slate-100 p-5 space-y-3">
+                  <Skeleton className="h-5 w-32 rounded-lg" />
+                  <Skeleton className="h-4 w-full rounded-lg" />
+                  <Skeleton className="h-4 w-4/5 rounded-lg" />
+                  <div className="pt-3 border-t border-slate-100 space-y-3">
+                    <Skeleton className="h-8 w-36 rounded-lg" />
+                    <Skeleton className="h-11 w-full rounded-xl" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
     )
   }

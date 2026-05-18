@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import { useQueryClient } from '@tanstack/react-query'
 import {
   ArrowLeft,
   ArrowRight,
@@ -16,9 +17,14 @@ import {
   AlertTriangle,
   Save,
   X,
+  Sparkles,
+  PlayCircle,
+  Lock,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { api } from '@/lib/axios'
+import { Skeleton } from '@/components/ui/skeleton'
+import { TestInstructionBody } from '@/features/psikotes/components/test-instruction-body'
 import type { TestConfig, ExamQuestion } from '@/features/psikotes/types/exam.types'
 import { ExamSubmitModal } from '@/features/psikotes/gratis/components/exam-submit-modal'
 import {
@@ -50,11 +56,19 @@ interface TestState {
 }
 
 function getAllQuestions(config: TestConfig): ExamQuestion[] {
-  const questions = [...config.questions]
-  config.sections.forEach((section) => {
-    questions.push(...section.questions)
-  })
-  return questions.sort((a, b) => a.order - b.order)
+  // Build the global question order by concatenating each section's questions
+  // in order. We CANNOT sort by `question.order` globally because that field
+  // is reset per subtest (each subtest starts at 1), and a global sort would
+  // interleave questions across subtests.
+  const flat: ExamQuestion[] = []
+  // Stand-alone questions not attached to a section come first (rare, but
+  // possible). Sorted by their own order.
+  flat.push(...[...config.questions].sort((a, b) => a.order - b.order))
+  const sectionsSorted = [...config.sections].sort((a, b) => a.order - b.order)
+  for (const s of sectionsSorted) {
+    flat.push(...[...s.questions].sort((a, b) => a.order - b.order))
+  }
+  return flat
 }
 
 function formatTimer(seconds: number) {
@@ -76,6 +90,7 @@ function isAnswered(q: ExamQuestion, ans: AnswerValue | undefined): boolean {
 export default function TesPage() {
   const params = useParams()
   const router = useRouter()
+  const queryClient = useQueryClient()
   const testId = params.testId as string
 
   const [config, setConfig] = useState<TestConfig | null>(null)
@@ -84,6 +99,16 @@ export default function TesPage() {
   const [submitting, setSubmitting] = useState(false)
   const [startedAt, setStartedAt] = useState<number | null>(null)
   const [showExitDialog, setShowExitDialog] = useState(false)
+  const [sessionStatus, setSessionStatus] = useState<'NOT_STARTED' | 'IN_PROGRESS'>('NOT_STARTED')
+  const [startingSession, setStartingSession] = useState(false)
+
+  // Subtest-by-subtest gating. `activeSectionIdx` points into the sorted
+  // sections array. Sections before it are sealed (read-only); the active
+  // section is editable; sections after it are locked. When the user finishes
+  // the last question of the active section, `pendingNextSectionIdx` is set,
+  // showing the intermission screen.
+  const [activeSectionIdx, setActiveSectionIdx] = useState(0)
+  const [pendingNextSectionIdx, setPendingNextSectionIdx] = useState<number | null>(null)
 
   const [currentIdx, setCurrentIdx] = useState(0)
   const [answers, setAnswers] = useState<AnswersMap>({})
@@ -98,6 +123,58 @@ export default function TesPage() {
 
   const saveTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({})
   const startedSubTestsRef = useRef<Set<string>>(new Set())
+
+  // Hydrate exam state (answers, timer, current question, active section)
+  // once we know when the session was started. Used both on resume
+  // (IN_PROGRESS) and right after the user clicks "Mulai Mengerjakan".
+  const hydrateExamState = useCallback(
+    (cfg: TestConfig, savedMap: AnswersMap, startedMs: number) => {
+      setAnswers(savedMap)
+      setStartedAt(startedMs)
+
+      if (cfg.test.duration > 0) {
+        const elapsed = Math.floor((Date.now() - startedMs) / 1000)
+        const remaining = Math.max(0, cfg.test.duration * 60 - elapsed)
+        setTimeLeft(remaining)
+      }
+
+      const qs = getAllQuestions(cfg)
+      const sortedSections = [...cfg.sections].sort((a, b) => a.order - b.order)
+
+      // Determine the active section on resume: the first section that still
+      // has at least one unanswered question. Sections before that are
+      // considered sealed (already finished). If every section is fully
+      // answered, point to the last one so the user can submit.
+      let activeIdx = 0
+      if (sortedSections.length > 0) {
+        const firstIncomplete = sortedSections.findIndex((s) =>
+          s.questions.some((q) => !isAnswered(q, savedMap[q.id])),
+        )
+        activeIdx =
+          firstIncomplete === -1 ? sortedSections.length - 1 : firstIncomplete
+      }
+      setActiveSectionIdx(activeIdx)
+
+      // Place cursor at the first unanswered question within the active
+      // section, falling back to its first question.
+      const activeSection = sortedSections[activeIdx]
+      let cursor = 0
+      if (activeSection) {
+        const firstUnanswered = activeSection.questions.find(
+          (q) => !isAnswered(q, savedMap[q.id]),
+        )
+        const target = firstUnanswered ?? activeSection.questions[0]
+        cursor = target ? qs.findIndex((q) => q.id === target.id) : 0
+      } else {
+        const firstUnansweredIdx = qs.findIndex(
+          (q) => !isAnswered(q, savedMap[q.id]),
+        )
+        cursor = firstUnansweredIdx === -1 ? 0 : firstUnansweredIdx
+      }
+      setCurrentIdx(cursor < 0 ? 0 : cursor)
+    },
+    [],
+  )
 
   useEffect(() => {
     let cancelled = false
@@ -128,32 +205,23 @@ export default function TesPage() {
           }
         }
 
-        let sessionStartedAt: string | null = state.startedAt
-
-        if (state.status === 'NOT_STARTED') {
-          const startRes = await api.post(`/test-session/tests/${testId}/start`)
-          sessionStartedAt = startRes.data.data?.startedAt ?? new Date().toISOString()
-        }
-
-        if (cancelled) return
-
-        const startedMs = sessionStartedAt
-          ? new Date(sessionStartedAt).getTime()
-          : Date.now()
-
         setConfig(cfg)
-        setAnswers(savedMap)
-        setStartedAt(startedMs)
 
-        if (cfg.test.duration > 0) {
-          const elapsed = Math.floor((Date.now() - startedMs) / 1000)
-          const remaining = Math.max(0, cfg.test.duration * 60 - elapsed)
-          setTimeLeft(remaining)
+        // If user already started the test (IN_PROGRESS), skip the intro and
+        // hydrate exam state. Otherwise, leave sessionStatus as NOT_STARTED so
+        // the intro screen shows and the timer/session won't begin until the
+        // user clicks "Mulai Mengerjakan".
+        if (state.status === 'IN_PROGRESS') {
+          const startedMs = state.startedAt
+            ? new Date(state.startedAt).getTime()
+            : Date.now()
+          setSessionStatus('IN_PROGRESS')
+          hydrateExamState(cfg, savedMap, startedMs)
+        } else {
+          // Stash any saved answers (in case BE has them) but don't start timer.
+          setAnswers(savedMap)
+          setSessionStatus('NOT_STARTED')
         }
-
-        const qs = getAllQuestions(cfg)
-        const firstUnansweredIdx = qs.findIndex((q) => !isAnswered(q, savedMap[q.id]))
-        setCurrentIdx(firstUnansweredIdx === -1 ? 0 : firstUnansweredIdx)
       } catch (err: unknown) {
         if (cancelled) return
         const e = err as { response?: { data?: { message?: string } } }
@@ -166,19 +234,57 @@ export default function TesPage() {
     return () => {
       cancelled = true
     }
-  }, [testId, router])
+  }, [testId, router, hydrateExamState])
+
+  const handleStartSession = useCallback(async () => {
+    if (!config || startingSession) return
+    setStartingSession(true)
+    try {
+      const startRes = await api.post(`/test-session/tests/${testId}/start`)
+      const startedAtIso: string = startRes.data.data?.startedAt ?? new Date().toISOString()
+      const startedMs = new Date(startedAtIso).getTime()
+      hydrateExamState(config, answers, startedMs)
+      setSessionStatus('IN_PROGRESS')
+    } catch (err: unknown) {
+      const e = err as { response?: { data?: { message?: string } } }
+      setError(e?.response?.data?.message ?? 'Gagal memulai tes. Coba lagi.')
+    } finally {
+      setStartingSession(false)
+    }
+  }, [config, answers, testId, startingSession, hydrateExamState])
 
   const questions = useMemo(() => (config ? getAllQuestions(config) : []), [config])
   const question = questions[currentIdx]
-  const sections = config?.sections ?? []
-  const hasSections = sections.length > 0
+  const sortedSections = useMemo(
+    () => (config ? [...config.sections].sort((a, b) => a.order - b.order) : []),
+    [config],
+  )
+  const hasSections = sortedSections.length > 0
   const hasTimer = (config?.test.duration ?? 0) > 0
-  const currentSection =
-    hasSections && question
-      ? sections.find((s) => s.questions.some((q) => q.id === question.id))
-      : null
+  const activeSection = hasSections ? sortedSections[activeSectionIdx] ?? null : null
+  // Counts within the active section (used in the header and sidebar).
+  const activeSectionQuestionIds = useMemo(
+    () => new Set(activeSection?.questions.map((q) => q.id) ?? []),
+    [activeSection],
+  )
+  const activeSectionTotal = activeSection?.questions.length ?? 0
+  // Cursor position within active section (1-based, for the header label).
+  const cursorInActiveSection = activeSection
+    ? activeSection.questions.findIndex((q) => q.id === question?.id) + 1
+    : 0
   const answeredCount = questions.filter((q) => isAnswered(q, answers[q.id])).length
-  const progress = questions.length > 0 ? ((currentIdx + 1) / questions.length) * 100 : 0
+  const progress =
+    activeSectionTotal > 0 ? (cursorInActiveSection / activeSectionTotal) * 100 : 0
+
+  // Convenience helpers for section gating in the sidebar.
+  const isSectionSealed = useCallback(
+    (sectionIdx: number) => sectionIdx < activeSectionIdx,
+    [activeSectionIdx],
+  )
+  const isSectionLocked = useCallback(
+    (sectionIdx: number) => sectionIdx > activeSectionIdx,
+    [activeSectionIdx],
+  )
 
   useEffect(() => {
     if (!config || !hasTimer || !startedAt) return
@@ -220,9 +326,12 @@ export default function TesPage() {
   }, [])
 
   useEffect(() => {
+    // Only start the camera once the user has actually begun the test, so the
+    // proctoring permission isn't requested on the intro/instruction screen.
+    if (sessionStatus !== 'IN_PROGRESS') return
     if (config?.features?.hasCamera) void startCamera()
     return () => stopCamera()
-  }, [config, startCamera, stopCamera])
+  }, [config, sessionStatus, startCamera, stopCamera])
 
   const flushAnswer = useCallback(async (q: ExamQuestion, value: AnswerValue) => {
     const subTestId = q.sectionId
@@ -322,18 +431,89 @@ export default function TesPage() {
     [question, updateAnswer],
   )
 
+  // Index of the active section's last question in the global flat array.
+  const activeSectionLastGlobalIdx = useMemo(() => {
+    if (!activeSection) return questions.length - 1
+    const lastQ = activeSection.questions[activeSection.questions.length - 1]
+    if (!lastQ) return questions.length - 1
+    return questions.findIndex((q) => q.id === lastQ.id)
+  }, [activeSection, questions])
+  const activeSectionFirstGlobalIdx = useMemo(() => {
+    if (!activeSection) return 0
+    const firstQ = activeSection.questions[0]
+    if (!firstQ) return 0
+    return questions.findIndex((q) => q.id === firstQ.id)
+  }, [activeSection, questions])
+
+  const isLastSection = hasSections
+    ? activeSectionIdx >= sortedSections.length - 1
+    : true
+
   const handleNext = useCallback(() => {
-    if (currentIdx < questions.length - 1) setCurrentIdx((i) => i + 1)
-    else setShowSubmitModal(true)
-  }, [currentIdx, questions.length])
+    // If we have sections and the user is on the last question of the active
+    // section, either show the intermission for the next section, or open the
+    // submit modal if this was the final section.
+    if (hasSections && currentIdx >= activeSectionLastGlobalIdx) {
+      if (isLastSection) {
+        setShowSubmitModal(true)
+      } else {
+        setPendingNextSectionIdx(activeSectionIdx + 1)
+      }
+      return
+    }
+    if (currentIdx < questions.length - 1) {
+      setCurrentIdx((i) => i + 1)
+    } else {
+      setShowSubmitModal(true)
+    }
+  }, [
+    hasSections,
+    currentIdx,
+    activeSectionLastGlobalIdx,
+    isLastSection,
+    activeSectionIdx,
+    questions.length,
+  ])
 
   const handleBack = useCallback(() => {
-    if (currentIdx > 0) setCurrentIdx((i) => i - 1)
-  }, [currentIdx])
+    // Don't allow stepping back past the start of the active section — sealed
+    // sections are read-only.
+    const minIdx = hasSections ? activeSectionFirstGlobalIdx : 0
+    if (currentIdx > minIdx) setCurrentIdx((i) => i - 1)
+  }, [currentIdx, hasSections, activeSectionFirstGlobalIdx])
 
-  const handleJumpTo = useCallback((idx: number) => {
-    setCurrentIdx(idx)
-  }, [])
+  const handleJumpTo = useCallback(
+    (idx: number) => {
+      // Ignore jumps outside the active section. Sealed/locked sections are
+      // not navigable.
+      const target = questions[idx]
+      if (!target) return
+      if (hasSections && !activeSectionQuestionIds.has(target.id)) return
+      setCurrentIdx(idx)
+    },
+    [questions, hasSections, activeSectionQuestionIds],
+  )
+
+  const handleAdvanceToNextSection = useCallback(() => {
+    if (pendingNextSectionIdx === null) return
+    const nextIdx = pendingNextSectionIdx
+    const nextSection = sortedSections[nextIdx]
+    if (!nextSection) {
+      setPendingNextSectionIdx(null)
+      return
+    }
+    setActiveSectionIdx(nextIdx)
+    // Place cursor at first unanswered question of the new section, or its
+    // first question if all already answered.
+    const firstUnanswered =
+      nextSection.questions.find((q) => !isAnswered(q, answers[q.id])) ??
+      nextSection.questions[0]
+    if (firstUnanswered) {
+      const globalIdx = questions.findIndex((q) => q.id === firstUnanswered.id)
+      if (globalIdx >= 0) setCurrentIdx(globalIdx)
+    }
+    setPendingNextSectionIdx(null)
+  }, [pendingNextSectionIdx, sortedSections, answers, questions])
 
   const handleConfirmSubmit = useCallback(async () => {
     setSubmitting(true)
@@ -366,17 +546,49 @@ export default function TesPage() {
       const res = await api.post(`/tests/${testId}/submit`, { answers: payloadAnswers })
       stopCamera()
       setShowSubmitModal(false)
+      await queryClient.invalidateQueries({ queryKey: ['catalog', 'my-packages'] })
       router.push(`/tes/${testId}/result/${res.data.data.testResult.id}`)
     } catch (err: unknown) {
-      const e = err as { response?: { data?: { message?: string } } }
-      setError(e?.response?.data?.message ?? 'Gagal mengirim jawaban. Coba lagi.')
-      setSubmitting(false)
-      setShowSubmitModal(false)
+      // The BE submit can be slow (heavy DB work), and the Next.js dev proxy
+      // may reset the connection before the BE actually finishes. Often the
+      // submit DID succeed server-side. Poll the state endpoint a few times
+      // to recover from this case before showing an error.
+      let recovered = false
+      for (let attempt = 0; attempt < 6; attempt++) {
+        await new Promise((r) => setTimeout(r, 2000))
+        try {
+          const stateRes = await api.get(
+            `/test-session/tests/${testId}/state`,
+          )
+          const state = stateRes.data?.data
+          if (state?.status === 'COMPLETED' && state?.resultId) {
+            stopCamera()
+            setShowSubmitModal(false)
+            await queryClient.invalidateQueries({
+              queryKey: ['catalog', 'my-packages'],
+            })
+            router.push(`/tes/${testId}/result/${state.resultId}`)
+            recovered = true
+            break
+          }
+        } catch {
+          /* keep polling */
+        }
+      }
+      if (!recovered) {
+        const e = err as { response?: { data?: { message?: string } } }
+        setError(
+          e?.response?.data?.message ??
+            'Gagal mengirim jawaban. Jawabanmu mungkin sudah tersimpan — coba muat ulang halaman.',
+        )
+        setSubmitting(false)
+        setShowSubmitModal(false)
+      }
     }
-  }, [testId, answers, questions, flushAnswer, stopCamera, router])
+  }, [testId, answers, questions, flushAnswer, stopCamera, router, queryClient])
 
   const questionsBySection = hasSections
-    ? sections.map((s) => ({
+    ? sortedSections.map((s) => ({
         section: s,
         questions: questions
           .map((q, idx) => ({ ...q, globalIdx: idx }))
@@ -393,33 +605,320 @@ export default function TesPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <Loader2 className="size-10 text-primary-600 animate-spin" />
-          <p className="text-sm font-bold text-slate-500">Memuat tes...</p>
-        </div>
+      <div className="min-h-screen bg-slate-50 flex flex-col">
+        {/* Header skeleton — mirroring sticky exam header */}
+        <header className="sticky top-0 z-40 bg-gradient-to-r from-primary-700 via-primary-700 to-primary-800 text-white shadow-lg">
+          <div className="max-w-5xl mx-auto px-4 md:px-6 py-3 md:py-4">
+            <div className="flex items-center justify-between mb-3 gap-3">
+              <div className="flex items-center gap-2">
+                <Skeleton className="size-8 rounded-xl bg-white/15" />
+                <Skeleton className="hidden md:block h-4 w-12 rounded-md bg-white/15" />
+              </div>
+              <Skeleton className="h-9 md:h-10 w-28 md:w-32 rounded-full bg-white/15" />
+              <div className="flex items-center gap-2">
+                <Skeleton className="hidden md:block h-8 w-24 rounded-full bg-white/15" />
+                <Skeleton className="h-8 w-16 rounded-full bg-white/15" />
+              </div>
+            </div>
+            <Skeleton className="w-full h-1.5 rounded-full bg-white/15" />
+          </div>
+        </header>
+
+        {/* Main skeleton — mirroring 12-col grid */}
+        <main className="flex-grow max-w-5xl mx-auto px-4 md:px-6 py-6 md:py-8 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            {/* Question card */}
+            <div className="lg:col-span-8 space-y-6">
+              <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden">
+                <div className="px-6 md:px-8 py-5 border-b border-slate-50 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <Skeleton className="size-10 rounded-xl shrink-0" />
+                    <div className="min-w-0 space-y-1.5">
+                      <Skeleton className="h-3 w-24 rounded-md" />
+                      <Skeleton className="h-3 w-32 rounded-md" />
+                    </div>
+                  </div>
+                  <Skeleton className="h-7 w-16 rounded-full" />
+                </div>
+
+                <div className="p-6 md:p-8 space-y-5">
+                  <div className="space-y-2.5">
+                    <Skeleton className="h-5 w-5/6 rounded-lg" />
+                    <Skeleton className="h-5 w-3/4 rounded-lg" />
+                    <Skeleton className="h-5 w-2/3 rounded-lg" />
+                  </div>
+
+                  <div className="space-y-3 pt-2">
+                    {Array.from({ length: 4 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center gap-3 p-4 rounded-2xl border border-slate-100"
+                      >
+                        <Skeleton className="size-5 rounded-full shrink-0" />
+                        <Skeleton className="h-4 flex-1 rounded-md" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="px-6 md:px-8 py-4 border-t border-slate-50 flex items-center justify-between gap-3">
+                  <Skeleton className="h-11 w-28 rounded-2xl" />
+                  <Skeleton className="h-11 w-32 rounded-2xl" />
+                </div>
+              </div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:col-span-4 space-y-6">
+              <div className="bg-white rounded-3xl border border-slate-100 p-6 space-y-4">
+                <div className="flex items-center gap-3">
+                  <Skeleton className="size-10 rounded-xl" />
+                  <div className="space-y-1.5 flex-1">
+                    <Skeleton className="h-3.5 w-20 rounded-md" />
+                    <Skeleton className="h-2.5 w-28 rounded-md" />
+                  </div>
+                </div>
+                <Skeleton className="aspect-video w-full rounded-2xl" />
+              </div>
+
+              <div className="bg-white rounded-3xl border border-slate-100 p-6 space-y-4">
+                <div className="flex items-center gap-3">
+                  <Skeleton className="size-10 rounded-xl" />
+                  <Skeleton className="h-4 w-32 rounded-md" />
+                </div>
+                <div className="grid grid-cols-5 gap-2">
+                  {Array.from({ length: 20 }).map((_, i) => (
+                    <Skeleton key={i} className="aspect-square rounded-xl" />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
       </div>
     )
   }
 
   if (error || !config || !question) {
-    return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
-        <div className="bg-white rounded-3xl border border-slate-100 p-12 text-center flex flex-col items-center max-w-md">
-          <div className="size-16 rounded-2xl bg-rose-50 flex items-center justify-center mb-5">
-            <AlertTriangle className="size-8 text-rose-400" />
+    // Only treat missing `question` as an error AFTER the user has started the
+    // session. While we're still on the intro screen, `question` will be
+    // undefined by design (we haven't dropped the user into the exam yet).
+    if (!error && config && sessionStatus === 'NOT_STARTED') {
+      // fall through to intro screen below
+    } else {
+      return (
+        <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
+          <div className="bg-white rounded-3xl border border-slate-100 p-12 text-center flex flex-col items-center max-w-md">
+            <div className="size-16 rounded-2xl bg-rose-50 flex items-center justify-center mb-5">
+              <AlertTriangle className="size-8 text-rose-400" />
+            </div>
+            <p className="text-slate-900 font-black text-lg mb-1">{error ?? 'Tes tidak ditemukan'}</p>
+            <p className="text-slate-400 font-medium text-sm mb-6">
+              Pastikan tes sudah dipublikasi dan paket sudah kamu miliki.
+            </p>
+            <button
+              onClick={() => router.back()}
+              className="h-12 px-8 bg-primary-600 hover:bg-primary-700 text-white rounded-2xl font-black text-sm transition-colors"
+            >
+              <ArrowLeft className="size-4 mr-2 inline" /> Kembali
+            </button>
           </div>
-          <p className="text-slate-900 font-black text-lg mb-1">{error ?? 'Tes tidak ditemukan'}</p>
-          <p className="text-slate-400 font-medium text-sm mb-6">
-            Pastikan tes sudah dipublikasi dan paket sudah kamu miliki.
-          </p>
-          <button
-            onClick={() => router.back()}
-            className="h-12 px-8 bg-primary-600 hover:bg-primary-700 text-white rounded-2xl font-black text-sm transition-colors"
-          >
-            <ArrowLeft className="size-4 mr-2 inline" /> Kembali
-          </button>
         </div>
+      )
+    }
+  }
+
+  // Intro / instruction screen — shown before the user actually starts the
+  // test. Uses the same instruction body as the "Siap memulai tes?" modal in
+  // Paket Saya, so the experience is consistent regardless of entry point.
+  if (config && sessionStatus === 'NOT_STARTED') {
+    const totalQuestions = getAllQuestions(config).length
+    return (
+      <div className="min-h-screen bg-slate-50 flex flex-col">
+        <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100">
+          <div className="max-w-3xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center gap-3">
+            <button
+              onClick={() => router.back()}
+              className="flex items-center gap-2 text-slate-500 hover:text-slate-900 transition-colors group"
+            >
+              <div className="size-8 rounded-xl bg-slate-100 flex items-center justify-center group-hover:bg-slate-200 transition-colors">
+                <ArrowLeft className="size-4" />
+              </div>
+              <span className="text-sm font-bold hidden md:inline">Kembali</span>
+            </button>
+          </div>
+        </header>
+
+        <main className="flex-grow max-w-3xl mx-auto px-4 md:px-6 py-6 md:py-10 w-full">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm">
+            {/* Hero header */}
+            <div className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 px-6 md:px-8 pt-7 md:pt-9 pb-6 md:pb-8 text-white overflow-hidden">
+              <div
+                className="absolute inset-0 opacity-[0.08] pointer-events-none"
+                style={{
+                  backgroundImage:
+                    'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+                  backgroundSize: '20px 20px',
+                }}
+              />
+              <div className="absolute top-[-40px] right-[-30px] w-44 h-44 bg-amber-400/25 rounded-full blur-2xl" />
+
+              <div className="relative">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-400 text-amber-950 text-[10px] font-black uppercase tracking-wider mb-3">
+                  <Sparkles className="w-3 h-3" />
+                  Siap dimulai
+                </div>
+                <h1 className="text-xl md:text-2xl font-black text-white leading-tight">
+                  {config.test.name}
+                </h1>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  <span className="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-white/15 border border-white/20 px-2.5 py-1 rounded-lg">
+                    <Hash className="w-3 h-3" />
+                    {totalQuestions} pertanyaan
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-white/15 border border-white/20 px-2.5 py-1 rounded-lg">
+                    <Clock className="w-3 h-3" />
+                    {config.test.duration > 0
+                      ? `${config.test.duration} menit`
+                      : 'Tanpa batas waktu'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Body */}
+            <div className="px-6 md:px-8 py-6 md:py-7">
+              <TestInstructionBody description={config.test.description} />
+            </div>
+
+            {/* Footer / actions */}
+            <div className="px-6 md:px-8 py-4 bg-slate-50/60 border-t border-slate-100 flex flex-col-reverse sm:flex-row gap-2">
+              <button
+                type="button"
+                onClick={() => router.back()}
+                className="w-full sm:flex-1 h-11 px-5 rounded-xl bg-white border border-slate-200 text-slate-700 text-sm font-bold hover:bg-slate-50 hover:text-slate-900 transition-colors"
+              >
+                Kembali
+              </button>
+              <button
+                type="button"
+                onClick={handleStartSession}
+                disabled={startingSession}
+                className="w-full sm:flex-1 h-11 px-5 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 text-white text-sm font-bold hover:from-primary-700 hover:to-primary-800 transition-all shadow-sm shadow-primary-200 hover:shadow-md inline-flex items-center justify-center gap-2 disabled:opacity-60"
+              >
+                {startingSession ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Memulai...
+                  </>
+                ) : (
+                  <>
+                    <PlayCircle className="w-4 h-4" />
+                    Mulai Mengerjakan
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
+    )
+  }
+
+  // Intermission screen — shown after the user finishes a section's last
+  // question and before the next section starts. Tells them what's coming up.
+  if (
+    config &&
+    sessionStatus === 'IN_PROGRESS' &&
+    pendingNextSectionIdx !== null &&
+    sortedSections[pendingNextSectionIdx]
+  ) {
+    const nextSection = sortedSections[pendingNextSectionIdx]
+    const totalSections = sortedSections.length
+    return (
+      <div className="min-h-screen bg-slate-50 flex flex-col">
+        <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100">
+          <div className="max-w-3xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center gap-3">
+            <div className="flex items-center gap-2 text-slate-500">
+              <CheckCircle2 className="size-4 text-emerald-500" />
+              <span className="text-sm font-bold">
+                Subtes {activeSectionIdx + 1} selesai
+              </span>
+            </div>
+          </div>
+        </header>
+
+        <main className="flex-grow max-w-3xl mx-auto px-4 md:px-6 py-6 md:py-10 w-full">
+          <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm">
+            <div className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 px-6 md:px-8 pt-7 md:pt-9 pb-6 md:pb-8 text-white overflow-hidden">
+              <div
+                className="absolute inset-0 opacity-[0.08] pointer-events-none"
+                style={{
+                  backgroundImage:
+                    'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+                  backgroundSize: '20px 20px',
+                }}
+              />
+              <div className="absolute top-[-40px] right-[-30px] w-44 h-44 bg-amber-400/25 rounded-full blur-2xl" />
+
+              <div className="relative">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-400 text-amber-950 text-[10px] font-black uppercase tracking-wider mb-3">
+                  <Sparkles className="w-3 h-3" />
+                  Subtes {pendingNextSectionIdx + 1} dari {totalSections}
+                </div>
+                <h1 className="text-xl md:text-2xl font-black text-white leading-tight">
+                  {nextSection.name}
+                </h1>
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  <span className="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-white/15 border border-white/20 px-2.5 py-1 rounded-lg">
+                    <Hash className="w-3 h-3" />
+                    {nextSection.questions.length} pertanyaan
+                  </span>
+                  {nextSection.duration && nextSection.duration > 0 && (
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-white/15 border border-white/20 px-2.5 py-1 rounded-lg">
+                      <Clock className="w-3 h-3" />
+                      {nextSection.duration} menit
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="px-6 md:px-8 py-6 md:py-7 space-y-4">
+              {nextSection.description?.trim() ? (
+                <div>
+                  <p className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-3">
+                    Tentang Subtes Ini
+                  </p>
+                  <div className="rounded-2xl bg-primary-50/60 border border-primary-100 px-4 py-3.5">
+                    <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-wrap">
+                      {nextSection.description}
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  Bagian sebelumnya sudah tersimpan dan tidak bisa diubah lagi.
+                  Lanjutkan ke subtes berikutnya kapan kamu siap.
+                </p>
+              )}
+            </div>
+
+            <div className="px-6 md:px-8 py-4 bg-slate-50/60 border-t border-slate-100 flex flex-col-reverse sm:flex-row gap-2">
+              <div className="hidden sm:block sm:flex-1" />
+              <button
+                type="button"
+                onClick={handleAdvanceToNextSection}
+                className="w-full sm:flex-1 h-11 px-5 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 text-white text-sm font-bold hover:from-primary-700 hover:to-primary-800 transition-all shadow-sm shadow-primary-200 hover:shadow-md inline-flex items-center justify-center gap-2"
+              >
+                <PlayCircle className="w-4 h-4" />
+                Mulai Subtes {pendingNextSectionIdx + 1}
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+        </main>
       </div>
     )
   }
@@ -476,17 +975,22 @@ export default function TesPage() {
             )}
 
             <div className="flex items-center gap-2">
-              {currentSection && (
-                <div className="hidden md:flex items-center gap-2 px-3 py-2 rounded-full bg-amber-400/20 backdrop-blur-sm border border-amber-300/30">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-amber-200 truncate max-w-[120px]">
-                    {currentSection.name}
+              {hasSections && activeSection && (
+                <div className="hidden md:flex flex-col items-end px-3 py-1.5 rounded-xl bg-amber-400/20 backdrop-blur-sm border border-amber-300/30 leading-tight">
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-amber-200/80">
+                    Subtes {activeSectionIdx + 1}/{sortedSections.length}
+                  </span>
+                  <span className="text-[11px] font-black text-amber-100 truncate max-w-[160px]">
+                    {activeSection.name}
                   </span>
                 </div>
               )}
               <div className="flex items-center gap-2 px-3 md:px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm">
                 <Brain className="size-4 text-amber-300" />
                 <span className="text-[10px] font-black uppercase tracking-widest text-white/90">
-                  {currentIdx + 1}/{questions.length}
+                  {hasSections
+                    ? `${cursorInActiveSection}/${activeSectionTotal}`
+                    : `${currentIdx + 1}/${questions.length}`}
                 </span>
               </div>
             </div>
@@ -665,10 +1169,16 @@ export default function TesPage() {
             <div className="flex justify-between pt-2 gap-3">
               <button
                 onClick={handleBack}
-                disabled={currentIdx === 0}
+                disabled={
+                  hasSections
+                    ? currentIdx <= activeSectionFirstGlobalIdx
+                    : currentIdx === 0
+                }
                 className={cn(
                   'h-12 px-5 md:px-6 rounded-xl font-black text-sm flex items-center gap-2 transition-colors',
-                  currentIdx === 0
+                  (hasSections
+                    ? currentIdx <= activeSectionFirstGlobalIdx
+                    : currentIdx === 0)
                     ? 'opacity-40 cursor-not-allowed text-slate-300 bg-white border border-slate-100'
                     : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-50',
                 )}
@@ -676,27 +1186,47 @@ export default function TesPage() {
                 <ArrowLeft className="size-4" />{' '}
                 <span className="hidden sm:inline">Sebelumnya</span>
               </button>
-              <button
-                onClick={handleNext}
-                className={cn(
-                  'h-12 px-6 md:px-8 rounded-xl font-black text-sm flex items-center gap-2 transition-all',
-                  currentAnswered || currentIdx === questions.length - 1
-                    ? 'bg-primary-600 text-white hover:bg-primary-700 shadow-sm active:scale-95'
-                    : 'bg-slate-200 text-slate-500',
-                )}
-              >
-                {currentIdx === questions.length - 1 ? (
-                  <>
-                    <CheckCircle2 className="size-4" /> Selesai & Kirim
-                  </>
-                ) : (
-                  <>
-                    <span className="hidden sm:inline">Selanjutnya</span>
-                    <span className="sm:hidden">Lanjut</span>
-                    <ArrowRight className="size-4" />
-                  </>
-                )}
-              </button>
+              {(() => {
+                const isLastQOfActive = hasSections
+                  ? currentIdx >= activeSectionLastGlobalIdx
+                  : currentIdx === questions.length - 1
+                const isFinalQuestion = hasSections
+                  ? isLastSection && isLastQOfActive
+                  : currentIdx === questions.length - 1
+                const ctaActive = currentAnswered || isFinalQuestion
+
+                return (
+                  <button
+                    onClick={handleNext}
+                    className={cn(
+                      'h-12 px-6 md:px-8 rounded-xl font-black text-sm flex items-center gap-2 transition-all',
+                      ctaActive
+                        ? 'bg-primary-600 text-white hover:bg-primary-700 shadow-sm active:scale-95'
+                        : 'bg-slate-200 text-slate-500',
+                    )}
+                  >
+                    {isFinalQuestion ? (
+                      <>
+                        <CheckCircle2 className="size-4" /> Selesai & Kirim
+                      </>
+                    ) : isLastQOfActive ? (
+                      <>
+                        <CheckCircle2 className="size-4" />
+                        <span className="hidden sm:inline">
+                          Selesai Subtes {activeSectionIdx + 1}
+                        </span>
+                        <span className="sm:hidden">Selesai Subtes</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="hidden sm:inline">Selanjutnya</span>
+                        <span className="sm:hidden">Lanjut</span>
+                        <ArrowRight className="size-4" />
+                      </>
+                    )}
+                  </button>
+                )
+              })()}
             </div>
           </div>
 
@@ -790,37 +1320,74 @@ export default function TesPage() {
                 </div>
               </div>
               <div className="p-5 md:p-6 space-y-4 max-h-[60vh] overflow-y-auto">
-                {questionsBySection.map((group, gi) => (
-                  <div key={gi}>
-                    {group.section && (
-                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">
-                        {group.section.name}
-                      </p>
-                    )}
-                    <div className="grid grid-cols-5 gap-2">
-                      {group.questions.map((q) => {
-                        const answered = isAnswered(q, answers[q.id])
-                        const isCurrent = q.globalIdx === currentIdx
-                        return (
-                          <button
-                            key={q.id}
-                            onClick={() => handleJumpTo(q.globalIdx)}
-                            className={cn(
-                              'size-10 rounded-xl text-xs font-black transition-all',
-                              isCurrent
-                                ? 'bg-primary-600 text-white shadow-md scale-105'
-                                : answered
-                                  ? 'bg-emerald-50 text-emerald-700 border border-emerald-100 hover:bg-emerald-100'
-                                  : 'bg-slate-50 text-slate-400 border border-slate-100 hover:bg-slate-100',
+                {questionsBySection.map((group, gi) => {
+                  const sealed = hasSections && isSectionSealed(gi)
+                  const locked = hasSections && isSectionLocked(gi)
+                  const isActive = hasSections && gi === activeSectionIdx
+                  const sectionAnswered = group.questions.filter((q) =>
+                    isAnswered(q, answers[q.id]),
+                  ).length
+                  return (
+                    <div key={gi}>
+                      {group.section && (
+                        <div className="flex items-center justify-between gap-2 mb-2">
+                          <div className="flex items-center gap-1.5 min-w-0">
+                            {sealed && (
+                              <CheckCircle2 className="size-3 text-emerald-500 shrink-0" />
                             )}
-                          >
-                            {q.globalIdx + 1}
-                          </button>
-                        )
-                      })}
+                            {locked && (
+                              <Lock className="size-3 text-slate-300 shrink-0" />
+                            )}
+                            <p
+                              className={cn(
+                                'text-[10px] font-black uppercase tracking-widest truncate',
+                                isActive
+                                  ? 'text-primary-600'
+                                  : sealed
+                                    ? 'text-emerald-600'
+                                    : 'text-slate-400',
+                              )}
+                            >
+                              {group.section.name}
+                            </p>
+                          </div>
+                          <span className="text-[9px] font-bold text-slate-400 shrink-0">
+                            {sectionAnswered}/{group.questions.length}
+                          </span>
+                        </div>
+                      )}
+                      <div className="grid grid-cols-5 gap-2">
+                        {group.questions.map((q, qi) => {
+                          const answered = isAnswered(q, answers[q.id])
+                          const isCurrent = q.globalIdx === currentIdx
+                          const disabled = sealed || locked
+                          return (
+                            <button
+                              key={q.id}
+                              onClick={() => handleJumpTo(q.globalIdx)}
+                              disabled={disabled}
+                              className={cn(
+                                'size-10 rounded-xl text-xs font-black transition-all',
+                                isCurrent
+                                  ? 'bg-primary-600 text-white shadow-md scale-105'
+                                  : sealed
+                                    ? 'bg-emerald-50 text-emerald-600 border border-emerald-100 cursor-not-allowed opacity-80'
+                                    : locked
+                                      ? 'bg-slate-50 text-slate-300 border border-slate-100 cursor-not-allowed'
+                                      : answered
+                                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-100 hover:bg-emerald-100'
+                                        : 'bg-slate-50 text-slate-400 border border-slate-100 hover:bg-slate-100',
+                              )}
+                            >
+                              {/* Show 1-based index within the section, not the global index. */}
+                              {qi + 1}
+                            </button>
+                          )
+                        })}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  )
+                })}
 
                 <div className="pt-4 border-t border-slate-100 flex flex-wrap gap-3">
                   <div className="flex items-center gap-1.5">
@@ -835,6 +1402,12 @@ export default function TesPage() {
                     <div className="size-3 rounded bg-slate-50 border border-slate-200" />
                     <span className="text-[10px] font-bold text-slate-500">Belum</span>
                   </div>
+                  {hasSections && (
+                    <div className="flex items-center gap-1.5">
+                      <Lock className="size-3 text-slate-300" />
+                      <span className="text-[10px] font-bold text-slate-500">Terkunci</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

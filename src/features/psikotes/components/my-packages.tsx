@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
   Package,
-  Loader2,
   Inbox,
   PlayCircle,
   Clock,
@@ -13,24 +12,12 @@ import {
   Sparkles,
   ArrowRight,
   ShoppingBag,
-  Wifi,
-  BatteryCharging,
-  Coffee,
-  ShieldCheck,
   CheckCircle2,
   RotateCw,
   ChevronDown,
   UserCheck,
   ClipboardList,
 } from 'lucide-react'
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
 import { useMyPackages } from '../hooks/use-catalog'
 
@@ -84,12 +71,32 @@ export function MyPackages() {
   const router = useRouter()
   const { data: packages, isLoading } = useMyPackages()
   const [expandedId, setExpandedId] = useState<string | null>(null)
-  const [confirmTest, setConfirmTest] = useState<MyTest | null>(null)
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center py-24">
-        <Loader2 className="w-8 h-8 text-primary-500 animate-spin" />
+      <div className="space-y-6">
+        <div className="rounded-3xl bg-slate-100 animate-pulse h-32" />
+        {Array.from({ length: 3 }).map((_, i) => (
+          <div key={i} className="bg-white rounded-3xl border border-slate-100 p-5 md:p-6 space-y-4">
+            <div className="flex items-start gap-3">
+              <div className="w-11 h-11 rounded-2xl bg-slate-100 animate-pulse shrink-0" />
+              <div className="flex-1 space-y-2">
+                <div className="h-5 bg-slate-100 animate-pulse rounded-lg w-2/3" />
+                <div className="h-3 bg-slate-50 animate-pulse rounded-lg w-1/2" />
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <div className="h-7 w-20 bg-slate-100 animate-pulse rounded-lg" />
+              <div className="h-7 w-24 bg-slate-100 animate-pulse rounded-lg" />
+              <div className="h-7 w-16 bg-slate-100 animate-pulse rounded-lg" />
+            </div>
+            <div className="h-1.5 bg-slate-100 animate-pulse rounded-full" />
+            <div className="flex justify-between items-center pt-2 border-t border-dashed border-slate-200">
+              <div className="h-3 w-28 bg-slate-100 animate-pulse rounded-lg" />
+              <div className="h-10 w-28 bg-slate-100 animate-pulse rounded-xl" />
+            </div>
+          </div>
+        ))}
       </div>
     )
   }
@@ -125,19 +132,10 @@ export function MyPackages() {
       router.push(`/tes/${test.id}/result/${test.session.id}`)
       return
     }
-    if (status === 'IN_PROGRESS') {
-      router.push(`/tes/${test.id}`)
-      return
-    }
-    // NOT_STARTED → show pre-test confirm dialog
-    setConfirmTest(test)
-  }
-
-  const handleStartConfirmed = () => {
-    if (!confirmTest) return
-    const id = confirmTest.id
-    setConfirmTest(null)
-    router.push(`/tes/${id}`)
+    // NOT_STARTED & IN_PROGRESS — both go directly to the test page.
+    // The instruction popup is shown there (single source of truth) so the
+    // experience is identical regardless of entry point.
+    router.push(`/tes/${test.id}`)
   }
 
   const totalTests = packages.reduce((acc, pkg) => acc + (pkg.tests?.length ?? 0), 0)
@@ -424,97 +422,6 @@ export function MyPackages() {
           )
         })}
       </div>
-
-      <Dialog
-        open={!!confirmTest}
-        onOpenChange={(open) => {
-          if (!open) setConfirmTest(null)
-        }}
-      >
-        <DialogContent className="sm:max-w-md p-0 overflow-hidden rounded-3xl flex flex-col max-h-[90vh]">
-          <div className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 px-6 pt-7 pb-6 text-white overflow-hidden shrink-0">
-            <div
-              className="absolute inset-0 opacity-[0.08] pointer-events-none"
-              style={{
-                backgroundImage:
-                  'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-                backgroundSize: '20px 20px',
-              }}
-            />
-            <div className="absolute top-[-40px] right-[-30px] w-40 h-40 bg-amber-400/25 rounded-full blur-2xl" />
-
-            <div className="relative">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-400 text-amber-950 text-[10px] font-black uppercase tracking-wider mb-3">
-                <Sparkles className="w-3 h-3" />
-                Konfirmasi
-              </div>
-              <DialogHeader className="text-left">
-                <DialogTitle className="text-xl md:text-2xl font-black text-white leading-tight">
-                  Siap memulai tes?
-                </DialogTitle>
-                <DialogDescription className="text-sm text-primary-100/90 mt-1.5">
-                  {confirmTest?.name}
-                </DialogDescription>
-              </DialogHeader>
-            </div>
-          </div>
-
-          <div className="px-6 py-5 overflow-y-auto styled-scrollbar flex-1 min-h-0">
-            <p className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-3">
-              Pastikan sebelum memulai
-            </p>
-            <ul className="space-y-2.5">
-              {[
-                { icon: Wifi, text: 'Koneksi internet stabil' },
-                {
-                  icon: BatteryCharging,
-                  text: 'Perangkat cukup daya atau terhubung charger',
-                },
-                {
-                  icon: Coffee,
-                  text: 'Kondisi fisik & pikiran siap, bebas gangguan',
-                },
-                {
-                  icon: ShieldCheck,
-                  text: 'Jawab dengan jujur — hasilnya untuk kamu sendiri',
-                },
-              ].map((item, i) => {
-                const Icon = item.icon
-                return (
-                  <li
-                    key={i}
-                    className="flex items-center gap-3 text-sm text-slate-700"
-                  >
-                    <div className="w-9 h-9 rounded-xl bg-primary-50 border border-primary-100 flex items-center justify-center shrink-0">
-                      <Icon className="w-4 h-4 text-primary-700" />
-                    </div>
-                    <span className="font-medium leading-snug">{item.text}</span>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-
-          <DialogFooter className="px-6 py-4 bg-slate-50/60 border-t border-slate-100 flex-col-reverse sm:flex-row gap-2 shrink-0">
-            <button
-              type="button"
-              onClick={() => setConfirmTest(null)}
-              className="w-full sm:flex-1 h-11 px-5 rounded-xl bg-white border border-slate-200 text-slate-700 text-sm font-bold hover:bg-slate-50 hover:text-slate-900 transition-colors"
-            >
-              Kembali
-            </button>
-            <button
-              type="button"
-              onClick={handleStartConfirmed}
-              className="w-full sm:flex-1 h-11 px-5 rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 text-white text-sm font-bold hover:from-primary-700 hover:to-primary-800 transition-all shadow-sm shadow-primary-200 hover:shadow-md inline-flex items-center justify-center gap-2"
-            >
-              <PlayCircle className="w-4 h-4" />
-              Mulai
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
   )
 }

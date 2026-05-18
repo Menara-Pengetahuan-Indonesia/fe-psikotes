@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { ArrowRight, Target, Zap, Loader2 } from 'lucide-react'
+import { ArrowRight, Target, Zap } from 'lucide-react'
+import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
 import { useCatalogPackages, useCatalogChildPackages, useAllPackageTypes } from '../hooks/use-catalog'
 import type { CatalogChildPackage } from '../types/catalog.types'
@@ -97,8 +98,20 @@ export function PsikotesProducts() {
         </div>
 
         {isLoading ? (
-          <div className="flex items-center justify-center py-24">
-            <Loader2 className="w-8 h-8 animate-spin text-primary-400" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="bg-white rounded-[2rem] border border-slate-100 shadow-soft flex flex-col p-6 gap-5">
+                <div className="flex-1 space-y-2">
+                  <Skeleton className="h-6 w-3/4 rounded-lg" />
+                  <Skeleton className="h-4 w-full rounded-lg" />
+                  <Skeleton className="h-4 w-5/6 rounded-lg" />
+                </div>
+                <div className="flex items-center justify-between pt-2 border-t border-slate-50">
+                  <Skeleton className="h-4 w-24 rounded-lg" />
+                  <Skeleton className="h-4 w-20 rounded-lg" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : (childPackages ?? []).length === 0 ? (
           <div className="text-center py-24 text-slate-400 font-medium">

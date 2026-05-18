@@ -2,7 +2,8 @@
 
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
-import { BookOpen, Loader2, ChevronRight, FlaskConical, ArrowRight, Inbox } from 'lucide-react'
+import { BookOpen, ChevronRight, FlaskConical, ArrowRight, Inbox } from 'lucide-react'
+import { Skeleton } from '@/components/ui/skeleton'
 import { useCatalogChildPackageById, useCatalogPackageTypes } from '../hooks/use-catalog'
 import type { CatalogPackageType } from '../types/catalog.types'
 
@@ -23,11 +24,48 @@ export function PackageDetailClient({ categorySlug, categoryLabel }: PackageDeta
 
   if (isLoading) {
     return (
-      <main className="min-h-screen bg-white flex items-center justify-center">
-        <div className="flex flex-col items-center gap-3">
-          <Loader2 className="w-8 h-8 text-primary-500 animate-spin" />
-          <p className="text-sm font-medium text-slate-400">Memuat paket...</p>
-        </div>
+      <main className="min-h-screen bg-white pb-24 md:pb-0">
+        <section className="relative overflow-hidden bg-gradient-to-b from-primary-50/50 via-white to-white pt-28 pb-16">
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="flex items-center gap-1.5 mb-8">
+              <Skeleton className="h-4 w-16 rounded" />
+              <Skeleton className="h-4 w-4 rounded" />
+              <Skeleton className="h-4 w-24 rounded" />
+              <Skeleton className="h-4 w-4 rounded" />
+              <Skeleton className="h-4 w-32 rounded" />
+            </div>
+            <div className="space-y-5">
+              <Skeleton className="h-7 w-32 rounded-full" />
+              <Skeleton className="h-12 w-3/4 rounded-xl" />
+              <Skeleton className="h-5 w-full rounded-lg" />
+              <Skeleton className="h-5 w-2/3 rounded-lg" />
+              <div className="flex gap-3 pt-2">
+                <Skeleton className="h-9 w-36 rounded-full" />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="py-16">
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="space-y-3 mb-10">
+              <Skeleton className="h-8 w-40 rounded-xl" />
+              <Skeleton className="h-4 w-64 rounded-lg" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="p-6 rounded-2xl border border-slate-100 bg-white space-y-4">
+                  <div className="flex items-center justify-between">
+                    <Skeleton className="h-5 w-28 rounded-lg" />
+                    <Skeleton className="h-6 w-20 rounded-lg" />
+                  </div>
+                  <Skeleton className="h-4 w-full rounded-lg" />
+                  <Skeleton className="h-4 w-4/5 rounded-lg" />
+                  <Skeleton className="h-11 w-full rounded-xl" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
     )
   }

@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { BookOpen, Loader2, Inbox, ArrowRight } from 'lucide-react'
+import { BookOpen, Inbox, ArrowRight } from 'lucide-react'
+import { Skeleton } from '@/components/ui/skeleton'
 import type { CatalogChildPackage } from '../types/catalog.types'
 
 interface ChildPackageCardProps {
@@ -109,8 +110,29 @@ export function PackageEmptyState({ message }: { message?: string }) {
 
 export function PackageLoadingSpinner() {
   return (
-    <div className="flex items-center justify-center py-20">
-      <Loader2 className="w-8 h-8 text-primary-500 animate-spin" />
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {Array.from({ length: 3 }).map((_, i) => (
+        <div key={i} className="bg-white rounded-2xl border border-slate-100 flex flex-col">
+          <div className="p-6 flex-1 space-y-4">
+            <div className="flex items-start justify-between">
+              <Skeleton className="w-11 h-11 rounded-xl" />
+              <Skeleton className="h-5 w-20 rounded-full" />
+            </div>
+            <div className="space-y-2">
+              <Skeleton className="h-6 w-3/4 rounded-lg" />
+              <Skeleton className="h-4 w-full rounded-lg" />
+              <Skeleton className="h-4 w-5/6 rounded-lg" />
+            </div>
+            <div className="space-y-1">
+              <Skeleton className="h-3 w-16 rounded" />
+              <Skeleton className="h-7 w-32 rounded-lg" />
+            </div>
+          </div>
+          <div className="px-6 pb-6">
+            <Skeleton className="h-11 w-full rounded-xl" />
+          </div>
+        </div>
+      ))}
     </div>
   )
 }
