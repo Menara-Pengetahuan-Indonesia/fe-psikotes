@@ -185,7 +185,7 @@ export function MyTests() {
             return (
               <Link
                 key={test.id}
-                href={isCompleted ? `/pengguna/riwayat/${test.id}` : `/psikotes`}
+                href={isCompleted ? `/pengguna/riwayat` : `/psikotes`}
                 className="group flex items-center gap-4 md:gap-5 px-5 md:px-7 py-4 md:py-5 hover:bg-primary-50/40 transition-colors"
               >
                 <div

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
@@ -17,8 +17,10 @@ import {
   ChevronDown,
   UserCheck,
   ClipboardList,
+  Search,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { Input } from '@/components/ui/input'
 import { useMyPackages } from '../hooks/use-catalog'
 
 type MyPackage = NonNullable<ReturnType<typeof useMyPackages>['data']>[number]
@@ -40,9 +42,27 @@ const ACCENT_RING = [
 ]
 
 type TestStatus = 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETED'
+type PackageFilter = 'semua' | 'belum_mulai' | 'berjalan' | 'selesai'
+
+const FILTER_OPTIONS: { value: PackageFilter; label: string }[] = [
+  { value: 'semua', label: 'Semua' },
+  { value: 'belum_mulai', label: 'Belum Mulai' },
+  { value: 'berjalan', label: 'Berjalan' },
+  { value: 'selesai', label: 'Selesai' },
+]
 
 function getTestStatus(test: MyTest): TestStatus {
   return test.session?.status ?? 'NOT_STARTED'
+}
+
+function getPackageStatus(pkg: MyPackage): 'belum_mulai' | 'berjalan' | 'selesai' {
+  const tests = pkg.tests ?? []
+  if (tests.length === 0) return 'belum_mulai'
+  const allCompleted = tests.every((t) => getTestStatus(t) === 'COMPLETED')
+  if (allCompleted) return 'selesai'
+  const anyStarted = tests.some((t) => getTestStatus(t) !== 'NOT_STARTED')
+  if (anyStarted) return 'berjalan'
+  return 'belum_mulai'
 }
 
 function StatusBadge({ status }: { status: TestStatus }) {
@@ -71,6 +91,21 @@ export function MyPackages() {
   const router = useRouter()
   const { data: packages, isLoading } = useMyPackages()
   const [expandedId, setExpandedId] = useState<string | null>(null)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [activeFilter, setActiveFilter] = useState<PackageFilter>('semua')
+
+  const filtered = useMemo(() => {
+    if (!packages) return []
+    return packages.filter((pkg) => {
+      const matchesSearch =
+        !searchQuery ||
+        pkg.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (pkg.packageName ?? '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (pkg.tests ?? []).some((t) => t.name.toLowerCase().includes(searchQuery.toLowerCase()))
+      const matchesFilter = activeFilter === 'semua' || getPackageStatus(pkg) === activeFilter
+      return matchesSearch && matchesFilter
+    })
+  }, [packages, searchQuery, activeFilter])
 
   if (isLoading) {
     return (
@@ -84,16 +119,6 @@ export function MyPackages() {
                 <div className="h-5 bg-slate-100 animate-pulse rounded-lg w-2/3" />
                 <div className="h-3 bg-slate-50 animate-pulse rounded-lg w-1/2" />
               </div>
-            </div>
-            <div className="flex gap-2">
-              <div className="h-7 w-20 bg-slate-100 animate-pulse rounded-lg" />
-              <div className="h-7 w-24 bg-slate-100 animate-pulse rounded-lg" />
-              <div className="h-7 w-16 bg-slate-100 animate-pulse rounded-lg" />
-            </div>
-            <div className="h-1.5 bg-slate-100 animate-pulse rounded-full" />
-            <div className="flex justify-between items-center pt-2 border-t border-dashed border-slate-200">
-              <div className="h-3 w-28 bg-slate-100 animate-pulse rounded-lg" />
-              <div className="h-10 w-28 bg-slate-100 animate-pulse rounded-xl" />
             </div>
           </div>
         ))}
@@ -132,9 +157,6 @@ export function MyPackages() {
       router.push(`/tes/${test.id}/result/${test.session.id}`)
       return
     }
-    // NOT_STARTED & IN_PROGRESS — both go directly to the test page.
-    // The instruction popup is shown there (single source of truth) so the
-    // experience is identical regardless of entry point.
     router.push(`/tes/${test.id}`)
   }
 
@@ -142,6 +164,7 @@ export function MyPackages() {
 
   return (
     <div className="space-y-6">
+      {/* Header */}
       <div className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 rounded-3xl p-6 md:p-8 overflow-hidden shadow-lg shadow-primary-200/40">
         <div
           className="absolute inset-0 opacity-[0.08] pointer-events-none"
@@ -177,8 +200,51 @@ export function MyPackages() {
         </div>
       </div>
 
+      {/* Search & Filter */}
+      <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3">
+        <div className="flex items-center bg-white rounded-2xl border border-slate-100 p-1 gap-1 overflow-x-auto shadow-sm">
+          {FILTER_OPTIONS.map((tab) => (
+            <button
+              key={tab.value}
+              onClick={() => setActiveFilter(tab.value)}
+              className={cn(
+                'px-4 h-9 rounded-xl text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap',
+                activeFilter === tab.value
+                  ? 'bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-sm'
+                  : 'text-slate-500 hover:text-primary-700 hover:bg-primary-50',
+              )}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+        <div className="flex-1 relative">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Input
+            placeholder="Cari paket atau tes..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-11 h-11 bg-white border-slate-100 rounded-2xl text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary-500/20"
+          />
+        </div>
+      </div>
+
+      {/* Empty filtered state */}
+      {filtered.length === 0 && (
+        <div className="relative bg-white rounded-3xl border border-primary-100/60 p-12 text-center overflow-hidden">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center mx-auto mb-4 shadow-sm shadow-primary-200">
+            <Package className="w-6 h-6 text-white" />
+          </div>
+          <p className="text-slate-900 font-black text-lg mb-1">Tidak ditemukan</p>
+          <p className="text-slate-500 font-medium text-sm">
+            Coba ubah filter atau kata kunci pencarian.
+          </p>
+        </div>
+      )}
+
+      {/* Package list */}
       <div className="grid grid-cols-1 gap-4 md:gap-5">
-        {packages.map((pkg, idx) => {
+        {filtered.map((pkg, idx) => {
           const allTypes = new Set<string>()
           let totalDuration = 0
           let totalQuestions = 0
@@ -267,9 +333,7 @@ export function MyPackages() {
                 {hasTests && (
                   <div className="mb-4">
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[11px] font-bold text-slate-500">
-                        Progress tes
-                      </span>
+                      <span className="text-[11px] font-bold text-slate-500">Progress tes</span>
                       <span className="text-[11px] font-black text-slate-700">
                         {completedCount}/{pkg.tests?.length ?? 0}
                       </span>

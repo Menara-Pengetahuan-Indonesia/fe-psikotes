@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import {
   ArrowLeft,
@@ -56,8 +56,12 @@ function getLevelColor(level: string) {
 export default function ResultPage() {
   const params = useParams()
   const router = useRouter()
+  const searchParams = useSearchParams()
   const testId = params.testId as string
   const resultId = params.resultId as string
+  const fromRiwayat = searchParams.get('from') === 'riwayat'
+  const backHref = fromRiwayat ? '/pengguna/riwayat' : '/pengguna/paket-saya'
+  const backLabel = fromRiwayat ? 'Kembali ke Riwayat' : 'Kembali ke Paket Saya'
 
   const [result, setResult] = useState<ResultData | null>(null)
   const [loading, setLoading] = useState(true)
@@ -162,11 +166,11 @@ export default function ResultPage() {
           Tautan ini mungkin sudah tidak valid atau hasil telah dihapus.
         </p>
         <Link
-          href="/pengguna/paket-saya"
+          href={backHref}
           className="inline-flex items-center gap-2 px-5 h-11 rounded-xl bg-primary-600 text-white text-sm font-bold hover:bg-primary-700 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          Kembali ke Paket Saya
+          {backLabel}
         </Link>
       </div>
     )
@@ -262,13 +266,13 @@ export default function ResultPage() {
 
         <div className="relative">
           <button
-            onClick={() => router.push('/pengguna/paket-saya')}
+            onClick={() => router.push(backHref)}
             className="inline-flex items-center gap-2 text-primary-100/90 hover:text-white transition-colors mb-5 group"
           >
             <div className="w-8 h-8 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center border border-white/20 group-hover:bg-white/25 transition-colors">
               <ArrowLeft className="w-4 h-4" />
             </div>
-            <span className="text-sm font-bold">Kembali ke Paket Saya</span>
+            <span className="text-sm font-bold">{backLabel}</span>
           </button>
 
           <div className="flex items-center gap-4 mb-4">
@@ -536,11 +540,11 @@ export default function ResultPage() {
       {/* Actions */}
       <div className="flex flex-col sm:flex-row gap-3 pt-2">
         <button
-          onClick={() => router.push('/pengguna/paket-saya')}
+          onClick={() => router.push(backHref)}
           className="flex-1 inline-flex items-center justify-center gap-2 h-12 px-5 rounded-xl bg-white border border-slate-200 text-slate-700 text-sm font-bold hover:bg-slate-50 hover:text-slate-900 transition-colors"
         >
           <Package className="w-4 h-4" />
-          Paket Saya
+          {fromRiwayat ? 'Riwayat' : 'Paket Saya'}
         </button>
         <Link
           href="/"

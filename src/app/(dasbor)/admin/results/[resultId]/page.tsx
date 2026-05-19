@@ -165,8 +165,9 @@ export default function ResultDetailPage() {
 
   const handleGenerate = async () => {
     setGenerating(true)
+    setError(null)
     try {
-      const res = await api.post(`/admin/sessions/${userPackageId}/generate-review`)
+      const res = await api.post(`/admin/sessions/${userPackageId}/generate-review`, {}, { timeout: 60000 })
       setReviewData(res.data.data)
     } catch {
       setError('Gagal generate review AI. Coba lagi.')
