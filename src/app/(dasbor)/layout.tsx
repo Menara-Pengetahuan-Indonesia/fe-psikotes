@@ -8,7 +8,6 @@ import {
   Search,
   Bell,
   LayoutDashboard,
-  FileText,
   History,
   Menu,
   LogOut,
@@ -49,7 +48,6 @@ const NAV_BY_ROLE: Record<UserRole, NavGroup[]> = {
       items: [
         { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
         { href: '/pengguna/paket-saya', label: 'Paket Saya', icon: Package },
-        { href: '/pengguna/tes', label: 'Tes Saya', icon: FileText },
         { href: '/pengguna/riwayat', label: 'Riwayat', icon: History },
       ],
     },
@@ -81,7 +79,6 @@ const NAV_BY_ROLE: Record<UserRole, NavGroup[]> = {
 const BREADCRUMB_LABELS: Record<string, string> = {
   '/dashboard': 'Dashboard',
   '/pengguna/paket-saya': 'Paket Saya',
-  '/pengguna/tes': 'Tes Saya',
   '/pengguna/riwayat': 'Riwayat',
   '/pengguna/profil': 'Profil',
   '/admin/kelola-tes': 'Kelola Tes',

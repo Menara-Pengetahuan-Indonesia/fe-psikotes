@@ -13,7 +13,6 @@ import {
   FileBarChart,
   ClipboardList,
   UserCheck,
-  Loader2,
   AlertTriangle,
   RefreshCw,
   Package,
@@ -104,14 +103,14 @@ export default function AdminResultsPage() {
   }, [searchInput])
 
   const reviewedCount = items.filter((i) => i.reviewedAt).length
-  const pendingCount = items.filter((i) => !i.reviewedAt).length
+  const pendingCount = items.filter((i) => !i.reviewedAt && i.allCompleted).length
 
   const filtered =
     filter === 'all'
-      ? items
+      ? items.filter((i) => i.allCompleted || i.reviewedAt)
       : filter === 'reviewed'
         ? items.filter((i) => i.reviewedAt)
-        : items.filter((i) => !i.reviewedAt)
+        : items.filter((i) => !i.reviewedAt && i.allCompleted)
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -153,7 +152,7 @@ export default function AdminResultsPage() {
               <Users className="size-5 text-primary-300" />
             </div>
             <div>
-              <p className="text-2xl font-black leading-none">{items.length}</p>
+              <p className="text-2xl font-black leading-none">{pendingCount + reviewedCount}</p>
               <p className="text-[10px] font-bold text-primary-100/80 uppercase tracking-widest mt-0.5">Total Paket</p>
             </div>
           </div>
@@ -183,7 +182,7 @@ export default function AdminResultsPage() {
         <div className="flex items-center bg-white rounded-xl border border-slate-100 p-1 gap-1">
           {(
             [
-              { key: 'all', label: 'Semua', count: items.length },
+              { key: 'all', label: 'Semua', count: pendingCount + reviewedCount },
               { key: 'pending', label: 'Perlu Review', count: pendingCount },
               { key: 'reviewed', label: 'Sudah Direview', count: reviewedCount },
             ] as const
@@ -218,9 +217,19 @@ export default function AdminResultsPage() {
 
       {/* LIST */}
       {loading ? (
-        <div className="bg-white rounded-3xl border border-slate-100 p-16 flex flex-col items-center gap-4">
-          <Loader2 className="size-8 text-primary-400 animate-spin" />
-          <p className="text-sm font-bold text-slate-400">Memuat data...</p>
+        <div className="bg-white rounded-3xl border border-slate-100 overflow-hidden divide-y divide-slate-50">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} className="flex items-center gap-5 px-6 md:px-8 py-5 animate-pulse">
+              <div className="size-12 rounded-2xl bg-slate-200" />
+              <div className="flex-1 min-w-0 space-y-2">
+                <div className="h-4 w-40 bg-slate-200 rounded" />
+                <div className="h-3 w-56 bg-slate-100 rounded" />
+              </div>
+              <div className="hidden md:block h-7 w-48 bg-slate-100 rounded-full" />
+              <div className="hidden lg:block h-7 w-32 bg-slate-100 rounded-full" />
+              <div className="size-9 rounded-xl bg-slate-100" />
+            </div>
+          ))}
         </div>
       ) : error ? (
         <div className="bg-white rounded-3xl border border-rose-100 p-16 flex flex-col items-center gap-4">
