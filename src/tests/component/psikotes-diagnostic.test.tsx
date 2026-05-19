@@ -12,6 +12,9 @@ import { PsikotesDiagnostic } from '@/features/psikotes/components/psikotes-diag
 const mockFetch = vi.fn()
 
 function mockApiResponse(data: object) {
+  // First call: stream endpoint fails
+  mockFetch.mockResolvedValueOnce({ ok: false })
+  // Second call: fallback JSON endpoint succeeds
   mockFetch.mockResolvedValueOnce({
     ok: true,
     json: async () => data,
@@ -19,6 +22,7 @@ function mockApiResponse(data: object) {
 }
 
 function mockApiError() {
+  mockFetch.mockResolvedValueOnce({ ok: false })
   mockFetch.mockResolvedValueOnce({ ok: false })
 }
 
@@ -261,7 +265,7 @@ describe('PsikotesDiagnostic', () => {
 
     await waitFor(() => screen.getByText('Second reply.'))
 
-    const lastCall = mockFetch.mock.calls[1]
+    const lastCall = mockFetch.mock.calls[mockFetch.mock.calls.length - 1]
     const body = JSON.parse(lastCall[1].body)
     expect(body.messages).toHaveLength(3) // user + assistant + user
   })
