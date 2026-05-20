@@ -1061,11 +1061,11 @@ export default function TesPage() {
                   {question.options.length > 0 && question.options.some((o) => o.text?.trim()) ? (
                     <div className="flex flex-col gap-2">
                       {question.options.map((opt) => {
-                        const isSelected = String(currentAns?.scaleValue ?? '') === opt.id
+                        const isSelected = currentAns?.scaleValue === opt.order
                         return (
                           <button
                             key={opt.id}
-                            onClick={() => handleSelectScale(Number(opt.id))}
+                            onClick={() => handleSelectScale(opt.order)}
                             className={cn(
                               'w-full text-left px-5 py-3.5 rounded-xl border-2 transition-all font-medium text-sm',
                               isSelected

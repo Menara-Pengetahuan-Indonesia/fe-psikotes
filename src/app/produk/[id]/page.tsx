@@ -422,7 +422,7 @@ export default function ProdukDetailPage() {
 
               <p className="text-[11px] text-slate-400 text-center leading-relaxed pt-2">
                 Butuh bantuan memilih paket?{' '}
-                <Link href="/tentang" className="text-primary-600 font-bold hover:underline">
+                <Link href="/contact" className="text-primary-600 font-bold hover:underline">
                   Hubungi kami
                 </Link>
               </p>

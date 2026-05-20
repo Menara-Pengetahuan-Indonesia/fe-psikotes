@@ -1,12 +1,7 @@
 import type { Metadata } from 'next'
-import dynamic from 'next/dynamic'
 
 import { PsikotesHero } from '@/features/psikotes/components'
-
-const PsikotesTransformationMap = dynamic(() => import('@/features/psikotes/components/psikotes-transformation-map').then(m => m.PsikotesTransformationMap))
-const PsikotesStage = dynamic(() => import('@/features/psikotes/components/psikotes-stage').then(m => m.PsikotesStage))
-const PsikotesCategoryNav = dynamic(() => import('@/features/psikotes/components/psikotes-category-nav').then(m => m.PsikotesCategoryNav))
-const PsikotesProducts = dynamic(() => import('@/features/psikotes/components/psikotes-products').then(m => m.PsikotesProducts))
+import { HomeClientSections } from './home-client-sections'
 
 export const metadata: Metadata = {
   title: 'Bermoela — Kenali Dirimu, Mulai Perubahanmu',
@@ -31,10 +26,7 @@ export default function HomePage() {
 
       <div className="relative z-10">
         <PsikotesHero />
-        <PsikotesTransformationMap />
-        <PsikotesStage />
-        <PsikotesCategoryNav />
-        <PsikotesProducts />
+        <HomeClientSections />
       </div>
     </main>
   )
